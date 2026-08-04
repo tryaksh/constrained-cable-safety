@@ -146,7 +146,9 @@ C:\isaac-sim\python.bat scripts\play.py --policy teacher --steps 600
 ```
 
 For a guided, plain-English tour and exact commands that open the live Isaac
-Sim GUI, start with the [PM and live-simulation guide](docs/pm_guide.md).
+Sim GUI, start with the [PM and live-simulation guide](docs/pm_guide.md). The
+[overnight training guide](docs/training_guide.md) covers the complete teacher
+PPO, demonstration, behavioral-cloning, and vision PPO sequence.
 
 Teacher-to-student transfer:
 
