@@ -1,0 +1,63 @@
+[build-system]
+requires = ["setuptools>=77,<82"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "autonomous-zero-g-blade-swap"
+version = "0.1.0"
+description = "Isaac Lab ManagerBased RL task for autonomous server-blade replacement in microgravity."
+readme = "README.md"
+requires-python = ">=3.11,<3.12"
+license = "BSD-3-Clause"
+authors = [{ name = "Tryaksh" }]
+keywords = ["robotics", "isaac-lab", "reinforcement-learning", "sim2real", "space-robotics"]
+classifiers = [
+  "Development Status :: 3 - Alpha",
+  "Programming Language :: Python :: 3.11",
+  "Topic :: Scientific/Engineering :: Artificial Intelligence",
+]
+dependencies = [
+  "h5py>=3.10",
+  "Jinja2>=3.1,<4",
+  "numpy>=1.26,<2",
+  "PyYAML>=6.0",
+]
+
+[project.optional-dependencies]
+dev = [
+  "pytest>=8.0,<9",
+  "ruff>=0.11,<1",
+]
+
+[project.urls]
+Repository = "https://github.com/tryaksh/autonomous-zero-g-blade-swap"
+Issues = "https://github.com/tryaksh/autonomous-zero-g-blade-swap/issues"
+
+[tool.setuptools]
+package-dir = { "" = "src" }
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-ra"
+markers = [
+  "isaac: requires a local Isaac Sim and Isaac Lab installation",
+  "camera: requires RTX rendering and --enable_cameras",
+  "benchmark: hardware-dependent throughput/VRAM test",
+]
+
+[tool.ruff]
+target-version = "py311"
+line-length = 120
+extend-exclude = [".deps", "artifacts", "outputs", "datasets"]
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "UP", "B", "SIM"]
+ignore = ["E501"]
+
+[tool.ruff.lint.per-file-ignores]
+# Isaac Lab manager terms conventionally keep SceneEntityCfg objects in their
+# signatures so the manager can inspect and resolve them during construction.
+"src/zero_g_blade_swap/tasks/blade_swap/mdp/*.py" = ["B008"]
