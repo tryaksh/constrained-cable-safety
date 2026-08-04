@@ -1,0 +1,24 @@
+{
+  "isaac_sim": {
+    "release": "5.1.0",
+    "build": "5.1.0-rc.19+release.26219.9c81211b.gl"
+  },
+  "python": "3.11.13",
+  "isaac_lab": {
+    "tag": "v2.3.2",
+    "commit": "37ddf626871758333d6ed89cf64ad702aef127d0",
+    "packages": {
+      "isaaclab": "0.54.2",
+      "isaaclab_assets": "0.2.4",
+      "isaaclab_tasks": "0.11.12",
+      "isaaclab_rl": "0.4.7"
+    }
+  },
+  "torch": "2.7.0+cu128",
+  "rl_games": {
+    "version": "1.6.1",
+    "commit": "6b3534f29568158e9e29ec8bf83cc88fce5f0cae"
+  },
+  "development_gpu": "NVIDIA GeForce RTX 5070 Ti Laptop GPU",
+  "development_driver": "592.01"
+}
