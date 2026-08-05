@@ -4,7 +4,8 @@ An NVIDIA Isaac Lab `ManagerBasedRLEnv` project for training a UR10e with a
 Robotiq 2F-85 gripper to remove a failed compute blade, stow it, acquire a
 replacement, and insert the replacement in a microgravity data-center rack.
 
-The project separates a high-throughput privileged-state teacher from a
+The project is still in state of stabilization and is being actively worked upon. 
+It separates a high-throughput privileged-state teacher from a
 camera-based student so the final policy has a defensible Sim2Real story rather
 than relying on simulator-only object poses at deployment.
 
