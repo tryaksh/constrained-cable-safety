@@ -17,7 +17,8 @@ classifiers = [
   "Topic :: Scientific/Engineering :: Artificial Intelligence",
 ]
 dependencies = [
-  "h5py>=3.10",
+  # Match the HDF5 1.14.6 DLL bundled with Isaac Sim 5.1 on Windows.
+  "h5py==3.13.0",
   "Jinja2>=3.1,<4",
   "numpy>=1.26,<2",
   "PyYAML>=6.0",
