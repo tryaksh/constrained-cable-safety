@@ -4,15 +4,16 @@ An NVIDIA Isaac Lab `ManagerBasedRLEnv` project for training a UR10e with a
 Robotiq 2F-85 gripper to remove a failed compute blade, stow it, acquire a
 replacement, and insert the replacement in a microgravity data-center rack.
 
-The project separates a high-throughput privileged-state teacher from a
-camera-based student so the final policy has a defensible Sim2Real story rather
-than relying on simulator-only object poses at deployment.
+The active milestone is a learned, state-based insertion policy for a blade
+that is already secured by the gripper. A privileged teacher, camera student,
+and full-swap task are later-stage scaffolds—not completed Sim2Real claims.
 
 ## What is implemented
 
 - Zero gravity, GPU PhysX, Fabric cloning, and collision-only manipulation
   without contact-report sensors.
-- A vectorized eight-phase full-swap task with insertion-first curriculum.
+- A promoted Level-0 secured-grasp insertion policy plus a vectorized
+  eight-phase full-swap research scaffold.
 - Random blade mass, guide friction/stiction, compliant mount disturbance,
   orbital sun lighting, rack materials, and camera radiation noise.
 - A measured 1024-environment state profile and a conservative 128-environment
@@ -132,8 +133,8 @@ All commands use Isaac Sim's Python so `isaaclab` is imported only after the
 simulation application starts.
 
 ```powershell
-# State teacher
-C:\isaac-sim\python.bat scripts\train.py --task Isaac-ZeroG-BladeSwap-Teacher-v0 --num_envs 1024 --headless
+# Active six-axis policy: blade already secured; Level 0 is collision-free
+C:\isaac-sim\python.bat scripts\train.py --task Isaac-ZeroG-Blade-Insertion-RigidGrasp-v0 --robustness_level 0 --num_envs 512 --max_iterations 800 --headless
 
 # Vision student; the script enables cameras automatically
 C:\isaac-sim\python.bat scripts\train.py --task Isaac-ZeroG-BladeSwap-Vision-v0 --num_envs 128 --headless
@@ -141,14 +142,13 @@ C:\isaac-sim\python.bat scripts\train.py --task Isaac-ZeroG-BladeSwap-Vision-v0 
 # Hardware selection
 C:\isaac-sim\python.bat scripts\benchmark.py --profile all
 
-# Policy playback; omit --checkpoint to select the newest teacher checkpoint
-C:\isaac-sim\python.bat scripts\play.py --policy teacher --steps 600
+# Learned secured-grasp insertion playback; selects the newest matching checkpoint
+C:\isaac-sim\python.bat scripts\play.py --task Isaac-ZeroG-Blade-Insertion-RigidGrasp-Play-v0 --robustness_level 0 --num_envs 1 --steps 900 --real_time
 ```
 
-For a guided, plain-English tour and exact commands that open the live Isaac
-Sim GUI, start with the [PM and live-simulation guide](docs/pm_guide.md). The
-[overnight training guide](docs/training_guide.md) covers the complete teacher
-PPO, demonstration, behavioral-cloning, and vision PPO sequence.
+For continuation, begin with [CLAUDE.md](CLAUDE.md). It contains the verified
+checkpoint, exact evidence, blockers, and ordered roadmap without requiring a
+new agent to read the entire repository.
 
 Teacher-to-student transfer:
 
@@ -161,19 +161,25 @@ C:\isaac-sim\python.bat scripts\pretrain_student.py --dataset datasets\teacher_2
 
 | Gym ID | Actor input | Default environments | Rendering |
 | --- | --- | ---: | --- |
+| `Isaac-ZeroG-Blade-Insertion-v0` | state; three learned translation increments | 512 | off |
+| `Isaac-ZeroG-Blade-Insertion-Play-v0` | same as insertion training | 1 | on |
+| `Isaac-ZeroG-Blade-Insertion-Robust-v0` | state; six Cartesian corrections | 512 | off |
+| `Isaac-ZeroG-Blade-Insertion-Robust-Play-v0` | same as robust insertion training | 1 | on |
+| `Isaac-ZeroG-Blade-Insertion-RigidGrasp-v0` | state; six corrections; fixed secured grasp | 512 | off |
+| `Isaac-ZeroG-Blade-Insertion-RigidGrasp-Play-v0` | same as rigid-grasp training | 1 | on |
 | `Isaac-ZeroG-BladeSwap-Teacher-v0` | privileged state | 1024 | off |
 | `Isaac-ZeroG-BladeSwap-Vision-v0` | proprioception + RGB | 128 | 64x64 tiled RGB at 15 Hz |
 | `Isaac-ZeroG-BladeSwap-Play-v0` | vision/play profile | 8 | on |
 
-See the [PM and live-simulation guide](docs/pm_guide.md),
-[architecture](docs/architecture.md), and the
+See the [handover](CLAUDE.md), [architecture](docs/architecture.md), and the
 [Sim2Real randomization matrix](docs/sim2real_matrix.md) for design details.
 
 ## Validation status
 
-The repository contains real local smoke and sustained capacity evidence. It
-does not yet contain a converged policy or real-hardware transfer result. The
-current measured snapshot is:
+The repository contains real local smoke and sustained capacity evidence. A
+local nominal-insertion policy converged, but checkpoints are intentionally not
+stored in Git and no real-hardware transfer result exists. The current measured
+snapshot is:
 
 | Check | Actual completed result | Scope |
 | --- | --- | --- |
@@ -182,10 +188,16 @@ current measured snapshot is:
 | Vision sustained benchmark | Passed | 256 environments; 200 warm-up + 500 measured steps; 1,597.65 environment-steps/s; 2,266 MiB observed total GPU use |
 | Vision sensor smoke | Passed | 8 environments, 64x64 RGB; finite observations, black background, material variation, and noise delta std 0.02469 |
 | RL-Games integration | Passed | Teacher and vision two-epoch PPO checkpoints saved and each reloaded for 16 deterministic play steps; this is not convergence evidence |
+| Phase-1 three-axis insertion | Promoted locally | 6,051/6,051 full-distance held-out episodes across seeds 1042/2042/3042, plus 100% near/medium checks on seed 1042; nominal wide rails and virtual grasp fixture only |
+| Phase-2 robust task | Integration passed | CUDA smoke checkpoints saved at level 0 and level 4; six actions, zero gravity, no sensors, mass/friction/stiction ranges and compliant mount constructed; this is not convergence evidence |
+| Secured-grasp Phase 2.6 | Level 0 promoted on one held-out seed | Epoch 700 achieved 3,028/3,028 deterministic successes across near/medium/full starts on seed 1060, with zero timeout, failure, instability, or non-finite termination. Levels 1--2 passed physics smoke but remain untrained; Level 3 stiction settling and Level 4 remain blocked. |
+| Nominal insertion baseline | Diagnosed, not promoted | Superseded 300-iteration curriculum: 56.35% full-distance and 22.57% near-distance deterministic success on unseen seed 1042; all failures were timeouts and the 90% gate was not met |
+| Mixed-curriculum axial baseline | Diagnosed, not promoted | Fresh 300-iteration run stayed correctly at Level 0 and achieved 1,292/2,000 (64.6%) near-distance deterministic success; lateral error remained above tolerance, motivating three-axis translation control |
 
-See the [validation ledger](docs/validation.md) for artifact provenance,
-observation shapes, exact commands, and the distinction between smoke, scale,
-training, and Sim2Real validation.
+See [CLAUDE.md](CLAUDE.md) for artifact provenance, exact limitations, and the
+distinction between smoke, training success, and Sim2Real validation.
+The compact machine-readable result is committed at
+[`evidence/rigid_grasp_l0_seed1060.json`](evidence/rigid_grasp_l0_seed1060.json).
 
 To reproduce and extend the checks:
 
@@ -196,45 +208,20 @@ C:\isaac-sim\python.bat scripts\benchmark.py --profile all --quick
 C:\isaac-sim\python.bat -m ruff check src scripts tests
 ```
 
-Hardware JSON, checkpoints, datasets, and videos are intentionally untracked.
+Raw hardware JSON, checkpoints, datasets, and videos are intentionally untracked.
 This keeps clones lean; publish selected checkpoints and demo media through a
 GitHub Release and record the commit, seed, environment lock, and benchmark JSON
 with each release.
 
-## Publish to GitHub
+## Research basis
 
-GitHub authentication is intentionally a manual publication step. Run the
-status check first; if it reports an invalid stored token (the current state on
-the development workstation), re-authenticate in the browser:
-
-```powershell
-gh auth status
-gh auth login -h github.com --web --git-protocol https
-gh auth status
-```
-
-After authentication, inspect before publishing. If the remote repository
-already exists, add it and push the current branch; otherwise create it:
-
-```powershell
-git status --short
-git remote -v
-git add .
-git status --short
-git commit -m "Initial zero-g blade-swap environment"
-gh repo create autonomous-zero-g-blade-swap --public --source . --remote origin
-git push -u origin HEAD
-```
-
-If `origin` already exists, skip `gh repo create` and verify its URL before the
-push. Create a release only after the acceptance gates in the validation ledger
-pass; attach a short full-swap video, selected checkpoint, environment lock,
-and benchmark JSON rather than committing large binaries to the repository.
-
-Do not commit `environment-lock.local.json`, `.deps`, datasets, logs, or raw
-checkpoints. The included GitHub Actions workflow runs lightweight lint and
-unit/contract tests on Linux; Isaac/RTX smoke and hardware benchmarks remain
-manual Windows GPU gates.
+The staged design follows NVIDIA's
+[Isaac Lab gear-insertion workflow](https://isaac-sim.github.io/IsaacLab/develop/source/policy_deployment/02_gear_assembly/gear_assembly_policy.html),
+which begins with an already-grasped part and progressively addresses transfer.
+The Sim2Real roadmap follows OpenAI Dactyl's
+[dynamics/appearance randomization and perception-control separation](https://openai.com/index/learning-dexterity/).
+These references motivate the method; they do not make this project physically
+validated.
 
 ## Current limitations
 
@@ -261,6 +248,14 @@ manual Windows GPU gates.
   local Python packages are healthy.
 - Contact forces are solved by PhysX but are not exposed as observations; this
   avoids costly contact-report processing across every environment.
+- The promoted insertion uses a fixed joint representing an already-secured
+  blade. Physical grasp acquisition is not solved.
+- Tight bottom-shelf collision is disabled after it caused non-physical
+  lateral ejection; side-rail contact remains enabled in later levels.
+- Level 3 high-stiction insertion reaches valid geometry but does not reliably
+  settle below velocity limits, so Levels 3--4 are blocked.
+- The 3,028/3,028 result uses one held-out seed; two additional seeds and
+  terminal-metric capture are required for release-grade evidence.
 
 ## License
 

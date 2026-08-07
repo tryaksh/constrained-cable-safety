@@ -31,8 +31,8 @@ dev = [
 ]
 
 [project.urls]
-Repository = "https://github.com/tryaksh/autonomous-zero-g-blade-swap"
-Issues = "https://github.com/tryaksh/autonomous-zero-g-blade-swap/issues"
+Repository = "https://github.com/tryaksh/orbital-robotic-servicing-lab"
+Issues = "https://github.com/tryaksh/orbital-robotic-servicing-lab/issues"
 
 [tool.setuptools]
 package-dir = { "" = "src" }
