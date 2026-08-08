@@ -12,8 +12,11 @@ and full-swap task are later-stage scaffolds—not completed Sim2Real claims.
 
 - Zero gravity, GPU PhysX, Fabric cloning, and collision-only manipulation
   without contact-report sensors.
-- A promoted Level-0 secured-grasp insertion policy plus a vectorized
-  eight-phase full-swap research scaffold.
+- Promoted Level-0 and Level-1 secured-grasp insertion policies plus a
+  vectorized eight-phase full-swap research scaffold.
+- A reset-safe evaluator that snapshots each episode's terminal pose, velocity,
+  and cycle time before Isaac Lab's automatic reset, and pools runs into a
+  single gated report with Wilson 95% confidence intervals.
 - Random blade mass, guide friction/stiction, compliant mount disturbance,
   orbital sun lighting, rack materials, and camera radiation noise.
 - A measured 1024-environment state profile and a conservative 128-environment
@@ -190,7 +193,8 @@ snapshot is:
 | RL-Games integration | Passed | Teacher and vision two-epoch PPO checkpoints saved and each reloaded for 16 deterministic play steps; this is not convergence evidence |
 | Phase-1 three-axis insertion | Promoted locally | 6,051/6,051 full-distance held-out episodes across seeds 1042/2042/3042, plus 100% near/medium checks on seed 1042; nominal wide rails and virtual grasp fixture only |
 | Phase-2 robust task | Integration passed | CUDA smoke checkpoints saved at level 0 and level 4; six actions, zero gravity, no sensors, mass/friction/stiction ranges and compliant mount constructed; this is not convergence evidence |
-| Secured-grasp Phase 2.6 | Level 0 promoted on three held-out seeds | Epoch 700 achieved 9,086/9,086 deterministic successes across near/medium/full starts on seeds 1060/2060/3060 (Wilson 95% lower bound 0.9996), with zero timeout, failure, mount-instability, or non-finite termination. Terminal pose, velocity, and cycle-time metrics are captured before Isaac Lab's automatic reset. Levels 1--2 passed physics smoke but remain untrained; Level 3 stiction settling and Level 4 remain blocked. |
+| Secured-grasp Level 0 (collision-free) | Promoted on three held-out seeds | Epoch 700 achieved 9,086/9,086 deterministic successes across near/medium/full starts on seeds 1060/2060/3060 (Wilson 95% lower bound 0.9996), with zero timeout, failure, mount-instability, or non-finite termination. Terminal pose, velocity, and cycle-time metrics are captured before Isaac Lab's automatic reset. |
+| Secured-grasp Level 1 (physical side rails) | Promoted on three held-out seeds | Fine-tuning the epoch-700 policy for 500 more PPO epochs achieved 9,014/9,014 deterministic successes on seeds 1061/2061/3061 with real wide side-rail collision and doubled reset joint noise (Wilson 95% lower bound 0.9996), zero instability. Stage-0 terminal axial error improved from 4.15 mm to 1.65 mm. Level 3 stiction settling and Level 4 remain blocked. |
 | Nominal insertion baseline | Diagnosed, not promoted | Superseded 300-iteration curriculum: 56.35% full-distance and 22.57% near-distance deterministic success on unseen seed 1042; all failures were timeouts and the 90% gate was not met |
 | Mixed-curriculum axial baseline | Diagnosed, not promoted | Fresh 300-iteration run stayed correctly at Level 0 and achieved 1,292/2,000 (64.6%) near-distance deterministic success; lateral error remained above tolerance, motivating three-axis translation control |
 
