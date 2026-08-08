@@ -4,6 +4,13 @@ An NVIDIA Isaac Lab `ManagerBasedRLEnv` project for training a UR10e with a
 Robotiq 2F-85 gripper to remove a failed compute blade, stow it, acquire a
 replacement, and insert the replacement in a microgravity data-center rack.
 
+Orbital compute cannot be serviced: a failed module is a permanent capacity loss
+for the life of the vehicle. Robotic module replacement is the precondition for
+orbital compute that outlives its first hardware failure, and the hard part is
+contact-rich insertion under uncertain mass, friction, and pose error with no
+operator to recover a jam. **[Claim versus evidence](docs/claim_vs_evidence.md)**
+states precisely what this repository has and has not shown.
+
 The active milestone is a learned, state-based insertion policy for a blade
 that is already secured by the gripper. A privileged teacher, camera student,
 and full-swap task are later-stage scaffolds—not completed Sim2Real claims.
@@ -149,9 +156,11 @@ C:\isaac-sim\python.bat scripts\benchmark.py --profile all
 C:\isaac-sim\python.bat scripts\play.py --task Isaac-ZeroG-Blade-Insertion-RigidGrasp-Play-v0 --robustness_level 0 --num_envs 1 --steps 900 --real_time
 ```
 
-For continuation, begin with [CLAUDE.md](CLAUDE.md). It contains the verified
-checkpoint, exact evidence, blockers, and ordered roadmap without requiring a
-new agent to read the entire repository.
+For continuation, begin with [CLAUDE.md](CLAUDE.md). It is a short routing file
+that states the mission, the operating rules, and which document to open for a
+given task, so a new agent does not have to read the whole repository. Measured
+results and limitations live in [docs/status.md](docs/status.md); ordered next
+work and prior art live in [docs/roadmap.md](docs/roadmap.md).
 
 Teacher-to-student transfer:
 
@@ -176,6 +185,7 @@ C:\isaac-sim\python.bat scripts\pretrain_student.py --dataset datasets\teacher_2
 
 See the [handover](CLAUDE.md), [architecture](docs/architecture.md), and the
 [Sim2Real randomization matrix](docs/sim2real_matrix.md) for design details.
+The [status page](docs/status.md) carries every measured number.
 
 ## Validation status
 
@@ -198,8 +208,8 @@ snapshot is:
 | Nominal insertion baseline | Diagnosed, not promoted | Superseded 300-iteration curriculum: 56.35% full-distance and 22.57% near-distance deterministic success on unseen seed 1042; all failures were timeouts and the 90% gate was not met |
 | Mixed-curriculum axial baseline | Diagnosed, not promoted | Fresh 300-iteration run stayed correctly at Level 0 and achieved 1,292/2,000 (64.6%) near-distance deterministic success; lateral error remained above tolerance, motivating three-axis translation control |
 
-See [CLAUDE.md](CLAUDE.md) for artifact provenance, exact limitations, and the
-distinction between smoke, training success, and Sim2Real validation.
+See [docs/status.md](docs/status.md) for artifact provenance, exact limitations,
+and the distinction between smoke, training success, and Sim2Real validation.
 The compact machine-readable result is committed at
 [`evidence/rigid_grasp_l0_ep700_certification.json`](evidence/rigid_grasp_l0_ep700_certification.json).
 
