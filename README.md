@@ -190,14 +190,14 @@ snapshot is:
 | RL-Games integration | Passed | Teacher and vision two-epoch PPO checkpoints saved and each reloaded for 16 deterministic play steps; this is not convergence evidence |
 | Phase-1 three-axis insertion | Promoted locally | 6,051/6,051 full-distance held-out episodes across seeds 1042/2042/3042, plus 100% near/medium checks on seed 1042; nominal wide rails and virtual grasp fixture only |
 | Phase-2 robust task | Integration passed | CUDA smoke checkpoints saved at level 0 and level 4; six actions, zero gravity, no sensors, mass/friction/stiction ranges and compliant mount constructed; this is not convergence evidence |
-| Secured-grasp Phase 2.6 | Level 0 promoted on one held-out seed | Epoch 700 achieved 3,028/3,028 deterministic successes across near/medium/full starts on seed 1060, with zero timeout, failure, instability, or non-finite termination. Levels 1--2 passed physics smoke but remain untrained; Level 3 stiction settling and Level 4 remain blocked. |
+| Secured-grasp Phase 2.6 | Level 0 promoted on three held-out seeds | Epoch 700 achieved 9,086/9,086 deterministic successes across near/medium/full starts on seeds 1060/2060/3060 (Wilson 95% lower bound 0.9996), with zero timeout, failure, mount-instability, or non-finite termination. Terminal pose, velocity, and cycle-time metrics are captured before Isaac Lab's automatic reset. Levels 1--2 passed physics smoke but remain untrained; Level 3 stiction settling and Level 4 remain blocked. |
 | Nominal insertion baseline | Diagnosed, not promoted | Superseded 300-iteration curriculum: 56.35% full-distance and 22.57% near-distance deterministic success on unseen seed 1042; all failures were timeouts and the 90% gate was not met |
 | Mixed-curriculum axial baseline | Diagnosed, not promoted | Fresh 300-iteration run stayed correctly at Level 0 and achieved 1,292/2,000 (64.6%) near-distance deterministic success; lateral error remained above tolerance, motivating three-axis translation control |
 
 See [CLAUDE.md](CLAUDE.md) for artifact provenance, exact limitations, and the
 distinction between smoke, training success, and Sim2Real validation.
 The compact machine-readable result is committed at
-[`evidence/rigid_grasp_l0_seed1060.json`](evidence/rigid_grasp_l0_seed1060.json).
+[`evidence/rigid_grasp_l0_ep700_certification.json`](evidence/rigid_grasp_l0_ep700_certification.json).
 
 To reproduce and extend the checks:
 
@@ -206,6 +206,14 @@ C:\isaac-sim\python.bat -m pytest -m "not isaac"
 C:\isaac-sim\python.bat scripts\smoke_env.py --profile all
 C:\isaac-sim\python.bat scripts\benchmark.py --profile all --quick
 C:\isaac-sim\python.bat -m ruff check src scripts tests
+```
+
+Held-out certification runs one `play.py` per curriculum stage and seed, then
+pools the raw per-episode rows into a single report:
+
+```powershell
+C:\isaac-sim\python.bat scripts\play.py --task Isaac-ZeroG-Blade-Insertion-RigidGrasp-Play-v0 --checkpoint <ep700.pth> --robustness_level 0 --curriculum_stage 0 --num_envs 128 --episodes 1000 --seed 1060 --headless --report artifacts\stage0_seed1060.json --episode_metrics artifacts\episodes\stage0_seed1060.npz
+C:\isaac-sim\python.bat scripts\aggregate_evaluation.py --episodes artifacts\episodes --output evidence\rigid_grasp_l0_ep700_certification.json --title "Level-0 held-out certification" --minimum_stage_success_rate 0.95
 ```
 
 Raw hardware JSON, checkpoints, datasets, and videos are intentionally untracked.
@@ -254,8 +262,19 @@ validated.
   lateral ejection; side-rail contact remains enabled in later levels.
 - Level 3 high-stiction insertion reaches valid geometry but does not reliably
   settle below velocity limits, so Levels 3--4 are blocked.
-- The 3,028/3,028 result uses one held-out seed; two additional seeds and
-  terminal-metric capture are required for release-grade evidence.
+- Because every certification episode succeeded, the reported terminal error
+  distribution is bounded by the success criterion itself. It shows where
+  inside the tolerance box the policy lands, not accuracy independent of it.
+- Level-0 margin is thin on two axes: terminal axial error reaches 11.96 mm of
+  the 12 mm limit and orientation error reaches 0.0484 of the 0.0524 rad limit.
+  Lateral error and blade velocities keep comfortable margin.
+- Only one PPO training seed (60) produced the promoted policy. The three
+  certification seeds are held-out *evaluation* seeds; training repeatability
+  across seeds is untested.
+- `train.py --smoke` runs a scripted axial feasibility probe that is tuned for
+  the contact task and does not complete insertion on the rigid-grasp task
+  (residual axial 23.5 mm after its 300-step budget). This is a probe defect,
+  not a task defect: the learned policy inserts in 35 control steps at stage 0.
 
 ## License
 
