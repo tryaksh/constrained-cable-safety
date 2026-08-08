@@ -156,6 +156,15 @@ C:\isaac-sim\python.bat scripts\benchmark.py --profile all
 C:\isaac-sim\python.bat scripts\play.py --task Isaac-ZeroG-Blade-Insertion-RigidGrasp-Play-v0 --robustness_level 0 --num_envs 1 --steps 900 --real_time
 ```
 
+Recording the demonstration. `--inspection_view array` frames whatever parallel
+grid the cloner produced, so one clip shows several workcells running the same
+learned policy at once. Recording runs disable Fabric cloning because
+Fabric-cloned prims do not all reach the RTX renderer; physics is unchanged.
+
+```powershell
+C:\isaac-sim\python.bat scripts\play.py --task Isaac-ZeroG-Blade-Insertion-RigidGrasp-Play-v0 --checkpoint <l2.pth> --robustness_level 2 --curriculum_stage 2 --num_envs 9 --seed 9162 --headless --video --video_length 300 --video_dir artifacts\demo\array --inspection_view array
+```
+
 For continuation, begin with [CLAUDE.md](CLAUDE.md). It is a short routing file
 that states the mission, the operating rules, and which document to open for a
 given task, so a new agent does not have to read the whole repository. Measured
