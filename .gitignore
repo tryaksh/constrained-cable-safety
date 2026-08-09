@@ -29,3 +29,6 @@ runs/
 # Local machine state
 environment-lock.local.json
 *.local.ps1
+
+# Per-machine coding-agent settings; the shared CLAUDE.md is tracked, this is not.
+.claude/settings.local.json
