@@ -4,6 +4,8 @@ An NVIDIA Isaac Lab `ManagerBasedRLEnv` project for training a UR10e with a
 Robotiq 2F-85 gripper to remove a failed compute blade, stow it, acquire a
 replacement, and insert the replacement in a microgravity data-center rack.
 
+**This project is actively being worked on and is still stabilizing.**
+
 Orbital compute cannot be serviced: a failed module is a permanent capacity loss
 for the life of the vehicle. Robotic module replacement is the precondition for
 orbital compute that outlives its first hardware failure, and the hard part is
@@ -12,8 +14,11 @@ operator to recover a jam. **[Claim versus evidence](docs/claim_vs_evidence.md)*
 states precisely what this repository has and has not shown.
 
 The active milestone is a learned, state-based insertion policy for a blade
-that is already secured by the gripper. A privileged teacher, camera student,
-and full-swap task are later-stage scaffolds—not completed Sim2Real claims.
+that is already secured by the gripper. The design separates a high-throughput
+privileged-state teacher from a camera-based student so the final policy has a
+defensible Sim2Real story rather than relying on simulator-only object poses at
+deployment. That teacher, the camera student, and the full-swap task are
+later-stage scaffolds, not completed Sim2Real claims.
 
 ## What is implemented
 
