@@ -220,6 +220,7 @@ snapshot is:
 | Secured-grasp Level 0 (collision-free) | Promoted on three held-out seeds | Epoch 700 achieved 9,086/9,086 deterministic successes across near/medium/full starts on seeds 1060/2060/3060 (Wilson 95% lower bound 0.9996), with zero timeout, failure, mount-instability, or non-finite termination. Terminal pose, velocity, and cycle-time metrics are captured before Isaac Lab's automatic reset. |
 | Secured-grasp Level 1 (physical side rails) | Promoted on three held-out seeds | Fine-tuning the epoch-700 policy for 500 more PPO epochs achieved 9,014/9,014 deterministic successes on seeds 1061/2061/3061 with real wide side-rail collision and doubled reset joint noise (Wilson 95% lower bound 0.9996), zero instability. Stage-0 terminal axial error improved from 4.15 mm to 1.65 mm. |
 | Secured-grasp Level 2 (tight rails + 5–15 kg mass) | Promoted on three held-out seeds | Fine-tuning the Level-1 policy for 600 more PPO epochs achieved 9,021/9,021 deterministic successes on seeds 1062/2062/3062 with 1.5 mm side clearance and blade mass randomized over an observed 5.00–14.97 kg. Full-distance cycle time improved to 7.20 s median. Level 3 stiction settling and Level 4 remain blocked. |
+| Insertion contact load | Measured, not constrained | Peak contact force over 4,513 successful Level-2 episodes: mean 6.73 N, p95 16.56 N, max 66.36 N. It rises about sevenfold from the near start to the full start while success stays 100%, so success rate hides contact load entirely. Nothing bounds it yet. |
 | Capability envelope | Measured, not certified | Pushing the Level-2 policy past its training range: success degrades gracefully with initial pose error (100% at 1–2×, 97.0% at 3×, 62.4% at 6×, 21.2% at 12×), failing by lateral divergence with **zero** instability at every point. Blade mass is flat at 100% out to 1–50 kg, which shows the task is nearly mass-insensitive in this regime and that the Level-2 mass claim is weak. |
 | Nominal insertion baseline | Diagnosed, not promoted | Superseded 300-iteration curriculum: 56.35% full-distance and 22.57% near-distance deterministic success on unseen seed 1042; all failures were timeouts and the 90% gate was not met |
 | Mixed-curriculum axial baseline | Diagnosed, not promoted | Fresh 300-iteration run stayed correctly at Level 0 and achieved 1,292/2,000 (64.6%) near-distance deterministic success; lateral error remained above tolerance, motivating three-axis translation control |
@@ -299,8 +300,9 @@ validated.
 - Blade-mass robustness is close to vacuous for this task: in zero gravity with
   a fixed-joint grasp and millimetre-scale quasi-static motion, mass barely
   enters the dynamics, and a sweep to 1–50 kg is still 100%.
-- Contact forces are solved by PhysX but never observed, limited, or reported,
-  so nothing here demonstrates the insertion would not damage a connector.
+- Contact force is measured but not limited. There is no force budget, no
+  abort-and-retry, and no connector model, so nothing here demonstrates the
+  insertion would not damage a real pin.
 - Level-0 margin is thin on two axes: terminal axial error reaches 11.96 mm of
   the 12 mm limit and orientation error reaches 0.0484 of the 0.0524 rad limit.
   Lateral error and blade velocities keep comfortable margin.
