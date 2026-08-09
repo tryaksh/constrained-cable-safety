@@ -193,6 +193,10 @@ C:\isaac-sim\python.bat scripts\pretrain_student.py --dataset datasets\teacher_2
 | `Isaac-ZeroG-Blade-Insertion-Robust-Play-v0` | same as robust insertion training | 1 | on |
 | `Isaac-ZeroG-Blade-Insertion-RigidGrasp-v0` | state; six corrections; fixed secured grasp | 512 | off |
 | `Isaac-ZeroG-Blade-Insertion-RigidGrasp-Play-v0` | same as rigid-grasp training | 1 | on |
+| `Isaac-ZeroG-Blade-Insertion-ForceLimited-v0` | rigid grasp plus a contact-force penalty and 60 N abort | 512 | off |
+| `Isaac-ZeroG-Blade-Insertion-StrictForceLimited-v0` | the same at 1.5 N free allowance and a 30 N abort | 512 | off |
+| `Isaac-ZeroG-Blade-Insertion-ForceFeedback-v0` | strict force task plus 7 contact-force observations; must be trained from scratch | 512 | off |
+| `Isaac-ZeroG-Blade-Insertion-ForceFeedback-Play-v0` | force feedback judged at the shared 60 N limit | 1 | on |
 | `Isaac-ZeroG-BladeSwap-Teacher-v0` | privileged state | 1024 | off |
 | `Isaac-ZeroG-BladeSwap-Vision-v0` | proprioception + RGB | 128 | 64x64 tiled RGB at 15 Hz |
 | `Isaac-ZeroG-BladeSwap-Play-v0` | vision/play profile | 8 | on |
@@ -221,6 +225,8 @@ snapshot is:
 | Secured-grasp Level 1 (physical side rails) | Promoted on three held-out seeds | Fine-tuning the epoch-700 policy for 500 more PPO epochs achieved 9,014/9,014 deterministic successes on seeds 1061/2061/3061 with real wide side-rail collision and doubled reset joint noise (Wilson 95% lower bound 0.9996), zero instability. Stage-0 terminal axial error improved from 4.15 mm to 1.65 mm. |
 | Secured-grasp Level 2 (tight rails + 5–15 kg mass) | Promoted on three held-out seeds | Fine-tuning the Level-1 policy for 600 more PPO epochs achieved 9,021/9,021 deterministic successes on seeds 1062/2062/3062 with 1.5 mm side clearance and blade mass randomized over an observed 5.00–14.97 kg. Full-distance cycle time improved to 7.20 s median. Level 3 stiction settling and Level 4 remain blocked. |
 | Force-limited insertion | Tried, negative result | A force budget and abort hold 100% success with zero aborts, but two penalty strengths — the stronger charging the same order as the success reward — changed mean contact by 2.6% and impulse not at all. Only the worst case moved, and that is the abort clipping the tail. The evidence points at the policy having no force feedback and at a geometric contact floor, so the next step is force in the observation space or an admittance action space, not a bigger penalty. |
+| Force feedback in the observation space | Measured against a matched control | Adding seven contact-force values to the observation and retraining from scratch cut contact impulse 59% at the mean, 89% at the median, and 40% at p95, with mean cycle time unchanged and peak contact force unchanged. A control policy trained from scratch on the identical schedule with the observation left alone isolates the effect to sensing. Cost: three force-limit aborts in 4,518 held-out episodes, so 99.93% rather than 100%. |
+| Learned grasping | Blocked by a measured geometry bug | The tool frame the IK drives is 165.6 mm from the physical Robotiq finger pads, so the pads settle 164.6 mm from the handle, never touch it, and transmit 0 N of the 66.4 N the insertion contact reaction demands. Drive torque peaks at 0.39 N·m of a 10 N·m limit and blade motion under load matches free-body force over mass. Grasping is a geometry fix first, not a training problem. |
 | Insertion contact load | Measured, not constrained | Peak contact force over 4,513 successful Level-2 episodes: mean 6.73 N, p95 16.56 N, max 66.36 N. It rises about sevenfold from the near start to the full start while success stays 100%, so success rate hides contact load entirely. Nothing bounds it yet. |
 | Capability envelope | Measured, not certified | Pushing the Level-2 policy past its training range: success degrades gracefully with initial pose error (100% at 1–2×, 97.0% at 3×, 62.4% at 6×, 21.2% at 12×), failing by lateral divergence with **zero** instability at every point. Blade mass is flat at 100% out to 1–50 kg, which shows the task is nearly mass-insensitive in this regime and that the Level-2 mass claim is weak. |
 | Nominal insertion baseline | Diagnosed, not promoted | Superseded 300-iteration curriculum: 56.35% full-distance and 22.57% near-distance deterministic success on unseen seed 1042; all failures were timeouts and the 90% gate was not met |
@@ -246,6 +252,14 @@ pools the raw per-episode rows into a single report:
 ```powershell
 C:\isaac-sim\python.bat scripts\play.py --task Isaac-ZeroG-Blade-Insertion-RigidGrasp-Play-v0 --checkpoint <ep700.pth> --robustness_level 0 --curriculum_stage 0 --num_envs 128 --episodes 1000 --seed 1060 --headless --report artifacts\stage0_seed1060.json --episode_metrics artifacts\episodes\stage0_seed1060.npz
 C:\isaac-sim\python.bat scripts\aggregate_evaluation.py --episodes artifacts\episodes --output evidence\rigid_grasp_l0_ep700_certification.json --title "Level-0 held-out certification" --minimum_stage_success_rate 0.95
+```
+
+Physics characterization runs on their own, with no policy involved. The grasp
+diagnostic sweeps a closure-by-pull-force grid in parallel and reports whether
+the finger pads can reach the handle at all before reporting any capacity:
+
+```powershell
+C:\isaac-sim\python.bat scripts\grasp_diagnostics.py --headless --report evidence\grasp_axial_pull_gate.json
 ```
 
 Raw hardware JSON, checkpoints, datasets, and videos are intentionally untracked.
@@ -286,10 +300,16 @@ validated.
 - A cold asset cache requires network access to NVIDIA's hosted UR10e USD. A
   missing/blocked asset endpoint prevents environment construction even when
   local Python packages are healthy.
-- Contact forces are solved by PhysX but are not exposed as observations; this
-  avoids costly contact-report processing across every environment.
+- Contact forces are solved by PhysX and are exposed as observations only on the
+  force-feedback task, which pays for contact reporting and disables Fabric
+  cloning. Every promoted policy runs without them.
 - The promoted insertion uses a fixed joint representing an already-secured
-  blade. Physical grasp acquisition is not solved.
+  blade. Physical grasp acquisition is not solved, and is currently blocked by a
+  measured 165.6 mm offset between the tool frame the IK drives and the real
+  Robotiq finger pads.
+- Peak contact force has resisted every intervention tried: two reward-penalty
+  strengths and full force feedback with a matched control. Only accumulated
+  impulse responded.
 - Tight bottom-shelf collision is disabled after it caused non-physical
   lateral ejection; side-rail contact remains enabled in later levels.
 - Level 3 high-stiction insertion reaches valid geometry but does not reliably
