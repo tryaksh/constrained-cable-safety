@@ -212,6 +212,8 @@ C:\isaac-sim\python.bat scripts\pretrain_student.py --dataset datasets\teacher_2
 | `Isaac-ZeroG-Blade-Insertion-StrictForceLimited-v0` | the same at 1.5 N free allowance and a 30 N abort | 512 | off |
 | `Isaac-ZeroG-Blade-Insertion-ForceFeedback-v0` | strict force task plus 7 contact-force observations; must be trained from scratch | 512 | off |
 | `Isaac-ZeroG-Blade-Insertion-ForceFeedback-Play-v0` | force feedback judged at the shared 60 N limit | 1 | on |
+| `Isaac-ZeroG-Blade-Insertion-Uncertain-v0` | the slot physically moves; the actor is told the wrong place and must feel for it | 512 | off |
+| `Isaac-ZeroG-Blade-Insertion-UncertainBlind-v0` | the same, with the contact wrench removed: the matched ablation | 512 | off |
 | `Isaac-ZeroG-Blade-Insertion-GuidedSlot-v0` | rigid grasp into a channel with lips and a funnelled mouth | 512 | off |
 | `Isaac-ZeroG-Blade-CaptureInSlot-v0` | closes the grasp while the rails still hold the blade | 512 | off |
 | `Isaac-ZeroG-Blade-GrapplePin-Capture-v0` | head-on capture on the grapple pin; the interface spec's scene | 512 | off |
@@ -225,9 +227,32 @@ for reasons established work already solves. See
 [docs/status.md](docs/status.md) and [CLAUDE.md](CLAUDE.md); do not reintroduce
 them.
 
-See the [handover](CLAUDE.md), [architecture](docs/architecture.md), and the
+See the [handover](CLAUDE.md), [architecture](docs/architecture.md), the
+[perception plan](docs/perception_plan.md), and the
 [Sim2Real randomization matrix](docs/sim2real_matrix.md) for design details.
 The [status page](docs/status.md) carries every measured number.
+
+## The question the current work answers
+
+Every result above was produced on a task that **told the policy its exact pose
+error**. With a rigid known object on a constrained axis and full observability
+that is a motion-planning and force-control problem, and a scripted controller
+solves it; reinforcement learning cannot demonstrate its value there.
+
+The active experiment moves the learning to where uncertainty actually lives.
+The rack's guide rails now shift laterally by an amount the policy is never
+told, and contact against a rail is the only channel that carries it. Two
+policies are trained from scratch on one configuration, one seed, and one
+schedule, differing in exactly one thing: whether the actor can feel contact.
+
+The deliverable is one falsifiable plot — success rate against pose-belief
+error, force-aware against force-blind — which is the axis
+[IndustReal](https://arxiv.org/abs/2305.17110) and
+[FORGE](https://arxiv.org/abs/2408.04587) are evaluated on. **No result is
+claimed yet.** `docs/status.md` records the mechanism, the geometry it forced,
+and the two faults found while building it, one of which was that the obvious
+construction of the uncertainty is recoverable from an observation the policy
+already has.
 
 ## Validation status
 
@@ -253,6 +278,8 @@ snapshot is:
 | Learned grasping | Blocked by a measured geometry bug | The handle is configured 0.179 m from the wrist flange while the fingers only obstruct on the blade between about 0.06 and 0.15 m, so they close past it. PhysX reports 0.0 N of finger/blade contact across the whole finger range, drive torque stays at 0.39 N·m of a 10 N·m limit, and the grasp transmits 0 N of the 66.4 N the insertion contact reaction demands. Grasping is a geometry fix first, not a training problem. |
 | Insertion contact load | Measured, not constrained | Peak contact force over 4,513 successful Level-2 episodes: mean 6.73 N, p95 16.56 N, max 66.36 N. It rises about sevenfold from the near start to the full start while success stays 100%, so success rate hides contact load entirely. Nothing bounds it yet. |
 | Capability envelope | Measured, not certified | Pushing the Level-2 policy past its training range: success degrades gracefully with initial pose error (100% at 1–2×, 97.0% at 3×, 62.4% at 6×, 21.2% at 12×), failing by lateral divergence with **zero** instability at every point. Blade mass is flat at 100% out to 1–50 kg, which shows the task is nearly mass-insensitive in this regime and that the Level-2 mass claim is weak. |
+| Insertion under a wrong pose belief | Built and verified, training | The slot physically moves by up to 4 mm and the actor is told the nominal position. Fourteen simulator checks confirm the rails and lead-in move with the goal, the blade starts clear of the channel, nothing resets interpenetrating, and environments whose tool poses agree to 1.5 mm disagree about the true lateral error by 5.2 mm. Force-aware actor 58 values, force-blind 51, identical 71-value critic. No success number is claimed yet |
+| Perception readiness | Blocking finding, before any training | The authored 64x64 camera resolves a 4 mm slot displacement as 0.13 pixels, so it cannot support the perception stage as configured. `docs/perception_plan.md` derives the fix — a narrower field of view rather than more pixels — and requires a rendered frame before images are collected |
 | Nominal insertion baseline | Diagnosed, not promoted | Superseded 300-iteration curriculum: 56.35% full-distance and 22.57% near-distance deterministic success on unseen seed 1042; all failures were timeouts and the 90% gate was not met |
 | Mixed-curriculum axial baseline | Diagnosed, not promoted | Fresh 300-iteration run stayed correctly at Level 0 and achieved 1,292/2,000 (64.6%) near-distance deterministic success; lateral error remained above tolerance, motivating three-axis translation control |
 
