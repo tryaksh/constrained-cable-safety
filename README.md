@@ -38,8 +38,7 @@ data-centre digital twin.
 
 - Zero gravity, GPU PhysX, Fabric cloning, and collision-only manipulation
   without contact-report sensors.
-- Promoted Level-0, Level-1, and Level-2 secured-grasp insertion policies plus a
-  vectorized eight-phase full-swap research scaffold.
+- Promoted Level-0, Level-1, and Level-2 secured-grasp insertion policies.
 - A reset-safe evaluator that snapshots each episode's terminal pose, velocity,
   and cycle time before Isaac Lab's automatic reset, and pools runs into a
   single gated report with Wilson 95% confidence intervals.
@@ -48,8 +47,8 @@ data-centre digital twin.
 - A measured 1024-environment state profile and a conservative 128-environment
   64x64 RGB training default (256 camera environments also passed the sustained
   environment-only benchmark on the development laptop).
-- RL-Games PPO hooks, teacher demonstration collection, behavioral cloning,
-  play, and repeatable VRAM/FPS benchmarks.
+- RL-Games PPO hooks, state-teacher demonstration collection, behavioral
+  cloning, play, and repeatable VRAM/FPS benchmarks.
 
 ## Supported stack
 
@@ -152,7 +151,7 @@ Re-running setup is safe when `.deps\IsaacLab` is the expected checkout. Use
 
 ```powershell
 C:\isaac-sim\python.bat scripts\validate_sim.py
-C:\isaac-sim\python.bat scripts\smoke_env.py --profile teacher --teacher_steps 100
+C:\isaac-sim\python.bat scripts\smoke_env.py --profile state --state_steps 100
 C:\isaac-sim\python.bat scripts\smoke_env.py --profile vision --vision_steps 32
 ```
 
@@ -165,8 +164,8 @@ simulation application starts.
 # Active six-axis policy: blade already secured; Level 0 is collision-free
 C:\isaac-sim\python.bat scripts\train.py --task Isaac-ZeroG-Blade-Insertion-RigidGrasp-v0 --robustness_level 0 --num_envs 512 --max_iterations 800 --headless
 
-# Vision student; the script enables cameras automatically
-C:\isaac-sim\python.bat scripts\train.py --task Isaac-ZeroG-BladeSwap-Vision-v0 --num_envs 128 --headless
+# Vision insertion scaffold; the script enables cameras automatically
+C:\isaac-sim\python.bat scripts\train.py --task Isaac-ZeroG-Blade-Insertion-Vision-v0 --num_envs 128 --headless
 
 # Hardware selection
 C:\isaac-sim\python.bat scripts\benchmark.py --profile all
@@ -190,10 +189,12 @@ given task, so a new agent does not have to read the whole repository. Measured
 results and limitations live in [docs/status.md](docs/status.md); ordered next
 work and prior art live in [docs/roadmap.md](docs/roadmap.md).
 
-Teacher-to-student transfer:
+State-teacher to vision-student transfer. The dataset records each image
+alongside the teacher's action *and* the true blade-to-goal error, which is the
+supervision a pose-regression head needs:
 
 ```powershell
-C:\isaac-sim\python.bat scripts\collect_teacher.py --checkpoint <teacher.pth> --samples 250000
+C:\isaac-sim\python.bat scripts\collect_teacher.py --checkpoint <force_feedback.pth> --samples 250000
 C:\isaac-sim\python.bat scripts\pretrain_student.py --dataset datasets\teacher_250k.h5
 ```
 
@@ -211,9 +212,18 @@ C:\isaac-sim\python.bat scripts\pretrain_student.py --dataset datasets\teacher_2
 | `Isaac-ZeroG-Blade-Insertion-StrictForceLimited-v0` | the same at 1.5 N free allowance and a 30 N abort | 512 | off |
 | `Isaac-ZeroG-Blade-Insertion-ForceFeedback-v0` | strict force task plus 7 contact-force observations; must be trained from scratch | 512 | off |
 | `Isaac-ZeroG-Blade-Insertion-ForceFeedback-Play-v0` | force feedback judged at the shared 60 N limit | 1 | on |
-| `Isaac-ZeroG-BladeSwap-Teacher-v0` | privileged state | 1024 | off |
-| `Isaac-ZeroG-BladeSwap-Vision-v0` | proprioception + RGB | 128 | 64x64 tiled RGB at 15 Hz |
-| `Isaac-ZeroG-BladeSwap-Play-v0` | vision/play profile | 8 | on |
+| `Isaac-ZeroG-Blade-Insertion-GuidedSlot-v0` | rigid grasp into a channel with lips and a funnelled mouth | 512 | off |
+| `Isaac-ZeroG-Blade-CaptureInSlot-v0` | closes the grasp while the rails still hold the blade | 512 | off |
+| `Isaac-ZeroG-Blade-GrapplePin-Capture-v0` | head-on capture on the grapple pin; the interface spec's scene | 512 | off |
+| `Isaac-ZeroG-Blade-Insertion-Vision-v0` | proprioception + contact wrench + RGB; **untrained P3 scaffold** | 128 | 64x64 tiled RGB at 15 Hz |
+| `Isaac-ZeroG-Blade-Insertion-Vision-Play-v0` | same, plus the state teacher's own group for demonstration capture | 8 | on |
+
+The eight-phase full-swap task (`Isaac-ZeroG-BladeSwap-Teacher/-Vision/-Play-v0`)
+and the three head-on grapple-pin skills were **deleted on 2026-08-10**. Four of
+the five servicing stages had no physics content, and all three skills failed
+for reasons established work already solves. See
+[docs/status.md](docs/status.md) and [CLAUDE.md](CLAUDE.md); do not reintroduce
+them.
 
 See the [handover](CLAUDE.md), [architecture](docs/architecture.md), and the
 [Sim2Real randomization matrix](docs/sim2real_matrix.md) for design details.
@@ -229,10 +239,10 @@ snapshot is:
 | Check | Actual completed result | Scope |
 | --- | --- | --- |
 | Isaac Sim/CUDA launch | Passed | RTX 5070 Ti Laptop GPU, CUDA available |
-| Teacher sustained benchmark | Passed | 1024 environments; 200 warm-up + 500 measured steps; 7,378.90 environment-steps/s; 1,037 MiB observed total GPU use |
+| State sustained benchmark | Passed | 1024 environments; 200 warm-up + 500 measured steps; 7,378.90 environment-steps/s; 1,037 MiB observed total GPU use |
 | Vision sustained benchmark | Passed | 256 environments; 200 warm-up + 500 measured steps; 1,597.65 environment-steps/s; 2,266 MiB observed total GPU use |
 | Vision sensor smoke | Passed | 8 environments, 64x64 RGB; finite observations, black background, material variation, and noise delta std 0.02469 |
-| RL-Games integration | Passed | Teacher and vision two-epoch PPO checkpoints saved and each reloaded for 16 deterministic play steps; this is not convergence evidence |
+| RL-Games integration | Passed | Two-epoch PPO checkpoints saved and each reloaded for 16 deterministic play steps; this is not convergence evidence |
 | Phase-1 three-axis insertion | Promoted locally | 6,051/6,051 full-distance held-out episodes across seeds 1042/2042/3042, plus 100% near/medium checks on seed 1042; nominal wide rails and virtual grasp fixture only |
 | Phase-2 robust task | Integration passed | CUDA smoke checkpoints saved at level 0 and level 4; six actions, zero gravity, no sensors, mass/friction/stiction ranges and compliant mount constructed; this is not convergence evidence |
 | Secured-grasp Level 0 (collision-free) | Promoted on three held-out seeds | Epoch 700 achieved 9,086/9,086 deterministic successes across near/medium/full starts on seeds 1060/2060/3060 (Wilson 95% lower bound 0.9996), with zero timeout, failure, mount-instability, or non-finite termination. Terminal pose, velocity, and cycle-time metrics are captured before Isaac Lab's automatic reset. |
@@ -293,9 +303,9 @@ validated.
 
 ## Current limitations
 
-- Full teacher/student convergence is not part of the initial smoke-tested
-  delivery and remains workload- and seed-dependent.
-- Sustained environment stepping passed at 1024 teacher and 256 vision
+- No vision policy has been trained. The camera task exists so the
+  randomization machinery stays reachable and exercised; it is P3 scaffold.
+- Sustained environment stepping passed at 1024 state and 256 camera
   environments on this specific laptop. Full PPO adds network, optimizer, and
   rollout memory, so 1024/128 remain the recommended training starting points
   and should be re-benchmarked when other GPU applications are open.
@@ -305,7 +315,9 @@ validated.
 - The rack and blades use inexpensive collision proxies rather than proprietary
   server CAD.
 - Vision training is intentionally run at a lower parallel count than the
-  state teacher on a 12 GB laptop GPU.
+  state profile on a 12 GB laptop GPU, and the camera pose is still the one
+  authored for the deleted swap scene; whether it frames the slot well enough to
+  regress a millimetre-scale pose error is unmeasured.
 - The orbital sun is global to a vision scene, so lighting is correlated across
   environments during a reset. Rack materials remain per-environment.
 - Gaussian image noise is an uncalibrated radiation proxy; hot pixels, temporal
@@ -344,10 +356,10 @@ validated.
 - Only one PPO training seed (60) produced the promoted policy. The three
   certification seeds are held-out *evaluation* seeds; training repeatability
   across seeds is untested.
-- `train.py --smoke` runs a scripted axial feasibility probe that is tuned for
-  the contact task and does not complete insertion on the rigid-grasp task
-  (residual axial 23.5 mm after its 300-step budget). This is a probe defect,
-  not a task defect: the learned policy inserts in 35 control steps at stage 0.
+- `train.py --smoke`'s scripted axial feasibility probe is now scoped to the
+  contact-grasp family it was written for. On a rigid grasp the blade is welded
+  to the tool, so axial feasibility holds by construction and the probe tested
+  nothing while failing on its own 300-step budget.
 
 ## License
 
