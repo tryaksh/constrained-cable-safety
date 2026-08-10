@@ -1,24 +1,38 @@
-# Autonomous Server Blade Swap in Zero-G
+# Design-for-serviceability: robotic replacement of a modular compute unit
 
-An NVIDIA Isaac Lab `ManagerBasedRLEnv` project for training a UR10e with a
-Robotiq 2F-85 gripper to remove a failed compute blade, stow it, acquire a
-replacement, and insert the replacement in a microgravity data-center rack.
+An NVIDIA Isaac Lab project asking a specific engineering question:
+
+> **What service interface does a 6-axis manipulator need in order to capture,
+> extract, and insert a modular compute unit in microgravity, and what loads
+> does that impose?**
 
 **This project is actively being worked on and is still stabilizing.**
 
-Orbital compute cannot be serviced: a failed module is a permanent capacity loss
-for the life of the vehicle. Robotic module replacement is the precondition for
-orbital compute that outlives its first hardware failure, and the hard part is
-contact-rich insertion under uncertain mass, friction, and pose error with no
-operator to recover a jam. **[Claim versus evidence](docs/claim_vs_evidence.md)**
-states precisely what this repository has and has not shown.
+The bottleneck in robotic servicing of modular hardware is usually assumed to be
+the controller. Measured here, it is not. It is that modules are not designed to
+be grabbed:
 
-The active milestone is a learned, state-based insertion policy for a blade
-that is already secured by the gripper. The design separates a high-throughput
-privileged-state teacher from a camera-based student so the final policy has a
-defensible Sim2Real story rather than relying on simulator-only object poses at
-deployment. That teacher, the camera student, and the full-swap task are
-later-stage scaffolds, not completed Sim2Real claims.
+| Interface | Axial holding capacity |
+| --- | ---: |
+| Parallel-jaw grip on a smooth post | about **6 N** |
+| Requirement, from the insertion task's own contact reaction | **66.4 N** |
+| Head-on tapered capture interface on the module | **69 N** |
+
+The 6 N result is structural, not a tuning failure: the gripper closes along one
+axis while the module leaves along another, the rails must leave that axis free,
+and flat pads can then oppose it only by friction. Closing harder makes it
+worse. No controller fixes that, so the interface moves onto the module and the
+approach aligns with the pull axis.
+
+The design output is **[the service interface specification](docs/service_interface_spec.md)**,
+which states what a module must present to be serviceable by a 2F-85-class
+gripper, with every dimension traced to a measurement. It is written to be
+usable without reading the simulation.
+
+**[Claim versus evidence](docs/claim_vs_evidence.md)** states precisely what this
+repository has and has not shown. This is a research demonstration of
+contact-rich field servicing, not a flight-readiness claim and not an orbital
+data-centre digital twin.
 
 ## What is implemented
 
