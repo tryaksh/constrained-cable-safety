@@ -27,7 +27,24 @@ approach aligns with the pull axis.
 The design output is **[the service interface specification](docs/service_interface_spec.md)**,
 which states what a module must present to be serviceable by a 2F-85-class
 gripper, with every dimension traced to a measurement. It is written to be
-usable without reading the simulation.
+usable without reading the simulation. It also specifies the *rack*, because one
+of the two strongest results here is that a 16.6 mm lead-in flare on the rack is
+load-bearing: remove it and two fully trained insertion policies both score 0%,
+even with no pose uncertainty at all.
+
+The interface's known limitation is the second strongest result. A single-point
+tapered pin clamped by flat pads cannot resist rotation about the closing axis,
+because the pads' contact normals lie along it, and that turns out to be the
+binding constraint on two of the three servicing skills rather than a cosmetic
+flaw. Three certifications measure it independently; an anti-yaw feature is
+designed and dimensioned but not yet proven.
+
+**Three skills — capture, extract, insert — chain into two servicing workflows
+that run end to end in one continuous episode, holding the module by real
+pad-against-pin contact with no fixed joint. None of them passes its promotion
+gate.** Both statements are on the same footing here: capability is
+demonstrated, reliability is not claimed, and the certified numbers are in
+[docs/status.md](docs/status.md).
 
 **[Claim versus evidence](docs/claim_vs_evidence.md)** states precisely what this
 repository has and has not shown. This is a research demonstration of
