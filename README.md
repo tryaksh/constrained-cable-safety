@@ -248,11 +248,21 @@ schedule, differing in exactly one thing: whether the actor can feel contact.
 The deliverable is one falsifiable plot — success rate against pose-belief
 error, force-aware against force-blind — which is the axis
 [IndustReal](https://arxiv.org/abs/2305.17110) and
-[FORGE](https://arxiv.org/abs/2408.04587) are evaluated on. **No result is
-claimed yet.** `docs/status.md` records the mechanism, the geometry it forced,
-and the two faults found while building it, one of which was that the obvious
-construction of the uncertainty is recoverable from an observation the policy
-already has.
+[FORGE](https://arxiv.org/abs/2408.04587) are evaluated on.
+
+**It came out negative, and that is the finding.** Over 33,500 held-out episodes
+the two policies are indistinguishable at and below the displacement they trained
+on, and the force-aware one is *worse* beyond it while using about twice the
+contact force. The cause is identified rather than guessed: the slot's lead-in
+already handles a 4 mm offset mechanically, and a position-controlled arm gives a
+policy no way to turn a force reading into compliance — so the only thing it can
+do with force is push harder, which hurts. That makes an admittance action space
+the precondition for force sensing to pay here, not an optimisation of it.
+
+`docs/status.md` carries the curve, the contact-force measurement that explains
+its direction, the limitations, and the two faults found while building the task
+— one of which was that the obvious construction of the uncertainty is
+recoverable from an observation the policy already has.
 
 ## Validation status
 
@@ -278,7 +288,8 @@ snapshot is:
 | Learned grasping | Blocked by a measured geometry bug | The handle is configured 0.179 m from the wrist flange while the fingers only obstruct on the blade between about 0.06 and 0.15 m, so they close past it. PhysX reports 0.0 N of finger/blade contact across the whole finger range, drive torque stays at 0.39 N·m of a 10 N·m limit, and the grasp transmits 0 N of the 66.4 N the insertion contact reaction demands. Grasping is a geometry fix first, not a training problem. |
 | Insertion contact load | Measured, not constrained | Peak contact force over 4,513 successful Level-2 episodes: mean 6.73 N, p95 16.56 N, max 66.36 N. It rises about sevenfold from the near start to the full start while success stays 100%, so success rate hides contact load entirely. Nothing bounds it yet. |
 | Capability envelope | Measured, not certified | Pushing the Level-2 policy past its training range: success degrades gracefully with initial pose error (100% at 1–2×, 97.0% at 3×, 62.4% at 6×, 21.2% at 12×), failing by lateral divergence with **zero** instability at every point. Blade mass is flat at 100% out to 1–50 kg, which shows the task is nearly mass-insensitive in this regime and that the Level-2 mass claim is weak. |
-| Insertion under a wrong pose belief | Built and verified, training | The slot physically moves by up to 4 mm and the actor is told the nominal position. Fourteen simulator checks confirm the rails and lead-in move with the goal, the blade starts clear of the channel, nothing resets interpenetrating, and environments whose tool poses agree to 1.5 mm disagree about the true lateral error by 5.2 mm. Force-aware actor 58 values, force-blind 51, identical 71-value critic. No success number is claimed yet |
+| Insertion under a wrong pose belief | Measured, hypothesis refuted | Force-aware against a matched force-blind control over 33,500 held-out episodes and seven slot displacements. Identical at and below the trained 4 mm (99.87% against 99.77%); the force-aware arm is **worse** beyond it (96.94/87.50/74.07% against 99.56/94.90/82.31% at 6/8/10 mm) and uses about twice the peak contact force throughout. Diagnosis and limitations in `docs/status.md` |
+| Insertion under a wrong pose belief, mechanism | Built and verified | The slot physically moves by up to 4 mm and the actor is told the nominal position. Fourteen simulator checks confirm the rails and lead-in move with the goal, the blade starts clear of the channel, nothing resets interpenetrating, and environments whose tool poses agree to 1.5 mm disagree about the true lateral error by 5.2 mm. Force-aware actor 58 values, force-blind 51, identical 71-value critic. No success number is claimed yet |
 | Perception readiness | Blocking finding, before any training | The authored 64x64 camera resolves a 4 mm slot displacement as 0.13 pixels, so it cannot support the perception stage as configured. `docs/perception_plan.md` derives the fix — a narrower field of view rather than more pixels — and requires a rendered frame before images are collected |
 | Nominal insertion baseline | Diagnosed, not promoted | Superseded 300-iteration curriculum: 56.35% full-distance and 22.57% near-distance deterministic success on unseen seed 1042; all failures were timeouts and the 90% gate was not met |
 | Mixed-curriculum axial baseline | Diagnosed, not promoted | Fresh 300-iteration run stayed correctly at Level 0 and achieved 1,292/2,000 (64.6%) near-distance deterministic success; lateral error remained above tolerance, motivating three-axis translation control |
