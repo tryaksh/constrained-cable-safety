@@ -217,15 +217,24 @@ C:\isaac-sim\python.bat scripts\pretrain_student.py --dataset datasets\teacher_2
 | `Isaac-ZeroG-Blade-Insertion-GuidedSlot-v0` | rigid grasp into a channel with lips and a funnelled mouth | 512 | off |
 | `Isaac-ZeroG-Blade-CaptureInSlot-v0` | closes the grasp while the rails still hold the blade | 512 | off |
 | `Isaac-ZeroG-Blade-GrapplePin-Capture-v0` | head-on capture on the grapple pin; the interface spec's scene | 512 | off |
+| `Isaac-ZeroG-Blade-GrapplePin-Grasp-v0` | learned head-on capture; the only skill that commands the gripper | 512 | off |
+| `Isaac-ZeroG-Blade-GrapplePin-Extract-v0` | pull a captured module 495 mm clear of the rack | 512 | off |
+| `Isaac-ZeroG-Blade-GrapplePin-Insert-v0` | insert a module held by pad-against-pin contact, no fixed joint | 512 | off |
+| `Isaac-ZeroG-Blade-GrapplePin-Workflow-v0` | the three skills chained in one episode; **never train on this** | 1 | on |
 | `Isaac-ZeroG-Blade-Insertion-Vision-v0` | proprioception + contact wrench + RGB; **untrained P3 scaffold** | 128 | 64x64 tiled RGB at 15 Hz |
 | `Isaac-ZeroG-Blade-Insertion-Vision-Play-v0` | same, plus the state teacher's own group for demonstration capture | 8 | on |
 
 The eight-phase full-swap task (`Isaac-ZeroG-BladeSwap-Teacher/-Vision/-Play-v0`)
-and the three head-on grapple-pin skills were **deleted on 2026-08-10**. Four of
-the five servicing stages had no physics content, and all three skills failed
-for reasons established work already solves. See
-[docs/status.md](docs/status.md) and [CLAUDE.md](CLAUDE.md); do not reintroduce
-them.
+was **deleted on 2026-08-10** and must not come back: four of its five servicing
+stages had no physics content, and `tests/test_configuration_contract.py` fails
+if the swap state machine returns.
+
+The three head-on grapple-pin skills were deleted with it and **restored on
+2026-08-11**. Deleting them was defensible on the evidence at the time — all
+three had failed — but each had failed for a cause identified and corrected in
+the same session and then never retested. Retested, they chain into two
+servicing workflows. See [docs/status.md](docs/status.md) and
+[CLAUDE.md](CLAUDE.md).
 
 See the [handover](CLAUDE.md), [architecture](docs/architecture.md), the
 [perception plan](docs/perception_plan.md), and the
