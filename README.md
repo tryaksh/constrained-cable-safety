@@ -33,18 +33,24 @@ load-bearing: remove it and two fully trained insertion policies both score 0%,
 even with no pose uncertainty at all.
 
 The interface's known limitation is the second strongest result. A single-point
-tapered pin clamped by flat pads cannot resist rotation about the closing axis,
-because the pads' contact normals lie along it, and that turns out to be the
-binding constraint on two of the three servicing skills rather than a cosmetic
-flaw. Three certifications measure it independently; an anti-yaw feature is
-designed and dimensioned but not yet proven.
+tapered pin clamped by flat pads cannot hold the module's attitude, and that is
+the binding constraint on extraction rather than a cosmetic flaw. Four
+certifications measure it independently. Two interface features were then built
+against it — an anti-yaw yoke and a modelled latch — and **both are measured as
+net negatives and are off**; the yoke cost insertion 67 points to buy extraction
+0.13. Decomposing the rotation showed why: it is split 0.198 rad about the
+closing axis and 0.199 about the transverse axis, and both features addressed
+only the first.
 
 **Three skills — capture, extract, insert — chain into two servicing workflows
 that run end to end in one continuous episode, holding the module by real
-pad-against-pin contact with no fixed joint. None of them passes its promotion
-gate.** Both statements are on the same footing here: capability is
-demonstrated, reliability is not claimed, and the certified numbers are in
-[docs/status.md](docs/status.md).
+pad-against-pin contact with no fixed joint.** Capture certifies at 95.55%,
+insertion at 95.57%, and extraction at 10.09% — the last being the first time a
+module has been pulled clear of the rack by a certified policy at all, after
+four sessions at exactly zero. Installation chains at 86.28% and removal at
+14.06%. **None of them passes the 95% promotion gate.** Capability is
+demonstrated, reliability is not claimed, and every number traces to a file in
+[`evidence/`](evidence/) naming the checkpoint that produced it.
 
 **[Claim versus evidence](docs/claim_vs_evidence.md)** states precisely what this
 repository has and has not shown. This is a research demonstration of
@@ -316,6 +322,11 @@ snapshot is:
 | Capability envelope | Measured, not certified | Pushing the Level-2 policy past its training range: success degrades gracefully with initial pose error (100% at 1–2×, 97.0% at 3×, 62.4% at 6×, 21.2% at 12×), failing by lateral divergence with **zero** instability at every point. Blade mass is flat at 100% out to 1–50 kg, which shows the task is nearly mass-insensitive in this regime and that the Level-2 mass claim is weak. |
 | Insertion under a wrong pose belief | Measured, hypothesis refuted | Force-aware against a matched force-blind control over 33,500 held-out episodes and seven slot displacements. Identical at and below the trained 4 mm (99.87% against 99.77%); the force-aware arm is **worse** beyond it (96.94/87.50/74.07% against 99.56/94.90/82.31% at 6/8/10 mm) and uses about twice the peak contact force throughout. Diagnosis and limitations in `docs/status.md` |
 | Insertion under a wrong pose belief, mechanism | Built and verified | The slot physically moves by up to 4 mm and the actor is told the nominal position. Fourteen simulator checks confirm the rails and lead-in move with the goal, the blade starts clear of the channel, nothing resets interpenetrating, and environments whose tool poses agree to 1.5 mm disagree about the true lateral error by 5.2 mm. Force-aware actor 58 values, force-blind 51, identical 71-value critic. No success number is claimed yet |
+| Head-on grapple pin, three skills | Certified on three held-out seeds each | Capture 95.55% (9,020 episodes), insertion 95.57% (3,000), extraction 10.09% (9,001). The module is held by pad-against-pin contact throughout, with no fixed joint. None passes the 95% gate; extraction is the first non-zero extraction in the project's history and 98% of its remaining failures end at the 0.350 rad grip-attitude limit while grip position holds at 12.5 mm. |
+| Chained servicing workflows | Certified on three held-out seeds, 576 workflows each | Installation 86.28% (Wilson 95% [83.23, 88.85]), removal 14.06% ([11.46, 17.14]). Each phase is given the episode length its own skill was certified on, derived automatically, so "it completes in the chain" cannot disagree with "it scores X alone". |
+| Anti-yaw yoke | Built, trained against, refuted | Two walls dimensioned entirely from the measured gripper envelope, and a net negative: capture 95.55% → 88.81%, insertion 95.57% → 28.70%, extraction 0.00% → 0.13%. Decomposing the attitude error showed it is split evenly between the closing axis the walls oppose and a transverse axis they cannot touch. Off by default; kept implemented because the measurement is the result. |
+| Modelled capture latch | Built, swept, refuted | A rated restoring torque engaged by a qualifying capture, which is what flight servicing hardware does instead of relying on friction. Swept 10–160 N·m against an unchanged policy so nothing is a training artefact: it moves the targeted rotation by 0.006 rad and collapses extraction travel from 458 mm to about 25 mm, because a torque on a module the rails still hold jams it in the rails. Off by default. |
+| Extraction end pose reachability | Checked, hypothesis refuted | Two handovers flagged that the folded end pose was never verified kinematically. Converged IK reaches it holding the head-on attitude to 0.0114 rad, seventeen times inside tolerance, and moving the robot base back makes it worse. The earlier 0.10–0.26 rad residuals were an under-converged 400-step servo. |
 | Perception readiness | Blocking finding, before any training | The authored 64x64 camera resolves a 4 mm slot displacement as 0.13 pixels, so it cannot support the perception stage as configured. `docs/perception_plan.md` derives the fix — a narrower field of view rather than more pixels — and requires a rendered frame before images are collected |
 | Nominal insertion baseline | Diagnosed, not promoted | Superseded 300-iteration curriculum: 56.35% full-distance and 22.57% near-distance deterministic success on unseen seed 1042; all failures were timeouts and the 90% gate was not met |
 | Mixed-curriculum axial baseline | Diagnosed, not promoted | Fresh 300-iteration run stayed correctly at Level 0 and achieved 1,292/2,000 (64.6%) near-distance deterministic success; lateral error remained above tolerance, motivating three-axis translation control |
