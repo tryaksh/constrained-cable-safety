@@ -44,14 +44,15 @@ only the first.
 
 **Three skills — capture, extract, insert — chain into two servicing workflows
 that run end to end in one continuous episode, holding the module by real
-pad-against-pin contact with no fixed joint.** Capture certifies at 96.10%,
-extraction at 99.02%, insertion at 95.57%, and **the chained removal — capture,
-break free, pull 495 mm clear of the rack, and still be settled 0.7 s later —
-passes its 95% promotion gate at 98.78%** over 576 workflows on three held-out
-seeds, with zero instability and zero non-finite terminations. Chained
-installation is at 89.41% and does not pass. Capability is demonstrated,
-reliability is claimed only where a gate passed, and every number traces to a
-file in [`evidence/`](evidence/) naming the checkpoint that produced it.
+pad-against-pin contact with no fixed joint.** **Both chains now pass the 95%
+promotion gate**: chained removal — capture, break free, pull 495 mm clear of the
+rack, and still be settled 0.7 s later — at **98.78%**, and chained installation
+at **96.35%**, each over 576 workflows on three held-out seeds with zero
+instability and zero non-finite terminations. The skills behind them certify at
+96.10% (capture, stale — see below), 99.02% (extraction) and 98.27% (insertion).
+Every number traces to a file in [`evidence/`](evidence/) naming the checkpoint
+that produced it, and [`evidence/RETRACTED.md`](evidence/RETRACTED.md) lists the
+figures that have been withdrawn and what replaced them.
 
 **[Claim versus evidence](docs/claim_vs_evidence.md)** states precisely what this
 repository has and has not shown. This is a research demonstration of
@@ -324,7 +325,7 @@ snapshot is:
 | Insertion under a wrong pose belief | Measured, hypothesis refuted | Force-aware against a matched force-blind control over 33,500 held-out episodes and seven slot displacements. Identical at and below the trained 4 mm (99.87% against 99.77%); the force-aware arm is **worse** beyond it (96.94/87.50/74.07% against 99.56/94.90/82.31% at 6/8/10 mm) and uses about twice the peak contact force throughout. Diagnosis and limitations in `docs/status.md` |
 | Insertion under a wrong pose belief, mechanism | Built and verified | The slot physically moves by up to 4 mm and the actor is told the nominal position. Fourteen simulator checks confirm the rails and lead-in move with the goal, the blade starts clear of the channel, nothing resets interpenetrating, and environments whose tool poses agree to 1.5 mm disagree about the true lateral error by 5.2 mm. Force-aware actor 58 values, force-blind 51, identical 71-value critic. No success number is claimed yet |
 | Head-on grapple pin, three skills | Certified on three held-out seeds each | Capture 96.10% (9,026 episodes), extraction 99.02% (9,005), insertion 95.57% (3,000). All three pass the 95% gate. The module is held by pad-against-pin contact throughout, with no fixed joint. Extraction reached this from 0.00% through three fixes, none of them mechanical: a reward for arriving settled, an attitude penalty whose clamp saturated at exactly the angle the policy parked at, and a reset that had been scoring a quarter of its episodes with the grip already lost. |
-| Chained servicing workflows | Certified on three held-out seeds, 576 workflows each | **Removal 98.78%** (Wilson 95% [97.51, 99.41]), gate passed with zero instability. Installation 89.41% ([86.63, 91.67]), short of the gate. Each phase is given the episode length its own skill was certified on, derived automatically, so "it completes in the chain" cannot disagree with "it scores X alone". Earlier figures of 14.06% and 84.38% are retracted; both were certified before a criterion they depend on was tightened. |
+| Chained servicing workflows | Certified on three held-out seeds, 576 workflows each | **Removal 98.78%** (Wilson 95% [97.51, 99.41]) and **installation 96.35%** ([94.49, 97.60]), both gates passed with zero instability. Each phase is given the episode length its own skill was certified on, derived automatically, so "it completes in the chain" cannot disagree with "it scores X alone". Installation reached its gate without retraining anything: the insert phase's clock was truncating successful insertions, and the settling window was still squeezing a seated module in breach of this project's own operating rule. Earlier figures of 14.06%, 84.38% and 89.41% are superseded; see `evidence/RETRACTED.md`. |
 | Anti-yaw yoke | Built, trained against, refuted | Two walls dimensioned entirely from the measured gripper envelope, and a net negative: capture 95.55% → 88.81%, insertion 95.57% → 28.70%, extraction 0.00% → 0.13%. Re-tested later against a policy whose attitude error had concentrated onto the exact axis the walls oppose — removing the original excuse — it moved that axis by 0.0015 rad. The compliance is the pads camming open under load, not the gap between the walls, so no passive geometry reaches it. Off by default; kept implemented because the measurement is the result. |
 | Modelled capture latch | Built, swept, refuted | A rated restoring torque engaged by a qualifying capture, which is what flight servicing hardware does instead of relying on friction. Swept 10–160 N·m against an unchanged policy so nothing is a training artefact: it moves the targeted rotation by 0.006 rad and collapses extraction travel from 458 mm to about 25 mm, because a torque on a module the rails still hold jams it in the rails. Off by default. |
 | Extraction end pose reachability | Checked, hypothesis refuted | Two handovers flagged that the folded end pose was never verified kinematically. Converged IK reaches it holding the head-on attitude to 0.0114 rad, seventeen times inside tolerance, and moving the robot base back makes it worse. The earlier 0.10–0.26 rad residuals were an under-converged 400-step servo. |
