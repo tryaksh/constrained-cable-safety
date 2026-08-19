@@ -351,12 +351,29 @@ C:\isaac-sim\python.bat scripts\pretrain_student.py --dataset datasets\teacher_2
 | `Isaac-ZeroG-Blade-GrapplePin-Insert-v0` | insert a module held by pad-against-pin contact, no fixed joint | 512 | off |
 | `Isaac-ZeroG-Blade-GrapplePin-Workflow-v0` | the three skills chained in one episode; **never train on this** | 1 | on |
 | `Isaac-ZeroG-Blade-Insertion-Vision-v0` | proprioception + contact wrench + RGB; **untrained P3 scaffold** | 128 | 64x64 tiled RGB at 15 Hz |
+| `Isaac-ZeroG-Blade-GrapplePin-InsertTwoSlot-v0` | insert into either bay of a two-bay rack; the curriculum stage selects the bay | 512 | off |
+| `Isaac-ZeroG-Blade-GrapplePin-InsertChain-v0` | insert starting from a hand-off produced by running the *real* frozen capture, not a reset approximating one | 512 | off |
+| `Isaac-ZeroG-Blade-GrapplePin-TwoSlotWorkflow-v0` | the relocation scene: two bays, the chained skills, and the scripted transit. **Does not complete** — see the reach boundary | 64 | off |
+| `Isaac-ZeroG-Blade-GrappleVision-Collect-v0` | the certified workflow with a camera added, for collecting pose-head training frames | 64 | 64x64 tiled RGB at 15 Hz |
+| `Isaac-ZeroG-Blade-GrappleVision-Workflow-v0` | the one-bay workflow driven by the camera estimate instead of the simulator's answer | 64 | 64x64 tiled RGB at 15 Hz |
+| `Isaac-ZeroG-Blade-GrappleVisionTwoSlot-Collect-v0` | the same, two bays, with the bay-occupancy label | 64 | 64x64 tiled RGB at 15 Hz |
+| `Isaac-ZeroG-Blade-GrappleVisionTwoSlot-Install-v0` | **the two-bay vision comparison**: oracle, camera and blind arms all run this | 64 | 64x64 tiled RGB at 15 Hz |
 | `Isaac-ZeroG-Blade-Insertion-Vision-Play-v0` | same, plus the state teacher's own group for demonstration capture | 8 | on |
 
-The eight-phase full-swap task (`Isaac-ZeroG-BladeSwap-Teacher/-Vision/-Play-v0`)
-was **deleted on 2026-08-10** and must not come back: four of its five servicing
-stages had no physics content, and `tests/test_configuration_contract.py` fails
-if the swap state machine returns.
+Every task has a `-Play-v0` variant at one environment with rendering on; those
+are omitted above except where the training and play profiles differ.
+
+**Three things were deleted and are defended by contract tests in
+`tests/test_configuration_contract.py`**, because each is the kind of thing that
+comes back by accident:
+
+- the eight-phase full-swap task (`Isaac-ZeroG-BladeSwap-*`), removed 2026-08-10
+  because four of its five servicing stages had no physics content;
+- `Isaac-ZeroG-Blade-CaptureInSlot-v0`, removed 2026-08-18 because it declared a
+  physical grasp on a blade whose handle collider its parent disables, and so
+  failed the contract that exists to catch a gripper touching nothing;
+- `--workflow full`, the remove-and-replace round trip, removed 2026-08-18
+  because it went non-finite by control step 10 and was never certified.
 
 The three head-on grapple-pin skills were deleted with it and **restored on
 2026-08-11**. Deleting them was defensible on the evidence at the time — all
