@@ -30,6 +30,15 @@ of the strongest results here is that a 16.6 mm lead-in flare on the rack is
 load-bearing: remove it and two fully trained insertion policies both score 0%,
 even with no pose uncertainty at all.
 
+And it specifies **where the arm stands**, which is the same finding a third
+time. A manipulator holds the approach attitude only outside a region around its
+own base axis — measured here as a fixed 0.4242 m of standoff that moves with the
+base one millimetre per millimetre, and that vanishes 220 mm off the centre line.
+Inside it the arm still *reaches* every pose; it reaches them pointing the wrong
+way. A cell built 200 mm too close cannot perform the module changeout this
+project exists to demonstrate, and nothing about the module, the gripper or the
+controller reveals that.
+
 ## The one finding, in one sentence
 
 **Attitude, not position, is the binding constraint on every operation that
