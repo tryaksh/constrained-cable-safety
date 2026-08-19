@@ -128,11 +128,21 @@ Every number names the file in [`evidence/`](evidence/) it came from.
 | Insertion skill, **either bay of two**, one policy, gated on the worse bay | 98.34% | `grapple_insert_two_slot_certification.json` |
 | Interface axial hold | 69.0 N against 66.4 N required | `grapple_pin_axial_pull_gate.json` |
 | Module pose from 64×64 RGB on a two-bay rack, plus which bay holds it | 2.81 mm mean, occupancy 100% | `module_pose_head_two_slot.json` |
+| **Vision drives the whole workflow on a two-bay rack** — camera against oracle against blind | **84.90% vs 88.72% vs 34.03%** | `vision_workflow_*_twoslot_certification.json` |
 | Onboard inference | 0.73 ms CPU, 2.2% of the control period | `inference_budget.json` |
 
 Both chains are 576 workflows on three held-out seeds, zero instability and zero
 non-finite terminations, with the module held by real pad-against-pin contact
 throughout and no fixed joint anywhere.
+
+The vision row is the comparison the project exists to make: the same three
+certified policies, the same scene, the same observation term, differing only in
+where the module's pose comes from. Camera is **3.82 points** behind being handed
+the simulator's answer, against a 10-point allowance, and **50.9 points** above
+working blind — so the image is carrying real information and costs little. One
+caveat travels with that number everywhere it appears: **the camera arm is not
+deterministic and the state pipeline is**, so a single camera run is one draw. See
+the limitations.
 
 ### Does not work, with the measurement that says why
 
