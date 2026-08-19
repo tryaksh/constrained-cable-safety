@@ -144,6 +144,48 @@ caveat travels with that number everywhere it appears: **the camera arm is not
 deterministic and the state pipeline is**, so a single camera run is one draw. See
 the limitations.
 
+### The workcell is part of the interface, and it was the missing constraint
+
+This branch moves the arm from `ROBOT_ROOT_POS = (−0.45, 0, 0.15)`, which every
+number on `main` was produced at, to
+`GRAPPLE_ROBOT_ROOT_POS = (−0.65, 0, 0.15)`. The old cell **cannot** complete the
+relocation, for a reason that is kinematic and now measured on both of its axes.
+
+Driving position and the head-on capture attitude together at full authority, the
+tool parks a fixed **0.4242 m** in front of the base and goes no further whatever
+depth is asked of it — the solver holds the attitude to 0.0002 rad and gives the
+position away. The relocation needs 88.7 mm past that to finish an extraction and
+167 mm past it to retreat behind the rack's lead-in flares.
+
+That boundary has two independent exits, and the same sweep measures both:
+
+| Change | Retreat shortfall |
+| --- | ---: |
+| none — base at (−0.45, 0) | 166.95 mm |
+| base back 100 mm | 66.95 mm |
+| **base back 200 mm** | **solved, 0.01 mm** |
+| the same pose, 220 mm off the base's plane, base unmoved | **solved, 0.01 mm** |
+| the same pose, 110 mm off the base's plane | 63.98 mm — **not enough** |
+
+`evidence/workcell_reach_solution.json`. So it is not a reach limit and not a
+depth limit: it is the arm reaching back **along its own centre line**, and the
+threshold in x is arithmetic — the retreat needs the base at or behind −0.617 m.
+
+What makes this worth reading past as a workcell detail is that it is **free**:
+checkable by kinematics before any policy exists, and it costs one number in a
+config file. Capture is the first skill re-certified on it and gains **5.68
+points** — 88.78% → 94.46% — concentrated entirely in the widest reset, which is
+the one that most needs the arm to servo rather than start inside the tolerance.
+
+It is tempting to go further and say the workcell explains the grip attitude
+error this project attributed to the interface for three sessions, and the
+measurement does **not** support that. Extraction on the old cell ended at
+0.1262 rad of grip attitude; retrained on the new cell it ends at **0.1166 rad**.
+That is an improvement of under 8%, not a reattribution. The arm was buying a
+little depth with attitude, not most of it, and the interface's structural
+inability to resist a moment about its closing axis is untouched by moving the
+base.
+
 ### Does not work, with the measurement that says why
 
 | | State | Why |
