@@ -42,8 +42,8 @@ controller reveals that.
 ## The one finding, in one sentence
 
 **Attitude, not position, is the binding constraint on every operation that
-moves a payload through free space** — and it binds in two independent places
-that took most of the project to tell apart, because each one masks the other.
+moves a payload through free space** — and it binds in three places that took
+most of the project to tell apart, because each one masks the others.
 
 *On the grip.* A parallel-jaw grip on a passive feature cannot resist a moment
 about its closing axis: the pads' contact normals lie along that axis, and a
@@ -62,6 +62,24 @@ solver reaches it to 3.6 mm. Remove the orientation command entirely and every
 depth is reachable to 0.00 mm, including 64 mm beyond the furthest the task
 needs. **The arm can go where the task needs it; it cannot go there pointing the
 right way.** ([`relocation_reach_boundary.json`](evidence/relocation_reach_boundary.json))
+
+*And the second one is a workcell property, which is the part worth taking
+away.* That trade is not a fact about the arm; it is a fact about **where the arm
+was standing**. Sweeping the base over eight positions and classifying all 64
+resulting (pose, bay) cells, the failures occupy one region: a fixed **0.4242 m**
+of standoff in front of the base, moving with it one millimetre per millimetre,
+and only within about 110 mm of the base's own centre line. Every cell 220 mm off
+that line succeeds, down to the deepest pose the task contains. Move the base
+200 mm back and the trade disappears — the same extraction that had to buy its
+last 88.7 mm with attitude now finishes without paying.
+([`workcell_reach_solution.json`](evidence/workcell_reach_solution.json))
+
+**This is the third time the same answer has come back in this project.** The
+module needed geometry (a parallel-jaw grip cannot hold the pull axis). The rack
+needed geometry (without a 16.6 mm lead-in flare, two trained policies score 0%).
+The *cell* needs geometry too — and of the three it is the only one that is free,
+checkable by kinematics before any policy exists, and invisible in every metric
+the robot reports about itself.
 
 Three other findings are non-obvious and are the reason this repository is worth
 reading rather than skimming.
