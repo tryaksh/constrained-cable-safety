@@ -73,6 +73,43 @@ re-run overturns — one of the three scored 25.00% and re-runs at 80.73% with
 every input identical. Both are in
 [`evidence/RETRACTED.md`](evidence/RETRACTED.md).
 
+## In plain terms, before the numbers
+
+The module has a stub sticking out of its front face, like a short door handle.
+It is wedge-shaped — fatter at the free end, narrowing where it meets the module
+— with a wide flat plate behind it, and the robot's two-finger hand closes on the
+wedge like a clothes peg. The fat-end-out shape is the whole trick: when the robot
+pulls, the fat part is dragged into the fingers and they bite harder instead of
+slipping. The plate behind stops the hand sliding in too far.
+
+That holds the module's *position* well — 69 N of pull against the 66.4 N the job
+needs. What it cannot hold is the module's *orientation*. A two-finger clamp
+squeezes along one line, and squeezing along a line cannot stop a part twisting
+about that same line; only friction can, and friction loses. On Earth this rarely
+shows, because a part rests on something and its own weight helps. In freefall the
+moment the rack lets go, the module is a free-floating body held at one spot.
+
+So the obvious fix was tried: replace the wedge with a flat-sided block and a lip
+in front of it — a cotton reel — so the fingers drop into the groove and are
+trapped by shape rather than by squeezing. It grips far better on every
+measurement. **It cannot be fitted, for a dull reason: there is no room for the
+lip.** The hand's own palm and knuckles occupy the space directly in front of
+where the fingertips close. About 8 mm of clearance exists there; the lip needs
+about 44 mm, or the fingers simply spread and pop over it. Making the block
+smaller is worse, not better, because a smaller block lets the hand close further
+and brings the knuckles in.
+
+> **The engineering conclusion, and the most useful thing here:** keep the module
+> dumb and put the locking geometry in the **end-effector**, not on the part.
+> V-grooved fingers, or a powered latch that engages after the grip closes. That
+> is what flight hardware already does — the station's arm snares a fixture and
+> then rigidises it; the ISS manipulator grips a square boss and then drives a
+> bolt. Grip first, lock second. None of them makes friction load-bearing.
+>
+> This is a claim about *where* the geometry goes, not a claim that microgravity
+> gripping is infeasible. The gripping works. It is the twisting that does not,
+> and the part is the wrong place to fix it.
+
 ## What works, what does not, and what was refuted
 
 Every number names the file in [`evidence/`](evidence/) it came from.
