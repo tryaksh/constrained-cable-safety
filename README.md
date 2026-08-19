@@ -345,7 +345,6 @@ C:\isaac-sim\python.bat scripts\pretrain_student.py --dataset datasets\teacher_2
 | `Isaac-ZeroG-Blade-Insertion-Uncertain-v0` | the slot physically moves; the actor is told the wrong place and must feel for it | 512 | off |
 | `Isaac-ZeroG-Blade-Insertion-UncertainBlind-v0` | the same, with the contact wrench removed: the matched ablation | 512 | off |
 | `Isaac-ZeroG-Blade-Insertion-GuidedSlot-v0` | rigid grasp into a channel with lips and a funnelled mouth | 512 | off |
-| `Isaac-ZeroG-Blade-CaptureInSlot-v0` | closes the grasp while the rails still hold the blade | 512 | off |
 | `Isaac-ZeroG-Blade-GrapplePin-Capture-v0` | head-on capture on the grapple pin; the interface spec's scene | 512 | off |
 | `Isaac-ZeroG-Blade-GrapplePin-Grasp-v0` | learned head-on capture; the only skill that commands the gripper | 512 | off |
 | `Isaac-ZeroG-Blade-GrapplePin-Extract-v0` | pull a captured module 495 mm clear of the rack | 512 | off |
