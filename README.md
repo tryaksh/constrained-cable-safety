@@ -34,7 +34,7 @@ even with no pose uncertainty at all.
 
 **Attitude, not position, is the binding constraint on every operation that
 moves a payload through free space** — and it binds in two independent places
-that took four months of measurement to tell apart.
+that took most of the project to tell apart, because each one masks the other.
 
 *On the grip.* A parallel-jaw grip on a passive feature cannot resist a moment
 about its closing axis: the pads' contact normals lie along that axis, and a
@@ -45,11 +45,14 @@ tool-to-module offset changed sign, −0.335 m to +0.305 m — while the grip er
 itself read a healthy 24 mm, because the pads were still exactly where they had
 been.
 
-*On the arm.* Holding the interface's required attitude, the tool reaches
-local x = **−0.0258** and no further, whatever depth is asked of it. With the
-attitude command removed it reaches every depth to 0.00 mm, including 64 mm
-beyond the furthest the task needs. The arm can go there; it cannot go there
-pointing the right way. ([`relocation_reach_boundary.json`](evidence/relocation_reach_boundary.json))
+*On the arm.* Near the folded configuration servicing requires, reach and
+attitude **trade**, and steeply — about 7.5 metres per radian. Drive the
+orientation at full authority and the tool stops **88.7 mm** short of the pose
+extraction has to finish in; allow 0.0114 rad of attitude error and the same
+solver reaches it to 3.6 mm. Remove the orientation command entirely and every
+depth is reachable to 0.00 mm, including 64 mm beyond the furthest the task
+needs. **The arm can go where the task needs it; it cannot go there pointing the
+right way.** ([`relocation_reach_boundary.json`](evidence/relocation_reach_boundary.json))
 
 Three other findings are non-obvious and are the reason this repository is worth
 reading rather than skimming.
