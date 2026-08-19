@@ -6,8 +6,6 @@ An NVIDIA Isaac Lab project asking a specific engineering question:
 > extract, and insert a modular compute unit in microgravity, and what loads
 > does that impose?**
 
-**This project is actively being worked on and is still stabilizing.**
-
 The bottleneck in robotic servicing of modular hardware is usually assumed to be
 the controller. Measured here, it is not. It is that modules are not designed to
 be grabbed:
@@ -28,41 +26,98 @@ The design output is **[the service interface specification](docs/service_interf
 which states what a module must present to be serviceable by a 2F-85-class
 gripper, with every dimension traced to a measurement. It is written to be
 usable without reading the simulation. It also specifies the *rack*, because one
-of the two strongest results here is that a 16.6 mm lead-in flare on the rack is
+of the strongest results here is that a 16.6 mm lead-in flare on the rack is
 load-bearing: remove it and two fully trained insertion policies both score 0%,
 even with no pose uncertainty at all.
 
-The interface's known limitation is the second strongest result. A single-point
-tapered pin clamped by flat pads cannot hold the module's attitude, and that is
-the binding constraint on extraction rather than a cosmetic flaw. Four
-certifications measure it independently. Two interface features were then built
-against it — an anti-yaw yoke and a modelled latch — and **both are measured as
-net negatives and are off**; the yoke cost insertion 67 points to buy extraction
-0.13. Decomposing the rotation showed why: it is split 0.198 rad about the
-closing axis and 0.199 about the transverse axis, and both features addressed
-only the first.
+## The one finding, in one sentence
 
-**Three skills — capture, extract, insert — chain into two servicing workflows
-that run end to end in one continuous episode, holding the module by real
-pad-against-pin contact with no fixed joint.** **Both chains now pass the 95%
-promotion gate**: chained removal — capture, break free, pull 495 mm clear of the
-rack, and still be settled 0.7 s later — at **98.78%**, and chained installation
-at **96.35%**, each over 576 workflows on three held-out seeds with zero
-instability and zero non-finite terminations. The skills behind them certify at
-99.02% (extraction) and 98.27% (insertion); **capture is 88.78% and fails its own
-gate**, which the table below explains is a different question from what the chain
-asks of it. Insertion now also works in **either bay of a two-bay rack** — 98.87%
-and 98.34%, one policy, gated on the worse bay.
+**Attitude, not position, is the binding constraint on every operation that
+moves a payload through free space** — and it binds in two independent places
+that took four months of measurement to tell apart.
 
-**The relocation those parts exist for — bay 1 to bay 2 in one episode — does not
-yet complete.** Every skill it needs is certified and the chain still times out
-inside the lateral transit. The cause is measured and specific, and it is the
-project's one unsolved interface problem rather than a training shortfall: a
-single-point pin cannot hold the module's attitude through 734 mm of free flight.
+*On the grip.* A parallel-jaw grip on a passive feature cannot resist a moment
+about its closing axis: the pads' contact normals lie along that axis, and a
+normal force cannot oppose a moment about its own direction. Only friction can,
+and friction loses. The clearest single piece of evidence is a module being
+carried between bays that swung **end-for-end** about its grip — the
+tool-to-module offset changed sign, −0.335 m to +0.305 m — while the grip error
+itself read a healthy 24 mm, because the pads were still exactly where they had
+been.
 
-Every number traces to a file in [`evidence/`](evidence/) naming the checkpoint
-that produced it, and [`evidence/RETRACTED.md`](evidence/RETRACTED.md) lists the
-figures that have been withdrawn and what replaced them.
+*On the arm.* Holding the interface's required attitude, the tool reaches
+local x = **−0.0258** and no further, whatever depth is asked of it. With the
+attitude command removed it reaches every depth to 0.00 mm, including 64 mm
+beyond the furthest the task needs. The arm can go there; it cannot go there
+pointing the right way. ([`relocation_reach_boundary.json`](evidence/relocation_reach_boundary.json))
+
+Three other findings are non-obvious and are the reason this repository is worth
+reading rather than skimming.
+
+**1. Chained success has repeatedly landed below the product of its parts, and
+the cause was never policy capacity.** Every time it was a hand-off, a phase
+clock, or a controller state. Installation went 89.41% → **96.35%** with no
+retraining at all: a truncating clock, and a settling window that kept squeezing
+a module that was already seated.
+
+**2. A skill's own success rate and what a chain needs from it are different
+questions.** Capture scores 88.78% alone and *fails* its gate, while the same
+checkpoint overruns its capture phase once in 192 chained installations — because
+the skill task ends an episode when its failure predicate fires and the chain
+simply lets the capture finish.
+
+**3. A single run is not a measurement, and this repository learned that twice
+in opposite directions.** A one-seed vision sweep once reported a gate *pass*
+that three seeds overturned. Three seeds then reported a gate *failure* that a
+re-run overturns — one of the three scored 25.00% and re-runs at 80.73% with
+every input identical. Both are in
+[`evidence/RETRACTED.md`](evidence/RETRACTED.md).
+
+## What works, what does not, and what was refuted
+
+Every number names the file in [`evidence/`](evidence/) it came from.
+
+### Works
+
+| | Rate | Evidence |
+| --- | ---: | --- |
+| **Removal chain** — capture, break free, pull 495 mm clear, still settled 0.7 s later | **98.78%** | `workflow_remove_retain_certification.json` |
+| **Installation chain** — capture at the mouth, seat, still seated 0.7 s later | **96.35%** | `workflow_install_clock30retain_certification.json` |
+| Extraction skill | 99.02% | `grapple_extract_v14reset_certification.json` |
+| Insertion skill, one bay | 98.27% | `grapple_insert_v6clock30_certification.json` |
+| Insertion skill, **either bay of two**, one policy, gated on the worse bay | 98.34% | `grapple_insert_two_slot_certification.json` |
+| Interface axial hold | 69.0 N against 66.4 N required | `grapple_pin_axial_pull_gate.json` |
+| Module pose from 64×64 RGB on a two-bay rack, plus which bay holds it | 2.81 mm mean, occupancy 100% | `module_pose_head_two_slot.json` |
+| Onboard inference | 0.73 ms CPU, 2.2% of the control period | `inference_budget.json` |
+
+Both chains are 576 workflows on three held-out seeds, zero instability and zero
+non-finite terminations, with the module held by real pad-against-pin contact
+throughout and no fixed joint anywhere.
+
+### Does not work, with the measurement that says why
+
+| | State | Why |
+| --- | --- | --- |
+| Capture as a standalone skill | **88.78%, fails its 95% gate** | 1,008 of 1,011 failures are refusals rather than timeouts, and the chain that uses the same checkpoint overruns capture once in 192. Two different questions; neither may be quoted as the other |
+| **Relocation, bay 1 → bay 2** | **Does not complete** | A kinematic wall, mapped rather than inferred. Extraction ends 88.7 mm past it and the transit's retreat needs 167 mm past it. Attitude free, every depth is reachable to 0.00 mm. No leg order fixes it; lifting over the rack's flares does not move it either |
+| The keyed interface redesign | **Cannot be built on this gripper** | Its nose flange overlaps the palm by 45.0 mm at *every* closure, including fully open. No forward axial stop fits at any key height: 7.9 mm of room against the 43.5 mm a splay-proof stop needs |
+
+### Built, measured, refuted
+
+| | Result |
+| --- | --- |
+| Anti-yaw yoke | Cost insertion 67 points to buy extraction 0.13. **Code deleted** |
+| Modelled latch | Jams the module in the rails; extraction travel 458 mm → 25 mm |
+| Raising the gripper drive to its rated 24.96 N·m | Capacity *fell* — a wedge turns closing force into thrust along the pull axis |
+| Force sensing for pose robustness | Worse beyond the trained range. Force has to be actionable, not merely observable |
+| Fine-tuning insert on the chain's own distribution | 300 epochs took the install chain 89.41% → 88.37% |
+| Reproducing the insert hand-off as a reset | Four attempts: 0.00%, 26.32%, 47.17%. Running the real capture reproduces it at 93.06% |
+
+The full list, each with its evidence file, is in
+[docs/claim_vs_evidence.md](docs/claim_vs_evidence.md) and
+[docs/status.md](docs/status.md). Negative and retracted results are kept
+deliberately: [`evidence/RETRACTED.md`](evidence/RETRACTED.md) lists every figure
+that has been withdrawn and what replaced it.
 
 **[Claim versus evidence](docs/claim_vs_evidence.md)** states precisely what this
 repository has and has not shown. This is a research demonstration of
@@ -338,11 +393,12 @@ snapshot is:
 | Capture: the skill number and the chain number are different questions | Both measured | Capture's 88.78% is measured with a `capture_failed` termination that ends the episode the moment its predicate declares failure. The chains carry no such term: they hand over on a 10 mm grip held 0.30 s and otherwise let the capture keep closing for its full 10 s, which it does — chained installation overruns its capture phase **once in 192 episodes**. Adding such a termination to the chained-insert task was separately measured at 95.31% → 69.27%. So capture reliably produces the grip the chain requires *and* fails a fixed-episode predicate at the two widest resets. Neither number may be quoted as the other. |
 | Insert into either bay of a two-bay rack | Certified on three held-out seeds, gated on the worse bay | One policy, both bays, trained 50/50 from the single-bay insert: **98.87% in bay 1 and 98.34% in bay 2**, pooled 98.60% over 3,004 episodes, zero instability and zero non-finite. The gate is the worse bay rather than the pool, because a policy that scores 99% in one and 90% in the other has not done the job. The second bay is the certified one displaced part for part, and the skill transferred almost immediately — 0 to 83% within 40 epochs of the curriculum unlocking it — which is evidence for that construction rather than for the policy. |
 | Perception on a two-bay rack | Occupancy solved, camera arm's gate **fails on one seed of three** | The pose head gains a bay-occupancy output and reads which bay holds the module at **100% exact-match** on 12,000 held-out frames against a 66.6% majority-class baseline. In the loop on a two-bay installation, oracle 88.72%, camera **65.10%**, blind 34.03% over 576 workflows each — but per seed the camera is **86.46% / 25.00% / 83.85%** while oracle is flat at 90.62 / 89.58 / 85.94. Two seeds sit inside the 10-point gate with room and one collapses, so this is an estimator failing on a randomization draw rather than a uniform 23-point cost. The head's held-out p95 is 6.47 mm against a 4 mm insertion tolerance while its mean is 2.81 mm — an adequate typical accuracy with an inadequate tail. The same sweep at one seed reported a pass, which is what three seeds are for. |
-| Relocation: bay 1 to bay 2 in one episode | Built, instrumented, **does not complete** | The ORU changeout this roadmap is for, and it is not working. Capture, extraction and both insertions are certified, and the chain still times out inside the lateral transit. Diagnosed rather than guessed: the module swings end-for-end about the single-point pin during the flight — the tool-to-module offset changes sign from −0.335 m to +0.305 m while the tool sits on its waypoint — because the transit commanded nothing on its rotation channels. Holding the attitude takes grip error through the flight from 24 mm to 11 mm and the retreat leg now completes for every environment; the 220 mm lateral crossing, flown with the arm folded back near its own base, does not. Full account in `docs/status.md`. |
+| Relocation: bay 1 to bay 2 in one episode | Built, instrumented, **does not complete**, and the blocker is measured | The ORU changeout this roadmap is for, and it is not working. Capture, extraction and both insertions are certified and the chain still times out inside the lateral transit. The cause is a reach-versus-attitude trade the workcell cannot pay. Driving position and the head-on capture attitude at full authority, the tool parks at local x = −0.0258; extraction must finish 88.7 mm past that and the transit's retreat 167 mm past it. Two controls pin it down: with the orientation command removed **every** depth converges to 0.00 mm, so the arm can go there but not pointing the right way; and lifting the module over the rack's 50 mm lead-in flares — the one crossing that avoids the retreat — does not move the parking point at any lift from 0 to 200 mm. Surrendering attitude buys reach at about 7.5 m/rad, which is why the transit reached its waypoints at all and why the module swung end-for-end when it did. `evidence/relocation_reach_boundary.json`. |
 | Chained servicing workflows | Certified on three held-out seeds, 576 workflows each | **Removal 98.78%** (Wilson 95% [97.51, 99.41]) and **installation 96.35%** ([94.49, 97.60]), both gates passed with zero instability. Each phase is given the episode length its own skill was certified on, derived automatically, so "it completes in the chain" cannot disagree with "it scores X alone". Installation reached its gate without retraining anything: the insert phase's clock was truncating successful insertions, and the settling window was still squeezing a seated module in breach of this project's own operating rule. Earlier figures of 14.06%, 84.38% and 89.41% are superseded; see `evidence/RETRACTED.md`. |
-| Anti-yaw yoke | Built, trained against, refuted | Two walls dimensioned entirely from the measured gripper envelope, and a net negative: capture 95.55% → 88.81%, insertion 95.57% → 28.70%, extraction 0.00% → 0.13%. Re-tested later against a policy whose attitude error had concentrated onto the exact axis the walls oppose — removing the original excuse — it moved that axis by 0.0015 rad. The compliance is the pads camming open under load, not the gap between the walls, so no passive geometry reaches it. Off by default; kept implemented because the measurement is the result. |
+| Anti-yaw yoke | Built, trained against, refuted, **code deleted 2026-08-18** | Two walls dimensioned entirely from the measured gripper envelope, and a net negative: capture 95.55% → 88.81%, insertion 95.57% → 28.70%, extraction 0.00% → 0.13%. Re-tested later against a policy whose attitude error had concentrated onto the exact axis the walls oppose — removing the original excuse — it moved that axis by 0.0015 rad. The compliance is the pads camming open under load, not the gap between the walls, so no passive geometry reaches it. The measurements are kept in `docs/status.md` and `evidence/`; the code is not, and a contract test keeps it out. |
+| Keyed interface redesign | Built on a branch, measured, **refuted by geometry** | Flat keyed faces between two axial stops, replacing the taper. It fixes rotation decisively — seated grip offset 0.0194 → 0.0007 m, seated attitude 0.0637 → 0.0013 rad, 120 N held at a 0.34 m arm without slip — and takes extraction to 0.00%, and five parameter corrections did not move that. The reason is structural: the nose flange sits **45.0 mm inside the gripper's palm at every closure**, including fully open, so the pads were never in the pocket. Nor can any version of it fit — a stop forward of the pads must exceed the aperture's own 43.5 mm half-opening to be proof against the pads splaying, and the room there is 7.9 mm. The corollary is the useful half: the 2F-85's throat is cone-shaped and the taper's profile matches it, so the taper doing double duty as funnel and clamp is the only shape this hand admits. `evidence/grapple_pin_keyed_interference.json`. |
 | Modelled capture latch | Built, swept, refuted | A rated restoring torque engaged by a qualifying capture, which is what flight servicing hardware does instead of relying on friction. Swept 10–160 N·m against an unchanged policy so nothing is a training artefact: it moves the targeted rotation by 0.006 rad and collapses extraction travel from 458 mm to about 25 mm, because a torque on a module the rails still hold jams it in the rails. Off by default. |
-| Extraction end pose reachability | Checked, hypothesis refuted | Two handovers flagged that the folded end pose was never verified kinematically. Converged IK reaches it holding the head-on attitude to 0.0114 rad, seventeen times inside tolerance, and moving the robot base back makes it worse. The earlier 0.10–0.26 rad residuals were an under-converged 400-step servo. |
+| Extraction end pose reachability | Measured twice, and the two answers are a trade rather than a contradiction | A 2,000-step converged servo reaches the folded extraction end pose to 3.6 mm while holding the head-on attitude to 0.0114 rad. A later 3,000-step sweep driving orientation at full authority holds 0.0002 rad and gives up 88.7 mm at the same pose. Both are correct: near this configuration the Jacobian is ill-conditioned and attitude exchanges for reach at about 7.5 m/rad. The earlier reading that the workcell is "not the problem" was drawn from one side of that trade; the honest statement is that the workcell is marginal and the objective decides which way it fails. The `--robot_base_x` sweep published alongside it was inert — the flag edited a config that `configure_robustness` then overwrote — and is retracted. |
 | Perception readiness | Blocking finding, before any training | The authored 64x64 camera resolves a 4 mm slot displacement as 0.13 pixels, so it cannot support the perception stage as configured. `docs/perception_plan.md` derives the fix — a narrower field of view rather than more pixels — and requires a rendered frame before images are collected |
 | Nominal insertion baseline | Diagnosed, not promoted | Superseded 300-iteration curriculum: 56.35% full-distance and 22.57% near-distance deterministic success on unseen seed 1042; all failures were timeouts and the 90% gate was not met |
 | Mixed-curriculum axial baseline | Diagnosed, not promoted | Fresh 300-iteration run stayed correctly at Level 0 and achieved 1,292/2,000 (64.6%) near-distance deterministic success; lateral error remained above tolerance, motivating three-axis translation control |
