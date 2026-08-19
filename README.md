@@ -178,13 +178,13 @@ points** — 88.78% → 94.46% — concentrated entirely in the widest reset, wh
 the one that most needs the arm to servo rather than start inside the tolerance.
 
 It is tempting to go further and say the workcell explains the grip attitude
-error this project attributed to the interface for three sessions, and the
-measurement does **not** support that. Extraction on the old cell ended at
-0.1262 rad of grip attitude; retrained on the new cell it ends at **0.1166 rad**.
-That is an improvement of under 8%, not a reattribution. The arm was buying a
-little depth with attitude, not most of it, and the interface's structural
-inability to resist a moment about its closing axis is untouched by moving the
-base.
+error this project attributed to the interface for three sessions. **That is not
+claimed here, and the obvious way to check it does not work.** Comparing the
+terminal grip attitude of main's extraction against this branch's compares a
+population of *successes* with a population of *timeouts*, and an episode that
+stopped short and settled has every reason to show a smaller attitude error than
+one that completed a full pull. The comparison only becomes available when
+extraction re-certifies on the new cell, against successes on both sides.
 
 ### Does not work, with the measurement that says why
 
