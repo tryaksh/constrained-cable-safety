@@ -490,8 +490,21 @@ validated.
 
 ## Current limitations
 
-- No vision policy has been trained. The camera task exists so the
-  randomization machinery stays reachable and exercised; it is P3 scaffold.
+> **Read this list with one distinction in mind.** The repository contains two
+> lineages. The **rigid-grasp** one holds the module with a PhysX fixed joint
+> standing in for an already-secured grasp — that is where the 27,121-episode
+> insertion certifications come from, and most of the caveats below are about it.
+> The **grapple-pin** one holds the module by real pad-against-pin contact with no
+> fixed joint anywhere, and that is where the chains, the interface result and the
+> vision arms come from. A limitation of one is not automatically a limitation of
+> the other, and this list used to read as though it were.
+
+- **No policy consumes images directly.** A supervised pose head regresses the
+  module's position and which bay holds it from 64×64 RGB, and the trained
+  state policies then consume that estimate in place of the simulator's answer.
+  That is enough to measure what perception *costs* — camera against oracle
+  against blind — but it is not end-to-end visual control, and no policy has
+  been trained on pixels.
 - Sustained environment stepping passed at 1024 state and 256 camera
   environments on this specific laptop. Full PPO adds network, optimizer, and
   rollout memory, so 1024/128 remain the recommended training starting points
@@ -501,10 +514,16 @@ validated.
   physical Sim2Real transfer.
 - The rack and blades use inexpensive collision proxies rather than proprietary
   server CAD.
-- Vision training is intentionally run at a lower parallel count than the
-  state profile on a 12 GB laptop GPU, and the camera pose is still the one
-  authored for the deleted swap scene; whether it frames the slot well enough to
-  regress a millimetre-scale pose error is unmeasured.
+- Vision runs at a lower parallel count than the state profile on a 12 GB laptop
+  GPU. Whether the camera frames the rack well enough to regress a
+  millimetre-scale pose is no longer unmeasured: 1.75 mm mean on one bay and
+  2.81 mm on two, with bay occupancy exact at 100% against a 66.6% majority-class
+  baseline (`evidence/module_pose_head.json`, `module_pose_head_two_slot.json`).
+- **The camera arm is not deterministic and the state pipeline is.** Two runs
+  with identical seed, task and checkpoints diverge at the first episode, while
+  the oracle arm re-run a day later reproduces its per-seed rates exactly. Any
+  camera measurement therefore needs replicating; a single run of it is one draw,
+  and one such draw was published as a gate failure before being re-run.
 - The orbital sun is global to a vision scene, so lighting is correlated across
   environments during a reset. Rack materials remain per-environment.
 - Gaussian image noise is an uncalibrated radiation proxy; hot pixels, temporal
@@ -516,10 +535,14 @@ validated.
 - Contact forces are solved by PhysX and are exposed as observations only on the
   force-feedback task, which pays for contact reporting and disables Fabric
   cloning. Every promoted policy runs without them.
-- The promoted insertion uses a fixed joint representing an already-secured
-  blade. Physical grasp acquisition is not solved, and is currently blocked by a
-  grasp pose configured 0.179 m from the wrist flange, outside the roughly
-  0.06 to 0.15 m band in which the fingers actually reach the blade.
+- **The rigid-grasp insertion lineage** uses a fixed joint representing an
+  already-secured blade, and on it `tool_to_handle_error_m` is a tautology rather
+  than a grip audit. Its old contact-grasp variant never gripped anything: the
+  handle sat 0.179 m from the wrist flange, outside the 0.06–0.15 m band the
+  fingers reach. **The grapple-pin lineage solved that** and is what the chains
+  run on — real pad-against-pin contact, no fixed joint, 69 N of measured axial
+  hold — so "physical grasp acquisition is not solved" is true of the older
+  lineage only.
 - Peak contact force has resisted every intervention tried: two reward-penalty
   strengths and full force feedback with a matched control. Only accumulated
   impulse responded.
