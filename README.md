@@ -146,13 +146,18 @@ Every number names the file in [`evidence/`](evidence/) it came from.
 
 ### Works
 
+> **This branch moved the robot.** Every rate below is measured on the workcell
+> at `GRAPPLE_ROBOT_ROOT_POS` x = −0.65. `main` still carries the same
+> demonstration at x = −0.45; the two sets are a before/after, not alternatives.
+> `python scripts/compare_workcells.py` prints the comparison from the evidence
+> files. Insertion did **not** survive the move and is the one open problem — see
+> *Does not work* below.
+
 | | Rate | Evidence |
 | --- | ---: | --- |
-| **Removal chain** — capture, break free, pull 495 mm clear, still settled 0.7 s later | **98.78%** | `workflow_remove_retain_certification.json` |
-| **Installation chain** — capture at the mouth, seat, still seated 0.7 s later | **96.35%** | `workflow_install_clock30retain_certification.json` |
-| Extraction skill | 99.02% | `grapple_extract_v14reset_certification.json` |
-| Insertion skill, one bay | 98.27% | `grapple_insert_v6clock30_certification.json` |
-| Insertion skill, **either bay of two**, one policy, gated on the worse bay | 98.34% | `grapple_insert_two_slot_certification.json` |
+| **Removal chain** — capture, break free, pull 495 mm clear, still settled 0.7 s later | **99.48%** | `workflow_remove_w65_certification.json` |
+| Capture skill | 94.46% | `grapple_grasp_v6w65_certification.json` |
+| Extraction skill | 94.89% | `grapple_extract_v16w65_certification.json` |
 | Interface axial hold | 69.0 N against 66.4 N required | `grapple_pin_axial_pull_gate.json` |
 | Module pose from 64×64 RGB on a two-bay rack, plus which bay holds it | 2.81 mm mean, occupancy 100% | `module_pose_head_two_slot.json` |
 | **Vision drives the whole workflow on a two-bay rack** — camera against oracle against blind | **84.90% vs 88.72% vs 34.03%** | `vision_workflow_*_twoslot_certification.json` |
@@ -217,8 +222,9 @@ extraction re-certifies on the new cell, against successes on both sides.
 
 | | State | Why |
 | --- | --- | --- |
-| Capture as a standalone skill | **88.78%, fails its 95% gate** | 1,008 of 1,011 failures are refusals rather than timeouts, and the chain that uses the same checkpoint overruns capture once in 192. Two different questions; neither may be quoted as the other |
-| **Relocation, bay 1 → bay 2** | **Does not complete** | A kinematic wall, mapped rather than inferred. Extraction ends 88.7 mm past it and the transit's retreat needs 167 mm past it. Attitude free, every depth is reachable to 0.00 mm. No leg order fixes it; lifting over the rack's flares does not move it either |
+| **Insertion skill** | **10.50%**, from 98.60% | The single open problem, and everything that depends on it follows: the installation chain reads **0.17%** and the relocation 0/64. Its success predicate refuses above 0.20 rad of grip attitude, and the certified policy was passing that by 2.8% of the limit; the workcell change moved that quantity about 6%. `grapple_insert_two_slot_w65_certification.json` |
+| **Relocation, bay 1 → bay 2** | **Does not complete**, but the failure moved | The arm now flies the whole planned path — nothing remains on the retreat or the cross, the tool ends 1.2 mm from its final waypoint. The *module* is lost, tool-to-module 1.216 m. The workcell blocker is gone; the interface one it was masking is not |
+| Capture as a standalone skill | **94.46%, fails its 95% gate** | 1,008 of 1,011 failures are refusals rather than timeouts, and the chain that uses the same checkpoint overruns capture once in 192. Two different questions; neither may be quoted as the other |
 | The keyed interface redesign | **Cannot be built on this gripper** | Its nose flange overlaps the palm by 45.0 mm at *every* closure, including fully open. No forward axial stop fits at any key height: 7.9 mm of room against the 43.5 mm a splay-proof stop needs |
 
 ### Built, measured, refuted
