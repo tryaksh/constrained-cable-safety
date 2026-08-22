@@ -1,4 +1,75 @@
-# Design-for-serviceability: robotic replacement of a modular compute unit
+# Robotic Serviceability Qualification Lab
+
+A simulation-backed platform for answering a practical industrial robotics
+question before hardware integration:
+
+> **Can a robot see, capture, load, move, align, and seat this service module in
+> this workcell—and can the result be defended with reproducible evidence?**
+
+The demanding reference scenario is a six-axis arm servicing modular compute
+hardware in microgravity. The deliverable is **design qualification evidence**
+for the module, capture interface, rack, camera, and workcell. It is not a claim
+that autonomous orbital servicing is solved, flight qualified, or safe for
+hardware deployment.
+
+## Portfolio snapshot
+
+The repository combines NVIDIA Isaac Lab simulation, learned contact-rich
+manipulation policies, calibrated rendered RGB-D perception, reset-safe
+statistical evaluation, and a local compute service with an observable job lifecycle. Its
+most useful output is not a perfect animation; it is the ability to preserve a
+pass or failure with enough telemetry and provenance to change an engineering
+decision.
+
+| Current workcell result | Measurement | Honest interpretation |
+| --- | ---: | --- |
+| Full physical relocation, state feedback | **16/16 (100%)** | Settled successes; 95% Wilson interval is 80.64%-100% |
+| Full RGB-D relocation | **1 settled end-to-end run** | Real rendered perception and physical simulation; an outcome, not a reliability rate |
+| RGB-D perception holdout | **1,024 frames; 1.682 mm position p95** | 94.824% detection overall and 99.854% in critical rack-bay poses |
+| Bay occupancy | **100% exact match** | The camera correctly selects occupied bay 0 and clear bay 1 |
+| Compute service | **Live job succeeded with report, trace, hashes, events, and video** | The browser/API path and simulator subprocess were exercised together |
+
+The current result came from treating the earlier failures as design evidence.
+The final cell uses learned capture and extraction, a physical six-axis payload
+shuttle for transfer, a robotically serviceable receiving mouth, calibrated
+RGB-D fiducial pose/occupancy feedback, guarded insertion, and a 0.70 s settled
+success check. No simulator pose is fed to the deployed perception estimator.
+
+## Run the showcase
+
+On the recorded Windows/Isaac installation, start the local service with:
+
+```powershell
+C:\isaac-sim\python.bat scripts\run_service_api.py --host 127.0.0.1 --port 8000
+```
+
+For replay-only use on a machine without Isaac, install the project into a
+separate CPython 3.11 environment and replace `python` with that interpreter's
+path if it is not on `PATH`:
+
+```powershell
+python -m pip install -e .
+python scripts\run_service_api.py --host 127.0.0.1 --port 8000
+```
+
+Open <http://127.0.0.1:8000>. The **synthetic replay** preset completes without
+Isaac, GPU access, or private checkpoints and demonstrates the API, serialized
+worker, perception/planning/manipulation events, dashboard, persistence, and
+artifact contract. It does not run physics or create qualification evidence.
+The **live RGB-D Isaac** preset is now available when the validated artifacts,
+GPU, simulator, policies, and exact source hashes match. It runs the full
+rendered-perception workflow and exports a report, trace, event stream, hashes,
+and video. One live attempt remains an outcome, not a success-rate measurement. Both modes
+leave `qualification.passed` unset unless a real aggregate protocol with a
+declared threshold has run.
+
+See the **[compute service demo runbook](docs/compute_service_demo.md)** for the
+dashboard/API walkthrough, evidence paths, exact claim boundaries, and a
+five-minute interview script. The
+**[independent assessment](docs/independent_assessment.md)** explains why the
+project is worth pursuing through this product pivot.
+
+## Detailed engineering record: robotic replacement of a modular compute unit
 
 An NVIDIA Isaac Lab project asking a specific engineering question:
 
@@ -159,22 +230,30 @@ Every number names the file in [`evidence/`](evidence/) it came from.
 | Capture skill | 94.46% | `grapple_grasp_v6w65_certification.json` |
 | Extraction skill | 94.89% | `grapple_extract_v16w65_certification.json` |
 | Interface axial hold | 69.0 N against 66.4 N required | `grapple_pin_axial_pull_gate.json` |
-| Module pose from 64×64 RGB on a two-bay rack, plus which bay holds it | 2.81 mm mean, occupancy 100% | `module_pose_head_two_slot.json` |
-| **Vision drives the whole workflow on a two-bay rack** — camera against oracle against blind | **84.90% vs 88.72% vs 34.03%** | `vision_workflow_*_twoslot_certification.json` |
+| Legacy module pose from 64×64 RGB on the prior two-bay workcell | 2.81 mm mean, occupancy 100% | `module_pose_head_two_slot.json`; historical, not the current live preset |
+| Legacy vision-assisted workflow comparison — camera against oracle against blind | **84.90% vs 88.72% vs 34.03%** | `vision_workflow_*_twoslot_certification.json`; predates the current workcell and camera |
 | Onboard inference | 0.73 ms CPU, 2.2% of the control period | `inference_budget.json` |
 
-Both chains are 576 workflows on three held-out seeds, zero instability and zero
-non-finite terminations, with the module held by real pad-against-pin contact
-throughout and no fixed joint anywhere.
+The current removal certification covers 576 workflows on three held-out seeds,
+with zero instability and zero non-finite terminations. The module is held by
+real pad-against-pin contact throughout, with no fixed joint. The matching
+current installation protocol also covers 576 workflows but succeeds only once;
+it is reported under *Does not work* rather than averaged into the passing
+removal result.
 
-The vision row is the comparison the project exists to make: the same three
-certified policies, the same scene, the same observation term, differing only in
-where the module's pose comes from. Camera is **3.82 points** behind being handed
-the simulator's answer, against a 10-point allowance, and **50.9 points** above
-working blind — so the image is carrying real information and costs little. One
-caveat travels with that number everywhere it appears: **the camera arm is not
-deterministic and the state pipeline is**, so a single camera run is one draw. See
-the limitations.
+The legacy vision row established that the image carried useful capture signal:
+camera was **3.82 points** behind being handed the simulator's answer and **50.9
+points** above working blind. It was not end-to-end visual control—extraction
+and insertion still received privileged module state—and it cannot be quoted as
+the accuracy or success rate of the current 256×256 overview-camera deployment
+path. The current path replaces those phase observations with one shared camera
+estimate and must be evaluated afresh. Camera runs also need replication because
+the rendered arm was not deterministic while the state pipeline was.
+
+That paragraph describes the legacy CNN. The current 384x384 RGB-D fiducial
+estimator and complete rendered workflow have now been evaluated; see
+`evidence/fiducial_rgbd_service_plate.json` and
+`evidence/full_chain_rgbd_service_seed4070.json`.
 
 ### The workcell is part of the interface, and it was the missing constraint
 
@@ -218,7 +297,11 @@ stopped short and settled has every reason to show a smaller attitude error than
 one that completed a full pull. The comparison only becomes available when
 extraction re-certifies on the new cell, against successes on both sides.
 
-### Does not work, with the measurement that says why
+### Historical failures that drove the redesign
+
+The table below records the pre-shuttle baseline. It is retained to show why
+the final system changed the payload handoff and receiving interface; it is not
+the status of the current full-chain demo.
 
 | | State | Why |
 | --- | --- | --- |
@@ -259,9 +342,9 @@ data-centre digital twin.
   single gated report with Wilson 95% confidence intervals.
 - Random blade mass, guide friction/stiction, compliant mount disturbance,
   orbital sun lighting, rack materials, and camera radiation noise.
-- A measured 1024-environment state profile and a conservative 128-environment
-  64x64 RGB training default (256 camera environments also passed the sustained
-  environment-only benchmark on the development laptop).
+- A measured 1024-environment state profile, a 256×256 overview camera whose
+  two bays and transfer corridor pass the rendered framing gate, and explicit
+  camera/GPU profiling on the development laptop.
 - RL-Games PPO hooks, state-teacher demonstration collection, behavioral
   cloning, play, and repeatable VRAM/FPS benchmarks.
 
@@ -398,9 +481,10 @@ Fabric-cloned prims do not all reach the RTX renderer; physics is unchanged.
 C:\isaac-sim\python.bat scripts\play.py --task Isaac-ZeroG-Blade-Insertion-RigidGrasp-Play-v0 --checkpoint <l2.pth> --robustness_level 2 --curriculum_stage 2 --num_envs 9 --seed 9162 --headless --video --video_length 300 --video_dir artifacts\demo\array --inspection_view array
 ```
 
-For continuation, begin with [CLAUDE.md](CLAUDE.md). It is a short routing file
-that states the mission, the operating rules, and which document to open for a
-given task, so a new agent does not have to read the whole repository. Measured
+For continuation, begin with
+[docs/codex_handover_prompt.md](docs/codex_handover_prompt.md), then verify the
+repository and evidence directly. The independent product decision is in
+[docs/independent_assessment.md](docs/independent_assessment.md). Measured
 results and limitations live in [docs/status.md](docs/status.md); ordered next
 work and prior art live in [docs/roadmap.md](docs/roadmap.md).
 
@@ -439,10 +523,11 @@ C:\isaac-sim\python.bat scripts\pretrain_student.py --dataset datasets\teacher_2
 | `Isaac-ZeroG-Blade-GrapplePin-InsertTwoSlot-v0` | insert into either bay of a two-bay rack; the curriculum stage selects the bay | 512 | off |
 | `Isaac-ZeroG-Blade-GrapplePin-InsertChain-v0` | insert starting from a hand-off produced by running the *real* frozen capture, not a reset approximating one | 512 | off |
 | `Isaac-ZeroG-Blade-GrapplePin-TwoSlotWorkflow-v0` | the relocation scene: two bays, the chained skills, and the scripted transit. **Does not complete** — see the reach boundary | 64 | off |
-| `Isaac-ZeroG-Blade-GrappleVision-Collect-v0` | the certified workflow with a camera added, for collecting pose-head training frames | 64 | 64x64 tiled RGB at 15 Hz |
-| `Isaac-ZeroG-Blade-GrappleVision-Workflow-v0` | the one-bay workflow driven by the camera estimate instead of the simulator's answer | 64 | 64x64 tiled RGB at 15 Hz |
-| `Isaac-ZeroG-Blade-GrappleVisionTwoSlot-Collect-v0` | the same, two bays, with the bay-occupancy label | 64 | 64x64 tiled RGB at 15 Hz |
-| `Isaac-ZeroG-Blade-GrappleVisionTwoSlot-Install-v0` | **the two-bay vision comparison**: oracle, camera and blind arms all run this | 64 | 64x64 tiled RGB at 15 Hz |
+| `Isaac-ZeroG-Blade-GrappleVision-Collect-v0` | workflow camera collection; supports reset jitter or a full workflow-envelope distribution | 64 | 256×256 tiled RGB at 15 Hz |
+| `Isaac-ZeroG-Blade-GrappleVision-Workflow-v0` | one-bay workflow using the shared camera estimate in policy observations | 64 | 256×256 tiled RGB at 15 Hz |
+| `Isaac-ZeroG-Blade-GrappleVisionTwoSlot-Collect-v0` | two bays plus real neither-bay transfer examples and occupancy labels | 64 | 256×256 tiled RGB at 15 Hz |
+| `Isaac-ZeroG-Blade-GrappleVisionTwoSlot-Workflow-v0` | live-preset environment; one shared camera estimate drives all learned policy phases, while supervisory gates remain privileged | 64 | 256×256 tiled RGB at 15 Hz |
+| `Isaac-ZeroG-Blade-GrappleVisionTwoSlot-Install-v0` | two-bay camera/oracle/blind comparison task; current-camera certification pending | 64 | 256×256 tiled RGB at 15 Hz |
 | `Isaac-ZeroG-Blade-Insertion-Vision-Play-v0` | same, plus the state teacher's own group for demonstration capture | 8 | on |
 
 Every task has a `-Play-v0` variant at one environment with rendering on; those
@@ -504,12 +589,35 @@ its direction, the limitations, and the two faults found while building the task
 — one of which was that the obvious construction of the uncertainty is
 recoverable from an observation the policy already has.
 
-## Validation status
+## Validation ledger
 
-The repository contains real local smoke and sustained capacity evidence. A
-local nominal-insertion policy converged, but checkpoints are intentionally not
-stored in Git and no real-hardware transfer result exists. The current measured
-snapshot is:
+The repository contains real local smoke, capacity, policy, perception, and
+full-chain simulation evidence, but no real-hardware transfer result. The
+current workcell headline is the portfolio table at the top of this README. The
+long table below is retained as an engineering ledger. Several rows are earlier
+workcell or task milestones and are historical when they conflict with the
+current snapshot.
+
+| Current promotion gate | Result |
+| --- | --- |
+| Full relocation with state feedback | **Passed observed batch** - 16/16 settled successes; Wilson 95% lower bound 80.64% |
+| RGB-D perception | **Passed** - 1,024 frames, 1.682 mm position p95, 99.854% critical-pose detection |
+| Two-bay occupancy | **Passed** - 100% exact match on the rendered holdout |
+| Full relocation with rendered RGB-D | **Passed single outcome** - complete and settled; not a reliability rate |
+| Live compute-service path | **Passed single job** - events, report, trace, hashes, artifact download, and video |
+
+The following table records the pre-redesign baseline that motivated the
+payload shuttle, RGB-D service plate, and receiving-mouth changes.
+
+| Historical promotion gate | Result |
+| --- | --- |
+| Removal | **Passed** — 99.48% on 576 current-workcell workflows |
+| Installation | **Failed** — 0.17% on 576 current-workcell workflows |
+| Either-bay insertion | **Failed** — 10.50% pooled and 0% in the worst bay |
+| Full relocation | **Failed** — 0/64; current arm path reach is no longer the only blocker |
+| 256×256 overview framing | **Passed sensor gate only** — current pose-head/workflow promotion is separate |
+
+### Historical experiments and milestones
 
 | Check | Actual completed result | Scope |
 | --- | --- | --- |
@@ -600,12 +708,15 @@ validated.
 > vision arms come from. A limitation of one is not automatically a limitation of
 > the other, and this list used to read as though it were.
 
-- **No policy consumes images directly.** A supervised pose head regresses the
-  module's position and which bay holds it from 64×64 RGB, and the trained
-  state policies then consume that estimate in place of the simulator's answer.
-  That is enough to measure what perception *costs* — camera against oracle
-  against blind — but it is not end-to-end visual control, and no policy has
-  been trained on pixels.
+- **No policy consumes pixels directly.** A supervised pose/occupancy head
+  converts 256×256 RGB into one filtered module-state estimate, and the trained
+  state policies consume that estimate across capture, extraction, and
+  insertion. No policy has been trained end to end on pixels, and high-level
+  phase transitions and terminal predicates still use simulator state.
+- The live service requests a fixed bay 0→bay 1 plan. RGB occupancy scores gate
+  the source-occupied/destination-clear precondition and fail closed, but do not
+  select arbitrary bays; the sigmoid decision scores are not calibrated
+  confidence and remain separate from statistical qualification.
 - Sustained environment stepping passed at 1024 state and 256 camera
   environments on this specific laptop. Full PPO adds network, optimizer, and
   rollout memory, so 1024/128 remain the recommended training starting points
@@ -616,10 +727,11 @@ validated.
 - The rack and blades use inexpensive collision proxies rather than proprietary
   server CAD.
 - Vision runs at a lower parallel count than the state profile on a 12 GB laptop
-  GPU. Whether the camera frames the rack well enough to regress a
-  millimetre-scale pose is no longer unmeasured: 1.75 mm mean on one bay and
-  2.81 mm on two, with bay occupancy exact at 100% against a 66.6% majority-class
-  baseline (`evidence/module_pose_head.json`, `module_pose_head_two_slot.json`).
+  GPU. The current overview camera keeps both slot mouths, the transfer point,
+  and module centre in frame and resolves a 4 mm displacement as 1.65 pixels
+  (`evidence/camera_scale_grapple_w65.json`). The old 1.75/2.81 mm pose figures
+  came from the prior 64×64 camera/workcell and are historical, not current live
+  preset accuracy.
 - **The camera arm is not deterministic and the state pipeline is.** Two runs
   with identical seed, task and checkpoints diverge at the first episode, while
   the oracle arm re-run a day later reproduces its per-seed rates exactly. Any
