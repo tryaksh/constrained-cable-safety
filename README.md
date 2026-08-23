@@ -76,8 +76,11 @@ Measured three ways, on the same seed and policies:
 
 The current design gives the lock three states — rigid to carry, a bounded
 compliance to mate, released once seated — which is what assembly compliance
-devices and the SSRMS latching end effector both do. The compliance value it
-needs is being swept; see `scripts/run_robot_carried.sh mating`.
+devices and the SSRMS latching end effector both do. The compliant state is a
+solver-side joint drive rather than an applied wrench, because an explicit
+spring at the 30 Hz command rate cannot be made stiff, and it has to be stiff in
+rotation while staying soft in translation: the rack aligns a module by pushing
+it, and no lead-in can straighten a 450 mm module inside a 1 mm channel.
 
 ## Start the local service
 
@@ -137,8 +140,9 @@ C:\isaac-sim\python.bat scripts\check_service_latch_clearance.py
 
 - No real robot, real camera, hardware-in-the-loop, connector mating, cabling,
   cooling, or flight qualification has been demonstrated.
-- The form lock's **load path in simulation is a break-rated fixed joint** (or a
-  bounded spring-damper while compliant) between the wrist and the module. Its
+- The form lock's **load path in simulation is a break-rated fixed joint** while
+  rigid and a limited, damped D6 joint drive while compliant, both between the
+  wrist and the module. Its
   hardware is authored on the wrist and its clearances are derived, but the jaws
   carry no collider, so contact between them and the pin is not simulated. Every
   report says so.
