@@ -48,6 +48,7 @@ describes the part that is built.
 | Two-bay occupancy | 100% exact match | Rendered holdout |
 | Learned capture and extraction | Run from their certified checkpoints, unchanged | Existing certifications |
 | Robot-carried transit | 2.6 mm tool-to-module drift over a 450 mm flight, 11 of 32 inside tolerance throughout | 32-environment latched batch against a 16-environment passive control |
+| RGB-D end-to-end chain | capture, extract, carry, align — every seating condition met except depth | One seed on the vision task; seed 4070 does not get through capture there |
 | Seating in the destination bay | **Not closed** — see below | |
 | Local compute service | API, dashboard, queue, events, cancellation, artifacts and hashes | Local machine; no authentication or cloud deployment |
 
@@ -55,6 +56,9 @@ Primary evidence:
 
 - [`evidence/fiducial_rgbd_service_plate.json`](evidence/fiducial_rgbd_service_plate.json)
 - [`evidence/service_latch_clearance.json`](evidence/service_latch_clearance.json)
+- [`evidence/robot_carried_interface.json`](evidence/robot_carried_interface.json)
+- [`evidence/robot_carried_rgbd_seed6070.json`](evidence/robot_carried_rgbd_seed6070.json) — one full RGB-D chain, randomization on, 2.95 mm carried drift, every seating condition met except axial depth
+- [`evidence/robot_carried_seating_sweep.json`](evidence/robot_carried_seating_sweep.json) — why the axial depth is the one that is not met
 
 Retained as a **labelled historical baseline**, not as a robot-carried result:
 [`evidence/full_chain_state_16_report.json`](evidence/full_chain_state_16_report.json)
