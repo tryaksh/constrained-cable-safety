@@ -13,8 +13,15 @@ transits, nothing changed but the interface:
 
 | Carried by | Retained the planned transform | Tool-to-module drift, p50 | Attitude drift, p50 | Module travel vs tool travel |
 | --- | ---: | ---: | ---: | --- |
-| Finger pads alone | **0 of 16** | **808 mm** | **3.14 rad** | 913 mm against 168 mm |
-| Robot-side form lock | 1 of 1 | **2.3 mm** | **6.2 mrad** | 433 mm against 454 mm |
+| Finger pads alone, 16 environments | **0 of 16** | **808 mm** | **3.14 rad** | 913 mm against 168 mm |
+| Robot-side form lock, 32 environments | **11 of 32** | **2.6 mm** | **6.7 mrad** | 773 mm against 297 mm |
+| Robot-side form lock, the demonstration run | 1 of 1 | **2.3 mm** | **6.2 mrad** | 433 mm against 454 mm |
+
+The middle row's travel columns are pooled across the 21 environments that lost
+the transform as well as the 11 that kept it, which is why they do not look like
+the demonstration run's. The drift medians are the number to read: 2.6 mm against
+808 mm is the interface result, and 11 of 32 is how often the lock held it for a
+whole flight on this rating.
 
 Read the last column first. On the passive arm the tool travels 168 mm while the
 module travels 913 mm and turns end-for-end: the module is not being carried, it
@@ -40,7 +47,7 @@ describes the part that is built.
 | Detection at critical rack poses | 99.854% | Rendered holdout |
 | Two-bay occupancy | 100% exact match | Rendered holdout |
 | Learned capture and extraction | Run from their certified checkpoints, unchanged | Existing certifications |
-| Robot-carried transit | 2.3 mm / 6.2 mrad tool-to-module drift over a 450 mm flight | Single-environment runs plus one 16-environment passive control |
+| Robot-carried transit | 2.6 mm tool-to-module drift over a 450 mm flight, 11 of 32 inside tolerance throughout | 32-environment latched batch against a 16-environment passive control |
 | Seating in the destination bay | **Not closed** — see below | |
 | Local compute service | API, dashboard, queue, events, cancellation, artifacts and hashes | Local machine; no authentication or cloud deployment |
 
@@ -63,24 +70,45 @@ rather than by anyone remembering.
 
 ## What is not closed
 
-The robot carries the module to the destination bay and drives it at the
-channel. The seating does not complete, and the reason is a real conflict rather
-than a tuning gap: **carrying needs rigidity and mating needs compliance.**
-Measured three ways, on the same seed and policies:
+The robot carries the module to the destination bay and drives it 362 mm into
+the channel. It stops **163 mm short of seated**, and the reason is upstream of
+the mating interface.
 
-| Lock state during mating | What the seating did |
-| --- | --- |
-| rigid throughout | module advanced **0.3 mm** in a 30-second budget |
-| released at the phase boundary | advanced **15.6 mm**, then wedged inside the channel |
-| released before the mouth | slid **laterally out of the bay** — the pads do not resist lateral load |
+Four faults in the chain were found and fixed while measuring this, and three
+conclusions this project had already published from them were wrong. The largest
+was a guarded advance whose axial target was rebuilt each step from the module it
+was pushing — a bounded lead that is a deadlock, and which held every stiffness,
+force cap and clearance sweep at one standing 10 mm command error. See section 4
+of [`docs/robot_carried_handoff.md`](docs/robot_carried_handoff.md).
 
-The current design gives the lock three states — rigid to carry, a bounded
-compliance to mate, released once seated — which is what assembly compliance
-devices and the SSRMS latching end effector both do. The compliant state is a
-solver-side joint drive rather than an applied wrench, because an explicit
-spring at the 30 Hz command rate cannot be made stiff, and it has to be stiff in
-rotation while staying soft in translation: the rack aligns a module by pushing
-it, and no lead-in can straighten a 450 mm module inside a 1 mm channel.
+What the corrected chain measures: the guarded advance is never blocked by its
+own guard, and spends 875 of 900 steps holding a commanded depth a **full mating
+stroke** in front of a module that will not follow. The compliance is at its hard
+stop and the module still does not move.
+
+The blocker is the delivered attitude, and it is not about one axis. The module
+arrives 47–67 mrad off square — the arm's own accuracy inside the reach boundary
+this project already measured — split **13.8 mrad of pitch and 15.1 mrad of
+yaw**. A 450 mm module tilted in two planes has to be walked square by two
+lead-ins at once.
+
+Widening the bay was then swept properly, and the sweep is the result worth
+reading — [`evidence/robot_carried_seating_sweep.json`](evidence/robot_carried_seating_sweep.json):
+
+| Channel relief, per side | Module advanced, of 163 mm | Attitude it stopped at |
+| ---: | ---: | ---: |
+| 4 mm | 0.7 mm | 20.5 mrad |
+| 8 mm | 10.1 mm | 35.2 mrad |
+| 12 mm | 14.6 mm | 49.8 mrad |
+| 16 mm | 20.6 mm | **63.5 mrad** |
+
+Both curves are monotone and they run in opposite directions, because **the
+channel is what squares the module**. Every millimetre of relief buys about
+1.2 mm of travel and costs about 3.5 mrad of squareness, so the seating check's
+52.4 mrad limit is crossed near 12.5 mm — with the module 15 mm into a 163 mm
+travel. By 16 mm the module settles at the attitude the arm delivers with
+nothing touching it at all. There is no channel width for this workcell, and
+force is not a lever anywhere on the sweep: four times the push moves it 0.1 mm.
 
 ## Start the local service
 
@@ -148,8 +176,11 @@ C:\isaac-sim\python.bat scripts\check_service_latch_clearance.py
   report says so.
 - The wrist reaction to that lock is carried by the joint; the arm's joint
   torques under it are not separately measured.
-- The robot-carried transit numbers come from single-environment runs. There is
-  no multi-seed success rate for it yet.
+- The robot-carried transit numbers come from one 32-environment batch on a
+  single seed. There is no multi-seed success rate for it yet.
+- The seating does not complete, so no end-to-end relocation has succeeded. The
+  chain reaches the destination bay and stops; that failure is reported, not
+  worked around.
 - The two-bay insert policy certifies at 10.5% on this workcell — 0.00% in the
   first bay — from a previous session. The insertion here is scripted and
   guarded, and is labelled as such in every report.
