@@ -52,6 +52,16 @@ kept — including the evidence that went against me.
    where geometry already answers, guarded control for insertion — with the split
    written down as a requirement and every phase labelled by the controller that
    actually stepped, never by a configuration flag.
+5. **A rack requirement nobody had written down: a channel may not hold a module
+   outside its own acceptance criterion.** A rigid part of length `L` fully
+   inside a channel with `c` of clearance per side wedges at `2c/L` and cannot be
+   squarer than that — so the rack, not the controller, decides the attitude of a
+   part that merely rests in it. This rack held a module at **56.40 mrad** while
+   demanding **52.36 mrad** to accept it as seated, and the learned seating skill
+   spent months failing that condition and only that condition. Narrowing the
+   channel by 1.6 mm per side moved the measured attitude floor from 56.03 mrad
+   to 45.75 mrad on an unchanged checkpoint, and cost the chain nothing —
+   re-certified at both clearances, identical seed for seed.
 
 **Status.** The chain passes its 95% gate. The individual learned skills do not
 (85.69% grasp, 87.75% extract). Perception is certified separately and has never
@@ -124,6 +134,14 @@ settle.
 
 Gate: 95% pooled and 95% worst-case. The chain passes; the learned skills do not
 — see [Limits](#limits). Evidence:
+`evidence/workflow_robot_carried_m130pin_guarded_c11065_certification.json`.
+
+**Certified at two rack clearances, and identical at both.** The destination
+channel's throat was re-derived from the seated acceptance criterion and moved
+1.624 mm per side. That moves a published number, so the chain was re-run under
+it: 97.92% either way, and 93.75 / 100 / 100 seed for seed either way. The chain
+never used the headroom that moved — its form lock holds the module at 46 mrad
+and the throat now accepts 49.18 rather than 56.40. The wider run is preserved as
 `evidence/workflow_robot_carried_m130pin_guarded_certification.json`.
 
 ## Approach
@@ -153,6 +171,26 @@ anything. **A requirement only a GPU can check is a requirement that stops being
 checked** — which is also why the test holding each learned skill to the problem
 the chain actually hands it is source-level and runs on every commit.
 
+Two things that check found, both of which had cost a training run each:
+
+* **`GUIDE_CENTER_OFFSET_Y` had twice been placed on a bound.** The inherited
+  value was outside what the grip could follow; the derived value that replaced
+  it sat exactly on that bound, and 4.04 mrad outside the attitude a seated
+  module is accepted at. It is placed now at the clearance that maximises the
+  smaller of the two margins — the midpoint in attitude between what the transit
+  delivers and what the criterion accepts — with 3.18 mrad on each side. A value
+  on a bound has no margin for the bound itself being slightly wrong, and in this
+  rack it has twice been slightly wrong.
+* **Four entry points were building two different racks.** The channel
+  relief was applied as an increment by a method that runs once from
+  `__post_init__` and again from anything re-selecting the robustness level, so
+  the insert skill trained in a 21.91 × 17.23 mm channel and was certified in a
+  17.30 × 12.61 mm one, on both axes, and nothing said so.
+  [`scripts/check_destination_channel.py`](scripts/check_destination_channel.py)
+  reads the bay out of the *built configuration* rather than the source and
+  reports the applied relief as a multiple, which is the only way that class of
+  defect is visible at all.
+
 ### Every claim carries its counterfactual
 
 Why the module rides a robot-side form lock instead of the fingers:
@@ -172,15 +210,21 @@ written down in [`evidence/RETRACTED.md`](evidence/RETRACTED.md).
 
 ## Limits
 
-**No certification is reproducible from committed code.** All nine reports
-recording source hashes were produced on uncommitted state. The numbers are real;
-their provenance is broken. `NEXT_WORK.md` T0.
+**Nine of ten certifications are not reproducible from committed code.** Every
+report recording source hashes had been produced on uncommitted working-tree
+state — the numbers are real, their provenance is broken, and nobody can say what
+differed. The current chain certification is the exception and the first of them:
+it was launched from a clean commit and
+`scripts/check_source_provenance.py` reads it as RECOVERED. The habit change is
+the whole of the fix and it cost nothing but ordering. `NEXT_WORK.md` T0.
 
 **The learned skills miss their own gate.** Grasp 85.69% pooled, extract 87.75%,
 against 95%, over roughly 4,500 episodes each. The chain exceeds both because it
 is not their product: each phase hands over on the *next* phase's precondition,
 and the guarded seating recovers deliveries a skill certification scores as
-failures. Both are published; neither is quoted alone.
+failures. Both are published; neither is quoted alone. **Both were also certified
+in the rack before the channel was narrowed**, so they are due a re-run on the
+current one — `NEXT_WORK.md` T12.
 
 **The chain's number and the perception number have never been combined.** The
 97.92% runs on the state task, where module pose comes from the simulator.
