@@ -207,6 +207,16 @@ all land within 0.4 mrad of each other.
 | 4× time cost, converged | 84.61 mrad | 2.7% |
 | 7× orientation penalty | 84.58 mrad | 3.9% |
 
+Giving the skill the chain's load path then moved it further than anything since
+the task was built: the median shortfall fell **202 → 99 mm** and **35.5%** of
+episodes now reach the seated plane, against essentially none before. Success is
+still 0.00%, and what remains is a *rack* result rather than a policy one — the
+episodes that reach depth cluster at **56.0–56.9 mrad**, resting corner-to-corner
+against the channel walls at the largest angle the clearance permits, against a
+**52.4 mrad** acceptance criterion. **This channel holds a module 4 mrad outside
+its own acceptance criterion**, and narrowing it is a change the closed-form check
+already brackets.
+
 That is the finding: **the attitude is set by the interface, not by the reward.**
 Two flat pads on a pin cannot resist a moment about the closing axis — the
 project's own central measurement — and the skill trains without a form lock. The
