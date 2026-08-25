@@ -3,7 +3,8 @@
 Read [`docs/NOW.md`](docs/NOW.md) first. It is the canonical state: what runs,
 what the numbers are, which checkpoints the chain uses, what is settled, and how
 to reproduce any of it. Work to pick up is in
-[`docs/NEXT_WORK.md`](docs/NEXT_WORK.md), prioritised, with T1 first.
+[`docs/NEXT_WORK.md`](docs/NEXT_WORK.md), prioritised, with **T0 first** — it
+opens with a one-line-per-task index, so pick there and read only that section.
 
 Everything below is the working rules, not the state.
 
@@ -20,7 +21,7 @@ Everything below is the working rules, not the state.
 | What the videos actually show | `docs/DEMOS.md` | one file |
 | Install | `docs/INSTALL.md` | on demand |
 
-**Do not read `evidence/*.json` in bulk.** There are 162 of them and most are
+**Do not read `evidence/*.json` in bulk.** There are 163 of them and most are
 superseded. `evidence/MANIFEST.json` indexes all of them by status: 17
 `canonical`, 8 `retracted`, the rest `historical`. Quote canonical. Never quote
 retracted.
