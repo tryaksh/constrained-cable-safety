@@ -1,192 +1,215 @@
 # Robotic Compute-Module Serviceability Lab
 
-This repository uses NVIDIA Isaac Lab to test whether a six-axis robot can see,
-capture, remove, carry, align, and replace a modular compute unit. The useful
-product direction is a simulation-backed design-for-robotic-serviceability
-tool, not a claim of flight-qualified orbital servicing.
+A simulation testbed that asks whether a six-axis robot can service a modular
+compute unit, and reports which module and rack dimensions decide the answer.
 
-## The result this branch produced
+Built on NVIDIA Isaac Lab. Everything here is simulated; nothing has been run on
+hardware.
 
-**A parallel-jaw grip on a passive pin does not carry this module between bays,
-and that is now measured rather than suspected.** Sixteen robot-carried
-transits, nothing changed but the interface:
+---
 
-| Carried by | Retained the planned transform | Tool-to-module drift, p50 | Attitude drift, p50 | Module travel vs tool travel |
-| --- | ---: | ---: | ---: | --- |
-| Finger pads alone, 16 environments | **0 of 16** | **808 mm** | **3.14 rad** | 913 mm against 168 mm |
-| Robot-side form lock, 32 environments | **11 of 32** | **2.6 mm** | **6.7 mrad** | 773 mm against 297 mm |
-| Robot-side form lock, the demonstration run | 1 of 1 | **2.3 mm** | **6.2 mrad** | 433 mm against 454 mm |
+## The problem this is about
 
-The middle row's travel columns are pooled across the 21 environments that lost
-the transform as well as the 11 that kept it, which is why they do not look like
-the demonstration run's. The drift medians are the number to read: 2.6 mm against
-808 mm is the interface result, and 11 of 32 is how often the lock held it for a
-whole flight on this rating.
+Compute modules — server blades, spacecraft ORUs — are designed to be swapped by
+a person. A human hand tolerates a rack that is loose, a module that is slightly
+crooked, and a grip point that was never really designed. A robot does not.
 
-Read the last column first. On the passive arm the tool travels 168 mm while the
-module travels 913 mm and turns end-for-end: the module is not being carried, it
-is being released, at the median ten seconds into the flight. No controller
-change addresses that.
+When a robot has to do the swap instead, the things that stop it are usually not
+the obvious ones. Reach and payload are rarely the limit. What stops it is the
+interface:
 
-The fix is on the **robot**, not the module, and an earlier measurement decided
-that rather than preference — section 8.4 of
-[`docs/service_interface_spec.md`](docs/service_interface_spec.md) sweeps the
-gripper's own envelope and concludes a serviceable module cannot carry an axial
-stop forward of the pads. Section 9 is the latch that rule demands: two jaws in
-the 80 mm of shaft behind the collar that no part of the hand can reach, with
-every clearance derived from the measured envelope by
-[`scripts/check_service_latch_clearance.py`](scripts/check_service_latch_clearance.py).
-The module's pin is unchanged, so every certification taken against it still
-describes the part that is built.
+- **How the robot holds the module.** A parallel-jaw gripper on a passive
+  feature cannot resist a moment about its own closing axis. If the module has no
+  feature designed for a robot, the robot drops it under load.
+- **How much the rack lets the module move.** A module inside its own channel is
+  only as steady as the clearance around it. Loosen the rack and the module can
+  go places the gripper cannot follow.
+- **How square the module has to be to go back in.** A rigid part of length *L*
+  entering a channel with *c* of clearance per side fits only while its tilt
+  stays under `2c/L`. That is a hard geometric limit, and it is usually much
+  tighter than the tolerance the assembly's own acceptance test uses.
 
-## What is working
+These are design decisions made long before anyone tries to automate the swap,
+and they are expensive to discover on hardware. This repository is where they get
+discovered cheaply.
 
-| Capability | Measured result | Boundary |
-| --- | ---: | --- |
-| RGB-D fiducial perception | 1.682 mm position-error p95 over 1,024 rendered frames | Simulation camera and calibrated marker |
-| Detection at critical rack poses | 99.854% | Rendered holdout |
-| Two-bay occupancy | 100% exact match | Rendered holdout |
-| Learned capture and extraction | Run from their certified checkpoints, unchanged | Existing certifications |
-| Robot-carried transit | 2.6 mm tool-to-module drift over a 450 mm flight, 11 of 32 inside tolerance throughout | 32-environment latched batch against a 16-environment passive control |
-| RGB-D end-to-end chain | capture, extract, carry, align — every seating condition met except depth | One seed on the vision task; seed 4070 does not get through capture there |
-| Seating in the destination bay | **Not closed** — see below | |
-| Local compute service | API, dashboard, queue, events, cancellation, artifacts and hashes | Local machine; no authentication or cloud deployment |
+## What it does today
 
-Primary evidence:
+One continuous episode, no cuts: a UR10e locates a compute module in a rack bay
+using RGB-D, grips it, pulls it clear, carries it to the neighbouring bay, drives
+it home, and opens its hand only after the seating has been re-checked over a
+0.70 second settle. The robot holds the module the whole way — no world
+constraint, no teleport, no direct pose write, no hidden carrier.
 
-- [`evidence/fiducial_rgbd_service_plate.json`](evidence/fiducial_rgbd_service_plate.json)
-- [`evidence/service_latch_clearance.json`](evidence/service_latch_clearance.json)
-- [`evidence/robot_carried_interface.json`](evidence/robot_carried_interface.json)
-- [`evidence/robot_carried_rgbd_seed6070.json`](evidence/robot_carried_rgbd_seed6070.json) — one full RGB-D chain, randomization on, 2.95 mm carried drift, every seating condition met except axial depth
-- [`evidence/robot_carried_seating_sweep.json`](evidence/robot_carried_seating_sweep.json) — why the axial depth is the one that is not met
+| | |
+| --- | ---: |
+| Pooled success | **97.92%** |
+| Episodes / seeds | 96 / three held out |
+| Wilson 95% interval | [92.7%, 99.4%] |
+| Seating conditions met and re-checked after settling | 7 of 7 |
+| Tool-to-module drift through the carry | 0.9 mm and 2.5 mrad median, 2.3 mm and 6.3 mrad worst |
 
-Retained as a **labelled historical baseline**, not as a robot-carried result:
-[`evidence/full_chain_state_16_report.json`](evidence/full_chain_state_16_report.json)
-and
-[`evidence/full_chain_rgbd_service_seed4070.json`](evidence/full_chain_rgbd_service_seed4070.json)
-describe a chain in which a hidden world-mounted payload stage took the module
-off the arm after extraction and moved it independently. That mechanism is still
-in the driver behind `--base_rail_on_relocation`, because superseding a
-measurement is not the same as deleting it, and it is kept out of the live
-preset by
-[`tests/test_robot_carried_contract.py`](tests/test_robot_carried_contract.py)
-rather than by anyone remembering.
+The project's own promotion gate is 95% pooled and 95% worst-case. The chain
+passes it. The individual learned skills do not — see
+[Where it falls short](#where-it-falls-short).
 
-## What is not closed
+Rate: `evidence/workflow_robot_carried_m130pin_guarded_certification.json`.
+Single run: `evidence/robot_carried_full_chain_pin.json`.
 
-The robot carries the module to the destination bay and drives it 362 mm into
-the channel. It stops **163 mm short of seated**, and the reason is upstream of
-the mating interface.
+## Approach
 
-Four faults in the chain were found and fixed while measuring this, and three
-conclusions this project had already published from them were wrong. The largest
-was a guarded advance whose axial target was rebuilt each step from the module it
-was pushing — a bounded lead that is a deadlock, and which held every stiffness,
-force cap and clearance sweep at one standing 10 mm command error. See section 4
-of [`docs/robot_carried_handoff.md`](docs/robot_carried_handoff.md).
+### Hybrid control, split on a stated rule
 
-What the corrected chain measures: the guarded advance is never blocked by its
-own guard, and spends 875 of 900 steps holding a commanded depth a **full mating
-stroke** in front of a module that will not follow. The compliance is at its hard
-stop and the module still does not move.
+Reinforcement learning owns the phases where contact decides the outcome and no
+model predicts it. Deterministic control owns the phases where the geometry is
+known and the requirement is repeatability.
 
-The blocker is the delivered attitude, and it is not about one axis. The module
-arrives 47–67 mrad off square — the arm's own accuracy inside the reach boundary
-this project already measured — split **13.8 mrad of pitch and 15.1 mrad of
-yaw**. A 450 mm module tilted in two planes has to be walked square by two
-lead-ins at once.
+| Phase | Runs on | Why |
+| --- | --- | --- |
+| Grasp | RL policy | The grip point is a tapered pin. A closing pad on a taper in zero gravity pushes the free module away before it grips, and whether the grip takes depends on contact transients over about 0.1 s. |
+| Extract | RL policy | The same contact under load, with the rack still partly constraining the module. |
+| Transit (5 legs) | Solved inverse kinematics | Pose-to-pose moves through a workcell whose kinematics are solved in closed form and agree with the simulator to 0.006 mm. There is no uncertainty here for a policy to be robust to. |
+| Insert | Guarded advance on the RGB-D estimate | The axial target moves only while perception says the module is inside the bay's envelope, so a lost marker stops the insertion instead of continuing blind. |
+| Release | Scripted, after the settled re-check | The hand opens only once every seating condition has held for 0.70 s. |
 
-Widening the bay was then swept properly, and the sweep is the result worth
-reading — [`evidence/robot_carried_seating_sweep.json`](evidence/robot_carried_seating_sweep.json):
+The rule is written down as a requirement in
+[`docs/service_interface_spec.md`](docs/service_interface_spec.md) §10, together
+with the gates it has to satisfy, so a phase cannot quietly change sides. A phase
+may not be labelled "learned" unless a policy produced the actions that ran, and
+the report keys that label on the controller that stepped rather than on a
+configuration flag.
 
-| Channel relief, per side | Module advanced, of 163 mm | Attitude it stopped at |
-| ---: | ---: | ---: |
-| 4 mm | 0.7 mm | 20.5 mrad |
-| 8 mm | 10.1 mm | 35.2 mrad |
-| 12 mm | 14.6 mm | 49.8 mrad |
-| 16 mm | 20.6 mm | **63.5 mrad** |
+`--insert_controller policy` swaps the learned insert checkpoint in for the
+guarded advance, so "the policy is not used because it loses" stays a measurement
+on this chain rather than an assumption.
 
-Both curves are monotone and they run in opposite directions, because **the
-channel is what squares the module**. Every millimetre of relief buys about
-1.2 mm of travel and costs about 3.5 mrad of squareness, so the seating check's
-52.4 mrad limit is crossed near 12.5 mm — with the module 15 mm into a 163 mm
-travel. By 16 mm the module settles at the attitude the arm delivers with
-nothing touching it at all. There is no channel width for this workcell, and
-force is not a lever anywhere on the sweep: four times the push moves it 0.1 mm.
+### Geometry gets derived, not tuned
 
-## Start the local service
+Most of the numbers that decide whether this works are geometric, and they are
+computed from the parts rather than chosen and remembered.
+[`scripts/check_workcell_geometry.py`](scripts/check_workcell_geometry.py) runs
+in about a second on a CPU, with no simulator, and answers:
 
-On the validated Windows/Isaac installation:
+- where the arm can stand and how much control authority it has there;
+- what attitude the destination channel admits at each depth;
+- how much freedom the rack leaves the module while it is being pulled;
+- the window the channel's lateral clearance has to lie in;
+- which module cross-sections this rack accepts at all.
 
-```powershell
-C:\isaac-sim\python.bat scripts\run_service_api.py --host 127.0.0.1 --port 8000
-```
+It validates its own kinematics against configurations the simulator recorded
+before it reports anything. A requirement only a GPU can check is a requirement
+that stops being checked.
 
-Open `http://127.0.0.1:8000`.
+### Every claim carries its counterfactual
 
-`replay_full_chain` tests the service and dashboard without physics.
-`isaac_full_chain_perception` runs the robot-carried workflow: calibrated RGB-D
-fiducial perception, visual occupancy planning, learned capture and extraction,
-the form-locked transit, guarded robot-driven insertion, and release after
-settling.
+Design decisions here are made by measurement, and the losing arm is kept. The
+clearest example is why the module is carried on a robot-side form lock instead
+of in the fingers:
 
-See [`docs/compute_service_demo.md`](docs/compute_service_demo.md) for the short
-API and artifact reference.
+| Carried by | Kept the planned transform | Tool-to-module drift | Module travel vs tool travel |
+| --- | ---: | ---: | --- |
+| Finger pads alone, 16 environments | 0 of 16 | 808 mm | 913 mm vs 168 mm |
+| Robot-side form lock | every environment | 0.9 mm | matched |
 
-## Reproducing it
+Read the last column of the first row. On the passive grip the tool travels
+168 mm while the module travels 913 mm and turns end-for-end. The module is not
+being carried, it is being released, about ten seconds into the flight. No
+controller change fixes that, so the interface changed instead.
 
-```bash
-scripts/run_robot_carried.sh passive    # the control: pads alone, expected to fail
-scripts/run_robot_carried.sh latched    # the same chain with the form lock
-scripts/run_robot_carried.sh sweep      # what the lock has to be rated at
-scripts/run_robot_carried.sh mating     # what compliance the seating needs
-scripts/run_robot_carried.sh certify    # three seeds, pooled with a Wilson interval
-scripts/run_robot_carried.sh rgbd       # one RGB-D end-to-end run, with video
-```
+Superseded results are kept and labelled, and claims that turned out to be wrong
+are written down in [`evidence/RETRACTED.md`](evidence/RETRACTED.md) rather than
+quietly removed.
 
-## Validation
+## Where it falls short
 
-Fast non-Isaac suite:
+**The learned skills miss their own gate.** Grasp certifies at 85.69% pooled and
+extract at 87.75%, against a 95% target, over roughly 4,500 episodes each on
+three held-out seeds. The chain exceeds both because it is not their product:
+each phase hands over on the *next* phase's precondition rather than on its own
+success criterion, and the guarded seating recovers deliveries a skill
+certification would score as failures. Both numbers are reported and neither is
+quoted without the other.
 
-```powershell
-C:\isaac-sim\python.bat -m pytest tests -m "not isaac and not camera and not benchmark" `
-  --ignore=tests/test_service_api.py --ignore=tests/test_service_core.py -q
-```
+**Extract's ceiling is not training budget.** Two separate retraining runs — 900
+epochs, then 2,000 more — moved the pooled rate by 1.4 points and then by zero.
+What moved it was fixing the task: the criterion that judged the grip, the rack
+clearance it ran in, and a reset that was starting 39% of its hardest cases with
+the gripper closed on nothing. Those three are worth about 13 points pooled on an
+unchanged policy. The mechanism and the ladder that separates the contributions
+are in [`docs/STATUS.md`](docs/STATUS.md).
 
-Service suite:
+**Two setup variables dominate everything else.** A one-variable-at-a-time sweep
+around the certified configuration ranks them: a 120 × 16 mm module takes the
+chain from 93.75% to 0.00%, and a 10 mm error in where the robot parks across the
+bay takes it to 6.25%. By comparison, doubling the module's mass costs nothing
+and a rack 16 mm wider per side than the derived bound costs 18.75 points. The
+closed-form envelope predicted every cross-section result before the simulator
+was started, which is the point of having it.
 
-```powershell
-.venv\Scripts\python.exe -m pytest tests\test_service_api.py tests\test_service_core.py -q
-```
+**The seating is scripted, and a learned policy has not beaten it.** The insert
+task was rebuilt this session — its reset now spans the whole 529 mm stroke
+instead of starting at one fixed pose, its action scale is sized for that stroke,
+both bays seat at the depth the release interlock actually permits, and its
+reward no longer charges the gripper's own load path. The last of those was worth
+62 points of reward on the step it took effect, and the policy now holds the
+module in 128 of 128 held-out episodes where it used to drop it. It still does
+not finish the stroke inside the time budget, and a further 977 epochs made the
+reward worse rather than better. Both rates are published beside each other and
+the chain keeps the scripted advance; `--insert_checkpoint` is optional so a
+chain that does not use a policy does not load one.
 
-Static checks:
+**The margin on delivered angle is thin.** Modules seat at about 46 mrad off
+square against a channel that admits 56 mrad with the shipped relief. That is the
+one place in the certification that operates against a limit rather than inside
+one.
 
-```powershell
-C:\isaac-sim\python.bat -m ruff check scripts src tests
-node --check src\zero_g_blade_swap\service\static\app.js
-C:\isaac-sim\python.bat scripts\check_evidence_links.py
-C:\isaac-sim\python.bat scripts\check_service_latch_clearance.py
-```
+## Simplifications, stated
 
-## Honest limits
+- No hardware, no real camera, no hardware-in-the-loop, no connector mating,
+  cabling, cooling, or flight qualification.
+- The form lock's load path in simulation is a break-rated fixed joint while
+  rigid and a bounded, damped joint drive while compliant, both between the wrist
+  and the module. Its hardware is authored on the wrist and its clearances are
+  derived, but the jaws carry no collider, so contact between them and the pin is
+  not simulated.
+- The satellite base compliance is authored and **not in the load path**. The
+  robot spawns with a fixed root, so the declared spring has nothing to deflect
+  and the measured deflection is 0.000000 on every step. The report says exactly
+  that, because a zero is also what a working compliant mount would produce.
+- The lateral rail carries the *robot*, and it indexes a base that is already
+  fixed to the world. Its motor, screw, bearings and brake are not modelled. What
+  is not simplified is the claim it supports: the module is never written, never
+  constrained to the world, and never held by anything but the robot, and the
+  transit trace records the base's own position, so a carriage that was commanded
+  and did not move cannot be reported as one that crossed.
+- Contact forces are a relative damage proxy for comparing designs, not an
+  absolute force budget.
 
-- No real robot, real camera, hardware-in-the-loop, connector mating, cabling,
-  cooling, or flight qualification has been demonstrated.
-- The form lock's **load path in simulation is a break-rated fixed joint** while
-  rigid and a limited, damped D6 joint drive while compliant, both between the
-  wrist and the module. Its
-  hardware is authored on the wrist and its clearances are derived, but the jaws
-  carry no collider, so contact between them and the pin is not simulated. Every
-  report says so.
-- The wrist reaction to that lock is carried by the joint; the arm's joint
-  torques under it are not separately measured.
-- The robot-carried transit numbers come from one 32-environment batch on a
-  single seed. There is no multi-seed success rate for it yet.
-- The seating does not complete, so no end-to-end relocation has succeeded. The
-  chain reaches the destination bay and stops; that failure is reported, not
-  worked around.
-- The two-bay insert policy certifies at 10.5% on this workcell — 0.00% in the
-  first bay — from a previous session. The insertion here is scripted and
-  guarded, and is labelled as such in every report.
+## Where this is going
+
+The end product is a design-for-robotic-serviceability tool: given a module and a
+rack, say whether a robot can service them, and if not, name the dimension to
+change and by how much. The pieces already exist — the closed-form geometry
+checks, the module cross-section envelope, and an interface specification written
+as requirements with evidence attached. The swap chain is what validates them.
+
+## Getting started
+
+- **Install:** [`docs/INSTALL.md`](docs/INSTALL.md)
+- **Current state, and how to reproduce it:** [`docs/STATUS.md`](docs/STATUS.md)
+- **Interface requirements and the evidence behind them:**
+  [`docs/service_interface_spec.md`](docs/service_interface_spec.md)
+- **Running the local service and dashboard:**
+  [`docs/compute_service_demo.md`](docs/compute_service_demo.md)
+
+## Repository map
+
+| Path | Contents |
+| --- | --- |
+| `src/zero_g_blade_swap/` | Tasks, MDP terms, kinematics, perception, and the local compute service |
+| `scripts/` | Training, evaluation, geometry checks, and the workflow driver |
+| `tests/` | Contract tests; most run without a simulator |
+| `evidence/` | Every published measurement as JSON, including superseded and failed runs |
+| `docs/` | Specification, status, installation; `docs/archive/` holds session history |
 
 License: BSD-3-Clause.
