@@ -187,12 +187,23 @@ failures. Both are published; neither is quoted alone.
 Perception is certified separately on 1,024 rendered frames. Combining them is the
 highest-value missing measurement (T1).
 
-**The seating is scripted, and a learned policy has not beaten it.** The insert
-policy holds the module in 128 of 128 held-out episodes where it used to drop it,
-and its mean reward went positive for the first time — but it still stops a median
-of 204 mm short, at 0.00% over 1,536 episodes. It creeps at 3.65 mm/s against
-120 mm/s of available authority. Published as a negative result beside the
-scripted advance that works.
+**The seating is scripted, and a learned policy has not yet beaten it.** The
+insert skill has certified at 0.00% throughout this project, stopping a median of
+204 mm short. It was read for a long time as *creeping* — still moving at
+3.65 mm/s when the clock stopped — and the fix that followed was a time cost.
+**That reading is now measured and refuted.** Trained to convergence, the time
+cost changes the shortfall by 1.4 mm and every episode still spends its whole
+clock: it is being paid, not avoided.
+
+The episodes say something else. The module ends at a median of **84.6 mrad** off
+square against a channel that geometrically admits **20.5 mrad** (`2c/L` for the
+shipped relief), with a 5th percentile of 56.1 — so not one episode in 512 ends
+inside the angle at which it could enter at all. It is not creeping toward a seat
+it might reach; it is **wedged**. The cause was in the objective: it normalised
+orientation error by the *seated* tolerance, 0.15 rad, which only applies once the
+channel is already holding the module square, so a fatal attitude cost less per
+step than a survivable lateral offset. That scale is now derived from the rack's
+own admittance. `evidence/insert_attitude_diagnosis.json`.
 
 **The 97.92% is a point, not a tolerance band.** Training randomizes none of the
 variables the robustness sweep shows the chain is sensitive to, and every policy is
