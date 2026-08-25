@@ -16,6 +16,7 @@ Everything below is the working rules, not the state.
 | Is this evidence file current? | `evidence/MANIFEST.json` → `counts`, `canonical` | head of one file |
 | Why a requirement is what it is | `docs/service_interface_spec.md` (large — search it, do not read it) | grep |
 | How a past conclusion was reached | `docs/archive/` + `evidence/RETRACTED.md` | on demand |
+| What the videos actually show | `docs/DEMOS.md` | one file |
 | Install | `docs/INSTALL.md` | on demand |
 
 **Do not read `evidence/*.json` in bulk.** There are 162 of them and most are

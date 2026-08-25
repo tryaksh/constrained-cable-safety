@@ -208,6 +208,8 @@ pytest -m "not isaac and not camera and not benchmark"
   [`docs/service_interface_spec.md`](docs/service_interface_spec.md)
 - **Running the local service and dashboard:**
   [`docs/compute_service_demo.md`](docs/compute_service_demo.md)
+- **Demonstration videos, and what each one really shows:**
+  [`docs/DEMOS.md`](docs/DEMOS.md)
 - **For coding agents:** [`AGENTS.md`](AGENTS.md)
 
 ## Repository map
