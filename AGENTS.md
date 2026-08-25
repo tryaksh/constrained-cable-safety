@@ -16,6 +16,7 @@ Everything below is the working rules, not the state.
 | Is this evidence file current? | `evidence/MANIFEST.json` → `counts`, `canonical` | head of one file |
 | Why a requirement is what it is | `docs/service_interface_spec.md` (large — search it, do not read it) | grep |
 | How a past conclusion was reached | `docs/archive/` + `evidence/RETRACTED.md` | on demand |
+| Which script does X (all 76) | `scripts/README.md` | one file |
 | What the videos actually show | `docs/DEMOS.md` | one file |
 | Install | `docs/INSTALL.md` | on demand |
 
@@ -89,8 +90,10 @@ scripts/run_workflow_demo.py
 ```
 
 ```bash
-python scripts/check_criterion_currency.py    # evidence that predates its criterion
+python scripts/check_criterion_currency.py         # evidence that predates its criterion
+python scripts/check_source_provenance.py --depth 200  # can the run still be reproduced
 python scripts/build_evidence_manifest.py --check
+python scripts/build_script_index.py --check
 pytest -m "not isaac and not camera and not benchmark"
 ```
 
