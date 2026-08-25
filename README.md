@@ -195,15 +195,24 @@ this project, stopping a median of 204 mm short. It was read for a long time as 
 cost changes the shortfall by 1.4 mm and every episode still spends its whole
 clock: it is being paid, not avoided.
 
-The episodes say something else. The module ends at a median of **84.6 mrad** off
-square against a channel that geometrically admits **20.5 mrad** (`2c/L` for the
-shipped relief), with a 5th percentile of 56.1 — so not one episode in 512 ends
-inside the angle at which it could enter at all. It is not creeping toward a seat
-it might reach; it is **wedged**. The cause was in the objective: it normalised
-orientation error by the *seated* tolerance, 0.15 rad, which only applies once the
-channel is already holding the module square, so a fatal attitude cost less per
-step than a survivable lateral offset. That scale is now derived from the rack's
-own admittance. `evidence/insert_attitude_diagnosis.json`.
+The episodes say something else. The module ends at a median of **84.5 mrad** off
+square against a **52.4 mrad** success tolerance — only 2–4% of episodes are
+inside it. And the angle does not respond to the objective: three different
+reward configurations, including one with a **7× stronger** orientation penalty,
+all land within 0.4 mrad of each other.
+
+| Objective | Orientation at the end | Inside tolerance |
+| --- | ---: | ---: |
+| baseline time cost | 84.26 mrad | 2.3% |
+| 4× time cost, converged | 84.61 mrad | 2.7% |
+| 7× orientation penalty | 84.58 mrad | 3.9% |
+
+That is the finding: **the attitude is set by the interface, not by the reward.**
+Two flat pads on a pin cannot resist a moment about the closing axis — the
+project's own central measurement — and the skill trains without a form lock. The
+chain reaches 46 mrad at the same seating phase precisely *because* it carries the
+module on one. So the blocker is the load path, not the objective.
+`evidence/insert_attitude_diagnosis.json`.
 
 **The 97.92% is a point, not a tolerance band.** Training randomizes none of the
 variables the robustness sweep shows the chain is sensitive to, and every policy is
