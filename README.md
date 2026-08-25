@@ -1,46 +1,118 @@
-# Robotic Compute-Module Serviceability Lab
+# Orbital Robotic Servicing Lab
 
-**A simulation testbed that answers one question: can a robot service this
-module in this rack — and if not, which dimension has to change, and by how
+**A zero-gravity simulation testbed for robotic servicing of modular spacecraft
+compute hardware — and for the design question underneath it: can a robot swap
+this module in this rack, and if not, which dimension has to change and by how
 much?**
 
-Built on NVIDIA Isaac Lab. Everything here is simulated. Nothing has been run on
-hardware, and nothing here is a flight-readiness claim.
+Built on NVIDIA Isaac Lab. Everything here is simulated at zero gravity. Nothing
+has been run on hardware, and nothing here is a flight-readiness claim.
 
 ---
 
-## The bottleneck
+## Executive summary
+
+**The goal.** Hardware that fails in orbit is usually abandoned. Servicing it
+means either an astronaut EVA — rare, expensive, dangerous — or a robot, and
+robots are not yet trusted to do contact-rich work on hardware nobody designed
+for them. As satellites, stations and orbital compute platforms get more modular,
+the ability to pull a failed compute module out of a rack and slide a new one in,
+autonomously and in microgravity, is the difference between a serviceable asset
+and a disposable one.
+
+**What I am trying to achieve.** Not a better controller. The useful output is a
+**design-for-robotic-serviceability specification**: given a module and a rack,
+say whether a robot can service them in orbit, and if not, name the dimension to
+change and by how much. Those decisions get made years before anyone tries to
+automate the swap, and they are ruinously expensive to discover on hardware. This
+repository is where they get discovered cheaply, in simulation, with the evidence
+kept — including the evidence that went against me.
+
+**What this repository proves.**
+
+1. **The full swap works in zero gravity, end to end, with the robot holding the
+   module the whole way** — locate, grip, extract, carry to the next bay, align,
+   insert, and release only after settled seating. **97.92% pooled** over 96
+   episodes on three held-out seeds. No world constraint, no teleport, no direct
+   pose write, no hidden carrier.
+2. **The binding constraint is the mechanical interface, not the control.**
+   Measured here, a parallel-jaw gripper on a smooth raised post holds about
+   **6 N** against extraction where the task's own worst-case contact reaction
+   demands **66.4 N** — a factor of eleven, structural rather than a tuning
+   failure. Tightening the grip made it *worse*. That is the measured argument for
+   purpose-built grapple fixtures on serviceable spacecraft hardware, reached from
+   data rather than from precedent.
+3. **Which dimensions actually decide the outcome, ranked.** A 120 × 16 mm module
+   cross-section takes the chain from 93.75% to **0.00%**; a **10 mm** error in
+   where the robot parks across the bay takes it to **6.25%**. Doubling the
+   module's mass costs nothing. A closed-form geometry check called every
+   cross-section result before the simulator was started.
+4. **A hybrid architecture that stays honest about which parts are learned.**
+   Reinforcement learning where contact decides the outcome, solved kinematics
+   where geometry already answers, guarded control for insertion — with the split
+   written down as a requirement and every phase labelled by the controller that
+   actually stepped, never by a configuration flag.
+
+**Status.** The chain passes its 95% gate. The individual learned skills do not
+(85.69% grasp, 87.75% extract). Perception is certified separately and has never
+been combined with the chain at scale. The seating is scripted; a learned insert
+policy has not beaten it. Every policy is a single training seed.
+
+**The biggest caveat, first, because it qualifies everything above.** No
+certification in this repository is reproducible from committed code: all nine
+reports that record source hashes were produced on uncommitted working-tree
+state. The runs happened and the episodes are real, but the committed bytes are
+not the measured bytes. This is the top open task
+([`docs/NEXT_WORK.md`](docs/NEXT_WORK.md) T0), reported rather than quietly fixed.
+
+---
+
+## Why zero gravity changes the problem
+
+This is not a ground robotics demo with gravity switched off. Weightlessness is
+what makes the manipulation hard, and it is in the physics —
+`gravity=(0.0, 0.0, 0.0)`, and the module's own gravity disabled:
+
+- **Nothing settles.** On the ground, gravity and friction do half the fixturing
+  for free; a part resting in a channel stays there. In orbit the module is a
+  free-floating mass and the only thing holding it is the robot.
+- **Squeezing a free mass ejects it.** A closing pad on a tapered feature pushes
+  the module away before it grips. Capture is a contact transient over about
+  0.1 s, which is exactly why that phase is learned rather than scripted.
+- **Reaction goes into the servicer.** There is no floor to push against, so
+  insertion forces feed back into the spacecraft the arm is mounted on. The rig
+  models a spring-damped satellite mounting interface for this — though it is
+  authored and *not* currently in the load path, which is stated plainly below.
+- **The light is brutal.** One hard directional sun, no atmospheric fill, extreme
+  contrast. Perception trains against a randomized orbital sun (intensity, angle,
+  pitch, yaw, colour temperature) plus Gaussian sensor radiation noise.
+
+## The bottleneck this is really about
 
 Compute modules — server blades, spacecraft orbital replacement units — are
-designed to be swapped by a person. A human hand tolerates a rack that is loose,
-a module that is slightly crooked, and a grip point nobody designed. A robot does
-not.
+designed to be swapped by a person. A human hand tolerates a rack that is loose, a
+module that is slightly crooked, and a grip point nobody designed. A robot does
+not, and in microgravity it has even less to work with.
 
-When a robot has to do the swap instead, the thing that stops it is almost never
-reach or payload. It is the interface:
+What stops it is almost never reach or payload. It is the interface:
 
 - **How the robot holds the module.** A parallel-jaw gripper on a passive feature
   cannot resist a moment about its own closing axis. Give it nothing designed for
-  a robot and it drops the module under load.
+  a robot and it drops the module under load — the 6 N against 66.4 N above.
 - **How much the rack lets the module move.** A module in its channel is only as
   steady as the clearance around it. Loosen the rack and the module goes places
   the gripper cannot follow.
 - **How square the module has to be to go back in.** A rigid part of length *L*
   entering a channel with *c* of clearance per side fits only while its tilt stays
-  under `2c/L`. That is a hard geometric limit, and it is usually far tighter than
-  the tolerance the assembly's own acceptance test uses.
-
-These are decided long before anyone tries to automate the swap, and they are
-expensive to discover on hardware. This repository is where they get discovered
-cheaply.
+  under `2c/L` — a hard geometric limit, and usually far tighter than the tolerance
+  the assembly's own acceptance test uses.
 
 ## What works today
 
 One continuous episode, no cuts: a UR10e locates a compute module in a rack bay,
 grips it, pulls it clear, carries it to the neighbouring bay, drives it home, and
 opens its hand only after the seating has been re-checked over a 0.70 second
-settle. The robot holds the module the whole way — no world constraint, no
-teleport, no direct pose write, no hidden carrier.
+settle.
 
 | | |
 | --- | ---: |
@@ -50,56 +122,40 @@ teleport, no direct pose write, no hidden carrier.
 | Seating conditions met and re-checked after settling | 7 of 7 |
 | Tool-to-module drift through the carry | 0.9 mm / 2.5 mrad median, 2.3 mm / 6.3 mrad worst |
 
-The project's promotion gate is 95% pooled and 95% worst-case. The chain passes
-it. **The individual learned skills do not** — see [Limits](#limits).
-
-Evidence: `evidence/workflow_robot_carried_m130pin_guarded_certification.json`.
-One run, end to end: `evidence/robot_carried_full_chain_pin.json`.
+Gate: 95% pooled and 95% worst-case. The chain passes; the learned skills do not
+— see [Limits](#limits). Evidence:
+`evidence/workflow_robot_carried_m130pin_guarded_certification.json`.
 
 ## Approach
 
 ### Learn what contact decides; solve what geometry already answers
 
-Reinforcement learning owns the phases where contact decides the outcome and no
-model predicts it. Deterministic control owns the phases where the geometry is
-known and the requirement is repeatability.
-
 | Phase | Runs on | Why |
 | --- | --- | --- |
-| Grasp | RL policy (PPO) | The grip point is a tapered pin. A closing pad on a taper in zero gravity pushes the free module away before it grips, and whether the grip takes depends on contact transients over ~0.1 s. |
+| Grasp | RL policy (PPO) | The grip point is a tapered pin, and a closing pad on a taper in zero gravity pushes the free module away before it grips. Whether the grip takes depends on contact transients over ~0.1 s. |
 | Extract | RL policy (PPO) | The same contact under load, with the rack still partly constraining the module. |
-| Transit (5 legs) | Solved inverse kinematics | Closed-form kinematics that agree with the simulator to 0.006 mm. There is no uncertainty here for a policy to be robust to. |
+| Transit (5 legs) | Solved inverse kinematics | Closed-form kinematics agreeing with the simulator to 0.006 mm. No uncertainty here for a policy to be robust to. |
 | Insert | Guarded advance on the RGB-D estimate | The axial target advances only while perception says the module is inside the bay's envelope, so a lost marker stops the insertion instead of continuing blind. |
 | Release | Scripted, after the settled re-check | The hand opens only once every seating condition has held for 0.70 s. |
 
-That split is written down as a requirement, not left as a habit, and a phase may
-not be labelled "learned" unless a policy produced the actions that ran — the
-report keys the label on the controller that stepped, never on a configuration
-flag. `--insert_controller policy` swaps the learned insert checkpoint in for the
+`--insert_controller policy` swaps the learned insert checkpoint in for the
 guarded advance, so "the policy is not used because it loses" stays a measurement
 on this chain rather than an assumption.
 
 ### Geometry gets derived, not tuned
 
-Most of the numbers that decide whether this works are geometric, and they are
-computed from the parts rather than chosen and remembered.
 [`scripts/check_workcell_geometry.py`](scripts/check_workcell_geometry.py) runs in
 about a second on a CPU with no simulator, and answers where the arm can stand,
 what attitude the channel admits at each depth, how much freedom the rack leaves
 the module, and which module cross-sections this rack accepts at all. It validates
 its own kinematics against configurations the simulator recorded before it reports
-anything.
-
-**A requirement only a GPU can check is a requirement that stops being checked.**
-The same principle governs the tests: the check that holds each learned skill to
-the problem the chain actually hands it is source-level, so it runs on every
-commit without a simulator.
+anything. **A requirement only a GPU can check is a requirement that stops being
+checked** — which is also why the test holding each learned skill to the problem
+the chain actually hands it is source-level and runs on every commit.
 
 ### Every claim carries its counterfactual
 
-Design decisions here are made by measurement, and the losing arm is kept. The
-clearest example is why the module rides a robot-side form lock instead of the
-fingers:
+Why the module rides a robot-side form lock instead of the fingers:
 
 | Carried by | Kept the planned transform | Tool-to-module drift | Module travel vs tool travel |
 | --- | ---: | ---: | --- |
@@ -107,81 +163,78 @@ fingers:
 | Robot-side form lock | every environment | 0.9 mm | matched |
 
 Read the last column of the first row. On the passive grip the tool travels
-168 mm while the module travels 913 mm and turns end-for-end. The module is not
-being carried, it is being released, about ten seconds into the flight. No
-controller change fixes that, so the interface changed instead.
+168 mm while the module travels 913 mm and turns end-for-end — in zero gravity the
+module is not being carried, it is being released, about ten seconds into the
+flight. No controller change fixes that, so the interface changed instead.
 
 Superseded results are kept and labelled; claims that turned out to be wrong are
-written down in [`evidence/RETRACTED.md`](evidence/RETRACTED.md) rather than
-quietly removed.
+written down in [`evidence/RETRACTED.md`](evidence/RETRACTED.md).
 
 ## Limits
 
-**The learned skills miss their own gate.** Grasp certifies at 85.69% pooled and
-extract at 87.75%, against a 95% target, over roughly 4,500 episodes each on three
-held-out seeds. The chain exceeds both because it is not their product: each phase
-hands over on the *next* phase's precondition rather than on its own success
-criterion, and the guarded seating recovers deliveries a skill certification scores
-as failures. Both numbers are published and neither is quoted without the other.
+**No certification is reproducible from committed code.** All nine reports
+recording source hashes were produced on uncommitted state. The numbers are real;
+their provenance is broken. `NEXT_WORK.md` T0.
+
+**The learned skills miss their own gate.** Grasp 85.69% pooled, extract 87.75%,
+against 95%, over roughly 4,500 episodes each. The chain exceeds both because it
+is not their product: each phase hands over on the *next* phase's precondition,
+and the guarded seating recovers deliveries a skill certification scores as
+failures. Both are published; neither is quoted alone.
 
 **The chain's number and the perception number have never been combined.** The
-97.92% runs on the state task, where the module pose comes from the simulator.
-Perception is certified separately on 1,024 rendered frames. The RGB-D chain has
-been run end to end at one seed. Certifying the chain on the vision task is the
-highest-value missing measurement in the project, and it is task T1.
+97.92% runs on the state task, where module pose comes from the simulator.
+Perception is certified separately on 1,024 rendered frames. Combining them is the
+highest-value missing measurement (T1).
 
 **The seating is scripted, and a learned policy has not beaten it.** The insert
 policy holds the module in 128 of 128 held-out episodes where it used to drop it,
-and its mean reward went positive for the first time in this project — but it
-still stops a median of 204 mm short of the seated plane, at 0.00% over 1,536
-episodes. It is creeping, not jamming: still moving at 3.65 mm/s when the clock
-stops, against 120 mm/s of available authority. Published as a negative result
-beside the scripted advance that does work.
+and its mean reward went positive for the first time — but it still stops a median
+of 204 mm short, at 0.00% over 1,536 episodes. It creeps at 3.65 mm/s against
+120 mm/s of available authority. Published as a negative result beside the
+scripted advance that works.
 
-**Two setup variables dominate everything else.** A one-variable-at-a-time sweep
-ranks them: a 120 × 16 mm module takes the chain from 93.75% to 0.00%, and a
-10 mm error in where the robot parks across the bay takes it to 6.25%. By
-comparison, doubling the module's mass costs nothing. The closed-form envelope
-predicted every cross-section result before the simulator was started, which is
-the point of having it. **Training randomizes none of these**, so the 97.92% is a
-point certification rather than a tolerance band.
+**The 97.92% is a point, not a tolerance band.** Training randomizes none of the
+variables the robustness sweep shows the chain is sensitive to, and every policy is
+a single PPO training seed, so no number carries a spread.
 
-**Every policy is a single PPO training seed.** The evaluation seeds are held out,
-so the rates are honest, but training repeatability is untested and no number
-carries a spread.
-
-**The margin on delivered angle is thin.** Modules seat at about 46 mrad off
-square against a channel admitting 56 mrad — the one place in the certification
+**The margin on delivered angle is thin.** Modules seat at about 46 mrad off square
+against a channel admitting 56 mrad — the one quantity in the certification
 operating against a limit rather than inside one.
+
+**No video here shows the certified chain.** Every recording predates the fixes
+that produced the current rate. See [`docs/DEMOS.md`](docs/DEMOS.md).
 
 ### Simplifications, stated
 
 - No hardware, no real camera, no hardware-in-the-loop, no connector mating,
-  cabling, cooling, or flight qualification.
+  cabling, thermal, or flight qualification. No orbital mechanics, attitude
+  control or communication constraints — this is the manipulation problem in
+  microgravity, not a mission simulator.
 - The form lock is a break-rated fixed joint while rigid and a bounded, damped
   joint drive while compliant, both between the wrist and the module. Its hardware
-  is authored on the wrist and its clearances are derived, but the jaws carry no
+  is authored on the wrist and its clearances derived, but the jaws carry no
   collider, so contact between them and the pin is not simulated.
-- The satellite base compliance is authored and **not in the load path**. The robot
-  spawns with a fixed root, so the declared spring has nothing to deflect and the
-  measured deflection is 0.000000 on every step. The report says exactly that,
+- **The satellite base compliance is authored and not in the load path.** The
+  robot spawns with a fixed root, so the declared spring has nothing to deflect and
+  the measured deflection is 0.000000 on every step. The report says exactly that,
   because a zero is also what a working compliant mount would produce.
 - The lateral rail carries the *robot* and indexes a base already fixed to the
-  world. Its motor, screw, bearings and brake are not modelled. What is *not*
+  world; its motor, screw, bearings and brake are not modelled. What is not
   simplified is the claim it supports: the module is never written, never
-  constrained to the world, and never held by anything but the robot, and the
-  transit trace records the base's own position — so a carriage that was commanded
-  and did not move cannot be reported as one that crossed.
-- Contact forces are a relative damage proxy for comparing designs, not an
-  absolute force budget.
+  constrained to the world, and never held by anything but the robot.
+- Contact forces are a relative damage proxy for comparing designs, not an absolute
+  force budget.
 
 ## Where this is going
 
-The end product is a **design-for-robotic-serviceability tool**: given a module
-and a rack, say whether a robot can service them, and if not, name the dimension
-to change and by how much. The pieces already exist — the closed-form geometry
-checks, the module cross-section envelope, and an interface specification written
-as requirements with evidence attached. The swap chain is what validates them.
+The end product is the specification, not the demo.
+[`docs/service_interface_spec.md`](docs/service_interface_spec.md) states what a
+modular compute unit must present to be robotically serviceable, with every number
+derived from a measurement in `evidence/` rather than chosen. The swap chain is
+what validates it. The ambition is that a module designer can read that document
+without reading the simulation — and that "can a robot service this in orbit?"
+becomes a check that runs in a second on a CPU, years before any hardware exists.
 
 That is the ambition. What is *demonstrated* today is the chain above, in
 simulation, at the rate stated, with the limits stated.
@@ -189,12 +242,12 @@ simulation, at the rate stated, with the limits stated.
 ## Reproducing, and what a clone does not contain
 
 Trained weights live in `logs/` and `checkpoints/`, which are **gitignored**. A
-clone carries every report and none of the weights, so the learned numbers here
-are readable and not reproducible without them. `docs/NOW.md` §3 names the exact
-checkpoints the certified chain loads and the reports that depend on each.
+clone carries every report and none of the weights, so the learned numbers here are
+readable and not reproducible without them. [`docs/NOW.md`](docs/NOW.md) §3 names
+the exact checkpoints the certified chain loads.
 
 ```bash
-scripts/run_robot_carried.sh rail        # the whole job, one environment, ~8 min
+scripts/run_robot_carried.sh rail         # the whole job, one environment, ~8 min
 python scripts/check_workcell_geometry.py # geometry, no simulator, ~1 s
 pytest -m "not isaac and not camera and not benchmark"
 ```
@@ -204,7 +257,7 @@ pytest -m "not isaac and not camera and not benchmark"
 - **Install:** [`docs/INSTALL.md`](docs/INSTALL.md)
 - **Current state and how to reproduce it:** [`docs/NOW.md`](docs/NOW.md)
 - **What to work on next:** [`docs/NEXT_WORK.md`](docs/NEXT_WORK.md)
-- **Interface requirements and the evidence behind them:**
+- **The specification this project exists to produce:**
   [`docs/service_interface_spec.md`](docs/service_interface_spec.md)
 - **Running the local service and dashboard:**
   [`docs/compute_service_demo.md`](docs/compute_service_demo.md)

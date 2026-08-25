@@ -26,6 +26,13 @@ retracted.
 
 ## What is built
 
+**The problem:** swapping a failed compute module in a rack on an orbiting
+platform, autonomously. The simulation runs at `gravity=(0.0, 0.0, 0.0)`
+throughout, and that is load-bearing — a free-floating mass does not settle, and
+closing pads on a taper in zero gravity eject the module before they grip, which
+is why capture and extraction are learned and the free-space motion is not. The
+project's output is the design specification, not the demo.
+
 An industrial hybrid, and the split is a stated requirement rather than a habit:
 
 1. trained capture and extraction;
