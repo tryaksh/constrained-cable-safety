@@ -188,8 +188,8 @@ Perception is certified separately on 1,024 rendered frames. Combining them is t
 highest-value missing measurement (T1).
 
 **The seating is scripted, and a learned policy has not yet beaten it.** The
-insert skill has certified at 0.00% throughout this project, stopping a median of
-204 mm short. It was read for a long time as *creeping* — still moving at
+insert skill has certified at 0.00% — over 1,536 held-out episodes — throughout
+this project, stopping a median of 204 mm short. It was read for a long time as *creeping* — still moving at
 3.65 mm/s when the clock stopped — and the fix that followed was a time cost.
 **That reading is now measured and refuted.** Trained to convergence, the time
 cost changes the shortfall by 1.4 mm and every episode still spends its whole
