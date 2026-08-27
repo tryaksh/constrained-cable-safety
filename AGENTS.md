@@ -2,9 +2,8 @@
 
 Read [`docs/NOW.md`](docs/NOW.md) first. It is the canonical state: what runs,
 what the numbers are, which checkpoints the chain uses, what is settled, and how
-to reproduce any of it. Work to pick up is in
-[`docs/NEXT_WORK.md`](docs/NEXT_WORK.md), prioritised, with **T0 first** — it
-opens with a one-line-per-task index, so pick there and read only that section.
+to reproduce any of it. Its current gates determine priority. Bounded task
+detail is in [`docs/NEXT_WORK.md`](docs/NEXT_WORK.md).
 
 Everything below is the working rules, not the state.
 
@@ -17,13 +16,13 @@ Everything below is the working rules, not the state.
 | Is this evidence file current? | `evidence/MANIFEST.json` → `counts`, `canonical` | head of one file |
 | Why a requirement is what it is | `docs/service_interface_spec.md` (large — search it, do not read it) | grep |
 | How a past conclusion was reached | `docs/archive/` + `evidence/RETRACTED.md` | on demand |
-| Which script does X (all 76) | `scripts/README.md` | one file |
+| Which script does X | `scripts/README.md` | one file |
 | What the videos actually show | `docs/DEMOS.md` | one file |
 | Install | `docs/INSTALL.md` | on demand |
 
-**Do not read `evidence/*.json` in bulk.** There are 163 of them and most are
-superseded. `evidence/MANIFEST.json` indexes all of them by status: 17
-`canonical`, 8 `retracted`, the rest `historical`. Quote canonical. Never quote
+**Do not read `evidence/*.json` in bulk.** Most are superseded.
+`evidence/MANIFEST.json` mechanically records the current counts and groups every
+report as `canonical`, `retracted`, or `historical`. Quote canonical. Never quote
 retracted.
 
 ## What is built
