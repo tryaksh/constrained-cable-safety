@@ -20,16 +20,24 @@ versus simulation validator returns **not qualified**:
 
 - entry attitude is supported in simulation;
 - rack-clearance and module-section arms contain mismatches;
-- robot base offset is only partially bounded;
+- a +10 mm rail-stop error is kinematically feasible but fails in simulation;
 - capture clearance is analytical-only; and
 - load-path and base-compliance evidence is idealized or absent.
 
-The learned skills also do not support an “end-to-end RL” claim. Grasp scores
-**85.69%**, extraction **87.75%**, and both miss their 95% gates. Learned v24
+The learned skills also do not support an “end-to-end RL” claim. On the current
+rack, unchanged-checkpoint grasp scores **86.90%** and extraction **87.64%**;
+both miss their 95% gates and overlap their earlier **85.69%** and **87.75%**
+results. Learned v24
 insertion scores 36.77% in isolation and **0.00%** in the chain, so the guarded
 controller remains selected. The older insert baseline is **0.00% over 1,536
 episodes**. Its three reward arms ended at 84.26, 84.61 and 84.58 mrad against a
 **52.4 mrad** tolerance: the objective did not move the interface-limited angle.
+
+The paired handoff audit makes the insertion gap concrete. With the real
+fixed-to-compliant load path, v24 is **0/768** from reset stations 0–3, rises to
+**786/960** over stations 4–8, and returns to **0/96** on real predecessor
+handoffs. Guarded insertion is **94/96** on those handoffs. The skill certificate
+therefore describes the late stroke, not the state its caller supplies.
 
 ## Method
 
@@ -52,7 +60,7 @@ seating.
 
 [`docs/NOW.md`](docs/NOW.md) is the concise verified state and
 [`evidence/MANIFEST.json`](evidence/MANIFEST.json) is the mechanical evidence
-index: 27 canonical, 8 retracted and 137 historical reports. Quote canonical;
+index: 30 canonical, 9 retracted and 139 historical reports. Quote canonical;
 never quote retracted.
 
 Ten reports contain runtime source bindings. One current chain run is
