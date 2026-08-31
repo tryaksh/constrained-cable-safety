@@ -10,10 +10,16 @@ flight-readiness claim.
 ## Executive status
 
 The continuous state-task chain captures, extracts, carries, inserts and releases
-a compute module with the robot holding it throughout. Guarded insertion scores
-**97.92%** (94/96) over three held-out seeds, Wilson 95% **[92.7%, 99.4%]**.
-There is no world constraint, teleport, direct module pose write or hidden
-carrier.
+a compute module with the robot holding it throughout. Under the strict current
+rule -- release both robot-side supports and recheck rack-only seating for 0.70 s
+-- it scores **70.83%** (17/24) over three held-out seeds, Wilson 95%
+**[50.8%, 85.1%]**. It fails the 95% gate. There is no world constraint,
+teleport, direct module pose write or hidden carrier.
+
+The prior **97.92%** (94/96) result is a legacy supported-settle baseline. It did
+not include the independent rack-only recheck and is not the current completion
+rate. A paired hand-first release arm loses at 12/24, so release sequencing is
+not the repair; rack-side retention/contact is the current physical blocker.
 
 That point result is not yet a serviceability envelope. The current analytical
 versus simulation validator returns **not qualified**:
@@ -39,6 +45,13 @@ fixed-to-compliant load path, v24 is **0/768** from reset stations 0–3, rises 
 handoffs. Guarded insertion is **94/96** on those handoffs. The skill certificate
 therefore describes the late stroke, not the state its caller supplies.
 
+The old passing RGB-D certificate is retracted because its tag floated 90 mm
+above the current module. With the physically flush tag, critical-rack detection
+is **43.27%** against a 99% gate. Pose precision is acceptable when detected;
+visibility is not. Dropout propagation is now enabled only after verified
+physical capture, and the live service stays unavailable until current evidence
+passes.
+
 ## Method
 
 The intended output is a simulation-guided qualification method:
@@ -60,11 +73,12 @@ seating.
 
 [`docs/NOW.md`](docs/NOW.md) is the concise verified state and
 [`evidence/MANIFEST.json`](evidence/MANIFEST.json) is the mechanical evidence
-index: 30 canonical, 9 retracted and 139 historical reports. Quote canonical;
+index: 32 canonical, 11 retracted and 140 historical reports. Quote canonical;
 never quote retracted.
 
-Ten reports contain runtime source bindings. One current chain run is
-`RECOVERED`; nine older reports produced from **uncommitted** source are `LOST`.
+Twelve reports contain runtime source bindings. One is mechanically `RECOVERED`,
+two new reports record clean source revisions, and nine older reports produced
+from **uncommitted** source are `LOST`.
 The runs happened, but their exact code cannot be reproduced. T0 in
 [`docs/NEXT_WORK.md`](docs/NEXT_WORK.md) therefore remains for any lost result a
 final claim needs.
