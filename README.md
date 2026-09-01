@@ -48,11 +48,12 @@ handoffs. Guarded insertion is **94/96** on those handoffs. The skill certificat
 therefore describes the late stroke, not the state its caller supplies.
 
 The old passing RGB-D certificate is retracted because its tag floated 90 mm
-above the current module. With the physically flush tag, critical-rack detection
-is **43.27%** against a 99% gate. Pose precision is acceptable when detected;
-visibility is not. Dropout propagation is now enabled only after verified
-physical capture, and the live service stays unavailable until current evidence
-passes.
+above the current module. The physically flush tag is unchanged; moving and
+aiming only the fixed camera raises held-out critical-rack detection from
+**43.27%** to **99.85%** and overall detection to **92.87%** over 1,024 frames,
+with unchanged accuracy gates. Dropout propagation is enabled only after
+verified physical capture. The live service stays unavailable until the strict
+RGB-D chain is repeated.
 
 ## Method
 
@@ -75,11 +76,11 @@ seating.
 
 [`docs/NOW.md`](docs/NOW.md) is the concise verified state and
 [`evidence/MANIFEST.json`](evidence/MANIFEST.json) is the mechanical evidence
-index: 36 canonical, 11 retracted and 140 historical reports. Quote canonical;
+index: 38 canonical, 11 retracted and 140 historical reports. Quote canonical;
 never quote retracted.
 
-Twelve reports contain runtime source bindings. One is mechanically `RECOVERED`,
-two new reports record clean source revisions, and nine older reports produced
+Thirteen reports contain runtime source bindings. Two match the working source,
+one is mechanically `RECOVERED`, and ten older reports produced
 from **uncommitted** source are `LOST`.
 The runs happened, but their exact code cannot be reproduced. T0 in
 [`docs/NEXT_WORK.md`](docs/NEXT_WORK.md) therefore remains for any lost result a
