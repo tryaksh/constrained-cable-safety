@@ -12,14 +12,16 @@ flight-readiness claim.
 The continuous state-task chain captures, extracts, carries, inserts and releases
 a compute module with the robot holding it throughout. Under the strict current
 rule -- release both robot-side supports and recheck rack-only seating for 0.70 s
--- it scores **70.83%** (17/24) over three held-out seeds, Wilson 95%
-**[50.8%, 85.1%]**. It fails the 95% gate. There is no world constraint,
+-- it scores **91.67%** (22/24) over three held-out seeds, Wilson 95%
+**[74.2%, 97.7%]**. It fails the unchanged 95% full-chain gate. There is no world constraint,
 teleport, direct module pose write or hidden carrier.
 
 The prior **97.92%** (94/96) result is a legacy supported-settle baseline. It did
 not include the independent rack-only recheck and is not the current completion
-rate. A paired hand-first release arm loses at 12/24, so release sequencing is
-not the repair; rack-side retention/contact is the current physical blocker.
+rate. A current-source no-rack control reproduces 17/24. Adding only visible
+rack-side retention produces 22/24, and every one of the 22 episodes that reaches
+measured seating passes the rack-only recheck with zero measured relative drift.
+The two remaining failures occur upstream and never engage the rack.
 
 That point result is not yet a serviceability envelope. The current analytical
 versus simulation validator returns **not qualified**:
@@ -73,7 +75,7 @@ seating.
 
 [`docs/NOW.md`](docs/NOW.md) is the concise verified state and
 [`evidence/MANIFEST.json`](evidence/MANIFEST.json) is the mechanical evidence
-index: 32 canonical, 11 retracted and 140 historical reports. Quote canonical;
+index: 36 canonical, 11 retracted and 140 historical reports. Quote canonical;
 never quote retracted.
 
 Twelve reports contain runtime source bindings. One is mechanically `RECOVERED`,
@@ -88,6 +90,9 @@ fixed joint while rigid and a spring-damper while compliant. The robot root is
 fixed to the world, so the authored base spring does not deflect. A historical
 simulation probe compared about 6 N of idealized retention with a derived
 **66.4 N** axial requirement; that is a diagnostic, not a hardware load rating.
+The destination pawls are likewise visible geometry: a disclosed 600 N / 30 N-m
+`Rack`-to-module fixed joint carries their simulated load, and its reaction
+magnitude is not exposed.
 No real camera, connector, cable, thermal path, orbital dynamics or compliant
 spacecraft base is qualified.
 
