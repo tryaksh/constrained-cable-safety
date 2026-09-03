@@ -20,6 +20,7 @@ Everything below is the working rules, not the state.
 | What the videos actually show | `docs/DEMOS.md` | one file |
 | What is idealised, and what would falsify it | `docs/sim_to_real.md` | one file |
 | Why the seating phase is scripted | `docs/seating_controller.md` | one file |
+| What the paper may claim, and what is prior art | `docs/paper_position.md` | one file |
 | Install | `docs/INSTALL.md` | on demand |
 
 **Do not read `evidence/*.json` in bulk.** Most are superseded.
