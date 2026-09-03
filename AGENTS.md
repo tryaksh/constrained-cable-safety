@@ -93,12 +93,20 @@ scripts/run_workflow_demo.py
 ```
 
 ```bash
+ruff check src scripts tests                       # CI runs this and nothing else here did
 python scripts/check_criterion_currency.py         # evidence that predates its criterion
 python scripts/check_source_provenance.py --depth 200  # can the run still be reproduced
 python scripts/build_evidence_manifest.py --check
 python scripts/build_script_index.py --check
 pytest -m "not isaac and not camera and not benchmark"
 ```
+
+**Run `ruff` before pushing.** `.github/workflows/ci.yml` lints `src scripts
+tests` and fails the build on any finding, and this list omitted it until
+2026-09-03 -- by which time the branch had been red for long enough that every
+push emailed a failure. `ruff --fix` is not automatically safe either: it deleted
+a re-export that `tests/test_rack_retention.py` reads off the module, so run the
+suite after fixing.
 
 The suite must stay green, including `tests/test_skill_chain_agreement.py`, which
 holds each learned skill to the problem the full chain actually hands it — the
