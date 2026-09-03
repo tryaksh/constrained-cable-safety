@@ -18,6 +18,7 @@ Everything below is the working rules, not the state.
 | How a past conclusion was reached | `docs/archive/` + `evidence/RETRACTED.md` | on demand |
 | Which script does X | `scripts/README.md` | one file |
 | What the videos actually show | `docs/DEMOS.md` | one file |
+| What is idealised, and what would falsify it | `docs/sim_to_real.md` | one file |
 | Install | `docs/INSTALL.md` | on demand |
 
 **Do not read `evidence/*.json` in bulk.** Most are superseded.
@@ -121,6 +122,8 @@ is not — see `docs/NOW.md` §2 and §5.
 | `scripts/run_workflow_demo.py` | The chain driver: phases, controllers, reports |
 | `scripts/run_robot_carried.sh` | Every way of running the chain, one stage per question |
 | `scripts/check_workcell_geometry.py` | Where the arm stands, what the channel admits, the module-section envelope. No simulator |
+| `src/zero_g_blade_swap/servicing_design.py` | The same derivation as a library: three measured manipulator numbers in, the rack requirement out. `scripts/derive_rack_requirement.py` is its CLI |
+| `scripts/report_boundary_failure_modes.py` | Scores each closed-form criterion against the failure it predicts, rather than against the pooled rate |
 | `scripts/check_service_latch_clearance.py` | The form lock's clearances, from the measured gripper envelope |
 | `scripts/solve_insert_reset_bank.py` | Paired arm and module poses along the seating stroke, solved in closed form |
 | `scripts/certify_grapple_skills.sh` | One skill, three stages, three held-out seeds, pooled with a gate |
