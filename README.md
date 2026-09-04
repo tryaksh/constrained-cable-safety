@@ -116,6 +116,15 @@ scripts\run_robot_carried.sh rail
 & .\scripts\run_conditioned_insertion.ps1 -IncludeChainHandoffs
 ```
 
-The frozen question, variables, baselines, metrics, experiment matrix and
-evidence gates are in [`docs/PAPER_PLAN.md`](docs/PAPER_PLAN.md). Do not draft a
-manuscript until those gates close.
+The frozen question, variables, baselines, metrics and experiment matrix are in
+[`docs/PAPER_PLAN.md`](docs/PAPER_PLAN.md). **Its framing has been superseded**
+by [`docs/paper_position.md`](docs/paper_position.md), which carries the
+literature check and says what the paper may and may not claim; read that first
+and treat the plan as the record of the variables it froze.
+
+Drafting has started. The manuscript lives in its own repository, and
+[`docs/manuscript_prompt.md`](docs/manuscript_prompt.md) says where and how. The
+gates in the plan are still the gates -- a claim does not go in the paper until
+its gate closes -- but the instruction not to write anything until all of them
+close no longer holds, because the sections that rest on closed gates are being
+written while the rest run.
