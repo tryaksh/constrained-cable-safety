@@ -102,6 +102,23 @@ specification.
    than GPU utilization or a single line: a saturated GPU time-slicing four jobs
    looks identical to a busy one.
 
+   **Twelve sleeping queue shells killed the machine, and that matters more
+   than the throughput number.** On 2026-09-04 at 06:25 the overnight campaign
+   died with `fork: retry: Resource temporarily unavailable`, taking three
+   trainings with it at 95%, 99.5% and 47% of their epochs and starting not one
+   evaluation stage. The cause was the *structure*, not the load: twelve queue
+   scripts each parked in an `until ... sleep` loop, each with a child, on
+   Git-Bash's emulated fork. Stages that must run in order belong in one script
+   as consecutive lines, not in separate processes waiting on each other's log
+   files. `supervise_evaluation.sh` and `supervise_training.sh` replace all
+   twelve with two, and the footprint went from eighteen shells to four.
+
+   A second lesson from the same crash: **suppress known-harmless simulator
+   warnings in long runs.** The force-feedback training's log reached 21 MB,
+   almost entirely `PhysicsUSD: CreateJoint - found a joint with disjointed body
+   transforms` written on every reset of every environment, and that run made the
+   least progress of the three.
+
    Not yet measured: whether a fourth concurrent training still adds. The cheap
    way to find out is to median the period when the campaign naturally drops to
    one run, rather than stopping work to stage it.
