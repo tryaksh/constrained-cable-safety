@@ -127,6 +127,31 @@ passed locally and failed collection in CI, invisibly, because the lint step
 failed first and the suite never ran. `pythonpath = ["."]` in `pyproject.toml`
 now makes the two agree; the habit is still worth keeping.
 
+**Do not believe an `exit=` line in a campaign log written before
+2026-09-03.** Every one of them reports the clock, not the job. Expansion runs
+left to right, so in `echo "[$(date +%H:%M:%S)] thing exit=$?"` the `date`
+substitution executes first and overwrites the status, and the line prints
+`exit=0` whether the run finished or died in its first second. Forty-five lines
+across twenty-two shipped scripts did this, including every certification script
+here, and twenty-eight more across the campaign queues. Nothing branched on the
+value so no published number is affected, but a job that crashed was logged as a
+success. Capture it first:
+
+```bash
+rc=$?
+echo "[$(date +%H:%M:%S)] thing exit=$rc"
+```
+
+The mirror image is fine for the same reason -- `say "exit=$? -> $(ckpt)"` reads
+the status before anything can disturb it. `tests/test_shell_status_reporting.py`
+enforces the rule and carries a short exemption list for scripts that were
+mid-run when it was written; bash reads a script incrementally, so editing one
+while it executes can make it run garbage.
+
+**Verify a run by its artifact, never by its log line.** The screening bug that
+threw away three completed RGB-D arms and this one are the same mistake in two
+places: trusting a summary rather than the thing it summarises.
+
 The suite must stay green, including `tests/test_skill_chain_agreement.py`, which
 holds each learned skill to the problem the full chain actually hands it — the
 failure mode that has cost this project the most. It is source-level and needs no
