@@ -228,3 +228,16 @@ is not — see `docs/NOW.md` §2 and §5.
 | `src/zero_g_blade_swap/tasks/blade_swap/mdp/grapple.py` | Every predicate and reward the skills use |
 | `src/zero_g_blade_swap/tasks/blade_swap/insert_reset_bank.py` | Generated; do not hand-edit |
 | `src/zero_g_blade_swap/service/presets.py` | What the live service runs (currently a superseded set — `NEXT_WORK.md` T7) |
+
+**Before adding a test that reads a path, check the path is in git.**
+`artifacts/` is gitignored, so a clean checkout -- which is exactly what CI has
+-- contains none of the campaign queues, none of the episode archives and none
+of the logs. A test that reads one passes locally and fails in CI, and the lint
+that catches shell status bugs did precisely that on every push until it was
+found. Reproduce CI before pushing a test that touches the filesystem:
+
+```bash
+git clone --depth 1 file://$(pwd) /tmp/cisim && cd /tmp/cisim && pytest -q -m "not isaac and not camera and not benchmark"
+```
+
+That takes twenty seconds and is the only way to see what CI sees.
