@@ -12,7 +12,18 @@ htmlcov/
 .vscode/
 
 # Isaac Sim / Isaac Lab runtime output
-artifacts/
+# `artifacts/*` and not `artifacts/`, because git cannot re-include anything
+# under an excluded *directory* -- the negation below only works if what is
+# excluded is the directory's contents.
+artifacts/*
+# ...except the campaign scripts. They are 108 KB of shell that encodes which
+# arms were run, in what order and why -- the reasoning behind every number in
+# evidence/, and the only record of it. Ignoring them meant a clone got the
+# results and none of the design, and the handoff's references resolved to
+# nothing. The outputs beside them stay ignored.
+!artifacts/campaign/
+artifacts/campaign/*
+!artifacts/campaign/*.sh
 benchmarks/*.json
 outputs/
 logs/
