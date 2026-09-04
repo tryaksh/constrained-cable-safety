@@ -75,15 +75,36 @@ specification.
    left. A 1024-environment PPO run fits in 12 GB alongside a small evaluation
    process; two full training runs do not.
 
-   **More parallel trainings is not more throughput, and it was measured on
-   2026-09-03.** One 512-environment run alone reports about 6,000 fps total. Two
-   already saturate the GPU at 95-100% utilization. Four report about 1,250 fps
-   each -- roughly 5,000 aggregate, which is *less* than one run alone -- while
-   free system memory falls to 2.4 GB of 32 and the machine starts paging. The
-   working ceiling on this laptop is **two training runs plus one evaluation
-   process**, and going past it costs throughput and risks losing hours to an
-   out-of-memory kill. Report per-job `fps total`, not GPU utilization: a
-   saturated GPU that is time-slicing four jobs looks identical to a busy one.
+   **Parallel trainings cost per-job throughput and still win on aggregate, and
+   the earlier reading of this was wrong.** This rule used to say one
+   512-environment run alone reports about 6,000 fps and four report about 5,000
+   aggregate, so concurrency lost. That compared a *peak* against *sustained*
+   figures. Medians over whole runs, same task and same configuration at two
+   seeds, measured 2026-09-03 later the same day:
+
+   | what was running | per-job `fps total`, median |
+   | --- | ---: |
+   | capture, seed 70 | 2,213 (p90 2,808, one sample at 8,215) |
+   | capture, seed 71, beside two other trainings | 1,812 |
+   | extraction, beside two other trainings | 1,558 |
+   | seating, beside two other trainings | 1,133 |
+
+   Three concurrent trainings aggregate about 4,278 fps against a best sustained
+   single-run median of 2,213. Concurrency costs each job roughly 18% and nearly
+   doubles the total, so **run three**. The 8,215 sample is what the old rule was
+   built on: `fps total` is inflated for the first reporting intervals of a run,
+   and reading it once, early, is how a peak becomes a ceiling.
+
+   Memory is the real limit, not the GPU. A 1024-environment run fits in 12 GB
+   beside a small evaluation process; free system memory falling under about
+   3 GB of 32 is when the machine starts paging and hours get lost to an
+   out-of-memory kill. Watch that, and report per-job `fps total` medians rather
+   than GPU utilization or a single line: a saturated GPU time-slicing four jobs
+   looks identical to a busy one.
+
+   Not yet measured: whether a fourth concurrent training still adds. The cheap
+   way to find out is to median the period when the campaign naturally drops to
+   one run, rather than stopping work to stage it.
 8. **Never claim a capability whose checkpoint is not reachable.** `logs/` and
    `checkpoints/` are gitignored, so a clone has the reports and none of the
    weights. Say where a checkpoint lives when quoting what it scored.
