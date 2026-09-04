@@ -181,6 +181,33 @@ the way from the file to the paragraph, and each survived every mechanical check
 this repository runs, because none of them checks what a sentence claims. The
 only defence is reading the scope block before writing the sentence.
 
+**A failed gate is not a refused cohort, and a queue that confuses them runs
+every cell twice.** `aggregate_evaluation.py` exits **2** when the gate is not
+met and **1** when it refuses the cohort -- different checkpoints, mixed commits,
+a dirty tree. `supervise_factorial.sh` branches on `rc -eq 0`, so on
+2026-09-04 every cell of the 2x2x2 was re-run: these are 4/24 to 17/24 arms and
+none of them can pass a 95% gate, so each one "refused", re-ran identically, and
+overwrote its own evidence with a second copy. It also explains `base_000`
+better than the commit did -- the cell was already re-running for the gate when
+the commit landed in the middle of it, so the commit was the second cause and
+not the first.
+
+Branch on the value:
+
+```bash
+rc=$?
+case "$rc" in
+  0) say "$name: gate passed" ;;
+  2) say "$name: gate not met, which for this cell is the measurement" ;;
+  *) say "$name: cohort refused"; tail -3 "$log" ;;
+esac
+```
+
+A cell whose whole purpose is to measure a low rate must not treat a low rate as
+an error. And do not edit a supervisor while it runs: bash reads a script
+incrementally by byte offset, so changing lines it has not reached yet makes it
+execute garbage.
+
 **Do not believe an `exit=` line in a campaign log written before
 2026-09-03.** Every one of them reports the clock, not the job. Expansion runs
 left to right, so in `echo "[$(date +%H:%M:%S)] thing exit=$?"` the `date`
