@@ -74,6 +74,16 @@ specification.
 7. **Batch long GPU runs and time-box them** so certification always has clock
    left. A 1024-environment PPO run fits in 12 GB alongside a small evaluation
    process; two full training runs do not.
+
+   **More parallel trainings is not more throughput, and it was measured on
+   2026-09-03.** One 512-environment run alone reports about 6,000 fps total. Two
+   already saturate the GPU at 95-100% utilization. Four report about 1,250 fps
+   each -- roughly 5,000 aggregate, which is *less* than one run alone -- while
+   free system memory falls to 2.4 GB of 32 and the machine starts paging. The
+   working ceiling on this laptop is **two training runs plus one evaluation
+   process**, and going past it costs throughput and risks losing hours to an
+   out-of-memory kill. Report per-job `fps total`, not GPU utilization: a
+   saturated GPU that is time-slicing four jobs looks identical to a busy one.
 8. **Never claim a capability whose checkpoint is not reachable.** `logs/` and
    `checkpoints/` are gitignored, so a clone has the reports and none of the
    weights. Say where a checkpoint lives when quoting what it scored.
