@@ -148,6 +148,22 @@ passed locally and failed collection in CI, invisibly, because the lint step
 failed first and the suite never ran. `pythonpath = ["."]` in `pyproject.toml`
 now makes the two agree; the habit is still worth keeping.
 
+**When you quote a report, read its `scope_and_limitations` and carry the
+qualifying ones into the sentence you write.** Three claims were corrected on
+2026-09-03 for the same reason: the evidence file said the limit, and the prose
+that cited it did not.
+
+| what the report said | what the prose said |
+| --- | --- |
+| "the arithmetic brackets the observed travel rather than predicting it to a millimetre" | "the closed-form bound predicts the achieved depth to within a millimetre" |
+| visibility "is line of sight only... does not predict decoding, exposure or motion blur" | "no depth of the stroke where both plates are unreadable" |
+| per-seed **medians** of estimator error | quoted as "mean estimator error", hiding 154 mm and 355 mm excursions |
+
+None was a wrong number. Each was a true number that grew a stronger meaning on
+the way from the file to the paragraph, and each survived every mechanical check
+this repository runs, because none of them checks what a sentence claims. The
+only defence is reading the scope block before writing the sentence.
+
 **Do not believe an `exit=` line in a campaign log written before
 2026-09-03.** Every one of them reports the clock, not the job. Expansion runs
 left to right, so in `echo "[$(date +%H:%M:%S)] thing exit=$?"` the `date`
