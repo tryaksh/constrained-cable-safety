@@ -192,7 +192,18 @@ each -- did indistinguishable work and took wildly different time:
 | 5070 | 10/16 | 1,240 | 41.3 s | **3 h 21 min** |
 
 The simulated workload is the same to within 2%. The factor of nine is the
-machine. Nothing in the run explains it and the log does not show it: Isaac
+machine.
+
+**The third seed settles what it was: a transient, not a new rate.** Measured on
+seed 6070 while it ran, the simulator's internal clock advanced 162.1 s in 241 s
+of wall time -- a real-time factor of 0.67 against seed 4070's 0.9. A quarter
+slower, not nine times. So the slow seed was something passing through the
+machine overnight and the campaign schedule does not need rebuilding around it.
+Measure the factor before reacting; the difference between "25% slower" and
+"nine times slower" is the difference between a normal day and a lost week, and
+one wall-clock reading cannot tell them apart.
+
+Nothing in the run explains it and the log does not show it: Isaac
 writes its reset warnings during setup and then goes quiet for the whole
 stepping phase, so a log that has not moved for three hours looks identical to a
 hung process and to a slow one. The only reliable progress signal is the
