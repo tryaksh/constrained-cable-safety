@@ -181,6 +181,39 @@ the way from the file to the paragraph, and each survived every mechanical check
 this repository runs, because none of them checks what a sentence claims. The
 only defence is reading the scope block before writing the sentence.
 
+**Wall-clock throughput on this machine is not stable, and a queue planned on
+one measurement of it will be wrong.** On 2026-09-05 two seeds of the same
+camera-driven cohort -- same task, same checkpoints, same flags, 16 environments
+each -- did indistinguishable work and took wildly different time:
+
+| seed | successes | median control steps | median cycle time | wall clock |
+| --- | ---: | ---: | ---: | ---: |
+| 4070 | 9/16 | 1,269 | 42.3 s | **23 min** |
+| 5070 | 10/16 | 1,240 | 41.3 s | **3 h 21 min** |
+
+The simulated workload is the same to within 2%. The factor of nine is the
+machine. Nothing in the run explains it and the log does not show it: Isaac
+writes its reset warnings during setup and then goes quiet for the whole
+stepping phase, so a log that has not moved for three hours looks identical to a
+hung process and to a slow one. The only reliable progress signal is the
+artifact.
+
+Two consequences.
+
+* **Plan queues in units of "seeds", not hours, and re-time after every stage.**
+  A five-stage campaign sized on a 23-minute seed becomes a multi-day campaign
+  on a 3-hour one, and the difference is invisible until the stage boundary.
+* **A suspected hang must be diagnosed by CPU time, not by the log.** Sample
+  `(Get-Process -Id <pid>).TotalProcessorTime` twice, a minute apart. A process
+  accumulating CPU is working; one that is not is stuck. The run above was
+  accumulating and finished normally.
+
+The likely contributor is documented above and remains unfixed: the concurrent
+training's log reached 18.6 MB of `PhysicsUSD: CreateJoint - found a joint with
+disjointed body transforms`, one line per reset per environment at 512
+environments. Suppressing it is still the open action, and it is now worth more
+than a throughput number.
+
 **A run records the commit it *finished* at, not the commit it loaded.**
 `git_source_revision` is called where the npz and the report are written, which
 is the end of the run, and Python has held the source in memory since the start.
