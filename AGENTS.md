@@ -225,6 +225,40 @@ disjointed body transforms`, one line per reset per environment at 512
 environments. Suppressing it is still the open action, and it is now worth more
 than a throughput number.
 
+**A tag built by a command substitution that fails is an empty tag, and every
+output in the sweep then lands on the same filename.** `supervise_method.sh`
+computed its per-level suffix with
+
+```bash
+tag=$(echo "$g" | tr -d '-.')      # WRONG: tr reads '-.' as an option
+```
+
+GNU `tr` rejects `-.` as an unknown option, writes to stderr, and exits
+non-zero. The substitution yields the empty string, `set -u` does not fire
+because the variable *is* set, and all four gravity levels wrote
+`g_seed4070.npz` and `evidence/..._gravity__n48_certification.json` -- each
+overwriting the last, so a four-point sweep would have produced one point and
+destroyed three. Nothing in the log said so; the only visible symptom was a
+stray `Try 'tr --help'` line.
+
+```bash
+tag=$(echo "$g" | tr -d -- '-.')   # right: -- ends option parsing
+```
+
+Two habits follow. **End option parsing with `--` whenever an argument can begin
+with a hyphen**, which for this project means every negative number. And **assert
+the tag before using it**: a sweep whose points differ only by a computed suffix
+should refuse to start if any suffix is empty or repeats, because the failure is
+silent, total, and only visible after the GPU is spent.
+
+    [ -n "$tag" ] || { echo "empty tag for $g"; exit 1; }
+
+The sweep in flight on 2026-09-05 was rescued by a separate process that copied
+each level's outputs to a correct name in the window between its aggregate
+landing and the next level's first run finishing. That worked and is not a
+pattern to rely on -- a running script cannot be edited, so the only defence is
+the assertion above, before it starts.
+
 **A run records the commit it *finished* at, not the commit it loaded.**
 `git_source_revision` is called where the npz and the report are written, which
 is the end of the run, and Python has held the source in memory since the start.
