@@ -1,9 +1,11 @@
 # Agent instructions
 
-Read [`docs/NOW.md`](docs/NOW.md) first. It is the canonical state: what runs,
-what the numbers are, which checkpoints the chain uses, what is settled, and how
-to reproduce any of it. Its current gates determine priority. Bounded task
-detail is in [`docs/NEXT_WORK.md`](docs/NEXT_WORK.md).
+Read [`docs/CHARTER.md`](docs/CHARTER.md) first. It carries the research
+question, what the evidence has already settled or refuted, and the day-14
+decision with its margin declared in advance. Then [`docs/NOW.md`](docs/NOW.md),
+the canonical state: what runs, what the numbers are, which checkpoints the
+chain uses, and how to reproduce any of it. Bounded task detail is in
+[`docs/NEXT_WORK.md`](docs/NEXT_WORK.md).
 
 Everything below is the working rules, not the state.
 
@@ -11,6 +13,7 @@ Everything below is the working rules, not the state.
 
 | You need | Read | Cost |
 | --- | --- | --- |
+| The question, and what would falsify it | `docs/CHARTER.md` | one file |
 | Current state, numbers, checkpoints | `docs/NOW.md` | one file |
 | What to work on next | `docs/NEXT_WORK.md` | one file |
 | Is this evidence file current? | `evidence/MANIFEST.json` → `counts`, `canonical` | head of one file |
@@ -377,7 +380,7 @@ is not — see `docs/NOW.md` §2 and §5.
 | `src/zero_g_blade_swap/tasks/blade_swap/assets.py` | Rack, module, pin, rails, lead-ins |
 | `src/zero_g_blade_swap/tasks/blade_swap/mdp/grapple.py` | Every predicate and reward the skills use |
 | `src/zero_g_blade_swap/tasks/blade_swap/insert_reset_bank.py` | Generated; do not hand-edit |
-| `src/zero_g_blade_swap/service/presets.py` | What the live service runs (currently a superseded set — `NEXT_WORK.md` T7) |
+| `src/zero_g_blade_swap/service/presets.py` | What the live service runs (currently a superseded set — `archive/NEXT_WORK_pre_pivot_2026-09-05.md` T7) |
 
 **Before adding a test that reads a path, check the path is in git.**
 `artifacts/` is gitignored, so a clean checkout -- which is exactly what CI has
