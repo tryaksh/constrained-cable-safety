@@ -181,6 +181,34 @@ the way from the file to the paragraph, and each survived every mechanical check
 this repository runs, because none of them checks what a sentence claims. The
 only defence is reading the scope block before writing the sentence.
 
+**A run records the commit it *finished* at, not the commit it loaded.**
+`git_source_revision` is called where the npz and the report are written, which
+is the end of the run, and Python has held the source in memory since the start.
+So committing while a run is in flight makes that run claim a commit whose code
+never executed.
+
+There is a demonstration of it in this repository.
+`artifacts/campaign/factorial/base_000_seed4070.npz` records
+`commit cbe4c79, dirty false` and carries **no** `pipeline_flags` block --
+which the code at `cbe4c79` writes unconditionally, because that commit is
+where the block was added. The run started 23 seconds before the merge, so the
+metadata is honest about the tree and wrong about the code.
+
+Two consequences, and the first is the one that costs GPU:
+
+* the aggregator's single-commit check does **not** prove a cohort ran one
+  version of the source. It proves the tree looked the same when each run
+  wrote. A cohort whose seeds straddle a behavioural change can pass it;
+* which makes the safe merge window narrower than "between cohorts". A merge
+  landing inside a cohort's *first* run is invisible to the aggregator and
+  silently mixes two versions.
+
+The rule that follows is not "never merge" -- that stalls the machine for hours
+at a time. It is: **merge only changes that cannot alter what a running job
+does** -- documentation, evidence, additive metadata -- and hold anything
+behavioural until the evaluation slot is genuinely empty. When in doubt about
+which side a change falls on, it is behavioural.
+
 **A failed gate is not a refused cohort, and a queue that confuses them runs
 every cell twice.** `aggregate_evaluation.py` exits **2** when the gate is not
 met and **1** when it refuses the cohort -- different checkpoints, mixed commits,
