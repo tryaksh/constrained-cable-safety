@@ -1,6 +1,9 @@
 # Agent instructions
 
-Read [`docs/CHARTER.md`](docs/CHARTER.md) first. It carries the research
+Read [`docs/HANDOFF.md`](docs/HANDOFF.md) first: where the project is, what is
+established, and the single next action. Then
+[`docs/METHOD.md`](docs/METHOD.md), which is what the project is building, and
+[`docs/CHARTER.md`](docs/CHARTER.md), which carries the research
 question, what the evidence has already settled or refuted, and the day-14
 decision with its margin declared in advance. Then [`docs/NOW.md`](docs/NOW.md),
 the canonical state: what runs, what the numbers are, which checkpoints the
