@@ -1,130 +1,73 @@
-# Orbital Robotic Servicing Lab
+# Assembly Recovery Lab
 
-A zero-gravity simulation testbed for deciding whether a robot can service a
-module-rack configuration, which constraint prevents service, and whether
-isolated manipulation skills survive real chain handoffs.
+**Train a robot to recover from a failed assembly attempt and finish the job without a person resetting it.**
 
-Everything here is simulated. Nothing has run on hardware, and nothing is a
-flight-readiness claim.
+The industrial problem is interrupted work: an insertion misses, binds or stalls, and the robot needs another chance without damaging the part. This project studies how a robot can learn that second chance efficiently from its own experience.
 
-## Executive status
+The setup is a Franka arm performing peg insertion, followed by gear assembly, in NVIDIA Isaac Lab. It uses force feedback and robot state. Everything is simulated on the current workstation. The old space-rack project has been retired.
 
-The continuous state-task chain captures, extracts, carries, inserts and releases
-a compute module with the robot holding it throughout. Under the strict current
-rule -- release both robot-side supports and recheck rack-only seating for 0.70 s
--- it scores **91.67%** (22/24) over three held-out seeds, Wilson 95%
-**[74.2%, 97.7%]**. It fails the unchanged 95% full-chain gate. There is no world constraint,
-teleport, direct module pose write or hidden carrier.
+[ROADMAP.md](ROADMAP.md) contains the eight-week execution plan, progress and single next action. [AGENTS.md](AGENTS.md) contains the operating rules. These are the only three maintained Markdown files.
 
-The prior **97.92%** (94/96) result is a legacy supported-settle baseline. It did
-not include the independent rack-only recheck and is not the current completion
-rate. A current-source no-rack control reproduces 17/24. Adding only visible
-rack-side retention produces 22/24, and every one of the 22 episodes that reaches
-measured seating passes the rack-only recheck with zero measured relative drift.
-The two remaining failures occur upstream and never engage the rack.
+## The research question
 
-That point result is not yet a serviceability envelope. The current analytical
-versus simulation validator returns **not qualified**:
+**At equal training cost, does automatically concentrating practice on recoverable failures reduce unfinished assembly jobs more effectively than uniform training and a simple retract-and-retry controller?**
 
-- entry attitude is supported in simulation;
-- rack-clearance and module-section arms contain mismatches;
-- a +10 mm rail-stop error is kinematically feasible but fails in simulation;
-- capture clearance is analytical-only; and
-- load-path and base-compliance evidence is idealized or absent.
+The proposed method keeps some ordinary successful practice, then allocates the remaining training to fault conditions where the current policy still has something to learn. It learns continuous robot actions, including backing out and approaching again. It does not ask an LLM to choose a move. Training starts from physically valid episode initializations; a recovery must happen through robot actions in the same job.
 
-The learned skills also do not support an “end-to-end RL” claim. On the current
-rack, unchanged-checkpoint grasp scores **86.90%** and extraction **87.64%**;
-both miss their 95% gates and overlap their earlier **85.69%** and **87.75%**
-results. Learned v24
-insertion scores 36.77% in isolation and **0.00%** in the chain, so the guarded
-controller remains selected. The older insert baseline is **0.00% over 1,536
-episodes**. Its three reward arms ended at 84.26, 84.61 and 84.58 mrad against a
-**52.4 mrad** tolerance: the objective did not move the interface-limited angle.
+The study measures complete jobs, time, simulated contact loads and failures as training grows. Checkpoints at roughly 1, 3 and 10 million environment transitions make the scaling question testable. More training is useful only if the held-out curves justify it. Peg insertion establishes the result; gear assembly tests whether it survives a second contact task.
 
-The paired handoff audit makes the insertion gap concrete. With the real
-fixed-to-compliant load path, v24 is **0/768** from reset stations 0–3, rises to
-**786/960** over stations 4–8, and returns to **0/96** on real predecessor
-handoffs. Guarded insertion is **94/96** on those handoffs. The skill certificate
-therefore describes the late stroke, not the state its caller supplies.
+The candidate paper contribution is **a reproducible study of how to allocate training for autonomous assembly recovery**, including when the method fails. Neither recovery nor curricula are new inventions. The benefit of this particular allocation is an untested hypothesis.
 
-The old passing RGB-D certificate is retracted because its tag floated 90 mm
-above the current module. The physically flush tag is unchanged; moving and
-aiming only the fixed camera raises held-out critical-rack detection from
-**43.27%** to **99.85%** and overall detection to **92.87%** over 1,024 frames,
-with unchanged accuracy gates. Dropout propagation is enabled only after
-verified physical capture. The live service stays unavailable until the strict
-RGB-D chain is repeated.
+## Why this direction
 
-## Method
+Physical Intelligence describes reliability, throughput and learning from a robot's own mistakes as central problems in its work on [learning from experience](https://www.pi.website/blog/pistar06). This project addresses a small, measurable version of that problem.
 
-The intended output is a simulation-guided qualification method:
+NVIDIA's [FORGE](https://arxiv.org/abs/2408.04587) already provides force-aware assembly learning, and [AutoMate](https://developer.nvidia.com/blog/?p=85056) studies assembly across geometries. We use the installed FORGE infrastructure instead of rebuilding a simulator and gripper. [ARCH](https://long-horizon-assembly.github.io/) already demonstrates hybrid assembly and recovery. The July 2026 [FORGE-plus preprint](https://arxiv.org/abs/2607.21227) also studies force-budgeted recovery with a frozen LLM supervisor. Our question is training allocation and reliability scaling, not whether assembly recovery can exist.
 
-1. derive constraints from module, rack, capture interface, robot and load path;
-2. intersect them into a candidate serviceability envelope;
-3. test points inside, outside and near every boundary without changing the
-   tolerances;
-4. preserve every losing or contradictory arm; and
-5. replay learned and guarded controllers at every reset station and at recorded
-   predecessor handoffs on identical states and seeds.
+[Reverse Curriculum Generation](https://arxiv.org/abs/1707.05300) established adaptive start-state training years ago. The paper must compare against a competent curriculum baseline and explain what the new evidence adds. A literature check is required before any novelty claim.
 
-The control split follows the physics: PPO for capture and extraction contact,
-collision-checked IK for free-space carry, guarded insertion while the estimate
-remains inside the entry envelope, and release only after 0.70 s of settled
-seating.
+The skills this project can demonstrate include reinforcement learning, force-aware control, fault diagnosis, reproducible GPU experiments and reliable evaluation. These overlap directly with the training, evaluation, scalability and failure-analysis responsibilities in [World Labs' robot-learning role](https://job-boards.greenhouse.io/worldlabs/jobs/4333272009). This is preparation for that work; a simulation project does not establish hardware deployment experience.
 
-## Trust and scope
+## What is actually working
 
-[`docs/NOW.md`](docs/NOW.md) is the concise verified state and
-[`evidence/MANIFEST.json`](evidence/MANIFEST.json) is the mechanical evidence
-index: 38 canonical, 11 retracted and 140 historical reports. Quote canonical;
-never quote retracted.
+The audit on 2026-09-06 ran the upstream Franka peg task on this workstation: four parallel environments, 16 control steps, finite observations, rewards and force signals. A separate two-epoch PPO pilot with 64 environments completed and saved checkpoints. Its reported training throughput was 205 and 192 transitions/second; two samples establish feasibility, not sustained campaign capacity.
 
-Thirteen reports contain runtime source bindings. Two match the working source,
-one is mechanically `RECOVERED`, and ten older reports produced
-from **uncommitted** source are `LOST`.
-The runs happened, but their exact code cannot be reproduced. T0 in
-[`docs/NEXT_WORK.md`](docs/NEXT_WORK.md) therefore remains for any lost result a
-final claim needs.
+These are infrastructure checks. **The recovery method, study adapter, trained baseline and website demonstration are not implemented yet.** No new recovery success rate is claimed. Check [evidence/smoke.json](evidence/smoke.json), [evidence/training_pilot.json](evidence/training_pilot.json) and the current state in ROADMAP.md.
 
-The current robot-side latch geometry is visual. Its load path is an idealized
-fixed joint while rigid and a spring-damper while compliant. The robot root is
-fixed to the world, so the authored base spring does not deflect. A historical
-simulation probe compared about 6 N of idealized retention with a derived
-**66.4 N** axial requirement; that is a diagnostic, not a hardware load rating.
-The destination pawls are likewise visible geometry: a disclosed 600 N / 30 N-m
-`Rack`-to-module fixed joint carries their simulated load, and its reaction
-magnitude is not exposed.
-No real camera, connector, cable, thermal path, orbital dynamics or compliant
-spacecraft base is qualified.
+The installed upstream task starts with the part already grasped, uses simulator-derived pose with synthetic noise, and disables gravity on the held part. The smoke check preserves those upstream defaults. Week one must resolve held-part gravity and audit the observations before freezing the study. The initial research scope is insertion and recovery while holding the part: no pickup, dropped-part recovery, camera perception or hardware-transfer claim.
 
-## Run
+## What the audit changed
 
-Install instructions and Isaac Lab version requirements are in
-[`docs/INSTALL.md`](docs/INSTALL.md). A clone does not include the learned
-checkpoints under `logs/` or `checkpoints/`; evidence records their hashes.
+The old repository combined several research questions, competing handoffs and hundreds of reports. Some improvements came from changing geometry or retention, while isolated skill scores did not establish complete-job reliability. More GPU time could not resolve those confounds. The surviving value is the infrastructure knowledge and the discipline to compare the same task under the same criteria.
+
+The audit retired 629 of the original 638 tracked files, including the zero-gravity runtime, its tests, old demo service, campaign queues and historical result files. The original code, results, retractions and branch tips are recoverable from a verified Git bundle. All 653 original weight files remain at their local paths; they are legacy assets, not Franka policies. The bundle is local and is not included in a fresh clone.
+
+Archive: `artifacts/audit_2026-09-06/pre_cleanup.bundle`. Exact inventory and restoration details: `maintenance/archive_index.json`. That file is for recovery of history, not routine agent context. Condensed lessons: `maintenance/lessons.json`. Main and remote branches have not been rewritten or pushed.
+
+## Run and inspect
+
+CPU checks need Python 3.11:
 
 ```powershell
-# CPU-only trust gate
-.\.venv\Scripts\python.exe -m pytest -m "not isaac and not camera and not benchmark"
-.\.venv\Scripts\python.exe scripts/build_evidence_manifest.py --check
-.\.venv\Scripts\python.exe scripts/check_source_provenance.py --depth 200
-
-# One end-to-end simulator run, with reachable checkpoints
-scripts\run_robot_carried.sh rail
-
-# Paired v24/guarded insertion at all stations and real handoffs
-& .\scripts\run_conditioned_insertion.ps1 -IncludeChainHandoffs
+python -m pip install -e ".[dev]"
+ruff check src scripts tests
+pytest
+python scripts/run_experiment.py plan --task peg --epochs 2 --num-envs 64
 ```
 
-The frozen question, variables, baselines, metrics and experiment matrix are in
-[`docs/PAPER_PLAN.md`](docs/PAPER_PLAN.md). **Its framing has been superseded**
-by [`docs/paper_position.md`](docs/paper_position.md), which carries the
-literature check and says what the paper may and may not claim; read that first
-and treat the plan as the record of the variables it froze.
+Simulator runs use the pinned Isaac Sim 5.1 / Isaac Lab 2.3.2 stack in `environment-lock.example.json`. On this workstation it is already installed. `scripts/setup_windows.ps1` is the bootstrap for a compatible Windows machine with Isaac Sim installed; it is not a claim that any fresh machine has been tested.
 
-Drafting has started. The manuscript lives in its own repository, and
-[`docs/manuscript_prompt.md`](docs/manuscript_prompt.md) says where and how. The
-gates in the plan are still the gates -- a claim does not go in the paper until
-its gate closes -- but the instruction not to write anything until all of them
-close no longer holds, because the sections that rest on closed gates are being
-written while the rest run.
+```powershell
+.\.venv\Scripts\python.exe scripts/run_experiment.py smoke --run-id peg-smoke-001
+.\.venv\Scripts\python.exe scripts/run_experiment.py train --run-id peg-pilot-001 --task peg --epochs 2 --num-envs 64 --max-minutes 15
+```
+
+The launcher runs the **upstream baseline only**. It refuses reused run IDs and unpinned or modified upstream source, records source and configuration hashes before launch, sets a wall-clock deadline and checks saved artifacts. `TORCHDYNAMO_DISABLE=1` avoids an optional compilation import failure in the current simulator environment. A timeout remains a timeout even if a partial checkpoint exists. Long study campaigns must wait for the week-one validity gates.
+
+## The website and paper deliverables
+
+The website will show the same held-out fault under standard training, retract-and-retry and learned recovery. A visitor can choose a recorded fault and see the robot, force trace, elapsed time and complete-job outcome. Every replay links to the run and checkpoint behind it. Show a failure alongside successes and label the scene as simulation. A static replay page is sufficient; no hosted GPU is required.
+
+By week four: a credible peg-task result and recorded comparison. By week eight: two-task evidence, scaling curves, released experiment specifications and a manuscript suitable for a focused robotics workshop or technical preprint. A stronger result may support a larger submission. Acceptance and a positive experimental result cannot be promised.
+
+A clear interview description, once the work is completed: "I studied how robots can learn to recover from assembly failures. I compared training strategies at equal compute and measured how often the robot finished the whole job, how long it took, and what happened to contact forces."

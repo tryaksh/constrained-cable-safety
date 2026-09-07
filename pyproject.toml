@@ -3,74 +3,29 @@ requires = ["setuptools>=77,<82"]
 build-backend = "setuptools.build_meta"
 
 [project]
-name = "autonomous-zero-g-blade-swap"
+name = "assembly-recovery-lab"
 version = "0.1.0"
-description = "Simulation-backed robotic serviceability qualification with Isaac Lab, rendered perception, and an observable compute service."
+description = "Reproducible experiments for learning autonomous industrial assembly recovery."
 readme = "README.md"
 requires-python = ">=3.11,<3.12"
 license = "BSD-3-Clause"
 authors = [{ name = "Tryaksh" }]
-keywords = ["robotics", "isaac-lab", "reinforcement-learning", "sim2real", "space-robotics"]
-classifiers = [
-  "Development Status :: 3 - Alpha",
-  "Programming Language :: Python :: 3.11",
-  "Topic :: Scientific/Engineering :: Artificial Intelligence",
-]
-dependencies = [
-  # Match the HDF5 1.14.6 DLL bundled with Isaac Sim 5.1 on Windows.
-  "h5py==3.13.0",
-  "numpy>=1.26,<2",
-  "pydantic>=2.10,<3",
-  "PyYAML>=6.0",
-]
+dependencies = []
 
 [project.optional-dependencies]
-service = [
-  "fastapi>=0.115,<1",
-  "Jinja2>=3.1,<4",
-  "uvicorn>=0.29,<1",
-]
-dev = [
-  "fastapi>=0.115,<1",
-  "httpx>=0.27,<1",
-  # Starlette 1.x moved TestClient to the async-native httpx2 package.
-  "httpx2>=2.12,<3",
-  "Jinja2>=3.1,<4",
-  "pytest>=8.0,<9",
-  "ruff>=0.11,<1",
-  "uvicorn>=0.29,<1",
-]
-
-[project.scripts]
-zero-g-service = "zero_g_blade_swap.service.cli:main"
-
-[project.urls]
-Repository = "https://github.com/tryaksh/orbital-robotic-servicing-lab"
-Issues = "https://github.com/tryaksh/orbital-robotic-servicing-lab/issues"
+dev = ["pytest>=8,<9", "ruff>=0.11,<1"]
 
 [tool.setuptools]
 package-dir = { "" = "src" }
 
 [tool.setuptools.packages.find]
 where = ["src"]
-
-[tool.setuptools.package-data]
-"zero_g_blade_swap.service" = ["static/*.css", "static/*.html", "static/*.js"]
+include = ["assembly_recovery*"]
 
 [tool.pytest.ini_options]
 testpaths = ["tests"]
-# `tests/test_project_insertion_checkpoint.py` imports `scripts.…`, which needs
-# the repository root importable. `python -m pytest` puts the working directory
-# on `sys.path` and a bare `pytest` does not, so the suite passed locally and
-# failed in CI for months with the difference invisible -- the lint step failed
-# first and the tests never ran. Stating the path makes both invocations agree.
-pythonpath = ["."]
+pythonpath = [".", "src"]
 addopts = "-ra"
-markers = [
-  "isaac: requires a local Isaac Sim and Isaac Lab installation",
-  "camera: requires RTX rendering and --enable_cameras",
-  "benchmark: hardware-dependent throughput/VRAM test",
-]
 
 [tool.ruff]
 target-version = "py311"
@@ -80,8 +35,3 @@ extend-exclude = [".deps", "artifacts", "outputs", "datasets"]
 [tool.ruff.lint]
 select = ["E", "F", "I", "UP", "B", "SIM"]
 ignore = ["E501"]
-
-[tool.ruff.lint.per-file-ignores]
-# Isaac Lab manager terms conventionally keep SceneEntityCfg objects in their
-# signatures so the manager can inspect and resolve them during construction.
-"src/zero_g_blade_swap/tasks/blade_swap/mdp/*.py" = ["B008"]
