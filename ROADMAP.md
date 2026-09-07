@@ -10,15 +10,16 @@ This file is the only plan and handoff. Update its current-state table in place 
 | --- | --- |
 | Audit and source archive | Completed; original commit `1b969f6db01aeac226667db4759b7603b3f663a0`, all original refs in verified local bundle |
 | Old active project | Retired; 629 original tracked files removed; all 653 original weights rehashed and verified unchanged |
-| Clean repository | 26 tracked files, exactly three Markdown documents; historical index excluded from routine searches |
+| Clean repository | Exactly three Markdown documents; historical index excluded from routine searches |
 | Simulator | Upstream peg smoke passed: 4 environments, 16 steps; no recovery claim |
 | Training | Two upstream PPO infrastructure runs completed: 64 environments, 2 epochs / 16,384 transitions each; saved checkpoints loaded with finite parameters; no policy-success evaluation |
-| Verification | Package installation, lint, 31 CPU tests and command planning passed; CPU checks also passed from a clean tracked-file export |
-| Study implementation | Not started: no recovery adapter, fault sampler or complete-job evaluator yet |
+| Verification | Lint and 47 CPU tests pass in the workspace and a clean tracked-file export; simulator adapter has only passed Python compilation so far |
+| Study implementation | CPU complete-job evaluator and geometric derivations implemented; peg adapter drafted with reset/write guards and a velocity correction; simulator validation and fault sampler remain unfinished |
 | Scientific evidence | None for the proposed method; pilot reward is not assembly reliability |
 | Resource allocation | One GPU job by default; sustained capacity not measured for this task |
 | Website / manuscript | Specified below; not built |
-| Single next action | Implement the peg study adapter and complete-job evaluator; validate gravity, allowed actions and observation access before any long training |
+| Execution blocker | Automatic approval review twice rejected validation-script additions by citing the obsolete camera-reliability objective, even after HEAD instructions were verified. Explicit owner confirmation of assembly validation is pending; no rejected script was added or run |
+| Single next action | After that confirmation, add the bounded validation scripts and test the peg adapter: paired held-part gravity, velocity calculation, actor access, physics-step scoring and reset/write guards. Keep all study gates closed until verified |
 
 ## The fixed experiment
 

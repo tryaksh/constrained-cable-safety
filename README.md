@@ -32,7 +32,7 @@ The skills this project can demonstrate include reinforcement learning, force-aw
 
 The audit on 2026-09-06 ran the upstream Franka peg task on this workstation: four parallel environments, 16 control steps, finite observations, rewards and force signals. A separate two-epoch PPO pilot with 64 environments completed and saved checkpoints. Its reported training throughput was 205 and 192 transitions/second; two samples establish feasibility, not sustained campaign capacity.
 
-These are infrastructure checks. **The recovery method, study adapter, trained baseline and website demonstration are not implemented yet.** No new recovery success rate is claimed. Check [evidence/smoke.json](evidence/smoke.json), [evidence/training_pilot.json](evidence/training_pilot.json) and the current state in ROADMAP.md.
+These are infrastructure checks. A CPU complete-job evaluator and geometry checks now exist, with a draft peg adapter awaiting simulator validation. **The recovery method, fault sampler, trained baseline and website demonstration are not implemented yet.** No new recovery success rate is claimed. Check [evidence/smoke.json](evidence/smoke.json), [evidence/training_pilot.json](evidence/training_pilot.json) and the current state in ROADMAP.md.
 
 The installed upstream task starts with the part already grasped, uses simulator-derived pose with synthetic noise, and disables gravity on the held part. The smoke check preserves those upstream defaults. Week one must resolve held-part gravity and audit the observations before freezing the study. The initial research scope is insertion and recovery while holding the part: no pickup, dropped-part recovery, camera perception or hardware-transfer claim.
 
