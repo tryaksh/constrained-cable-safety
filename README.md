@@ -32,9 +32,9 @@ The skills this project can demonstrate include reinforcement learning, force-aw
 
 The audit on 2026-09-06 ran the upstream Franka peg task on this workstation: four parallel environments, 16 control steps, finite observations, rewards and force signals. A separate two-epoch PPO pilot with 64 environments completed and saved checkpoints. Its reported training throughput was 205 and 192 transitions/second; two samples establish feasibility, not sustained campaign capacity.
 
-These are infrastructure checks. A CPU complete-job evaluator and geometry checks now exist, with a draft peg adapter awaiting simulator validation. **The recovery method, fault sampler, trained baseline and website demonstration are not implemented yet.** No new recovery success rate is claimed. Check [evidence/smoke.json](evidence/smoke.json), [evidence/training_pilot.json](evidence/training_pilot.json) and the current state in ROADMAP.md.
+These are infrastructure checks. The peg adapter now runs in the simulator with direct part/fixture and finger-contact sensing, complete-job scoring and blocked resets/pose writes. In the current development probes, seven stalled insertions maintained fixture contact and then withdrew clear while retaining the grasp. The release check catches all four deliberately released parts. **Complete recovery through reinsertion, the learned method, fault sampler, trained baseline and website demonstration remain unfinished.** These probes are not a policy success rate. See [evidence/peg_validation.json](evidence/peg_validation.json), [evidence/reward_audit.json](evidence/reward_audit.json), and ROADMAP.md.
 
-The installed upstream task starts with the part already grasped, uses simulator-derived pose with synthetic noise, and disables gravity on the held part. The smoke check preserves those upstream defaults. Week one must resolve held-part gravity and audit the observations before freezing the study. The initial research scope is insertion and recovery while holding the part: no pickup, dropped-part recovery, camera perception or hardware-transfer claim.
+Physical gravity on the held part is selected for the study. The upstream reference preserves its gravity-disabled default; the robot still uses idealized gravity compensation. Observations are simulator-derived pose with synthetic noise. The scope remains insertion and recovery while holding a part: no pickup, dropped-part recovery, camera perception or hardware-transfer claim. The reward audit found no explicit upward-motion penalty, but whether full recovery earns more than staying stuck still needs a matched trajectory test.
 
 ## What the audit changed
 
@@ -58,11 +58,12 @@ python scripts/run_experiment.py plan --task peg --epochs 2 --num-envs 64
 Simulator runs use the pinned Isaac Sim 5.1 / Isaac Lab 2.3.2 stack in `environment-lock.example.json`. On this workstation it is already installed. `scripts/setup_windows.ps1` is the bootstrap for a compatible Windows machine with Isaac Sim installed; it is not a claim that any fresh machine has been tested.
 
 ```powershell
+.\.venv\Scripts\python.exe scripts/run_validation.py --run-id peg-validation-001 --controller insert_withdraw --seconds 8
 .\.venv\Scripts\python.exe scripts/run_experiment.py smoke --run-id peg-smoke-001
 .\.venv\Scripts\python.exe scripts/run_experiment.py train --run-id peg-pilot-001 --task peg --epochs 2 --num-envs 64 --max-minutes 15
 ```
 
-The launcher runs the **upstream baseline only**. It refuses reused run IDs and unpinned or modified upstream source, records source and configuration hashes before launch, sets a wall-clock deadline and checks saved artifacts. `TORCHDYNAMO_DISABLE=1` avoids an optional compilation import failure in the current simulator environment. A timeout remains a timeout even if a partial checkpoint exists. Long study campaigns must wait for the week-one validity gates.
+The experiment launcher runs the **upstream baseline only**. The separate validation launcher runs scripted peg probes, not learned policies. It refuses reused run IDs and unpinned or modified upstream source, records source and configuration hashes before launch, sets a wall-clock deadline and checks saved artifacts. `TORCHDYNAMO_DISABLE=1` avoids an optional compilation import failure in the current simulator environment. A timeout remains a timeout even if a partial checkpoint exists. Long study campaigns must wait for the week-one validity gates.
 
 ## The website and paper deliverables
 
