@@ -75,6 +75,10 @@ def validate_study(study: dict) -> list[str]:
         raise ValueError("Training targets must be positive and strictly increasing")
     if not 0 < study["training"]["nominal_fraction"] < 1:
         raise ValueError("Nominal practice must remain a proper fraction of the training budget")
+    if "fault_support" in study:
+        from assembly_recovery.faults import validate_fault_support
+
+        validate_fault_support(study["fault_support"])
     return [name for name, passed in study["gates"].items() if passed is not True]
 
 

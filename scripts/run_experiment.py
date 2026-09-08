@@ -98,6 +98,8 @@ def main() -> int:
             raise ValueError("Smoke checks permit at most 16 environments")
         study = json.loads((ROOT / "configs/study.json").read_text(encoding="utf8"))
         missing = validate_study(study)
+        if args.mode in {"plan", "train"} and spec.seed not in study["training"]["seeds"]:
+            raise ValueError("Training seed must belong to the declared training split; development and test seeds are reserved")
         run_id = validate_run_id(args.run_id or "preview")
     except ValueError as exc:
         parser.error(str(exc))
