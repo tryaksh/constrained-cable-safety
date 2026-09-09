@@ -23,3 +23,10 @@ def test_legacy_archive_is_separate_from_new_evidence():
         evidence = json.loads((ROOT / "evidence" / name).read_text())
         assert evidence["scope"]
         assert evidence["research_result"] is False
+
+
+def test_cpu_imports_resolve_to_this_source_tree():
+    from assembly_recovery import evaluation, study_ppo, tensor_jobs
+
+    for module in (evaluation, study_ppo, tensor_jobs):
+        assert Path(module.__file__).resolve().is_relative_to(ROOT / "src")
