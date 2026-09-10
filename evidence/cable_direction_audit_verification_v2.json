@@ -1,0 +1,271 @@
+{
+  "schema": 2,
+  "status": "passed",
+  "checked_at_utc": "2026-09-10T23:54:54.601719+00:00",
+  "base_commit": "6de7869a8919b62e05816f7fac285600d650e8b0",
+  "reference_checks": [
+    {
+      "path": "README.md",
+      "reviewed_sha256": "b933c8c0e1ced7804206177a1101591aa6247c17fc094395e3636daa4cbc2eee",
+      "verified_against": "reviewed_base_commit_bytes_with_verified_line_endings"
+    },
+    {
+      "path": "ROADMAP.md",
+      "reviewed_sha256": "67be29b9cdf0732d694567c1a984ab40f80730b1d49c0293874b74afecb9c9b2",
+      "verified_against": "reviewed_base_commit_bytes_with_verified_line_endings"
+    },
+    {
+      "path": "evidence/cable_literature_review_v1.json",
+      "reviewed_sha256": "b92bc202e2d4320c18767539532a2bf022159657477d570b0e375cd8be3e53da",
+      "verified_against": "current_unchanged_file"
+    },
+    {
+      "path": "evidence/cable_cycle_decision_v1.json",
+      "reviewed_sha256": "2ef9fda36a579d61e676daff563773ff3239d0b56381a75e2cc19b59d82e847b",
+      "verified_against": "exact_pre_annotation_bytes"
+    },
+    {
+      "path": "configs/cable_extension_registration_v1.json",
+      "reviewed_sha256": "3c52db5219b94a6e1472f4f68717b6ef652f0bf2f231a41dd130f1de7684b16e",
+      "verified_against": "current_unchanged_file"
+    },
+    {
+      "path": "src/assembly_recovery/cable_robot.py",
+      "reviewed_sha256": "0ec856f7c5e7b87166f37d93466c4c25119c5b5b7921b4a4d4aa7358e06a7a56",
+      "verified_against": "current_unchanged_file"
+    },
+    {
+      "path": "src/assembly_recovery/cable_assets.py",
+      "reviewed_sha256": "34d2542666cd546d452913fd3c807ccf1d69144020600950386c975c8b35a4a3",
+      "verified_against": "current_unchanged_file"
+    },
+    {
+      "path": "src/assembly_recovery/cable_control.py",
+      "reviewed_sha256": "f081e70e62548124b7de1c92cd32dc9f5b4235f46c89a060a810e121c783c925",
+      "verified_against": "current_unchanged_file"
+    },
+    {
+      "path": "src/assembly_recovery/cable_jobs.py",
+      "reviewed_sha256": "1e00f2de4da8c935fd81e6e07f9e05d0c8d23431db985af0cceda8aa00abf0f3",
+      "verified_against": "current_unchanged_file"
+    },
+    {
+      "path": "src/assembly_recovery/cable_routes.py",
+      "reviewed_sha256": "fede8fa1e358d1c02ebf72fece2d75293aae85720a1c31a78bd9fbddff5f374c",
+      "verified_against": "current_unchanged_file"
+    },
+    {
+      "path": "scripts/evaluate_cable_insertion.py",
+      "reviewed_sha256": "b0dcb7b942cd4fe9e1607376ac0cc3a16fb98085f63a41531b8e7f1f10190370",
+      "verified_against": "current_unchanged_file"
+    },
+    {
+      "path": "scripts/probe_cable_robot.py",
+      "reviewed_sha256": "e4df39a5a045b0e427e6cb0be917f7422772f76668ece89f3b6a09b3be760f9c",
+      "verified_against": "current_unchanged_file"
+    },
+    {
+      "path": "scripts/probe_cable_retention.py",
+      "reviewed_sha256": "4988d892697b5be57b4c981a63e0d97650c951ef5ea786b8a86e1dc5f1ae8381",
+      "verified_against": "current_unchanged_file"
+    },
+    {
+      "path": "configs/cable_baseline_v2.json",
+      "reviewed_sha256": "fcfc614713292b1b5511b879cdbfc6d27d43a29bea33e9b60517128e193f6d4f",
+      "verified_against": "current_unchanged_file"
+    },
+    {
+      "path": "configs/cable_robot_v3.json",
+      "reviewed_sha256": "3aed7fb2184ac9858ef6aa94e065ce9a3d25de9551a62206836f9e7412dcaac6",
+      "verified_against": "current_unchanged_file"
+    },
+    {
+      "path": "configs/cable_retention_v2.json",
+      "reviewed_sha256": "5797f5cd8a6047d45d137e99148f1e28ab1e7007e68231f9448e9cd11e7ee358",
+      "verified_against": "current_unchanged_file"
+    },
+    {
+      "path": "configs/cable_extension_registration_v1.json",
+      "reviewed_sha256": "3c52db5219b94a6e1472f4f68717b6ef652f0bf2f231a41dd130f1de7684b16e",
+      "verified_against": "current_unchanged_file"
+    },
+    {
+      "path": "evidence/cable_baseline_v2.json",
+      "reviewed_sha256": "aa112b4aa1cd4c98aebb933399aab57a281a4f96fd0ea35b99833d49800e92a8",
+      "verified_against": "current_unchanged_file"
+    },
+    {
+      "path": "evidence/cable_robot_validation_v1.json",
+      "reviewed_sha256": "ab59ac2366cb857407cdf6a1dbf65d0fb09549dd8688648a53ed9b80a8e0e38c",
+      "verified_against": "current_unchanged_file"
+    },
+    {
+      "path": "evidence/cable_retention_v1.json",
+      "reviewed_sha256": "f40d11acd8fe1b9d5d1fcd49370d66d97c0c55d13ed7c7f38aa95e7d1776f3da",
+      "verified_against": "current_unchanged_file"
+    },
+    {
+      "path": "evidence/cable_baseline_v2.json",
+      "reviewed_sha256": "aa112b4aa1cd4c98aebb933399aab57a281a4f96fd0ea35b99833d49800e92a8",
+      "verified_against": "current_unchanged_file"
+    },
+    {
+      "path": "evidence/cable_robot_validation_v1.json",
+      "reviewed_sha256": "ab59ac2366cb857407cdf6a1dbf65d0fb09549dd8688648a53ed9b80a8e0e38c",
+      "verified_against": "current_unchanged_file"
+    },
+    {
+      "path": "evidence/cable_retention_v1.json",
+      "reviewed_sha256": "f40d11acd8fe1b9d5d1fcd49370d66d97c0c55d13ed7c7f38aa95e7d1776f3da",
+      "verified_against": "current_unchanged_file"
+    },
+    {
+      "path": "evidence/cable_cycle_decision_v1.json",
+      "reviewed_sha256": "2ef9fda36a579d61e676daff563773ff3239d0b56381a75e2cc19b59d82e847b",
+      "verified_against": "exact_pre_annotation_bytes"
+    },
+    {
+      "path": "evidence/cable_video_v1.json",
+      "reviewed_sha256": "b7cfa80d151aafa9302ef9d263f34fe2e6fd49e49541c37cf492f71fcb0bea35",
+      "verified_against": "current_unchanged_file"
+    },
+    {
+      "path": "evidence/cable_video_v1.jpg",
+      "reviewed_sha256": "7d8108dca3e617a7f460658da8115dbb4a946a4dd2e1ce9b933293467258f982",
+      "verified_against": "current_unchanged_file"
+    },
+    {
+      "path": "configs/cable_baseline_v2.json",
+      "reviewed_sha256": "fcfc614713292b1b5511b879cdbfc6d27d43a29bea33e9b60517128e193f6d4f",
+      "verified_against": "current_unchanged_file"
+    },
+    {
+      "path": "configs/cable_extension_registration_v1.json",
+      "reviewed_sha256": "3c52db5219b94a6e1472f4f68717b6ef652f0bf2f231a41dd130f1de7684b16e",
+      "verified_against": "current_unchanged_file"
+    },
+    {
+      "path": "scripts/evaluate_cable_insertion.py",
+      "reviewed_sha256": "b0dcb7b942cd4fe9e1607376ac0cc3a16fb98085f63a41531b8e7f1f10190370",
+      "verified_against": "current_unchanged_file"
+    },
+    {
+      "path": "src/assembly_recovery/cable_robot.py",
+      "reviewed_sha256": "0ec856f7c5e7b87166f37d93466c4c25119c5b5b7921b4a4d4aa7358e06a7a56",
+      "verified_against": "current_unchanged_file"
+    },
+    {
+      "path": "src/assembly_recovery/cable_jobs.py",
+      "reviewed_sha256": "1e00f2de4da8c935fd81e6e07f9e05d0c8d23431db985af0cceda8aa00abf0f3",
+      "verified_against": "current_unchanged_file"
+    },
+    {
+      "path": "src/assembly_recovery/cable_control.py",
+      "reviewed_sha256": "f081e70e62548124b7de1c92cd32dc9f5b4235f46c89a060a810e121c783c925",
+      "verified_against": "current_unchanged_file"
+    },
+    {
+      "path": ".deps/aic/docs/qualification_phase.md",
+      "reviewed_sha256": "f4223dd72641d965fad0d88f715a000ea42fa7d56c31cb3d6cb1d364b3601d15",
+      "verified_against": "current_unchanged_file"
+    },
+    {
+      "path": ".deps/aic/docs/scoring.md",
+      "reviewed_sha256": "7f6500f6425813bc0153e3a196e6b84277176fdff2eba8ad17d855fbc515cde8",
+      "verified_against": "current_unchanged_file"
+    },
+    {
+      "path": ".deps/aic/aic_gazebo/src/CablePlugin.cc",
+      "reviewed_sha256": "539d2ce5b2fbbd695be192da61d8d306e5968bc9638944b5d45c6d7efd731972",
+      "verified_against": "current_unchanged_file"
+    },
+    {
+      "path": ".deps/aic/aic_scoring/src/ScoringTier2.cc",
+      "reviewed_sha256": "4f627cc6d7d12f9ba6aa5a958e61d15c3e5b7a10ecedc4977288179b4bb92f2e",
+      "verified_against": "current_unchanged_file"
+    },
+    {
+      "path": ".deps/aic/aic_assets/models/SC Plug/model.sdf",
+      "reviewed_sha256": "aa1244982c496bc7c15bf344424155c4e1caf3f99368e541b71b7ec4d14dc38d",
+      "verified_against": "current_unchanged_file"
+    },
+    {
+      "path": ".deps/aic/aic_assets/models/SC Port/model.sdf",
+      "reviewed_sha256": "5c36ca164b0f76d0ea54fdca296133ee10ce132ae00ee8d18f4b1a55e2bb1ef5",
+      "verified_against": "current_unchanged_file"
+    },
+    {
+      "path": "artifacts/cable/cable-baseline-v2-r01/result.json",
+      "reviewed_sha256": "f03a146426e8e9dfd22c071afa88cfdbf86fc3b961591c15ec440b2e1ace465a",
+      "verified_against": "current_unchanged_file"
+    },
+    {
+      "path": "artifacts/cable/cable-baseline-v2-r01/layout0_offset__scripted_force_guided_retry/trajectory.npz",
+      "reviewed_sha256": "b5c1bf02164b2f424df17f8d696928a1eed92a52ae95694f0fd9886d024db440",
+      "verified_against": "current_unchanged_file"
+    },
+    {
+      "path": "artifacts/cable/cable-baseline-v2-r01/layout0_offset__scripted_continuation/trajectory.npz",
+      "reviewed_sha256": "ad42b992652aa569f7f37c8c19a365c2064e323632d8e7a42463132d872f7590",
+      "verified_against": "current_unchanged_file"
+    }
+  ],
+  "reference_checks_count": 41,
+  "original_cycle_fields_unchanged_except_explicit_annotation": true,
+  "runtime_source_unchanged": true,
+  "independent_review_hashes_match": true,
+  "prospective_seed_ranges_disjoint": true,
+  "study_config_is_prospective_not_executed": true,
+  "json_parsing": "passed",
+  "cpu_tests": {
+    "command": ".venv/Scripts/python.exe -m pytest -q",
+    "passed": 375,
+    "failed": 0,
+    "seconds": 5.08
+  },
+  "ruff": {
+    "command": ".venv/Scripts/python.exe -m ruff check src scripts tests",
+    "status": "passed"
+  },
+  "handover": {
+    "path": "artifacts/prompts/cable_recovery_audited_handover_20260910.txt",
+    "sha256": "cb4d6ff1091bedbdbb4d528163b2b43b2c55bc4b36045156148408c0d914ccda",
+    "words": 2465
+  },
+  "conceptual_figure": {
+    "path": "evidence/cable_research_task_v2.png",
+    "sha256": "ab96eaf866e3036997ef1aaf37eaa4f6466dd1fef16bf1338e201a6ec2ad1227",
+    "is_executed_scene": false,
+    "visually_reviewed_after_final_render": true
+  },
+  "audit_execution": {
+    "native_integration_steps": 0,
+    "training_jobs": 0,
+    "simulator_forward_calls": 0,
+    "simulator_render_calls": 0,
+    "read_only_model_compiles": 1
+  },
+  "simulator_queue_active": false,
+  "maintained_markdown_files": [
+    "AGENTS.md",
+    "README.md",
+    "ROADMAP.md"
+  ],
+  "scope": "Provenance preservation and audit/document checks only. This does not pass the proposed task/learning gates or reinterpret previous tests as scientific validation.",
+  "owner_ambition_consistency_checked": true,
+  "local_markdown_links_checked": 47,
+  "checker_note": "A text-encoding check initially flagged a question-mark range already present in the unchanged historical README section. The final check distinguishes preserved historical text from new audit text. No research result or historical numeric range was altered.",
+  "final_artifact_sha256": {
+    "AGENTS.md": "8ffda8d640d6d87735d0bb9eceb7245a3973b31cd357bc8b21401c095d668a3d",
+    "README.md": "c02f491f3ed598c805e1bb9e30898c442cd5294043a1c977f88bb3967c38b659",
+    "ROADMAP.md": "dcea5f799410189c6343c9c72a490dd6ee7e65aeba11d4a4fd687a360aaec734",
+    "configs/cable_recovery_study_v2.json": "e662cab4c2f14e3e03708c339d9e0cd872d56af913ecde45fa4972fcc31a4778",
+    "evidence/cable_direction_audit_v2.json": "4c092dba8d9fe4341be43c1505a5c0d06e9717d99531d726d08ebaa87d334340",
+    "evidence/cable_cycle_decision_v1.json": "cbe1be67e26513a7fbfcf1061a5dcc155512135d49bd06cecfe72a5c3277d1a9",
+    "scripts/plot_cable_research_task_v2.py": "a3c79167589884c0f7d3b42e13b759f7fd73ef948a3b4c75c0a3487245bd1649",
+    "evidence/cable_research_task_v2.png": "ab96eaf866e3036997ef1aaf37eaa4f6466dd1fef16bf1338e201a6ec2ad1227",
+    "evidence/cable_research_task_v2.svg": "5a08958515baf216537554e701ed9a32043b2e6e32f93e6ee866c5e777ea8934",
+    "evidence/cable_research_task_v2.pdf": "6456f390f4abb46a4530e4dbfbdc9825031f583a4f9aab0bd7c1df73c74a92d6"
+  },
+  "svg_whitespace_cleanup": "Matplotlib output whitespace normalized; parsed SVG elements and normalized attributes unchanged. No new simulation or plot content change."
+}

@@ -1,0 +1,379 @@
+{
+  "schema": 1,
+  "audit_id": "cable_technical_audit_v2",
+  "created_on": "2026-09-10",
+  "status": "source_and_compile_only_audit_complete_no_dynamics",
+  "scope": "Current project-owned native cable adapter, scripted workers, configs and maintained cable evidence. This audit identifies readiness gaps for a connector/cable coupling and recovery study; it does not rerun, retract or replace the scoped held-seating and isolated-retention measurements.",
+  "source": {
+    "commit": "6de7869a8919b62e05816f7fac285600d650e8b0",
+    "working_tree_observed_clean_before_audit_artifact": true,
+    "aic_revision": "e9145480c945f2afc3741f355233f44082cc3b06",
+    "hashes": {
+      "src/assembly_recovery/cable_robot.py": "0ec856f7c5e7b87166f37d93466c4c25119c5b5b7921b4a4d4aa7358e06a7a56",
+      "src/assembly_recovery/cable_assets.py": "34d2542666cd546d452913fd3c807ccf1d69144020600950386c975c8b35a4a3",
+      "src/assembly_recovery/cable_control.py": "f081e70e62548124b7de1c92cd32dc9f5b4235f46c89a060a810e121c783c925",
+      "src/assembly_recovery/cable_jobs.py": "1e00f2de4da8c935fd81e6e07f9e05d0c8d23431db985af0cceda8aa00abf0f3",
+      "src/assembly_recovery/cable_routes.py": "fede8fa1e358d1c02ebf72fece2d75293aae85720a1c31a78bd9fbddff5f374c",
+      "scripts/evaluate_cable_insertion.py": "b0dcb7b942cd4fe9e1607376ac0cc3a16fb98085f63a41531b8e7f1f10190370",
+      "scripts/probe_cable_robot.py": "e4df39a5a045b0e427e6cb0be917f7422772f76668ece89f3b6a09b3be760f9c",
+      "scripts/probe_cable_retention.py": "4988d892697b5be57b4c981a63e0d97650c951ef5ea786b8a86e1dc5f1ae8381",
+      "configs/cable_baseline_v2.json": "fcfc614713292b1b5511b879cdbfc6d27d43a29bea33e9b60517128e193f6d4f",
+      "configs/cable_robot_v3.json": "3aed7fb2184ac9858ef6aa94e065ce9a3d25de9551a62206836f9e7412dcaac6",
+      "configs/cable_retention_v2.json": "5797f5cd8a6047d45d137e99148f1e28ab1e7007e68231f9448e9cd11e7ee358",
+      "configs/cable_extension_registration_v1.json": "3c52db5219b94a6e1472f4f68717b6ef652f0bf2f231a41dd130f1de7684b16e",
+      "evidence/cable_baseline_v2.json": "aa112b4aa1cd4c98aebb933399aab57a281a4f96fd0ea35b99833d49800e92a8",
+      "evidence/cable_robot_validation_v1.json": "ab59ac2366cb857407cdf6a1dbf65d0fb09549dd8688648a53ed9b80a8e0e38c",
+      "evidence/cable_retention_v1.json": "f40d11acd8fe1b9d5d1fcd49370d66d97c0c55d13ed7c7f38aa95e7d1776f3da"
+    }
+  },
+  "execution": {
+    "new_native_steps": 0,
+    "new_mj_forward_calls": 0,
+    "new_model_compilations": 1,
+    "new_renders": 0,
+    "new_training_jobs": 0,
+    "changes": "Only this audit JSON; source/config fixes and experiment launches were not performed.",
+    "method": "Numbered source inspection, bounded maintained-evidence reads, source hashing and pinned official MuJoCo documentation. One read-only MjModel load of an existing recorded scene checked actual cable mass; no MjData, forward, step, render or new capacity benchmark.",
+    "new_mjdata_instances": 0
+  },
+  "conclusion": {
+    "decision": "retain_existing_scoped_results_block_coupling_and_learning_until_physical_and_instrumentation_gates",
+    "observed_result": "Maintained evidence reports held seating 6/6 for force-guided control versus 3/6 continuation; guided actions produced no witnessed recovery. The isolated rigid connector releases under positive extraction load.",
+    "agreement": "README/ROADMAP and evidence already disclose the major physical limits. The missing runtime guards and cadence coupling need explicit treatment in the next implementation. A source helper or a Boolean default is not a validated sensor.",
+    "next_action": "Specify a passive retention/load boundary with seated, unseated and release controls. In the same successor task specification, freeze real clip/load instrumentation, root mechanics, fixed physical controller cadence and replayable native job samples before any coupling screen."
+  },
+  "findings": [
+    {
+      "id": "TA01",
+      "priority": "P0",
+      "kind": "known_physical_gate_and_unimplemented_extension",
+      "title": "The runtime implements held seating with a free distal cable, without physical connection retention or clip support",
+      "source_refs": [
+        "src/assembly_recovery/cable_robot.py:156",
+        "src/assembly_recovery/cable_robot.py:161",
+        "src/assembly_recovery/cable_robot.py:195",
+        "scripts/evaluate_cable_insertion.py:155",
+        "scripts/evaluate_cable_insertion.py:164",
+        "scripts/evaluate_cable_insertion.py:167",
+        "scripts/probe_cable_retention.py:60",
+        "scripts/probe_cable_retention.py:167",
+        "src/assembly_recovery/cable_routes.py:90"
+      ],
+      "evidence_refs": [
+        "evidence/cable_retention_v1.json:11",
+        "evidence/cable_retention_v1.json:19",
+        "evidence/cable_baseline_v2.json:1129",
+        "configs/cable_extension_registration_v1.json:49"
+      ],
+      "finding": "The plug is a fixed child of the tool. The evaluation supplies zero anchor and post loads, True for clip and grasp retention, and detector contact for engagement. No required clip, earlier connected end or post is built in this scene. Geometric clip_passages is an unconnected helper. The retention worker's fixed-axis slide suppresses five escape degrees of freedom and never releases a gripper.",
+      "consequence": "No current result measures a completed retained connection, physical clip loss or coupled local/distal recovery. Hard-coded True grasp retention is an honest model assumption for these diagnostics, not a sensor or a grasp-strength test.",
+      "practical_fix": "Implement and independently validate the passive final-connection/load model first. Then add actual open clip/post/anchor geometry with measured load and geometric release predicates. Preserve fixed-grasp scope if useful; do not replace it with unnecessary learned pickup. Keep absent features explicit rather than passing placeholder samples to an extension evaluator.",
+      "acceptance": "Positive seated load, shallow/unseated negative, and physically achievable release controls; required clip capture and deliberate release; robot repair witness at both registered resolutions without forbidden mutation.",
+      "impact_on_existing_results": "None within disclosed held-seating and one-axis-retention scope; blocks promotion to complete connection or coupling."
+    },
+    {
+      "id": "TA02",
+      "priority": "P1",
+      "kind": "runtime_guard_missing",
+      "title": "Mutation counters are accepted by bookkeeping but never instrumented by the native evaluator",
+      "source_refs": [
+        "src/assembly_recovery/cable_jobs.py:3",
+        "src/assembly_recovery/cable_jobs.py:50",
+        "src/assembly_recovery/cable_jobs.py:96",
+        "scripts/evaluate_cable_insertion.py:155",
+        "scripts/evaluate_cable_insertion.py:170",
+        "src/assembly_recovery/cable_robot.py:102",
+        "tests/test_cable_jobs.py:77",
+        "tests/test_cable_robot.py:15",
+        "src/assembly_recovery/cable_control.py:3"
+      ],
+      "finding": "CableSample defaults forbidden_events to zero, and run_case never supplies a measured counter. The unit test injects a counter manually; it does not detect a native pose/reset/attachment write. Source inspection found qpos writes only during scene initialization and controls only writing ctrl, so this is a missing fail-closed runtime mechanism, not evidence that a forbidden mutation occurred. The cable_control module docstring overstates runtime grasp/retention validation.",
+      "consequence": "A future controller or helper can reset, write state or change an equality/site attachment while leaving CableJob active. Existing source-review assurances cannot be presented as executed native mutation guards.",
+      "practical_fix": "Put job actions behind a narrow controller interface; audit state/model/attachment mutations around controller calls and count explicit reset/initialization APIs. Compare immutable attachment/model definitions and native clock continuity during the job. Keep simulator integration state changes distinct from controller writes. Correct the helper docstring.",
+      "acceptance": "CPU injected controller pose/velocity/attachment mutations and reset calls fail the same job; native clock rewind or attachment-definition change is recorded and terminal. Store counters in per-step or event evidence.",
+      "impact_on_existing_results": "No detected forbidden event; instrumentation is required before new recovery comparisons."
+    },
+    {
+      "id": "TA03",
+      "priority": "P1",
+      "kind": "physical_boundary_and_discretization_gap",
+      "title": "The cable root cannot transmit a direct elastic boot moment, and material/spatial fidelity remains unvalidated",
+      "source_refs": [
+        "src/assembly_recovery/cable_robot.py:49",
+        "src/assembly_recovery/cable_robot.py:69",
+        "src/assembly_recovery/cable_robot.py:83",
+        "src/assembly_recovery/cable_robot.py:89",
+        "src/assembly_recovery/cable_robot.py:96",
+        "configs/cable_robot_v3.json:40",
+        "configs/cable_extension_registration_v1.json:40",
+        "configs/cable_extension_registration_v1.json:79"
+      ],
+      "official_sources": [
+        "https://mujoco.readthedocs.io/en/3.3.7/XMLreference.html#equality-connect",
+        "https://mujoco.readthedocs.io/en/3.3.7/modeling.html#composite-objects"
+      ],
+      "finding": "The 0.96 m cable uses 24 segments (nominal 40 mm each), an inextensible composite chain, straight material rest shape and a permanent point-connect at the plug. A point-connect permits free relative rotation: force and its lever-arm moment transfer, but no direct elastic root bending/twist couple. One read-only compilation of the saved scene measures cable mass 0.0533333336171 kg, 6.67% above linear_density*length=0.05 kg because each capsule contributes end-cap volume. Material values remain uncalibrated project parameters. No spatial segment-refinement dynamics were executed.",
+      "consequence": "A proposed effect driven by boot stiffness, axial stretch, small clip geometry or connector torque can be absent or solver-dependent by construction. The cylinder-area density formula does not itself verify compiled capsule-chain mass.",
+      "practical_fix": "Declare the intended cable/boot physical model and supported load modes. Freeze intended mass and conserve actual compiled mass, centerline/rest length and constitutive bending/twist behavior in 24/48-link checks; unchanged radius/density alone changes total capsule mass. Measure root separation/reaction, free-hang shape and bending/twist response. Justify a freely rotating root or introduce independently supported boot compliance. Preserve earlier results if physical mass is corrected.",
+      "acceptance": "Positive force and moment controls in declared frames, mass/length checks, bounded geometry/material/root sensitivity and feasible slack-preserving repairs. Calibration can be literature-backed; hardware measurement is not assumed.",
+      "impact_on_existing_results": "Acceptable disclosed free-cable engineering approximation; mechanism claims need additional validation.",
+      "compile_only_mass_check": {
+        "source_scene": "artifacts/cable/cable-robot-v3-r01/robot_cable_025ms/scene.xml",
+        "source_scene_sha256": "52631930b699dd7f2f23fcfcc82afb338fb38e5677e76c2a160e66a23ef09bee",
+        "runtime": "MuJoCo 3.3.7 via .deps/cable-venv/Scripts/python.exe",
+        "method": "MjModel.from_xml_path on the unchanged saved scene; sum model.body_mass for body names starting cable_. No MjData construction, integration, forward pass, render or model rewrite.",
+        "cable_bodies": 24,
+        "cable_capsules": 24,
+        "measured_compiled_mass_kg": 0.053333333617103504,
+        "declared_linear_density_times_length_kg": 0.04999999999999997,
+        "mass_excess_fraction": 0.06666667234206991,
+        "native_steps": 0,
+        "mj_forward_calls": 0,
+        "model_compilations": 1,
+        "elapsed_seconds_for_model_compile_and_inspection": 0.10874110000440851,
+        "analytical_refinement_warning": {
+          "formula": "mass = linear_density*length + segments*(4/3)*radius*linear_density",
+          "capsule_mass_at_48_segments_kg": 0.05666666666666663,
+          "increase_over_24_segment_analytic_mass_fraction": 0.0625,
+          "scope": "Geometry/density arithmetic, not a compiled 48-link model or measured dynamic effect. Spatial refinement must conserve the chosen physical mass and constitutive model."
+        }
+      }
+    },
+    {
+      "id": "TA04",
+      "priority": "P1",
+      "kind": "numerical_comparison_confound",
+      "title": "Changing dt changes servo and feedback cadence as well as the integrator",
+      "source_refs": [
+        "scripts/probe_cable_robot.py:97",
+        "scripts/probe_cable_robot.py:106",
+        "scripts/probe_cable_robot.py:108",
+        "scripts/evaluate_cable_insertion.py:41",
+        "scripts/evaluate_cable_insertion.py:114",
+        "scripts/evaluate_cable_insertion.py:131",
+        "scripts/evaluate_cable_insertion.py:138",
+        "scripts/probe_cable_retention.py:174",
+        "configs/cable_extension_registration_v1.json:267"
+      ],
+      "evidence_refs": [
+        "configs/cable_robot_v3.json:92",
+        "evidence/cable_robot_validation_v1.json:746"
+      ],
+      "finding": "The impedance controller recomputes Cartesian feedback, Jacobians, qfrc_bias and actuator commands every native step. The 0.5/0.25 ms robot pair therefore changes this cadence from 2 to 4 kHz. The insertion evaluator holds force-guided high-level commands at 50 Hz, but still updates impedance every dt; continuation updates its ramp every dt. Retention approach velocity damping also updates every dt, while its load phase is constant force.",
+      "consequence": "The existing pair measures combined simulation/control-discretization sensitivity, not an integration-only effect. No source-level inference identifies which change caused the observed cable differences.",
+      "practical_fix": "Register independent physical policy, servo and observation periods; hold torque and sampled inputs between their ticks while retaining native-rate terminal load checks. Validate integer tick ratios instead of silently rounding, and store actual timestamps. Re-run representative paired tasks only after the physical model is frozen.",
+      "acceptance": "Across dt, identical physical control/sensor schedules and held-input conventions; exact timing manifest and source-captured controls. Two timesteps still establish sensitivity, not convergence.",
+      "impact_on_existing_results": "Preserve original results. Add this scope qualifier; no claim that their recorded outcomes are false."
+    },
+    {
+      "id": "TA05",
+      "priority": "P1",
+      "kind": "load_observability_gap",
+      "title": "Robot contact scalars do not identify cable tension, clip reaction or directional coupling",
+      "source_refs": [
+        "src/assembly_recovery/cable_robot.py:252",
+        "src/assembly_recovery/cable_robot.py:264",
+        "src/assembly_recovery/cable_robot.py:270",
+        "scripts/evaluate_cable_insertion.py:35",
+        "scripts/probe_cable_retention.py:85",
+        "scripts/probe_cable_retention.py:99",
+        "scripts/probe_cable_retention.py:221"
+      ],
+      "evidence_refs": [
+        "evidence/cable_retention_v1.json:35",
+        "evidence/cable_robot_validation_v1.json:758",
+        "evidence/cable_baseline_v2.json:1128"
+      ],
+      "official_sources": [
+        "https://mujoco.readthedocs.io/en/3.3.7/XMLreference.html#sensor-force"
+      ],
+      "finding": "plug_port_contact_n and other_contact_n sum each contact-force norm; opposing contact forces do not cancel. All non-plug/port contacts are pooled. Wrist/plug channels are force-sensor norms, including dynamic and gravity loads, not pure contact force or cable tension. wrist_world correctly rotates the site-frame force vector for the controller, but saved native records retain only magnitudes. The isolated retention worker correctly forms a signed world resultant and has recorded force-balance checks.",
+      "consequence": "These scalar streams can witness contact but cannot support a claim that a specific repair reduced distal tension or prior-clip load. There is no detected frame-sign error in the reviewed retention path; it should be retained as a useful measurement pattern.",
+      "practical_fix": "Add exact cable-post, cable-clip, cable-robot and connector contact groups; report both sum-of-norms and signed resultants. Instrument anchor/root reactions and a declared tension quantity with actual units, frames and sign. Save raw wrist force/torque vectors and the transforms used for compensation. Do not relabel scalar contact sums as net forces.",
+      "acceptance": "Free/loaded and positive/negative directional controls for each load channel, force/torque balance where applicable, and distinct sensor-proxy versus physical quantity names.",
+      "impact_on_existing_results": "Scalar contact witnesses and raw sensor-norm limits remain valid in their stated scope; coupling observability is absent."
+    },
+    {
+      "id": "TA06",
+      "priority": "P1",
+      "kind": "native_verdict_replay_gap",
+      "title": "Native force checks are preserved, but full native job predicates cannot be independently replayed",
+      "source_refs": [
+        "scripts/evaluate_cable_insertion.py:79",
+        "scripts/evaluate_cable_insertion.py:140",
+        "scripts/evaluate_cable_insertion.py:155",
+        "scripts/evaluate_cable_insertion.py:172",
+        "scripts/evaluate_cable_insertion.py:186",
+        "scripts/probe_cable_robot.py:163",
+        "scripts/probe_cable_robot.py:178",
+        "src/assembly_recovery/cable_jobs.py:108",
+        "src/assembly_recovery/cable_jobs.py:127"
+      ],
+      "evidence_refs": [
+        "evidence/cable_baseline_v2.json:1127",
+        "evidence/cable_baseline_v2.json:1128"
+      ],
+      "finding": "The baseline stores per-native-step force magnitudes, but poses, targets, qvel and ctrl only every 10 ms plus terminal state. It does not store every CableSample or controller input. Exact native dwell, commanded/achieved stall progress and precontact world-vector averaging cannot be reconstructed from those sparse arrays. The maintained evidence explicitly discloses this limitation.",
+      "consequence": "Future witnessed-recovery and clip-loss labels would depend on worker assertions without independent exact event replay. Saved-state video is useful illustration, not native verdict verification.",
+      "practical_fix": "Persist the compact native evaluation fields and mutation/retention events needed to recompute every terminal and witness predicate. Store controller observations/actions at controller ticks, plus raw/compensated vectors and frame transforms. Full images or full qpos at every native step are unnecessary if sufficient event data is retained.",
+      "acceptance": "An independent recorded-array checker exactly reproduces each first witness, dwell, clip-loss, limit violation, timeout and denominator, including terminal samples.",
+      "impact_on_existing_results": "No retraction; existing reports distinguish native worker verdicts from independent force-stream checks."
+    },
+    {
+      "id": "TA07",
+      "priority": "P1",
+      "kind": "action_authority_manifest_gap",
+      "title": "Finite torque control is real, but its limits do not establish the action authority needed for every proposed repair",
+      "source_refs": [
+        "src/assembly_recovery/cable_robot.py:168",
+        "src/assembly_recovery/cable_robot.py:234",
+        "src/assembly_recovery/cable_robot.py:239",
+        "src/assembly_recovery/cable_robot.py:241",
+        "src/assembly_recovery/cable_control.py:40",
+        "src/assembly_recovery/cable_control.py:77",
+        "scripts/evaluate_cable_insertion.py:42",
+        "configs/cable_extension_registration_v1.json:75"
+      ],
+      "finding": "Cartesian force and torque are clipped per component, not by vector norm: a 15 N component limit permits up to sqrt(3)*15 N commanded norm before joint clipping. Joint torques are subsequently clipped to finite registered values. Tool orientation stays fixed. The 4 mm/s bound limits reference slew only; there is no measured tool-speed or workspace envelope. Baseline run_case discards the returned joint-saturation telemetry.",
+      "consequence": "A nominal target path or geometric slack pass cannot prove a robot can execute a lift, rotation or withdrawal under these actual clamps. The current force limit names can be mistaken for physical contact ceilings.",
+      "practical_fix": "Freeze translation/orientation authority, component-versus-norm conventions, joint limits, target and achieved motion ranges, and saturation telemetry. Demonstrate each admitted repair with the actual controller. If a norm limit or rotational action is introduced, version the task and rerun affected arms.",
+      "acceptance": "Robot-driven collision-free repair witnesses with recorded achieved speed/pose, load and actuator saturation at each resolution; no unsupported roll/pitch/twist faults.",
+      "impact_on_existing_results": "No torque-limit bypass found. Existing 20 N abort remains a separate post-solve failure criterion, not a force-safety guarantee."
+    },
+    {
+      "id": "TA08",
+      "priority": "P2",
+      "kind": "disclosed_privilege_and_causal_scope",
+      "title": "Exact-model feedforward and actual target poses are common idealizations, and compensation benefit was not isolated",
+      "source_refs": [
+        "src/assembly_recovery/cable_robot.py:213",
+        "src/assembly_recovery/cable_robot.py:241",
+        "scripts/evaluate_cable_insertion.py:95",
+        "scripts/evaluate_cable_insertion.py:121",
+        "scripts/evaluate_cable_insertion.py:131",
+        "configs/cable_extension_registration_v1.json:147"
+      ],
+      "evidence_refs": [
+        "evidence/cable_baseline_v2.json:1117",
+        "evidence/cable_baseline_v2.json:1119",
+        "evidence/cable_baseline_v2.json:1125"
+      ],
+      "official_sources": [
+        "https://mujoco.readthedocs.io/en/3.3.7/computation/index.html#general-framework"
+      ],
+      "finding": "Both workers apply exact model qfrc_bias to arm DOFs. It includes modeled gravity and velocity bias; it is not merely the measured constant precontact wrist offset. The current free cable is a separate world-rooted tree connected by an equality, so this arm-bias term is not a direct measurement/subtraction of its contact or root-reaction load. The strong baseline aligns to the exact port; continuation ignores lateral correction. Guided success therefore does not isolate a force-compensation effect.",
+      "consequence": "Simulator-state control is an acceptable common interface, but cannot be presented as perception, a sensor-only policy, or a learned recovery result. Removing truth to manufacture failure would change the scientific question.",
+      "practical_fix": "Keep the common exact-model interface if it fits the question and publish a precise input/action-transform manifest. If compensation becomes the mechanism under test, add a matched ablation with identical alignment/controller authority. Only add learning after a competent equal-information controller leaves reproducible feasible failures.",
+      "acceptance": "All arms share robot bias feedforward, target knowledge and raw limits; matched action/input records and independent failure-cohort accounting.",
+      "impact_on_existing_results": "Maintained evidence already has the appropriate prevention and non-causal labels."
+    },
+    {
+      "id": "TA09",
+      "priority": "P2",
+      "kind": "fixture_scope",
+      "title": "The port is a world-fixed reachable fixture without explicit support geometry",
+      "source_refs": [
+        "src/assembly_recovery/cable_robot.py:128",
+        "src/assembly_recovery/cable_robot.py:150",
+        "src/assembly_recovery/cable_robot.py:187",
+        "src/assembly_recovery/cable_robot.py:195",
+        "src/assembly_recovery/cable_robot.py:208"
+      ],
+      "finding": "The port has no free joint and is placed from initial robot forward kinematics plus approach distance. It is fixed to the world, not a dynamically floating fixture. There is no added board or fixture-support body beneath it, and the scene has no routed clip layout.",
+      "consequence": "This is mechanically consistent as an infinitely rigid boundary for a small seating diagnostic. It omits board/support collision clearance and fixture compliance relevant to realistic cable routing and complete repairs.",
+      "practical_fix": "Declare the fixed fixture boundary explicitly. Add the physical board/support and obstacle geometry that can constrain a repair before claiming layout reachability; add compliance only when supported by the chosen physical question.",
+      "acceptance": "Measured initialization and full swept repair clearance with the final fixed layout and shared board frame.",
+      "impact_on_existing_results": "Do not call the port dynamically floating or invalidate the isolated retention test for absent cosmetic support."
+    },
+    {
+      "id": "TA10",
+      "priority": "P2",
+      "kind": "capacity_and_cost_inference",
+      "title": "The measured serial CPU diagnostic rate supports small experiments, not an assumed large training campaign",
+      "source_refs": [
+        "scripts/evaluate_cable_insertion.py:41",
+        "scripts/evaluate_cable_insertion.py:100",
+        "scripts/evaluate_cable_insertion.py:178",
+        "scripts/evaluate_cable_insertion.py:186",
+        "src/assembly_recovery/cable_jobs.py:119",
+        "src/assembly_recovery/cable_jobs.py:128",
+        "configs/cable_baseline_v2.json:132"
+      ],
+      "evidence_refs": [
+        "evidence/cable_baseline_v2.json:1030",
+        "evidence/cable_baseline_v2.json:1033"
+      ],
+      "finding": "The recorded main block executes 721159 native steps in 405.375 launcher seconds at 0.25 ms. Each native step includes a separate post-step forward solve, Python sensor/contact loops and job bookkeeping. The stall window scans stored samples at native rate. No optimizer, vectorized training or stable multienvironment throughput was measured.",
+      "derived_capacity": {
+        "source_native_steps": 721159,
+        "source_launcher_wall_seconds": 405.375,
+        "native_steps_per_wall_second": 1778.9922910884984,
+        "simulated_seconds_per_wall_second": 0.4447480727721246,
+        "nominal_steps_per_50hz_action_interval": 80,
+        "nominal_50hz_action_intervals_per_wall_second": 22.23740363860623,
+        "hours_for_one_million_50hz_intervals_at_unchanged_rate": 12.491466283209851,
+        "scope": "Arithmetic normalization and constant-rate planning extrapolation only. Includes the recorded diagnostic overhead; excludes optimizer/evaluation additions and assumes no speedup. It is neither a training benchmark nor a measured upper/lower capacity bound."
+      },
+      "practical_fix": "After physical gates, profile a small representative headless rollout including all required sensing/accounting and optimizer work. Separate build/render, stepping, controller, contact, logging and learner costs. Investigate streaming window aggregates and precomputed contact IDs only after profiling, preserving verdicts. Measure supported parallelism rather than reusing peg capacity.",
+      "acceptance": "Sustained task-specific steps, action intervals, simulated seconds, optimizer updates, RAM/VRAM and complete-job cost with bounded jobs and verification reserve.",
+      "impact_on_existing_results": "Current CPU runs remain inexpensive diagnostic evidence; substantial training should wait for actual capacity and residual-failure support."
+    }
+  ],
+  "sampling_and_abort_review": {
+    "source_refs": [
+      "scripts/evaluate_cable_insertion.py:41",
+      "scripts/evaluate_cable_insertion.py:47",
+      "src/assembly_recovery/cable_jobs.py:94",
+      "scripts/probe_cable_robot.py:111",
+      "scripts/probe_cable_robot.py:168",
+      "scripts/probe_cable_retention.py:184",
+      "scripts/probe_cable_retention.py:231"
+    ],
+    "finding": "Current workers preserve native-solve loads before mj_forward and use max(native_solve, postforward) for abort/peak checks. This matches maintained evidence. The original solve and refreshed endpoint are distinct force samples, not interchangeable copies. Insertion job bookkeeping checks load before simultaneous completion. Probe seating flags can be set before a later abort, but valid_seating_attempt/acceptance reject aborted trials.",
+    "recommendation": "Freeze and retain this two-sample convention in any successor or version a change explicitly. Store both timestamps and streams. Aborting after the solve records a failed load excursion; it does not prevent the first excursion or certify hardware safety.",
+    "finding_not_made": "No postforward-only abort bug was found in the current workers. Historical weaker sampling already has explicit superseded interpretation."
+  },
+  "acceptable_disclosed_idealizations": [
+    "Fixed preset grasp can isolate cable and connector behavior; it cannot validate pickup, grip strength or drop recovery.",
+    "World-fixed port and aligned one-axis retention fixture are reasonable bounded controls with their scope stated.",
+    "Exact simulator poses and model bias feedforward are valid common comparator inputs if frozen and reported.",
+    "Contact-force sum-of-norms is a useful positive-contact witness when named accurately; it is not a signed resultant.",
+    "Inextensible cable and freely rotating root can define a chosen model, provided the proposed mechanism does not silently assume omitted axial/root mechanics."
+  ],
+  "practical_order": [
+    "Specify the physical retention/load model and preserve the rigid SC negative control.",
+    "Build real connected-end/clip/post measurements, load controls and explicit boot/material boundaries.",
+    "Add native mutation guards and exact compact job-predicate replay data.",
+    "Freeze action/input manifests and independent physical policy/servo/sensor cadence.",
+    "Execute small positive/negative/release and feasible-repair controls, including spatial and temporal sensitivity.",
+    "Measure competent scripted residual failures and task-specific capacity; only then decide whether learning is justified."
+  ],
+  "external_primary_references": [
+    {
+      "title": "MuJoCo 3.3.7 equality/connect and force-sensor semantics",
+      "url": "https://mujoco.readthedocs.io/en/3.3.7/XMLreference.html"
+    },
+    {
+      "title": "MuJoCo 3.3.7 cable composite model",
+      "url": "https://mujoco.readthedocs.io/en/3.3.7/modeling.html#composite-objects"
+    },
+    {
+      "title": "MuJoCo 3.3.7 generalized bias and constraint forces",
+      "url": "https://mujoco.readthedocs.io/en/3.3.7/computation/index.html#general-framework"
+    }
+  ],
+  "scope_and_limitations": [
+    "Source-level mechanisms and readiness gaps are observations; predicted effects on future coupling outcomes remain unmeasured.",
+    "One existing saved scene was loaded into MjModel to inspect compiled mass. No new dynamic state, forward pass, physics step, rendering, training, raw-trajectory replay or CPU capacity benchmark was performed.",
+    "Existing evidence files were read within their declared scope; original numerical results and negative outcomes remain unchanged.",
+    "The current runtime is an engineering adapter, not executed official Gazebo/ROS AIC scoring.",
+    "No hardware access, connector transfer, force-certified safety or learned-policy result is assumed."
+  ],
+  "verification": {
+    "json_valid": true,
+    "source_hashes_checked": 15,
+    "file_line_references_checked": 100,
+    "failed_checks": [],
+    "scope": "Source/evidence hashes and existence/range of referenced lines; no independent replay of native task outcomes."
+  }
+}

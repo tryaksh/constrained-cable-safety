@@ -415,5 +415,14 @@
       "evidence/cable_retention_v1.pdf",
       "evidence/cable_robot_validation_v1.pdf"
     ]
+  },
+  "superseded_interpretation": {
+    "by": "evidence/cable_direction_audit_v2.json",
+    "date": "2026-09-10",
+    "original_file_sha256": "2ef9fda36a579d61e676daff563773ff3239d0b56381a75e2cc19b59d82e847b",
+    "superseded_claim": "Passive SC retention must be solved before any further cable recovery study.",
+    "replacement": "The measured retention failure still blocks released/final-connection claims. A separately registered pre-release, retained-grasp task with a physical required clip can proceed after its own task/physics/observation/failure gates pass; passive SC latching is not its prerequisite.",
+    "why": "Pinned AIC abstracts terminal connection using touch/attachment logic; the isolated passive-pull test is a stricter project extension. The current experiment also lacks physical clips/snags and a demonstrated residual strong-baseline failure, which remain the real learning prerequisites.",
+    "unchanged": "All original numerical measurements, run IDs, costs, failed outcomes and original decision fields are preserved. No earlier run is rescored or relabelled as recovery."
   }
 }

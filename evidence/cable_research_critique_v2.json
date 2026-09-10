@@ -1,0 +1,156 @@
+{
+  "schema_version": 1,
+  "evidence_id": "cable_research_critique_v2",
+  "reviewed_at_utc": "2026-09-10T23:18:18Z",
+  "status": "independent_read_only_research_audit_with_prospective_recommendations",
+  "scope": "Scientific question, prior-art differentiation and minimum useful experiment. This file records an audit, not a new experiment registration or authorization to train.",
+  "decision": {
+    "current_result": "A useful native engineering baseline and a specific rigid-model retention failure; no learned-method result and no demonstrated residual failure of a competent cable-aware recovery method.",
+    "joint_prediction": "An identifiable experimental hypothesis only after defining the mechanism and ruling out competent factored alternatives. Combining existing ingredients is not itself an established original contribution.",
+    "recommended_next_session": "Version the endpoint and physical scope first. Prefer a bounded retained-grasp, pre-release connector recovery assay with one physically escapable required clip and one clearable post, as an explicitly narrower diagnostic. Demonstrate a residual decision problem before any learning.",
+    "latch_dependency": "Passive SC retention is required for the existing final-released-connection claim and an SC-connected prior end. It is not logically required for recovery that retains the current grasp and ends at explicitly labeled pre-release seating/contact/dwell.",
+    "training": "Do not begin a substantial RL or graph-dynamics campaign. If physical support and strong-baseline failure are demonstrated, start with a bounded action-outcome ranker over validated repair primitives."
+  },
+  "local_source_provenance": {
+    "commit": "6de7869a8919b62e05816f7fac285600d650e8b0",
+    "working_tree_at_initial_audit": "git status --short returned no entries before this file was created; concurrent agents may subsequently edit their owned files",
+    "sha256": {
+      "AGENTS.md": "584d0606f37d289e928a204fc2c3ddd3bc91d3752d9158dee2deceaff7b2751f2",
+      "README.md": "b933c8c0e1ced7804206177a1101591aa6247c17fc094395e3636daa4cbc2eee",
+      "ROADMAP.md": "67be29b9cdf0732d694567c1a984ab40f80730b1d49c0293874b74afecb9c9b2",
+      "evidence/cable_literature_review_v1.json": "b92bc202e2d4320c18767539532a2bf022159657477d570b0e375cd8be3e53da",
+      "evidence/cable_cycle_decision_v1.json": "2ef9fda36a579d61e676daff563773ff3239d0b56381a75e2cc19b59d82e847b",
+      "configs/cable_extension_registration_v1.json": "3c52db5219b94a6e1472f4f68717b6ef652f0bf2f231a41dd130f1de7684b16e"
+    },
+    "artifact_ownership": "Only evidence/cable_research_critique_v2.json was written by this audit agent."
+  },
+  "observed_project_facts": [
+    {
+      "fact": "Force-guided observed-pose alignment with precontact compensation seated 6/6 small deterministic development requests, with zero witnessed stalls and zero retries; continuation seated 3/6.",
+      "source": "evidence/cable_cycle_decision_v1.json",
+      "interpretation": "This establishes local prevention and implementation competence. It neither establishes recovery from a competent first-attempt failure nor a limitation requiring learning."
+    },
+    {
+      "fact": "The six axial fixtures all seated; 0.5/2 N net extraction caused loss at both tested resolutions with no opposing extraction contact. The fixture constrains lateral motion and orientation.",
+      "source": "evidence/cable_cycle_decision_v1.json",
+      "interpretation": "A rigid-model axial retention limit. It is not a real SC connector load specification and is not negative evidence about the value of learned recovery."
+    },
+    {
+      "fact": "The extension registration already includes event-driven common failure, a local-error by snag factorial, compensation, visible-snag rules, a cable planner, a history-bearing learned baseline and prediction before control. Essential physical dimensions, thresholds and observation manifests remain pending.",
+      "source": "configs/cable_extension_registration_v1.json",
+      "interpretation": "The staged structure is sensible. Its missing element is measured physical support and a sharply defined candidate mechanism, not a larger list of architectures or papers."
+    }
+  ],
+  "primary_source_audit": [
+    {
+      "id": "wilson_2023",
+      "title": "Cable Routing and Assembly using Tactile-driven Motion Primitives",
+      "source": "https://arxiv.org/html/2303.11765v1",
+      "access": "Full HTML; IV-B4, V-B, V-C and discussion inspected directly on the review date.",
+      "observed": "Tactile insertion maintains contact force during rotary exploration and retreats to resampled locations after failed exploration. Separate evaluations report 48/50 isolated insertions and 51/60 complete pipelines; the latter includes stuck cables and loss of earlier fixtures. Authors identify global changes missed by local tactile signals.",
+      "implication": "Tactile retries, tension control and preserving earlier routing already matter in prior work. Compare with global cable observations plus force-guided correction; beating blind continuation is insufficient."
+    },
+    {
+      "id": "luo_2024",
+      "title": "Multi-Stage Cable Routing through Hierarchical Imitation Learning",
+      "source": "https://arxiv.org/html/2307.08927v5",
+      "access": "Full HTML; IV, V and VI-B/C methods and experiments inspected directly.",
+      "observed": "The low-level dataset contains 1442 demonstrations including about 600 recoveries. A learned high-level controller selects corrective primitives with history. Three-clip completion is 12/24 versus 5/24 for their state machine. More than 95% of system failures are attributed to premature go_next decisions under visually ambiguous clip state.",
+      "implication": "Learning corrective skill selection and using memory are established. These hardware results do not establish a connector-after-snag baseline here. A competent history-bearing controller is required when evaluating learned selection; do not fabricate partial observability by removing available inputs."
+    },
+    {
+      "id": "kienle_2025",
+      "title": "AI-based Framework for Robust Model-Based Connector Mating in Robotic Wire Harness Installation",
+      "source": "https://arxiv.org/html/2503.09409v1",
+      "access": "Full HTML; III-A/C, IV, V-B and Tables I/III inspected directly.",
+      "observed": "Force-controlled approach/contact/depart search is optimized through environment-conditioned learned trajectory and wrench models. The study uses five automotive connectors with adapted gripping ribs and approximately 4000 training executions each. Optimization improves success and time on 100 unseen, same-distribution runs per connector.",
+      "implication": "Predicting connector action outcomes and optimizing an industrial program is prior art. A new result must isolate the added distal consequence/control benefit; neither prediction itself nor improved local search establishes novelty."
+    },
+    {
+      "id": "staritz_2003",
+      "title": "Force Guided Assembly Under Bias",
+      "source": "https://publications.ri.cmu.edu/storage/publications/pub_files/pub4/staritz_peter_2003_1/staritz_peter_2003_1.pdf",
+      "access": "Institutional full thesis; chapter 7 assumptions, model and experimental identification, printed pages 68-77, inspected directly.",
+      "observed": "Precontact identification separates cable bias from connector contact. An axial spring and flexible cable/beam elements emulate cable bias; least-squares spring identification and local linear corrections estimate wrench. Assumptions include taut nearly straight spans, negligible gravity-induced shape change, negligible hysteresis and no axial torsion; experiments constrain motion to a plane.",
+      "implication": "Start with constant tare and a locally fitted affine wrench model. Topology changes may invalidate that model, but this must be measured; ordinary load compensation is not a new mechanism."
+    },
+    {
+      "id": "feel_tension_2023",
+      "title": "Feel the Tension: Manipulation of Deformable Linear Objects in Environments with Fixtures using Force Information",
+      "source": "https://arxiv.org/html/2310.06424v1",
+      "access": "Full HTML; III-V physical assumptions, reduced graph and estimation inspected directly.",
+      "observed": "A reduced contact graph tracks cable points, span lengths, elasticity and tension, updating as fixture contacts change. Diagnostic gripper motion estimates contact points and stiffness. The representation relies on tensioned approximately straight spans and constrained grasp/sliding; sequence planning is explicitly outside the paper's scope.",
+      "implication": "A compact contact/length/tension model is a serious baseline. Graph representation, force inference and probing cannot alone identify a new contribution."
+    },
+    {
+      "id": "jin_2022",
+      "title": "Robotic Cable Routing with Spatial Representation",
+      "source": "https://shiyujin0.github.io/cable_routing/",
+      "access": "Author project methods page inspected directly; full paper and complete planner code were not audited in this subtask.",
+      "observed": "A graph planner tracks cable/fixture side relations. Learned stretch, cross and insert primitives realize intermediate configurations; RGB-D supplies the representation. The page shows overstretching and slack failures.",
+      "implication": "A simplified, clearly labeled spatial-relation planner plus the same insertion controller directly challenges the need for joint repair prediction. Do not claim an exact reproduction or infer omitted capabilities from this access depth."
+    }
+  ],
+  "claim_and_endpoint_audit": {
+    "pre_release_endpoint": "Current plug remains in its preset grasp; actual plug/port engagement and dwell are validated; the required earlier clip remains captured; no raw load limit, drop, reset, pose write or attachment change occurs. Name the outcome completed pre-release insertion stage, not completed released connection or factory job.",
+    "what_still_needs_physics": "Validate seating versus shallow/side contact, cable deformation and post contact, physically possible clip capture/loss, attainable slack and non-teleport repair under the declared robot action limits. Pre-release scope does not excuse contact or cable artifacts.",
+    "what_requires_passive_retention": "An already mated SC endpoint expected to carry load, release of the current gripper, and a final retained connection under extraction. These require a justified retention mechanism and positive, negative and release controls.",
+    "minimal_prior_relation": "A physically escapable required clip can supply the prior relation without first solving SC latch mechanics. A permanent weld or captive eyelet that cannot lose the required relation would make clip-loss prediction vacuous.",
+    "scope_change_rule": "Keep cable_cycle_decision_v1 and its failed gate immutable. A pre-release study must be a new explicit registration and maintained-document update. It cannot retroactively pass the original complete-connection gate.",
+    "research_tradeoff": "A pre-release task answers a narrower but useful recovery question sooner. A calibrated latch answers final assembly retention but adds an engineering dependency that has not yet been shown necessary for the candidate mechanism."
+  },
+  "identifiability_audit": {
+    "minimum_question": "Given the same full observations, history and validated repair options, does learned consequence-based selection recover a witnessed insertion/cable stall while preserving a prior clip more reliably at fixed total experience than the strongest affordable rule and model-based alternatives?",
+    "joint_is_undefined": "Specify whether joint means cross-conditioned dynamics, a shared learned representation, or modeling correlated endpoint failures. These are different mechanisms and require different ablations.",
+    "insufficient_evidence": [
+      "A local-error by snag factorial alone does not demonstrate nonseparable interaction.",
+      "An action-ranking reversal when distal geometry changes establishes distal relevance; an additive local-plus-distal planner can also produce that reversal.",
+      "Removing distal observations tests information access, not the claimed prediction mechanism.",
+      "Better outcome prediction without better decisions does not establish a recovery contribution.",
+      "Under fully observed deterministic simulation, correlated endpoint probability alone is a weak motivation; residual uncertainty and its source must be declared."
+    ],
+    "needed_control": "Compare joint modeling against independently trained local/distal outcome predictors feeding the identical constrained action selector. Keep full inputs/history, experience, primitive support, planning horizon, model/tuning capacity and inference budget comparable. Separately measure whether coupling changes the chosen action and avoids the predicted specific failure.",
+    "data_split": "Use independently generated layouts/initializations and held-out local/distal combinations. Keep all continuations from the same physical initial state in one split; randomly splitting near-identical trajectory rows would leak the answer.",
+    "current_novelty_assessment": "No algorithmic novelty established. A careful empirical result about when coupled consequences help could be a contribution, conditional on task validity and meaningful comparators. This is not an exhaustive absence-of-prior-art claim."
+  },
+  "smallest_falsifiable_experiment": {
+    "status": "prospective development diagnostic; not executed or final-test evidence",
+    "setup": "One known connector, one required open clip and one reachable clearable post; retained current grasp; pre-release endpoint. Keep all currently available simulator state and load observations. Derive geometry, slack and load limits before freezing cases.",
+    "first_gate": "Use the existing competent first-attempt controller. Count prevention and successful first attempts. Continue only if admissible physical failures remain active and recoverable under the declared limits; do not weaken observations or tune a forced prefix to create a cohort.",
+    "minimum_mechanism_probe": "On a small matched set with two local configurations crossed with two distal configurations, replay three fixed feasible repairs such as local retract/re-align, tension-relieving lift/arc then insert, and the spatial planner's repair. Twelve bounded whole-job continuations per physics resolution can expose or refute a mechanism witness; they are too few for a general reliability claim. Add required nominal, contact and deliberate clip-release controls independently.",
+    "pairing_and_cost": "Prepare each condition only between jobs, reproduce its physical first-attempt history for each arm and charge every replay. No within-job saved-state restoration. Record assigned factors and realized contact/topology separately.",
+    "screen_after_witness": "If the mechanism survives, the existing 32-case balanced development screen is a reasonable next bounded measurement. Freeze it before controller comparison; do not describe it as a powered final evaluation.",
+    "learning_gate": "A geometry/rule/planner baseline must leave a reproducible, practically meaningful residual failure that a feasible alternative repair can avoid. Full-state rules solving the task is a valid stopping result.",
+    "first_learning_experiment": "Fit a small outcome classifier/ranker on a shared bounded action bank with effective and ineffective repairs. Predict joint admissible completion and constituent progress/load/clip outcomes, report calibration and decision regret, then execute chosen repairs. Use the same bank for factored prediction and a direct history-bearing selection baseline.",
+    "final_evaluation_if_earned": "Register a minimum worthwhile effect, paired uncertainty analysis and sample budget after development variance is known but before opening test cases. Report complete pre-release jobs over all requests and conditional recovery over the common active failure cohort, separately; include aborts, invalid initialization, timeouts and process failures."
+  },
+  "staged_comparators": [
+    "Stage 0: the competent force-guided search/retry controller with constant precontact tare; fit a small local affine bias model if measured force variation justifies it.",
+    "Stage 1: same controller plus visible cable/post and clip-state rules using geometric slack and load margins.",
+    "Stage 2: compact cable contact/length/spatial-relation planner with the same insertion controller and repair primitives; implement only what the measured failure can challenge.",
+    "Stage 3, only after the learning gate: direct history-bearing selection, factored outcome prediction with the common selector, and the precisely defined joint candidate at matched total data and budget.",
+    "For all stages: continuation is a diagnostic only. Report any exact simulator oracle as a privileged ceiling and charge its rollouts; never present it as a deployable baseline or free experience."
+  ],
+  "worthwhile_result_criteria": {
+    "positive": "Stable held-out improvement over the strongest practical comparator, without worse required-relation loss or load violations, at equal total experience. Trace evidence must show the proposed prediction changing a repair decision and avoiding the predicted failure while restoring the local insertion stage.",
+    "negative_simple_control_suffices": "If compensation/rules/planning solve the valid support, reject the claimed need for learned recovery for that scope. Preserve the executable baseline, measured reliability/limits and rejected hypothesis.",
+    "negative_joint_model_unnecessary": "If prediction helps but separate local/distal models or direct history-based selection match the candidate, retain the useful empirical finding and reject the special joint-mechanism claim.",
+    "negative_task_unsupported": "If no safe feasible repair exists, or results change materially with integration settings, stop as a task/physics limitation. This is not evidence that learning fails.",
+    "avoid_overclaim": "One engineering failure or a tiny development success set can guide this project but does not alone establish a broadly general scientific negative result."
+  },
+  "execution_accounting": {
+    "simulator_jobs": 0,
+    "physics_steps": 0,
+    "gpu_jobs": 0,
+    "training_runs": 0,
+    "work_performed": "Read maintained documents and bounded current evidence/configuration fields, inspect cited primary-source methods/experiments, and write this critique. No broad benchmark reproduction or hardware access.",
+    "tool_failures": "Sandbox process creation failed; read-only escalated PowerShell succeeded. One PowerShell wildcard rg search and one unsupported Get-Date -AsUTC field failed; corrected reads and clock tool supplied their results. These were audit tooling failures, not simulator jobs."
+  },
+  "scope_and_limitations": [
+    "Recommendations and inferred mechanism tests are prospective; no feasibility, new recovery, prediction accuracy or learning benefit was measured by this audit.",
+    "Prior-paper numerical results belong to their authors' tasks and are not project baselines.",
+    "The prior review's partially accessible EMD/graph-dynamics references remain prior-art warnings; no missing feature is inferred from inaccessible methods.",
+    "Physical calibration, actual sensor manifests, local material/root mechanics and asset implementation require their separate setup audit.",
+    "Simulation stage completion is not perception, learned pickup, hardware transfer, electrical/optical functionality or a released factory connection."
+  ]
+}

@@ -1,0 +1,177 @@
+{
+  "schema": 2,
+  "audit_id": "cable_direction_audit_v2",
+  "created_at_utc": "2026-09-10T23:33:19.462279+00:00",
+  "status": "completed_direction_and_handover_audit",
+  "source_commit_at_start": "6de7869a8919b62e05816f7fac285600d650e8b0",
+  "decision": "Pursue clip-preserving recovery before gripper release; retire the universal passive-latch dependency, preserve the measured retention failure, and require physical coupling plus strong-baseline evidence before learning.",
+  "goal": "Recover from a failed connector insertion without releasing an earlier cable clip or violating the declared load/time budgets.",
+  "question": "On unfamiliar cable layouts and mechanical combinations, when does a learned action-outcome selector improve clip-preserving recovery over competent scripted rules and a cable-aware planner at matched experience?",
+  "study_contract": "configs/cable_recovery_study_v2.json",
+  "independent_reviews": [
+    {
+      "path": "evidence/cable_research_critique_v2.json",
+      "sha256": "870802bd14b7242e3ca5da742601f097bd2f08086c31258e19d1c35fdc9dd09e"
+    },
+    {
+      "path": "evidence/cable_technical_audit_v2.json",
+      "sha256": "1fefa5eb7a0cd22bba3ed3ef83a43cb323fbed58eceee1ff2b8510c038f21c9a"
+    },
+    {
+      "path": "evidence/cable_evidence_audit_v2.json",
+      "sha256": "746301bed283c8ce2266d6ab5b0f65f03455b8432be2aa59d791aeef585d6043"
+    }
+  ],
+  "what_the_screenshot_shows": {
+    "objects": {
+      "grey": "Robot gripper/collision representation",
+      "blue_upper": "Held SC plug",
+      "blue_lower": "Fixed SC port",
+      "cyan": "Single deforming cable, distal end free"
+    },
+    "task": "About22mm of local insertion; no prior clip or post. The fixed-world port is an idealized fixture even though a support board is not visible.",
+    "controllers": "Left uses observed target alignment and force feedback; right continues on its original axis. Both scripted.",
+    "at_2_4s": "Both images are pre-completion. The right plug has contacted the fixture while the left is aligning. Similar appearance is expected for millimetre-scale motion.",
+    "measured_path_lengths_m": {
+      "guided": 0.022958,
+      "continuation": 0.00827
+    },
+    "limits": "Camera changes cannot convert this prevention test into a recovery or full cable-assembly result."
+  },
+  "verified_achievements": [
+    "Pinned native Windows AIC/MuJoCo integration with real UR5e/SC collision assets, explicit source/asset provenance and bounded workers.",
+    "Six deterministic free-cable development cases: guided held seating 6/6, continuation 3/6 with three contact-stall deadlines; zero guided retries/witnessed recoveries.",
+    "Isolated rigid SC retention result: all seat first; zero net pull persists; 0.5/2 N unseat in about 12/6 ms at both tested resolutions. This is not a manufacturer retention measurement.",
+    "Original cycle: 37 physical trials, 1,185,841 native steps, 595.203 s summed launcher wall; no learned cable training. 375 CPU tests passed at the prior source release.",
+    "Recorded-state video verified separately; no new integration or new performance evidence from rendering."
+  ],
+  "ranked_findings": [
+    {
+      "id": "A1",
+      "priority": "research-critical",
+      "finding": "The experiment never instantiated the proposed cable constraint/recovery problem.",
+      "implication": "Do not spend on a predictor until actual clip/post interactions and recoverable residual failures are observed."
+    },
+    {
+      "id": "A2",
+      "priority": "research-critical",
+      "finding": "The 6/6 versus 3/6 comparison changes alignment, approach and force handling against a weak comparator.",
+      "implication": "It demonstrates a useful scripted alignment baseline, not force compensation causality, learned advantage, reliability generalization or recovery."
+    },
+    {
+      "id": "A3",
+      "priority": "scope-correction",
+      "finding": "The passive-latch failure was used as an overbroad universal stop.",
+      "implication": "Keep the failed released-connection gate; register held clip-preserving seating separately and progress on the actual recovery mechanism."
+    },
+    {
+      "id": "A4",
+      "priority": "implementation-critical",
+      "finding": "Anchor/post loads and clip/grasp/mutation values are placeholders in the free-cable worker.",
+      "implication": "The current evaluator is not a drop-in constrained-cable benchmark. Implement real geometry/sensing and lifecycle guard controls."
+    },
+    {
+      "id": "A5",
+      "priority": "implementation-critical",
+      "finding": "Robot dt refinement also changes low-level servo cadence; native and post-forward force streams are mixed for aborts.",
+      "implication": "Freeze independent clocks and coherent measurement/abort semantics before interpreting numerical sensitivity or running a comparison."
+    },
+    {
+      "id": "A6",
+      "priority": "mechanics-critical",
+      "finding": "Compiled cable mass is 53.333 g, not nominal 50 g; root rotates freely; material/contact and spatial behavior lack relevant calibration.",
+      "implication": "Conserve compiled physical properties during refinement and validate the mechanics that determine clip escape/repair ranking. Do not claim boot torque or real material calibration."
+    },
+    {
+      "id": "A7",
+      "priority": "analysis-critical",
+      "finding": "Seeds label six deterministic configurations; sparse pose logs do not independently replay every native predicate.",
+      "implication": "Use actual split/RNG manifests, native endpoint logs, paired all-request denominators and cluster-aware uncertainty."
+    },
+    {
+      "id": "A8",
+      "priority": "method-critical",
+      "finding": "Joint prediction is not yet a defined, isolated mechanism; a factorial interaction can also be explained by a factored model or planner.",
+      "implication": "Start with a small outcome ranker only if needed, and compare against separate predictors/full-state rules and a direct history-based selector under matched data/actions."
+    },
+    {
+      "id": "A9",
+      "priority": "execution-critical",
+      "finding": "Current CPU throughput is not evidence of large-batch GPU training capacity.",
+      "implication": "Profile corrected task, reduce redundant runtime work only after parity, and favour a common macro-action dataset before a large on-policy campaign."
+    },
+    {
+      "id": "A10",
+      "priority": "communication",
+      "finding": "The video is accurately labelled but shows tiny motion with visually merged parts and no research failure mechanism.",
+      "implication": "Use a labelled overview and a real common-case failure/repair sequence once built; current polish alone is not a research deliverable."
+    }
+  ],
+  "why_the_goal_is_useful": "An insertion repair can unload or realign the connector while tensioning another cable span or pulling an earlier clip free. A supervisor that chooses the right repair without undoing earlier work could reduce interrupted jobs. This is an industrial motivation, not an achieved result.",
+  "contribution_contract": {
+    "engineering_floor": "Reproducible constrained-cable task, credible load/contact/clip controls, a strong practical controller and honest complete-request accounting. A simulator import or missing latch alone is not a robot-learning contribution.",
+    "empirical_research_target": "Establish when observed cable constraints change useful repair choices and whether learned consequences improve held clip-preserving completion on held-out layouts/mechanics beyond competent rules/planning at matched acquisition and inference costs.",
+    "mechanistic_requirement": "Show both held-out consequence/ranking validity and improved closed-loop decisions; remove the proposed mechanism while retaining comparable inputs, data, action library, capacity and selector. Separate/local predictors must remain credible.",
+    "negative_result": "A strong rule/planner solving the registered feasible support is useful engineering evidence and defeats the need for this candidate on that support. A learning failure or numerical artifact without an identified boundary is not automatically a publishable result.",
+    "novelty": "Unsupported at present. Staritz covers cable-load bias, Wilson tactile cable assembly/retries, Luo learned corrective skill selection, and Kienle predictive connector optimization. No source absence is inferred from inaccessible papers.",
+    "hardware": "No pickup, sensing from cameras, latch strength, electrical/optical function, factory autonomy or simulation-to-hardware transfer has been established."
+  },
+  "supersession": {
+    "annotated_file": "evidence/cable_cycle_decision_v1.json",
+    "before_annotation_sha256": "2ef9fda36a579d61e676daff563773ff3239d0b56381a75e2cc19b59d82e847b",
+    "exact_old_bytes": "artifacts/audits/cable_direction_v2/cable_cycle_decision_v1_before_scope_annotation.json",
+    "numerical_evidence_unchanged": true,
+    "new_endpoint_is_prospective": true,
+    "legacy_research_checks": "Older review/source hashes refer to their recorded source versions; no old verification is silently relabelled as checking this audit revision."
+  },
+  "next_action": "Implement the new clip/post/strain-relief task and coherent instrumentation, then execute a bounded common-failure and feasible-repair witness block. Do not start with building a passive SC latch or training a speculative network.",
+  "execution_this_audit": {
+    "new_native_integration_steps": 0,
+    "new_physical_trials": 0,
+    "training_runs": 0,
+    "read_only_existing_model_compiles": 1,
+    "compiled_mass_check_seconds": 0.109,
+    "new_simulator_forward_calls": 0,
+    "new_simulator_renders": 0,
+    "visualization": "Conceptual task diagram generated with standard plotting tools; not a simulator result."
+  },
+  "primary_references": [
+    {
+      "title": "AIC qualification scope",
+      "url": "https://github.com/intrinsic-dev/aic/blob/e9145480c945f2afc3741f355233f44082cc3b06/docs/qualification_phase.md",
+      "access": "Pinned local source inspected; web cache miss does not make the local source unavailable."
+    },
+    {
+      "title": "AIC terminal attachment abstraction",
+      "url": "https://github.com/intrinsic-dev/aic/blob/e9145480c945f2afc3741f355233f44082cc3b06/aic_gazebo/src/CablePlugin.cc",
+      "support": "Touch/attachment transition abstracts terminal connection; passive pull retention is a stricter project requirement."
+    },
+    {
+      "title": "Wilson tactile cable assembly",
+      "url": "https://arxiv.org/html/2303.11765v1"
+    },
+    {
+      "title": "Luo learned cable routing/correction",
+      "url": "https://arxiv.org/html/2307.08927v5"
+    },
+    {
+      "title": "Kienle predictive connector mating",
+      "url": "https://arxiv.org/html/2503.09409v1"
+    },
+    {
+      "title": "MuJoCo3.3.7 cable constitutive model",
+      "url": "https://raw.githubusercontent.com/google-deepmind/mujoco/3.3.7/plugin/elasticity/README.md"
+    }
+  ],
+  "scope_and_limitations": [
+    "Audit conclusions are source/evidence review and prospective study design, not new recovery measurements.",
+    "No guaranteed positive result, algorithmic novelty, publication or hiring outcome.",
+    "New task geometry, physics margins, dataset and training budget must be measured/frozen before their comparisons; the plan is not a completed study."
+  ],
+  "owner_steering_and_execution_scope": {
+    "instruction": "Be ambitious with next-session work; do not be conservative.",
+    "effect": "The authoritative study/handover requests a full implementation-through-learning/evaluation campaign with a 12-hour planning window, 90-minute verification reserve, substantial acquisition and at least three independent starts when gates and measured capacity support them. Small 32/16-case blocks are starter tranches, not stopping limits.",
+    "precedence": "This replaces conservative execution caps suggested in independent reviews; their factual findings, physical validity requirements and source evidence remain unchanged.",
+    "limits": "No promised positive result, manufactured difficulty, unverified backend or learning under an invalid task."
+  }
+}

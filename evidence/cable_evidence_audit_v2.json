@@ -1,0 +1,278 @@
+{
+  "schema": 1,
+  "id": "cable_evidence_audit_v2",
+  "status": "completed_source_and_record_review",
+  "review_date": "2026-09-10",
+  "scope": "Independent audit of executed cable evidence, task scope, replay presentation and next-session decision gates. No new simulator, GPU, rendering, training or hardware experiment. Recommendations are prospective, not passed gates.",
+  "source_commit_at_review": "6de7869a8919b62e05816f7fac285600d650e8b0",
+  "source_dirty_at_first_status_check": false,
+  "owned_output": "evidence/cable_evidence_audit_v2.json",
+  "preservation": "Existing cable and peg negative evidence is unchanged. This audit narrows interpretation of a global retention stop; it does not reverse measured retention failure or declare the unexecuted extension ready.",
+  "summary": {
+    "established": "A pinned native UR5e/MuJoCo engineering adapter and scripted held seating on six deterministic local cases, with contact/load checks, complete request accounting and reproducible rigid-model axial extraction failure.",
+    "not_established": "A learned cable policy; recovery after a common competent failed attempt; benefit over strong recovery control; complete retained connection; realistic gripper release; random-population reliability; official AIC score; hardware transfer.",
+    "main_design_error": "The passive final-retention requirement became a global prerequisite even though native held insertion and official AIC terminal abstraction do not require a calibrated mechanical latch. The stricter retained-connection extension needs that gate; other explicitly scoped experiments need their own gates.",
+    "main_research_gap": "The competent scripted controller has no observed failures in the tiny tested support. There is currently no measured problem for the proposed learned recovery mechanism to solve.",
+    "next_session": "Freeze an explicit held-insertion contract and a visible physically causal cable-constraint scene; demonstrate feasible witnessed recovery with strong scripted controls; run one bounded residual-failure screen. Keep passive final retention separate. Train only if a meaningful unresolved learning question survives."
+  },
+  "baseline_audit": {
+    "confidence": "high for recorded cases; unknown for population reliability",
+    "sources": [
+      "evidence/cable_baseline_v2.json#main_result",
+      "configs/cable_baseline_v2.json#cases",
+      "scripts/evaluate_cable_insertion.py:49",
+      "scripts/evaluate_cable_insertion.py:119"
+    ],
+    "design": {
+      "matched_cases_per_controller": 6,
+      "cable_azimuths_rad": [
+        0,
+        0.15,
+        -0.15
+      ],
+      "fixture_local_x_offsets_m": [
+        0,
+        0.002
+      ],
+      "fixture_local_y_offsets_m": [
+        0
+      ],
+      "robot_homes": 1,
+      "connector_geometries": 1,
+      "mechanical_models": 1,
+      "physics_dt_s": 0.00025,
+      "development_seed_labels": [
+        21020,
+        21021,
+        21022
+      ],
+      "seed_interpretation": "These label explicit deterministic layouts. The worker/scene builder use specified vectors and offsets; the inspected execution path does not consume these fields as RNG seeds. They are not three independent stochastic replications or training starts.",
+      "warmup": "One separate nominal request per arm repeats a nominal layout; do not add to six-case denominators or count as independent coverage.",
+      "training_starts": 0,
+      "final_test_cases": 0
+    },
+    "result": {
+      "guided": "scripted_force_guided_retry: held seating 6/6, including 3/3 nominal and 3/3 offset; zero retries, zero witnessed stalls and zero completions after its own witnessed stall.",
+      "continuation": "scripted_continuation: held seating 3/6; 3/3 nominal, 0/3 offset. Three offset contact stalls end at the 30 s deadline.",
+      "pairing": "Three concordant successes and three guided-only successes. Descriptive paired evidence on hand-built cases; no population significance or generalization claim.",
+      "endpoint": "Within 1 mm and 0.03 rad, detector contact and 0.5 s held dwell under native raw wrist/plug 20 N aborts and 30 s deadline. Ideal fixed preset grasp; distal cable end free."
+    },
+    "causal_interpretation": [
+      "Guidance aligns to the actual simulated target and changes approach/force handling; continuation follows its initial axis and ignores a visible lateral correction. The demonstrated effect is local alignment/prevention against weak continuation.",
+      "Equal available observations do not make continuation a competent recovery comparator. The successful controller name contains retry, but no retry occurred.",
+      "Compensation, alignment and approach control change together. No compensation-only ablation isolates a force-bias benefit.",
+      "Continuation failures and guided successes have different action histories. They are not a shared failed state handed to competing recovery controllers.",
+      "Full simulated target/robot state and exact-model bias feedforward are idealizations. No camera perception or pose-estimation robustness is established."
+    ],
+    "verification_limit": "Previously reviewed native force streams and paired initialization are strong evidence. Poses saved every 10 ms cannot replay every native progress-window/dwell decision. This audit checked summaries, worker semantics and selected raw trajectories; it did not repeat all 1,536 baseline checks."
+  },
+  "retention_and_benchmark_scope": {
+    "confidence": "high for pinned model and source semantics; no hardware inference",
+    "sources": [
+      "evidence/cable_retention_v1.json#scope_and_limitations",
+      "evidence/cable_retention_v1.json#scientific_results",
+      "evidence/cable_cycle_decision_v1.json#gates",
+      ".deps/aic/docs/qualification_phase.md",
+      ".deps/aic/docs/scoring.md",
+      ".deps/aic/aic_gazebo/src/CablePlugin.cc:258",
+      ".deps/aic/aic_gazebo/src/CablePlugin.cc:288",
+      ".deps/aic/aic_scoring/src/ScoringTier2.cc:823"
+    ],
+    "retention_result": {
+      "fixture": "Aligned one-axis force-driven rigid SC fixture with constrained lateral translation/rotation, no gripper and explicit gravity compensation.",
+      "conditions": "Three net extraction loads (0, 0.5, 2 N) at 0.25/0.125 ms; six deterministic fixture trials, not six independent hardware measurements.",
+      "seated_before_load": "6/6",
+      "zero_net_load": "2/2 remain seated for 2 s; zero net force is not positive latch evidence.",
+      "positive_net_load": "4/4 lose seating, about 12 ms at 0.5 N and 6 ms at 2 N; opposing contact is exactly zero in recorded native and refreshed extraction samples.",
+      "force_balance_max_residual_n": 2.531308496145357e-14,
+      "supported_conclusion": "Imported rigid geometry plus declared solver/friction lacks the tested axial retention. Held seating cannot become a completed passive connection claim.",
+      "unsupported": [
+        "Real SC connectors have negligible retention.",
+        "AIC is invalid or cannot support useful insertion learning.",
+        "MuJoCo cannot simulate this task.",
+        "All cable/contact dynamics are converged.",
+        "A gripper release was tested."
+      ]
+    },
+    "official_aic": {
+      "pinned_revision": "e9145480c945f2afc3741f355233f44082cc3b06",
+      "documented_task": "Single nearby insertion of a pregrasped known SC or SFP connector, other end free, Gazebo qualification with randomized board/component poses. No unseen geometry or released pull-retention test specified.",
+      "completion_implementation": "CablePlugin receives port touch, removes the existing gripper connection, makes BOTH cable endpoints static through fixed joints, later fixes the end effector and publishes a completion namespace. ScoringTier2 uses that namespace for correct/wrong insertion credit.",
+      "interpretation": "Official terminal connection is a simulation abstraction. Source behavior is consistent with not requiring the rigid collision geometry to supply passive latch retention. This is source-based inference, not a claim to know author intent.",
+      "force_semantics": "Documented startup-tared force over 20 N for more than 1 s incurs a scoring penalty; this differs from the project instantaneous native raw 20 N abort.",
+      "boundary": "Keep official predicates, scoring and terminal attachments separate from project pose/contact/dwell, hard aborts and no-attachment-change recovery. Native project held insertion is not an official AIC score; official Gazebo evaluation has not run."
+    },
+    "scoped_gate_correction": {
+      "valid_stop": "Passive retained final connection, or recovery whose endpoint needs a physically detachable connector to resist load.",
+      "overbroad_stop": "Explicit held insertion, insertion-policy engineering, cable-post correction, or separately validated guide retention when final connector release is outside the task.",
+      "contracts": [
+        {
+          "id": "native_held_insertion",
+          "endpoint": "Contact/pose/dwell while maintaining preset grasp; seating and witnessed recovery after task-specific gates.",
+          "passive_final_latch_required": false
+        },
+        {
+          "id": "official_aic",
+          "endpoint": "Pinned official Gazebo scoring/terminal abstraction and compliant observations/integration.",
+          "passive_final_latch_required": false
+        },
+        {
+          "id": "project_retained_connection",
+          "endpoint": "Engagement survives independently specified loads and genuine release controls without task-triggered attachment changes.",
+          "passive_final_latch_required": true
+        }
+      ],
+      "preservation": "Original cycle/retention records stay valid for their stricter ambition. A successor must explicitly name its narrower endpoint; never silently relabel seating as retained connection."
+    }
+  },
+  "physics_and_cost_audit": {
+    "sources": [
+      "evidence/cable_robot_validation_v1.json#latest_pair",
+      "evidence/cable_cycle_decision_v1.json#cost",
+      "artifacts/cable/cable-baseline-v2-r01/result.json"
+    ],
+    "confidence": "high for logged engineering measurements; unknown for changed-scene capacity",
+    "numerical_support": "One aligned layout seats/retracts at 0.5/0.25 ms, but other-contact peak differs about 12.5-fold and cable maximum displacement about 0.808 versus 0.376 m. Outcome agreement supports bounded engineering, not cable-contact convergence.",
+    "failures_preserved": "Two straight-cable initializations and a corrected-curve 1 ms initialization aborted. Do not reopen 1 ms merely because an older pending gate names it.",
+    "logged_cycle_cost": {
+      "launcher_attempts": 12,
+      "physical_trials": 37,
+      "explicit_native_steps": 1185841,
+      "initialization_native_steps": 222637,
+      "summed_launcher_wall_s": 595.203,
+      "training_runs": 0
+    },
+    "logged_capacity": {
+      "native_steps_per_wall_second_range": [
+        1560.9663800951437,
+        1931.2957157785331
+      ],
+      "sampled_process_peak_rss_bytes_range": [
+        524103680,
+        1246412800
+      ],
+      "scope": "Single-environment CPU baseline cases with varying episode/log/render overhead; not sustained vectorized-training or GPU capacity."
+    },
+    "budget_implication": "At 0.25 ms, 5 s initialization plus 45 s deadline is 200,000 native steps/request. Sixty-four full-deadline requests cost 12.8M steps, about 137 minutes at the slowest logged rate before extra new-scene overhead or review. The pending 90-minute block cannot assume that matrix fits.",
+    "stale_registration": [
+      "cable_extension_registration_v1 is disabled with null board/clip/post/load/action/witness/budget fields; a checklist, not an executable task.",
+      "The native_nominal gate remains pending: six cases do not satisfy its prospective 18/20 requirement.",
+      "Its numerical gate still names 1/0.5 ms; successor settings must reflect existing failure evidence.",
+      "Native measured capacity must determine case counts/caps. Old peg 2,048-environment throughput is irrelevant."
+    ]
+  },
+  "presentation_audit": {
+    "sources": [
+      "evidence/cable_video_v1.json",
+      "evidence/cable_video_v1.jpg",
+      "src/assembly_recovery/cable_robot.py:129",
+      "artifacts/cable/cable-baseline-v2-r01/layout0_offset__scripted_force_guided_retry/trajectory.npz",
+      "artifacts/cable/cable-baseline-v2-r01/layout0_offset__scripted_continuation/trajectory.npz"
+    ],
+    "inspection_scope": "Existing decoded poster visually inspected; render provenance/source and selected raw saved trajectories read. Complete MP4 not played/decoded in this audit. No rendering performed.",
+    "integrity": "Prior record reports verified 19.5 s saved-state replay, declared lexicographic case selection, original force/outcome data, explicit speed/final-frame labels and zero new native steps. Retain those qualities.",
+    "observations": [
+      "Large gray jaws dominate and partly obscure the blue plug. Plug/port have similar blue appearance. Cyan span is a free cable, not another insertion tool.",
+      "Port is fixed in world without a visible mounting board/support; it reads as floating rather than an assembly fixture.",
+      "Whole-robot inset makes free cable tiny. No earlier clip, prior connection or snag explains why cable reasoning matters.",
+      "Short nearby approach is physically only about 23 mm guided path; continuation moves about 8 mm then stalls. Camera polish cannot create missing recovery behavior.",
+      "Successful arm prevents failure; comparison arm ignores visible 2 mm offset. This is an honest integration diagnostic but does not communicate a learned-recovery contribution."
+    ],
+    "raw_saved_pose_motion": {
+      "guided_path_length_m": 0.02295779276800823,
+      "guided_first_to_final_displacement_m": 0.021665653753851245,
+      "continuation_path_length_m": 0.008270130848485225,
+      "continuation_first_to_final_displacement_m": 0.008181715775242302,
+      "method": "Sum Euclidean differences of saved tip positions, plus first/last displacement. Roughly 10 ms samples plus terminal; sampled path length, not exact native integral."
+    },
+    "next_demonstrator": {
+      "scene": "Rigidly mounted board/port and one cable obstacle or passive guide with real collision geometry. Show complete cable route, feasible lift/arc and goal. Any support geometry that can contact cable/robot creates a new task version requiring repeated controls.",
+      "story": "Common competent approach, measured active contact/motion stall, actual repair, preserved required guide state and declared held-seating dwell or failure. Compare justified repair decisions on the same request. Add learned arm only after one exists and is evaluated.",
+      "camera": "Board overview plus unobscured connector close-up; label gripper, plug, port, cable, obstacle. Visible metric scale, timestamp, witness, raw load limit and outcome. Do not enlarge physical motions or edit replay poses.",
+      "selection": "Freeze representative-case rule before final outcome review; show unresolved failure alongside success and link complete case table/run/checkpoint when applicable.",
+      "minimum_deliverable": "One short verified paired recovery clip with causal cable interaction, all-request outcome table and raw-force/progress trace. If no witnessed recovery occurs, publish competent scripted result without inventing a learning comparison."
+    }
+  },
+  "prospective_acceptance_and_decision_tree": {
+    "status": "recommendations for successor registration; not executed or passed",
+    "principle": "Choose one explicit endpoint. Test phenomena that determine that endpoint and controller ranking, rather than proving every simulator detail correct.",
+    "steps": [
+      {
+        "id": "contract_and_scene",
+        "accept": "Choose native held insertion as first achievable endpoint unless passive final release is explicitly required now. Freeze board/port/cable/obstacle geometry, material assumptions, actor/actions, witness, 30-45 s deadline, 0.5 s seating dwell and raw load limits. Keep final retention separate.",
+        "branch": "For full retained connection, require independently justified parameters and engaged/disengaged/load/actual-release controls. If mechanical specification is unavailable, record that extension as unready and continue explicitly scoped held insertion; do not invent an arbitrary latch."
+      },
+      {
+        "id": "bounded_physical_support",
+        "budget": "Proposed ceiling: 90 wall minutes, 32 physical probes, 6M native steps, individual process <=10 minutes, 20% review reserve; stop at first reached ceiling. Recompute downward from changed-scene measured throughput. At most two implementation/controller correction rounds before a written decision.",
+        "accept": [
+          "At least 18/20 nominal calibration requests meet frozen endpoint; all 20 count. Positive contact and shallow/side-contact negative controls distinguish seating from incidental touch.",
+          "Required cable constraint has intended capture/contact, possible physical release/loss and an executed action-only repair under measured slack/reach/force bounds. Fixed proximal anchor is an instrumented boundary assumption, not detachable connector retention.",
+          "Representative nominal/local/cable-only/combined cases at 0.25/0.125 ms use identical physical control/sensor cadence and matched preparation. Pass/fail, active witness, contact identity and constraint-loss classifications agree. Check representative cable discretization if narrow guide/post contact controls outcome.",
+          "Save native-rate witness/dwell inputs, phase/events, raw loads and forbidden-event counters for independent endpoint replay. Display poses may remain 10 ms.",
+          "Every admitted fault family has action-only feasible repair on calibration support at both selected resolutions; impossible knots, insufficient slack or unrecoverable grasp loss are not recovery-policy failures."
+        ],
+        "branch": "A material classification/support change permits one targeted correction and affected-control repeats for every arm. Persistent issue after correction allowance requires simpler supported geometry or closing extension. No indefinite timestep halving. Two settings assess sensitivity, not general convergence."
+      },
+      {
+        "id": "strong_baseline_screen",
+        "budget": "Start with 16 matched requests per required arm: four fault cells by four development layout/material constructions; two scripted arms mean 32 requests. At 5+45 s and 0.25 ms cap this is <=6.4M steps. Use 90 minutes only if newly measured rate leaves 20% review reserve; otherwise reduce/reallocate prospectively.",
+        "accept": "Compare competent target-aware force/search/retry with the same insertion controller plus visible cable repair. Equal available observations, geometry, loads, deadline and common first-attempt behavior. Assigned factors and realized interactions both recorded. Initial success/abort/timeout/process failure all count.",
+        "cohort": "Conditional recovery includes only active witnessed failures after the common competent attempt. Replay complete physical prefix per arm and verify matching; charge every replay. Do not force visible-state ignorance or tune a prefix to manufacture stalls.",
+        "support_floor": "At least four reproducible active combined/cable-interaction failures across at least two development layouts, with feasible calibration repairs. Mechanism-support floor, not statistical power or reliability evidence.",
+        "branch": "If first attempt succeeds throughout, retain simple method and reject present recovery premise. If cable-aware rules/planning resolve support, retain engineering result. Only feasible reproducible residual failures justify learned mechanism screen."
+      },
+      {
+        "id": "learning_decision",
+        "budget": "No automatic empty training smoke. Freeze overnight budget from measured native transitions, full optimization/export/reload work, RSS/GPU use and evaluation reserve only after supported question survives.",
+        "accept": "For consequence prediction, first register good/ineffective/damaging repairs with held-out layout/material manifests; compare persistence and simple local/geometric models; choose useful-error/calibration or action-ranking thresholds before fitting. For a recovery-training question, match total experience, nominal practice, architecture/history, tuning and checkpoint budget across ordinary/recovery-focused arms.",
+        "pilot": "Must change a decision: full rollout/optimizer/export/reload path, charged probes/failures/prefixes, measurable learning diagnostic and declared stop. One start is exploratory; target three independent starts only if question and budget warrant.",
+        "branch": "Failure to outperform simple models usefully or learn supported task in declared diagnostic budget closes/revises that specific mechanism. Passing earns smallest registered matched comparison, with final-test layouts sealed until selection ends."
+      }
+    ],
+    "session_close": "One decision record: task version, actual jobs/steps/wall, all failures, artifacts, untested claims and one next action. End with an executed engineering/research decision, including a negative decision that simple control suffices."
+  },
+  "audit_accounting": {
+    "new_native_steps": 0,
+    "new_mj_forward_calls": 0,
+    "new_gpu_jobs": 0,
+    "new_training_runs": 0,
+    "new_simulator_render_calls": 0,
+    "work": [
+      "Read maintained documents and scoped JSON evidence",
+      "Inspect pinned AIC completion/scoring source",
+      "Inspect native worker/scene/registration",
+      "Read selected raw trajectories and calculate sampled motion",
+      "Visually inspect existing poster",
+      "Create this audit only"
+    ],
+    "limitations": "No simulator/hardware execution, full MP4 review, exhaustive native-array revalidation, calibration or statistical test. Prior checks cited as prior evidence, not claimed rerun."
+  },
+  "source_artifacts_sha256": {
+    "evidence/cable_baseline_v2.json": "aa112b4aa1cd4c98aebb933399aab57a281a4f96fd0ea35b99833d49800e92a8",
+    "evidence/cable_robot_validation_v1.json": "ab59ac2366cb857407cdf6a1dbf65d0fb09549dd8688648a53ed9b80a8e0e38c",
+    "evidence/cable_retention_v1.json": "f40d11acd8fe1b9d5d1fcd49370d66d97c0c55d13ed7c7f38aa95e7d1776f3da",
+    "evidence/cable_cycle_decision_v1.json": "2ef9fda36a579d61e676daff563773ff3239d0b56381a75e2cc19b59d82e847b",
+    "evidence/cable_video_v1.json": "b7cfa80d151aafa9302ef9d263f34fe2e6fd49e49541c37cf492f71fcb0bea35",
+    "evidence/cable_video_v1.jpg": "7d8108dca3e617a7f460658da8115dbb4a946a4dd2e1ce9b933293467258f982",
+    "configs/cable_baseline_v2.json": "fcfc614713292b1b5511b879cdbfc6d27d43a29bea33e9b60517128e193f6d4f",
+    "configs/cable_extension_registration_v1.json": "3c52db5219b94a6e1472f4f68717b6ef652f0bf2f231a41dd130f1de7684b16e",
+    "scripts/evaluate_cable_insertion.py": "b0dcb7b942cd4fe9e1607376ac0cc3a16fb98085f63a41531b8e7f1f10190370",
+    "src/assembly_recovery/cable_robot.py": "0ec856f7c5e7b87166f37d93466c4c25119c5b5b7921b4a4d4aa7358e06a7a56",
+    "src/assembly_recovery/cable_jobs.py": "1e00f2de4da8c935fd81e6e07f9e05d0c8d23431db985af0cceda8aa00abf0f3",
+    "src/assembly_recovery/cable_control.py": "f081e70e62548124b7de1c92cd32dc9f5b4235f46c89a060a810e121c783c925",
+    ".deps/aic/docs/qualification_phase.md": "f4223dd72641d965fad0d88f715a000ea42fa7d56c31cb3d6cb1d364b3601d15",
+    ".deps/aic/docs/scoring.md": "7f6500f6425813bc0153e3a196e6b84277176fdff2eba8ad17d855fbc515cde8",
+    ".deps/aic/aic_gazebo/src/CablePlugin.cc": "539d2ce5b2fbbd695be192da61d8d306e5968bc9638944b5d45c6d7efd731972",
+    ".deps/aic/aic_scoring/src/ScoringTier2.cc": "4f627cc6d7d12f9ba6aa5a958e61d15c3e5b7a10ecedc4977288179b4bb92f2e",
+    ".deps/aic/aic_assets/models/SC Plug/model.sdf": "aa1244982c496bc7c15bf344424155c4e1caf3f99368e541b71b7ec4d14dc38d",
+    ".deps/aic/aic_assets/models/SC Port/model.sdf": "5c36ca164b0f76d0ea54fdca296133ee10ce132ae00ee8d18f4b1a55e2bb1ef5",
+    "artifacts/cable/cable-baseline-v2-r01/result.json": "f03a146426e8e9dfd22c071afa88cfdbf86fc3b961591c15ec440b2e1ace465a",
+    "artifacts/cable/cable-baseline-v2-r01/layout0_offset__scripted_force_guided_retry/trajectory.npz": "b5c1bf02164b2f424df17f8d696928a1eed92a52ae95694f0fd9886d024db440",
+    "artifacts/cable/cable-baseline-v2-r01/layout0_offset__scripted_continuation/trajectory.npz": "ad42b992652aa569f7f37c8c19a365c2064e323632d8e7a42463132d872f7590"
+  },
+  "verification": {
+    "json_parsed": true,
+    "all_listed_local_sources_exist": true
+  }
+}
