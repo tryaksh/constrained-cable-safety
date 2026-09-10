@@ -1,8 +1,8 @@
 # Roadmap: learn to recover, then measure whether training pays
 
-**Locked goal:** autonomous recovery from failed industrial assembly attempts, evaluated at equal training cost. Franka + FORGE peg insertion first, gear assembly second. Eight weeks on the current workstation, starting with the first implementation session after the 2026-09-06 audit. Agents execute the work; the owner does not need to supervise technical choices or approve each run.
+**Project scope:** learned recovery from failed industrial assembly attempts at equal training cost, using Franka and pinned FORGE. Peg insertion first; gear assembly tests generality after peg evidence earns it.
 
-This file is the only plan and handoff. Update its current-state table in place after each work block. A five-hour block is an execution/checkpointing unit, not a request for five hours of owner attention. No new robot, perception project, VLA, space task or research question during these eight weeks. Negative results change the conclusion, not the project identity.
+The owner's 2026-09-10 mandate supersedes the fixed five-hour/single-action limits and the mandatory adaptive-sampling question. Agents own scientific and engineering choices and execute a complete, bounded research cycle. Scientific validity, preservation of negative evidence, source provenance, fair cost and closed final tests remain required. Earlier plans below are historical designs until explicitly replaced by a versioned registration.
 
 ## Current state
 
@@ -23,9 +23,19 @@ This file is the only plan and handoff. Update its current-state table in place 
 | Resource allocation | This block ran nine complete simulator trials and one failed fine initialization: 153,545 charged reference transitions, including 38,738 earlier probes/failure and 114,807 in the final six-run comparison. Cumulative tracked cost is at least 24,995,215.25. One reference transition is eight native physics environment steps; separate simulated control-time equivalents total 115,745 for this block. Zero training or final-test use. All owned simulator processes are stopped. |
 | Website / manuscript | Not built. Original scripted video and seed-10070 motion figure remain unchanged. New descriptive confirmation motion is recorded in the block evidence: all 30 learned post-stall completions rise at most 0.907 mm, with 1.97-11.58 mm lateral displacement. This supports keeping mechanism-neutral completion separate from the unchanged withdrawal metric. |
 | Execution authorization | Owner authorizes safe non-force pushes to `research/assembly-recovery-training` in the existing GitHub repository; a future new repository remains deferred and main stays unchanged. Autonomous ordinary work continues. No sleep-guard work. Future 2048/4096 trials remain conditional on measured headroom/benefit and a newly shared comparison configuration. |
-| Single next action | Preregister and execute a bounded 120/240/480 Hz contact-impact diagnostic on fixed development cases with the frozen scripted prefix, 120 Hz external servo/sensors and native raw 20 N aborts. Compare native force peaks, impulses, contact durations and inter-sensor peaks to identify the source of timestep sensitivity. Keep controller settings, geometry, gravity and the failed competence gate unchanged; do not launch the training screen or open final tests. |
+| Prior physics handoff | Preregister and execute a bounded 120/240/480 Hz contact-impact diagnostic on fixed development cases with the frozen scripted prefix, 120 Hz external servo/sensors and native raw 20 N aborts. Compare native force peaks, impulses, contact durations and inter-sensor peaks to identify the source of timestep sensitivity. Keep controller settings, geometry, gravity and the failed competence gate unchanged; do not launch the training screen or open final tests. |
+| Current autonomous cycle | Recovery teaching selected as the empirical question in configs/recovery_teaching_registration_v1.json. Ordinary/exposure worker and off-policy masks implemented; no candidate GPU run yet. Native contact diagnostic and representative 1024/2048 capacity tools implemented; 250 CPU tests and Ruff pass. Exact source-captured 1024 capacity run is active. |
+| Single next action | Complete the serial capacity/contact diagnostic queue, apply the registered physics acceptance criteria, then execute or reject the matched training comparison on that evidence. The prior single-action/five-hour execution limits are superseded. |
 
-## The fixed experiment
+## Current research cycle (2026-09-10)
+
+**Registered question:** at equal total charged simulator work, does explicit exposure to physically generated failed insertion attempts during training improve complete-job and witnessed post-stall reliability over ordinary uniform-fault training, while retaining nominal performance and competing with strong scripted retry?
+
+The candidate uses the same policy, observations, action interface, fault support and reward. A fixed scripted insertion prefix on a registered fraction of fault training jobs supplies actual physical experience before learned continuation. Prefix actions are excluded from PPO losses and all simulator work is charged. This tests a practical recovery-teaching method; it is not a claim of a new curriculum algorithm or a learned recovery trigger.
+
+**Execution:** register and run the 120/240/480 Hz native contact-impact diagnostic, with a predeclared 960 Hz extension if the finer pair disagrees. Diagnose raw joint-reaction force, contact impulse, contact duration and gripper dynamics without changing the 20 N rule. In the same cycle measure representative 1024/2048 training work. Freeze the physical task and method screen only after explicit acceptance criteria pass, then train matched fresh starts and make an extend/reject decision. The contribution registration records prior art and stopping rules before candidate results.
+
+## Earlier adaptive experiment (preserved design, no longer mandatory)
 
 **Question:** under a fixed physical task and equal total charged simulator cost, does selecting fault practice from recent job outcomes reduce unfinished jobs compared with uniform and calibrated fixed easy-to-hard training, and does it improve prevention, completion after a witnessed contact stall, or both? Compare reliability and time with unchanged scripted retry. This is an unanswered engineering question for this benchmark, not a claim that adaptive assembly recovery is new.
 

@@ -10,15 +10,11 @@ The setup is a Franka arm performing peg insertion, followed by gear assembly, i
 
 ## The research question
 
-**At equal training cost, does automatically concentrating practice on recoverable failures reduce unfinished assembly jobs more effectively than uniform training and a simple retract-and-retry controller?**
+The current candidate question is **whether explicitly teaching recovery from physically generated failed attempts improves assembly reliability at equal training cost**, compared with ordinary fault training and strong scripted retry. The method and rejection rules are registered in [the research decision](configs/recovery_teaching_registration_v1.json), with the closest primary research and explicit limits. Adaptive fault sampling is a preserved, unexecuted earlier design and is no longer mandatory.
 
-The candidate sampler keeps some ordinary practice, then reallocates fault conditions using recent job outcomes. The current difficulty score does not identify which failures are physically recoverable; its benefit remains untested. It learns continuous robot actions, including backing out and approaching again. It does not ask an LLM to choose a move. Training starts from physically valid episode initializations; a recovery must happen through robot actions in the same job.
+The candidate keeps the same learned policy, observations, fault support and reward. A fixed scripted insertion prefix on some fault training jobs creates physical experience before learned continuation; script actions cannot enter PPO losses, and their simulation cost counts. All recovery within a job must happen through robot actions. This is an empirical recovery-teaching comparison, without an established algorithmic novelty claim.
 
-The study measures complete jobs, time, simulated contact loads and failures as training grows. Checkpoints at roughly 1, 3 and 10 million environment transitions make the scaling question testable. More training is useful only if the held-out curves justify it. Peg insertion establishes the result; gear assembly tests whether it survives a second contact task.
-
-The manuscript will emphasize empirical recovery reliability and training cost. A registered physics-timestep test now finds material sensitivity in frozen learned and scripted control despite matched external timing and observations. This blocks the training comparison pending a contact-impact diagnosis; it is not an algorithmic novelty claim.
-
-The current contribution route is **a controlled engineering replication and extension**, not a new curriculum algorithm. The practical question is whether adaptive practice earns its training cost compared with uniform practice, a fixed curriculum and scripted retry, and whether any improvement comes from preventing failure or completing a job after a witnessed stall. A paper contribution must be supported by that measured decision, multiple training seeds, a second task and physics robustness; it is not established yet.
+A native contact-impact investigation first determines whether the force-limited task supports an interpretable comparison. The owner authorized substantial implementation, matched fresh training, multiple starts, a 1024/2048 capacity measurement and an evidence-backed project decision. Scientific validity and preservation of failed results remain mandatory; earlier five-hour and single-action limits are superseded.
 
 ## Why this direction
 

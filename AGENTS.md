@@ -2,15 +2,15 @@
 
 Read this file, then the current-state table and next action in [ROADMAP.md](ROADMAP.md). Read [README.md](README.md) for the project explanation and prior-art boundaries. These are the only maintained Markdown documents. Do not read the archive, old logs or checkpoint inventories unless a specific question requires them. Search src, scripts, tests and configs by default; .rgignore excludes the large historical index from routine searches.
 
-The fixed eight-week objective is **learned recovery from failed industrial assembly attempts at equal training cost**, using Franka and pinned Isaac Lab FORGE: peg insertion, then gear meshing. The owner explicitly authorized replacing the old project and wants agents to execute without technical micromanagement. The old zero-gravity robot, service, claims and campaigns are retired. No routine session may reopen robot choice or the research question.
+The project objective is **learned recovery from failed industrial assembly attempts at equal training cost**, using Franka and pinned Isaac Lab FORGE: peg insertion, then gear meshing. The owner explicitly authorized replacing the old project and wants agents to execute without technical micromanagement. The old zero-gravity robot, service, claims and campaigns are retired. The owner superseded the narrow execution scope on 2026-09-10: choose one falsifiable research question, revise the method when evidence warrants, and execute a complete research and training cycle. Adaptive sampling is not mandatory. Keep Franka, FORGE and the assembly-recovery scope.
 
 ## Work autonomously
 
-Take the single next action in ROADMAP.md, implement it, verify the artifact and update the state in that same file. Work in bounded blocks of up to five hours and reserve the final 30 minutes for verification and handoff. The owner is not a technical supervisor for those blocks. Ask only for essential missing external resources or a genuine high-level scope decision. Resolve normal implementation choices yourself.
+Use ROADMAP.md as the current plan and update its verified state. The single-action and five-hour session limits are superseded: work through the experiment cycle with a measured overnight compute budget, bounded individual jobs, and time reserved for verification and handoff. Use parallel agents for concrete independent tasks and one serial GPU queue. Ask only for essential missing external resources or a genuine high-level scope decision. Resolve normal implementation choices yourself.
 
 The owner does not need to learn CAD, inspect the simulator manually, or guide routine runs for work to continue. Suggest a manual action only after identifying a concrete obstacle that it would resolve faster or more reliably than the available tools. Supply a prepared case and an exact short instruction; never make manual participation an artificial gate. Keep CAD and connector setup conditional on a measured geometry need.
 
-Do not start long training before the week-one physics, observation, fault-validity and evaluation gates pass. The existing launcher runs upstream FORGE only; it does not implement the proposed study. The two-epoch pilot proves training can save weights, not that a competent policy or recovery method exists.
+Do not start a substantial comparison before its registered physics, observation, fault-validity and evaluation acceptance criteria pass. Bounded diagnostic training and the authorized 1024/2048 capacity benchmark may enable that decision; record their costs and limitations. The existing launcher runs upstream FORGE only; it does not implement the proposed study. The two-epoch pilot proves training can save weights, not that a competent policy or recovery method exists.
 
 ## Scientific and engineering rules
 
@@ -58,4 +58,4 @@ Read only `summary`, `key_findings`, `next_action` and `scope_and_limitations` f
 
 Keep raw runs, videos and weights in ignored output directories. Keep concise verified evidence in `evidence/`. Exactly three maintained Markdown documents: no HANDOFF, NOW, NEXT_WORK, new paper-plan or extra agent file. Future manuscript source can be LaTeX. References and detailed machine records belong in JSON or BibTeX.
 
-When a block finishes, state what changed, what actually ran and the next action. Do not promise a positive result, publication acceptance or hiring. Stop proposing new pivots and build the experiment in ROADMAP.md.
+When a block finishes, state what changed, what actually ran and the next action. Do not promise a positive result, publication acceptance or hiring. Execute the evidence-backed experiment in ROADMAP.md. Safe non-force pushes to the existing research/assembly-recovery-training branch are authorized; main stays unchanged.
