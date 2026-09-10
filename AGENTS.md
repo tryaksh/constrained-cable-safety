@@ -10,7 +10,7 @@ Use ROADMAP.md as the current plan and update its verified state. The single-act
 
 The owner does not need to learn CAD, inspect the simulator manually, or guide routine runs for work to continue. Suggest a manual action only after identifying a concrete obstacle that it would resolve faster or more reliably than the available tools. Supply a prepared case and an exact short instruction; never make manual participation an artificial gate. Keep CAD and connector setup conditional on a measured geometry need.
 
-Do not start a substantial comparison before its registered physics, observation, fault-validity and evaluation acceptance criteria pass. Bounded diagnostic training and the authorized 1024/2048 capacity benchmark may enable that decision; record their costs and limitations. The existing launcher runs upstream FORGE only; it does not implement the proposed study. The two-epoch pilot proves training can save weights, not that a competent policy or recovery method exists.
+Do not start a substantial comparison before its registered physics, observation, fault-validity and evaluation acceptance criteria pass. Bounded diagnostic training and the authorized 1024/2048 capacity benchmark may enable that decision; record their costs and limitations. The upstream launcher remains a separate reference. The completed ordinary v4 policy has explicitly scoped development evidence; it is not the proposed method. The 2026-09-10 fixed-prefix recovery-teaching campaign is closed by reject_premise in evidence/research_cycle_decision_v1.json. Do not queue more training or prefix tuning under its failed gates.
 
 ## Scientific and engineering rules
 
@@ -38,6 +38,7 @@ Do not start a substantial comparison before its registered physics, observation
 | Simulator smoke check | scripts/assembly_smoke.py |
 | Bounded peg validation | scripts/run_validation.py; scripts/validate_peg.py |
 | Current validation findings | evidence/peg_validation.json; evidence/reward_audit.json |
+| Current executed research decision | evidence/research_cycle_decision_v1.json; evidence/training_capacity_v2.json |
 | Frozen learned/retry physics validation | configs/learned_physics_validation_v3.json; scripts/run_learned_physics_v3.py; evidence/learned_physics_validation_v3.json |
 | Cheap run-planning and artifact checks | src/assembly_recovery/ |
 | Machine versions | environment-lock.example.json; local environment-lock.local.json if present |
