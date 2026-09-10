@@ -16,7 +16,7 @@ The candidate sampler keeps some ordinary practice, then reallocates fault condi
 
 The study measures complete jobs, time, simulated contact loads and failures as training grows. Checkpoints at roughly 1, 3 and 10 million environment transitions make the scaling question testable. More training is useful only if the held-out curves justify it. Peg insertion establishes the result; gear assembly tests whether it survives a second contact task.
 
-The manuscript will emphasize empirical recovery reliability and training cost. A registered physics-timestep refinement test will evaluate frozen learned policies under finer simulation while preserving control and observation timing; it has not run and is not an algorithmic novelty claim.
+The manuscript will emphasize empirical recovery reliability and training cost. A registered physics-timestep test now finds material sensitivity in frozen learned and scripted control despite matched external timing and observations. This blocks the training comparison pending a contact-impact diagnosis; it is not an algorithmic novelty claim.
 
 The current contribution route is **a controlled engineering replication and extension**, not a new curriculum algorithm. The practical question is whether adaptive practice earns its training cost compared with uniform practice, a fixed curriculum and scripted retry, and whether any improvement comes from preventing failure or completing a job after a witnessed stall. A paper contribution must be supported by that measured decision, multiple training seeds, a second task and physics robustness; it is not established yet.
 
@@ -32,7 +32,7 @@ The skills this project can demonstrate include reinforcement learning, force-aw
 
 ## What is actually working
 
-The project now has a verified tensorized finite-job training path around pinned FORGE: complete-job scoring, actor/critic separation, terminal rewards and returns, contact sensing, mutation guards and transition accounting. Lint and 187 CPU tests pass, including a source-only export. Protocol v2 is frozen in `configs/protocol_v2.json`; upstream source remains unchanged.
+The project now has a verified tensorized finite-job training path around pinned FORGE: complete-job scoring, actor/critic separation, terminal rewards and returns, contact sensing, mutation guards and transition accounting. Lint and 212 CPU tests pass, including a source-only checkout. Protocol v2 is frozen in `configs/protocol_v2.json`; upstream source remains unchanged.
 
 A fresh uniform-fault PPO pilot completed 2,346,880 charged transitions at 1,024 environments in 23.4 minutes. Its saved checkpoint reloads correctly. **The deterministic policy completed 0/84 development jobs: 80 timeouts and 4 force aborts, including 0/12 nominal completions and zero witnessed recoveries.** That pilot did not produce a competent learned assembly policy. See [evidence/uniform_pilot_v2.json](evidence/uniform_pilot_v2.json). An earlier pilot stopped on a rare initial action-bound failure; its partial checkpoints and the verified correction remain preserved in [evidence/initial_action_projection_v2.json](evidence/initial_action_projection_v2.json).
 
@@ -52,7 +52,21 @@ The earlier reward diagnosis found that failed stalls outreturned 10 of 19 match
 
 Before another substantial campaign, the [bounded comparison design](configs/contribution_screen_v1.json) specifies three learning arms and three training seeds at about 3M charged transitions each, plus matched direct-job and post-stall evaluations against unchanged retry. It is gated on learned-policy physics validation and a newly frozen common protocol. An offline audit of already charged training logs found little differentiation in the proposed score near 3M; late failures were mostly force aborts rather than witnessed stalls. That audit predicts no counterfactual performance and supports keeping the first spending decision small. No new simulator training ran during the contribution review.
 
-The study retains physical held-part gravity, the 30-second deadline, raw 20 N wrist-load abort and 0.5-second seating dwell. Robot gravity compensation is idealized; observations are simulator poses with synthetic noise. Four scripted development pairs complete 2/4 at 120 Hz physics and 1/4 at 240 Hz despite matched external timing/noise, demonstrating sensitivity rather than convergence. Learned-policy refinement, gear, multiple training seeds and final tests remain open. No pickup, dropped-part recovery, camera perception, hardware transfer or force-certified safety is established. The [research assessment](evidence/research_assessment_20260909.json) records the prior-art boundaries and conditions for future 2048/4096-environment profiling. ROADMAP.md contains the single next action.
+The [frozen learned/retry physics validation](evidence/learned_physics_validation_v3.json) now compares all 28 development cases on seed 10071 at 120 and 240 Hz. Policy updates stay at 15 Hz and servo/sensor updates at 120 Hz. Both resolutions independently use the confirmed coarse initialization. Native integration steps, force conversion, observation/RNG pairing and unchanged actions/rewards are verified; the 120 Hz prefix trajectories reproduce the confirmed assay bit for bit.
+
+| Controller and assay | 120 Hz completion | 240 Hz completion |
+| --- | --- | --- |
+| Frozen learned, direct job | 27/28 | 20/28 |
+| Frozen learned after the four-second prefix | 25/28 | 11/28 |
+| Unchanged scripted retry | 24/28 | 12/28 |
+
+The retry trajectory serves both comparisons and is counted once. **Material physics sensitivity blocks the training screen.** Shared-prefix force aborts rise from one to 13 before learned control begins. Among stalled jobs still active at handoff, learned/retry complete 16/17 and 16/17 at 120 Hz versus 3/5 and 2/5 at 240 Hz. All five fine-cohort cases also belong to the coarse cohort, where both controllers complete 5/5. The direct learned runs encounter no witnessed stalls at either timestep; they measure insertion/prevention. Learned withdrawal recoveries remain zero and the original competence gate remains failed.
+
+All 41 force aborts in the final fine trials coincide with measured peg?fixture contact; 17 occur between external sensor ticks. Short peaks remain failures under the frozen raw 20 N rule. Lower mean completion/abort time at 240 Hz includes early failures and does not establish improved throughput. Two resolutions establish sensitivity, not convergence. The next bounded diagnostic will examine native peak force, impulse and contact duration across timesteps before any training campaign.
+
+The final six runs pass 357 scientific/artifact checks and nine provenance checks. Earlier CPU-checker and backend failures remain preserved. Changing scene timing invalidated simulator tensor views before the first fine job step; the corrected version uses the installed native simulate/fetch calls with explicit dt and reruns both resolutions. All nine complete trials plus that failed initialization cost **153,545 charged reference transitions**, counting every eight native physics environment steps as one reference transition. The [backend failure](evidence/learned_physics_backend_failure_v2.json) and [checker failure](evidence/learned_physics_verifier_failure_v1.json) remain immutable. There was no new training or final-test use.
+
+The study retains physical held-part gravity, the 30-second deadline, native raw 20 N wrist-load abort and 0.5-second seating dwell. Robot gravity compensation is idealized; observations are simulator poses with synthetic noise. The earlier four scripted development pairs remain separate evidence (2/4 versus 1/4). Contact robustness, gear, multiple training seeds and final tests remain open. No pickup, dropped-part recovery, camera perception, hardware transfer or force-certified safety is established. The [research assessment](evidence/research_assessment_20260909.json) records the prior-art boundaries and conditions for future 2048/4096-environment profiling. ROADMAP.md contains the single next action.
 
 ## What the audit changed
 

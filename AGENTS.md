@@ -38,6 +38,7 @@ Do not start long training before the week-one physics, observation, fault-valid
 | Simulator smoke check | scripts/assembly_smoke.py |
 | Bounded peg validation | scripts/run_validation.py; scripts/validate_peg.py |
 | Current validation findings | evidence/peg_validation.json; evidence/reward_audit.json |
+| Frozen learned/retry physics validation | configs/learned_physics_validation_v3.json; scripts/run_learned_physics_v3.py; evidence/learned_physics_validation_v3.json |
 | Cheap run-planning and artifact checks | src/assembly_recovery/ |
 | Machine versions | environment-lock.example.json; local environment-lock.local.json if present |
 | Compact lessons from the retired project | maintenance/lessons.json |
@@ -49,7 +50,7 @@ pytest
 python scripts/run_experiment.py plan --task peg --epochs 2 --num-envs 64
 ```
 
-Use bare pytest as CI does. Tests must run without ignored local artifacts, Isaac Sim or a GPU. Simulator verification is a separate bounded job. Do not replace these cheap checks with hours of training.
+CI uses bare pytest. On this Windows workstation App Control blocks pytest.exe; use `.venv/Scripts/python.exe -m pytest`. Tests must run without ignored local artifacts, Isaac Sim or a GPU. Simulator verification is a separate bounded job. Do not replace these cheap checks with hours of training.
 
 Do not modify `.deps/IsaacLab` to implement this study. Put adapters in `src/assembly_recovery/`, retain the upstream baseline, and pin the installed version. `TORCHDYNAMO_DISABLE=1` is the verified local workaround for the optional compiler import failure; the launcher records it. New machine setup is not verified merely because this workstation runs.
 
