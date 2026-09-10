@@ -1,0 +1,102 @@
+{
+  "schema": 1,
+  "status": "verified",
+  "created_at_utc": "2026-09-10T23:07:10.818621+00:00",
+  "scope": "Video of already recorded native cable baseline states; no new physics, training or outcome evaluation.",
+  "source_run": "artifacts/cable/cable-baseline-v2-r01",
+  "source_manifest_sha256": "1e41d4fb32fc635bc0b53540952cb3e8b2ffb7ea699caf655555ac33ee2657d6",
+  "selection_rule": "First lexicographically ordered shared nonnominal case in frozen six-case development comparison; no new outcome selection.",
+  "cases": [
+    "layout0_offset__scripted_force_guided_retry",
+    "layout0_offset__scripted_continuation"
+  ],
+  "outcomes": {
+    "guided": "Held seating at 6.2375 s; no retries or witnessed recovery.",
+    "continuation": "Contact stall at 2.606 s, deadline failure at 30 s."
+  },
+  "video": {
+    "path": "artifacts/cable/cable-video-v1/cable_comparison.mp4",
+    "sha256": "e2298b476c82c4549328a7976de003c9858e27ecb8b0796e878303a24496e9d8",
+    "bytes": 682106,
+    "fps": 30,
+    "frames": 585,
+    "duration_s": 19.5,
+    "decode_check": "passed",
+    "codec": "H.264",
+    "pixel_format": "yuv420p",
+    "dimensions": [
+      1600,
+      1000
+    ],
+    "playback": "2 s intro; job0-8 s at1x; job8-30 s at4x;4 s terminal hold"
+  },
+  "poster": {
+    "path": "evidence/cable_video_v1.jpg",
+    "sha256": "7d8108dca3e617a7f460658da8115dbb4a946a4dd2e1ce9b933293467258f982",
+    "decoded_from_movie_at_s": 8.4
+  },
+  "verification": {
+    "source_artifacts_checked_per_render": 65,
+    "full_mp4_decode": "passed",
+    "actual_decoded_frames": 585,
+    "actual_duration_s": 19.5,
+    "decoded_frame_visually_inspected": true,
+    "maximum_replayed_tip_error_m": 0.0,
+    "no_new_native_integration_steps": true,
+    "decode_log": "artifacts\\cable\\cable-video-review-v1\\decode.log",
+    "decode_log_sha256": "67d5fed1c248620861f61c28c94133c9c4b8b7f5eed8f5c5fec8c05db8cb240e"
+  },
+  "render_runs": [
+    {
+      "run_id": "cable-video-preview-v1",
+      "manifest_sha256": "6f93a8e79fc5011593ee347e088248df1a247027842b4f2f56e4989ddc2800ac",
+      "accounting": {
+        "native_steps": 0,
+        "mj_forward_calls": 6,
+        "render_calls": 12
+      },
+      "elapsed_s": 2.9690000000118744,
+      "source_archive": {
+        "path": "source.zip",
+        "sha256": "b30ac7546190d54816e1505c75f566c074e53529155bb33472e89d60e8e712c2"
+      },
+      "maximum_replayed_tip_error_m": 0.0
+    },
+    {
+      "run_id": "cable-video-v1",
+      "manifest_sha256": "fda66c71ed495e1ed217b516be5c33cae42f851606880a21de81b2808e5f75ed",
+      "accounting": {
+        "native_steps": 0,
+        "mj_forward_calls": 595,
+        "render_calls": 1190
+      },
+      "elapsed_s": 35.95299999999406,
+      "source_archive": {
+        "path": "source.zip",
+        "sha256": "aa19dd65f69ee7b6b52103583d9d05770efbadc1144f2ce70424e4776b9d815a"
+      },
+      "maximum_replayed_tip_error_m": 0.0
+    }
+  ],
+  "total_render_work": {
+    "native_steps": 0,
+    "mj_forward_calls": 601,
+    "render_calls": 1202
+  },
+  "limitations": [
+    "Offline saved-state replay; no new physics integration or performance measurement.",
+    "Nearest saved poses, without interpolation; source poses were recorded every 10 ms plus terminal state.",
+    "Three-second physical initialization omitted; movie clock reports original job time.",
+    "Completed job images are explicitly held, not simulated further.",
+    "All displayed forces and outcomes come from original records, not replay force calculations.",
+    "View/lighting changes only; geometry, poses and original results are unchanged.",
+    "Lighting/camera changes affect display only. The whole-robot inset and close-up show the same saved pose.",
+    "Guidance is scripted alignment/prevention; no learned cable policy or recovery benefit is shown.",
+    "The selected asset still fails physical latch retention; held seating is not a final retained connection."
+  ],
+  "reproduce": [
+    "uv pip install --python .deps/cable-venv/Scripts/python.exe imageio-ffmpeg==0.6.0",
+    ".venv/Scripts/python.exe scripts/run_cable.py --run-id cable-video-local-001 --worker scripts/render_cable_video.py --config configs/cable_video_v1.json --max-minutes 10"
+  ],
+  "reproduce_requires": "Original ignored trajectory/scene/mesh artifacts on this workstation; they are not distributed in the source repository."
+}

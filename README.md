@@ -23,6 +23,8 @@ The project-owned adapter runs pinned Intrinsic AIC UR5e geometry and current SC
 
 The [controlled baseline evidence](evidence/cable_baseline_v2.json) includes all requests and the separate nominal development warmup. The [retention evidence](evidence/cable_retention_v1.json) verifies native force balance, matched approach trajectories and both resolutions. The retention fixture constrains lateral motion and orientation; its result concerns this rigid model, not the retention strength of a real SC connector. The native robot uses an ideal fixed preset grasp and simulator poses with exact-model bias feedforward. Seating while held is not a demonstrated final connection.
 
+A **19.5-second recorded-state video** now shows the same 2 mm offset under both scripted controllers, with connector close-ups, the whole cable, recorded measurements and explicit playback/final-frame labels. See the [verified video record and replay command](evidence/cable_video_v1.json). The local MP4 is `artifacts/cable/cable-video-v1/cable_comparison.mp4`; the original ignored trajectories are required to regenerate it. Rendering added zero physics integration steps and changed no research outcomes.
+
 ![Scripted free-cable insertion comparison](evidence/cable_baseline_v2.png)
 
 ![Physical retention control](evidence/cable_retention_v1.png)
