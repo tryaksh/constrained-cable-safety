@@ -1,0 +1,305 @@
+{
+  "schema": 1,
+  "study": "isolated_sc_axial_retention",
+  "verification_status": "passed",
+  "verification_checks_passed": 1383,
+  "review_script": "scripts/review_cable_retention.py",
+  "review_script_sha256": "95ff9d31f7ec6096ac8a8dd0936d40c6eca5f208277cdbf666a92a1245ae6579",
+  "review_uses_recorded_arrays_only": true,
+  "new_simulator_steps": 0,
+  "new_gpu_jobs": 0,
+  "scope_and_limitations": [
+    "Isolated one-axis force-actuated fixture with fixed lateral position and rotation; not a robot or recovery evaluation.",
+    "The plug is initialized aligned2mm above the seated pose, then physically force-driven to contact/dwell. No attachment or constraint changes occur.",
+    "There is no gripper in these trials and therefore no actual gripper-release event.",
+    "Gravity is compensated explicitly. Zero net extraction load is a zero-net-force control, not evidence of a mechanical latch.",
+    "Results apply to pinned public rigid SC collision geometry and registered solver/friction parameters, not hardware retention or all connector models.",
+    "Matched timesteps support the observed missing axial resistance in this fixture; this is not general physics convergence or complete-job validation."
+  ],
+  "summary": {
+    "force_driven_seating_trials": 6,
+    "seating_passed": 6,
+    "zero_load_controls": 2,
+    "zero_load_controls_within_seating_region_for_2s": 2,
+    "positive_load_trials": 4,
+    "positive_load_trials_lost_seating": 4,
+    "positive_load_extraction_contact_exactly_zero_in_all_native_and_forward_samples": true,
+    "gravity_axis_force_n": -0.4022099999972867,
+    "source_plug_mass_kg": 0.041,
+    "net_extraction_loads_n": [
+      0,
+      0.5,
+      2
+    ],
+    "seating_tolerance_m": 0.001,
+    "maximum_native_force_balance_residual_n": 2.531308496145357e-14,
+    "loss_time_refinement_deltas_s": {
+      "half_newton_net_extraction": 0.00012499999934201256,
+      "two_newton_net_extraction": -0.00012500000066895112
+    }
+  },
+  "decision": {
+    "retention_gate_passed": false,
+    "action": "revise_and_validate_missing_retention_model",
+    "reason": "After verified seating, both positive extraction loads experience exactly zero opposing contact and promptly leave the seating region at both resolutions.",
+    "complete_connection_claim_earned": false,
+    "candidate_training_gate_earned": false,
+    "clip_or_snag_recovery_comparison_gate_earned": false,
+    "next_action": "Introduce an evidence-backed connector-retention model or revise the task claim, then independently validate seating and axial retention before complete-job cable recovery comparisons."
+  },
+  "runs": [
+    {
+      "run_id": "cable-retention-v1-r01",
+      "status": "failed_before_worker_launch",
+      "native_steps": 0,
+      "launcher_wall_s": 0.01600000000325963,
+      "manifest_sha256": "e4d7db6c5687092586a000a42b99d658e7adca8d7ad1704244753c2ac0c99418",
+      "source_provenance": null,
+      "prelaunch_present": false,
+      "source_archive_present": false,
+      "basis": "Saved launcher reports config JSON BOM failure before worker launch; directory contains only its manifest. No source hash or source commit is assigned retrospectively."
+    },
+    {
+      "run_id": "cable-retention-v1-r02",
+      "status": "completed",
+      "manifest_sha256": "bf7fee0c752295a0d26f02d5924266b9b2929aa4420d55b94a1831e9c79fab01",
+      "prelaunch_sha256": "a7d65f30b0a7428e70566f682e61a77256c1f9a2543fc132a24a1f17e6d3465c",
+      "source_archive_sha256": "e781813fabc5dd685ce4e4404039881dc12490a696d958586aceb67f6e9e057c",
+      "source_commit_at_launch": "4040de31c903ea085c992cada566f9e18ed562a2",
+      "source_dirty_at_launch": true,
+      "source_entries_verified": 232,
+      "artifact_entries_verified": 94,
+      "upstream_entries_verified": 94,
+      "selected_archived_source_sha256": {
+        "scripts/probe_cable_retention.py": "4988d892697b5be57b4c981a63e0d97650c951ef5ea786b8a86e1dc5f1ae8381",
+        "src/assembly_recovery/cable_assets.py": "34d2542666cd546d452913fd3c807ccf1d69144020600950386c975c8b35a4a3",
+        "configs/cable_retention_v1.json": "9dd9ca9a5553660a7730e66f9510898de88e0204a7751b2ee58cd26d665d74aa"
+      },
+      "upstream_commit": "e9145480c945f2afc3741f355233f44082cc3b06",
+      "upstream_archive_scope": "Upstream files were hashed before launch, not included in source.zip; all recorded hashes rechecked against the pinned local checkout.",
+      "environment": {
+        "python": "3.11.15 (main, Mar 10 2026, 18:12:25) [MSC v.1944 64 bit (AMD64)]",
+        "mujoco": "3.3.7",
+        "numpy": "2.4.6"
+      },
+      "config_path": "configs/cable_retention_v1.json",
+      "command": [
+        "D:\\6axis-space-robotics\\.deps\\cable-venv\\Scripts\\python.exe",
+        "D:\\6axis-space-robotics\\scripts\\probe_cable_retention.py",
+        "--run-dir",
+        "D:\\6axis-space-robotics\\artifacts\\cable\\cable-retention-v1-r02",
+        "--config",
+        "D:\\6axis-space-robotics\\configs\\cable_retention_v1.json"
+      ],
+      "launcher_wall_s": 11.48399999999674,
+      "native_steps": 32172,
+      "approach_native_steps": 24000,
+      "load_native_steps": 8172,
+      "worker_wall_s": 10.686999999990803
+    },
+    {
+      "run_id": "cable-retention-v2-r01",
+      "status": "completed",
+      "manifest_sha256": "9aff2c81a6f8f4dc1201a3089fb3db71c78920bb85eaa18f310c9e8d8e6370a5",
+      "prelaunch_sha256": "4fabf0167c5c6046456af18575f122c1c7f8cc90a126661fe31a47ae7393691a",
+      "source_archive_sha256": "3e407bf09d8aadaa1f6dc3ee6fd6c29f17164c28a6184c9acc0c25984173243c",
+      "source_commit_at_launch": "4040de31c903ea085c992cada566f9e18ed562a2",
+      "source_dirty_at_launch": true,
+      "source_entries_verified": 233,
+      "artifact_entries_verified": 94,
+      "upstream_entries_verified": 94,
+      "selected_archived_source_sha256": {
+        "scripts/probe_cable_retention.py": "4988d892697b5be57b4c981a63e0d97650c951ef5ea786b8a86e1dc5f1ae8381",
+        "src/assembly_recovery/cable_assets.py": "34d2542666cd546d452913fd3c807ccf1d69144020600950386c975c8b35a4a3",
+        "configs/cable_retention_v2.json": "5797f5cd8a6047d45d137e99148f1e28ab1e7007e68231f9448e9cd11e7ee358"
+      },
+      "upstream_commit": "e9145480c945f2afc3741f355233f44082cc3b06",
+      "upstream_archive_scope": "Upstream files were hashed before launch, not included in source.zip; all recorded hashes rechecked against the pinned local checkout.",
+      "environment": {
+        "python": "3.11.15 (main, Mar 10 2026, 18:12:25) [MSC v.1944 64 bit (AMD64)]",
+        "mujoco": "3.3.7",
+        "numpy": "2.4.6"
+      },
+      "config_path": "configs/cable_retention_v2.json",
+      "command": [
+        "D:\\6axis-space-robotics\\.deps\\cable-venv\\Scripts\\python.exe",
+        "D:\\6axis-space-robotics\\scripts\\probe_cable_retention.py",
+        "--run-dir",
+        "D:\\6axis-space-robotics\\artifacts\\cable\\cable-retention-v2-r01",
+        "--config",
+        "D:\\6axis-space-robotics\\configs\\cable_retention_v2.json"
+      ],
+      "launcher_wall_s": 13.094000000011874,
+      "native_steps": 64344,
+      "approach_native_steps": 48000,
+      "load_native_steps": 16344,
+      "worker_wall_s": 12.28200000000652
+    }
+  ],
+  "scientific_results": [
+    {
+      "run_id": "cable-retention-v1-r02",
+      "dt_s": 0.00025,
+      "cases": [
+        {
+          "case_id": "zero_net_extraction",
+          "net_extraction_load_n": 0.0,
+          "dt_s": 0.00025,
+          "seating_dwell_verified_s": 1.98325,
+          "seated_before_load": true,
+          "retained_within_axial_fixture": true,
+          "first_seating_loss_after_load_s": null,
+          "final_tip_error_m": 0.00039186590530421856,
+          "native_extraction_contact_peak_n": 0.004363451071731262,
+          "forward_extraction_contact_peak_n": 0.003805772788869485,
+          "positive_load_extraction_contact_exactly_zero": null,
+          "native_approach_contact_peak_n": 2.012675332006281,
+          "native_force_balance_max_residual_n": 2.1760371282653068e-14,
+          "native_steps": 16000,
+          "approach_native_steps": 8000,
+          "load_native_steps": 8000,
+          "gravity_axis_force_n": -0.4022099999972867,
+          "extraction_actuator_force_n": 0.4022099999972867,
+          "samples_sha256": "ae0a3ac7c469e3fb45e98db375a2435d48073aad3ce79ef4ae56afb6026fad70",
+          "terminal_state_sha256": "e84b6e5955ded767f1cab2f9c9e679426f84a2b5e5db85b7be3f425933bcdc67"
+        },
+        {
+          "case_id": "half_newton_net_extraction",
+          "net_extraction_load_n": 0.5,
+          "dt_s": 0.00025,
+          "seating_dwell_verified_s": 1.98325,
+          "seated_before_load": true,
+          "retained_within_axial_fixture": false,
+          "first_seating_loss_after_load_s": 0.012250000000244565,
+          "final_tip_error_m": 0.005155078977912897,
+          "native_extraction_contact_peak_n": 0.0,
+          "forward_extraction_contact_peak_n": 0.0,
+          "positive_load_extraction_contact_exactly_zero": true,
+          "native_approach_contact_peak_n": 2.012675332006281,
+          "native_force_balance_max_residual_n": 2.1760371282653068e-14,
+          "native_steps": 8115,
+          "approach_native_steps": 8000,
+          "load_native_steps": 115,
+          "gravity_axis_force_n": -0.4022099999972867,
+          "extraction_actuator_force_n": 0.9022099999972867,
+          "samples_sha256": "1ce1559cc8da37933bab808b3ff7ace0e5c98ea14ab8a98eeb807ef2605226a0",
+          "terminal_state_sha256": "8f2b053908f63fc005d1286e9fcbbce5fa9d1013c49ce4ff9e86319f259e996b"
+        },
+        {
+          "case_id": "two_newton_net_extraction",
+          "net_extraction_load_n": 2.0,
+          "dt_s": 0.00025,
+          "seating_dwell_verified_s": 1.98325,
+          "seated_before_load": true,
+          "retained_within_axial_fixture": false,
+          "first_seating_loss_after_load_s": 0.006250000000247891,
+          "final_tip_error_m": 0.00511087166083974,
+          "native_extraction_contact_peak_n": 0.0,
+          "forward_extraction_contact_peak_n": 0.0,
+          "positive_load_extraction_contact_exactly_zero": true,
+          "native_approach_contact_peak_n": 2.012675332006281,
+          "native_force_balance_max_residual_n": 2.1760371282653068e-14,
+          "native_steps": 8057,
+          "approach_native_steps": 8000,
+          "load_native_steps": 57,
+          "gravity_axis_force_n": -0.4022099999972867,
+          "extraction_actuator_force_n": 2.402209999997287,
+          "samples_sha256": "4fb9181d2462a13b3f589dca8ec0d78402d85fd3f5970eb7137c2603177718d6",
+          "terminal_state_sha256": "1a85d7e21fce28cbbbf3e7fc4b449cad74677feb5ee88a08a4ac31a2020bd9c1"
+        }
+      ],
+      "approach_prefixes_bitwise_identical": true
+    },
+    {
+      "run_id": "cable-retention-v2-r01",
+      "dt_s": 0.000125,
+      "cases": [
+        {
+          "case_id": "zero_net_extraction",
+          "net_extraction_load_n": 0.0,
+          "dt_s": 0.000125,
+          "seating_dwell_verified_s": 1.983,
+          "seated_before_load": true,
+          "retained_within_axial_fixture": true,
+          "first_seating_loss_after_load_s": null,
+          "final_tip_error_m": 0.00039006830835671715,
+          "native_extraction_contact_peak_n": 0.004363451071682124,
+          "forward_extraction_contact_peak_n": 0.004088671038827923,
+          "positive_load_extraction_contact_exactly_zero": null,
+          "native_approach_contact_peak_n": 2.0139230114219595,
+          "native_force_balance_max_residual_n": 2.531308496145357e-14,
+          "native_steps": 32000,
+          "approach_native_steps": 16000,
+          "load_native_steps": 16000,
+          "gravity_axis_force_n": -0.4022099999972867,
+          "extraction_actuator_force_n": 0.4022099999972867,
+          "samples_sha256": "90a67a4be662a852c809faa4212541f082869dc194d082666d65971f68025c62",
+          "terminal_state_sha256": "4625d36dae6a0a8698165d12187b2580155a2d008aa561e7760d0c124c7b387e"
+        },
+        {
+          "case_id": "half_newton_net_extraction",
+          "net_extraction_load_n": 0.5,
+          "dt_s": 0.000125,
+          "seating_dwell_verified_s": 1.983,
+          "seated_before_load": true,
+          "retained_within_axial_fixture": false,
+          "first_seating_loss_after_load_s": 0.012374999999586578,
+          "final_tip_error_m": 0.0050893396486446085,
+          "native_extraction_contact_peak_n": 0.0,
+          "forward_extraction_contact_peak_n": 0.0,
+          "positive_load_extraction_contact_exactly_zero": true,
+          "native_approach_contact_peak_n": 2.0139230114219595,
+          "native_force_balance_max_residual_n": 2.531308496145357e-14,
+          "native_steps": 16229,
+          "approach_native_steps": 16000,
+          "load_native_steps": 229,
+          "gravity_axis_force_n": -0.4022099999972867,
+          "extraction_actuator_force_n": 0.9022099999972867,
+          "samples_sha256": "9164b9175bd52d00009b5cd21619fa5fdb41f91ddb34de0a55faf553140dc4b9",
+          "terminal_state_sha256": "0cc181f6049abe1a84221b7cff348a6d93460ec31630e4af4c031a896a19e92b"
+        },
+        {
+          "case_id": "two_newton_net_extraction",
+          "net_extraction_load_n": 2.0,
+          "dt_s": 0.000125,
+          "seating_dwell_verified_s": 1.983,
+          "seated_before_load": true,
+          "retained_within_axial_fixture": false,
+          "first_seating_loss_after_load_s": 0.0061249999995789395,
+          "final_tip_error_m": 0.005155078977912897,
+          "native_extraction_contact_peak_n": 0.0,
+          "forward_extraction_contact_peak_n": 0.0,
+          "positive_load_extraction_contact_exactly_zero": true,
+          "native_approach_contact_peak_n": 2.0139230114219595,
+          "native_force_balance_max_residual_n": 2.531308496145357e-14,
+          "native_steps": 16115,
+          "approach_native_steps": 16000,
+          "load_native_steps": 115,
+          "gravity_axis_force_n": -0.4022099999972867,
+          "extraction_actuator_force_n": 2.402209999997287,
+          "samples_sha256": "b4da7fc6ad373a981c858f74d21f5bd7fe4603adb36a466a16a2a83df42390b8",
+          "terminal_state_sha256": "c1709774283a204f9ad4636d81e761f295ca9eb0cfaae506ed9a64d8d3d580c6"
+        }
+      ],
+      "approach_prefixes_bitwise_identical": true
+    }
+  ],
+  "costs": {
+    "native_steps": 96516,
+    "approach_native_steps": 72000,
+    "load_native_steps": 24516,
+    "initialization_native_steps": 0,
+    "launcher_wall_s": 24.594000000011874,
+    "worker_wall_s": 22.968999999997322
+  },
+  "figures": [
+    {
+      "path": "evidence/cable_retention_v1.png",
+      "sha256": "1c244a7eb6384bbff028ac304cad5353fa8b634119f4164743d4b3e6fcb6f3a3"
+    },
+    {
+      "path": "evidence/cable_retention_v1.pdf",
+      "sha256": "e68256b06b80c0a73e49e972a848957789a5a63ef76326227884f440e499c2b2"
+    }
+  ]
+}

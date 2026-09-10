@@ -1,0 +1,310 @@
+{
+  "schema": 1,
+  "generated_at_utc": "2026-09-10T21:56:29.374043+00:00",
+  "status": "diagnostic_controls_passed",
+  "scope_and_limitations": [
+    "Force-actuated three-axis fixture using exact public SC SDF collision geometry; no robot baseline, grasp validation, official AIC score or cable recovery comparison.",
+    "Fixture allows no connector rotation and compensates whole moving subtree gravity, including floor-supported cable mass.",
+    "Peaks include initialization, insertion and deliberate post-dwell retraction. Seating was observed during the attempt; no final connected-job claim.",
+    "v1 cable root is 48 mm behind the plug rather than public 52 mm; ball root has no elastic attachment moment. Cable modulus is a declared simulation model, uncalibrated to hardware.",
+    "v1 sensor/contact/pose traces are at the pre-integration solve; the velocity columns were advanced one step. Seating/contact outcomes do not use those velocity columns. v2 corrects timestamps and phase metrics prospectively.",
+    "Two sampled timesteps establish narrow sensitivity of these controls, not general convergence or transfer."
+  ],
+  "controller": "scripted_cartesian_force_stage_approach_retract",
+  "runs": [
+    {
+      "run_id": "cable-contact-v1-r01",
+      "status": "process_failed",
+      "checks": {
+        "prelaunch_unchanged": true,
+        "source_bytes_match_prelaunch": true,
+        "artifact_bytes_match": true,
+        "aic_pinned": true
+      },
+      "manifest_sha256": "3da93c4e9f35e7743179a7e5b47d4f3923f7de4202c43df826062c3a447d7a68",
+      "source_archive_sha256": "a309a37e3303a0810c3bb1c3c54db2da7d78feaf0897a0266475b427f293d00d",
+      "accounting": null,
+      "elapsed_seconds": 2.7030000000086147
+    },
+    {
+      "run_id": "cable-contact-v1-r02",
+      "status": "completed",
+      "checks": {
+        "prelaunch_unchanged": true,
+        "source_bytes_match_prelaunch": true,
+        "artifact_bytes_match": true,
+        "aic_pinned": true
+      },
+      "manifest_sha256": "b261a5bf626e786c96f04ee5bfa2da7e5eca201472dcd2d227b02ac250a440f3",
+      "source_archive_sha256": "a137f5be33d7289237169c8dd7be3653b090f0e78b90ac28e98e7ce3911f6497",
+      "accounting": {
+        "native_steps": 13000,
+        "initialization_native_steps": 2000
+      },
+      "elapsed_seconds": 3.4689999999973224
+    },
+    {
+      "run_id": "cable-contact-v1-r03",
+      "status": "completed",
+      "checks": {
+        "prelaunch_unchanged": true,
+        "source_bytes_match_prelaunch": true,
+        "artifact_bytes_match": true,
+        "aic_pinned": true
+      },
+      "manifest_sha256": "e6b80c3f4d5cddb59c082bbd57738fe9b3dfbec58f1779883953e57f03e13c0d",
+      "source_archive_sha256": "f57352b53bc6017747dd108944018667c3d3ed3eab7a01ceb86dc11685264004",
+      "accounting": {
+        "native_steps": 106165,
+        "initialization_native_steps": 18000
+      },
+      "elapsed_seconds": 30.968000000008033
+    }
+  ],
+  "failed_experiments": [
+    {
+      "run_id": "cable-contact-v1-r01",
+      "status": "process_failed",
+      "error": "MuJoCo rejected zero-volume GLB visual mesh before explicit simulation step",
+      "explicit_native_steps": 0,
+      "correction": "Visual-only OBJ meshes use shell inertia; collision geometry unchanged; exact failed and corrected sources archived."
+    }
+  ],
+  "gates": {
+    "all_finite": true,
+    "all_initially_connector_contact_free": true,
+    "all_tracking_checks": true,
+    "aligned_seating_both_timesteps_with_and_without_cable": true,
+    "free_space_zero_connector_contact": true,
+    "misaligned_contact_positive_controls": true
+  },
+  "cases": [
+    {
+      "case": {
+        "id": "aligned_1ms",
+        "dt": 0.001,
+        "offset_m": [
+          0.0,
+          0.0
+        ],
+        "with_cable": false
+      },
+      "attempt_outcome": "seating_dwell",
+      "is_robot_baseline": false,
+      "valid_seating_attempt": true,
+      "minimum_tip_error_m": 6.796162510988579e-05,
+      "maximum_tip_angle_rad": 0.0,
+      "initial_contact_peak_n": 0.0,
+      "peak_stage_wrist_force_n": 1.199891674407017,
+      "peak_plug_port_contact_n": 1.6021505014946378,
+      "peak_port_detector_contact_n": 1.6021505014946378,
+      "native_steps": 13000,
+      "initialization_native_steps": 2000,
+      "acceptance_checks": {
+        "finite": true,
+        "initial_contact_free": true,
+        "contact_detected": true,
+        "free_tracking": true,
+        "aligned_orientation": true
+      }
+    },
+    {
+      "case": {
+        "id": "aligned_05ms",
+        "dt": 0.0005,
+        "offset_m": [
+          0.0,
+          0.0
+        ],
+        "with_cable": false
+      },
+      "attempt_outcome": "seating_dwell",
+      "is_robot_baseline": false,
+      "valid_seating_attempt": true,
+      "minimum_tip_error_m": 6.806778293799133e-05,
+      "maximum_tip_angle_rad": 0.0,
+      "initial_contact_peak_n": 0.0,
+      "peak_stage_wrist_force_n": 1.199892463053917,
+      "peak_plug_port_contact_n": 1.6021476655325135,
+      "peak_port_detector_contact_n": 1.6021476655325135,
+      "native_steps": 26000,
+      "initialization_native_steps": 4000,
+      "acceptance_checks": {
+        "finite": true,
+        "initial_contact_free": true,
+        "contact_detected": true,
+        "free_tracking": true,
+        "aligned_orientation": true
+      }
+    },
+    {
+      "case": {
+        "id": "misaligned_1ms",
+        "dt": 0.001,
+        "offset_m": [
+          0.003,
+          0.0
+        ],
+        "with_cable": false
+      },
+      "attempt_outcome": "force_abort",
+      "is_robot_baseline": false,
+      "valid_seating_attempt": false,
+      "minimum_tip_error_m": 0.01378322277231782,
+      "maximum_tip_angle_rad": 0.0,
+      "initial_contact_peak_n": 0.0,
+      "peak_stage_wrist_force_n": 20.004872048745714,
+      "peak_plug_port_contact_n": 20.40708204888006,
+      "peak_port_detector_contact_n": 0.0,
+      "native_steps": 7539,
+      "initialization_native_steps": 2000,
+      "acceptance_checks": {
+        "finite": true,
+        "initial_contact_free": true,
+        "contact_detected": true,
+        "free_tracking": true,
+        "aligned_orientation": true
+      }
+    },
+    {
+      "case": {
+        "id": "aligned_cable_1ms",
+        "dt": 0.001,
+        "offset_m": [
+          0.0,
+          0.0
+        ],
+        "with_cable": true
+      },
+      "attempt_outcome": "seating_dwell",
+      "is_robot_baseline": false,
+      "valid_seating_attempt": true,
+      "minimum_tip_error_m": 8.594976873923675e-05,
+      "maximum_tip_angle_rad": 0.0,
+      "initial_contact_peak_n": 0.0,
+      "peak_stage_wrist_force_n": 2.8424485185829518,
+      "peak_plug_port_contact_n": 1.2593765441822438,
+      "peak_port_detector_contact_n": 1.2593765441822438,
+      "native_steps": 13000,
+      "initialization_native_steps": 2000,
+      "acceptance_checks": {
+        "finite": true,
+        "initial_contact_free": true,
+        "contact_detected": true,
+        "free_tracking": true,
+        "aligned_orientation": true
+      }
+    },
+    {
+      "case": {
+        "id": "aligned_cable_05ms",
+        "dt": 0.0005,
+        "offset_m": [
+          0.0,
+          0.0
+        ],
+        "with_cable": true
+      },
+      "attempt_outcome": "seating_dwell",
+      "is_robot_baseline": false,
+      "valid_seating_attempt": true,
+      "minimum_tip_error_m": 8.489848567947319e-05,
+      "maximum_tip_angle_rad": 0.0,
+      "initial_contact_peak_n": 0.0,
+      "peak_stage_wrist_force_n": 2.8288187151463613,
+      "peak_plug_port_contact_n": 1.2591588341912165,
+      "peak_port_detector_contact_n": 1.2591588341912165,
+      "native_steps": 26000,
+      "initialization_native_steps": 4000,
+      "acceptance_checks": {
+        "finite": true,
+        "initial_contact_free": true,
+        "contact_detected": true,
+        "free_tracking": true,
+        "aligned_orientation": true
+      }
+    },
+    {
+      "case": {
+        "id": "misaligned_cable_1ms",
+        "dt": 0.001,
+        "offset_m": [
+          0.003,
+          0.0
+        ],
+        "with_cable": true
+      },
+      "attempt_outcome": "force_abort",
+      "is_robot_baseline": false,
+      "valid_seating_attempt": false,
+      "minimum_tip_error_m": 0.013798037411137457,
+      "maximum_tip_angle_rad": 0.0,
+      "initial_contact_peak_n": 0.0,
+      "peak_stage_wrist_force_n": 20.00407893534597,
+      "peak_plug_port_contact_n": 20.606600500717093,
+      "peak_port_detector_contact_n": 0.0,
+      "native_steps": 7626,
+      "initialization_native_steps": 2000,
+      "acceptance_checks": {
+        "finite": true,
+        "initial_contact_free": true,
+        "contact_detected": true,
+        "free_tracking": true,
+        "aligned_orientation": true
+      }
+    },
+    {
+      "case": {
+        "id": "free_space_1ms",
+        "dt": 0.001,
+        "offset_m": [
+          0.04,
+          0.0
+        ],
+        "with_cable": false
+      },
+      "attempt_outcome": "no_seating",
+      "is_robot_baseline": false,
+      "valid_seating_attempt": false,
+      "minimum_tip_error_m": 0.040000000022218075,
+      "maximum_tip_angle_rad": 0.0,
+      "initial_contact_peak_n": 0.0,
+      "peak_stage_wrist_force_n": 0.4203710950214224,
+      "peak_plug_port_contact_n": 0.0,
+      "peak_port_detector_contact_n": 0.0,
+      "native_steps": 13000,
+      "initialization_native_steps": 2000,
+      "acceptance_checks": {
+        "finite": true,
+        "initial_contact_free": true,
+        "contact_detected": false,
+        "free_tracking": true,
+        "aligned_orientation": true
+      }
+    }
+  ],
+  "representative_refinement": [
+    {
+      "pair": "aligned",
+      "same_dwell_outcome": true,
+      "all_phase_peak_contact_difference_n": 2.8359621242479705e-06,
+      "minimum_tip_error_difference_m": 1.0615782810554015e-07
+    },
+    {
+      "pair": "aligned_cable",
+      "same_dwell_outcome": true,
+      "all_phase_peak_contact_difference_n": 0.0002177099910272151,
+      "minimum_tip_error_difference_m": 1.051283059763563e-06
+    }
+  ],
+  "cost": {
+    "explicit_native_steps": 119165,
+    "initialization_explicit_native_steps": 20000,
+    "launcher_wall_seconds": 37.14000000001397,
+    "learning_transitions": 0,
+    "training_runs": 0,
+    "cost_scope": "Includes repeated aligned r02, all seven r03 controls and failed process wall time. MuJoCo compile/forward work included in wall time; native count is explicit integration calls."
+  },
+  "decision": "Continue to native robot baseline and sensor/load validation; no learning comparison gate opened.",
+  "next_action": "Validate native UR5e insertion on the same current SDF geometry, with explicit preset-grasp and cable-load scope."
+}

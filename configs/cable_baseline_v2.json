@@ -1,0 +1,259 @@
+{
+  "schema": 1,
+  "id": "cable_baseline_v2",
+  "scope": "Preregistered bounded free-cable engineering comparison: visible local offsets crossed with three initial cable directions. No snag/clip extension and no learned benefit claim.",
+  "scene": {
+    "schema": 1,
+    "task_id": "native_ur5e_sc_diagnostic_v3",
+    "scope": "Native AIC UR5e finite-torque insertion and retraction with an ideal fixed preset grasp; project diagnostic, not official AIC scoring or learned control.",
+    "aic_commit": "e9145480c945f2afc3741f355233f44082cc3b06",
+    "runtime": {
+      "mujoco": "3.3.7",
+      "python": "3.11.15"
+    },
+    "asset_models": [
+      "SC Plug",
+      "SC Port"
+    ],
+    "external_files": [
+      "artifacts/cable/asset_probe_robot_meshes/base.stl",
+      "artifacts/cable/asset_probe_robot_meshes/shoulder.stl",
+      "artifacts/cable/asset_probe_robot_meshes/upperarm.stl",
+      "artifacts/cable/asset_probe_robot_meshes/forearm.stl",
+      "artifacts/cable/asset_probe_robot_meshes/wrist1.stl",
+      "artifacts/cable/asset_probe_robot_meshes/wrist2.stl",
+      "artifacts/cable/asset_probe_robot_meshes/wrist3.stl"
+    ],
+    "robot_mesh_directory": "artifacts/cable/asset_probe_robot_meshes",
+    "render_visuals": true,
+    "home_q_rad": [
+      0,
+      -1.57,
+      1.57,
+      -1.57,
+      -1.57,
+      0
+    ],
+    "finger_opening_m": 0.0125,
+    "plug_origin_in_tool_m": [
+      0,
+      0,
+      0.1823
+    ],
+    "preset_grasp": "Plug rigidly fixed to native ati/tool_link; no latch or grasp change during job. Finger collision geometry retained. Drop robustness cannot be measured under this idealization.",
+    "cable": {
+      "length_m": 0.96,
+      "segments": 24,
+      "radius_m": 0.002,
+      "linear_density_kg_per_m": 0.0520833333333333,
+      "youngs_modulus_pa": 10000000.0,
+      "twist_modulus_pa": 4000000.0,
+      "joint_damping": 2e-05,
+      "attachment_back_m": 0.052,
+      "initial_shape": "outboard_hanging_curve",
+      "initial_outward_world_xy": [
+        1,
+        0
+      ],
+      "initial_bend_segments": 4,
+      "material_rest_shape": "straight: flat=true; initial vertices do not change constitutive rest curvature",
+      "initial_route_reason": "Exit positive tool-y free gripper quadrant then bend down before upper arm; opposite direction intersects gripper support rib in compile-only geometry."
+    },
+    "initial_distance_m": 0.022,
+    "initialization_seconds": 3,
+    "attempt_seconds": 9,
+    "retract_seconds": 4,
+    "approach_speed_m_per_s": 0.004,
+    "retract_speed_m_per_s": 0.01,
+    "controller": {
+      "translation_stiffness_n_per_m": 1500,
+      "translation_damping_ns_per_m": 90,
+      "rotation_stiffness_nm_per_rad": 80,
+      "rotation_damping_nms_per_rad": 15,
+      "cartesian_force_limit_n": 15,
+      "cartesian_torque_limit_nm": 8,
+      "joint_torque_limits_nm": [
+        150,
+        150,
+        150,
+        28,
+        28,
+        28
+      ],
+      "finger_opening_m": 0.0125,
+      "feedforward": "Native qfrc_bias on robot joints, exact model idealization; no applied body forces or robot pose writes."
+    },
+    "acceptance": {
+      "dwell_s": 0.5,
+      "position_tolerance_m": 0.001,
+      "orientation_tolerance_rad": 0.03,
+      "raw_wrist_load_abort_n": 20,
+      "raw_plug_load_abort_n": 20,
+      "initial_contact_tolerance_n": 0.001,
+      "tracking_tolerance_m": 0.002,
+      "retraction_min_distance_m": 0.015
+    },
+    "cases": [
+      {
+        "id": "robot_cable_05ms",
+        "dt": 0.0005,
+        "with_cable": true,
+        "fixture_offset_m": [
+          0,
+          0
+        ]
+      },
+      {
+        "id": "robot_cable_025ms",
+        "dt": 0.00025,
+        "with_cable": true,
+        "fixture_offset_m": [
+          0,
+          0
+        ]
+      }
+    ],
+    "stop_rule": "Validate aligned approach/seating/retraction and native load sensing; no learned comparison or official score claim from this diagnostic.",
+    "supersedes": "v2 cable1ms failed initialization at28steps; cable0.5ms completed. Refine to0.25ms with identical geometry/material/controller/abort and rerun0.5ms."
+  },
+  "external_files": [
+    "artifacts/cable/asset_probe_robot_meshes/base.stl",
+    "artifacts/cable/asset_probe_robot_meshes/shoulder.stl",
+    "artifacts/cable/asset_probe_robot_meshes/upperarm.stl",
+    "artifacts/cable/asset_probe_robot_meshes/forearm.stl",
+    "artifacts/cable/asset_probe_robot_meshes/wrist1.stl",
+    "artifacts/cable/asset_probe_robot_meshes/wrist2.stl",
+    "artifacts/cable/asset_probe_robot_meshes/wrist3.stl"
+  ],
+  "controllers": [
+    "scripted_force_guided_retry",
+    "scripted_continuation"
+  ],
+  "policy_hz": 50,
+  "job_limits": {
+    "deadline_s": 30.0,
+    "dwell_s": 0.5,
+    "position_tolerance_m": 0.001,
+    "orientation_tolerance_rad": 0.03,
+    "wrist_force_n": 20.0,
+    "plug_force_n": 20.0,
+    "anchor_force_n": 15.0,
+    "contact_witness_n": 0.05,
+    "stall_window_s": 0.5,
+    "minimum_commanded_progress_m": 0.001,
+    "maximum_new_progress_m": 0.0001
+  },
+  "force_guided_controller": {
+    "speed_m_per_s": 0.004,
+    "deadline_s": 30.0,
+    "alignment_standoff_m": 0.018,
+    "position_tolerance_m": 0.0003,
+    "retract_distance_m": 0.006,
+    "insertion_overtravel_m": 0.0003,
+    "slowdown_force_n": 2.0,
+    "retract_force_n": 8.0,
+    "max_retries": 2
+  },
+  "cases": [
+    {
+      "id": "layout0_nominal",
+      "dt": 0.00025,
+      "with_cable": true,
+      "fixture_offset_m": [
+        0.0,
+        0.0
+      ],
+      "outward_xy": [
+        1.0,
+        0.0
+      ],
+      "development_seed": 21020
+    },
+    {
+      "id": "layout0_offset",
+      "dt": 0.00025,
+      "with_cable": true,
+      "fixture_offset_m": [
+        0.002,
+        0.0
+      ],
+      "outward_xy": [
+        1.0,
+        0.0
+      ],
+      "development_seed": 21020
+    },
+    {
+      "id": "layout1_nominal",
+      "dt": 0.00025,
+      "with_cable": true,
+      "fixture_offset_m": [
+        0.0,
+        0.0
+      ],
+      "outward_xy": [
+        0.9887710779360422,
+        0.14943813247359922
+      ],
+      "development_seed": 21021
+    },
+    {
+      "id": "layout1_offset",
+      "dt": 0.00025,
+      "with_cable": true,
+      "fixture_offset_m": [
+        0.002,
+        0.0
+      ],
+      "outward_xy": [
+        0.9887710779360422,
+        0.14943813247359922
+      ],
+      "development_seed": 21021
+    },
+    {
+      "id": "layout2_nominal",
+      "dt": 0.00025,
+      "with_cable": true,
+      "fixture_offset_m": [
+        0.0,
+        0.0
+      ],
+      "outward_xy": [
+        0.9887710779360422,
+        -0.14943813247359922
+      ],
+      "development_seed": 21022
+    },
+    {
+      "id": "layout2_offset",
+      "dt": 0.00025,
+      "with_cable": true,
+      "fixture_offset_m": [
+        0.002,
+        0.0
+      ],
+      "outward_xy": [
+        0.9887710779360422,
+        -0.14943813247359922
+      ],
+      "development_seed": 21022
+    }
+  ],
+  "seeds": {
+    "development": [
+      21020,
+      21021,
+      21022
+    ],
+    "training": [],
+    "final_test": []
+  },
+  "stop_rule": "Assess whether simple actual-target force guidance is sufficient for these bounded local errors. Do not infer cable-snag or required-clip recovery. Keep all failed cases and probe cost.",
+  "comparison_limits": [
+    "Six deterministic development cases per arm, one native robot home and one mechanical model; no inferential reliability or generalization claim.",
+    "All observed target poses exposed equally. Strong local alignment can prevent failure; only witnessed contact then subsequent completion may count recovery.",
+    "Failures during initialization remain in all-request denominators; no replacement cases after launch.",
+    "Models and learning are absent; this establishes a practical baseline rather than candidate superiority."
+  ]
+}

@@ -1,0 +1,1158 @@
+{
+  "schema": 1,
+  "version": "cable_baseline_v2",
+  "generated_at_utc": "2026-09-10T22:36:03.590787+00:00",
+  "scope": "Warmup and separate six-case scripted free-cable development baseline. Held seating only; not recovery learning, a cable-snag study, released retention or an official AIC score.",
+  "review_sources_sha256": {
+    "scripts/review_cable_baseline.py": "d6688afedf026c9215069cc113d738bb35a8b70bef92167cb24669cb5200283e",
+    "scripts/review_cable_robot.py": "a444766ce62c335fd62234c9128b17ff04eb2c9f2e042a150423e7e7847c7e28"
+  },
+  "runs": [
+    {
+      "run_id": "cable-baseline-v1-r01",
+      "role": "nominal_warmup",
+      "manifest": "artifacts/cable/cable-baseline-v1-r01/manifest.json",
+      "provenance": {
+        "manifest_sha256": "fffc10cf8ee007fc50804d970d6fce8ece69fc6b159fb0d9046020e3330741bd",
+        "prelaunch_sha256": "6d6adc06d1ccdf1ac2c4d68209aece056b1740a88ba230275cec4c692c5f362a",
+        "source_archive_sha256": "02098b553289c8b5abe967ef6f6feceaafea0f6ba20b91965c1a7ba94659e9e6",
+        "source_commit_at_start": "4040de31c903ea085c992cada566f9e18ed562a2",
+        "source_dirty_at_start": true,
+        "archived_project_and_external_files": 235,
+        "external_meshes_archived": 7,
+        "upstream_source_and_asset_hashes_checked": 94,
+        "run_artifacts_checked": 62,
+        "configuration_path": "configs/cable_baseline_v1.json",
+        "configuration_sha256": "8751b39020dbaa47b5fb659b2f3f088cd395186665c9f0df0807ebcbd1679107"
+      },
+      "verification": {
+        "status": "passed",
+        "checks": 423,
+        "failed_checks": []
+      },
+      "cases": [
+        {
+          "case_id": "nominal",
+          "controller": "scripted_force_guided_retry",
+          "task_case": {
+            "id": "nominal",
+            "dt": 0.00025,
+            "with_cable": true,
+            "fixture_offset_m": [
+              0,
+              0
+            ],
+            "outward_xy": [
+              1,
+              0
+            ]
+          },
+          "initialization_valid": true,
+          "job": {
+            "elapsed_s": 5.8785,
+            "dwell_s": 0.49999999999997263,
+            "status": "completed",
+            "failure_reason": null,
+            "first_witness_s": null,
+            "witness_type": null,
+            "samples": 23514
+          },
+          "retries_started": 0,
+          "last_phase": "insert",
+          "native_steps": 35514,
+          "initialization_native_steps": 12000,
+          "poststep_forward_calls": 35514,
+          "peak_loads_all_phases": {
+            "plug_port_contact_n": 13.724020546021807,
+            "port_detector_contact_n": 13.724020546021807,
+            "other_contact_n": 0.5781796389080415,
+            "raw_wrist_load_n": 11.713753257170223,
+            "raw_plug_load_n": 12.656204923677535
+          },
+          "native_force_rows_checked": 35514,
+          "native_connector_contact_steps_in_job": 2000,
+          "native_detector_contact_steps_in_job": 2000,
+          "raw_force_violation_steps_all_phases": 0,
+          "witness_review": null,
+          "precontact_bias_world_n": [
+            -0.02660348172504797,
+            -0.00034143927138474884,
+            10.770900148251435
+          ],
+          "final_seating_error_m": 7.88142920430763e-05,
+          "worker_wall_seconds": 19.296999999991385,
+          "verification": {
+            "status": "passed",
+            "checks": 27,
+            "failed_checks": []
+          }
+        },
+        {
+          "case_id": "nominal",
+          "controller": "scripted_continuation",
+          "task_case": {
+            "id": "nominal",
+            "dt": 0.00025,
+            "with_cable": true,
+            "fixture_offset_m": [
+              0,
+              0
+            ],
+            "outward_xy": [
+              1,
+              0
+            ]
+          },
+          "initialization_valid": true,
+          "job": {
+            "elapsed_s": 5.9625,
+            "dwell_s": 0.49999999999997263,
+            "status": "completed",
+            "failure_reason": null,
+            "first_witness_s": null,
+            "witness_type": null,
+            "samples": 23850
+          },
+          "retries_started": 0,
+          "last_phase": "continued_insertion",
+          "native_steps": 35850,
+          "initialization_native_steps": 12000,
+          "poststep_forward_calls": 35850,
+          "peak_loads_all_phases": {
+            "plug_port_contact_n": 12.534068917601354,
+            "port_detector_contact_n": 12.534068917601354,
+            "other_contact_n": 0.5781796389080415,
+            "raw_wrist_load_n": 11.713753257170223,
+            "raw_plug_load_n": 11.556272053627016
+          },
+          "native_force_rows_checked": 35850,
+          "native_connector_contact_steps_in_job": 2000,
+          "native_detector_contact_steps_in_job": 2000,
+          "raw_force_violation_steps_all_phases": 0,
+          "witness_review": null,
+          "precontact_bias_world_n": [
+            -0.02660348172504797,
+            -0.00034143927138474884,
+            10.770900148251435
+          ],
+          "final_seating_error_m": 8.011450349884285e-05,
+          "worker_wall_seconds": 18.453000000008615,
+          "verification": {
+            "status": "passed",
+            "checks": 27,
+            "failed_checks": []
+          }
+        }
+      ],
+      "paired_initialization": [
+        {
+          "case_id": "nominal",
+          "native_initialization_rows_identical": true,
+          "initialization_rows_per_arm": 12000,
+          "canonical_scene_identical": true,
+          "recorded_precontact_bias_identical": true
+        }
+      ],
+      "controllers": [
+        {
+          "controller": "scripted_force_guided_retry",
+          "requests": 1,
+          "held_seating_dwell_completions": 1,
+          "initialization_failures": 0,
+          "deadline_failures": 0,
+          "force_failures": 0,
+          "witnessed_stalls": 0,
+          "completions_after_own_witnessed_stall": 0,
+          "retries_started": 0,
+          "nominal": {
+            "requests": 1,
+            "completions": 1
+          },
+          "offset": {
+            "requests": 0,
+            "completions": 0
+          },
+          "native_steps": 35514,
+          "initialization_native_steps": 12000,
+          "mean_job_seconds_per_request": 5.8785,
+          "summed_worker_wall_seconds": 19.296999999991385
+        },
+        {
+          "controller": "scripted_continuation",
+          "requests": 1,
+          "held_seating_dwell_completions": 1,
+          "initialization_failures": 0,
+          "deadline_failures": 0,
+          "force_failures": 0,
+          "witnessed_stalls": 0,
+          "completions_after_own_witnessed_stall": 0,
+          "retries_started": 0,
+          "nominal": {
+            "requests": 1,
+            "completions": 1
+          },
+          "offset": {
+            "requests": 0,
+            "completions": 0
+          },
+          "native_steps": 35850,
+          "initialization_native_steps": 12000,
+          "mean_job_seconds_per_request": 5.9625,
+          "summed_worker_wall_seconds": 18.453000000008615
+        }
+      ],
+      "accounting": {
+        "native_steps": 71364,
+        "initialization_native_steps": 24000,
+        "poststep_forward_calls": 71364,
+        "launcher_wall_seconds": 38.54700000000594
+      }
+    },
+    {
+      "run_id": "cable-baseline-v2-r01",
+      "role": "registered_development_comparison",
+      "manifest": "artifacts/cable/cable-baseline-v2-r01/manifest.json",
+      "provenance": {
+        "manifest_sha256": "1e41d4fb32fc635bc0b53540952cb3e8b2ffb7ea699caf655555ac33ee2657d6",
+        "prelaunch_sha256": "bd9447c443b6a041dd69143d14cdc3f219d533692072037da1c505cd06c08791",
+        "source_archive_sha256": "bc031d45c62b9ffa57c06ea2a8a837736385cb07aa257527d070112721ccce68",
+        "source_commit_at_start": "4040de31c903ea085c992cada566f9e18ed562a2",
+        "source_dirty_at_start": true,
+        "archived_project_and_external_files": 236,
+        "external_meshes_archived": 7,
+        "upstream_source_and_asset_hashes_checked": 94,
+        "run_artifacts_checked": 352,
+        "configuration_path": "configs/cable_baseline_v2.json",
+        "configuration_sha256": "fcfc614713292b1b5511b879cdbfc6d27d43a29bea33e9b60517128e193f6d4f"
+      },
+      "verification": {
+        "status": "passed",
+        "checks": 729,
+        "failed_checks": []
+      },
+      "cases": [
+        {
+          "case_id": "layout0_nominal",
+          "controller": "scripted_force_guided_retry",
+          "task_case": {
+            "id": "layout0_nominal",
+            "dt": 0.00025,
+            "with_cable": true,
+            "fixture_offset_m": [
+              0.0,
+              0.0
+            ],
+            "outward_xy": [
+              1.0,
+              0.0
+            ],
+            "development_seed": 21020
+          },
+          "initialization_valid": true,
+          "job": {
+            "elapsed_s": 5.8785,
+            "dwell_s": 0.49999999999997263,
+            "status": "completed",
+            "failure_reason": null,
+            "first_witness_s": null,
+            "witness_type": null,
+            "samples": 23514
+          },
+          "retries_started": 0,
+          "last_phase": "insert",
+          "native_steps": 35514,
+          "initialization_native_steps": 12000,
+          "poststep_forward_calls": 35514,
+          "peak_loads_all_phases": {
+            "plug_port_contact_n": 13.724020546021807,
+            "port_detector_contact_n": 13.724020546021807,
+            "other_contact_n": 0.5781796389080415,
+            "raw_wrist_load_n": 11.713753257170223,
+            "raw_plug_load_n": 12.656204923677535
+          },
+          "native_force_rows_checked": 35514,
+          "native_connector_contact_steps_in_job": 2000,
+          "native_detector_contact_steps_in_job": 2000,
+          "raw_force_violation_steps_all_phases": 0,
+          "witness_review": null,
+          "precontact_bias_world_n": [
+            -0.02660348172504797,
+            -0.00034143927138474884,
+            10.770900148251435
+          ],
+          "final_seating_error_m": 7.88142920430763e-05,
+          "worker_wall_seconds": 18.735000000000582,
+          "verification": {
+            "status": "passed",
+            "checks": 27,
+            "failed_checks": []
+          }
+        },
+        {
+          "case_id": "layout0_nominal",
+          "controller": "scripted_continuation",
+          "task_case": {
+            "id": "layout0_nominal",
+            "dt": 0.00025,
+            "with_cable": true,
+            "fixture_offset_m": [
+              0.0,
+              0.0
+            ],
+            "outward_xy": [
+              1.0,
+              0.0
+            ],
+            "development_seed": 21020
+          },
+          "initialization_valid": true,
+          "job": {
+            "elapsed_s": 5.9625,
+            "dwell_s": 0.49999999999997263,
+            "status": "completed",
+            "failure_reason": null,
+            "first_witness_s": null,
+            "witness_type": null,
+            "samples": 23850
+          },
+          "retries_started": 0,
+          "last_phase": "continued_insertion",
+          "native_steps": 35850,
+          "initialization_native_steps": 12000,
+          "poststep_forward_calls": 35850,
+          "peak_loads_all_phases": {
+            "plug_port_contact_n": 12.534068917601354,
+            "port_detector_contact_n": 12.534068917601354,
+            "other_contact_n": 0.5781796389080415,
+            "raw_wrist_load_n": 11.713753257170223,
+            "raw_plug_load_n": 11.556272053627016
+          },
+          "native_force_rows_checked": 35850,
+          "native_connector_contact_steps_in_job": 2000,
+          "native_detector_contact_steps_in_job": 2000,
+          "raw_force_violation_steps_all_phases": 0,
+          "witness_review": null,
+          "precontact_bias_world_n": [
+            -0.02660348172504797,
+            -0.00034143927138474884,
+            10.770900148251435
+          ],
+          "final_seating_error_m": 8.011450349884285e-05,
+          "worker_wall_seconds": 19.172000000005937,
+          "verification": {
+            "status": "passed",
+            "checks": 27,
+            "failed_checks": []
+          }
+        },
+        {
+          "case_id": "layout0_offset",
+          "controller": "scripted_force_guided_retry",
+          "task_case": {
+            "id": "layout0_offset",
+            "dt": 0.00025,
+            "with_cable": true,
+            "fixture_offset_m": [
+              0.002,
+              0.0
+            ],
+            "outward_xy": [
+              1.0,
+              0.0
+            ],
+            "development_seed": 21020
+          },
+          "initialization_valid": true,
+          "job": {
+            "elapsed_s": 6.2375,
+            "dwell_s": 0.49999999999997263,
+            "status": "completed",
+            "failure_reason": null,
+            "first_witness_s": null,
+            "witness_type": null,
+            "samples": 24950
+          },
+          "retries_started": 0,
+          "last_phase": "insert",
+          "native_steps": 36950,
+          "initialization_native_steps": 12000,
+          "poststep_forward_calls": 36950,
+          "peak_loads_all_phases": {
+            "plug_port_contact_n": 11.689310021741989,
+            "port_detector_contact_n": 11.689310021741989,
+            "other_contact_n": 5.0257806053569976,
+            "raw_wrist_load_n": 13.569201823348221,
+            "raw_plug_load_n": 10.673253230605555
+          },
+          "native_force_rows_checked": 36950,
+          "native_connector_contact_steps_in_job": 2000,
+          "native_detector_contact_steps_in_job": 2000,
+          "raw_force_violation_steps_all_phases": 0,
+          "witness_review": null,
+          "precontact_bias_world_n": [
+            -0.03272268696723697,
+            -0.0013744172453910414,
+            10.767723302457274
+          ],
+          "final_seating_error_m": 7.927178968732017e-05,
+          "worker_wall_seconds": 20.546999999991385,
+          "verification": {
+            "status": "passed",
+            "checks": 27,
+            "failed_checks": []
+          }
+        },
+        {
+          "case_id": "layout0_offset",
+          "controller": "scripted_continuation",
+          "task_case": {
+            "id": "layout0_offset",
+            "dt": 0.00025,
+            "with_cable": true,
+            "fixture_offset_m": [
+              0.002,
+              0.0
+            ],
+            "outward_xy": [
+              1.0,
+              0.0
+            ],
+            "development_seed": 21020
+          },
+          "initialization_valid": true,
+          "job": {
+            "elapsed_s": 30.0,
+            "dwell_s": 0.0,
+            "status": "failed",
+            "failure_reason": "deadline",
+            "first_witness_s": 2.606,
+            "witness_type": "connector_contact_stall",
+            "samples": 120000
+          },
+          "retries_started": 0,
+          "last_phase": "continued_insertion",
+          "native_steps": 132000,
+          "initialization_native_steps": 12000,
+          "poststep_forward_calls": 132000,
+          "peak_loads_all_phases": {
+            "plug_port_contact_n": 15.799532905732846,
+            "port_detector_contact_n": 0.0,
+            "other_contact_n": 5.581924056499313,
+            "raw_wrist_load_n": 11.713753257170223,
+            "raw_plug_load_n": 14.59856571711001
+          },
+          "native_force_rows_checked": 132000,
+          "native_connector_contact_steps_in_job": 111577,
+          "native_detector_contact_steps_in_job": 0,
+          "raw_force_violation_steps_all_phases": 0,
+          "witness_review": {
+            "reported_first_witness_s": 2.606,
+            "connector_contact_sustained_at_native_rate": true,
+            "native_contact_samples_checked": 2001,
+            "pose_progress_replayed_at_native_rate": false,
+            "limitation": "The native worker evaluated commanded/actual progress; saved 10 ms poses cannot replay the exact native progress window."
+          },
+          "precontact_bias_world_n": [
+            -0.03272268696723697,
+            -0.0013744172453910414,
+            10.767723302457274
+          ],
+          "final_seating_error_m": 0.01360865443096104,
+          "worker_wall_seconds": 84.5630000000092,
+          "verification": {
+            "status": "passed",
+            "checks": 29,
+            "failed_checks": []
+          }
+        },
+        {
+          "case_id": "layout1_nominal",
+          "controller": "scripted_force_guided_retry",
+          "task_case": {
+            "id": "layout1_nominal",
+            "dt": 0.00025,
+            "with_cable": true,
+            "fixture_offset_m": [
+              0.0,
+              0.0
+            ],
+            "outward_xy": [
+              0.9887710779360422,
+              0.14943813247359922
+            ],
+            "development_seed": 21021
+          },
+          "initialization_valid": true,
+          "job": {
+            "elapsed_s": 5.89675,
+            "dwell_s": 0.49999999999997263,
+            "status": "completed",
+            "failure_reason": null,
+            "first_witness_s": null,
+            "witness_type": null,
+            "samples": 23587
+          },
+          "retries_started": 0,
+          "last_phase": "insert",
+          "native_steps": 35587,
+          "initialization_native_steps": 12000,
+          "poststep_forward_calls": 35587,
+          "peak_loads_all_phases": {
+            "plug_port_contact_n": 14.42913086020376,
+            "port_detector_contact_n": 14.42913086020376,
+            "other_contact_n": 7.133099077622468,
+            "raw_wrist_load_n": 14.527018410013277,
+            "raw_plug_load_n": 13.324853208826655
+          },
+          "native_force_rows_checked": 35587,
+          "native_connector_contact_steps_in_job": 2000,
+          "native_detector_contact_steps_in_job": 2000,
+          "raw_force_violation_steps_all_phases": 0,
+          "witness_review": null,
+          "precontact_bias_world_n": [
+            -0.0433057892558663,
+            -0.00039083323500722206,
+            10.759288124646876
+          ],
+          "final_seating_error_m": 8.768370640092703e-05,
+          "worker_wall_seconds": 19.906999999991967,
+          "verification": {
+            "status": "passed",
+            "checks": 27,
+            "failed_checks": []
+          }
+        },
+        {
+          "case_id": "layout1_nominal",
+          "controller": "scripted_continuation",
+          "task_case": {
+            "id": "layout1_nominal",
+            "dt": 0.00025,
+            "with_cable": true,
+            "fixture_offset_m": [
+              0.0,
+              0.0
+            ],
+            "outward_xy": [
+              0.9887710779360422,
+              0.14943813247359922
+            ],
+            "development_seed": 21021
+          },
+          "initialization_valid": true,
+          "job": {
+            "elapsed_s": 5.9670000000000005,
+            "dwell_s": 0.49999999999997263,
+            "status": "completed",
+            "failure_reason": null,
+            "first_witness_s": null,
+            "witness_type": null,
+            "samples": 23868
+          },
+          "retries_started": 0,
+          "last_phase": "continued_insertion",
+          "native_steps": 35868,
+          "initialization_native_steps": 12000,
+          "poststep_forward_calls": 35868,
+          "peak_loads_all_phases": {
+            "plug_port_contact_n": 13.08663101402732,
+            "port_detector_contact_n": 13.08663101402732,
+            "other_contact_n": 7.243926397929929,
+            "raw_wrist_load_n": 14.617458079976855,
+            "raw_plug_load_n": 12.047933071184573
+          },
+          "native_force_rows_checked": 35868,
+          "native_connector_contact_steps_in_job": 2000,
+          "native_detector_contact_steps_in_job": 2000,
+          "raw_force_violation_steps_all_phases": 0,
+          "witness_review": null,
+          "precontact_bias_world_n": [
+            -0.0433057892558663,
+            -0.00039083323500722206,
+            10.759288124646876
+          ],
+          "final_seating_error_m": 8.702653569445061e-05,
+          "worker_wall_seconds": 19.672000000005937,
+          "verification": {
+            "status": "passed",
+            "checks": 27,
+            "failed_checks": []
+          }
+        },
+        {
+          "case_id": "layout1_offset",
+          "controller": "scripted_force_guided_retry",
+          "task_case": {
+            "id": "layout1_offset",
+            "dt": 0.00025,
+            "with_cable": true,
+            "fixture_offset_m": [
+              0.002,
+              0.0
+            ],
+            "outward_xy": [
+              0.9887710779360422,
+              0.14943813247359922
+            ],
+            "development_seed": 21021
+          },
+          "initialization_valid": true,
+          "job": {
+            "elapsed_s": 6.24575,
+            "dwell_s": 0.49999999999997263,
+            "status": "completed",
+            "failure_reason": null,
+            "first_witness_s": null,
+            "witness_type": null,
+            "samples": 24983
+          },
+          "retries_started": 0,
+          "last_phase": "insert",
+          "native_steps": 36983,
+          "initialization_native_steps": 12000,
+          "poststep_forward_calls": 36983,
+          "peak_loads_all_phases": {
+            "plug_port_contact_n": 12.591775719778903,
+            "port_detector_contact_n": 12.591775719778903,
+            "other_contact_n": 10.762918942824776,
+            "raw_wrist_load_n": 13.730998701284875,
+            "raw_plug_load_n": 11.602892790071031
+          },
+          "native_force_rows_checked": 36983,
+          "native_connector_contact_steps_in_job": 2000,
+          "native_detector_contact_steps_in_job": 2000,
+          "raw_force_violation_steps_all_phases": 0,
+          "witness_review": null,
+          "precontact_bias_world_n": [
+            -0.04313061075158146,
+            -0.0007369599350474687,
+            10.75872592653489
+          ],
+          "final_seating_error_m": 7.810638486731654e-05,
+          "worker_wall_seconds": 20.202999999994063,
+          "verification": {
+            "status": "passed",
+            "checks": 27,
+            "failed_checks": []
+          }
+        },
+        {
+          "case_id": "layout1_offset",
+          "controller": "scripted_continuation",
+          "task_case": {
+            "id": "layout1_offset",
+            "dt": 0.00025,
+            "with_cable": true,
+            "fixture_offset_m": [
+              0.002,
+              0.0
+            ],
+            "outward_xy": [
+              0.9887710779360422,
+              0.14943813247359922
+            ],
+            "development_seed": 21021
+          },
+          "initialization_valid": true,
+          "job": {
+            "elapsed_s": 30.0,
+            "dwell_s": 0.0,
+            "status": "failed",
+            "failure_reason": "deadline",
+            "first_witness_s": 2.6157500000000002,
+            "witness_type": "connector_contact_stall",
+            "samples": 120000
+          },
+          "retries_started": 0,
+          "last_phase": "continued_insertion",
+          "native_steps": 132000,
+          "initialization_native_steps": 12000,
+          "poststep_forward_calls": 132000,
+          "peak_loads_all_phases": {
+            "plug_port_contact_n": 18.23700035474926,
+            "port_detector_contact_n": 0.0,
+            "other_contact_n": 7.812666576036339,
+            "raw_wrist_load_n": 11.713602245006678,
+            "raw_plug_load_n": 14.73969977683291
+          },
+          "native_force_rows_checked": 132000,
+          "native_connector_contact_steps_in_job": 111538,
+          "native_detector_contact_steps_in_job": 0,
+          "raw_force_violation_steps_all_phases": 0,
+          "witness_review": {
+            "reported_first_witness_s": 2.6157500000000002,
+            "connector_contact_sustained_at_native_rate": true,
+            "native_contact_samples_checked": 2001,
+            "pose_progress_replayed_at_native_rate": false,
+            "limitation": "The native worker evaluated commanded/actual progress; saved 10 ms poses cannot replay the exact native progress window."
+          },
+          "precontact_bias_world_n": [
+            -0.04313061075158146,
+            -0.0007369599350474687,
+            10.75872592653489
+          ],
+          "final_seating_error_m": 0.013606462952063284,
+          "worker_wall_seconds": 73.21899999999732,
+          "verification": {
+            "status": "passed",
+            "checks": 29,
+            "failed_checks": []
+          }
+        },
+        {
+          "case_id": "layout2_nominal",
+          "controller": "scripted_force_guided_retry",
+          "task_case": {
+            "id": "layout2_nominal",
+            "dt": 0.00025,
+            "with_cable": true,
+            "fixture_offset_m": [
+              0.0,
+              0.0
+            ],
+            "outward_xy": [
+              0.9887710779360422,
+              -0.14943813247359922
+            ],
+            "development_seed": 21022
+          },
+          "initialization_valid": true,
+          "job": {
+            "elapsed_s": 5.89475,
+            "dwell_s": 0.49999999999997263,
+            "status": "completed",
+            "failure_reason": null,
+            "first_witness_s": null,
+            "witness_type": null,
+            "samples": 23579
+          },
+          "retries_started": 0,
+          "last_phase": "insert",
+          "native_steps": 35579,
+          "initialization_native_steps": 12000,
+          "poststep_forward_calls": 35579,
+          "peak_loads_all_phases": {
+            "plug_port_contact_n": 11.808793533553722,
+            "port_detector_contact_n": 11.808793533553722,
+            "other_contact_n": 6.908707373535172,
+            "raw_wrist_load_n": 14.433073178054734,
+            "raw_plug_load_n": 10.81413406510739
+          },
+          "native_force_rows_checked": 35579,
+          "native_connector_contact_steps_in_job": 2000,
+          "native_detector_contact_steps_in_job": 2000,
+          "raw_force_violation_steps_all_phases": 0,
+          "witness_review": null,
+          "precontact_bias_world_n": [
+            -0.043139911267375534,
+            0.00034511920291259093,
+            10.759787937179695
+          ],
+          "final_seating_error_m": 7.404316050377354e-05,
+          "worker_wall_seconds": 18.578000000008615,
+          "verification": {
+            "status": "passed",
+            "checks": 27,
+            "failed_checks": []
+          }
+        },
+        {
+          "case_id": "layout2_nominal",
+          "controller": "scripted_continuation",
+          "task_case": {
+            "id": "layout2_nominal",
+            "dt": 0.00025,
+            "with_cable": true,
+            "fixture_offset_m": [
+              0.0,
+              0.0
+            ],
+            "outward_xy": [
+              0.9887710779360422,
+              -0.14943813247359922
+            ],
+            "development_seed": 21022
+          },
+          "initialization_valid": true,
+          "job": {
+            "elapsed_s": 5.96575,
+            "dwell_s": 0.49999999999997263,
+            "status": "completed",
+            "failure_reason": null,
+            "first_witness_s": null,
+            "witness_type": null,
+            "samples": 23863
+          },
+          "retries_started": 0,
+          "last_phase": "continued_insertion",
+          "native_steps": 35863,
+          "initialization_native_steps": 12000,
+          "poststep_forward_calls": 35863,
+          "peak_loads_all_phases": {
+            "plug_port_contact_n": 11.957893245156827,
+            "port_detector_contact_n": 11.957893245156827,
+            "other_contact_n": 6.826986115515506,
+            "raw_wrist_load_n": 14.43637379644104,
+            "raw_plug_load_n": 10.977249473402676
+          },
+          "native_force_rows_checked": 35863,
+          "native_connector_contact_steps_in_job": 2000,
+          "native_detector_contact_steps_in_job": 2000,
+          "raw_force_violation_steps_all_phases": 0,
+          "witness_review": null,
+          "precontact_bias_world_n": [
+            -0.043139911267375534,
+            0.00034511920291259093,
+            10.759787937179695
+          ],
+          "final_seating_error_m": 7.364982701613434e-05,
+          "worker_wall_seconds": 19.125,
+          "verification": {
+            "status": "passed",
+            "checks": 27,
+            "failed_checks": []
+          }
+        },
+        {
+          "case_id": "layout2_offset",
+          "controller": "scripted_force_guided_retry",
+          "task_case": {
+            "id": "layout2_offset",
+            "dt": 0.00025,
+            "with_cable": true,
+            "fixture_offset_m": [
+              0.002,
+              0.0
+            ],
+            "outward_xy": [
+              0.9887710779360422,
+              -0.14943813247359922
+            ],
+            "development_seed": 21022
+          },
+          "initialization_valid": true,
+          "job": {
+            "elapsed_s": 6.24125,
+            "dwell_s": 0.49999999999997263,
+            "status": "completed",
+            "failure_reason": null,
+            "first_witness_s": null,
+            "witness_type": null,
+            "samples": 24965
+          },
+          "retries_started": 0,
+          "last_phase": "insert",
+          "native_steps": 36965,
+          "initialization_native_steps": 12000,
+          "poststep_forward_calls": 36965,
+          "peak_loads_all_phases": {
+            "plug_port_contact_n": 14.782460481170773,
+            "port_detector_contact_n": 14.782460481170773,
+            "other_contact_n": 0.5898445495310964,
+            "raw_wrist_load_n": 11.713575235934762,
+            "raw_plug_load_n": 13.701903366745865
+          },
+          "native_force_rows_checked": 36965,
+          "native_connector_contact_steps_in_job": 2000,
+          "native_detector_contact_steps_in_job": 2000,
+          "raw_force_violation_steps_all_phases": 0,
+          "witness_review": null,
+          "precontact_bias_world_n": [
+            -0.023920676592274436,
+            0.0014215339061320357,
+            10.772203814792508
+          ],
+          "final_seating_error_m": 7.920476745197406e-05,
+          "worker_wall_seconds": 19.139999999999418,
+          "verification": {
+            "status": "passed",
+            "checks": 27,
+            "failed_checks": []
+          }
+        },
+        {
+          "case_id": "layout2_offset",
+          "controller": "scripted_continuation",
+          "task_case": {
+            "id": "layout2_offset",
+            "dt": 0.00025,
+            "with_cable": true,
+            "fixture_offset_m": [
+              0.002,
+              0.0
+            ],
+            "outward_xy": [
+              0.9887710779360422,
+              -0.14943813247359922
+            ],
+            "development_seed": 21022
+          },
+          "initialization_valid": true,
+          "job": {
+            "elapsed_s": 30.0,
+            "dwell_s": 0.0,
+            "status": "failed",
+            "failure_reason": "deadline",
+            "first_witness_s": 2.613,
+            "witness_type": "connector_contact_stall",
+            "samples": 120000
+          },
+          "retries_started": 0,
+          "last_phase": "continued_insertion",
+          "native_steps": 132000,
+          "initialization_native_steps": 12000,
+          "poststep_forward_calls": 132000,
+          "peak_loads_all_phases": {
+            "plug_port_contact_n": 15.964028266522234,
+            "port_detector_contact_n": 0.0,
+            "other_contact_n": 0.5898445495310964,
+            "raw_wrist_load_n": 11.713575235934762,
+            "raw_plug_load_n": 14.798025848574415
+          },
+          "native_force_rows_checked": 132000,
+          "native_connector_contact_steps_in_job": 111549,
+          "native_detector_contact_steps_in_job": 0,
+          "raw_force_violation_steps_all_phases": 0,
+          "witness_review": {
+            "reported_first_witness_s": 2.613,
+            "connector_contact_sustained_at_native_rate": true,
+            "native_contact_samples_checked": 2001,
+            "pose_progress_replayed_at_native_rate": false,
+            "limitation": "The native worker evaluated commanded/actual progress; saved 10 ms poses cannot replay the exact native progress window."
+          },
+          "precontact_bias_world_n": [
+            -0.023920676592274436,
+            0.0014215339061320357,
+            10.772203814792508
+          ],
+          "final_seating_error_m": 0.013614965136246897,
+          "worker_wall_seconds": 71.5,
+          "verification": {
+            "status": "passed",
+            "checks": 29,
+            "failed_checks": []
+          }
+        }
+      ],
+      "paired_initialization": [
+        {
+          "case_id": "layout0_nominal",
+          "native_initialization_rows_identical": true,
+          "initialization_rows_per_arm": 12000,
+          "canonical_scene_identical": true,
+          "recorded_precontact_bias_identical": true
+        },
+        {
+          "case_id": "layout0_offset",
+          "native_initialization_rows_identical": true,
+          "initialization_rows_per_arm": 12000,
+          "canonical_scene_identical": true,
+          "recorded_precontact_bias_identical": true
+        },
+        {
+          "case_id": "layout1_nominal",
+          "native_initialization_rows_identical": true,
+          "initialization_rows_per_arm": 12000,
+          "canonical_scene_identical": true,
+          "recorded_precontact_bias_identical": true
+        },
+        {
+          "case_id": "layout1_offset",
+          "native_initialization_rows_identical": true,
+          "initialization_rows_per_arm": 12000,
+          "canonical_scene_identical": true,
+          "recorded_precontact_bias_identical": true
+        },
+        {
+          "case_id": "layout2_nominal",
+          "native_initialization_rows_identical": true,
+          "initialization_rows_per_arm": 12000,
+          "canonical_scene_identical": true,
+          "recorded_precontact_bias_identical": true
+        },
+        {
+          "case_id": "layout2_offset",
+          "native_initialization_rows_identical": true,
+          "initialization_rows_per_arm": 12000,
+          "canonical_scene_identical": true,
+          "recorded_precontact_bias_identical": true
+        }
+      ],
+      "controllers": [
+        {
+          "controller": "scripted_force_guided_retry",
+          "requests": 6,
+          "held_seating_dwell_completions": 6,
+          "initialization_failures": 0,
+          "deadline_failures": 0,
+          "force_failures": 0,
+          "witnessed_stalls": 0,
+          "completions_after_own_witnessed_stall": 0,
+          "retries_started": 0,
+          "nominal": {
+            "requests": 3,
+            "completions": 3
+          },
+          "offset": {
+            "requests": 3,
+            "completions": 3
+          },
+          "native_steps": 217578,
+          "initialization_native_steps": 72000,
+          "mean_job_seconds_per_request": 6.06575,
+          "summed_worker_wall_seconds": 117.10999999998603
+        },
+        {
+          "controller": "scripted_continuation",
+          "requests": 6,
+          "held_seating_dwell_completions": 3,
+          "initialization_failures": 0,
+          "deadline_failures": 3,
+          "force_failures": 0,
+          "witnessed_stalls": 3,
+          "completions_after_own_witnessed_stall": 0,
+          "retries_started": 0,
+          "nominal": {
+            "requests": 3,
+            "completions": 3
+          },
+          "offset": {
+            "requests": 3,
+            "completions": 0
+          },
+          "native_steps": 503581,
+          "initialization_native_steps": 72000,
+          "mean_job_seconds_per_request": 17.982541666666666,
+          "summed_worker_wall_seconds": 287.2510000000184
+        }
+      ],
+      "accounting": {
+        "native_steps": 721159,
+        "initialization_native_steps": 144000,
+        "poststep_forward_calls": 721159,
+        "launcher_wall_seconds": 405.375
+      }
+    }
+  ],
+  "accounting": {
+    "warmup": {
+      "native_steps": 71364,
+      "initialization_native_steps": 24000,
+      "poststep_forward_calls": 71364,
+      "launcher_wall_seconds": 38.54700000000594
+    },
+    "comparison": {
+      "native_steps": 721159,
+      "initialization_native_steps": 144000,
+      "poststep_forward_calls": 721159,
+      "launcher_wall_seconds": 405.375
+    },
+    "combined_native_steps": 792523,
+    "combined_initialization_native_steps": 168000,
+    "combined_launcher_wall_seconds": 443.92200000000594,
+    "ordinary_learned_training": {
+      "runs": 0,
+      "native_steps": 0
+    },
+    "recovery_focused_learned_training": {
+      "runs": 0,
+      "native_steps": 0
+    },
+    "policy_optimization_or_fault_mining_runs": 0,
+    "shared_failure_recovery_comparison_runs": 0,
+    "this_review": {
+      "native_steps": 0,
+      "mj_forward_calls": 0,
+      "simulator_render_calls": 0
+    },
+    "scope": "All scripted initialization and job work is charged. Warmup requests are separate, not added to the six-case comparison denominators. No compute-matched learning claim."
+  },
+  "main_result": {
+    "guided": {
+      "controller": "scripted_force_guided_retry",
+      "requests": 6,
+      "held_seating_dwell_completions": 6,
+      "initialization_failures": 0,
+      "deadline_failures": 0,
+      "force_failures": 0,
+      "witnessed_stalls": 0,
+      "completions_after_own_witnessed_stall": 0,
+      "retries_started": 0,
+      "nominal": {
+        "requests": 3,
+        "completions": 3
+      },
+      "offset": {
+        "requests": 3,
+        "completions": 3
+      },
+      "native_steps": 217578,
+      "initialization_native_steps": 72000,
+      "mean_job_seconds_per_request": 6.06575,
+      "summed_worker_wall_seconds": 117.10999999998603
+    },
+    "continuation": {
+      "controller": "scripted_continuation",
+      "requests": 6,
+      "held_seating_dwell_completions": 3,
+      "initialization_failures": 0,
+      "deadline_failures": 3,
+      "force_failures": 0,
+      "witnessed_stalls": 3,
+      "completions_after_own_witnessed_stall": 0,
+      "retries_started": 0,
+      "nominal": {
+        "requests": 3,
+        "completions": 3
+      },
+      "offset": {
+        "requests": 3,
+        "completions": 0
+      },
+      "native_steps": 503581,
+      "initialization_native_steps": 72000,
+      "mean_job_seconds_per_request": 17.982541666666666,
+      "summed_worker_wall_seconds": 287.2510000000184
+    },
+    "interpretation": "Actual-target force-guided alignment seats all six requests. Continued insertion seats three nominal requests and times out on all three local offsets after reported witnessed contact stalls. Guided control encounters no witnessed stall and starts no retries: its demonstrated effect is prevention, not recovery.",
+    "conditional_recovery_effect_established": false,
+    "causal_force_compensation_benefit_isolated": false,
+    "why_not_isolated": "Guidance changes target alignment and approach control as well as force handling; no compensation ablation was run."
+  },
+  "scope_and_limitations": [
+    "Six deterministic development cases per controller: three initial cable directions crossed with one nominal and one 2 mm visible local fixture offset. No independent training starts, random layout population or final test.",
+    "The cases share one robot home, connector geometry and mechanical model. The warmup repeats the nominal layout and adds no independent comparison case.",
+    "Both controllers operate with simulator poses and exact-model bias feedforward. The practical baseline uses the actual target pose and a measured precontact wrist-load bias; continued axial insertion is a weak comparator.",
+    "The raw 20 N wrist/plug abort uses the maximum of native-solve and refreshed samples. Force compensation does not redefine or remove this raw limit.",
+    "All native force samples and exact initial force prefixes are checked. Robot poses/targets are saved every 10 ms, so native-rate seating-progress/stall predicates and every dwell pose cannot be independently replayed; recorded native evaluator results are distinguished from force-stream checks.",
+    "Recorded precontact bias vectors match between arms; magnitude-only initialization force logs do not independently reconstruct the world-frame vector average.",
+    "The distal cable end is free. There is no required earlier connection, clip or snag; this is not the requested combined cable-fault recovery benchmark.",
+    "The plug has an immutable ideal preset grasp. A 0.5 s held seating dwell does not establish released latch retention, grasp reliability, electrical/optical function or hardware transfer.",
+    "No shared competent failed prefix was handed to different recovery controllers. Differently selected controller failures cannot establish a conditional recovery advantage.",
+    "No learned policy, training campaign, predictive interaction model, algorithmic novelty or superiority over a competent cable-aware baseline is demonstrated.",
+    "Earlier native validation retains material timestep sensitivity despite the selected 0.25 ms engineering setting; this comparison does not establish physics convergence."
+  ],
+  "decision": {
+    "status": "retain_simple_guided_insertion_baseline",
+    "learned_benefit_established": false,
+    "recovery_benefit_established": false,
+    "novelty_claim": false,
+    "full_cable_recovery_comparison_gate_passed": false,
+    "next_action": "Establish physical connector retention and a feasible required-connection/clip plus optional-snag extension, then test whether the competent baseline leaves a reproducible recovery failure before introducing learning."
+  },
+  "verification": {
+    "status": "passed",
+    "checks": 1536,
+    "failed_checks": []
+  },
+  "figures": [
+    {
+      "path": "evidence/cable_baseline_v2.png",
+      "sha256": "ed81854cd20b1da5eb63141c497bf7bdae7ee37c0e3b7ae1c79fe50ceee1fecb"
+    },
+    {
+      "path": "evidence/cable_baseline_v2.pdf",
+      "sha256": "1d3168dbc7abd6aaf0f42ac617ad04d8ffa471dd1d1d27e4a64552e81051fdef"
+    }
+  ]
+}

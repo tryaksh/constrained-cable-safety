@@ -1,0 +1,127 @@
+{
+  "schema": 1,
+  "task_id": "aic_sc_cable_feasibility_v2",
+  "scope": "Physical asset and insertion feasibility diagnostics; not official AIC scores, a learned comparison or a robot baseline.",
+  "aic_commit": "e9145480c945f2afc3741f355233f44082cc3b06",
+  "runtime": {
+    "mujoco": "3.3.7",
+    "python": "3.11.15"
+  },
+  "asset_models": [
+    "SC Plug",
+    "SC Port"
+  ],
+  "geometry": "Exact public SDF collision primitives, fixed-link transforms and mass; no connector pair exclusions or altered clearance.",
+  "cable": {
+    "length_m": 0.96,
+    "segments": 24,
+    "radius_m": 0.002,
+    "linear_density_kg_per_m": 0.0520833333333333,
+    "youngs_modulus_pa": 10000000.0,
+    "twist_modulus_pa": 4000000.0,
+    "joint_damping": 2e-05,
+    "attachment_back_m": 0.052,
+    "root_joint": "ball; preset cable orientation can rotate, no elastic root moment; downstream bending remains active"
+  },
+  "diagnostic_stage": {
+    "description": "Three force-actuated Cartesian slides with fixed orientation for isolated connector validation; explicitly not the UR5e baseline.",
+    "mass_kg": 0.1,
+    "translation_stiffness_n_per_m": 1500.0,
+    "translation_damping_ns_per_m": 25.0,
+    "actuator_limit_n": 20.0,
+    "speed_m_per_s": 0.004,
+    "initial_distance_m": 0.022,
+    "attempt_seconds": 8.0,
+    "retract_seconds": 3.0,
+    "gravity_feedforward": "total moving subtree mass including whole cable; idealized conservative feedforward, not a calibrated robot payload estimate"
+  },
+  "acceptance": {
+    "contact_positive_control_required": true,
+    "contact_free_control_required": true,
+    "finite_dynamics_required": true,
+    "stage_tracking_required": true,
+    "success": "Tip within 1 mm of the declared port base and aligned within 0.03 rad for 0.5 s; contact with the actual port contact_collision reported separately. No automatic attachment, freeze or release on contact.",
+    "success_position_tolerance_m": 0.001,
+    "dwell_s": 0.5,
+    "raw_load_abort_n": 20.0,
+    "notes": "Limits are an engineering diagnostic protocol, not calibrated hardware damage thresholds. Refinement is a representative sensitivity check, not convergence proof.",
+    "stage_free_tracking_tolerance_m": 0.001,
+    "initial_contact_free_tolerance_n": 0.001,
+    "positive_contact_threshold_n": 0.05
+  },
+  "cases": [
+    {
+      "id": "aligned_1ms",
+      "dt": 0.001,
+      "offset_m": [
+        0.0,
+        0.0
+      ],
+      "with_cable": false
+    },
+    {
+      "id": "aligned_05ms",
+      "dt": 0.0005,
+      "offset_m": [
+        0.0,
+        0.0
+      ],
+      "with_cable": false
+    },
+    {
+      "id": "misaligned_1ms",
+      "dt": 0.001,
+      "offset_m": [
+        0.003,
+        0.0
+      ],
+      "with_cable": false
+    },
+    {
+      "id": "aligned_cable_1ms",
+      "dt": 0.001,
+      "offset_m": [
+        0.0,
+        0.0
+      ],
+      "with_cable": true
+    },
+    {
+      "id": "aligned_cable_05ms",
+      "dt": 0.0005,
+      "offset_m": [
+        0.0,
+        0.0
+      ],
+      "with_cable": true
+    },
+    {
+      "id": "misaligned_cable_1ms",
+      "dt": 0.001,
+      "offset_m": [
+        0.003,
+        0.0
+      ],
+      "with_cable": true
+    },
+    {
+      "id": "free_space_1ms",
+      "dt": 0.001,
+      "offset_m": [
+        0.04,
+        0.0
+      ],
+      "with_cable": false
+    }
+  ],
+  "seeds": {
+    "development": [
+      21001
+    ],
+    "training": [],
+    "test": []
+  },
+  "stop_rule": "No learning or comparison until native robot insertion, retained grasp, credible cable loads, contact sensing and a feasible common failure protocol are demonstrated. Investigate material defects with bounded versioned diagnostics.",
+  "supersedes": "cable_task_v1 for prospective diagnostics only; v1 results preserved",
+  "accounting": "Every explicit mj_step counted; solved sensor/contact/pose and pre-step velocity reported at left endpoint; initialization/attempt/retraction separately."
+}

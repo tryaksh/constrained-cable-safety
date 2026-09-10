@@ -1,0 +1,361 @@
+{
+  "schema_version": 1,
+  "evidence_id": "cable_literature_review_v1",
+  "reviewed_on": "2026-09-10",
+  "scope": "Targeted primary-source criticism supporting the authorized cable/connector cycle. This is literature and source inspection, with no simulator runs or learned-performance evidence.",
+  "decision": {
+    "status": "baseline_first_novelty_unestablished",
+    "simplest_credible_baseline": "Force-controlled approach, bounded probe/depart grid or spiral search, insertion and retract/retry; precontact wrench compensation; add a visible-snag lift/arc rule only after its geometric feasibility is demonstrated.",
+    "practical_reference": "Run the AIC ground-truth CheatCode reference for engineering only, then the force-guided baseline with the project's declared observations. WaveArm is an API example. RunACT is an externally hosted proof of concept whose model license and usable checkpoint were not verified here.",
+    "smallest_research_question": "On physically witnessed insertion failures with a retained prior clip/connection, do action-conditioned predictions of both local engagement and distal constraint loss improve complete-job recovery over the strongest affordable compensation, rule and cable-planning alternatives at matched experience?",
+    "novelty_boundary": "Cable-aware control, load compensation, learned corrective skills, memory, graph dynamics, predicted wrench, and preserving assembly relations already exist. Their combination is a hypothesis to test, not an established original contribution.",
+    "reject_or_revise_if": "If compensation or visible-snag rules solve the balanced local-error by snag factorial equally well, reject a learned reliability benefit. If bad repair consequences cannot be predicted on held-out actions, revise the predictor before control training.",
+    "candidate_evidence_needed": [
+      "A common competent first attempt producing feasible witnessed failures.",
+      "Prediction accuracy for progress, load and prior-constraint loss on held-out good and bad repairs.",
+      "Matched-observation control comparisons and whole-job denominators, including initial successes and all aborts.",
+      "Held-out layout/mechanical combinations; connector transfer only with separate geometry holdout."
+    ]
+  },
+  "pinned_upstream": {
+    "repository": "https://github.com/intrinsic-dev/aic",
+    "revision": "e9145480c945f2afc3741f355233f44082cc3b06",
+    "local_path": ".deps/aic",
+    "pin_source": "Parent agent supplied cloned HEAD; claims below were checked in that local checkout.",
+    "source_hashes_sha256": {
+      "LICENSE": "3ddf9be5c28fe27dad143a5dc76eea25222ad1dd68934a047064e56ed2fa40c5",
+      "aic_assets/package.xml": "9fd8d216401999bdc5a7e6357e19a21a10770ac09202442f6668098b83733b7f",
+      "aic_utils/aic_isaac/LICENSE": "d593445e409daf8c0edb027f2b33e56d382a4582ed2ee62db863704a7febe454",
+      "docs/qualification_phase.md": "f4223dd72641d965fad0d88f715a000ea42fa7d56c31cb3d6cb1d364b3601d15",
+      "docs/scoring.md": "7f6500f6425813bc0153e3a196e6b84277176fdff2eba8ad17d855fbc515cde8",
+      "aic_utils/aic_mujoco/README.md": "8ce1cf639f099762a30a7b1f42134a093f5b12bfb7b95dfdd504720d9659bed1",
+      "aic_utils/aic_mujoco/scripts/add_cable_plugin.py": "374df25dd5b799f3f9ae61a9e90a43b4da04f5e02aebfbcd08afb2ed5cb7086d",
+      "aic.repos": "79cc34ad7140b8260f45d179e530dc209794c93238162de48ef5beeb83e65056"
+    }
+  },
+  "benchmark_claim_matrix": [
+    {
+      "id": "aic_scope",
+      "sources": [
+        "https://github.com/intrinsic-dev/aic/blob/e9145480c945f2afc3741f355233f44082cc3b06/docs/qualification_phase.md"
+      ],
+      "access": "Full pinned local documentation.",
+      "verified": "UR5e qualification is single insertion of a pregrasped SFP or SC plug; the other end remains free. Known plug/port types and the same cable are used. Robot starts near the target; board/component placements vary. Official evaluation uses Gazebo without Flowstate.",
+      "limits": "No pickup, routing, previously completed clip/connection retention, or unseen connector geometry claim follows.",
+      "implication": "Version the connected-end/clip/snag task as a project extension and keep official scores separate."
+    },
+    {
+      "id": "aic_scoring",
+      "sources": [
+        "https://github.com/intrinsic-dev/aic/blob/e9145480c945f2afc3741f355233f44082cc3b06/docs/scoring.md"
+      ],
+      "access": "Full pinned local scoring documentation; implementation not audited by this review.",
+      "verified": "Scoring awards contact-sensor full insertion, separate partial/proximity credit, motion quality and time points. The documented force penalty is minus 12 points for a startup-tared reading above 20 N for longer than one second.",
+      "limits": "This is not the retired project's instantaneous raw 20 N abort, and the score is not a binary complete-job success rate or an electrical/optical functionality test.",
+      "implication": "Register seating/retention/dwell and project hard limits explicitly; preserve official scoring separately."
+    },
+    {
+      "id": "aic_runtime_and_baselines",
+      "sources": [
+        "https://github.com/intrinsic-dev/aic/blob/e9145480c945f2afc3741f355233f44082cc3b06/README.md",
+        "https://github.com/intrinsic-dev/aic/blob/e9145480c945f2afc3741f355233f44082cc3b06/aic_example_policies/README.md",
+        "https://github.com/intrinsic-dev/aic/blob/e9145480c945f2afc3741f355233f44082cc3b06/aic_utils/aic_isaac/README.md",
+        "https://github.com/intrinsic-dev/aic/blob/e9145480c945f2afc3741f355233f44082cc3b06/aic_utils/aic_isaac/aic_isaaclab/source/aic_task/aic_task/tasks/manager_based/aic_task/aic_task_env_cfg.py"
+      ],
+      "access": "Official web README plus full pinned local example README and relevant Isaac config lines.",
+      "verified": "Documented official stack is ROS 2 Kilted with containers or Ubuntu 24.04. CheatCode uses simulator TF truth unavailable in official evaluation. WaveArm does not attempt insertion. RunACT references a small-data external ACT policy. Isaac config has end-effector pose commands/rewards, timeout termination, disabled robot contact sensors and no gripper action.",
+      "limits": "The Isaac training command does not establish a completed insertion environment. Native Windows official-evaluator readiness is unverified.",
+      "implication": "Use references with truthful controller/observation labels. Runtime implementation must supply physical engagement and contact checks before comparison."
+    },
+    {
+      "id": "aic_mujoco_conversion",
+      "sources": [
+        "https://github.com/intrinsic-dev/aic/blob/e9145480c945f2afc3741f355233f44082cc3b06/aic_utils/aic_mujoco/README.md",
+        "https://github.com/intrinsic-dev/aic/blob/e9145480c945f2afc3741f355233f44082cc3b06/aic_utils/aic_mujoco/scripts/add_cable_plugin.py"
+      ],
+      "access": "Full pinned local README; script hashed; this review does not claim exhaustive script verification.",
+      "verified": "Documented conversion needs exported Gazebo SDF, SDFormat/Gazebo Python bindings and generated mesh files. Postprocessing configures the cable plugin, actuators and FT sensors, modifies inertias, lifts a cable end, adds a gripper weld and excludes SC-port/SC-plug contact.",
+      "limits": "An available MJCF mirror is not demonstrated physics parity or validated insertion. README weld names reference an LC plug.",
+      "implication": "Audit exact port collisions, attachment and success before using converted geometry. Keep source unchanged and implement corrections in versioned adapters."
+    }
+  ],
+  "licensing": [
+    {
+      "component": "AIC repository, asset package and MuJoCo utilities",
+      "declared_license": "Apache-2.0",
+      "sources": [
+        "https://github.com/intrinsic-dev/aic/blob/e9145480c945f2afc3741f355233f44082cc3b06/LICENSE",
+        "https://github.com/intrinsic-dev/aic/blob/e9145480c945f2afc3741f355233f44082cc3b06/aic_assets/package.xml",
+        "https://github.com/intrinsic-dev/aic/blob/e9145480c945f2afc3741f355233f44082cc3b06/aic_utils/aic_mujoco/package.xml"
+      ],
+      "access": "Pinned local license and package declarations inspected.",
+      "application": "Retain applicable license/copyright/attribution and mark redistributed modifications. Do not infer external asset or checkpoint licensing from the root license."
+    },
+    {
+      "component": "AIC Isaac integration subfolder",
+      "declared_license": "BSD-3-Clause",
+      "sources": [
+        "https://github.com/intrinsic-dev/aic/blob/e9145480c945f2afc3741f355233f44082cc3b06/aic_utils/aic_isaac/LICENSE"
+      ],
+      "access": "Pinned local license inspected.",
+      "application": "Retain its separate license and notices when reusing its code."
+    },
+    {
+      "component": "External Universal Robots descriptions",
+      "declared_license": "Dependency-specific; exact pinned 4.3.0 license inspection remains open.",
+      "sources": [
+        "https://github.com/intrinsic-dev/aic/blob/e9145480c945f2afc3741f355233f44082cc3b06/aic.repos",
+        "https://raw.githubusercontent.com/UniversalRobots/Universal_Robots_ROS2_Description/rolling/LICENSE",
+        "https://docs.ros.org/en/ros2_packages/jazzy/api/ur_description/__PACKAGE.html"
+      ],
+      "access": "AIC pins description tag 4.3.0. Exact-tag web fetches failed with cache misses. Current upstream root BSD text and package declarations were accessible; special graphical-documentation terms apply to named newer robot meshes.",
+      "application": "Record the license of the exact imported UR5e files. Current or package-wide declarations are not a substitute for that asset provenance.",
+      "superseded": {
+        "by": "pinned_ur5e_collision_license_20260910",
+        "reason": "Exact commit license and complete repository tree were subsequently retrieved successfully; the earlier access limit is retained as history."
+      }
+    },
+    {
+      "component": "grkw/aic_act_policy checkpoint",
+      "declared_license": null,
+      "sources": [
+        "https://huggingface.co/grkw/aic_act_policy",
+        "https://github.com/intrinsic-dev/aic/blob/e9145480c945f2afc3741f355233f44082cc3b06/aic_example_policies/README.md"
+      ],
+      "access": "Official AIC references it; the Hugging Face page could not be opened by the web tool. No model card, checkpoint, dataset or license was inspected.",
+      "application": "Availability and permitted redistribution remain unverified. Do not assume Apache-2.0 from AIC's wrapper."
+    },
+    {
+      "component": "Analog Devices physical benchmark assets",
+      "declared_license": "Root presents CC-BY-SA-4.0; individual benchmark LICENSE files govern contents.",
+      "sources": [
+        "https://github.com/analogdevicesinc/ag-industrial-dexterity-benchmarks"
+      ],
+      "access": "Repository README inspected; individual asset licenses were not inspected and assets were not downloaded.",
+      "application": "Hardware fabrication/task resources with Git LFS; not an established ready-to-run simulator dependency. Check the selected subfolder license before reuse."
+    },
+    {
+      "id": "pinned_ur5e_collision_license_20260910",
+      "component": "Imported UR5e collision meshes from Universal Robots ROS2 Description 4.3.0",
+      "declared_license": "BSD-3-Clause",
+      "repository": "https://github.com/UniversalRobots/Universal_Robots_ROS2_Description",
+      "revision": "ef93882e17d8aa628837915da4b83208fe5e519a",
+      "sources": [
+        "https://github.com/UniversalRobots/Universal_Robots_ROS2_Description/blob/ef93882e17d8aa628837915da4b83208fe5e519a/LICENSE",
+        "https://github.com/UniversalRobots/Universal_Robots_ROS2_Description/blob/ef93882e17d8aa628837915da4b83208fe5e519a/README.md",
+        "https://github.com/UniversalRobots/Universal_Robots_ROS2_Description/blob/ef93882e17d8aa628837915da4b83208fe5e519a/package.xml",
+        "https://api.github.com/repos/UniversalRobots/Universal_Robots_ROS2_Description/git/trees/ef93882e17d8aa628837915da4b83208fe5e519a?recursive=1"
+      ],
+      "access": "Retrieved exact pinned LICENSE, package.xml, README and complete recursive tree through public GitHub HTTP requests on 2026-09-10. Requests returned HTTP 200 after web-tool cache misses. No authentication, paid service or third-party account was used.",
+      "source_hashes_sha256": {
+        "LICENSE": "143077f9f6a8de5a99f78c2c2472801fb53cf240277ef661642f079b9acdfff8",
+        "package.xml": "e4344bde3f0323f8445d3209c24eae2929dbe509ed5e2ae18e61a845992b3b6a",
+        "README.md": "d3d06f31d50b7d411b2cbad1e5490252c52cbdce389cee9e21c9e67594907db3",
+        "recursive_tree_response": "50f8fb9e6ef5b32d7d9f199ad5810c2e9b0b335e6fcf932f1e38afb346ab3203"
+      },
+      "verified_scope": "Pinned README limits special graphical-documentation terms to UR8LONG, UR15, UR18, UR20 and UR30 meshes and assigns remaining content BSD-3-Clause. The complete non-truncated tree contains root LICENSE and license files for those named mesh families, with no UR5e-specific license or NOTICE. The seven imported files are under meshes/ur5e/collision/.",
+      "attribution": "UR5e collision geometry from Universal Robots ROS2 Description, maintained by Universal Robots A/S and contributors, release 4.3.0, commit ef93882e17d8aa628837915da4b83208fe5e519a; BSD-3-Clause.",
+      "application": "Keep the source attribution, pinned links and hashes with the downloader/adapter. If assets are redistributed later, include the complete upstream license and applicable notices; source/binary notice retention and non-endorsement conditions apply. The root license text supplies no explicit copyright header, so none is invented here.",
+      "import_manifest": "configs/cable_dependencies_v1.json",
+      "local_mesh_verification": [
+        {
+          "name": "base.stl",
+          "sha256": "9a145e0d46f2130afdf2a2e8825a00a929870c4c3d6d8e4d1adc5f04db3aac1b",
+          "matches_manifest": true
+        },
+        {
+          "name": "forearm.stl",
+          "sha256": "2e7423cab807c34160ec4f770daee5e747d70e777eb01b7beeace2b8c5751816",
+          "matches_manifest": true
+        },
+        {
+          "name": "shoulder.stl",
+          "sha256": "ceb92532177daa77682f5fbd628e01c2137d168f949a7a706ce1dabe9f002387",
+          "matches_manifest": true
+        },
+        {
+          "name": "upperarm.stl",
+          "sha256": "ee893044caf00075cb55b4cf666d1f1311c7979786212a501009f33bee945209",
+          "matches_manifest": true
+        },
+        {
+          "name": "wrist1.stl",
+          "sha256": "f8c9f9337b6fd98c75f052e96de10e14a107ddb6874ba6b904e546f8a4e4f43a",
+          "matches_manifest": true
+        },
+        {
+          "name": "wrist2.stl",
+          "sha256": "2964a63f60ce3e3cf3ad55bcf190d7876d50e373cb64b70a57cea5885eaf3c86",
+          "matches_manifest": true
+        },
+        {
+          "name": "wrist3.stl",
+          "sha256": "83b3666b4ae2badd54af0d2c25a921682ecbc29e849eec646c3ed55fb74c78a3",
+          "matches_manifest": true
+        }
+      ],
+      "redistribution_scope": "Raw STLs remain in ignored local artifacts; no mesh rehosting is planned or performed by this review.",
+      "limits": "This finding covers these seven UR5e collision files, not arbitrary other Universal Robots assets."
+    }
+  ],
+  "literature_claim_matrix": [
+    {
+      "id": "wilson_2023",
+      "title": "Cable Routing and Assembly using Tactile-driven Motion Primitives",
+      "sources": [
+        "https://arxiv.org/html/2303.11765v1"
+      ],
+      "access": "Full HTML; methods IV and experiments V inspected.",
+      "established": "Vision parses the board; tactile state machines follow, pivot, weave and insert. Insertion uses force-maintaining rotary exploration and retreat/resampled retries. Tension is controlled. Reported 48/50 isolated insertions and 51/60 complete jobs are separate evaluations; complete-job failures include four connector failures, three stuck cables and two losses of prior fixtures.",
+      "limitation_or_distinction": "Their discussion explicitly identifies global cable changes insufficiently captured by local tactile sensing. This motivates global-state measurements but does not establish that a predictive model outperforms global vision/force rules.",
+      "baseline_implication": "Use contact-guided exploration/retry plus visible cable-state correction; do not compare only with blind straight insertion."
+    },
+    {
+      "id": "luo_2024",
+      "title": "Multi-Stage Cable Routing through Hierarchical Imitation Learning",
+      "sources": [
+        "https://arxiv.org/html/2307.08927v5"
+      ],
+      "access": "Full HTML; low-level demonstrations, high-level policy and experiments inspected.",
+      "established": "The clip skill learns from 1442 demonstrations including roughly 600 recovery examples. A learned high-level controller selects primitives including cable perturbation and uses history. The paper reports 12/24 three-clip success and a zero-success memoryless ablation; recovery demonstrations, corrective skill selection and memory already exist.",
+      "limitation_or_distinction": "The task routes a cable through clips; it is not evidence for this project's connector-after-snag assay. Above 95% of their failures are attributed to premature go_next decisions under ambiguous routing perception.",
+      "baseline_implication": "Include a competent history-bearing learned baseline when learning is justified. Do not remove available global observations to manufacture ambiguity."
+    },
+    {
+      "id": "kienle_2025",
+      "title": "AI-based Framework for Robust Model-Based Connector Mating in Robotic Wire Harness Installation",
+      "sources": [
+        "https://arxiv.org/html/2503.09409v1"
+      ],
+      "access": "Full HTML; methods III, experiments IV and results V inspected.",
+      "established": "Force-controlled approach/contact/depart probe search is optimized through learned, environment-conditioned trajectory and wrench models. Five automotive connectors with adapted gripping ribs are studied; roughly 4000 executions per connector supply data. Table III reports improved success/time on 100 unseen in-distribution cases per connector.",
+      "limitation_or_distinction": "Predicting insertion outcomes/wrenches to optimize actions is already demonstrated. The inspected experiment is local mating; it does not establish the proposed combined snag/prior-constraint comparison. AIC connector geometry and grasping differ.",
+      "baseline_implication": "Use force-controlled search as a strong baseline. Test the added distal consequence prediction against local-only prediction with otherwise comparable inputs/capacity."
+    },
+    {
+      "id": "staritz_2003",
+      "title": "Force Guided Assembly Under Bias",
+      "sources": [
+        "https://publications.ri.cmu.edu/force-guided-assembly-under-bias",
+        "https://publications.ri.cmu.edu/storage/publications/pub_files/pub4/staritz_peter_2003_1/staritz_peter_2003_1.pdf"
+      ],
+      "access": "Institutional abstract and full thesis PDF; chapter 7 cable-model assumptions, identification and experimental setup inspected.",
+      "established": "Precontact modeling separates hose/cable bias from connector contact. Cable experiments identify axial/flexural spring and local correction models by least squares from translation/rotation motions.",
+      "limitation_or_distinction": "Chapter 7 assumes a taut approximately straight cable, negligible gravity-induced curvature/torsion/hysteresis, and planar experiments. Compensating cable loads is old; changing contact topology may invalidate a locally identified bias model but that failure must be measured here.",
+      "baseline_implication": "Start with constant precontact tare and a small affine/local wrench model where justified. Keep uncompensated total load available for project limits."
+    },
+    {
+      "id": "feel_tension_2023",
+      "title": "Feel the Tension: Manipulation of Deformable Linear Objects in Environments with Fixtures using Force Information",
+      "sources": [
+        "https://arxiv.org/html/2310.06424v1"
+      ],
+      "access": "Full HTML; representation IV, estimation V, control VI and experimental scope inspected.",
+      "established": "An online reduced contact graph estimates contact locations, elasticity and tension, supporting clipping/sliding/winding primitives and a dual-arm YuMi harness-production demonstration. It accounts for prior configuration when updating global state.",
+      "limitation_or_distinction": "The model relies on tensioned nearly straight segments and controlled grasp/sliding. Sequence planning is explicitly outside its scope. Graph state, force inference and diagnostic motions are already established.",
+      "baseline_implication": "A compact contact/length/tension model may be sufficient; compare it before adding graph neural dynamics."
+    },
+    {
+      "id": "chen_2024_contact",
+      "title": "Real-time Contact State Estimation in Shape Control of Deformable Linear Objects under Small Environmental Constraints",
+      "sources": [
+        "https://arxiv.org/html/2401.17154v1"
+      ],
+      "access": "Full HTML; contact indicators IV, adaptive control V and experiment setup VI inspected.",
+      "established": "Indicators based on detected versus applied force detect contact establishment/change. A clip-state sequence detects anomalies, updates motion-height/force parameter ranges and retries. Experiments use two Franka Panda arms.",
+      "limitation_or_distinction": "Contact anomaly detection and feedback correction already exist. These clip-force semantics depend on tautness/quasistatic staging and should not be copied as universal insertion predicates.",
+      "baseline_implication": "Measure force-response/stall indicators and use simple state-based corrective rules before attributing benefit to learning."
+    },
+    {
+      "id": "jin_2022_spatial",
+      "title": "Robotic Cable Routing with Spatial Representation",
+      "sources": [
+        "https://shiyujin0.github.io/cable_routing/",
+        "https://github.com/shiyujin0/cable_routing/tree/gh-pages/cable_initialization_and_registration"
+      ],
+      "access": "Author project methods page and linked code directory inspected; complete planner implementation and its license not audited.",
+      "established": "A graph planner tracks cable/fixture side relations and uses learned stretch/cross/insert primitives. RGB-D estimates the spatial representation. The author page shows overstretching and slack failure cases.",
+      "limitation_or_distinction": "Cable-environment graphs and planning to preserve route relations are established. The visible linked code directory alone does not prove the complete planner is ready to reuse.",
+      "baseline_implication": "Implement a clearly labeled simplified spatial-relation planner with the same insertion controller if direct reproduction is unavailable."
+    },
+    {
+      "id": "huang_2023_graph_dynamics",
+      "title": "Learning Graph Dynamics With External Contact for Deformable Linear Objects Shape Control",
+      "sources": [
+        "https://doi.org/10.1109/LRA.2023.3264764",
+        "https://ieeexplore.ieee.org/document/10093036/"
+      ],
+      "access": "Primary publisher abstract returned by search. Direct full-page access hit a JavaScript verification page; full methods/experiments were not read.",
+      "established": "The abstract describes graph-convolution dynamics over cable/contact-object keypoints and scoring sampled actions by predicted shape progress, with six simulation scenarios and physical tests.",
+      "limitation_or_distinction": "Action-conditioned cable/contact prediction and sampled-action selection already exist. No absence of connector/retention capability is inferred from inaccessible full text.",
+      "baseline_implication": "Treat graph dynamics itself as prior art. The candidate must earn a measured task-specific consequence/control distinction."
+    },
+    {
+      "id": "yamazaki_2024_emd",
+      "title": "Wiring connector-terminated cables based on manipulation planning with collision-free EMD net",
+      "sources": [
+        "https://doi.org/10.1016/j.robot.2024.104673",
+        "https://www.sciencedirect.com/science/article/pii/S0921889024000563",
+        "https://repositori.mypolycc.edu.my/jspui/bitstream/123456789/6803/1/Wiring%20connector-terminated%20cables%20based%20on%20manipulation%20planning%20with.pdf"
+      ],
+      "access": "Publisher abstract/highlights via search; direct publisher page returned 403. Original paper PDF was available from an institutional repository; abstract/introduction checked, detailed results not audited.",
+      "established": "A learned Encode-Manipulate-Decode model predicts shape changes while transporting a grasped connector and plans cable-collision-avoiding trajectories. The paper's stated goal is delivery near the socket and compatibility with separate insertion methods.",
+      "limitation_or_distinction": "Predicting distal cable effects of connector motion is established. The access depth does not support claims about absent recovery or constraint-retention experiments.",
+      "baseline_implication": "A cable-aware transport planner followed by identical force insertion directly challenges the need for joint local/distal repair prediction."
+    },
+    {
+      "id": "zhou_2024_sequences",
+      "title": "A Graph-based framework for assembly sequence planning of a cable harness",
+      "sources": [
+        "https://doi.org/10.1016/j.jmsy.2024.01.007",
+        "https://www.sciencedirect.com/science/article/abs/pii/S0278612524000086"
+      ],
+      "access": "Primary publisher abstract, introduction and section snippets via search; complete method text unavailable in this review.",
+      "established": "Assembly representation includes already assembled relations along the cable; feasible sequences account for topology, task types and sequence-sensitive constraints for non-looped single/multibranch harnesses.",
+      "limitation_or_distinction": "Representing completed assembly relations and their effect on future feasibility is prior art. No omission of dynamic recovery is inferred from limited access.",
+      "baseline_implication": "Make loss of prior relations an explicit invariant and measured failure, not an assumed novel representation."
+    },
+    {
+      "id": "silo_2026",
+      "title": "SILO: Simulation-in-the-Loop Sim-to-Real Transfer for Multi-Stage Cable Routing",
+      "sources": [
+        "https://arxiv.org/html/2607.04616v1"
+      ],
+      "access": "Full HTML; training/state construction, deployment and main experiments inspected.",
+      "established": "State-based RL routes through a local harness using nearby cable points and robot state; grasp/move primitives compose multiple stages. Deployment synchronizes a simulated robot and uses simulated action outcomes as real joint targets; cable observations come from perception.",
+      "limitation_or_distinction": "Reactive simulated cable learning and hardware routing already exist. Their paper explicitly cautions that historical h-IL comparisons differ in assumptions and cycle time is estimated from videos. Those results cannot be imported as our baselines.",
+      "baseline_implication": "Use substantive learning only after local task validation and measure fresh task throughput. Do not claim sim-to-real from simulation."
+    },
+    {
+      "id": "wirecraft_2026_availability",
+      "title": "WireCraft: A Simulation Benchmark for Industrial DLO Manipulation",
+      "sources": [
+        "https://arxiv.org/abs/2606.18097",
+        "https://arxiv.org/html/2606.18097v1"
+      ],
+      "access": "Current abstract/history and full v1 HTML accessible; release-focused searches on title, ID and authors did not verify an author-linked code release.",
+      "established": "The latest visible arXiv entry is v1, June 16 2026, and still promises benchmark/data/tools release on acceptance. It covers insertion, clips and channels with articulated/deformable models.",
+      "limitation_or_distinction": "No ready public package was verified; this is an access result, not proof that no code exists anywhere.",
+      "baseline_implication": "Do not block practical setup on WireCraft or call its unpublished assets installed."
+    }
+  ],
+  "physical_design_resources": [
+    {
+      "source": "https://www.nist.gov/el/intelligent-systems-division-73500/robotic-grasping-and-manipulation-assembly/assembly",
+      "access": "Official NIST page accessible.",
+      "use": "Physical test methods and assembly designs; simulation/task readiness not established by that page."
+    },
+    {
+      "source": "https://github.com/analogdevicesinc/ag-industrial-dexterity-benchmarks",
+      "access": "Official repository README accessible.",
+      "use": "Fabrication and task resources; selective reuse only after exact asset/license inspection."
+    }
+  ],
+  "scope_and_limitations": [
+    "This bounded review is not an exhaustive novelty search, a legal opinion or a benchmark reproduction.",
+    "Numerical literature results describe their authors' hardware/tasks; none is project cable performance.",
+    "Inaccessible methods are recorded explicitly and are not used as evidence of missing capabilities.",
+    "The one-file review ran no simulator, GPU training, benchmark policy or hardware experiment.",
+    "Publication acceptance, full-job hardware reliability and electrical/optical function are not established."
+  ]
+}

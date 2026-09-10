@@ -1,0 +1,91 @@
+{
+  "schema": 1,
+  "scope": "Verified native Windows cable diagnostic runtime; official Gazebo/ROS evaluation not reproduced.",
+  "aic": {
+    "url": "https://github.com/intrinsic-dev/aic.git",
+    "commit": "e9145480c945f2afc3741f355233f44082cc3b06",
+    "path": ".deps/aic"
+  },
+  "robot_meshes": {
+    "repository": "https://github.com/UniversalRobots/Universal_Robots_ROS2_Description",
+    "commit": "ef93882e17d8aa628837915da4b83208fe5e519a",
+    "release": "4.3.0",
+    "directory": "artifacts/cable/asset_probe_robot_meshes",
+    "files": [
+      {
+        "name": "base.stl",
+        "url": "https://raw.githubusercontent.com/UniversalRobots/Universal_Robots_ROS2_Description/ef93882e17d8aa628837915da4b83208fe5e519a/meshes/ur5e/collision/base.stl",
+        "sha256": "9a145e0d46f2130afdf2a2e8825a00a929870c4c3d6d8e4d1adc5f04db3aac1b"
+      },
+      {
+        "name": "forearm.stl",
+        "url": "https://raw.githubusercontent.com/UniversalRobots/Universal_Robots_ROS2_Description/ef93882e17d8aa628837915da4b83208fe5e519a/meshes/ur5e/collision/forearm.stl",
+        "sha256": "2e7423cab807c34160ec4f770daee5e747d70e777eb01b7beeace2b8c5751816"
+      },
+      {
+        "name": "shoulder.stl",
+        "url": "https://raw.githubusercontent.com/UniversalRobots/Universal_Robots_ROS2_Description/ef93882e17d8aa628837915da4b83208fe5e519a/meshes/ur5e/collision/shoulder.stl",
+        "sha256": "ceb92532177daa77682f5fbd628e01c2137d168f949a7a706ce1dabe9f002387"
+      },
+      {
+        "name": "upperarm.stl",
+        "url": "https://raw.githubusercontent.com/UniversalRobots/Universal_Robots_ROS2_Description/ef93882e17d8aa628837915da4b83208fe5e519a/meshes/ur5e/collision/upperarm.stl",
+        "sha256": "ee893044caf00075cb55b4cf666d1f1311c7979786212a501009f33bee945209"
+      },
+      {
+        "name": "wrist1.stl",
+        "url": "https://raw.githubusercontent.com/UniversalRobots/Universal_Robots_ROS2_Description/ef93882e17d8aa628837915da4b83208fe5e519a/meshes/ur5e/collision/wrist1.stl",
+        "sha256": "f8c9f9337b6fd98c75f052e96de10e14a107ddb6874ba6b904e546f8a4e4f43a"
+      },
+      {
+        "name": "wrist2.stl",
+        "url": "https://raw.githubusercontent.com/UniversalRobots/Universal_Robots_ROS2_Description/ef93882e17d8aa628837915da4b83208fe5e519a/meshes/ur5e/collision/wrist2.stl",
+        "sha256": "2964a63f60ce3e3cf3ad55bcf190d7876d50e373cb64b70a57cea5885eaf3c86"
+      },
+      {
+        "name": "wrist3.stl",
+        "url": "https://raw.githubusercontent.com/UniversalRobots/Universal_Robots_ROS2_Description/ef93882e17d8aa628837915da4b83208fe5e519a/meshes/ur5e/collision/wrist3.stl",
+        "sha256": "83b3666b4ae2badd54af0d2c25a921682ecbc29e849eec646c3ed55fb74c78a3"
+      }
+    ]
+  },
+  "python": "3.11.15",
+  "environment": ".deps/cable-venv",
+  "packages": [
+    "absl-py==2.5.0",
+    "contourpy==1.3.3",
+    "cycler==0.12.1",
+    "etils==1.14.0",
+    "fonttools==4.65.0",
+    "fsspec==2026.7.0",
+    "glfw==2.10.2",
+    "kiwisolver==1.5.1",
+    "matplotlib==3.10.7",
+    "mujoco==3.3.7",
+    "numpy==2.4.6",
+    "packaging==26.3",
+    "pillow==12.3.0",
+    "psutil==7.1.3",
+    "pyopengl==3.1.10",
+    "pyparsing==3.3.2",
+    "python-dateutil==2.9.0.post0",
+    "scipy==1.16.3",
+    "six==1.17.0",
+    "trimesh==4.8.3",
+    "typing-extensions==4.16.0",
+    "zipp==4.1.0"
+  ],
+  "licenses": {
+    "AIC": "Apache-2.0 except Isaac subtree BSD-3-Clause",
+    "MuJoCo": "Apache-2.0",
+    "UR_description": "BSD-3-Clause for the seven UR5e collision STLs at ef93882e17d8aa628837915da4b83208fe5e519a; exact attribution, license source hashes and mesh scope in evidence/cable_literature_review_v1.json licensing entry pinned_ur5e_collision_license_20260910"
+  },
+  "hardware": {
+    "gpu": "RTX 5070 Ti Laptop 12227 MiB",
+    "ram_gib": 31.43
+  },
+  "limitations": [
+    "These versions were installed and tested here; a new Windows machine is not thereby verified.",
+    "Cable dynamics use MuJoCo CPU elasticity plugin; no GPU batched training capacity is established."
+  ]
+}

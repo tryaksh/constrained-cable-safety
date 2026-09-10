@@ -1,0 +1,784 @@
+{
+  "schema": 1,
+  "version": "cable_robot_validation_v1",
+  "generated_at_utc": "2026-09-10T22:25:09.403556+00:00",
+  "scope": "Independent artifact and force-stream review of four frozen native UR5e scripted engineering blocks; not a learned recovery comparison or official AIC evaluation.",
+  "review_source_sha256": "a444766ce62c335fd62234c9128b17ff04eb2c9f2e042a150423e7e7847c7e28",
+  "runs": [
+    {
+      "run_id": "cable-robot-v1-r01",
+      "manifest": "artifacts/cable/cable-robot-v1-r01/manifest.json",
+      "provenance": {
+        "manifest_sha256": "164a1c3f19c1028fb2e35e861c1e15e4a4ba38353809f63c07be9f0e354111a8",
+        "prelaunch_sha256": "37c25c1ba7881fec6f0c937d19588edad9b3ffe0332b8731a1d93b576783223c",
+        "source_archive_sha256": "a343b870eb6c6adb4b4bb63b828a97ed956210d76e7c03ad335a726280c6475b",
+        "source_commit_at_start": "4040de31c903ea085c992cada566f9e18ed562a2",
+        "source_dirty_at_start": true,
+        "archived_project_and_external_files": 224,
+        "external_meshes_archived": 7,
+        "upstream_source_and_asset_hashes_checked": 94,
+        "run_artifacts_checked": 34,
+        "configuration_path": "configs/cable_robot_v1.json",
+        "configuration_sha256": "3572d7781bbf1eb657b0d454ab6f6782a71c76312f7a1badb45ab323548641cb"
+      },
+      "verification": {
+        "status": "passed",
+        "checks": 380,
+        "failed_checks": []
+      },
+      "cases": [
+        {
+          "case_id": "robot_aligned_1ms",
+          "dt_s": 0.001,
+          "with_cable": false,
+          "controller": "scripted_native_ur5e_cartesian_impedance_with_model_bias_compensation",
+          "attempt_outcome": "seating_dwell",
+          "native_steps": 16000,
+          "initialization_native_steps": 3000,
+          "poststep_forward_calls": 16000,
+          "initial_tracking_error_m": 5.6336433826182746e-08,
+          "seating_dwell_reached": true,
+          "raw_load_abort": false,
+          "first_contact_s": 8.5500000000007,
+          "seating_time_s": 8.818000000000552,
+          "minimum_tip_error_m": 7.133434077735946e-05,
+          "final_seating_error_m": 0.02200003982174498,
+          "peak_loads": {
+            "plug_port_contact_n": 13.793946343042371,
+            "port_detector_contact_n": 13.793946343042371,
+            "other_contact_n": 0.0,
+            "raw_wrist_load_n": 10.339536917781107,
+            "raw_plug_load_n": 13.32552622158691
+          },
+          "cable_max_displacement_m": 0.0,
+          "joint_torque_saturation_steps": 0,
+          "initialization_completed_derived": true,
+          "recorded_acceptance_checks": {
+            "finite": true,
+            "initial_contact_free": true,
+            "initial_tracking": true,
+            "seated": true,
+            "contact_positive": true,
+            "retracted": true
+          },
+          "force_review": {
+            "full_stream_available": false,
+            "native_steps_independently_checked": 0,
+            "limitation": "Only sparse 10 ms trajectories; unsaved native maxima, terminal forces and contact counts cannot be independently reconstructed."
+          },
+          "verification": {
+            "status": "passed",
+            "checks": 10,
+            "failed_checks": []
+          },
+          "held_seating_and_retraction_check": true
+        }
+      ],
+      "accounting": {
+        "native_steps": 16000,
+        "initialization_native_steps": 3000
+      },
+      "launcher_wall_seconds": 5.077999999994063
+    },
+    {
+      "run_id": "cable-robot-v1-r02",
+      "manifest": "artifacts/cable/cable-robot-v1-r02/manifest.json",
+      "provenance": {
+        "manifest_sha256": "fa6effea3cde23066b3d7d67f92d2ede5dc389b046a8d3f1e7b0845bdf539f3d",
+        "prelaunch_sha256": "2c0ae52da86a28f98e81202ea17d77c4f84e3da5cbbeea3f384720b55bdfba4f",
+        "source_archive_sha256": "ca2e7567dc05231f56c57ecdd2cb210408637f7dd48b9f9ddf6fad86ecf8afda",
+        "source_commit_at_start": "4040de31c903ea085c992cada566f9e18ed562a2",
+        "source_dirty_at_start": true,
+        "archived_project_and_external_files": 224,
+        "external_meshes_archived": 7,
+        "upstream_source_and_asset_hashes_checked": 94,
+        "run_artifacts_checked": 92,
+        "configuration_path": "configs/cable_robot_v1.json",
+        "configuration_sha256": "3572d7781bbf1eb657b0d454ab6f6782a71c76312f7a1badb45ab323548641cb"
+      },
+      "verification": {
+        "status": "passed",
+        "checks": 438,
+        "failed_checks": []
+      },
+      "cases": [
+        {
+          "case_id": "robot_aligned_1ms",
+          "dt_s": 0.001,
+          "with_cable": false,
+          "controller": "scripted_native_ur5e_cartesian_impedance_with_model_bias_compensation",
+          "attempt_outcome": "seating_dwell",
+          "native_steps": 16000,
+          "initialization_native_steps": 3000,
+          "poststep_forward_calls": 16000,
+          "initial_tracking_error_m": 5.6336433826182746e-08,
+          "seating_dwell_reached": true,
+          "raw_load_abort": false,
+          "first_contact_s": 8.5500000000007,
+          "seating_time_s": 8.818000000000552,
+          "minimum_tip_error_m": 7.133434077735946e-05,
+          "final_seating_error_m": 0.02200003982174498,
+          "peak_loads": {
+            "plug_port_contact_n": 13.793946343042371,
+            "port_detector_contact_n": 13.793946343042371,
+            "other_contact_n": 0.0,
+            "raw_wrist_load_n": 10.343580799255175,
+            "raw_plug_load_n": 13.32552622158691
+          },
+          "cable_max_displacement_m": 0.0,
+          "joint_torque_saturation_steps": 0,
+          "initialization_completed_derived": true,
+          "recorded_acceptance_checks": {
+            "finite": true,
+            "initial_contact_free": true,
+            "initial_tracking": true,
+            "seated": true,
+            "contact_positive": true,
+            "retracted": true
+          },
+          "force_review": {
+            "full_stream_available": false,
+            "native_steps_independently_checked": 0,
+            "limitation": "Only sparse 10 ms trajectories; unsaved native maxima, terminal forces and contact counts cannot be independently reconstructed."
+          },
+          "verification": {
+            "status": "passed",
+            "checks": 10,
+            "failed_checks": []
+          },
+          "held_seating_and_retraction_check": true
+        },
+        {
+          "case_id": "robot_cable_1ms",
+          "dt_s": 0.001,
+          "with_cable": true,
+          "controller": "scripted_native_ur5e_cartesian_impedance_with_model_bias_compensation",
+          "attempt_outcome": "force_abort",
+          "native_steps": 319,
+          "initialization_native_steps": 319,
+          "poststep_forward_calls": 319,
+          "initial_tracking_error_m": 0.0,
+          "seating_dwell_reached": false,
+          "raw_load_abort": true,
+          "first_contact_s": null,
+          "seating_time_s": null,
+          "minimum_tip_error_m": 0.02200002455962266,
+          "final_seating_error_m": 0.022274313612785743,
+          "peak_loads": {
+            "plug_port_contact_n": 0.0,
+            "port_detector_contact_n": 0.0,
+            "other_contact_n": 11.253172683990401,
+            "raw_wrist_load_n": 42.72215823356917,
+            "raw_plug_load_n": 9.147901652380185
+          },
+          "cable_max_displacement_m": 0.5683490953791352,
+          "joint_torque_saturation_steps": 1,
+          "initialization_completed_derived": false,
+          "recorded_acceptance_checks": {
+            "finite": true,
+            "initial_contact_free": true,
+            "initial_tracking": true,
+            "seated": false,
+            "contact_positive": false,
+            "retracted": false
+          },
+          "force_review": {
+            "full_stream_available": false,
+            "native_steps_independently_checked": 0,
+            "limitation": "Only sparse 10 ms trajectories; unsaved native maxima, terminal forces and contact counts cannot be independently reconstructed."
+          },
+          "verification": {
+            "status": "passed",
+            "checks": 10,
+            "failed_checks": []
+          },
+          "held_seating_and_retraction_check": false,
+          "interpretation_correction": {
+            "superseded": "Recorded initial_tracking=True",
+            "corrected": false,
+            "reason": "Aborted before the last-half-second initialization tracking window; initialized zero is not a tracking measurement."
+          }
+        },
+        {
+          "case_id": "robot_cable_05ms",
+          "dt_s": 0.0005,
+          "with_cable": true,
+          "controller": "scripted_native_ur5e_cartesian_impedance_with_model_bias_compensation",
+          "attempt_outcome": "force_abort",
+          "native_steps": 1290,
+          "initialization_native_steps": 1290,
+          "poststep_forward_calls": 1290,
+          "initial_tracking_error_m": 0.0,
+          "seating_dwell_reached": false,
+          "raw_load_abort": true,
+          "first_contact_s": null,
+          "seating_time_s": null,
+          "minimum_tip_error_m": 0.022000006156026364,
+          "final_seating_error_m": 0.025653463905109825,
+          "peak_loads": {
+            "plug_port_contact_n": 0.0,
+            "port_detector_contact_n": 0.0,
+            "other_contact_n": 1.4426952159916064,
+            "raw_wrist_load_n": 20.72800564628352,
+            "raw_plug_load_n": 2.7390138708490914
+          },
+          "cable_max_displacement_m": 1.7144463030090877,
+          "joint_torque_saturation_steps": 0,
+          "initialization_completed_derived": false,
+          "recorded_acceptance_checks": {
+            "finite": true,
+            "initial_contact_free": true,
+            "initial_tracking": true,
+            "seated": false,
+            "contact_positive": false,
+            "retracted": false
+          },
+          "force_review": {
+            "full_stream_available": false,
+            "native_steps_independently_checked": 0,
+            "limitation": "Only sparse 10 ms trajectories; unsaved native maxima, terminal forces and contact counts cannot be independently reconstructed."
+          },
+          "verification": {
+            "status": "passed",
+            "checks": 10,
+            "failed_checks": []
+          },
+          "held_seating_and_retraction_check": false,
+          "interpretation_correction": {
+            "superseded": "Recorded initial_tracking=True",
+            "corrected": false,
+            "reason": "Aborted before the last-half-second initialization tracking window; initialized zero is not a tracking measurement."
+          }
+        }
+      ],
+      "accounting": {
+        "native_steps": 17609,
+        "initialization_native_steps": 4609
+      },
+      "launcher_wall_seconds": 8.718999999997322
+    },
+    {
+      "run_id": "cable-robot-v2-r01",
+      "manifest": "artifacts/cable/cable-robot-v2-r01/manifest.json",
+      "provenance": {
+        "manifest_sha256": "3198d5ad5527e3c8984e78831ff17a3d9398a4235eff08f9d6d7138acb5088ae",
+        "prelaunch_sha256": "86d2f1f95693127a868aaaa3567512f17b1c3d2666c1049e4fffeb3ba3d48b92",
+        "source_archive_sha256": "d74bae687cb83a5b62d3b703d842a83adf364efb294864504a24eb0ae1083063",
+        "source_commit_at_start": "4040de31c903ea085c992cada566f9e18ed562a2",
+        "source_dirty_at_start": true,
+        "archived_project_and_external_files": 227,
+        "external_meshes_archived": 7,
+        "upstream_source_and_asset_hashes_checked": 94,
+        "run_artifacts_checked": 99,
+        "configuration_path": "configs/cable_robot_v2.json",
+        "configuration_sha256": "7898c947527142ae6a329ecb5274ac07e3d848e8edfb38aec75b53c6458a1c49"
+      },
+      "verification": {
+        "status": "passed",
+        "checks": 448,
+        "failed_checks": []
+      },
+      "cases": [
+        {
+          "case_id": "robot_aligned_1ms",
+          "dt_s": 0.001,
+          "with_cable": false,
+          "controller": "scripted_native_ur5e_cartesian_impedance_with_model_bias_compensation",
+          "attempt_outcome": "seating_dwell",
+          "native_steps": 16000,
+          "initialization_native_steps": 3000,
+          "poststep_forward_calls": 16000,
+          "initial_tracking_error_m": 5.6336433826182746e-08,
+          "seating_dwell_reached": true,
+          "raw_load_abort": false,
+          "first_contact_s": 8.5500000000007,
+          "seating_time_s": 8.818000000000552,
+          "minimum_tip_error_m": 7.133434077735946e-05,
+          "final_seating_error_m": 0.02200003982174498,
+          "peak_loads": {
+            "plug_port_contact_n": 13.793946343042371,
+            "port_detector_contact_n": 13.793946343042371,
+            "other_contact_n": 0.0,
+            "raw_wrist_load_n": 10.343580799255175,
+            "raw_plug_load_n": 13.32552622158691
+          },
+          "cable_max_displacement_m": 0.0,
+          "joint_torque_saturation_steps": 0,
+          "initialization_completed_derived": true,
+          "recorded_acceptance_checks": {
+            "finite": true,
+            "initial_contact_free": true,
+            "initial_tracking": true,
+            "seated": true,
+            "contact_positive": true,
+            "retracted": true
+          },
+          "force_review": {
+            "full_stream_available": true,
+            "native_steps_independently_checked": 16000,
+            "contact_steps_recomputed": 3546,
+            "raw_violation_steps": 0,
+            "first_contact_s": 8.5500000000007,
+            "maximum_native_forward_load_difference_n": {
+              "plug_port_contact_n": 13.793946343042371,
+              "port_detector_contact_n": 13.793946343042371,
+              "other_contact_n": 0.0,
+              "raw_wrist_load_n": 7.055123549558264,
+              "raw_plug_load_n": 12.923189045916612
+            }
+          },
+          "verification": {
+            "status": "passed",
+            "checks": 45,
+            "failed_checks": []
+          },
+          "held_seating_and_retraction_check": true
+        },
+        {
+          "case_id": "robot_cable_1ms",
+          "dt_s": 0.001,
+          "with_cable": true,
+          "controller": "scripted_native_ur5e_cartesian_impedance_with_model_bias_compensation",
+          "attempt_outcome": "force_abort",
+          "native_steps": 28,
+          "initialization_native_steps": 28,
+          "poststep_forward_calls": 28,
+          "initial_tracking_error_m": null,
+          "seating_dwell_reached": false,
+          "raw_load_abort": true,
+          "first_contact_s": null,
+          "seating_time_s": null,
+          "minimum_tip_error_m": 0.02200000830654766,
+          "final_seating_error_m": 0.02200103396781505,
+          "peak_loads": {
+            "plug_port_contact_n": 0.0,
+            "port_detector_contact_n": 0.0,
+            "other_contact_n": 20.04913061683915,
+            "raw_wrist_load_n": 10.312122145835428,
+            "raw_plug_load_n": 20.063226861241052
+          },
+          "cable_max_displacement_m": 0.006105980084522267,
+          "joint_torque_saturation_steps": 0,
+          "initialization_completed_derived": false,
+          "recorded_acceptance_checks": {
+            "finite": true,
+            "initial_contact_free": true,
+            "initial_tracking": false,
+            "seated": false,
+            "contact_positive": false,
+            "retracted": false
+          },
+          "force_review": {
+            "full_stream_available": true,
+            "native_steps_independently_checked": 28,
+            "contact_steps_recomputed": 0,
+            "raw_violation_steps": 1,
+            "first_contact_s": null,
+            "maximum_native_forward_load_difference_n": {
+              "plug_port_contact_n": 0.0,
+              "port_detector_contact_n": 0.0,
+              "other_contact_n": 20.04913061683915,
+              "raw_wrist_load_n": 0.06875456411162695,
+              "raw_plug_load_n": 19.660204809023135
+            }
+          },
+          "verification": {
+            "status": "passed",
+            "checks": 45,
+            "failed_checks": []
+          },
+          "held_seating_and_retraction_check": false
+        },
+        {
+          "case_id": "robot_cable_05ms",
+          "dt_s": 0.0005,
+          "with_cable": true,
+          "controller": "scripted_native_ur5e_cartesian_impedance_with_model_bias_compensation",
+          "attempt_outcome": "seating_dwell",
+          "native_steps": 32000,
+          "initialization_native_steps": 6000,
+          "poststep_forward_calls": 32000,
+          "initial_tracking_error_m": 0.0004138320369385774,
+          "seating_dwell_reached": true,
+          "raw_load_abort": false,
+          "first_contact_s": 8.464999999998854,
+          "seating_time_s": 8.732499999999181,
+          "minimum_tip_error_m": 7.869089773885132e-05,
+          "final_seating_error_m": 0.021529869289341842,
+          "peak_loads": {
+            "plug_port_contact_n": 10.973319650360306,
+            "port_detector_contact_n": 10.973319650360306,
+            "other_contact_n": 7.225721707472188,
+            "raw_wrist_load_n": 13.256456587158732,
+            "raw_plug_load_n": 10.002733256666795
+          },
+          "cable_max_displacement_m": 0.8079926487000165,
+          "joint_torque_saturation_steps": 0,
+          "initialization_completed_derived": true,
+          "recorded_acceptance_checks": {
+            "finite": true,
+            "initial_contact_free": true,
+            "initial_tracking": true,
+            "seated": true,
+            "contact_positive": true,
+            "retracted": true
+          },
+          "force_review": {
+            "full_stream_available": true,
+            "native_steps_independently_checked": 32000,
+            "contact_steps_recomputed": 7350,
+            "raw_violation_steps": 0,
+            "first_contact_s": 8.464999999998854,
+            "maximum_native_forward_load_difference_n": {
+              "plug_port_contact_n": 10.97276419679325,
+              "port_detector_contact_n": 10.97276419679325,
+              "other_contact_n": 3.0400235595756966,
+              "raw_wrist_load_n": 7.845001269210741,
+              "raw_plug_load_n": 9.160953388281062
+            }
+          },
+          "verification": {
+            "status": "passed",
+            "checks": 45,
+            "failed_checks": []
+          },
+          "held_seating_and_retraction_check": true
+        }
+      ],
+      "accounting": {
+        "native_steps": 48028,
+        "initialization_native_steps": 9028
+      },
+      "launcher_wall_seconds": 25.360000000000582
+    },
+    {
+      "run_id": "cable-robot-v3-r01",
+      "manifest": "artifacts/cable/cable-robot-v3-r01/manifest.json",
+      "provenance": {
+        "manifest_sha256": "0a50dc3397366e1a0a66f4ac53edfddeb480ef155023a0adce463e57c0201302",
+        "prelaunch_sha256": "8eeb84cc78e665c22c6988b8bda44d474eff9cc364edc9dc14040dc6455f1654",
+        "source_archive_sha256": "86237360df92063c8652a608ae505bdf6d6e2413d92696e64a3c665d546d01fa",
+        "source_commit_at_start": "4040de31c903ea085c992cada566f9e18ed562a2",
+        "source_dirty_at_start": true,
+        "archived_project_and_external_files": 232,
+        "external_meshes_archived": 7,
+        "upstream_source_and_asset_hashes_checked": 94,
+        "run_artifacts_checked": 68,
+        "configuration_path": "configs/cable_robot_v3.json",
+        "configuration_sha256": "3aed7fb2184ac9858ef6aa94e065ce9a3d25de9551a62206836f9e7412dcaac6"
+      },
+      "verification": {
+        "status": "passed",
+        "checks": 422,
+        "failed_checks": []
+      },
+      "cases": [
+        {
+          "case_id": "robot_cable_05ms",
+          "dt_s": 0.0005,
+          "with_cable": true,
+          "controller": "scripted_native_ur5e_cartesian_impedance_with_model_bias_compensation",
+          "attempt_outcome": "seating_dwell",
+          "native_steps": 32000,
+          "initialization_native_steps": 6000,
+          "poststep_forward_calls": 32000,
+          "initial_tracking_error_m": 0.0004138320369385774,
+          "seating_dwell_reached": true,
+          "raw_load_abort": false,
+          "first_contact_s": 8.464999999998854,
+          "seating_time_s": 8.732499999999181,
+          "minimum_tip_error_m": 7.869089773885132e-05,
+          "final_seating_error_m": 0.021529869289341842,
+          "peak_loads": {
+            "plug_port_contact_n": 10.973319650360306,
+            "port_detector_contact_n": 10.973319650360306,
+            "other_contact_n": 7.225721707472188,
+            "raw_wrist_load_n": 13.256456587158732,
+            "raw_plug_load_n": 10.002733256666795
+          },
+          "cable_max_displacement_m": 0.8079926487000165,
+          "joint_torque_saturation_steps": 0,
+          "initialization_completed_derived": true,
+          "recorded_acceptance_checks": {
+            "finite": true,
+            "initial_contact_free": true,
+            "initial_tracking": true,
+            "seated": true,
+            "contact_positive": true,
+            "retracted": true
+          },
+          "force_review": {
+            "full_stream_available": true,
+            "native_steps_independently_checked": 32000,
+            "contact_steps_recomputed": 7350,
+            "raw_violation_steps": 0,
+            "first_contact_s": 8.464999999998854,
+            "maximum_native_forward_load_difference_n": {
+              "plug_port_contact_n": 10.97276419679325,
+              "port_detector_contact_n": 10.97276419679325,
+              "other_contact_n": 3.0400235595756966,
+              "raw_wrist_load_n": 7.845001269210741,
+              "raw_plug_load_n": 9.160953388281062
+            }
+          },
+          "verification": {
+            "status": "passed",
+            "checks": 45,
+            "failed_checks": []
+          },
+          "held_seating_and_retraction_check": true
+        },
+        {
+          "case_id": "robot_cable_025ms",
+          "dt_s": 0.00025,
+          "with_cable": true,
+          "controller": "scripted_native_ur5e_cartesian_impedance_with_model_bias_compensation",
+          "attempt_outcome": "seating_dwell",
+          "native_steps": 64000,
+          "initialization_native_steps": 12000,
+          "poststep_forward_calls": 64000,
+          "initial_tracking_error_m": 0.00041657032842801303,
+          "seating_dwell_reached": true,
+          "raw_load_abort": false,
+          "first_contact_s": 8.462750000002952,
+          "seating_time_s": 8.727500000002335,
+          "minimum_tip_error_m": 7.596356290214736e-05,
+          "final_seating_error_m": 0.02161794443456093,
+          "peak_loads": {
+            "plug_port_contact_n": 12.534068911197021,
+            "port_detector_contact_n": 12.534068911197021,
+            "other_contact_n": 0.5781796389080415,
+            "raw_wrist_load_n": 11.713753257170223,
+            "raw_plug_load_n": 11.556272047283729
+          },
+          "cable_max_displacement_m": 0.3758306599116641,
+          "joint_torque_saturation_steps": 0,
+          "initialization_completed_derived": true,
+          "recorded_acceptance_checks": {
+            "finite": true,
+            "initial_contact_free": true,
+            "initial_tracking": true,
+            "seated": true,
+            "contact_positive": true,
+            "retracted": true
+          },
+          "force_review": {
+            "full_stream_available": true,
+            "native_steps_independently_checked": 64000,
+            "contact_steps_recomputed": 14721,
+            "raw_violation_steps": 0,
+            "first_contact_s": 8.462750000002952,
+            "maximum_native_forward_load_difference_n": {
+              "plug_port_contact_n": 12.533854167675138,
+              "port_detector_contact_n": 12.533854167675138,
+              "other_contact_n": 0.2269788810357501,
+              "raw_wrist_load_n": 8.011958699260305,
+              "raw_plug_load_n": 10.692457820891425
+            }
+          },
+          "verification": {
+            "status": "passed",
+            "checks": 45,
+            "failed_checks": []
+          },
+          "held_seating_and_retraction_check": true
+        }
+      ],
+      "accounting": {
+        "native_steps": 96000,
+        "initialization_native_steps": 18000
+      },
+      "launcher_wall_seconds": 50.38999999999942
+    }
+  ],
+  "accounting": {
+    "native_steps": 177637,
+    "initialization_native_steps": 34637,
+    "launcher_wall_seconds": 89.54699999999139,
+    "poststep_forward_calls": 177637,
+    "force_stream_verified_native_steps": 144028,
+    "prior_zero_step_geometry_review": {
+      "native_steps": 0,
+      "mj_forward_calls": 99,
+      "render_calls": 0,
+      "scope": "Separate read-only reconstruction of saved v1-r02 poses; no exact terminal force replay."
+    },
+    "this_artifact_review": {
+      "native_steps": 0,
+      "mj_forward_calls": 0,
+      "simulator_render_calls": 0
+    },
+    "additional_build_compile_forward_work": "Not fully instrumented; native steps and poststep forwards are separate measured counters.",
+    "ordinary_learned_training_native_steps": 0,
+    "recovery_focused_learned_training_native_steps": 0,
+    "scripted_recovery_native_steps": 0,
+    "scripted_continuation_native_steps": 0,
+    "controller_cost_scope": "All 177637 steps belong to scripted initialization, first insertion and diagnostic retraction. No recovery or failed-attempt continuation arm ran in these four blocks."
+  },
+  "latest_pair": {
+    "verification": {
+      "status": "passed",
+      "checks": 6,
+      "failed_checks": []
+    },
+    "time_steps_s": [
+      0.0005,
+      0.00025
+    ],
+    "held_seating_and_retraction": [
+      true,
+      true
+    ],
+    "seating_time_s": [
+      8.732499999999181,
+      8.727500000002335
+    ],
+    "peak_other_contact_n": [
+      7.225721707472188,
+      0.5781796389080415
+    ],
+    "peak_plug_port_contact_n": [
+      10.973319650360306,
+      12.534068911197021
+    ],
+    "cable_max_displacement_m": [
+      0.8079926487000165,
+      0.3758306599116641
+    ],
+    "other_contact_peak_ratio_05_over_025": 12.497364523452939,
+    "fine_other_contact_peak_pairs": {
+      "initialization": {
+        "time_s": 0.9145,
+        "sample": "native_solve",
+        "pairs": [
+          {
+            "geom1": "cable_G0",
+            "geom2": "plug__sc_plug_link__cube002_collider_box",
+            "force_n": 0.292521307996661,
+            "distance_m": -0.0003547441376785636
+          },
+          {
+            "geom1": "cable_G2",
+            "geom2": "port__sc_port_link__cube_collider_box.002",
+            "force_n": 0.14282916545571286,
+            "distance_m": -3.8254798479176594e-05
+          },
+          {
+            "geom1": "cable_G2",
+            "geom2": "port__sc_port_link__cube_collider_box.006",
+            "force_n": 0.14282916545566762,
+            "distance_m": -3.825479847907338e-05
+          }
+        ]
+      },
+      "insertion": {
+        "time_s": 5.1385000000000005,
+        "sample": "native_solve",
+        "pairs": [
+          {
+            "geom1": "cable_G0",
+            "geom2": "plug__sc_plug_link__cube002_collider_box",
+            "force_n": 0.18161371606743634,
+            "distance_m": -0.0004962422108155374
+          },
+          {
+            "geom1": "cable_G2",
+            "geom2": "port__sc_port_link__cube_collider_box.002",
+            "force_n": 0.10547725087533516,
+            "distance_m": -0.0007267829166809423
+          },
+          {
+            "geom1": "cable_G2",
+            "geom2": "port__sc_port_link__cube_collider_box.006",
+            "force_n": 0.07883737631993115,
+            "distance_m": -0.0003720279673153418
+          }
+        ]
+      },
+      "retraction": {
+        "time_s": 13.31075,
+        "sample": "native_solve",
+        "pairs": [
+          {
+            "geom1": "cable_G0",
+            "geom2": "plug__sc_plug_link__cube002_collider_box",
+            "force_n": 0.13484757331605068,
+            "distance_m": -0.00044332428188934036
+          },
+          {
+            "geom1": "cable_G2",
+            "geom2": "port__sc_port_link__cube_collider_box.002",
+            "force_n": 0.05281831704805298,
+            "distance_m": -0.0004339120343341493
+          },
+          {
+            "geom1": "cable_G2",
+            "geom2": "port__sc_port_link__cube_collider_box.003",
+            "force_n": 0.052818317048095,
+            "distance_m": -0.0004339120343341883
+          },
+          {
+            "geom1": "cable_G2",
+            "geom2": "port__sc_port_link__cube_collider_box.003",
+            "force_n": 0.052471192466883226,
+            "distance_m": -0.0004339077391388008
+          }
+        ]
+      }
+    },
+    "interpretation": "Outcome agreement supports a runnable engineering baseline on this layout. Large cable/contact differences retain numerical sensitivity; two timesteps do not establish convergence."
+  },
+  "corrections_preserved": [
+    {
+      "run_id": "cable-robot-v1-r01",
+      "superseded_force_statistics": "Postforward-only maxima and abort checking are superseded for scientific interpretation by the repeated no-cable case in v1-r02, which retains native-solve and postforward values. Original artifacts and all 16000 steps remain counted.",
+      "full_native_force_stream_available": false
+    },
+    {
+      "run_id": "cable-robot-v1-r02",
+      "superseded_initial_tracking_pass_for_cases": [
+        "robot_cable_1ms",
+        "robot_cable_05ms"
+      ],
+      "reason": "Both aborted before the tracking window. Zero initialized error was not a measurement. v2/v3 require completed initialization and nonzero tracking samples."
+    }
+  ],
+  "demonstrated_findings": [
+    "Native six-joint UR5e finite-torque control seats and retracts the public rigid SC plug with a gravity-loaded elastic cable at 0.5 and 0.25 ms on one aligned layout.",
+    "Straight horizontal cable initialization in v1 collapses into the gripper/connector region and aborts before insertion. An outboard hanging initial curve with unchanged straight material rest shape enables finer-step trials.",
+    "The corrected 1 ms hanging-curve trial still aborts at 28 native steps. The 0.5/0.25 ms pair agrees on held seating/retraction but differs materially in cable contact and motion."
+  ],
+  "scope_and_limitations": [
+    "SC collision geometry is rigid and has no latch model: pose/contact dwell under a held plug is not released mechanical retention or electrical/optical function.",
+    "Fixed preset grasp precludes claims of learned pickup, drop reliability, or a complete autonomous cable assembly job.",
+    "One aligned layout, no required clip or retained earlier connection, and no balanced misalignment-by-snag failure assay in these four blocks.",
+    "No ordinary learned training, recovery-focused training, scripted recovery comparison or scripted continuation comparison ran in this native validation block.",
+    "Earlier force streams and terminal states were not saved at native rate; their reported peaks retain the stated verification limitation.",
+    "The prior 99-forward reconstruction identifies contact geometry only: missing terminal qvel/ctrl prevents exact causal reconstruction of the original force spikes.",
+    "Wrist force contains tool/gripper weight and inertia, with roughly 10.24 N no-cable initial load; raw force and torque are separate channels. No hardware force certification or simulator equivalence claim.",
+    "The 0.25 ms setting is the preferred engineering setting for subsequent bounded diagnostics, not a converged physical truth or permission for a full learned comparison."
+  ],
+  "decision": {
+    "status": "continue_engineering_baseline_with_numerical_limitations",
+    "preferred_dt_s": 0.00025,
+    "full_comparison_gate_passed": false,
+    "physics_convergence_established": false,
+    "algorithmic_benefit_tested": false,
+    "next_action": "At 0.25 ms, establish a reproducible competent first attempt and balanced misalignment/cable-fault diagnostics, preserving force limits and validating seating/retention scope before learned comparisons."
+  },
+  "verification": {
+    "status": "passed",
+    "checks": 1959,
+    "failed_checks": []
+  },
+  "figures": [
+    {
+      "path": "evidence/cable_robot_validation_v1.png",
+      "sha256": "1def1dff0596796433e0e0ce70235a96f900b36dea9080e1fdfbe106aa83fa4f"
+    },
+    {
+      "path": "evidence/cable_robot_validation_v1.pdf",
+      "sha256": "8383c040c82abc16e446372c23cddafb25c22bb26e07f59eefd50373e621e3db"
+    }
+  ]
+}

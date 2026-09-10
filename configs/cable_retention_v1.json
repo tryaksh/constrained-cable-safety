@@ -1,0 +1,36 @@
+{
+  "schema": 1,
+  "task_id": "isolated_sc_axial_retention_v1",
+  "scope": "Isolated axial retention of pinned rigid SC geometry after force-driven seating. A one-axis slide constrains lateral translation and rotation; no robot, cable, recovery, physical latch model or hardware retention claim.",
+  "aic_commit": "e9145480c945f2afc3741f355233f44082cc3b06",
+  "runtime": {"mujoco": "3.3.7", "python": "3.11.15"},
+  "asset_models": ["SC Plug", "SC Port"],
+  "dt": 0.00025,
+  "initial_tip_distance_m": 0.002,
+  "approach_seconds": 2.0,
+  "load_seconds": 2.0,
+  "net_insertion_force_n": 0.5,
+  "approach_velocity_damping_ns_per_m": 5.0,
+  "motor_force_limit_n": 5.0,
+  "load_phase_damping_ns_per_m": 0.0,
+  "gravity_m_per_s2": [0.0, 0.0, -9.81],
+  "force_convention": "Positive axis points from the port toward withdrawal. Actuator force equals declared net external axial force minus projected gravity force. Approach alone adds bounded velocity damping; all insertion holding force and damping are removed during the extraction-load phase.",
+  "acceptance": {
+    "seating_position_tolerance_m": 0.001,
+    "seating_orientation_tolerance_rad": 0.03,
+    "seating_dwell_s": 0.5,
+    "positive_contact_threshold_n": 0.05,
+    "initial_contact_tolerance_n": 0.001,
+    "raw_contact_abort_n": 20.0,
+    "early_extraction_stop_m": 0.005,
+    "zero_load_control_required": true,
+    "retention_claim_requires_seating": true,
+    "retention_definition": "After verified force-driven seating, remains within the same1mm seating region throughout the2s load phase. The constrained fixture can demonstrate axial resistance only; zero-net-load persistence alone does not prove a mechanical latch."
+  },
+  "cases": [
+    {"id": "zero_net_extraction", "net_extraction_load_n": 0.0},
+    {"id": "half_newton_net_extraction", "net_extraction_load_n": 0.5},
+    {"id": "two_newton_net_extraction", "net_extraction_load_n": 2.0}
+  ],
+  "stop_rule": "If force-driven seating/dwell or contact positive control fails, report retention unassessable for that case. No geometry, attachment, force ceiling or success-threshold adjustment after seeing outcomes."
+}

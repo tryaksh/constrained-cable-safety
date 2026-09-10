@@ -1,10 +1,32 @@
-# Roadmap: learn to recover, then measure whether training pays
+# Roadmap: cable recovery, from physical baseline to a controlled result
 
-**Project scope:** learned recovery from failed industrial assembly attempts at equal training cost, using Franka and pinned FORGE. Peg insertion first; gear assembly tests generality after peg evidence earns it.
+**Active scope:** industrial cable handling and connector insertion. Establish a credible physical baseline, measure remaining failures and test the smallest justified recovery improvement. The preserved Franka/FORGE peg study is historical evidence, not a restriction on this cable cycle.
 
 The owner's 2026-09-10 mandate supersedes the fixed five-hour/single-action limits and the mandatory adaptive-sampling question. Agents own scientific and engineering choices and execute a complete, bounded research cycle. Scientific validity, preservation of negative evidence, source provenance, fair cost and closed final tests remain required. Earlier plans below are historical designs until explicitly replaced by a versioned registration.
 
-## Current state
+## Closed cable cycle (2026-09-10)
+
+**Decision: revise the physical connection-retention model.** The authorized cycle produced runnable native AIC code, a controlled scripted seating comparison and a matched retention experiment. The current rigid SC asset releases under 0.5/2 N net extraction at both tested resolutions, so it cannot support claims of completed retained connections. Learning the proposed joint connector/cable recovery mechanism is not yet justified.
+
+| Item | Verified state |
+| --- | --- |
+| Starting source | Research branch at `4040de31c903ea085c992cada566f9e18ed562a2`; exact dirty run-time sources and meshes archived before each simulator launch |
+| Public toolkit | Intrinsic AIC `e9145480c945f2afc3741f355233f44082cc3b06`; seven UR5e collision STLs match public source at `ef93882e17d8aa628837915da4b83208fe5e519a`; BSD/Apache license scope recorded |
+| Native environment | Isolated MuJoCo 3.3.7/Python 3.11.15; setup/check command verifies source, assets and package pins; Gazebo/ROS official evaluation not executed |
+| Asset/contact controls | Current SC SDF retains all 15 collision primitives per plug/port. Force-actuated fixture controls pass; source MuJoCo contact exclusion and older embedded plug geometry are not used as insertion truth. |
+| Native robot | Finite-torque UR5e seats/retracts with a deforming free cable at 0.5/0.25 ms. Three earlier cable initializations abort; all preserved. Cable contact remains timestep-sensitive. Use 0.25 ms only for bounded engineering, not a convergence claim. |
+| Scripted comparison | Same six deterministic development cases: force-guided/precontact-compensated baseline seats 6/6; continuation seats 3/6, with three witnessed contact-stall timeouts. Strong baseline used zero retries and had no witnessed recoveries. |
+| Retention | All six axial fixtures first seat/dwell. Zero net pull holds for 2 s; 0.5/2 N unseat in about 12/6 ms with zero opposing extraction contact at both 0.25/0.125 ms. This is a rigid-model limit, not a hardware specification. |
+| Accounting | 12 launcher attempts, 10 processes with physical trials, one worker compile failure and one pre-worker encoding failure. 37 physical trials; 1,185,841 explicit native steps, including 222,637 initialization steps; 595.203 s summed launcher wall time. |
+| Learning / proposed extension | No ordinary, recovery-focused, recurrent or candidate learning. No prior-clip/connection, distal-snag or unseen-connector comparison. Conditional extension registration and CPU geometry/accounting helpers remain unexecuted. |
+| Observation / hardware scope | Full simulated poses and exact-model bias feedforward; ideal fixed robot grasp. No camera perception, pickup, released physical connection, electrical/optical functionality or hardware transfer. |
+| Contribution | Reproducible native integration, a competent local scripted baseline, and a specific physical-retention limit. No learned benefit or algorithmic novelty. |
+| Release | Three maintained documents, pinned setup/commands, immutable negative evidence, plots and CPU/source-only verification in `evidence/cable_cycle_verification_v1.json` |
+| Single next action | Specify and validate a physically justified passive connection-retention/load model (or select an asset that already supports it), with seated/unseated/release controls. Then validate required-clip and clearable-post support before any learned recovery comparison. |
+
+The [decision](evidence/cable_cycle_decision_v1.json), [baseline](evidence/cable_baseline_v2.json), [retention control](evidence/cable_retention_v1.json), and [native validation](evidence/cable_robot_validation_v1.json) contain denominators, costs, source hashes and limitations. The candidate effect remains unknown. Do not turn held seating or a touch-triggered freeze into a retained-connection claim. Preserve the original asset/model results when revising the task. The peg campaign below remains closed independently.
+
+## Preserved peg state
 
 | Item | Verified state |
 | --- | --- |

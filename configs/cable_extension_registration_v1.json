@@ -1,0 +1,372 @@
+{
+  "schema": 1,
+  "registration_id": "cable_extension_registration_v1",
+  "created_on": "2026-09-10",
+  "status": "unexecuted_retention_gate_failed",
+  "execution_enabled": false,
+  "scope": "Project extension of public AIC SC insertion: a preset connected-end boundary, one required physical clip, and an optional recoverable distal snag. Simulation only; separate from official AIC scores and force-actuated stage diagnostics.",
+  "aic_revision": "e9145480c945f2afc3741f355233f44082cc3b06",
+  "dependencies": [
+    "configs/cable_task_v2.json",
+    "evidence/cable_literature_review_v1.json"
+  ],
+  "verified_scope": {
+    "native_robot_baseline": "pending",
+    "extension_geometry_support": "not_measured",
+    "extension_recovery_result": "not_run",
+    "learning": "not_run",
+    "caution": "Prior stage seating/contact controls motivate native-robot validation only. They do not establish robot reachability, grasp retention, distal repair feasibility or an extension advantage."
+  },
+  "question": "After a common competent insertion attempt encounters a physically witnessed failure, does selecting repairs using predicted local engagement and distal constraint consequences improve complete-job completion at matched experience beyond compensation, visible-snag rules and an affordable cable-aware planner?",
+  "decision_order": [
+    "Validate native robot insertion, retained grasp, wrench sensing and feasible retraction with the public SC collision geometry.",
+    "Instantiate and validate the connected-end/clip/post extension, including nominal completion and a physical repair witness.",
+    "Run the balanced development factorial with the strong local baseline and visible-snag rule.",
+    "If rules resolve the support without a stable remaining failure, retain the engineering result and reject the need for this proposed predictor.",
+    "Only stable feasible residual failures justify held-out action-consequence prediction, then a registered learning/control comparison."
+  ],
+  "geometry": {
+    "coordinate_system": "Use the native SC port base/entrance frames and the imported SC tip frame. Express board, clip, post and approach poses in a shared board frame; never use a world-axis proxy when that frame rotates.",
+    "connector_collision_geometry": "Exact pinned SC Plug/SC Port primitives and fixed-link transforms; no clearance easing, collision removal or contact-triggered attachment.",
+    "cable_seed_parameters": {
+      "status": "prototype_values_from_cable_task_v2_not_mechanical_validation",
+      "length_m": 0.96,
+      "radius_m": 0.002,
+      "segments": 24,
+      "linear_density_kg_per_m": 0.0520833333333333,
+      "youngs_modulus_pa": 10000000,
+      "twist_modulus_pa": 4000000,
+      "attachment_back_m": 0.052,
+      "root_joint_limitation": "The v2 diagnostic uses a ball root without an elastic root moment. Validate and freeze root mechanics for this task; do not imply realistic connector torque transmission from that prototype."
+    },
+    "connected_end": {
+      "definition": "A preset fixed proximal endpoint representing an existing connection, instrumented for reaction load. Its anchoring is established before the job and remains unchanged.",
+      "limits": "A permanently anchored end cannot demonstrate resistance to physical unplugging. Report anchor-load violations and physical clip release separately. Adding a physically detachable proximal connector requires a new validated specification.",
+      "world_pose": null,
+      "reaction_force_limit_n": null,
+      "reaction_torque_limit_nm": null
+    },
+    "required_clip": {
+      "definition": "A fixed passive guide/clip with physical collision geometry and an accessible release route. Cable passage through its capture region is required throughout the job.",
+      "no_artificial_retention": "No cable-to-clip weld, attachment constraint, pose freeze or scripted reinsertion. A closed collar that makes release topologically impossible cannot support a clip-loss comparison.",
+      "geometry_family": "An open-sided guide with a retaining lip is the initial implementation choice. Dimensions, opening direction and passive compliance remain pending reach and release tests.",
+      "world_pose": null,
+      "geometry_parameters": null,
+      "capture_predicate": null,
+      "release_predicate": null,
+      "retention_load_limit_n": null
+    },
+    "optional_post": {
+      "geometry_family": "One smooth shallow vertical cylinder after the required clip along cable arclength; no hook, undercut, closed loop or multiple wrap.",
+      "world_pose": null,
+      "radius_m": null,
+      "height_m": null,
+      "nominal_case": "Keep the same scene geometry for snag-absent and snag-present cases; vary the physically generated distal cable arrangement. The post remains present.",
+      "snag_case": "A single catch/deflection of the distal span, with sufficient slack and a reachable upward/lateral escape. No knot or inaccessible trapped connector."
+    },
+    "robot_and_motion": {
+      "robot": "Native AIC UR5e unless the measured baseline explicitly versions a different supported choice.",
+      "nominal_robot_joint_positions": null,
+      "port_world_pose": null,
+      "approach_waypoints": null,
+      "grasp_transform_and_retention_model": null,
+      "repair_waypoints": null,
+      "action_bounds": null,
+      "required_actions": "Measured Cartesian translation and orientation authority sufficient for approach, withdrawal and a lift/arc. Verify actuator clamps, IK, joint limits, self-collision and table/fixture clearance.",
+      "grip_scope": "Preset retained grasp only. A rigid preset grasp can isolate cable physics but cannot establish pickup or drop robustness; disclose it rather than calling retention validated by construction."
+    },
+    "slack_feasibility": {
+      "quantities_to_measure": [
+        "Actual compiled cable centerline/rest length, radius, link lengths and mass; capsule density can differ from nominal linear density.",
+        "Proximal anchor A, required clip capture/exit region C, connector cable attachment G and allowed robot tool transforms.",
+        "Arclength used from A through the retained clip and arclength available for the distal span, including permitted physical sliding through the clip.",
+        "Cable bend/twist range and force response under representative free, clipped and post-contact motions.",
+        "Collision-margin and geometry-discretization sensitivity."
+      ],
+      "necessary_length_filter": "For each connector waypoint g on approach/repair/seating, construct a collision-free centerline route from A through the required clip to g. Include a smooth route around/above the post and measured bend-radius constraints. Require max_g route_length(g) + slack_reserve <= available_rest_length. Euclidean distance alone is not a sufficient feasibility test.",
+      "distal_filter": "If clip sliding is restricted, apply the same route-length bound to the measured distal arclength from C to G. If sliding is allowed, bound the coupled proximal and distal arclengths and verify the proximal route remains feasible.",
+      "slack_reserve_m": null,
+      "reserve_rule": "Before freezing, choose a positive reserve no smaller than the larger of two cable radii and twice the measured centerline-length/clearance uncertainty. Confirm dynamically; this is a geometric reserve, not permission to stretch the cable past its model.",
+      "post_clearance_rule": "A passing centerline point must exceed the post top by at least cable radius plus the frozen collision margin, or follow a verified lateral escape. Lifting the gripper does not itself prove that the distal cable cleared the post.",
+      "clearance_margin_m": null,
+      "max_route_length_m": null,
+      "measured_available_rest_length_m": null,
+      "residual_slack_m": null,
+      "required_dynamic_witness": "From the same physically generated snag configuration, actual robot actions must clear the post and finish insertion while preserving the clip and all load limits. No within-job state writes or changed attachments. A geometric route alone does not pass support."
+    }
+  },
+  "factorial": {
+    "factors": {
+      "local_misalignment": [
+        "absent",
+        "present"
+      ],
+      "distal_snag": [
+        "absent",
+        "present"
+      ]
+    },
+    "cells": [
+      {
+        "id": "nominal",
+        "local_misalignment": false,
+        "distal_snag": false
+      },
+      {
+        "id": "local_only",
+        "local_misalignment": true,
+        "distal_snag": false
+      },
+      {
+        "id": "snag_only",
+        "local_misalignment": false,
+        "distal_snag": true
+      },
+      {
+        "id": "combined",
+        "local_misalignment": true,
+        "distal_snag": true
+      }
+    ],
+    "local_fault": {
+      "mechanism": "Vary a physically attainable initial retained-grasp/approach configuration within the measured recovery envelope. Record realized plug-port lateral/angular error before contact and at failure.",
+      "translation_range_m": null,
+      "rotation_range_rad": null,
+      "observation_rule": "All controllers receive the same available plug, port and cable observations and transforms. Do not inject unreported calibration error, hide the distal span or force the first-attempt controller to ignore visible misalignment.",
+      "prevention_is_allowed": "If a competent baseline corrects a visible offset before failure, record prevention/first-attempt success. Do not force a stall to fill a recovery quota.",
+      "existing_3mm_stage_offset": "A diagnostic stage force abort is not evidence that a 3 mm native-robot fault is recoverable; derive the extension range afresh."
+    },
+    "snag_generation": "After initialization establishes the proximal boundary and required clip, use a declared robot approach/transport path to generate the distal catch. Record its contact and cable-state history. Pose initialization is allowed only between jobs; no teleport to a convenient stalled insertion.",
+    "pairing": "Use matched geometry, material, observations, RNG and common first-attempt actions for each arm. For each arm, replay the full physical prefix from the same initial state and verify pairing; charge every replay.",
+    "realized_factors": "Record assigned factors and measured local error/post contact separately. Cross-effects are evidence to quantify, not grounds to silently relabel or replace a trial.",
+    "initial_screen_case_count": 32,
+    "allocation": "Four cells x four development layout/material tuples x two physical initializations. Equal counts; each tuple has a saved construction manifest.",
+    "invalid_case_policy": "Before freezing, reject mechanically impossible candidates by the stated filters and preserve every rejected probe and its cost. After freezing, invalid initialization, process failure and timeout stay in whole-job accounting; task defects trigger a versioned correction and rerun both arms."
+  },
+  "observations_and_privilege": {
+    "common_actor_inputs": "Retain the native baseline full simulator robot, plug, port and cable poses/state, visible obstacle/clip state, measured wrist wrench and exact-model robot bias feedforward. Provide them equally to every controller, including action transforms and clamps. Freeze the precise tensor/sensor/feedforward manifest before comparison. These are simulator-state observations, not camera perception.",
+    "evaluation_only_truth": "Native contacts, geometric engagement, constraint loss, pose writes and exact load decomposition may verify outcomes. Privileged quantities must not enter one controller's action transforms/clamps while being withheld from competitors.",
+    "raw_and_compensated_load": "Simple precontact bias compensation affects controller decisions only. Preserve the original measured wrench and declared transform for load-limit enforcement and reporting.",
+    "pending_observation_manifest": null,
+    "no_observability_regression": "Do not hide true grasp/port/cable information or insert blind calibration offsets to produce failures. If the available state and competent controller prevent the local error or snag, count that prevention and reject an unsupported recovery premise."
+  },
+  "first_attempt_and_endpoints": {
+    "first_attempt_controller": "The same validated force-guided alignment/search controller for all arms, with fixed gains, search support, speed, contact setpoint and stopping logic chosen from nominal development validation.",
+    "first_attempt_parameters": null,
+    "handoff": "Event-driven witnessed failure or exhaustion of the frozen first-attempt search budget while still active. No retrospectively tuned fixed prefix, and no controller-specific failure cohort.",
+    "witnessed_failure_definition": {
+      "connector_contact_stall": "Actual plug-port contact plus commanded insertion progress but insufficient measured axial tip progress over a frozen time window, with an active retained grasp and all limits respected.",
+      "distal_motion_stall": "Insufficient achieved approach progress plus actual cable-post contact and load change, while still active. Report separately from connector-contact failure.",
+      "progress_window_s": null,
+      "commanded_progress_min_m": null,
+      "observed_progress_max_m": null,
+      "contact_threshold_n": null,
+      "load_change_threshold_n": null,
+      "threshold_rule": "Set from noise, free-motion tracking and seating scales on the independent geometry/calibration split, then freeze before factorial cases. Handoff must precede hard-limit violation without weakening the limits."
+    },
+    "initial_successes": "Terminate as first-attempt successes; retain them in each arm's whole-job denominator.",
+    "pre_handoff_aborts": "Remain whole-job failures and never enter the conditional active-recovery denominator.",
+    "completion": {
+      "positional_seed_m": 0.001,
+      "angular_seed_rad": 0.03,
+      "dwell_seed_s": 0.5,
+      "status": "Diagnostic seed criteria; native engagement/retention validation must freeze the final predicate.",
+      "rule": "Actual native tip/base position and orientation, physically validated engagement, declared dwell, retained required clip/connection boundary and no limit/forbidden event. Report official detector contact separately.",
+      "seated_geometry_positive_negative_controls": "Verify seated and shallow/side-contact cases. Proximity, actuator target attainment and transient detector contact alone cannot prove connection.",
+      "connection_retention_check": null,
+      "note": "Without a mechanical seating/retention check, the endpoint is seating only and cannot be promoted to completed connection."
+    },
+    "clip_loss": "Use a validated geometric release event/capture predicate at native steps; contact-force disappearance alone is not loss. A released earlier clip ends the job even if final insertion later becomes possible.",
+    "force_limits": {
+      "wrist_force_ceiling_n": 20,
+      "status": "Prospective engineering ceiling inherited only as a candidate specification; verify sensor meaning and native nominal feasibility before freezing.",
+      "cable_tension_ceiling_n": null,
+      "anchor_reaction_limits": "Pending measured boundary specification in geometry.connected_end.",
+      "physical_clip_load_limit_n": null,
+      "rule": "Check raw declared loads at every native physics sample. A nominal failure under a ceiling requires explicit physical/load revision and rerunning affected controls, not silent threshold relaxation.",
+      "hardware_scope": "No hardware damage or safety certification follows."
+    },
+    "task_deadline_s": null,
+    "per_job_simulated_time_cap_s": 45,
+    "forbidden_events": [
+      "within-job reset",
+      "part or cable pose write",
+      "changed attachment/clip constraint",
+      "teleport or scripted regrasp",
+      "dropped retained plug"
+    ],
+    "metrics": [
+      "Whole-job completed connections and seating-only diagnostic outcomes, separately.",
+      "Conditional recovery on the identical active witnessed-failure cohort.",
+      "Initial success, force/tension/anchor abort, clip release, drop, timeout and process failure counts.",
+      "Repair time and total time per request including failures.",
+      "Native peak raw wrist/anchor/clip/cable loads with phases and sensor definitions.",
+      "Effect of local correction on distal load, and of cable release on local alignment.",
+      "Every native step and simulated environment-second, including initialization, fault generation, probes, failed attempts and repeated prefixes."
+    ]
+  },
+  "staged_controllers": [
+    {
+      "id": "force_search_retry_compensated",
+      "controller_type": "scripted",
+      "required_stage": "initial_factorial",
+      "behavior": "Validated force-guided alignment/probe search, bounded withdrawal/retry and a declared precontact constant or locally fitted wrench-bias estimate. All estimate probes are charged.",
+      "tuning_scope": "Calibrate on the geometry/calibration split; freeze before the factorial."
+    },
+    {
+      "id": "visible_snag_rule",
+      "controller_type": "scripted",
+      "required_stage": "initial_factorial",
+      "behavior": "Same insertion and compensation controller. When visible cable/post geometry indicates a catch, execute a verified lift/arc preserving clip capture and slack, then realign and retry.",
+      "fair_scope": "Same observations, actions and physical task as baseline; additional motions consume the same deadline and load budgets."
+    },
+    {
+      "id": "cable_aware_planner_then_same_insertion",
+      "controller_type": "scripted_or_model_based",
+      "required_stage": "only_if_it_can_challenge_a_remaining_failure",
+      "behavior": "Use an established spatial-relation/length/contact planner followed by identical force insertion. A simple geometric implementation is sufficient if its assumptions cover the observed mechanism."
+    },
+    {
+      "id": "history_bearing_learned_baseline",
+      "controller_type": "learned",
+      "required_stage": "only_after_learning_premise_and_budget_are_frozen",
+      "behavior": "A recurrent policy with the same usable inputs/actions and comparable experience, architecture capacity and tuning allowance."
+    },
+    {
+      "id": "interaction_predictor_candidate",
+      "controller_type": "learned_model_with_declared_action_selector",
+      "required_stage": "only_after_residual_failure_and_prediction_gates",
+      "behavior": "The smallest model justified by the measured failure; first predict local progress, distal load and prior-clip loss for held-out actions, including bad repairs, then evaluate control.",
+      "required_ablation": "Remove only the proposed interaction-prediction mechanism while retaining comparable observations, history, capacity and experience.",
+      "no_automatic_architecture": "No graph, transformer or reinforcement-learning campaign is required merely because it appears in the candidate hypothesis."
+    }
+  ],
+  "acceptance_gates": [
+    {
+      "id": "native_nominal",
+      "status": "pending",
+      "pass": "At least 18/20 nominal native-robot development jobs achieve the frozen seating/engagement endpoint with no forbidden event; all failed jobs remain reported. Contact-free/positive controls and calibrated stage-to-wrist definitions pass.",
+      "fail_action": "Repair the native controller/task and version affected diagnostics; do not interpret extension learning."
+    },
+    {
+      "id": "clip_and_load_controls",
+      "status": "pending",
+      "pass": "Demonstrate physical retained passage and a deliberate release control; free cable, clipped cable and cable-post positive controls must show correctly signed/located contact and nonzero reaction. Verify cable mass/root mechanics and held-grasp limitations.",
+      "fail_action": "Reject the extension implementation until its observables and physically escapable clip are valid."
+    },
+    {
+      "id": "feasible_fault_support",
+      "status": "pending",
+      "pass": "Each admitted layout/material/fault combination satisfies swept-path slack/reachability filters and has an executed non-teleport repair witness at both selected physics resolutions without losing prior clip or violating limits.",
+      "fail_action": "Exclude impossible constructions prospectively with preserved failed records; no claim against recovery learning.",
+      "split_boundary": "Executed repair witnesses use the geometry/calibration development split and prospective support families. Do not inspect sealed final-test outcomes to admit cases, choose repairs or tune parameters. Held-out cases follow frozen construction filters and remain in final denominators if they fail."
+    },
+    {
+      "id": "numerical_sensitivity",
+      "status": "pending",
+      "pass": "Use the same representative nominal, local, snag and combined cases at 1 ms and 0.5 ms if those remain the supported native timesteps. Freeze equal physical control/sensor cadence; preserve the same initial state/physical preparation and controller. Native contact classifications, feasible repair and clip-loss predicates must agree on representative cases; inspect any limit crossing or integration warning.",
+      "fail_action": "Investigate material changes before comparisons. Two resolutions assess sensitivity, not convergence."
+    },
+    {
+      "id": "remaining_failure_premise",
+      "status": "pending",
+      "pass": "The initial balanced screen produces at least four active witnessed combined-fault failures across at least two development layouts after the common competent first attempt; simple rules/planning leave reproducible feasible failures with measured local/distal interaction.",
+      "statistical_scope": "This is a support floor for mechanism investigation, not evidence of algorithmic superiority or a power calculation.",
+      "fail_action": "If the competent first attempt prevents failures, reject the recovery assay. If rules solve the feasible failures, retain that baseline and reject the need for the predictor; do not make observations worse or tune the prefix to manufacture failures."
+    },
+    {
+      "id": "prediction_before_control",
+      "status": "pending",
+      "pass": "After residual mechanisms are measured, register held-out action targets, error/calibration metrics and acceptance thresholds against persistence plus a simple local/geometric model. Include damaging/ineffective repairs. Only useful predictions justify a controlled learned comparison.",
+      "thresholds": null,
+      "fail_action": "Revise the specific inaccurate consequence prediction or reject it before control training."
+    }
+  ],
+  "splits": {
+    "geometry_calibration_seeds": [
+      22001,
+      22002,
+      22003,
+      22004
+    ],
+    "factorial_development_seeds": [
+      23001,
+      23002,
+      23003,
+      23004,
+      23005,
+      23006,
+      23007,
+      23008
+    ],
+    "reserved_training_starts": [
+      24001,
+      24002,
+      24003
+    ],
+    "reserved_training_environment_seed_range": [
+      250000,
+      259999
+    ],
+    "reserved_model_development_seeds": [
+      26001,
+      26002,
+      26003,
+      26004
+    ],
+    "sealed_test_seeds": [
+      27001,
+      27002,
+      27003,
+      27004,
+      27005,
+      27006,
+      27007,
+      27008
+    ],
+    "layout_material_manifests": null,
+    "separation": "Hold out actual board/layout and cable/mechanical combinations by manifest IDs, not just RNG seeds. Seed reservations are not run evidence. Final-test geometry is not used for fault mining, controller tuning, threshold setting or checkpoint selection.",
+    "connector_generalization": "No unfamiliar connector claim: only SC is presently specified. Separately withheld connector geometry and validation are required for that claim."
+  },
+  "budget_and_accounting": {
+    "launch_policy": "One owned simulator/GPU job at a time; one serial queue. This conditional file authorizes no launcher by itself.",
+    "initial_diagnostic_block_wall_cap_minutes": 90,
+    "individual_process_wall_cap_minutes": 10,
+    "initialization_simulated_time_cap_s": 5,
+    "per_job_simulated_time_cap_s": 45,
+    "geometry_and_control_probe_rollout_cap": 32,
+    "initial_factorial": "32 matched cases per required scripted arm, two arms; up to 64 full physical jobs, plus explicitly charged development controls.",
+    "native_step_budget": null,
+    "budget_freeze_rule": "After native cable-task profiling, set the actual native-step budget, wall reserve and parallelism before launch. Caps are ceilings, not targets; reduce the block if expected work cannot fit with verification reserve.",
+    "verification_wall_reserve_fraction": 0.2,
+    "learning_budget": null,
+    "learning_freeze_rule": "Only after the gates, preregister total simulator transitions, nominal/failure exposure, failure mining, pretraining/probe budgets, optimization/tuning allowance and checkpoint budgets for each arm. Target three independent starts when practical; fewer remains exploratory.",
+    "charge": "Count explicit native environment steps and simulated environment-seconds for initialization, contact/free tests, geometry probes, failed runs, prefix replays, inactive slots and training/evaluation. Report wall time and model/inference cost separately. Do not reuse the peg transition unit or peg 2048-env throughput as cable capacity.",
+    "all_outcomes_preserved": true
+  },
+  "freeze_requirements": [
+    "Attach verified native baseline and extension controls with exact run IDs/source hashes.",
+    "Replace every pending geometry, pose, grasp, sensor, threshold, deadline and load-limit field needed by the executor with measured supported values.",
+    "Validate physical clip release/capture, available slack and actual repair action feasibility.",
+    "Commit a versioned executable config, observation/action/controller manifests, layout/material split and native-step/wall budgets before any substantive comparison.",
+    "Capture source/upstream/runtime/config/seed/command hashes and dirty snapshots before every launch; reject run-ID collisions.",
+    "Keep this conditional registration immutable once acted upon; freeze a successor file for the concrete comparison and link any superseding changes."
+  ],
+  "stop_criteria": [
+    "No robot insertion baseline or no valid physical engagement/retention endpoint.",
+    "A snag is geometrically unreachable, too short, knotted or only clearable by losing the required clip.",
+    "Clip retention or success occurs only through constraints that make failure impossible by construction.",
+    "Failure support disappears under representative physics refinement.",
+    "The competent first attempt prevents the alleged recovery failure.",
+    "Compensation, visible-snag rules or the affordable planner solve the relevant feasible cases without a stable residual limitation.",
+    "Prediction fails on held-out consequences, including bad repairs.",
+    "Budget exhaustion: preserve partial/failed outputs, report an unfinished phase and do not infer a result."
+  ],
+  "contribution_scope": "Possible contribution is a measured task-specific result about coupled connector/cable repair and prior-clip retention under the registered comparisons. Graphs, memory, compensation, learned cable dynamics and predictive insertion individually have prior art. A successful scripted demo establishes engineering support, not algorithmic novelty or hardware transfer.",
+  "gate_review": {
+    "decision": "revise_connection_retention_model",
+    "evidence": "evidence/cable_retention_v1.json",
+    "cycle_decision": "evidence/cable_cycle_decision_v1.json",
+    "scope": "No extension geometry was frozen or executed. Native seating is demonstrated, but held seating and rigid source collisions do not establish final connection retention."
+  }
+}

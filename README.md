@@ -4,11 +4,48 @@
 
 The industrial problem is interrupted work: an insertion misses, binds or stalls, and the robot needs another chance without damaging the part. This project studies how a robot can learn that second chance efficiently from its own experience.
 
-The setup is a Franka arm performing peg insertion, followed by gear assembly, in NVIDIA Isaac Lab. It uses force feedback and robot state. Everything is simulated on the current workstation. The old space-rack project has been retired.
+The active cycle studies industrial cable handling and SC connector insertion using pinned Intrinsic AIC assets. It starts with a native MuJoCo adapter around the public UR5e model on this Windows workstation. The earlier Franka/FORGE peg study remains preserved below; its scores are not cable results. Everything demonstrated here is simulation. The old space-rack project remains retired.
 
 [ROADMAP.md](ROADMAP.md) contains the current research plan, verified state and next action. [AGENTS.md](AGENTS.md) contains the operating rules. These are the only three maintained Markdown files.
 
-## Current research decision
+## Executed cable cycle: revise connection retention
+
+**The native robot can seat the connector, but the public rigid SC model does not retain it under a small extraction load.** This cycle therefore closes with a specific task-model revision before candidate learning or a connected-end/clip/snag comparison. Existing peg results below remain separate.
+
+The project-owned adapter runs pinned Intrinsic AIC UR5e geometry and current SC plug/port collision primitives in MuJoCo 3.3.7 on Windows. It restores all seven robot collision meshes with exact upstream hashes, preserves all 15 collision primitives in each SC asset, and retains robot/cable contacts. A curved cable initialization replaces a straight span that fell into the gripper. All initial failures and timestep-sensitive behavior are preserved in the [native validation](evidence/cable_robot_validation_v1.json). A 0.25 ms step is used for bounded engineering; general cable-contact convergence remains unestablished.
+
+| Executed evidence | Result and scope |
+| --- | --- |
+| Strong scripted baseline | Force-guided insertion with precontact load compensation seated **6/6** development requests across three cable directions and visible 0/2 mm offsets. No retries or witnessed recoveries occurred; this demonstrates alignment/prevention. |
+| Scripted continuation | Seated **3/6**; all three offset cases witnessed contact stalls and reached the 30 s deadline. This is a weak diagnostic comparator, not a candidate or learned baseline. |
+| Physical retention control | All six isolated tests first seated with contact and 0.5 s dwell. Zero net pull stayed seated for 2 s. Net 0.5/2 N extraction unseated the model in about **12/6 ms**, at both 0.25 and 0.125 ms. Opposing contact force during extraction was zero. |
+| Learning and complete jobs | Ordinary learned training, recovery-focused training, recurrent learning and candidate prediction were **not run**. Earlier clips/connections, distal snags, pickup, released connector retention and hardware function were not established. |
+
+The [controlled baseline evidence](evidence/cable_baseline_v2.json) includes all requests and the separate nominal development warmup. The [retention evidence](evidence/cable_retention_v1.json) verifies native force balance, matched approach trajectories and both resolutions. The retention fixture constrains lateral motion and orientation; its result concerns this rigid model, not the retention strength of a real SC connector. The native robot uses an ideal fixed preset grasp and simulator poses with exact-model bias feedforward. Seating while held is not a demonstrated final connection.
+
+![Scripted free-cable insertion comparison](evidence/cable_baseline_v2.png)
+
+![Physical retention control](evidence/cable_retention_v1.png)
+
+**Cost:** 1,185,841 explicit native integration steps, including 222,637 initialization steps, across 37 physical trials. Summed bounded-launcher wall time was 595.203 s, including the preserved visual-mesh compile failure and Windows encoding failure. Setup, implementation and CPU review time are separate; no training was performed. This native CPU cable workload does not establish 2,048/4,096-environment GPU capacity. Old peg capacity and scores are not extrapolated.
+
+**Contribution decision:** a runnable, pinned native adapter, a measured strong local baseline and a reproducible retention limitation. Precontact cable-load compensation is established in Staritz's force-guided assembly work; Kienle already studies predictive connector optimization, and cable-aware recovery/graphs also have prior art. No algorithmic novelty or learned benefit is demonstrated. The joint connector/cable consequence-prediction question remains a hypothesis; see the [claim matrix](evidence/cable_literature_review_v1.json) and [cycle decision](evidence/cable_cycle_decision_v1.json).
+
+The next action is to independently specify and validate a passive connection-retention/load model (or choose a connector model with supported retention), including engaged, disengaged and release controls, before instantiating the required-clip/snag extension. Preserve the current rigid-asset result. Do not add a pose freeze, contact-triggered weld or an uncalibrated latch merely to claim completion. Hardware access, electrical/optical function and camera perception are not assumed.
+
+Native commands (choose unused run IDs):
+
+```powershell
+.venv/Scripts/python.exe scripts/setup_cable.py --install
+.venv/Scripts/python.exe scripts/setup_cable.py
+.venv/Scripts/python.exe scripts/run_cable.py --run-id cable-robot-local-001 --worker scripts/probe_cable_robot.py --config configs/cable_robot_v3.json --max-minutes 5
+.venv/Scripts/python.exe scripts/run_cable.py --run-id cable-baseline-local-001 --worker scripts/evaluate_cable_insertion.py --config configs/cable_baseline_v2.json --max-minutes 10
+.venv/Scripts/python.exe scripts/run_cable.py --run-id cable-retention-local-001 --worker scripts/probe_cable_retention.py --config configs/cable_retention_v2.json --max-minutes 3
+```
+
+The [dependency lock](configs/cable_dependencies_v1.json) records exact source/package pins. The launcher archives actual source, external meshes and environment metadata before launch, refuses collisions, bounds each process and retains partial failures. Source-only verification is recorded in [the release checks](evidence/cable_cycle_verification_v1.json). Official AIC Gazebo/ROS scores and the external ACT policy were not reproduced. Qualification's free other cable end and preset grasp differ from the proposed connected-end extension.
+
+## Preserved peg research decision
 
 The registered question was whether **explicit exposure to physically generated failed attempts improves learned assembly recovery at equal training cost**, compared with ordinary fault training and strong scripted retry. The candidate uses the same policy, observations, fault support and reward, with a four-second scripted first attempt on half the fault training jobs. Scripted actions and rewards are excluded from PPO losses and their simulation cost is charged.
 

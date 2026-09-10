@@ -1,0 +1,419 @@
+{
+  "schema": 1,
+  "decision_id": "cable_cycle_decision_v1",
+  "created_at_utc": "2026-09-10T22:40:29.136399+00:00",
+  "decision": "revise_physical_connection_retention_model",
+  "cycle_status": "closed_at_failed_retention_gate",
+  "objective": "A credible cable/connector task, strong baseline, justified improvement and controlled result; proceed to learned joint connector/cable repair only when physical task gates support it.",
+  "demonstrated_findings": [
+    "Pinned AIC UR5e/current SC collisions run in a native Windows MuJoCo adapter, with exact source/asset provenance and bounded jobs.",
+    "Force-guided observed-pose alignment/precontact compensation seats all six small development cases; continuation fails all three visible offset cases. This is prevention, not recovery after a common competent failure.",
+    "Rigid SC geometry seats under insertion load but provides no opposing axial contact during positive extraction; 0.5/2 N unseat it in about12/6ms at both tested resolutions.",
+    "Native cable initialization and contact are timestep-sensitive. Corrected curves permit engineering insertion at0.5/.25ms; no general cable-contact convergence claim."
+  ],
+  "not_demonstrated": [
+    "Released or latched final connection, hardware/electrical/optical function, pickup or drop robustness.",
+    "Retaining prior clips/connections, distal snag generation/repair, held-out mechanical/layout or connector transfer.",
+    "Ordinary or recovery-focused learned cable training, recurrent baseline training, interaction-prediction accuracy, matched learned benefit or algorithmic novelty."
+  ],
+  "baseline": [
+    {
+      "controller": "scripted_force_guided_retry",
+      "requests": 6,
+      "seated_with_contact_and_dwell": 6,
+      "failed_requests": 0,
+      "initialization_failures": 0,
+      "force_aborts": 0,
+      "deadline_failures": 0,
+      "witnessed_stalls": 0,
+      "completed_after_witnessed_stall": 0,
+      "retries_started": 0,
+      "native_steps": 217578,
+      "initialization_native_steps": 72000,
+      "mean_simulated_seconds_per_request_including_initialization": 9.06575,
+      "mean_job_seconds_after_initialization_including_failures": 6.06575,
+      "training_cost": 0
+    },
+    {
+      "controller": "scripted_continuation",
+      "requests": 6,
+      "seated_with_contact_and_dwell": 3,
+      "failed_requests": 3,
+      "initialization_failures": 0,
+      "force_aborts": 0,
+      "deadline_failures": 3,
+      "witnessed_stalls": 3,
+      "completed_after_witnessed_stall": 0,
+      "retries_started": 0,
+      "native_steps": 503581,
+      "initialization_native_steps": 72000,
+      "mean_simulated_seconds_per_request_including_initialization": 20.982541666666666,
+      "mean_job_seconds_after_initialization_including_failures": 17.982541666666666,
+      "training_cost": 0
+    }
+  ],
+  "baseline_scope": "Six deterministic development cases per arm: three initial free-cable directions crossed with0/2mm visible offset, one robot home and one mechanical model. Full simulator poses/exact model feedforward, fixed preset grasp. Weak continuation comparator; no claim over a competent recovery method.",
+  "retention": [
+    {
+      "run_id": "cable-retention-v1-r02",
+      "case": {
+        "id": "zero_net_extraction",
+        "net_extraction_load_n": 0.0
+      },
+      "seated_before_load": true,
+      "retention_assessable": true,
+      "retained_in_axial_fixture": true,
+      "first_loss_after_load_s": null,
+      "attempt_outcome": "retained_in_axial_fixture"
+    },
+    {
+      "run_id": "cable-retention-v1-r02",
+      "case": {
+        "id": "half_newton_net_extraction",
+        "net_extraction_load_n": 0.5
+      },
+      "seated_before_load": true,
+      "retention_assessable": true,
+      "retained_in_axial_fixture": false,
+      "first_loss_after_load_s": 0.012250000000244565,
+      "attempt_outcome": "lost_seating_under_load"
+    },
+    {
+      "run_id": "cable-retention-v1-r02",
+      "case": {
+        "id": "two_newton_net_extraction",
+        "net_extraction_load_n": 2.0
+      },
+      "seated_before_load": true,
+      "retention_assessable": true,
+      "retained_in_axial_fixture": false,
+      "first_loss_after_load_s": 0.006250000000247891,
+      "attempt_outcome": "lost_seating_under_load"
+    },
+    {
+      "run_id": "cable-retention-v2-r01",
+      "case": {
+        "id": "zero_net_extraction",
+        "net_extraction_load_n": 0.0
+      },
+      "seated_before_load": true,
+      "retention_assessable": true,
+      "retained_in_axial_fixture": true,
+      "first_loss_after_load_s": null,
+      "attempt_outcome": "retained_in_axial_fixture"
+    },
+    {
+      "run_id": "cable-retention-v2-r01",
+      "case": {
+        "id": "half_newton_net_extraction",
+        "net_extraction_load_n": 0.5
+      },
+      "seated_before_load": true,
+      "retention_assessable": true,
+      "retained_in_axial_fixture": false,
+      "first_loss_after_load_s": 0.012374999999586578,
+      "attempt_outcome": "lost_seating_under_load"
+    },
+    {
+      "run_id": "cable-retention-v2-r01",
+      "case": {
+        "id": "two_newton_net_extraction",
+        "net_extraction_load_n": 2.0
+      },
+      "seated_before_load": true,
+      "retention_assessable": true,
+      "retained_in_axial_fixture": false,
+      "first_loss_after_load_s": 0.0061249999995789395,
+      "attempt_outcome": "lost_seating_under_load"
+    }
+  ],
+  "retention_scope": "Independent one-axis force fixture with exact SC collisions. Seating/dwell/contact established before removing insertion force and applying gravity-compensated net extraction. Constrained axial evidence about this model, not actual SC hardware; no attachment changes or invented latch.",
+  "method_status": {
+    "ordinary_learned_training": "not_run",
+    "recovery_focused_learned_training": "not_run",
+    "recurrent_learned_baseline": "not_run",
+    "candidate_interaction_predictor": "not_implemented_or_trained",
+    "scripted_force_guided_controller": "executed; zero retries and zero witnessed recoveries in final six-case comparison",
+    "scripted_continuation": "executed; three witnessed contact stalls remain unfinished",
+    "visible_snag_rule_and_cable_planner": "not_run; extension support and final-connection gate unmet",
+    "checkpoints_created": []
+  },
+  "gates": {
+    "exact_connector_collision_import": true,
+    "contact_positive_and_free_controls": true,
+    "bounded_native_robot_seating": true,
+    "general_cable_contact_convergence": false,
+    "physical_final_connection_retention": false,
+    "prior_clip_and_clearable_snag_support": false,
+    "substantial_learning_comparison": false
+  },
+  "cost": {
+    "launcher_attempts": 12,
+    "physical_trials": 37,
+    "explicit_native_integration_steps": 1185841,
+    "initialization_explicit_native_steps": 222637,
+    "summed_launcher_wall_seconds": 595.2030000000232,
+    "learning_transitions": 0,
+    "training_runs": 0,
+    "checkpoint_count": 0,
+    "cost_unit": "one explicit mj_step call for one environment; not old peg reference transitions",
+    "known_extra_review_forward_calls": 99,
+    "scope": "All physical runs, repeats, initialization, timeouts, aborts and failed launcher/worker wall times included. Setup/implementation/CPU reviews are separate from summed launcher time. Compilation, rendering and poststep forward work are included in launcher wall time; native calls are explicit integration work. No absorbing batch padding or phantom training cost.",
+    "capacity": "Native CPU dynamics with one environment per trial; measured case throughput/RSS recorded. No2,048/4,096-env cable GPU benchmark or extrapolation from peg."
+  },
+  "provenance": {
+    "starting_project_commit": "4040de31c903ea085c992cada566f9e18ed562a2",
+    "aic_revision": "e9145480c945f2afc3741f355233f44082cc3b06",
+    "ur5e_collision_revision": "ef93882e17d8aa628837915da4b83208fe5e519a",
+    "runtime": "Python3.11.15/MuJoCo3.3.7; exact packages in configs/cable_dependencies_v1.json",
+    "runtime_source": "Every launched worker has prelaunch exact source/asset snapshots. The retained BOM launcher failure occurred before source capture and before any worker; no run-time provenance or result is invented for it.",
+    "review_evidence": [
+      {
+        "path": "evidence/cable_contact_validation_v1.json",
+        "sha256": "aebe9f40d2001d4fe4c901f025d257e9705ae567f05b6ab271dc53080fa0d40a"
+      },
+      {
+        "path": "evidence/cable_robot_validation_v1.json",
+        "sha256": "ab59ac2366cb857407cdf6a1dbf65d0fb09549dd8688648a53ed9b80a8e0e38c"
+      },
+      {
+        "path": "evidence/cable_baseline_v2.json",
+        "sha256": "aa112b4aa1cd4c98aebb933399aab57a281a4f96fd0ea35b99833d49800e92a8"
+      },
+      {
+        "path": "evidence/cable_retention_v1.json",
+        "sha256": "f40d11acd8fe1b9d5d1fcd49370d66d97c0c55d13ed7c7f38aa95e7d1776f3da"
+      },
+      {
+        "path": "evidence/cable_literature_review_v1.json",
+        "sha256": "b92bc202e2d4320c18767539532a2bf022159657477d570b0e375cd8be3e53da"
+      }
+    ]
+  },
+  "launches": [
+    {
+      "run_id": "cable-contact-v1-r01",
+      "status": "process_failed",
+      "manifest_sha256": "3da93c4e9f35e7743179a7e5b47d4f3923f7de4202c43df826062c3a447d7a68",
+      "source_commit_at_start": "4040de31c903ea085c992cada566f9e18ed562a2",
+      "source_archive": {
+        "path": "source.zip",
+        "sha256": "a309a37e3303a0810c3bb1c3c54db2da7d78feaf0897a0266475b427f293d00d"
+      },
+      "accounting": {},
+      "launcher_wall_seconds": 2.7030000000086147,
+      "error": null
+    },
+    {
+      "run_id": "cable-contact-v1-r02",
+      "status": "completed",
+      "manifest_sha256": "b261a5bf626e786c96f04ee5bfa2da7e5eca201472dcd2d227b02ac250a440f3",
+      "source_commit_at_start": "4040de31c903ea085c992cada566f9e18ed562a2",
+      "source_archive": {
+        "path": "source.zip",
+        "sha256": "a137f5be33d7289237169c8dd7be3653b090f0e78b90ac28e98e7ce3911f6497"
+      },
+      "accounting": {
+        "native_steps": 13000,
+        "initialization_native_steps": 2000
+      },
+      "launcher_wall_seconds": 3.4689999999973224,
+      "error": null
+    },
+    {
+      "run_id": "cable-contact-v1-r03",
+      "status": "completed",
+      "manifest_sha256": "e6b80c3f4d5cddb59c082bbd57738fe9b3dfbec58f1779883953e57f03e13c0d",
+      "source_commit_at_start": "4040de31c903ea085c992cada566f9e18ed562a2",
+      "source_archive": {
+        "path": "source.zip",
+        "sha256": "f57352b53bc6017747dd108944018667c3d3ed3eab7a01ceb86dc11685264004"
+      },
+      "accounting": {
+        "native_steps": 106165,
+        "initialization_native_steps": 18000
+      },
+      "launcher_wall_seconds": 30.968000000008033,
+      "error": null
+    },
+    {
+      "run_id": "cable-robot-v1-r01",
+      "status": "completed",
+      "manifest_sha256": "164a1c3f19c1028fb2e35e861c1e15e4a4ba38353809f63c07be9f0e354111a8",
+      "source_commit_at_start": "4040de31c903ea085c992cada566f9e18ed562a2",
+      "source_archive": {
+        "path": "source.zip",
+        "sha256": "a343b870eb6c6adb4b4bb63b828a97ed956210d76e7c03ad335a726280c6475b"
+      },
+      "accounting": {
+        "native_steps": 16000,
+        "initialization_native_steps": 3000
+      },
+      "launcher_wall_seconds": 5.077999999994063,
+      "error": null
+    },
+    {
+      "run_id": "cable-robot-v1-r02",
+      "status": "completed",
+      "manifest_sha256": "fa6effea3cde23066b3d7d67f92d2ede5dc389b046a8d3f1e7b0845bdf539f3d",
+      "source_commit_at_start": "4040de31c903ea085c992cada566f9e18ed562a2",
+      "source_archive": {
+        "path": "source.zip",
+        "sha256": "ca2e7567dc05231f56c57ecdd2cb210408637f7dd48b9f9ddf6fad86ecf8afda"
+      },
+      "accounting": {
+        "native_steps": 17609,
+        "initialization_native_steps": 4609
+      },
+      "launcher_wall_seconds": 8.718999999997322,
+      "error": null
+    },
+    {
+      "run_id": "cable-robot-v2-r01",
+      "status": "completed",
+      "manifest_sha256": "3198d5ad5527e3c8984e78831ff17a3d9398a4235eff08f9d6d7138acb5088ae",
+      "source_commit_at_start": "4040de31c903ea085c992cada566f9e18ed562a2",
+      "source_archive": {
+        "path": "source.zip",
+        "sha256": "d74bae687cb83a5b62d3b703d842a83adf364efb294864504a24eb0ae1083063"
+      },
+      "accounting": {
+        "native_steps": 48028,
+        "initialization_native_steps": 9028
+      },
+      "launcher_wall_seconds": 25.360000000000582,
+      "error": null
+    },
+    {
+      "run_id": "cable-robot-v3-r01",
+      "status": "completed",
+      "manifest_sha256": "0a50dc3397366e1a0a66f4ac53edfddeb480ef155023a0adce463e57c0201302",
+      "source_commit_at_start": "4040de31c903ea085c992cada566f9e18ed562a2",
+      "source_archive": {
+        "path": "source.zip",
+        "sha256": "86237360df92063c8652a608ae505bdf6d6e2413d92696e64a3c665d546d01fa"
+      },
+      "accounting": {
+        "native_steps": 96000,
+        "initialization_native_steps": 18000
+      },
+      "launcher_wall_seconds": 50.38999999999942,
+      "error": null
+    },
+    {
+      "run_id": "cable-baseline-v1-r01",
+      "status": "completed",
+      "manifest_sha256": "fffc10cf8ee007fc50804d970d6fce8ece69fc6b159fb0d9046020e3330741bd",
+      "source_commit_at_start": "4040de31c903ea085c992cada566f9e18ed562a2",
+      "source_archive": {
+        "path": "source.zip",
+        "sha256": "02098b553289c8b5abe967ef6f6feceaafea0f6ba20b91965c1a7ba94659e9e6"
+      },
+      "accounting": {
+        "native_steps": 71364,
+        "initialization_native_steps": 24000
+      },
+      "launcher_wall_seconds": 38.54700000000594,
+      "error": null
+    },
+    {
+      "run_id": "cable-baseline-v2-r01",
+      "status": "completed",
+      "manifest_sha256": "1e41d4fb32fc635bc0b53540952cb3e8b2ffb7ea699caf655555ac33ee2657d6",
+      "source_commit_at_start": "4040de31c903ea085c992cada566f9e18ed562a2",
+      "source_archive": {
+        "path": "source.zip",
+        "sha256": "bc031d45c62b9ffa57c06ea2a8a837736385cb07aa257527d070112721ccce68"
+      },
+      "accounting": {
+        "native_steps": 721159,
+        "initialization_native_steps": 144000
+      },
+      "launcher_wall_seconds": 405.375,
+      "error": null
+    },
+    {
+      "run_id": "cable-retention-v1-r01",
+      "status": "launcher_failed",
+      "manifest_sha256": "e4d7db6c5687092586a000a42b99d658e7adca8d7ad1704244753c2ac0c99418",
+      "source_commit_at_start": null,
+      "source_archive": null,
+      "accounting": {},
+      "launcher_wall_seconds": 0.01600000000325963,
+      "error": "JSONDecodeError: Unexpected UTF-8 BOM (decode using utf-8-sig): line 1 column 1 (char 0)"
+    },
+    {
+      "run_id": "cable-retention-v1-r02",
+      "status": "completed",
+      "manifest_sha256": "bf7fee0c752295a0d26f02d5924266b9b2929aa4420d55b94a1831e9c79fab01",
+      "source_commit_at_start": "4040de31c903ea085c992cada566f9e18ed562a2",
+      "source_archive": {
+        "path": "source.zip",
+        "sha256": "e781813fabc5dd685ce4e4404039881dc12490a696d958586aceb67f6e9e057c"
+      },
+      "accounting": {
+        "native_steps": 32172,
+        "initialization_native_steps": 0,
+        "approach_native_steps": 24000,
+        "load_native_steps": 8172
+      },
+      "launcher_wall_seconds": 11.48399999999674,
+      "error": null
+    },
+    {
+      "run_id": "cable-retention-v2-r01",
+      "status": "completed",
+      "manifest_sha256": "9aff2c81a6f8f4dc1201a3089fb3db71c78920bb85eaa18f310c9e8d8e6370a5",
+      "source_commit_at_start": "4040de31c903ea085c992cada566f9e18ed562a2",
+      "source_archive": {
+        "path": "source.zip",
+        "sha256": "3e407bf09d8aadaa1f6dc3ee6fd6c29f17164c28a6184c9acc0c25984173243c"
+      },
+      "accounting": {
+        "native_steps": 64344,
+        "initialization_native_steps": 0,
+        "approach_native_steps": 48000,
+        "load_native_steps": 16344
+      },
+      "launcher_wall_seconds": 13.094000000011874,
+      "error": null
+    }
+  ],
+  "negative_evidence": [
+    "Visual-only mesh compile failure retained; shell inertia correction changed no collision geometry.",
+    "Two straight-cable initialization failures and one1ms corrected-curve initialization failure retained.",
+    "Three continuation timeouts retained; no losing request removed.",
+    "BOM launcher failure retained; later parser supports BOM while archiving exact original bytes.",
+    "All four positive-extraction retention failures retained across both resolutions."
+  ],
+  "prior_art_boundary": {
+    "compensation": "Staritz Force Guided Assembly Under Bias already models cable/hose load bias.",
+    "predictive_connector_optimization": "Kienle et al. already predicts motion/wrench and optimizes mating searches.",
+    "cable_recovery": "Tactile primitives, corrective skill selection, cable graphs and assembly-relation preservation have existing prior art.",
+    "current_distinction": "An executed native integration and specific verified asset/retention boundary; no new learning algorithm or demonstrated joint-repair benefit.",
+    "confidence": "High for the recorded model/code outcomes; unknown for proposed method benefit and hardware transfer."
+  },
+  "next_action": "Independently specify and validate a passive connection-retention/load model, or select a connector model with supported retention, using engaged/disengaged/release controls. Then validate required-clip and physically clearable snag support before reopening learned comparisons.",
+  "next_action_constraints": [
+    "Preserve this rigid-model negative result and keep corrected task versions separate.",
+    "Do not substitute a pose freeze or contact-triggered attachment for demonstrated passive retention.",
+    "Do not launch further training or an expensive arm matrix under failed gates.",
+    "Keep full observations available equally; simple rules/planning challenge the proposed predictor before learning spend."
+  ],
+  "historical_peg_scope": "Peg code, ordinary training, prior negative evidence and capacity results are preserved unchanged and are not cable performance. No new peg simulator job ran.",
+  "release": {
+    "branch": "research/assembly-recovery-training",
+    "main_modified": false,
+    "maintained_markdown_files": [
+      "AGENTS.md",
+      "README.md",
+      "ROADMAP.md"
+    ],
+    "verification": "evidence/cable_cycle_verification_v1.json",
+    "figures": [
+      "evidence/cable_baseline_v2.pdf",
+      "evidence/cable_retention_v1.pdf",
+      "evidence/cable_robot_validation_v1.pdf"
+    ]
+  }
+}
