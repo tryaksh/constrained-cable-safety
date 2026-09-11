@@ -69,12 +69,27 @@ MUTED = (150, 170, 186)
 GREEN = (86, 209, 176)
 AMBER = (255, 179, 106)
 RED = (240, 106, 106)
-BLUE = (110, 170, 245)
+VIOLET = (199, 161, 242)
 
+#: Registered cameras. ``look`` says what the camera is pointed at: the plug tip,
+#: or the midpoint of the cable, which keeps the boot, the clip and the strain
+#: relief in frame together as the plug retreats.
 VIEWS = {
-    "overview": {"distance": 0.92, "azimuth": 128, "elevation": -22, "offset": (0.11, -0.02, -0.10)},
-    "clip": {"distance": 0.30, "azimuth": 140, "elevation": -26, "offset": (0.0, 0.0, 0.0)},
+    "overview": {"distance": 0.62, "azimuth": 152, "elevation": -20,
+                 "offset": (0.0, 0.0, 0.03), "look": "cable"},
+    "clip": {"distance": 0.26, "azimuth": 148, "elevation": -24,
+             "offset": (0.0, 0.0, 0.01), "look": "clip"},
+    "connector": {"distance": 0.22, "azimuth": 120, "elevation": -16,
+                  "offset": (0.0, 0.0, -0.01), "look": "tip"},
 }
+
+
+def relative(path: Path) -> str:
+    """Project-relative where possible; absolute where the caller chose elsewhere."""
+    try:
+        return path.resolve().relative_to(ROOT).as_posix()
+    except ValueError:
+        return path.resolve().as_posix()
 
 
 def font(size: int, bold: bool = False):
@@ -227,7 +242,9 @@ def capture(case: dict, runtime: dict, contract: dict, out_dir: Path, capture_hz
         "constraints": labels, "constraint_report": scorer.report(),
         "terminal_clip_retained": terminal["has_retained_passage"],
         "frames": len(frames), "capture_hz": capture_hz,
-        "scene_xml": str((out_dir / "scene.xml").relative_to(ROOT)),
+        "clip_origin_world": np.asarray(scene.clip_origin, dtype=float).tolist(),
+        "anchor_site_world": list(scene.fixture["anchor_site_world"]),
+        "scene_xml": relative(out_dir / "scene.xml"),
     }
     np.savez_compressed(
         out_dir / "capture.npz",
@@ -270,6 +287,7 @@ def render(directory: Path, out_path: Path, contract: dict, fps: int, view: str,
     data = mujoco.MjData(model)
     tip = model.site("plug__frame__sc_tip_link").id
     spec = VIEWS[view]
+    clip_origin = np.asarray(record.get("clip_origin_world") or [0.0, 0.0, 0.0])
     scene_width = int(width*0.66)
     renderer = mujoco.Renderer(model, width=scene_width, height=height)
     renderer.scene.maxgeom = max(renderer.scene.maxgeom, 4000)
@@ -288,15 +306,22 @@ def render(directory: Path, out_path: Path, contract: dict, fps: int, view: str,
         data.qpos[:] = archive["qpos"][index]
         data.qvel[:] = 0.0
         mujoco.mj_forward(model, data)
-        camera.lookat[:] = data.site_xpos[tip]+np.asarray(spec["offset"])
+        line = archive["truth_line"][index]
+        if spec.get("look") == "cable":
+            anchor = np.asarray(line).mean(axis=0)
+        elif spec.get("look") == "clip":
+            anchor = np.asarray(clip_origin)
+        else:
+            anchor = data.site_xpos[tip]
+        camera.lookat[:] = anchor+np.asarray(spec["offset"])
         camera.distance = spec["distance"]
         camera.azimuth, camera.elevation = spec["azimuth"], spec["elevation"]
         renderer.update_scene(data, camera=camera, scene_option=options)
         weights = archive["weights"][index]
         for node, point in enumerate(archive["estimate_line"][index]):
             hidden = weights[node] > 0.5
-            add_marker(renderer.scene, point, 0.0035 if hidden else 0.0025,
-                       (1.0, 0.42, 0.42, 0.85) if hidden else (0.43, 0.67, 0.96, 0.65))
+            add_marker(renderer.scene, point, 0.0038 if hidden else 0.0026,
+                       (1.0, 0.42, 0.42, 0.9) if hidden else (0.78, 0.63, 0.95, 0.85))
         add_marker(renderer.scene, archive["estimate_socket"][index], 0.006, (1.0, 0.7, 0.25, 0.9))
         add_marker(renderer.scene, archive["truth_socket"][index], 0.004, (0.34, 0.82, 0.69, 0.9))
         pixels = renderer.render()
@@ -329,25 +354,24 @@ def render(directory: Path, out_path: Path, contract: dict, fps: int, view: str,
             (small, MUTED, f"wrist load              {archive['wrist'][index]:6.2f} N"),
             (small, MUTED, f"detour travelled        {1000*archive['progress'][index]:6.1f} mm"),
             (small, MUTED, ""),
-            (small, BLUE, "blue  estimated cable node"),
-            (small, (255, 107, 107), "red   estimated node the fixture hides"),
-            (small, AMBER, "amber estimated socket pose"),
-            (small, GREEN, "green true socket pose"),
+            (small, VIOLET, "violet estimated cable node"),
+            (small, RED, "red    estimated node the fixture hides"),
+            (small, AMBER, "amber  estimated socket pose"),
+            (small, GREEN, "green  true socket pose"),
         ]
         y = 18
         for typeface, colour, text in lines:
             if text:
                 draw.text((x0, y), text, font=typeface, fill=colour)
             y += typeface.size+8 if text else 6
-        draw.text((x0, height-46),
-                  "Simulation only. The error model is a model of how perception fails,",
-                  font=small, fill=MUTED)
-        draw.text((x0, height-28), "not camera perception. No hardware claim.",
-                  font=small, fill=MUTED)
+        for offset, text in ((64, "Simulation only. The error model is a"),
+                             (46, "model of how perception fails, not"),
+                             (28, "camera perception. No hardware claim.")):
+            draw.text((x0, height-offset), text, font=small, fill=MUTED)
         writer.send(np.asarray(frame))
     writer.close()
     renderer.close()
-    return {"video": str(out_path.relative_to(ROOT)), "frames": count, "fps": fps,
+    return {"video": relative(out_path), "frames": count, "fps": fps,
             "bytes": out_path.stat().st_size, "case": record["case"],
             "outcome": record["failure_reason"] or "completed",
             "constraints": {k: v["state"] for k, v in record["constraints"].items()}}
