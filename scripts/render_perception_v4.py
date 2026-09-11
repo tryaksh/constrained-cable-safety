@@ -71,18 +71,27 @@ def panel_crossover(axes, fit: dict, contract: dict, ids, biases):
             keep = [i for i, v in enumerate(values) if v is not None]
             if not keep:
                 continue
+            # B0 and B0+ order actions identically within a level, so on this
+            # metric one line sits exactly on the other. B0 is drawn wide and
+            # underneath so the coincidence reads as a halo instead of vanishing.
+            wide = arm == "B0"
             axis.plot([biases[i] for i in keep], [values[i] for i in keep],
-                      color=style["colour"], marker=style["marker"], ms=4.5, lw=1.4,
-                      label=style["label"], zorder=3)
+                      color=style["colour"], marker=style["marker"],
+                      ms=8 if wide else 4.5, lw=4.5 if wide else 1.4,
+                      alpha=0.55 if wide else 1.0,
+                      label=style["label"], zorder=2 if wide else 3)
         crossing = fit["crossover"].get(constraint, {}).get("crossover")
+        box = {"boxstyle": "round,pad=0.28", "fc": "#ffffff", "ec": "#c5221f", "alpha": 0.9}
         if crossing:
             index = ids.index(crossing["level"])
             axis.axvline(biases[index], color="#c5221f", ls="--", lw=1.0, zorder=2)
-            axis.text(biases[index], axis.get_ylim()[1], " crossover", color="#c5221f",
-                      fontsize=7, va="top")
+            axis.annotate(f"crossover at {crossing['level']}\n{crossing['arm']} beats B0+",
+                          xy=(0.03, 0.96), xycoords="axes fraction", fontsize=7,
+                          color="#c5221f", va="top", bbox=box, zorder=5)
         else:
-            axis.text(0.97, 0.05, "no crossover", transform=axis.transAxes, fontsize=7,
-                      color="#c5221f", ha="right")
+            axis.annotate("no crossover\ninside the range", xy=(0.03, 0.96),
+                          xycoords="axes fraction", fontsize=7, color="#c5221f",
+                          va="top", bbox=box, zorder=5)
         axis.set_xlabel("declared socket-pose bias (mm)", fontsize=8)
         axis.tick_params(labelsize=7)
         axis.grid(alpha=0.25, lw=0.5)
@@ -98,12 +107,13 @@ def panel_cost(axis, fit: dict, ids):
         if not entry:
             continue
         rate = entry["false_safe_matched_coverage"]["rate"]
-        if rate is None:
+        count = fit.get("cost_axis", {}).get(arm, {}).get("parameters",
+                                                          entry["cost"]["parameters"])
+        if rate is None or not isinstance(count, int):
             continue
         names.append(arm)
         rates.append(rate)
-        count = entry["cost"]["parameters"]
-        parameters.append(count if isinstance(count, int) else 33000)
+        parameters.append(count)
     if not names:
         axis.set_axis_off()
         return
@@ -190,7 +200,7 @@ def main() -> int:
 
     figure = plt.figure(figsize=(11.5, 7.2), dpi=170)
     grid = figure.add_gridspec(2, 3, hspace=0.42, wspace=0.30,
-                               left=0.07, right=0.985, top=0.86, bottom=0.09)
+                               left=0.07, right=0.985, top=0.86, bottom=0.125)
     crossover_axes = [figure.add_subplot(grid[0, i]) for i in range(3)]
     panel_crossover(crossover_axes, fit, contract, ids, biases)
     panel_cost(figure.add_subplot(grid[1, 0]), fit, ids)
@@ -206,13 +216,18 @@ def main() -> int:
         f"{denominator['requests']:,} registered requests, three constraints on one rollout, "
         f"held out by layout family",
         fontsize=11, y=0.985)
-    figure.text(0.007, 0.012,
-                f"Every number from {args.fit.as_posix()} and {args.control.as_posix()}.  "
-                f"Margin {contract['decision_rule']['margin']} on both metrics, "
-                f"{contract['groups']['test_context_requirement']} test contexts per level.  "
-                "Simulation only; the error model is a model of how perception fails, not camera "
-                "perception. No hardware claim.",
-                fontsize=6.2, color="#5f6368")
+    figure.text(0.007, 0.036,
+                f"Every number from {args.fit.name} and {args.control.name}.  "
+                f"Margin {contract['decision_rule']['margin']} on both metrics; "
+                f"{contract['groups']['test_context_requirement']} test contexts per error level, "
+                f"so the metric resolution is "
+                f"{1/contract['groups']['test_context_requirement']:.4f}.",
+                fontsize=6.4, color="#5f6368")
+    figure.text(0.007, 0.014,
+                "Simulation only. The error model is a model of how perception fails, derived from "
+                "geometry and declared magnitudes; it is not camera perception, and no estimator is "
+                "built or evaluated here. No hardware claim.",
+                fontsize=6.4, color="#5f6368")
     out = ROOT / args.out
     out.parent.mkdir(parents=True, exist_ok=True)
     figure.savefig(out)

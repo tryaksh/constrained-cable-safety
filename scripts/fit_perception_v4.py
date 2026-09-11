@@ -300,7 +300,9 @@ def fit_arms(rows, contract: dict, constraint: str, retract: float, device=None)
         for seed in budget_m["seeds"]:
             seeds.append(train_torch(xt, y_train, xd, y_dev, budget_m, seed=seed,
                                      hidden=budget_m["hidden"], device=device))
-        fitted[name] = {"seeds": seeds, "inputs": int(xt.shape[1])}
+        fitted[name] = {"seeds": seeds, "inputs": int(xt.shape[1]),
+                        "parameters": int(sum(p.numel()
+                                              for p in seeds[0]["model"].parameters()))}
     return fitted
 
 
@@ -380,6 +382,7 @@ def main() -> int:
 
     levels = [level["id"] for level in contract["error_model"]["levels"]]
     margin = float(contract["decision_rule"]["margin"])
+    cost = {name: dict(entry) for name, entry in ARM_COST.items()}
     results: dict = {}
     crossover: dict = {}
     guard_checks: dict = {}
@@ -534,6 +537,9 @@ def main() -> int:
                                             constraint, retract) for name in ARM_COST},
             }
 
+        for name in ("M", "Mh"):
+            cost[name] = {**ARM_COST[name], "parameters": fitted[name]["parameters"],
+                          "inputs": fitted[name]["inputs"]}
         results[constraint] = {"selection": selection, "per_level": per_level,
                                "seed_spread_false_safe_matched_coverage": seed_spread,
                                "isolation": isolation_report,
@@ -580,7 +586,7 @@ def main() -> int:
         "prediction": contract["decision_rule"]["crossover_prediction"],
         "crossover": crossover,
         "results": results,
-        "cost_axis": ARM_COST,
+        "cost_axis": cost,
         "scope_and_limitations": contract["scope_and_limitations"],
     }
     out = ROOT / args.out
