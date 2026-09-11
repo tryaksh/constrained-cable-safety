@@ -1,6 +1,6 @@
 # Roadmap: constrained-cable connector recovery
 
-**Status: the research line is closed.** The question this repository was built to answer has been answered with a pre-registered, held-out measurement, and the answer does not justify continuing. What remains is an engineering repository with its evidence intact.
+**Status: the V1 question is closed; a V2 question is open.** The question this repository was built to answer has been answered with a pre-registered, held-out measurement, and re-running it would only invalidate it. The answer is a corner case, though, and the corner is named: every arm was handed the socket's exact pose and the cable's exact shape. V2 removes that and asks where the answer flips. The next-session prompt is `artifacts/prompts/cable_v2_perception_handover_20260911.txt` (ignored artifacts); this file stays the maintained plan.
 
 **Active scope:** industrial cable handling and connector insertion. Establish a credible physical task, measure where competent methods actually fail, and test the smallest justified improvement.
 
@@ -38,9 +38,9 @@ It does not settle that the safe-repair boundary is simple in general. It is one
 
 ## The single next action
 
-**None for the research line.** If anyone resumes this work, the one action that gates everything else is the open failure above: **make the 46-segment cable model survive its settling transient, or revise the cable model, and re-run the block.** Until that passes, every number in this repository is a property of a 23-segment discretisation, and a reviewer is entitled to ask whether the 409 mm threshold is a property of the cable or of its polyline.
+**Make the 46-segment cable model survive its settling transient, or revise the cable model, and re-run the controls.** Until that passes, every number here is a property of a 23-segment discretisation rather than of a cable, and a reviewer is entitled to ask whether the 409 mm threshold describes the cable or its polyline. It also gates any transfer statement: a simulation result whose mesh refinement crashes cannot claim anything about hardware.
 
-Two smaller items, in order of value if that one passes: cable tension is now a named measured channel at the boot connect constraint but has never been used as a predictor feature; and the load-abort class (26% of requests) is censored with respect to clip loss, since an action that aborts never gets to test the clip.
+It is the first task in the V2 handover for exactly that reason. The two items behind it, in order of value: the observation interface must consume an *estimate* of the socket pose and cable shape rather than ground truth, since handing every arm the truth is why nothing in V1 ever failed; and the load-abort class (26% of requests) is censored with respect to clip loss, because an action that aborts never gets to test the clip, so scoring it as "clip kept" is not quite true.
 
 ## Why the earlier plan changed
 
