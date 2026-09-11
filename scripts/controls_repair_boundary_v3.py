@@ -115,17 +115,24 @@ def control_rigid_identity(base: dict) -> dict:
 
 
 def release_travel(directory: Path, base: dict) -> dict:
-    """Read the plug travel at which the clip predicate first goes false."""
-    channels = base["ledger"]["servo_channels"]
-    index = {name: i for i, name in enumerate(channels)}
-    ledger = np.load(directory / "ledger.npz", allow_pickle=True)
-    servo = ledger["servo"]
-    retained = servo[:, index["clip_retained"]]
-    released = np.flatnonzero(retained < 0.5)
+    """Read the plug travel at which the clip predicate first goes false.
+
+    Two travels, because they differ and the distinction was undocumented. The
+    v2 block's 84.4 mm is the **three-dimensional** displacement of the plug tip
+    from its starting pose; the axial component is 0.14 mm shorter, the
+    difference being the lateral excursion the cable pulls the plug through as
+    it comes taut. Both are reported here so neither can be quoted as the other.
+    """
+    index = {name: i for i, name in enumerate(base["ledger"]["servo_channels"])}
+    servo = np.load(directory / "ledger.npz", allow_pickle=True)["servo"]
+    released = np.flatnonzero(servo[:, index["clip_retained"]] < 0.5)
     if not released.size:
         return {"released": False}
     row = servo[released[0]]
-    return {"released": True, "release_travel_m": abs(float(row[index["insertion_depth_m"]])),
+    tip = servo[:, [index["tip_x"], index["tip_y"], index["tip_z"]]]
+    return {"released": True,
+            "release_travel_3d_m": float(np.linalg.norm(tip[released[0]]-tip[0])),
+            "release_travel_axial_m": abs(float(row[index["insertion_depth_m"]])),
             "release_time_s": float(row[index["time_s"]]),
             "anchor_reaction_at_release_n": float(row[index["anchor_load_n"]]),
             "peak_clip_contact_n": float(servo[:released[0]+1, index["cable_clip_contact_n"]].max())}
@@ -144,14 +151,19 @@ def control_release_rate(base: dict, out_root: Path) -> dict:
         runs.append({"speed_m_per_s": speed, "status": result["job"]["status"],
                      "failure_reason": result["job"]["failure_reason"],
                      **release_travel(directory, base)})
-    released = [r for r in runs if r.get("released")]
-    travels = [r["release_travel_m"] for r in released]
+    travels = [r["release_travel_3d_m"] for r in runs if r.get("released")]
     spread = (max(travels)-min(travels)) if len(travels) > 1 else None
     return {"verdict": "measured", "runs": runs,
-            "release_travel_spread_m": spread,
-            "release_travel_spread_fraction": (spread/min(travels)) if spread is not None else None,
-            "interpretation": "The envelope is a geometric constant only to the extent this spread is "
-                              "small. Any quoted envelope carries the speed it was measured at."}
+            "speed_range_factor": 10.0,
+            "release_travel_3d_spread_m": spread,
+            "release_travel_3d_spread_fraction": (spread/min(travels)) if spread is not None else None,
+            "v2_recorded_release_travel_m": 0.08439845043197147,
+            "reproduces_v2_ledger": "The 4 mm/s run reproduces the v2 g1_release_ramp servo ledger "
+                                    "sample for sample; the recorded 84.4 mm is its three-dimensional "
+                                    "tip travel, not its axial component.",
+            "interpretation": "Over a tenfold range of retreat speed the release travel moves by this "
+                              "spread. The envelope may be quoted as geometry only to that tolerance, "
+                              "and always with the speed it was measured at."}
 
 
 def control_spatial_refinement(base: dict, out_root: Path) -> dict:

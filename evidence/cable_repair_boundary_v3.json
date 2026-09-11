@@ -1,0 +1,467 @@
+{
+  "schema": 1,
+  "id": "cable_repair_boundary_v3_r01",
+  "created_on": "2026-09-11",
+  "status": "executed_pre_registered_decision_block",
+  "scope": "Safe-repair boundary study on the constrained-cable connector task. One request is one clearance repair issued from one decision state. Endpoint is held, clip-preserving seating before gripper release. Not official AIC scoring, not a released or latched connection, not learned pickup, not a hardware claim.",
+  "question": "When a supervisor must choose a clearance repair, is the boundary between a repair that keeps the required clip and one that overdraws the cable a simple analytic function of the observable state, or does it need a learned action-outcome model?",
+  "contract": {
+    "path": "configs/cable_repair_boundary_v3.json",
+    "content_sha256": "853de0a18f8ffd7eda4f4ed8867853c6663e4151953dfb9117fa1321144b7cf1"
+  },
+  "run_dir": "artifacts/cable/repair-boundary-v3-r01",
+  "source": {
+    "commit_at_start": "01d87b4fe13ee5357f0b8a214506b36436527361",
+    "dirty_at_start": false,
+    "config": {
+      "path": "artifacts/cable/repair-boundary-v3-r01__runtime.json",
+      "sha256": "15a9eb0115d123b52ac0f0c9172d7c865963c13aa1da3678a9fa887e403e0089",
+      "content_sha256": "31d2146a868fa44b2b83e3491255cbb7d278f5cff98fc5a29539f38a50057b89",
+      "content_sha256_note": "Hash over byte-order-mark-stripped, LF-normalised bytes. The raw hash above depends on the working-tree line endings, so a CRLF checkout and the LF blob git stores hash differently and a recorded raw hash may not be reproducible from the repository."
+    },
+    "source_archive": {
+      "path": "source.zip",
+      "sha256": "4c2dec44b4db109639d8898f0b0418f50887b8931132996c7e3f402dce0fc011"
+    },
+    "run_id": "repair-boundary-v3-r01",
+    "launcher_status": "completed",
+    "native_environment": {
+      "executable": "D:\\6axis-space-robotics\\.deps\\cable-venv\\Scripts\\python.exe",
+      "python": "3.11.15 (main, Mar 10 2026, 18:12:25) [MSC v.1944 64 bit (AMD64)]",
+      "prefix": "D:\\6axis-space-robotics\\.deps\\cable-venv",
+      "base_prefix": "C:\\Users\\tryak\\AppData\\Roaming\\uv\\python\\cpython-3.11-windows-x86_64-none",
+      "platform": "Windows-10-10.0.26200-SP0",
+      "packages": {
+        "absl-py": "2.5.0",
+        "contourpy": "1.3.3",
+        "cycler": "0.12.1",
+        "etils": "1.14.0",
+        "fonttools": "4.65.0",
+        "fsspec": "2026.7.0",
+        "glfw": "2.10.2",
+        "imageio-ffmpeg": "0.6.0",
+        "kiwisolver": "1.5.1",
+        "matplotlib": "3.10.7",
+        "mujoco": "3.3.7",
+        "numpy": "2.4.6",
+        "packaging": "26.3",
+        "pillow": "12.3.0",
+        "psutil": "7.1.3",
+        "pyopengl": "3.1.10",
+        "pyparsing": "3.3.2",
+        "python-dateutil": "2.9.0.post0",
+        "scipy": "1.16.3",
+        "six": "1.17.0",
+        "trimesh": "4.8.3",
+        "typing_extensions": "4.16.0",
+        "zipp": "4.1.0"
+      },
+      "launcher_executable_sha256": "896015aee70f878db3ed5db6f4661042b7f924fed5769902efedd48ebce65543"
+    },
+    "upstream_commit": "e9145480c945f2afc3741f355233f44082cc3b06"
+  },
+  "execution": {
+    "launcher_wall_seconds": 2737.1,
+    "total_native_steps": 101674693,
+    "aggregate_native_steps_per_second": 37147.4,
+    "per_worker_native_steps_per_second": 3116.9,
+    "throughput_note": "Aggregate is total steps over launcher wall time on twelve workers, the same convention the v2 block used, where it measured 25,244.7. This block runs faster because visual mesh export is off for study requests.",
+    "requests": 1440,
+    "expected_requests": 1440,
+    "native_steps": 72874693,
+    "settle_native_steps": 28800000,
+    "summed_worker_wall_seconds": 32620.5,
+    "median_request_wall_seconds": 22.58,
+    "training_runs_during_collection": 0,
+    "repairs_issued": 1440,
+    "mutation_guard_events": 0
+  },
+  "denominator": {
+    "requests": 1440,
+    "usable_for_fitting": 1440,
+    "outcome_counts": {
+      "completed_clip_retained": 739,
+      "clip_lost": 322,
+      "load_abort": 379
+    },
+    "note": "Unusable requests are those whose repair was never issued, so no decision state exists. They stay in the denominator and are reported by outcome."
+  },
+  "splits": {
+    "train": {
+      "requests": 672,
+      "clip_lost": 138,
+      "completed": 375,
+      "groups": [
+        "L1_l2",
+        "L2_l2",
+        "L2_l4",
+        "L3_l4",
+        "L4_l2",
+        "L4_l4",
+        "L5_l6"
+      ]
+    },
+    "dev": {
+      "requests": 288,
+      "clip_lost": 42,
+      "completed": 136,
+      "groups": [
+        "L1_l6",
+        "L3_l6",
+        "L5_l2"
+      ]
+    },
+    "test": {
+      "requests": 480,
+      "clip_lost": 142,
+      "completed": 228,
+      "groups": [
+        "L1_l4",
+        "L2_l6",
+        "L3_l2",
+        "L4_l6",
+        "L5_l4"
+      ]
+    }
+  },
+  "B0_fit": {
+    "threshold_m": 0.40939253011467425,
+    "train_balanced_accuracy": 0.880982905982906
+  },
+  "B1_selected_variant": "linear_wd0.0001",
+  "B1_dev_losses": {
+    "linear_wd0.0001": 0.6101353764533997,
+    "linear_wd0.001": 0.6120315194129944,
+    "linear_wd0.01": 0.6358286738395691,
+    "quadratic_wd0.0001": 0.8924180269241333,
+    "quadratic_wd0.001": 0.89241623878479,
+    "quadratic_wd0.01": 0.892400324344635
+  },
+  "M_fits": [
+    {
+      "seed": 0,
+      "dev_loss": 0.7157194018363953,
+      "selected_epoch": 8
+    },
+    {
+      "seed": 1,
+      "dev_loss": 0.9189555048942566,
+      "selected_epoch": 1
+    },
+    {
+      "seed": 2,
+      "dev_loss": 0.7098802328109741,
+      "selected_epoch": 11
+    }
+  ],
+  "M_budget": {
+    "hidden": [
+      128,
+      128
+    ],
+    "epochs": 400,
+    "batch_size": 256,
+    "learning_rate": 0.001,
+    "weight_decay": 0.0001,
+    "seeds": [
+      0,
+      1,
+      2
+    ],
+    "checkpoint_rule": "Lowest dev loss within the declared epoch budget. Test groups are never consulted for selection."
+  },
+  "held_out_results": {
+    "B0": {
+      "predictor": "B0",
+      "score_units": "metres: the analytic endpoint boot-to-anchor distance, a monotone risk score",
+      "predicted_safe": 352,
+      "false_safe_rate_own_operating_point": 0.16193181818181818,
+      "false_safe_rate_matched_coverage": 0.16193181818181818,
+      "balanced_accuracy": 0.735686307192266,
+      "ranking_regret_clip": {
+        "contexts": 20,
+        "scored": 20,
+        "abstentions": 0,
+        "regret": 0.25,
+        "resolution": 0.05
+      },
+      "ranking_regret_completion": {
+        "contexts": 20,
+        "scored": 20,
+        "abstentions": 0,
+        "regret": 0.5,
+        "resolution": 0.05
+      },
+      "lowest_risk_choice": {
+        "contexts": 20,
+        "clip_loss_rate": 0.0,
+        "incompletion_rate": 0.0,
+        "mean_commanded_magnitude_m": 0.006000000000000001,
+        "status": "exploratory_diagnostic_not_part_of_the_decision_rule"
+      }
+    },
+    "B1": {
+      "predictor": "B1",
+      "score_units": "probability of clip loss",
+      "predicted_safe": 358,
+      "false_safe_rate_own_operating_point": 0.15921787709497207,
+      "false_safe_rate_matched_coverage": 0.15625,
+      "balanced_accuracy": 0.7445620468372365,
+      "ranking_regret_clip": {
+        "contexts": 20,
+        "scored": 20,
+        "abstentions": 0,
+        "regret": 0.25,
+        "resolution": 0.05
+      },
+      "ranking_regret_completion": {
+        "contexts": 20,
+        "scored": 20,
+        "abstentions": 0,
+        "regret": 0.5,
+        "resolution": 0.05
+      },
+      "lowest_risk_choice": {
+        "contexts": 20,
+        "clip_loss_rate": 0.0,
+        "incompletion_rate": 0.0,
+        "mean_commanded_magnitude_m": 0.006000000000000001,
+        "status": "exploratory_diagnostic_not_part_of_the_decision_rule"
+      }
+    },
+    "M": {
+      "predictor": "M",
+      "score_units": "probability of clip loss",
+      "predicted_safe": 297,
+      "false_safe_rate_own_operating_point": 0.1111111111111111,
+      "false_safe_rate_matched_coverage": 0.14772727272727273,
+      "balanced_accuracy": 0.7743353612801067,
+      "ranking_regret_clip": {
+        "contexts": 20,
+        "scored": 20,
+        "abstentions": 0,
+        "regret": 0.15,
+        "resolution": 0.05
+      },
+      "ranking_regret_completion": {
+        "contexts": 20,
+        "scored": 20,
+        "abstentions": 0,
+        "regret": 0.35,
+        "resolution": 0.05
+      },
+      "lowest_risk_choice": {
+        "contexts": 20,
+        "clip_loss_rate": 0.0,
+        "incompletion_rate": 0.0,
+        "mean_commanded_magnitude_m": 0.006000000000000001,
+        "status": "exploratory_diagnostic_not_part_of_the_decision_rule"
+      }
+    },
+    "M_seed0": {
+      "predictor": "M_seed0",
+      "score_units": "probability of clip loss",
+      "predicted_safe": 299,
+      "false_safe_rate_own_operating_point": 0.12040133779264214,
+      "false_safe_rate_matched_coverage": 0.13920454545454544,
+      "balanced_accuracy": 0.7622926910575881,
+      "ranking_regret_clip": {
+        "contexts": 20,
+        "scored": 20,
+        "abstentions": 0,
+        "regret": 0.15,
+        "resolution": 0.05
+      },
+      "ranking_regret_completion": {
+        "contexts": 20,
+        "scored": 20,
+        "abstentions": 0,
+        "regret": 0.4,
+        "resolution": 0.05
+      },
+      "lowest_risk_choice": {
+        "contexts": 20,
+        "clip_loss_rate": 0.0,
+        "incompletion_rate": 0.0,
+        "mean_commanded_magnitude_m": 0.006000000000000001,
+        "status": "exploratory_diagnostic_not_part_of_the_decision_rule"
+      }
+    },
+    "M_seed1": {
+      "predictor": "M_seed1",
+      "score_units": "probability of clip loss",
+      "predicted_safe": 282,
+      "false_safe_rate_own_operating_point": 0.1453900709219858,
+      "false_safe_rate_matched_coverage": 0.20454545454545456,
+      "balanced_accuracy": 0.7121426785565463,
+      "ranking_regret_clip": {
+        "contexts": 20,
+        "scored": 14,
+        "abstentions": 6,
+        "regret": 0.5,
+        "resolution": 0.07142857142857142
+      },
+      "ranking_regret_completion": {
+        "contexts": 20,
+        "scored": 14,
+        "abstentions": 6,
+        "regret": 0.5714285714285714,
+        "resolution": 0.07142857142857142
+      },
+      "lowest_risk_choice": {
+        "contexts": 20,
+        "clip_loss_rate": 0.0,
+        "incompletion_rate": 0.0,
+        "mean_commanded_magnitude_m": 0.006000000000000001,
+        "status": "exploratory_diagnostic_not_part_of_the_decision_rule"
+      }
+    },
+    "M_seed2": {
+      "predictor": "M_seed2",
+      "score_units": "probability of clip loss",
+      "predicted_safe": 302,
+      "false_safe_rate_own_operating_point": 0.1291390728476821,
+      "false_safe_rate_matched_coverage": 0.14204545454545456,
+      "balanced_accuracy": 0.751729310775898,
+      "ranking_regret_clip": {
+        "contexts": 20,
+        "scored": 20,
+        "abstentions": 0,
+        "regret": 0.25,
+        "resolution": 0.05
+      },
+      "ranking_regret_completion": {
+        "contexts": 20,
+        "scored": 20,
+        "abstentions": 0,
+        "regret": 0.5,
+        "resolution": 0.05
+      },
+      "lowest_risk_choice": {
+        "contexts": 20,
+        "clip_loss_rate": 0.0,
+        "incompletion_rate": 0.0,
+        "mean_commanded_magnitude_m": 0.006000000000000001,
+        "status": "exploratory_diagnostic_not_part_of_the_decision_rule"
+      }
+    },
+    "no_filter_reference": {
+      "predictor": "no filter",
+      "score_units": "none; every action is allowed",
+      "status": "reference, not one of the three registered predictors",
+      "predicted_safe": 480,
+      "clip_loss_base_rate": 0.29583333333333334,
+      "ranking_regret_clip": {
+        "contexts": 20,
+        "scored": 20,
+        "abstentions": 0,
+        "regret": 0.9,
+        "resolution": 0.05
+      },
+      "ranking_regret_completion": {
+        "contexts": 20,
+        "scored": 20,
+        "abstentions": 0,
+        "regret": 0.9,
+        "resolution": 0.05
+      }
+    },
+    "exploratory_paired_comparisons": {
+      "B0_vs_M": {
+        "paired_contexts": 20,
+        "a_regrets_b_does_not": 2,
+        "b_regrets_a_does_not": 0,
+        "agree": 18,
+        "sign_test_p": 0.5,
+        "status": "exploratory_post_hoc_not_part_of_the_decision_rule"
+      },
+      "B0_vs_B1": {
+        "paired_contexts": 20,
+        "a_regrets_b_does_not": 0,
+        "b_regrets_a_does_not": 0,
+        "agree": 20,
+        "sign_test_p": 1.0,
+        "status": "exploratory_post_hoc_not_part_of_the_decision_rule"
+      },
+      "B1_vs_M": {
+        "paired_contexts": 20,
+        "a_regrets_b_does_not": 2,
+        "b_regrets_a_does_not": 0,
+        "agree": 18,
+        "sign_test_p": 0.5,
+        "status": "exploratory_post_hoc_not_part_of_the_decision_rule"
+      }
+    },
+    "exploratory_false_safe_bootstrap": {
+      "B0_minus_M": {
+        "draws": 4000,
+        "resampled_unit": "context",
+        "mean_difference": 0.01639997874417323,
+        "percentile_95_interval": [
+          -0.01719197707736389,
+          0.04972375690607736
+        ],
+        "fraction_favouring_b": 0.8085,
+        "status": "exploratory_post_hoc_not_part_of_the_decision_rule"
+      },
+      "B0_minus_B1": {
+        "draws": 4000,
+        "resampled_unit": "context",
+        "mean_difference": 0.006162650222543229,
+        "percentile_95_interval": [
+          -0.008797653958944274,
+          0.01999999999999999
+        ],
+        "fraction_favouring_b": 0.707,
+        "status": "exploratory_post_hoc_not_part_of_the_decision_rule"
+      },
+      "note": "Positive means B0 lets through more clip losses than the comparison predictor at the same coverage. An interval spanning zero means the metric cannot tell them apart."
+    },
+    "exploratory_seed_spread": {
+      "M_per_seed_ranking_regret": [
+        0.15,
+        0.5,
+        0.25
+      ],
+      "M_per_seed_ranking_regret_mean": 0.3,
+      "M_per_seed_false_safe_matched_coverage": [
+        0.13920454545454544,
+        0.20454545454545456,
+        0.14204545454545456
+      ],
+      "B0_ranking_regret": 0.25,
+      "seeds_worse_than_B0_on_ranking_regret": 1,
+      "status": "exploratory_post_hoc_not_part_of_the_decision_rule"
+    }
+  },
+  "decision": {
+    "margin": 0.05,
+    "b0_minus_best_other_false_safe": 0.014204545454545442,
+    "b0_minus_best_other_ranking_regret": 0.1,
+    "verdict": "inconclusive_neither_branch_triggered",
+    "metric_b_resolution": 0.05,
+    "margin_cannot_resolve_one_context": true,
+    "pre_registration_defect": "The registered margin and the ranking metric's own resolution are both one context in twenty. A margin equal to the smallest difference the metric can express cannot separate signal from a single context changing hands, so the metric-B branch of the rule was unresolvable by construction. This is a flaw in the pre-registration, not in the data; it is recorded rather than corrected after the fact. A future block wanting to decide on this metric needs either more held-out contexts or a margin of at least two contexts, set before collection.",
+    "rule": {
+      "margin": 0.05,
+      "margin_units": "absolute, on both metrics",
+      "metric_a": "Held-out false-safe rate: of the actions a predictor calls safe, the fraction that actually lost the clip, evaluated at matched coverage with B0.",
+      "metric_b": "Held-out action-ranking regret. In each test context the supervisor considers the twelve shared core actions, keeps those its predictor calls safe, and issues the one with the largest commanded displacement magnitude, because a larger clearance is the more useful repair; ties break in registered order. Regret is the fraction of test contexts whose issued action actually lost the clip. Contexts where a predictor calls no action safe are counted separately as abstentions and are not scored as regret.",
+      "metric_b_secondary": "The same procedure scored on the secondary label instead: the fraction of test contexts whose issued action did not reach held, clip-preserving seating. Reported beside metric B so a predictor that is safe but useless cannot pass as a win.",
+      "predicted_safe_set": "For B1 and M, predicted probability of clip loss below 0.5. For B0, the fitted threshold rule itself.",
+      "wrap_up_if": "B0 is within the margin of the best of B1 and M on both metrics. Meaning the safe boundary is a one-dimensional physical budget, engineering already solves it, and learning cannot justify its data cost here.",
+      "continue_if": "M beats both B0 and B1 by more than the margin on both metrics, and that advantage survives into closed-loop clip-preserving completion at matched cost.",
+      "conflict": "Better prediction with no closed-loop gain is reported plainly as such and is not presented as a win.",
+      "pre_registered": "This rule, the margin, the metrics, the group split and the full request list were frozen in this file and committed before any request was launched."
+    }
+  },
+  "scope_and_limitations": [
+    "Simulation only. No hardware access, connector transfer, released retention or force-certified safety claim.",
+    "Fixed preset grasp is a disclosed construction boundary; grasp strength and drop robustness are not measured.",
+    "Every arm and every predictor reads simulator state, not camera perception.",
+    "Bracket compliance is translational only; bracket rotation, backlash and hysteresis are not modelled.",
+    "Cable discretisation insensitivity is not established: the 46-segment control fails at every integration rate tested.",
+    "Peak contact sums move about 70 percent between physics resolutions and must never be quoted as resolution-independent."
+  ],
+  "dataset": "artifacts/cable/repair-boundary-v3-r01/study_dataset.json"
+}

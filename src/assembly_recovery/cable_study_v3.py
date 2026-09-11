@@ -280,26 +280,98 @@ def core_by_context(rows) -> dict[str, list[int]]:
             contexts.setdefault(row["context"], []).append(i)
     return contexts
 
-def ranking_regret(rows, safe: np.ndarray, key: str, retract_distance_m: float) -> dict:
-    """The registered supervisor procedure, scored per test context.
+def per_context_regret(rows, safe: np.ndarray, key: str, retract_distance_m: float) -> dict:
+    """The registered supervisor procedure, resolved per context.
 
     The supervisor keeps the actions its predictor calls safe and issues the one
     with the largest commanded displacement, because a larger clearance is the
     more useful repair. A predictor whose safe set is too generous is punished
-    exactly where it matters.
+    exactly where it matters. ``None`` means the predictor abstained: it called
+    no action safe, which is not scored as regret.
     """
-    regret = abstain = scored = 0
-    for indices in core_by_context(rows).values():
+    out = {}
+    for context, indices in core_by_context(rows).items():
         allowed = [i for i in indices if safe[i]]
         if not allowed:
-            abstain += 1
+            out[context] = None
             continue
         chosen = max(allowed, key=lambda i: (commanded_magnitude(rows[i], retract_distance_m),
                                              -rows[i]["action_index"]))
-        scored += 1
-        regret += int(rows[chosen]["clip_lost"] if key == "clip_lost" else 1-rows[chosen]["completed"])
-    return {"contexts": len(core_by_context(rows)), "scored": scored, "abstentions": abstain,
-            "regret": regret/scored if scored else float("nan")}
+        out[context] = int(rows[chosen]["clip_lost"] if key == "clip_lost"
+                           else 1-rows[chosen]["completed"])
+    return out
+
+
+def ranking_regret(rows, safe: np.ndarray, key: str, retract_distance_m: float) -> dict:
+    """The registered metric: the rate at which the issued repair was the wrong one."""
+    per_context = per_context_regret(rows, safe, key, retract_distance_m)
+    scored = [v for v in per_context.values() if v is not None]
+    return {"contexts": len(per_context), "scored": len(scored),
+            "abstentions": len(per_context)-len(scored),
+            "regret": sum(scored)/len(scored) if scored else float("nan"),
+            "resolution": 1/len(scored) if scored else float("nan")}
+
+
+def cluster_bootstrap_difference(rows, scores_a, scores_b, safe_a, draws: int = 4000,
+                                 seed: int = 0) -> dict:
+    """Exploratory: a confidence interval on the false-safe gap between two predictors.
+
+    Requests inside one context share a decision state and are not independent,
+    so contexts and not requests are the resampled unit. Coverage is rematched
+    inside every resample, exactly as the registered metric matches it.
+    """
+    contexts = {}
+    for i, row in enumerate(rows):
+        contexts.setdefault(row["context"], []).append(i)
+    keys = list(contexts)
+    truth = np.asarray([row["clip_lost"] for row in rows])
+    scores_a, scores_b, safe_a = np.asarray(scores_a), np.asarray(scores_b), np.asarray(safe_a)
+    generator = np.random.default_rng(seed)
+    differences = []
+    for _ in range(draws):
+        picked = np.concatenate([contexts[keys[k]]
+                                 for k in generator.integers(0, len(keys), len(keys))])
+        coverage = int(safe_a[picked].sum())
+        if coverage == 0:
+            continue
+        differences.append(false_safe_at_coverage(scores_a[picked], truth[picked], coverage)
+                           - false_safe_at_coverage(scores_b[picked], truth[picked], coverage))
+    differences = np.asarray(differences)
+    return {"draws": int(differences.size), "resampled_unit": "context",
+            "mean_difference": float(differences.mean()),
+            "percentile_95_interval": [float(np.percentile(differences, 2.5)),
+                                       float(np.percentile(differences, 97.5))],
+            "fraction_favouring_b": float((differences > 0).mean()),
+            "status": "exploratory_post_hoc_not_part_of_the_decision_rule"}
+
+
+def sign_test(wins: int, losses: int) -> float:
+    """Two-sided exact sign-test p-value for a paired win/loss count."""
+    total = wins+losses
+    if total == 0:
+        return 1.0
+    lower = min(wins, losses)
+    tail = sum(math.comb(total, k) for k in range(lower+1))/2**total
+    return min(1.0, 2*tail)
+
+
+def paired_context_comparison(rows, safe_a, safe_b, key: str, retract_distance_m: float) -> dict:
+    """Post-hoc, exploratory: is one predictor's advantage bigger than one context?
+
+    Contexts are the unit both predictors are scored on, so they can be paired.
+    Reported because the registered margin happens to equal the metric's own
+    resolution, and a difference of one or two contexts cannot be read as a win.
+    """
+    a = per_context_regret(rows, safe_a, key, retract_distance_m)
+    b = per_context_regret(rows, safe_b, key, retract_distance_m)
+    shared = [c for c in a if a[c] is not None and b[c] is not None]
+    a_only = sum(1 for c in shared if a[c] == 1 and b[c] == 0)
+    b_only = sum(1 for c in shared if a[c] == 0 and b[c] == 1)
+    return {"paired_contexts": len(shared),
+            "a_regrets_b_does_not": a_only, "b_regrets_a_does_not": b_only,
+            "agree": len(shared)-a_only-b_only,
+            "sign_test_p": sign_test(a_only, b_only),
+            "status": "exploratory_post_hoc_not_part_of_the_decision_rule"}
 
 def lowest_risk_choice(rows, scores: np.ndarray, retract_distance_m: float) -> dict:
     """Exploratory, not pre-registered: issue the action the predictor likes most.

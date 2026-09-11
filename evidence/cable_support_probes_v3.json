@@ -1,0 +1,3831 @@
+{
+  "schema": 1,
+  "id": "cable_support_probes_v3",
+  "created_on": "2026-09-11",
+  "status": "exploratory_probes_preserved_none_entered_the_registered_block",
+  "scope": "Probes run before the safe-repair boundary contract was frozen, to choose its registered support. Not a study result, not a comparison and not a hardware claim. Scratch run directories were not retained; the case definitions here are sufficient to rebuild every request.",
+  "probes": {
+    "mount_compliance_does_not_defeat_competence": {
+      "question": "Does a finite-stiffness port mount leave a residual failure the competent first attempt cannot prevent?",
+      "design": "force_guided_insertion, installed loop 4 mm, lateral stiffness {rigid, 8000, 4000, 2000, 1000} N/m crossed with lateral mounting offsets {0, 2, 4} mm. Axial stiffness is 6.25x lateral throughout.",
+      "requests": 15,
+      "outcome_counts": {
+        "completed_clip_retained": 15
+      },
+      "settled": 15,
+      "requests_detail": [
+        {
+          "case": "p_k1000_o0",
+          "outcome": "completed_clip_retained",
+          "failure_reason": null,
+          "settled": true,
+          "clip_retained": true,
+          "installed_loop_m": 0.004,
+          "run_direction_xy": [
+            1.0,
+            0.0
+          ],
+          "outward_xy": [
+            1.0,
+            0.0
+          ],
+          "fixture_offset_m": [
+            0.0,
+            0.0
+          ],
+          "route_waypoints_along_across_m": [
+            [
+              0.09,
+              0.0
+            ],
+            [
+              0.17,
+              0.0
+            ]
+          ],
+          "fixture_overrides": null,
+          "cable_overrides": null,
+          "clocks_override": null,
+          "port_compliance": {
+            "lateral_stiffness_n_per_m": 1000.0,
+            "axial_stiffness_n_per_m": 6250.0,
+            "lateral_damping_ns_per_m": 6.0,
+            "axial_damping_ns_per_m": 15.0,
+            "travel_limit_m": 0.01
+          },
+          "repair_action": null,
+          "forced_macro_at_s": null
+        },
+        {
+          "case": "p_k1000_o2",
+          "outcome": "completed_clip_retained",
+          "failure_reason": null,
+          "settled": true,
+          "clip_retained": true,
+          "installed_loop_m": 0.004,
+          "run_direction_xy": [
+            1.0,
+            0.0
+          ],
+          "outward_xy": [
+            1.0,
+            0.0
+          ],
+          "fixture_offset_m": [
+            0.002,
+            0.0
+          ],
+          "route_waypoints_along_across_m": [
+            [
+              0.09,
+              0.0
+            ],
+            [
+              0.17,
+              0.0
+            ]
+          ],
+          "fixture_overrides": null,
+          "cable_overrides": null,
+          "clocks_override": null,
+          "port_compliance": {
+            "lateral_stiffness_n_per_m": 1000.0,
+            "axial_stiffness_n_per_m": 6250.0,
+            "lateral_damping_ns_per_m": 6.0,
+            "axial_damping_ns_per_m": 15.0,
+            "travel_limit_m": 0.01
+          },
+          "repair_action": null,
+          "forced_macro_at_s": null
+        },
+        {
+          "case": "p_k1000_o4",
+          "outcome": "completed_clip_retained",
+          "failure_reason": null,
+          "settled": true,
+          "clip_retained": true,
+          "installed_loop_m": 0.004,
+          "run_direction_xy": [
+            1.0,
+            0.0
+          ],
+          "outward_xy": [
+            1.0,
+            0.0
+          ],
+          "fixture_offset_m": [
+            0.004,
+            0.0
+          ],
+          "route_waypoints_along_across_m": [
+            [
+              0.09,
+              0.0
+            ],
+            [
+              0.17,
+              0.0
+            ]
+          ],
+          "fixture_overrides": null,
+          "cable_overrides": null,
+          "clocks_override": null,
+          "port_compliance": {
+            "lateral_stiffness_n_per_m": 1000.0,
+            "axial_stiffness_n_per_m": 6250.0,
+            "lateral_damping_ns_per_m": 6.0,
+            "axial_damping_ns_per_m": 15.0,
+            "travel_limit_m": 0.01
+          },
+          "repair_action": null,
+          "forced_macro_at_s": null
+        },
+        {
+          "case": "p_k2000_o0",
+          "outcome": "completed_clip_retained",
+          "failure_reason": null,
+          "settled": true,
+          "clip_retained": true,
+          "installed_loop_m": 0.004,
+          "run_direction_xy": [
+            1.0,
+            0.0
+          ],
+          "outward_xy": [
+            1.0,
+            0.0
+          ],
+          "fixture_offset_m": [
+            0.0,
+            0.0
+          ],
+          "route_waypoints_along_across_m": [
+            [
+              0.09,
+              0.0
+            ],
+            [
+              0.17,
+              0.0
+            ]
+          ],
+          "fixture_overrides": null,
+          "cable_overrides": null,
+          "clocks_override": null,
+          "port_compliance": {
+            "lateral_stiffness_n_per_m": 2000.0,
+            "axial_stiffness_n_per_m": 12500.0,
+            "lateral_damping_ns_per_m": 6.0,
+            "axial_damping_ns_per_m": 15.0,
+            "travel_limit_m": 0.01
+          },
+          "repair_action": null,
+          "forced_macro_at_s": null
+        },
+        {
+          "case": "p_k2000_o2",
+          "outcome": "completed_clip_retained",
+          "failure_reason": null,
+          "settled": true,
+          "clip_retained": true,
+          "installed_loop_m": 0.004,
+          "run_direction_xy": [
+            1.0,
+            0.0
+          ],
+          "outward_xy": [
+            1.0,
+            0.0
+          ],
+          "fixture_offset_m": [
+            0.002,
+            0.0
+          ],
+          "route_waypoints_along_across_m": [
+            [
+              0.09,
+              0.0
+            ],
+            [
+              0.17,
+              0.0
+            ]
+          ],
+          "fixture_overrides": null,
+          "cable_overrides": null,
+          "clocks_override": null,
+          "port_compliance": {
+            "lateral_stiffness_n_per_m": 2000.0,
+            "axial_stiffness_n_per_m": 12500.0,
+            "lateral_damping_ns_per_m": 6.0,
+            "axial_damping_ns_per_m": 15.0,
+            "travel_limit_m": 0.01
+          },
+          "repair_action": null,
+          "forced_macro_at_s": null
+        },
+        {
+          "case": "p_k2000_o4",
+          "outcome": "completed_clip_retained",
+          "failure_reason": null,
+          "settled": true,
+          "clip_retained": true,
+          "installed_loop_m": 0.004,
+          "run_direction_xy": [
+            1.0,
+            0.0
+          ],
+          "outward_xy": [
+            1.0,
+            0.0
+          ],
+          "fixture_offset_m": [
+            0.004,
+            0.0
+          ],
+          "route_waypoints_along_across_m": [
+            [
+              0.09,
+              0.0
+            ],
+            [
+              0.17,
+              0.0
+            ]
+          ],
+          "fixture_overrides": null,
+          "cable_overrides": null,
+          "clocks_override": null,
+          "port_compliance": {
+            "lateral_stiffness_n_per_m": 2000.0,
+            "axial_stiffness_n_per_m": 12500.0,
+            "lateral_damping_ns_per_m": 6.0,
+            "axial_damping_ns_per_m": 15.0,
+            "travel_limit_m": 0.01
+          },
+          "repair_action": null,
+          "forced_macro_at_s": null
+        },
+        {
+          "case": "p_k4000_o0",
+          "outcome": "completed_clip_retained",
+          "failure_reason": null,
+          "settled": true,
+          "clip_retained": true,
+          "installed_loop_m": 0.004,
+          "run_direction_xy": [
+            1.0,
+            0.0
+          ],
+          "outward_xy": [
+            1.0,
+            0.0
+          ],
+          "fixture_offset_m": [
+            0.0,
+            0.0
+          ],
+          "route_waypoints_along_across_m": [
+            [
+              0.09,
+              0.0
+            ],
+            [
+              0.17,
+              0.0
+            ]
+          ],
+          "fixture_overrides": null,
+          "cable_overrides": null,
+          "clocks_override": null,
+          "port_compliance": {
+            "lateral_stiffness_n_per_m": 4000.0,
+            "axial_stiffness_n_per_m": 25000.0,
+            "lateral_damping_ns_per_m": 6.0,
+            "axial_damping_ns_per_m": 15.0,
+            "travel_limit_m": 0.01
+          },
+          "repair_action": null,
+          "forced_macro_at_s": null
+        },
+        {
+          "case": "p_k4000_o2",
+          "outcome": "completed_clip_retained",
+          "failure_reason": null,
+          "settled": true,
+          "clip_retained": true,
+          "installed_loop_m": 0.004,
+          "run_direction_xy": [
+            1.0,
+            0.0
+          ],
+          "outward_xy": [
+            1.0,
+            0.0
+          ],
+          "fixture_offset_m": [
+            0.002,
+            0.0
+          ],
+          "route_waypoints_along_across_m": [
+            [
+              0.09,
+              0.0
+            ],
+            [
+              0.17,
+              0.0
+            ]
+          ],
+          "fixture_overrides": null,
+          "cable_overrides": null,
+          "clocks_override": null,
+          "port_compliance": {
+            "lateral_stiffness_n_per_m": 4000.0,
+            "axial_stiffness_n_per_m": 25000.0,
+            "lateral_damping_ns_per_m": 6.0,
+            "axial_damping_ns_per_m": 15.0,
+            "travel_limit_m": 0.01
+          },
+          "repair_action": null,
+          "forced_macro_at_s": null
+        },
+        {
+          "case": "p_k4000_o4",
+          "outcome": "completed_clip_retained",
+          "failure_reason": null,
+          "settled": true,
+          "clip_retained": true,
+          "installed_loop_m": 0.004,
+          "run_direction_xy": [
+            1.0,
+            0.0
+          ],
+          "outward_xy": [
+            1.0,
+            0.0
+          ],
+          "fixture_offset_m": [
+            0.004,
+            0.0
+          ],
+          "route_waypoints_along_across_m": [
+            [
+              0.09,
+              0.0
+            ],
+            [
+              0.17,
+              0.0
+            ]
+          ],
+          "fixture_overrides": null,
+          "cable_overrides": null,
+          "clocks_override": null,
+          "port_compliance": {
+            "lateral_stiffness_n_per_m": 4000.0,
+            "axial_stiffness_n_per_m": 25000.0,
+            "lateral_damping_ns_per_m": 6.0,
+            "axial_damping_ns_per_m": 15.0,
+            "travel_limit_m": 0.01
+          },
+          "repair_action": null,
+          "forced_macro_at_s": null
+        },
+        {
+          "case": "p_k8000_o0",
+          "outcome": "completed_clip_retained",
+          "failure_reason": null,
+          "settled": true,
+          "clip_retained": true,
+          "installed_loop_m": 0.004,
+          "run_direction_xy": [
+            1.0,
+            0.0
+          ],
+          "outward_xy": [
+            1.0,
+            0.0
+          ],
+          "fixture_offset_m": [
+            0.0,
+            0.0
+          ],
+          "route_waypoints_along_across_m": [
+            [
+              0.09,
+              0.0
+            ],
+            [
+              0.17,
+              0.0
+            ]
+          ],
+          "fixture_overrides": null,
+          "cable_overrides": null,
+          "clocks_override": null,
+          "port_compliance": {
+            "lateral_stiffness_n_per_m": 8000.0,
+            "axial_stiffness_n_per_m": 50000.0,
+            "lateral_damping_ns_per_m": 6.0,
+            "axial_damping_ns_per_m": 15.0,
+            "travel_limit_m": 0.01
+          },
+          "repair_action": null,
+          "forced_macro_at_s": null
+        },
+        {
+          "case": "p_k8000_o2",
+          "outcome": "completed_clip_retained",
+          "failure_reason": null,
+          "settled": true,
+          "clip_retained": true,
+          "installed_loop_m": 0.004,
+          "run_direction_xy": [
+            1.0,
+            0.0
+          ],
+          "outward_xy": [
+            1.0,
+            0.0
+          ],
+          "fixture_offset_m": [
+            0.002,
+            0.0
+          ],
+          "route_waypoints_along_across_m": [
+            [
+              0.09,
+              0.0
+            ],
+            [
+              0.17,
+              0.0
+            ]
+          ],
+          "fixture_overrides": null,
+          "cable_overrides": null,
+          "clocks_override": null,
+          "port_compliance": {
+            "lateral_stiffness_n_per_m": 8000.0,
+            "axial_stiffness_n_per_m": 50000.0,
+            "lateral_damping_ns_per_m": 6.0,
+            "axial_damping_ns_per_m": 15.0,
+            "travel_limit_m": 0.01
+          },
+          "repair_action": null,
+          "forced_macro_at_s": null
+        },
+        {
+          "case": "p_k8000_o4",
+          "outcome": "completed_clip_retained",
+          "failure_reason": null,
+          "settled": true,
+          "clip_retained": true,
+          "installed_loop_m": 0.004,
+          "run_direction_xy": [
+            1.0,
+            0.0
+          ],
+          "outward_xy": [
+            1.0,
+            0.0
+          ],
+          "fixture_offset_m": [
+            0.004,
+            0.0
+          ],
+          "route_waypoints_along_across_m": [
+            [
+              0.09,
+              0.0
+            ],
+            [
+              0.17,
+              0.0
+            ]
+          ],
+          "fixture_overrides": null,
+          "cable_overrides": null,
+          "clocks_override": null,
+          "port_compliance": {
+            "lateral_stiffness_n_per_m": 8000.0,
+            "axial_stiffness_n_per_m": 50000.0,
+            "lateral_damping_ns_per_m": 6.0,
+            "axial_damping_ns_per_m": 15.0,
+            "travel_limit_m": 0.01
+          },
+          "repair_action": null,
+          "forced_macro_at_s": null
+        },
+        {
+          "case": "p_krigid_o0",
+          "outcome": "completed_clip_retained",
+          "failure_reason": null,
+          "settled": true,
+          "clip_retained": true,
+          "installed_loop_m": 0.004,
+          "run_direction_xy": [
+            1.0,
+            0.0
+          ],
+          "outward_xy": [
+            1.0,
+            0.0
+          ],
+          "fixture_offset_m": [
+            0.0,
+            0.0
+          ],
+          "route_waypoints_along_across_m": [
+            [
+              0.09,
+              0.0
+            ],
+            [
+              0.17,
+              0.0
+            ]
+          ],
+          "fixture_overrides": null,
+          "cable_overrides": null,
+          "clocks_override": null,
+          "port_compliance": null,
+          "repair_action": null,
+          "forced_macro_at_s": null
+        },
+        {
+          "case": "p_krigid_o2",
+          "outcome": "completed_clip_retained",
+          "failure_reason": null,
+          "settled": true,
+          "clip_retained": true,
+          "installed_loop_m": 0.004,
+          "run_direction_xy": [
+            1.0,
+            0.0
+          ],
+          "outward_xy": [
+            1.0,
+            0.0
+          ],
+          "fixture_offset_m": [
+            0.002,
+            0.0
+          ],
+          "route_waypoints_along_across_m": [
+            [
+              0.09,
+              0.0
+            ],
+            [
+              0.17,
+              0.0
+            ]
+          ],
+          "fixture_overrides": null,
+          "cable_overrides": null,
+          "clocks_override": null,
+          "port_compliance": null,
+          "repair_action": null,
+          "forced_macro_at_s": null
+        },
+        {
+          "case": "p_krigid_o4",
+          "outcome": "completed_clip_retained",
+          "failure_reason": null,
+          "settled": true,
+          "clip_retained": true,
+          "installed_loop_m": 0.004,
+          "run_direction_xy": [
+            1.0,
+            0.0
+          ],
+          "outward_xy": [
+            1.0,
+            0.0
+          ],
+          "fixture_offset_m": [
+            0.004,
+            0.0
+          ],
+          "route_waypoints_along_across_m": [
+            [
+              0.09,
+              0.0
+            ],
+            [
+              0.17,
+              0.0
+            ]
+          ],
+          "fixture_overrides": null,
+          "cable_overrides": null,
+          "clocks_override": null,
+          "port_compliance": null,
+          "repair_action": null,
+          "forced_macro_at_s": null
+        }
+      ]
+    },
+    "layout_settling_screen": {
+      "question": "Which layout variations reach an accepted settled configuration at all?",
+      "design": "Three screens. First, run direction rotated with the cable exit rotated to match. Second, run direction rotated with the cable exit held at the registered free direction. Third, clip position along the shelf crossed with a lateral dogleg in the route, at the two extreme installed loops.",
+      "requests": 51,
+      "outcome_counts": {
+        "completed_clip_retained": 29,
+        "settling_rejected": 21,
+        "clip_lost": 1
+      },
+      "settled": 30,
+      "requests_detail": [
+        {
+          "case": "lay_d-20_l2",
+          "outcome": "completed_clip_retained",
+          "failure_reason": null,
+          "settled": true,
+          "clip_retained": true,
+          "installed_loop_m": 0.002,
+          "run_direction_xy": [
+            0.9396926207859084,
+            -0.3420201433256687
+          ],
+          "outward_xy": [
+            0.9396926207859084,
+            -0.3420201433256687
+          ],
+          "fixture_offset_m": [
+            0.0,
+            0.0
+          ],
+          "route_waypoints_along_across_m": [
+            [
+              0.09,
+              0.0
+            ],
+            [
+              0.17,
+              0.0
+            ]
+          ],
+          "fixture_overrides": null,
+          "cable_overrides": null,
+          "clocks_override": null,
+          "port_compliance": null,
+          "repair_action": null,
+          "forced_macro_at_s": null
+        },
+        {
+          "case": "lay_d-20_l4",
+          "outcome": "settling_rejected",
+          "failure_reason": "settle_clip_not_retained",
+          "settled": false,
+          "clip_retained": false,
+          "installed_loop_m": 0.004,
+          "run_direction_xy": [
+            0.9396926207859084,
+            -0.3420201433256687
+          ],
+          "outward_xy": [
+            0.9396926207859084,
+            -0.3420201433256687
+          ],
+          "fixture_offset_m": [
+            0.0,
+            0.0
+          ],
+          "route_waypoints_along_across_m": [
+            [
+              0.09,
+              0.0
+            ],
+            [
+              0.17,
+              0.0
+            ]
+          ],
+          "fixture_overrides": null,
+          "cable_overrides": null,
+          "clocks_override": null,
+          "port_compliance": null,
+          "repair_action": null,
+          "forced_macro_at_s": null
+        },
+        {
+          "case": "lay_d-20_l6",
+          "outcome": "settling_rejected",
+          "failure_reason": "settle_clip_not_retained",
+          "settled": false,
+          "clip_retained": false,
+          "installed_loop_m": 0.006,
+          "run_direction_xy": [
+            0.9396926207859084,
+            -0.3420201433256687
+          ],
+          "outward_xy": [
+            0.9396926207859084,
+            -0.3420201433256687
+          ],
+          "fixture_offset_m": [
+            0.0,
+            0.0
+          ],
+          "route_waypoints_along_across_m": [
+            [
+              0.09,
+              0.0
+            ],
+            [
+              0.17,
+              0.0
+            ]
+          ],
+          "fixture_overrides": null,
+          "cable_overrides": null,
+          "clocks_override": null,
+          "port_compliance": null,
+          "repair_action": null,
+          "forced_macro_at_s": null
+        },
+        {
+          "case": "lay_d0_l2",
+          "outcome": "completed_clip_retained",
+          "failure_reason": null,
+          "settled": true,
+          "clip_retained": true,
+          "installed_loop_m": 0.002,
+          "run_direction_xy": [
+            1.0,
+            0.0
+          ],
+          "outward_xy": [
+            1.0,
+            0.0
+          ],
+          "fixture_offset_m": [
+            0.0,
+            0.0
+          ],
+          "route_waypoints_along_across_m": [
+            [
+              0.09,
+              0.0
+            ],
+            [
+              0.17,
+              0.0
+            ]
+          ],
+          "fixture_overrides": null,
+          "cable_overrides": null,
+          "clocks_override": null,
+          "port_compliance": null,
+          "repair_action": null,
+          "forced_macro_at_s": null
+        },
+        {
+          "case": "lay_d0_l4",
+          "outcome": "completed_clip_retained",
+          "failure_reason": null,
+          "settled": true,
+          "clip_retained": true,
+          "installed_loop_m": 0.004,
+          "run_direction_xy": [
+            1.0,
+            0.0
+          ],
+          "outward_xy": [
+            1.0,
+            0.0
+          ],
+          "fixture_offset_m": [
+            0.0,
+            0.0
+          ],
+          "route_waypoints_along_across_m": [
+            [
+              0.09,
+              0.0
+            ],
+            [
+              0.17,
+              0.0
+            ]
+          ],
+          "fixture_overrides": null,
+          "cable_overrides": null,
+          "clocks_override": null,
+          "port_compliance": null,
+          "repair_action": null,
+          "forced_macro_at_s": null
+        },
+        {
+          "case": "lay_d0_l6",
+          "outcome": "completed_clip_retained",
+          "failure_reason": null,
+          "settled": true,
+          "clip_retained": true,
+          "installed_loop_m": 0.006,
+          "run_direction_xy": [
+            1.0,
+            0.0
+          ],
+          "outward_xy": [
+            1.0,
+            0.0
+          ],
+          "fixture_offset_m": [
+            0.0,
+            0.0
+          ],
+          "route_waypoints_along_across_m": [
+            [
+              0.09,
+              0.0
+            ],
+            [
+              0.17,
+              0.0
+            ]
+          ],
+          "fixture_overrides": null,
+          "cable_overrides": null,
+          "clocks_override": null,
+          "port_compliance": null,
+          "repair_action": null,
+          "forced_macro_at_s": null
+        },
+        {
+          "case": "lay_d20_l2",
+          "outcome": "completed_clip_retained",
+          "failure_reason": null,
+          "settled": true,
+          "clip_retained": true,
+          "installed_loop_m": 0.002,
+          "run_direction_xy": [
+            0.9396926207859084,
+            0.3420201433256687
+          ],
+          "outward_xy": [
+            0.9396926207859084,
+            0.3420201433256687
+          ],
+          "fixture_offset_m": [
+            0.0,
+            0.0
+          ],
+          "route_waypoints_along_across_m": [
+            [
+              0.09,
+              0.0
+            ],
+            [
+              0.17,
+              0.0
+            ]
+          ],
+          "fixture_overrides": null,
+          "cable_overrides": null,
+          "clocks_override": null,
+          "port_compliance": null,
+          "repair_action": null,
+          "forced_macro_at_s": null
+        },
+        {
+          "case": "lay_d20_l4",
+          "outcome": "completed_clip_retained",
+          "failure_reason": null,
+          "settled": true,
+          "clip_retained": true,
+          "installed_loop_m": 0.004,
+          "run_direction_xy": [
+            0.9396926207859084,
+            0.3420201433256687
+          ],
+          "outward_xy": [
+            0.9396926207859084,
+            0.3420201433256687
+          ],
+          "fixture_offset_m": [
+            0.0,
+            0.0
+          ],
+          "route_waypoints_along_across_m": [
+            [
+              0.09,
+              0.0
+            ],
+            [
+              0.17,
+              0.0
+            ]
+          ],
+          "fixture_overrides": null,
+          "cable_overrides": null,
+          "clocks_override": null,
+          "port_compliance": null,
+          "repair_action": null,
+          "forced_macro_at_s": null
+        },
+        {
+          "case": "lay_d20_l6",
+          "outcome": "settling_rejected",
+          "failure_reason": "settle_clip_not_retained",
+          "settled": false,
+          "clip_retained": false,
+          "installed_loop_m": 0.006,
+          "run_direction_xy": [
+            0.9396926207859084,
+            0.3420201433256687
+          ],
+          "outward_xy": [
+            0.9396926207859084,
+            0.3420201433256687
+          ],
+          "fixture_offset_m": [
+            0.0,
+            0.0
+          ],
+          "route_waypoints_along_across_m": [
+            [
+              0.09,
+              0.0
+            ],
+            [
+              0.17,
+              0.0
+            ]
+          ],
+          "fixture_overrides": null,
+          "cable_overrides": null,
+          "clocks_override": null,
+          "port_compliance": null,
+          "repair_action": null,
+          "forced_macro_at_s": null
+        },
+        {
+          "case": "lay_d35_l2",
+          "outcome": "settling_rejected",
+          "failure_reason": "settle_clip_not_retained",
+          "settled": false,
+          "clip_retained": false,
+          "installed_loop_m": 0.002,
+          "run_direction_xy": [
+            0.8191520442889918,
+            0.573576436351046
+          ],
+          "outward_xy": [
+            0.8191520442889918,
+            0.573576436351046
+          ],
+          "fixture_offset_m": [
+            0.0,
+            0.0
+          ],
+          "route_waypoints_along_across_m": [
+            [
+              0.09,
+              0.0
+            ],
+            [
+              0.17,
+              0.0
+            ]
+          ],
+          "fixture_overrides": null,
+          "cable_overrides": null,
+          "clocks_override": null,
+          "port_compliance": null,
+          "repair_action": null,
+          "forced_macro_at_s": null
+        },
+        {
+          "case": "lay_d35_l4",
+          "outcome": "completed_clip_retained",
+          "failure_reason": null,
+          "settled": true,
+          "clip_retained": true,
+          "installed_loop_m": 0.004,
+          "run_direction_xy": [
+            0.8191520442889918,
+            0.573576436351046
+          ],
+          "outward_xy": [
+            0.8191520442889918,
+            0.573576436351046
+          ],
+          "fixture_offset_m": [
+            0.0,
+            0.0
+          ],
+          "route_waypoints_along_across_m": [
+            [
+              0.09,
+              0.0
+            ],
+            [
+              0.17,
+              0.0
+            ]
+          ],
+          "fixture_overrides": null,
+          "cable_overrides": null,
+          "clocks_override": null,
+          "port_compliance": null,
+          "repair_action": null,
+          "forced_macro_at_s": null
+        },
+        {
+          "case": "lay_d35_l6",
+          "outcome": "settling_rejected",
+          "failure_reason": "settle_instability",
+          "settled": false,
+          "clip_retained": true,
+          "installed_loop_m": 0.006,
+          "run_direction_xy": [
+            0.8191520442889918,
+            0.573576436351046
+          ],
+          "outward_xy": [
+            0.8191520442889918,
+            0.573576436351046
+          ],
+          "fixture_offset_m": [
+            0.0,
+            0.0
+          ],
+          "route_waypoints_along_across_m": [
+            [
+              0.09,
+              0.0
+            ],
+            [
+              0.17,
+              0.0
+            ]
+          ],
+          "fixture_overrides": null,
+          "cable_overrides": null,
+          "clocks_override": null,
+          "port_compliance": null,
+          "repair_action": null,
+          "forced_macro_at_s": null
+        },
+        {
+          "case": "fix_d-12_l2",
+          "outcome": "completed_clip_retained",
+          "failure_reason": null,
+          "settled": true,
+          "clip_retained": true,
+          "installed_loop_m": 0.002,
+          "run_direction_xy": [
+            0.9781476007338057,
+            -0.20791169081775934
+          ],
+          "outward_xy": [
+            1.0,
+            0.0
+          ],
+          "fixture_offset_m": [
+            0.0,
+            0.0
+          ],
+          "route_waypoints_along_across_m": [
+            [
+              0.09,
+              0.0
+            ],
+            [
+              0.17,
+              0.0
+            ]
+          ],
+          "fixture_overrides": null,
+          "cable_overrides": null,
+          "clocks_override": null,
+          "port_compliance": null,
+          "repair_action": null,
+          "forced_macro_at_s": null
+        },
+        {
+          "case": "fix_d-12_l4",
+          "outcome": "completed_clip_retained",
+          "failure_reason": null,
+          "settled": true,
+          "clip_retained": true,
+          "installed_loop_m": 0.004,
+          "run_direction_xy": [
+            0.9781476007338057,
+            -0.20791169081775934
+          ],
+          "outward_xy": [
+            1.0,
+            0.0
+          ],
+          "fixture_offset_m": [
+            0.0,
+            0.0
+          ],
+          "route_waypoints_along_across_m": [
+            [
+              0.09,
+              0.0
+            ],
+            [
+              0.17,
+              0.0
+            ]
+          ],
+          "fixture_overrides": null,
+          "cable_overrides": null,
+          "clocks_override": null,
+          "port_compliance": null,
+          "repair_action": null,
+          "forced_macro_at_s": null
+        },
+        {
+          "case": "fix_d-12_l6",
+          "outcome": "completed_clip_retained",
+          "failure_reason": null,
+          "settled": true,
+          "clip_retained": true,
+          "installed_loop_m": 0.006,
+          "run_direction_xy": [
+            0.9781476007338057,
+            -0.20791169081775934
+          ],
+          "outward_xy": [
+            1.0,
+            0.0
+          ],
+          "fixture_offset_m": [
+            0.0,
+            0.0
+          ],
+          "route_waypoints_along_across_m": [
+            [
+              0.09,
+              0.0
+            ],
+            [
+              0.17,
+              0.0
+            ]
+          ],
+          "fixture_overrides": null,
+          "cable_overrides": null,
+          "clocks_override": null,
+          "port_compliance": null,
+          "repair_action": null,
+          "forced_macro_at_s": null
+        },
+        {
+          "case": "fix_d-20_l2",
+          "outcome": "settling_rejected",
+          "failure_reason": "settle_clip_not_retained",
+          "settled": false,
+          "clip_retained": false,
+          "installed_loop_m": 0.002,
+          "run_direction_xy": [
+            0.9396926207859084,
+            -0.3420201433256687
+          ],
+          "outward_xy": [
+            1.0,
+            0.0
+          ],
+          "fixture_offset_m": [
+            0.0,
+            0.0
+          ],
+          "route_waypoints_along_across_m": [
+            [
+              0.09,
+              0.0
+            ],
+            [
+              0.17,
+              0.0
+            ]
+          ],
+          "fixture_overrides": null,
+          "cable_overrides": null,
+          "clocks_override": null,
+          "port_compliance": null,
+          "repair_action": null,
+          "forced_macro_at_s": null
+        },
+        {
+          "case": "fix_d-20_l4",
+          "outcome": "settling_rejected",
+          "failure_reason": "settle_clip_not_retained",
+          "settled": false,
+          "clip_retained": false,
+          "installed_loop_m": 0.004,
+          "run_direction_xy": [
+            0.9396926207859084,
+            -0.3420201433256687
+          ],
+          "outward_xy": [
+            1.0,
+            0.0
+          ],
+          "fixture_offset_m": [
+            0.0,
+            0.0
+          ],
+          "route_waypoints_along_across_m": [
+            [
+              0.09,
+              0.0
+            ],
+            [
+              0.17,
+              0.0
+            ]
+          ],
+          "fixture_overrides": null,
+          "cable_overrides": null,
+          "clocks_override": null,
+          "port_compliance": null,
+          "repair_action": null,
+          "forced_macro_at_s": null
+        },
+        {
+          "case": "fix_d-20_l6",
+          "outcome": "settling_rejected",
+          "failure_reason": "settle_clip_not_retained",
+          "settled": false,
+          "clip_retained": false,
+          "installed_loop_m": 0.006,
+          "run_direction_xy": [
+            0.9396926207859084,
+            -0.3420201433256687
+          ],
+          "outward_xy": [
+            1.0,
+            0.0
+          ],
+          "fixture_offset_m": [
+            0.0,
+            0.0
+          ],
+          "route_waypoints_along_across_m": [
+            [
+              0.09,
+              0.0
+            ],
+            [
+              0.17,
+              0.0
+            ]
+          ],
+          "fixture_overrides": null,
+          "cable_overrides": null,
+          "clocks_override": null,
+          "port_compliance": null,
+          "repair_action": null,
+          "forced_macro_at_s": null
+        },
+        {
+          "case": "fix_d0_l2",
+          "outcome": "completed_clip_retained",
+          "failure_reason": null,
+          "settled": true,
+          "clip_retained": true,
+          "installed_loop_m": 0.002,
+          "run_direction_xy": [
+            1.0,
+            0.0
+          ],
+          "outward_xy": [
+            1.0,
+            0.0
+          ],
+          "fixture_offset_m": [
+            0.0,
+            0.0
+          ],
+          "route_waypoints_along_across_m": [
+            [
+              0.09,
+              0.0
+            ],
+            [
+              0.17,
+              0.0
+            ]
+          ],
+          "fixture_overrides": null,
+          "cable_overrides": null,
+          "clocks_override": null,
+          "port_compliance": null,
+          "repair_action": null,
+          "forced_macro_at_s": null
+        },
+        {
+          "case": "fix_d0_l4",
+          "outcome": "completed_clip_retained",
+          "failure_reason": null,
+          "settled": true,
+          "clip_retained": true,
+          "installed_loop_m": 0.004,
+          "run_direction_xy": [
+            1.0,
+            0.0
+          ],
+          "outward_xy": [
+            1.0,
+            0.0
+          ],
+          "fixture_offset_m": [
+            0.0,
+            0.0
+          ],
+          "route_waypoints_along_across_m": [
+            [
+              0.09,
+              0.0
+            ],
+            [
+              0.17,
+              0.0
+            ]
+          ],
+          "fixture_overrides": null,
+          "cable_overrides": null,
+          "clocks_override": null,
+          "port_compliance": null,
+          "repair_action": null,
+          "forced_macro_at_s": null
+        },
+        {
+          "case": "fix_d0_l6",
+          "outcome": "completed_clip_retained",
+          "failure_reason": null,
+          "settled": true,
+          "clip_retained": true,
+          "installed_loop_m": 0.006,
+          "run_direction_xy": [
+            1.0,
+            0.0
+          ],
+          "outward_xy": [
+            1.0,
+            0.0
+          ],
+          "fixture_offset_m": [
+            0.0,
+            0.0
+          ],
+          "route_waypoints_along_across_m": [
+            [
+              0.09,
+              0.0
+            ],
+            [
+              0.17,
+              0.0
+            ]
+          ],
+          "fixture_overrides": null,
+          "cable_overrides": null,
+          "clocks_override": null,
+          "port_compliance": null,
+          "repair_action": null,
+          "forced_macro_at_s": null
+        },
+        {
+          "case": "fix_d12_l2",
+          "outcome": "settling_rejected",
+          "failure_reason": "settle_cable_motion",
+          "settled": false,
+          "clip_retained": false,
+          "installed_loop_m": 0.002,
+          "run_direction_xy": [
+            0.9781476007338057,
+            0.20791169081775934
+          ],
+          "outward_xy": [
+            1.0,
+            0.0
+          ],
+          "fixture_offset_m": [
+            0.0,
+            0.0
+          ],
+          "route_waypoints_along_across_m": [
+            [
+              0.09,
+              0.0
+            ],
+            [
+              0.17,
+              0.0
+            ]
+          ],
+          "fixture_overrides": null,
+          "cable_overrides": null,
+          "clocks_override": null,
+          "port_compliance": null,
+          "repair_action": null,
+          "forced_macro_at_s": null
+        },
+        {
+          "case": "fix_d12_l4",
+          "outcome": "clip_lost",
+          "failure_reason": "lost_required_clip",
+          "settled": true,
+          "clip_retained": false,
+          "installed_loop_m": 0.004,
+          "run_direction_xy": [
+            0.9781476007338057,
+            0.20791169081775934
+          ],
+          "outward_xy": [
+            1.0,
+            0.0
+          ],
+          "fixture_offset_m": [
+            0.0,
+            0.0
+          ],
+          "route_waypoints_along_across_m": [
+            [
+              0.09,
+              0.0
+            ],
+            [
+              0.17,
+              0.0
+            ]
+          ],
+          "fixture_overrides": null,
+          "cable_overrides": null,
+          "clocks_override": null,
+          "port_compliance": null,
+          "repair_action": null,
+          "forced_macro_at_s": null
+        },
+        {
+          "case": "fix_d12_l6",
+          "outcome": "settling_rejected",
+          "failure_reason": "settle_instability",
+          "settled": false,
+          "clip_retained": true,
+          "installed_loop_m": 0.006,
+          "run_direction_xy": [
+            0.9781476007338057,
+            0.20791169081775934
+          ],
+          "outward_xy": [
+            1.0,
+            0.0
+          ],
+          "fixture_offset_m": [
+            0.0,
+            0.0
+          ],
+          "route_waypoints_along_across_m": [
+            [
+              0.09,
+              0.0
+            ],
+            [
+              0.17,
+              0.0
+            ]
+          ],
+          "fixture_overrides": null,
+          "cable_overrides": null,
+          "clocks_override": null,
+          "port_compliance": null,
+          "repair_action": null,
+          "forced_macro_at_s": null
+        },
+        {
+          "case": "fix_d20_l2",
+          "outcome": "completed_clip_retained",
+          "failure_reason": null,
+          "settled": true,
+          "clip_retained": true,
+          "installed_loop_m": 0.002,
+          "run_direction_xy": [
+            0.9396926207859084,
+            0.3420201433256687
+          ],
+          "outward_xy": [
+            1.0,
+            0.0
+          ],
+          "fixture_offset_m": [
+            0.0,
+            0.0
+          ],
+          "route_waypoints_along_across_m": [
+            [
+              0.09,
+              0.0
+            ],
+            [
+              0.17,
+              0.0
+            ]
+          ],
+          "fixture_overrides": null,
+          "cable_overrides": null,
+          "clocks_override": null,
+          "port_compliance": null,
+          "repair_action": null,
+          "forced_macro_at_s": null
+        },
+        {
+          "case": "fix_d20_l4",
+          "outcome": "settling_rejected",
+          "failure_reason": "settle_cable_motion",
+          "settled": false,
+          "clip_retained": true,
+          "installed_loop_m": 0.004,
+          "run_direction_xy": [
+            0.9396926207859084,
+            0.3420201433256687
+          ],
+          "outward_xy": [
+            1.0,
+            0.0
+          ],
+          "fixture_offset_m": [
+            0.0,
+            0.0
+          ],
+          "route_waypoints_along_across_m": [
+            [
+              0.09,
+              0.0
+            ],
+            [
+              0.17,
+              0.0
+            ]
+          ],
+          "fixture_overrides": null,
+          "cable_overrides": null,
+          "clocks_override": null,
+          "port_compliance": null,
+          "repair_action": null,
+          "forced_macro_at_s": null
+        },
+        {
+          "case": "fix_d20_l6",
+          "outcome": "completed_clip_retained",
+          "failure_reason": null,
+          "settled": true,
+          "clip_retained": true,
+          "installed_loop_m": 0.006,
+          "run_direction_xy": [
+            0.9396926207859084,
+            0.3420201433256687
+          ],
+          "outward_xy": [
+            1.0,
+            0.0
+          ],
+          "fixture_offset_m": [
+            0.0,
+            0.0
+          ],
+          "route_waypoints_along_across_m": [
+            [
+              0.09,
+              0.0
+            ],
+            [
+              0.17,
+              0.0
+            ]
+          ],
+          "fixture_overrides": null,
+          "cable_overrides": null,
+          "clocks_override": null,
+          "port_compliance": null,
+          "repair_action": null,
+          "forced_macro_at_s": null
+        },
+        {
+          "case": "ly_d-12_a15_c0_l2",
+          "outcome": "completed_clip_retained",
+          "failure_reason": null,
+          "settled": true,
+          "clip_retained": true,
+          "installed_loop_m": 0.002,
+          "run_direction_xy": [
+            0.9781476007338057,
+            -0.20791169081775934
+          ],
+          "outward_xy": [
+            1.0,
+            0.0
+          ],
+          "fixture_offset_m": [
+            0.0,
+            0.0
+          ],
+          "route_waypoints_along_across_m": [
+            [
+              0.09,
+              0.0
+            ],
+            [
+              0.15,
+              0.0
+            ]
+          ],
+          "fixture_overrides": {
+            "clip": {
+              "along_m": 0.15
+            }
+          },
+          "cable_overrides": null,
+          "clocks_override": null,
+          "port_compliance": null,
+          "repair_action": null,
+          "forced_macro_at_s": null
+        },
+        {
+          "case": "ly_d-12_a15_c0_l6",
+          "outcome": "completed_clip_retained",
+          "failure_reason": null,
+          "settled": true,
+          "clip_retained": true,
+          "installed_loop_m": 0.006,
+          "run_direction_xy": [
+            0.9781476007338057,
+            -0.20791169081775934
+          ],
+          "outward_xy": [
+            1.0,
+            0.0
+          ],
+          "fixture_offset_m": [
+            0.0,
+            0.0
+          ],
+          "route_waypoints_along_across_m": [
+            [
+              0.09,
+              0.0
+            ],
+            [
+              0.15,
+              0.0
+            ]
+          ],
+          "fixture_overrides": {
+            "clip": {
+              "along_m": 0.15
+            }
+          },
+          "cable_overrides": null,
+          "clocks_override": null,
+          "port_compliance": null,
+          "repair_action": null,
+          "forced_macro_at_s": null
+        },
+        {
+          "case": "ly_d-12_a15_c20_l2",
+          "outcome": "completed_clip_retained",
+          "failure_reason": null,
+          "settled": true,
+          "clip_retained": true,
+          "installed_loop_m": 0.002,
+          "run_direction_xy": [
+            0.9781476007338057,
+            -0.20791169081775934
+          ],
+          "outward_xy": [
+            1.0,
+            0.0
+          ],
+          "fixture_offset_m": [
+            0.0,
+            0.0
+          ],
+          "route_waypoints_along_across_m": [
+            [
+              0.09,
+              0.02
+            ],
+            [
+              0.15,
+              0.0
+            ]
+          ],
+          "fixture_overrides": {
+            "clip": {
+              "along_m": 0.15
+            }
+          },
+          "cable_overrides": null,
+          "clocks_override": null,
+          "port_compliance": null,
+          "repair_action": null,
+          "forced_macro_at_s": null
+        },
+        {
+          "case": "ly_d-12_a15_c20_l6",
+          "outcome": "completed_clip_retained",
+          "failure_reason": null,
+          "settled": true,
+          "clip_retained": true,
+          "installed_loop_m": 0.006,
+          "run_direction_xy": [
+            0.9781476007338057,
+            -0.20791169081775934
+          ],
+          "outward_xy": [
+            1.0,
+            0.0
+          ],
+          "fixture_offset_m": [
+            0.0,
+            0.0
+          ],
+          "route_waypoints_along_across_m": [
+            [
+              0.09,
+              0.02
+            ],
+            [
+              0.15,
+              0.0
+            ]
+          ],
+          "fixture_overrides": {
+            "clip": {
+              "along_m": 0.15
+            }
+          },
+          "cable_overrides": null,
+          "clocks_override": null,
+          "port_compliance": null,
+          "repair_action": null,
+          "forced_macro_at_s": null
+        },
+        {
+          "case": "ly_d-12_a17_c0_l2",
+          "outcome": "completed_clip_retained",
+          "failure_reason": null,
+          "settled": true,
+          "clip_retained": true,
+          "installed_loop_m": 0.002,
+          "run_direction_xy": [
+            0.9781476007338057,
+            -0.20791169081775934
+          ],
+          "outward_xy": [
+            1.0,
+            0.0
+          ],
+          "fixture_offset_m": [
+            0.0,
+            0.0
+          ],
+          "route_waypoints_along_across_m": [
+            [
+              0.09,
+              0.0
+            ],
+            [
+              0.17,
+              0.0
+            ]
+          ],
+          "fixture_overrides": {
+            "clip": {
+              "along_m": 0.17
+            }
+          },
+          "cable_overrides": null,
+          "clocks_override": null,
+          "port_compliance": null,
+          "repair_action": null,
+          "forced_macro_at_s": null
+        },
+        {
+          "case": "ly_d-12_a17_c0_l6",
+          "outcome": "completed_clip_retained",
+          "failure_reason": null,
+          "settled": true,
+          "clip_retained": true,
+          "installed_loop_m": 0.006,
+          "run_direction_xy": [
+            0.9781476007338057,
+            -0.20791169081775934
+          ],
+          "outward_xy": [
+            1.0,
+            0.0
+          ],
+          "fixture_offset_m": [
+            0.0,
+            0.0
+          ],
+          "route_waypoints_along_across_m": [
+            [
+              0.09,
+              0.0
+            ],
+            [
+              0.17,
+              0.0
+            ]
+          ],
+          "fixture_overrides": {
+            "clip": {
+              "along_m": 0.17
+            }
+          },
+          "cable_overrides": null,
+          "clocks_override": null,
+          "port_compliance": null,
+          "repair_action": null,
+          "forced_macro_at_s": null
+        },
+        {
+          "case": "ly_d-12_a17_c20_l2",
+          "outcome": "completed_clip_retained",
+          "failure_reason": null,
+          "settled": true,
+          "clip_retained": true,
+          "installed_loop_m": 0.002,
+          "run_direction_xy": [
+            0.9781476007338057,
+            -0.20791169081775934
+          ],
+          "outward_xy": [
+            1.0,
+            0.0
+          ],
+          "fixture_offset_m": [
+            0.0,
+            0.0
+          ],
+          "route_waypoints_along_across_m": [
+            [
+              0.09,
+              0.02
+            ],
+            [
+              0.17,
+              0.0
+            ]
+          ],
+          "fixture_overrides": {
+            "clip": {
+              "along_m": 0.17
+            }
+          },
+          "cable_overrides": null,
+          "clocks_override": null,
+          "port_compliance": null,
+          "repair_action": null,
+          "forced_macro_at_s": null
+        },
+        {
+          "case": "ly_d-12_a17_c20_l6",
+          "outcome": "completed_clip_retained",
+          "failure_reason": null,
+          "settled": true,
+          "clip_retained": true,
+          "installed_loop_m": 0.006,
+          "run_direction_xy": [
+            0.9781476007338057,
+            -0.20791169081775934
+          ],
+          "outward_xy": [
+            1.0,
+            0.0
+          ],
+          "fixture_offset_m": [
+            0.0,
+            0.0
+          ],
+          "route_waypoints_along_across_m": [
+            [
+              0.09,
+              0.02
+            ],
+            [
+              0.17,
+              0.0
+            ]
+          ],
+          "fixture_overrides": {
+            "clip": {
+              "along_m": 0.17
+            }
+          },
+          "cable_overrides": null,
+          "clocks_override": null,
+          "port_compliance": null,
+          "repair_action": null,
+          "forced_macro_at_s": null
+        },
+        {
+          "case": "ly_d-12_a19_c0_l2",
+          "outcome": "completed_clip_retained",
+          "failure_reason": null,
+          "settled": true,
+          "clip_retained": true,
+          "installed_loop_m": 0.002,
+          "run_direction_xy": [
+            0.9781476007338057,
+            -0.20791169081775934
+          ],
+          "outward_xy": [
+            1.0,
+            0.0
+          ],
+          "fixture_offset_m": [
+            0.0,
+            0.0
+          ],
+          "route_waypoints_along_across_m": [
+            [
+              0.09,
+              0.0
+            ],
+            [
+              0.19,
+              0.0
+            ]
+          ],
+          "fixture_overrides": {
+            "clip": {
+              "along_m": 0.19
+            }
+          },
+          "cable_overrides": null,
+          "clocks_override": null,
+          "port_compliance": null,
+          "repair_action": null,
+          "forced_macro_at_s": null
+        },
+        {
+          "case": "ly_d-12_a19_c0_l6",
+          "outcome": "settling_rejected",
+          "failure_reason": "settle_clip_not_retained",
+          "settled": false,
+          "clip_retained": false,
+          "installed_loop_m": 0.006,
+          "run_direction_xy": [
+            0.9781476007338057,
+            -0.20791169081775934
+          ],
+          "outward_xy": [
+            1.0,
+            0.0
+          ],
+          "fixture_offset_m": [
+            0.0,
+            0.0
+          ],
+          "route_waypoints_along_across_m": [
+            [
+              0.09,
+              0.0
+            ],
+            [
+              0.19,
+              0.0
+            ]
+          ],
+          "fixture_overrides": {
+            "clip": {
+              "along_m": 0.19
+            }
+          },
+          "cable_overrides": null,
+          "clocks_override": null,
+          "port_compliance": null,
+          "repair_action": null,
+          "forced_macro_at_s": null
+        },
+        {
+          "case": "ly_d-12_a19_c20_l2",
+          "outcome": "settling_rejected",
+          "failure_reason": "settle_clip_not_retained",
+          "settled": false,
+          "clip_retained": false,
+          "installed_loop_m": 0.002,
+          "run_direction_xy": [
+            0.9781476007338057,
+            -0.20791169081775934
+          ],
+          "outward_xy": [
+            1.0,
+            0.0
+          ],
+          "fixture_offset_m": [
+            0.0,
+            0.0
+          ],
+          "route_waypoints_along_across_m": [
+            [
+              0.09,
+              0.02
+            ],
+            [
+              0.19,
+              0.0
+            ]
+          ],
+          "fixture_overrides": {
+            "clip": {
+              "along_m": 0.19
+            }
+          },
+          "cable_overrides": null,
+          "clocks_override": null,
+          "port_compliance": null,
+          "repair_action": null,
+          "forced_macro_at_s": null
+        },
+        {
+          "case": "ly_d-12_a19_c20_l6",
+          "outcome": "settling_rejected",
+          "failure_reason": "settle_clip_not_retained",
+          "settled": false,
+          "clip_retained": false,
+          "installed_loop_m": 0.006,
+          "run_direction_xy": [
+            0.9781476007338057,
+            -0.20791169081775934
+          ],
+          "outward_xy": [
+            1.0,
+            0.0
+          ],
+          "fixture_offset_m": [
+            0.0,
+            0.0
+          ],
+          "route_waypoints_along_across_m": [
+            [
+              0.09,
+              0.02
+            ],
+            [
+              0.19,
+              0.0
+            ]
+          ],
+          "fixture_overrides": {
+            "clip": {
+              "along_m": 0.19
+            }
+          },
+          "cable_overrides": null,
+          "clocks_override": null,
+          "port_compliance": null,
+          "repair_action": null,
+          "forced_macro_at_s": null
+        },
+        {
+          "case": "ly_d0_a15_c0_l2",
+          "outcome": "settling_rejected",
+          "failure_reason": "settle_clip_not_retained",
+          "settled": false,
+          "clip_retained": false,
+          "installed_loop_m": 0.002,
+          "run_direction_xy": [
+            1.0,
+            0.0
+          ],
+          "outward_xy": [
+            1.0,
+            0.0
+          ],
+          "fixture_offset_m": [
+            0.0,
+            0.0
+          ],
+          "route_waypoints_along_across_m": [
+            [
+              0.09,
+              0.0
+            ],
+            [
+              0.15,
+              0.0
+            ]
+          ],
+          "fixture_overrides": {
+            "clip": {
+              "along_m": 0.15
+            }
+          },
+          "cable_overrides": null,
+          "clocks_override": null,
+          "port_compliance": null,
+          "repair_action": null,
+          "forced_macro_at_s": null
+        },
+        {
+          "case": "ly_d0_a15_c0_l6",
+          "outcome": "completed_clip_retained",
+          "failure_reason": null,
+          "settled": true,
+          "clip_retained": true,
+          "installed_loop_m": 0.006,
+          "run_direction_xy": [
+            1.0,
+            0.0
+          ],
+          "outward_xy": [
+            1.0,
+            0.0
+          ],
+          "fixture_offset_m": [
+            0.0,
+            0.0
+          ],
+          "route_waypoints_along_across_m": [
+            [
+              0.09,
+              0.0
+            ],
+            [
+              0.15,
+              0.0
+            ]
+          ],
+          "fixture_overrides": {
+            "clip": {
+              "along_m": 0.15
+            }
+          },
+          "cable_overrides": null,
+          "clocks_override": null,
+          "port_compliance": null,
+          "repair_action": null,
+          "forced_macro_at_s": null
+        },
+        {
+          "case": "ly_d0_a15_c20_l2",
+          "outcome": "completed_clip_retained",
+          "failure_reason": null,
+          "settled": true,
+          "clip_retained": true,
+          "installed_loop_m": 0.002,
+          "run_direction_xy": [
+            1.0,
+            0.0
+          ],
+          "outward_xy": [
+            1.0,
+            0.0
+          ],
+          "fixture_offset_m": [
+            0.0,
+            0.0
+          ],
+          "route_waypoints_along_across_m": [
+            [
+              0.09,
+              0.02
+            ],
+            [
+              0.15,
+              0.0
+            ]
+          ],
+          "fixture_overrides": {
+            "clip": {
+              "along_m": 0.15
+            }
+          },
+          "cable_overrides": null,
+          "clocks_override": null,
+          "port_compliance": null,
+          "repair_action": null,
+          "forced_macro_at_s": null
+        },
+        {
+          "case": "ly_d0_a15_c20_l6",
+          "outcome": "settling_rejected",
+          "failure_reason": "settle_cable_motion",
+          "settled": false,
+          "clip_retained": true,
+          "installed_loop_m": 0.006,
+          "run_direction_xy": [
+            1.0,
+            0.0
+          ],
+          "outward_xy": [
+            1.0,
+            0.0
+          ],
+          "fixture_offset_m": [
+            0.0,
+            0.0
+          ],
+          "route_waypoints_along_across_m": [
+            [
+              0.09,
+              0.02
+            ],
+            [
+              0.15,
+              0.0
+            ]
+          ],
+          "fixture_overrides": {
+            "clip": {
+              "along_m": 0.15
+            }
+          },
+          "cable_overrides": null,
+          "clocks_override": null,
+          "port_compliance": null,
+          "repair_action": null,
+          "forced_macro_at_s": null
+        },
+        {
+          "case": "ly_d0_a17_c0_l2",
+          "outcome": "completed_clip_retained",
+          "failure_reason": null,
+          "settled": true,
+          "clip_retained": true,
+          "installed_loop_m": 0.002,
+          "run_direction_xy": [
+            1.0,
+            0.0
+          ],
+          "outward_xy": [
+            1.0,
+            0.0
+          ],
+          "fixture_offset_m": [
+            0.0,
+            0.0
+          ],
+          "route_waypoints_along_across_m": [
+            [
+              0.09,
+              0.0
+            ],
+            [
+              0.17,
+              0.0
+            ]
+          ],
+          "fixture_overrides": {
+            "clip": {
+              "along_m": 0.17
+            }
+          },
+          "cable_overrides": null,
+          "clocks_override": null,
+          "port_compliance": null,
+          "repair_action": null,
+          "forced_macro_at_s": null
+        },
+        {
+          "case": "ly_d0_a17_c0_l6",
+          "outcome": "completed_clip_retained",
+          "failure_reason": null,
+          "settled": true,
+          "clip_retained": true,
+          "installed_loop_m": 0.006,
+          "run_direction_xy": [
+            1.0,
+            0.0
+          ],
+          "outward_xy": [
+            1.0,
+            0.0
+          ],
+          "fixture_offset_m": [
+            0.0,
+            0.0
+          ],
+          "route_waypoints_along_across_m": [
+            [
+              0.09,
+              0.0
+            ],
+            [
+              0.17,
+              0.0
+            ]
+          ],
+          "fixture_overrides": {
+            "clip": {
+              "along_m": 0.17
+            }
+          },
+          "cable_overrides": null,
+          "clocks_override": null,
+          "port_compliance": null,
+          "repair_action": null,
+          "forced_macro_at_s": null
+        },
+        {
+          "case": "ly_d0_a17_c20_l2",
+          "outcome": "settling_rejected",
+          "failure_reason": "settle_cable_motion",
+          "settled": false,
+          "clip_retained": true,
+          "installed_loop_m": 0.002,
+          "run_direction_xy": [
+            1.0,
+            0.0
+          ],
+          "outward_xy": [
+            1.0,
+            0.0
+          ],
+          "fixture_offset_m": [
+            0.0,
+            0.0
+          ],
+          "route_waypoints_along_across_m": [
+            [
+              0.09,
+              0.02
+            ],
+            [
+              0.17,
+              0.0
+            ]
+          ],
+          "fixture_overrides": {
+            "clip": {
+              "along_m": 0.17
+            }
+          },
+          "cable_overrides": null,
+          "clocks_override": null,
+          "port_compliance": null,
+          "repair_action": null,
+          "forced_macro_at_s": null
+        },
+        {
+          "case": "ly_d0_a17_c20_l6",
+          "outcome": "settling_rejected",
+          "failure_reason": "settle_instability",
+          "settled": false,
+          "clip_retained": true,
+          "installed_loop_m": 0.006,
+          "run_direction_xy": [
+            1.0,
+            0.0
+          ],
+          "outward_xy": [
+            1.0,
+            0.0
+          ],
+          "fixture_offset_m": [
+            0.0,
+            0.0
+          ],
+          "route_waypoints_along_across_m": [
+            [
+              0.09,
+              0.02
+            ],
+            [
+              0.17,
+              0.0
+            ]
+          ],
+          "fixture_overrides": {
+            "clip": {
+              "along_m": 0.17
+            }
+          },
+          "cable_overrides": null,
+          "clocks_override": null,
+          "port_compliance": null,
+          "repair_action": null,
+          "forced_macro_at_s": null
+        },
+        {
+          "case": "ly_d0_a19_c0_l2",
+          "outcome": "completed_clip_retained",
+          "failure_reason": null,
+          "settled": true,
+          "clip_retained": true,
+          "installed_loop_m": 0.002,
+          "run_direction_xy": [
+            1.0,
+            0.0
+          ],
+          "outward_xy": [
+            1.0,
+            0.0
+          ],
+          "fixture_offset_m": [
+            0.0,
+            0.0
+          ],
+          "route_waypoints_along_across_m": [
+            [
+              0.09,
+              0.0
+            ],
+            [
+              0.19,
+              0.0
+            ]
+          ],
+          "fixture_overrides": {
+            "clip": {
+              "along_m": 0.19
+            }
+          },
+          "cable_overrides": null,
+          "clocks_override": null,
+          "port_compliance": null,
+          "repair_action": null,
+          "forced_macro_at_s": null
+        },
+        {
+          "case": "ly_d0_a19_c0_l6",
+          "outcome": "settling_rejected",
+          "failure_reason": "settle_clip_not_retained",
+          "settled": false,
+          "clip_retained": false,
+          "installed_loop_m": 0.006,
+          "run_direction_xy": [
+            1.0,
+            0.0
+          ],
+          "outward_xy": [
+            1.0,
+            0.0
+          ],
+          "fixture_offset_m": [
+            0.0,
+            0.0
+          ],
+          "route_waypoints_along_across_m": [
+            [
+              0.09,
+              0.0
+            ],
+            [
+              0.19,
+              0.0
+            ]
+          ],
+          "fixture_overrides": {
+            "clip": {
+              "along_m": 0.19
+            }
+          },
+          "cable_overrides": null,
+          "clocks_override": null,
+          "port_compliance": null,
+          "repair_action": null,
+          "forced_macro_at_s": null
+        },
+        {
+          "case": "ly_d0_a19_c20_l2",
+          "outcome": "settling_rejected",
+          "failure_reason": "settle_clip_not_retained",
+          "settled": false,
+          "clip_retained": false,
+          "installed_loop_m": 0.002,
+          "run_direction_xy": [
+            1.0,
+            0.0
+          ],
+          "outward_xy": [
+            1.0,
+            0.0
+          ],
+          "fixture_offset_m": [
+            0.0,
+            0.0
+          ],
+          "route_waypoints_along_across_m": [
+            [
+              0.09,
+              0.02
+            ],
+            [
+              0.19,
+              0.0
+            ]
+          ],
+          "fixture_overrides": {
+            "clip": {
+              "along_m": 0.19
+            }
+          },
+          "cable_overrides": null,
+          "clocks_override": null,
+          "port_compliance": null,
+          "repair_action": null,
+          "forced_macro_at_s": null
+        },
+        {
+          "case": "ly_d0_a19_c20_l6",
+          "outcome": "settling_rejected",
+          "failure_reason": "settle_clip_not_retained",
+          "settled": false,
+          "clip_retained": false,
+          "installed_loop_m": 0.006,
+          "run_direction_xy": [
+            1.0,
+            0.0
+          ],
+          "outward_xy": [
+            1.0,
+            0.0
+          ],
+          "fixture_offset_m": [
+            0.0,
+            0.0
+          ],
+          "route_waypoints_along_across_m": [
+            [
+              0.09,
+              0.02
+            ],
+            [
+              0.19,
+              0.0
+            ]
+          ],
+          "fixture_overrides": {
+            "clip": {
+              "along_m": 0.19
+            }
+          },
+          "cable_overrides": null,
+          "clocks_override": null,
+          "port_compliance": null,
+          "repair_action": null,
+          "forced_macro_at_s": null
+        }
+      ]
+    },
+    "parametric_action_shakedown": {
+      "question": "Does the continuous clearance action produce a usable spread of outcomes?",
+      "design": "Two decision times crossed with retreat {0, 40, 80, 100} mm and four bearing/excursion combinations, at the registered clearance speed.",
+      "requests": 30,
+      "outcome_counts": {
+        "completed_clip_retained": 13,
+        "clip_lost": 5,
+        "deadline": 5,
+        "load_abort": 7
+      },
+      "settled": 30,
+      "requests_detail": [
+        {
+          "case": "q_t20_r0_b0_e30",
+          "outcome": "completed_clip_retained",
+          "failure_reason": null,
+          "settled": true,
+          "clip_retained": true,
+          "installed_loop_m": 0.004,
+          "run_direction_xy": [
+            1.0,
+            0.0
+          ],
+          "outward_xy": [
+            1.0,
+            0.0
+          ],
+          "fixture_offset_m": [
+            0.0,
+            0.0
+          ],
+          "route_waypoints_along_across_m": [
+            [
+              0.09,
+              0.0
+            ],
+            [
+              0.17,
+              0.0
+            ]
+          ],
+          "fixture_overrides": null,
+          "cable_overrides": null,
+          "clocks_override": null,
+          "port_compliance": null,
+          "repair_action": {
+            "retreat_m": 0.0,
+            "bearing_rad": 0.0,
+            "excursion_m": 0.03,
+            "speed_m_per_s": 0.02
+          },
+          "forced_macro_at_s": 2.0
+        },
+        {
+          "case": "q_t20_r0_b180_e30",
+          "outcome": "completed_clip_retained",
+          "failure_reason": null,
+          "settled": true,
+          "clip_retained": true,
+          "installed_loop_m": 0.004,
+          "run_direction_xy": [
+            1.0,
+            0.0
+          ],
+          "outward_xy": [
+            1.0,
+            0.0
+          ],
+          "fixture_offset_m": [
+            0.0,
+            0.0
+          ],
+          "route_waypoints_along_across_m": [
+            [
+              0.09,
+              0.0
+            ],
+            [
+              0.17,
+              0.0
+            ]
+          ],
+          "fixture_overrides": null,
+          "cable_overrides": null,
+          "clocks_override": null,
+          "port_compliance": null,
+          "repair_action": {
+            "retreat_m": 0.0,
+            "bearing_rad": 3.141592653589793,
+            "excursion_m": 0.03,
+            "speed_m_per_s": 0.02
+          },
+          "forced_macro_at_s": 2.0
+        },
+        {
+          "case": "q_t20_r0_b90_e30",
+          "outcome": "completed_clip_retained",
+          "failure_reason": null,
+          "settled": true,
+          "clip_retained": true,
+          "installed_loop_m": 0.004,
+          "run_direction_xy": [
+            1.0,
+            0.0
+          ],
+          "outward_xy": [
+            1.0,
+            0.0
+          ],
+          "fixture_offset_m": [
+            0.0,
+            0.0
+          ],
+          "route_waypoints_along_across_m": [
+            [
+              0.09,
+              0.0
+            ],
+            [
+              0.17,
+              0.0
+            ]
+          ],
+          "fixture_overrides": null,
+          "cable_overrides": null,
+          "clocks_override": null,
+          "port_compliance": null,
+          "repair_action": {
+            "retreat_m": 0.0,
+            "bearing_rad": 1.5707963267948966,
+            "excursion_m": 0.03,
+            "speed_m_per_s": 0.02
+          },
+          "forced_macro_at_s": 2.0
+        },
+        {
+          "case": "q_t20_r100_b0_e0",
+          "outcome": "clip_lost",
+          "failure_reason": "lost_required_clip",
+          "settled": true,
+          "clip_retained": false,
+          "installed_loop_m": 0.004,
+          "run_direction_xy": [
+            1.0,
+            0.0
+          ],
+          "outward_xy": [
+            1.0,
+            0.0
+          ],
+          "fixture_offset_m": [
+            0.0,
+            0.0
+          ],
+          "route_waypoints_along_across_m": [
+            [
+              0.09,
+              0.0
+            ],
+            [
+              0.17,
+              0.0
+            ]
+          ],
+          "fixture_overrides": null,
+          "cable_overrides": null,
+          "clocks_override": null,
+          "port_compliance": null,
+          "repair_action": {
+            "retreat_m": 0.1,
+            "bearing_rad": 0.0,
+            "excursion_m": 0.0,
+            "speed_m_per_s": 0.02
+          },
+          "forced_macro_at_s": 2.0
+        },
+        {
+          "case": "q_t20_r100_b0_e30",
+          "outcome": "completed_clip_retained",
+          "failure_reason": null,
+          "settled": true,
+          "clip_retained": true,
+          "installed_loop_m": 0.004,
+          "run_direction_xy": [
+            1.0,
+            0.0
+          ],
+          "outward_xy": [
+            1.0,
+            0.0
+          ],
+          "fixture_offset_m": [
+            0.0,
+            0.0
+          ],
+          "route_waypoints_along_across_m": [
+            [
+              0.09,
+              0.0
+            ],
+            [
+              0.17,
+              0.0
+            ]
+          ],
+          "fixture_overrides": null,
+          "cable_overrides": null,
+          "clocks_override": null,
+          "port_compliance": null,
+          "repair_action": {
+            "retreat_m": 0.1,
+            "bearing_rad": 0.0,
+            "excursion_m": 0.03,
+            "speed_m_per_s": 0.02
+          },
+          "forced_macro_at_s": 2.0
+        },
+        {
+          "case": "q_t20_r100_b180_e30",
+          "outcome": "clip_lost",
+          "failure_reason": "lost_required_clip",
+          "settled": true,
+          "clip_retained": false,
+          "installed_loop_m": 0.004,
+          "run_direction_xy": [
+            1.0,
+            0.0
+          ],
+          "outward_xy": [
+            1.0,
+            0.0
+          ],
+          "fixture_offset_m": [
+            0.0,
+            0.0
+          ],
+          "route_waypoints_along_across_m": [
+            [
+              0.09,
+              0.0
+            ],
+            [
+              0.17,
+              0.0
+            ]
+          ],
+          "fixture_overrides": null,
+          "cable_overrides": null,
+          "clocks_override": null,
+          "port_compliance": null,
+          "repair_action": {
+            "retreat_m": 0.1,
+            "bearing_rad": 3.141592653589793,
+            "excursion_m": 0.03,
+            "speed_m_per_s": 0.02
+          },
+          "forced_macro_at_s": 2.0
+        },
+        {
+          "case": "q_t20_r100_b90_e30",
+          "outcome": "deadline",
+          "failure_reason": "deadline",
+          "settled": true,
+          "clip_retained": true,
+          "installed_loop_m": 0.004,
+          "run_direction_xy": [
+            1.0,
+            0.0
+          ],
+          "outward_xy": [
+            1.0,
+            0.0
+          ],
+          "fixture_offset_m": [
+            0.0,
+            0.0
+          ],
+          "route_waypoints_along_across_m": [
+            [
+              0.09,
+              0.0
+            ],
+            [
+              0.17,
+              0.0
+            ]
+          ],
+          "fixture_overrides": null,
+          "cable_overrides": null,
+          "clocks_override": null,
+          "port_compliance": null,
+          "repair_action": {
+            "retreat_m": 0.1,
+            "bearing_rad": 1.5707963267948966,
+            "excursion_m": 0.03,
+            "speed_m_per_s": 0.02
+          },
+          "forced_macro_at_s": 2.0
+        },
+        {
+          "case": "q_t20_r40_b0_e0",
+          "outcome": "completed_clip_retained",
+          "failure_reason": null,
+          "settled": true,
+          "clip_retained": true,
+          "installed_loop_m": 0.004,
+          "run_direction_xy": [
+            1.0,
+            0.0
+          ],
+          "outward_xy": [
+            1.0,
+            0.0
+          ],
+          "fixture_offset_m": [
+            0.0,
+            0.0
+          ],
+          "route_waypoints_along_across_m": [
+            [
+              0.09,
+              0.0
+            ],
+            [
+              0.17,
+              0.0
+            ]
+          ],
+          "fixture_overrides": null,
+          "cable_overrides": null,
+          "clocks_override": null,
+          "port_compliance": null,
+          "repair_action": {
+            "retreat_m": 0.04,
+            "bearing_rad": 0.0,
+            "excursion_m": 0.0,
+            "speed_m_per_s": 0.02
+          },
+          "forced_macro_at_s": 2.0
+        },
+        {
+          "case": "q_t20_r40_b0_e30",
+          "outcome": "completed_clip_retained",
+          "failure_reason": null,
+          "settled": true,
+          "clip_retained": true,
+          "installed_loop_m": 0.004,
+          "run_direction_xy": [
+            1.0,
+            0.0
+          ],
+          "outward_xy": [
+            1.0,
+            0.0
+          ],
+          "fixture_offset_m": [
+            0.0,
+            0.0
+          ],
+          "route_waypoints_along_across_m": [
+            [
+              0.09,
+              0.0
+            ],
+            [
+              0.17,
+              0.0
+            ]
+          ],
+          "fixture_overrides": null,
+          "cable_overrides": null,
+          "clocks_override": null,
+          "port_compliance": null,
+          "repair_action": {
+            "retreat_m": 0.04,
+            "bearing_rad": 0.0,
+            "excursion_m": 0.03,
+            "speed_m_per_s": 0.02
+          },
+          "forced_macro_at_s": 2.0
+        },
+        {
+          "case": "q_t20_r40_b180_e30",
+          "outcome": "completed_clip_retained",
+          "failure_reason": null,
+          "settled": true,
+          "clip_retained": true,
+          "installed_loop_m": 0.004,
+          "run_direction_xy": [
+            1.0,
+            0.0
+          ],
+          "outward_xy": [
+            1.0,
+            0.0
+          ],
+          "fixture_offset_m": [
+            0.0,
+            0.0
+          ],
+          "route_waypoints_along_across_m": [
+            [
+              0.09,
+              0.0
+            ],
+            [
+              0.17,
+              0.0
+            ]
+          ],
+          "fixture_overrides": null,
+          "cable_overrides": null,
+          "clocks_override": null,
+          "port_compliance": null,
+          "repair_action": {
+            "retreat_m": 0.04,
+            "bearing_rad": 3.141592653589793,
+            "excursion_m": 0.03,
+            "speed_m_per_s": 0.02
+          },
+          "forced_macro_at_s": 2.0
+        },
+        {
+          "case": "q_t20_r40_b90_e30",
+          "outcome": "completed_clip_retained",
+          "failure_reason": null,
+          "settled": true,
+          "clip_retained": true,
+          "installed_loop_m": 0.004,
+          "run_direction_xy": [
+            1.0,
+            0.0
+          ],
+          "outward_xy": [
+            1.0,
+            0.0
+          ],
+          "fixture_offset_m": [
+            0.0,
+            0.0
+          ],
+          "route_waypoints_along_across_m": [
+            [
+              0.09,
+              0.0
+            ],
+            [
+              0.17,
+              0.0
+            ]
+          ],
+          "fixture_overrides": null,
+          "cable_overrides": null,
+          "clocks_override": null,
+          "port_compliance": null,
+          "repair_action": {
+            "retreat_m": 0.04,
+            "bearing_rad": 1.5707963267948966,
+            "excursion_m": 0.03,
+            "speed_m_per_s": 0.02
+          },
+          "forced_macro_at_s": 2.0
+        },
+        {
+          "case": "q_t20_r80_b0_e0",
+          "outcome": "completed_clip_retained",
+          "failure_reason": null,
+          "settled": true,
+          "clip_retained": true,
+          "installed_loop_m": 0.004,
+          "run_direction_xy": [
+            1.0,
+            0.0
+          ],
+          "outward_xy": [
+            1.0,
+            0.0
+          ],
+          "fixture_offset_m": [
+            0.0,
+            0.0
+          ],
+          "route_waypoints_along_across_m": [
+            [
+              0.09,
+              0.0
+            ],
+            [
+              0.17,
+              0.0
+            ]
+          ],
+          "fixture_overrides": null,
+          "cable_overrides": null,
+          "clocks_override": null,
+          "port_compliance": null,
+          "repair_action": {
+            "retreat_m": 0.08,
+            "bearing_rad": 0.0,
+            "excursion_m": 0.0,
+            "speed_m_per_s": 0.02
+          },
+          "forced_macro_at_s": 2.0
+        },
+        {
+          "case": "q_t20_r80_b0_e30",
+          "outcome": "completed_clip_retained",
+          "failure_reason": null,
+          "settled": true,
+          "clip_retained": true,
+          "installed_loop_m": 0.004,
+          "run_direction_xy": [
+            1.0,
+            0.0
+          ],
+          "outward_xy": [
+            1.0,
+            0.0
+          ],
+          "fixture_offset_m": [
+            0.0,
+            0.0
+          ],
+          "route_waypoints_along_across_m": [
+            [
+              0.09,
+              0.0
+            ],
+            [
+              0.17,
+              0.0
+            ]
+          ],
+          "fixture_overrides": null,
+          "cable_overrides": null,
+          "clocks_override": null,
+          "port_compliance": null,
+          "repair_action": {
+            "retreat_m": 0.08,
+            "bearing_rad": 0.0,
+            "excursion_m": 0.03,
+            "speed_m_per_s": 0.02
+          },
+          "forced_macro_at_s": 2.0
+        },
+        {
+          "case": "q_t20_r80_b180_e30",
+          "outcome": "clip_lost",
+          "failure_reason": "lost_required_clip",
+          "settled": true,
+          "clip_retained": false,
+          "installed_loop_m": 0.004,
+          "run_direction_xy": [
+            1.0,
+            0.0
+          ],
+          "outward_xy": [
+            1.0,
+            0.0
+          ],
+          "fixture_offset_m": [
+            0.0,
+            0.0
+          ],
+          "route_waypoints_along_across_m": [
+            [
+              0.09,
+              0.0
+            ],
+            [
+              0.17,
+              0.0
+            ]
+          ],
+          "fixture_overrides": null,
+          "cable_overrides": null,
+          "clocks_override": null,
+          "port_compliance": null,
+          "repair_action": {
+            "retreat_m": 0.08,
+            "bearing_rad": 3.141592653589793,
+            "excursion_m": 0.03,
+            "speed_m_per_s": 0.02
+          },
+          "forced_macro_at_s": 2.0
+        },
+        {
+          "case": "q_t20_r80_b90_e30",
+          "outcome": "completed_clip_retained",
+          "failure_reason": null,
+          "settled": true,
+          "clip_retained": true,
+          "installed_loop_m": 0.004,
+          "run_direction_xy": [
+            1.0,
+            0.0
+          ],
+          "outward_xy": [
+            1.0,
+            0.0
+          ],
+          "fixture_offset_m": [
+            0.0,
+            0.0
+          ],
+          "route_waypoints_along_across_m": [
+            [
+              0.09,
+              0.0
+            ],
+            [
+              0.17,
+              0.0
+            ]
+          ],
+          "fixture_overrides": null,
+          "cable_overrides": null,
+          "clocks_override": null,
+          "port_compliance": null,
+          "repair_action": {
+            "retreat_m": 0.08,
+            "bearing_rad": 1.5707963267948966,
+            "excursion_m": 0.03,
+            "speed_m_per_s": 0.02
+          },
+          "forced_macro_at_s": 2.0
+        },
+        {
+          "case": "q_t50_r0_b0_e30",
+          "outcome": "deadline",
+          "failure_reason": "deadline",
+          "settled": true,
+          "clip_retained": true,
+          "installed_loop_m": 0.004,
+          "run_direction_xy": [
+            1.0,
+            0.0
+          ],
+          "outward_xy": [
+            1.0,
+            0.0
+          ],
+          "fixture_offset_m": [
+            0.0,
+            0.0
+          ],
+          "route_waypoints_along_across_m": [
+            [
+              0.09,
+              0.0
+            ],
+            [
+              0.17,
+              0.0
+            ]
+          ],
+          "fixture_overrides": null,
+          "cable_overrides": null,
+          "clocks_override": null,
+          "port_compliance": null,
+          "repair_action": {
+            "retreat_m": 0.0,
+            "bearing_rad": 0.0,
+            "excursion_m": 0.03,
+            "speed_m_per_s": 0.02
+          },
+          "forced_macro_at_s": 5.0
+        },
+        {
+          "case": "q_t50_r0_b180_e30",
+          "outcome": "deadline",
+          "failure_reason": "deadline",
+          "settled": true,
+          "clip_retained": true,
+          "installed_loop_m": 0.004,
+          "run_direction_xy": [
+            1.0,
+            0.0
+          ],
+          "outward_xy": [
+            1.0,
+            0.0
+          ],
+          "fixture_offset_m": [
+            0.0,
+            0.0
+          ],
+          "route_waypoints_along_across_m": [
+            [
+              0.09,
+              0.0
+            ],
+            [
+              0.17,
+              0.0
+            ]
+          ],
+          "fixture_overrides": null,
+          "cable_overrides": null,
+          "clocks_override": null,
+          "port_compliance": null,
+          "repair_action": {
+            "retreat_m": 0.0,
+            "bearing_rad": 3.141592653589793,
+            "excursion_m": 0.03,
+            "speed_m_per_s": 0.02
+          },
+          "forced_macro_at_s": 5.0
+        },
+        {
+          "case": "q_t50_r0_b90_e30",
+          "outcome": "deadline",
+          "failure_reason": "deadline",
+          "settled": true,
+          "clip_retained": true,
+          "installed_loop_m": 0.004,
+          "run_direction_xy": [
+            1.0,
+            0.0
+          ],
+          "outward_xy": [
+            1.0,
+            0.0
+          ],
+          "fixture_offset_m": [
+            0.0,
+            0.0
+          ],
+          "route_waypoints_along_across_m": [
+            [
+              0.09,
+              0.0
+            ],
+            [
+              0.17,
+              0.0
+            ]
+          ],
+          "fixture_overrides": null,
+          "cable_overrides": null,
+          "clocks_override": null,
+          "port_compliance": null,
+          "repair_action": {
+            "retreat_m": 0.0,
+            "bearing_rad": 1.5707963267948966,
+            "excursion_m": 0.03,
+            "speed_m_per_s": 0.02
+          },
+          "forced_macro_at_s": 5.0
+        },
+        {
+          "case": "q_t50_r100_b0_e0",
+          "outcome": "clip_lost",
+          "failure_reason": "lost_required_clip",
+          "settled": true,
+          "clip_retained": false,
+          "installed_loop_m": 0.004,
+          "run_direction_xy": [
+            1.0,
+            0.0
+          ],
+          "outward_xy": [
+            1.0,
+            0.0
+          ],
+          "fixture_offset_m": [
+            0.0,
+            0.0
+          ],
+          "route_waypoints_along_across_m": [
+            [
+              0.09,
+              0.0
+            ],
+            [
+              0.17,
+              0.0
+            ]
+          ],
+          "fixture_overrides": null,
+          "cable_overrides": null,
+          "clocks_override": null,
+          "port_compliance": null,
+          "repair_action": {
+            "retreat_m": 0.1,
+            "bearing_rad": 0.0,
+            "excursion_m": 0.0,
+            "speed_m_per_s": 0.02
+          },
+          "forced_macro_at_s": 5.0
+        },
+        {
+          "case": "q_t50_r100_b0_e30",
+          "outcome": "load_abort",
+          "failure_reason": "force_abort",
+          "settled": true,
+          "clip_retained": true,
+          "installed_loop_m": 0.004,
+          "run_direction_xy": [
+            1.0,
+            0.0
+          ],
+          "outward_xy": [
+            1.0,
+            0.0
+          ],
+          "fixture_offset_m": [
+            0.0,
+            0.0
+          ],
+          "route_waypoints_along_across_m": [
+            [
+              0.09,
+              0.0
+            ],
+            [
+              0.17,
+              0.0
+            ]
+          ],
+          "fixture_overrides": null,
+          "cable_overrides": null,
+          "clocks_override": null,
+          "port_compliance": null,
+          "repair_action": {
+            "retreat_m": 0.1,
+            "bearing_rad": 0.0,
+            "excursion_m": 0.03,
+            "speed_m_per_s": 0.02
+          },
+          "forced_macro_at_s": 5.0
+        },
+        {
+          "case": "q_t50_r100_b180_e30",
+          "outcome": "clip_lost",
+          "failure_reason": "lost_required_clip",
+          "settled": true,
+          "clip_retained": false,
+          "installed_loop_m": 0.004,
+          "run_direction_xy": [
+            1.0,
+            0.0
+          ],
+          "outward_xy": [
+            1.0,
+            0.0
+          ],
+          "fixture_offset_m": [
+            0.0,
+            0.0
+          ],
+          "route_waypoints_along_across_m": [
+            [
+              0.09,
+              0.0
+            ],
+            [
+              0.17,
+              0.0
+            ]
+          ],
+          "fixture_overrides": null,
+          "cable_overrides": null,
+          "clocks_override": null,
+          "port_compliance": null,
+          "repair_action": {
+            "retreat_m": 0.1,
+            "bearing_rad": 3.141592653589793,
+            "excursion_m": 0.03,
+            "speed_m_per_s": 0.02
+          },
+          "forced_macro_at_s": 5.0
+        },
+        {
+          "case": "q_t50_r100_b90_e30",
+          "outcome": "deadline",
+          "failure_reason": "deadline",
+          "settled": true,
+          "clip_retained": true,
+          "installed_loop_m": 0.004,
+          "run_direction_xy": [
+            1.0,
+            0.0
+          ],
+          "outward_xy": [
+            1.0,
+            0.0
+          ],
+          "fixture_offset_m": [
+            0.0,
+            0.0
+          ],
+          "route_waypoints_along_across_m": [
+            [
+              0.09,
+              0.0
+            ],
+            [
+              0.17,
+              0.0
+            ]
+          ],
+          "fixture_overrides": null,
+          "cable_overrides": null,
+          "clocks_override": null,
+          "port_compliance": null,
+          "repair_action": {
+            "retreat_m": 0.1,
+            "bearing_rad": 1.5707963267948966,
+            "excursion_m": 0.03,
+            "speed_m_per_s": 0.02
+          },
+          "forced_macro_at_s": 5.0
+        },
+        {
+          "case": "q_t50_r40_b0_e0",
+          "outcome": "completed_clip_retained",
+          "failure_reason": null,
+          "settled": true,
+          "clip_retained": true,
+          "installed_loop_m": 0.004,
+          "run_direction_xy": [
+            1.0,
+            0.0
+          ],
+          "outward_xy": [
+            1.0,
+            0.0
+          ],
+          "fixture_offset_m": [
+            0.0,
+            0.0
+          ],
+          "route_waypoints_along_across_m": [
+            [
+              0.09,
+              0.0
+            ],
+            [
+              0.17,
+              0.0
+            ]
+          ],
+          "fixture_overrides": null,
+          "cable_overrides": null,
+          "clocks_override": null,
+          "port_compliance": null,
+          "repair_action": {
+            "retreat_m": 0.04,
+            "bearing_rad": 0.0,
+            "excursion_m": 0.0,
+            "speed_m_per_s": 0.02
+          },
+          "forced_macro_at_s": 5.0
+        },
+        {
+          "case": "q_t50_r40_b0_e30",
+          "outcome": "load_abort",
+          "failure_reason": "force_abort",
+          "settled": true,
+          "clip_retained": true,
+          "installed_loop_m": 0.004,
+          "run_direction_xy": [
+            1.0,
+            0.0
+          ],
+          "outward_xy": [
+            1.0,
+            0.0
+          ],
+          "fixture_offset_m": [
+            0.0,
+            0.0
+          ],
+          "route_waypoints_along_across_m": [
+            [
+              0.09,
+              0.0
+            ],
+            [
+              0.17,
+              0.0
+            ]
+          ],
+          "fixture_overrides": null,
+          "cable_overrides": null,
+          "clocks_override": null,
+          "port_compliance": null,
+          "repair_action": {
+            "retreat_m": 0.04,
+            "bearing_rad": 0.0,
+            "excursion_m": 0.03,
+            "speed_m_per_s": 0.02
+          },
+          "forced_macro_at_s": 5.0
+        },
+        {
+          "case": "q_t50_r40_b180_e30",
+          "outcome": "load_abort",
+          "failure_reason": "force_abort",
+          "settled": true,
+          "clip_retained": true,
+          "installed_loop_m": 0.004,
+          "run_direction_xy": [
+            1.0,
+            0.0
+          ],
+          "outward_xy": [
+            1.0,
+            0.0
+          ],
+          "fixture_offset_m": [
+            0.0,
+            0.0
+          ],
+          "route_waypoints_along_across_m": [
+            [
+              0.09,
+              0.0
+            ],
+            [
+              0.17,
+              0.0
+            ]
+          ],
+          "fixture_overrides": null,
+          "cable_overrides": null,
+          "clocks_override": null,
+          "port_compliance": null,
+          "repair_action": {
+            "retreat_m": 0.04,
+            "bearing_rad": 3.141592653589793,
+            "excursion_m": 0.03,
+            "speed_m_per_s": 0.02
+          },
+          "forced_macro_at_s": 5.0
+        },
+        {
+          "case": "q_t50_r40_b90_e30",
+          "outcome": "load_abort",
+          "failure_reason": "force_abort",
+          "settled": true,
+          "clip_retained": true,
+          "installed_loop_m": 0.004,
+          "run_direction_xy": [
+            1.0,
+            0.0
+          ],
+          "outward_xy": [
+            1.0,
+            0.0
+          ],
+          "fixture_offset_m": [
+            0.0,
+            0.0
+          ],
+          "route_waypoints_along_across_m": [
+            [
+              0.09,
+              0.0
+            ],
+            [
+              0.17,
+              0.0
+            ]
+          ],
+          "fixture_overrides": null,
+          "cable_overrides": null,
+          "clocks_override": null,
+          "port_compliance": null,
+          "repair_action": {
+            "retreat_m": 0.04,
+            "bearing_rad": 1.5707963267948966,
+            "excursion_m": 0.03,
+            "speed_m_per_s": 0.02
+          },
+          "forced_macro_at_s": 5.0
+        },
+        {
+          "case": "q_t50_r80_b0_e0",
+          "outcome": "completed_clip_retained",
+          "failure_reason": null,
+          "settled": true,
+          "clip_retained": true,
+          "installed_loop_m": 0.004,
+          "run_direction_xy": [
+            1.0,
+            0.0
+          ],
+          "outward_xy": [
+            1.0,
+            0.0
+          ],
+          "fixture_offset_m": [
+            0.0,
+            0.0
+          ],
+          "route_waypoints_along_across_m": [
+            [
+              0.09,
+              0.0
+            ],
+            [
+              0.17,
+              0.0
+            ]
+          ],
+          "fixture_overrides": null,
+          "cable_overrides": null,
+          "clocks_override": null,
+          "port_compliance": null,
+          "repair_action": {
+            "retreat_m": 0.08,
+            "bearing_rad": 0.0,
+            "excursion_m": 0.0,
+            "speed_m_per_s": 0.02
+          },
+          "forced_macro_at_s": 5.0
+        },
+        {
+          "case": "q_t50_r80_b0_e30",
+          "outcome": "load_abort",
+          "failure_reason": "force_abort",
+          "settled": true,
+          "clip_retained": true,
+          "installed_loop_m": 0.004,
+          "run_direction_xy": [
+            1.0,
+            0.0
+          ],
+          "outward_xy": [
+            1.0,
+            0.0
+          ],
+          "fixture_offset_m": [
+            0.0,
+            0.0
+          ],
+          "route_waypoints_along_across_m": [
+            [
+              0.09,
+              0.0
+            ],
+            [
+              0.17,
+              0.0
+            ]
+          ],
+          "fixture_overrides": null,
+          "cable_overrides": null,
+          "clocks_override": null,
+          "port_compliance": null,
+          "repair_action": {
+            "retreat_m": 0.08,
+            "bearing_rad": 0.0,
+            "excursion_m": 0.03,
+            "speed_m_per_s": 0.02
+          },
+          "forced_macro_at_s": 5.0
+        },
+        {
+          "case": "q_t50_r80_b180_e30",
+          "outcome": "load_abort",
+          "failure_reason": "force_abort",
+          "settled": true,
+          "clip_retained": true,
+          "installed_loop_m": 0.004,
+          "run_direction_xy": [
+            1.0,
+            0.0
+          ],
+          "outward_xy": [
+            1.0,
+            0.0
+          ],
+          "fixture_offset_m": [
+            0.0,
+            0.0
+          ],
+          "route_waypoints_along_across_m": [
+            [
+              0.09,
+              0.0
+            ],
+            [
+              0.17,
+              0.0
+            ]
+          ],
+          "fixture_overrides": null,
+          "cable_overrides": null,
+          "clocks_override": null,
+          "port_compliance": null,
+          "repair_action": {
+            "retreat_m": 0.08,
+            "bearing_rad": 3.141592653589793,
+            "excursion_m": 0.03,
+            "speed_m_per_s": 0.02
+          },
+          "forced_macro_at_s": 5.0
+        },
+        {
+          "case": "q_t50_r80_b90_e30",
+          "outcome": "load_abort",
+          "failure_reason": "force_abort",
+          "settled": true,
+          "clip_retained": true,
+          "installed_loop_m": 0.004,
+          "run_direction_xy": [
+            1.0,
+            0.0
+          ],
+          "outward_xy": [
+            1.0,
+            0.0
+          ],
+          "fixture_offset_m": [
+            0.0,
+            0.0
+          ],
+          "route_waypoints_along_across_m": [
+            [
+              0.09,
+              0.0
+            ],
+            [
+              0.17,
+              0.0
+            ]
+          ],
+          "fixture_overrides": null,
+          "cable_overrides": null,
+          "clocks_override": null,
+          "port_compliance": null,
+          "repair_action": {
+            "retreat_m": 0.08,
+            "bearing_rad": 1.5707963267948966,
+            "excursion_m": 0.03,
+            "speed_m_per_s": 0.02
+          },
+          "forced_macro_at_s": 5.0
+        }
+      ]
+    }
+  },
+  "reading": {
+    "mount_compliance": "Every request completed with the required clip retained across an eightfold range of lateral mount stiffness crossed with mounting offsets. Compliance is not a fault on this observation interface, because every arm is handed the port's live pose at the servo rate and therefore tracks a target that moves under contact.",
+    "layouts": "Rotating the run direction together with the cable exit is fragile. Holding the exit at the registered free direction and varying the clip position and route is more robust. The five layouts the contract registers are the surviving families.",
+    "parametric_action": "The clearance action spans the boundary: outcomes include seating with the clip retained, clip release and load abort within the same grid, so the registered study is not measuring a degenerate space."
+  },
+  "limitations": [
+    "Exploratory: no pre-registration, no held-out split, no repeated seeds.",
+    "Settling rejections here are properties of a construction, not of a controller.",
+    "These counts are not comparable with the registered block's denominator."
+  ]
+}

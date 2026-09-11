@@ -1,62 +1,55 @@
 # Roadmap: constrained-cable connector recovery
 
-**Active scope:** industrial cable handling and connector insertion. Establish a credible physical task, measure where competent methods actually fail, and test the smallest justified improvement. The preserved Franka/FORGE peg study and the first free-cable cycle are historical evidence, not restrictions.
+**Status: the research line is closed.** The question this repository was built to answer has been answered with a pre-registered, held-out measurement, and the answer does not justify continuing. What remains is an engineering repository with its evidence intact.
 
-**Endpoint:** held, clip-preserving seating before gripper release. The robot still holds the plug, real tip/base engagement and a continuous 0.5 s dwell are reached before the deadline, the required open clip stays captured, and no load limit or state-mutation rule is broken. This is not a released or latched connection, electrical function, learned pickup, grasp-robustness result or hardware transfer.
+**Active scope:** industrial cable handling and connector insertion. Establish a credible physical task, measure where competent methods actually fail, and test the smallest justified improvement.
 
-**Question:** on unfamiliar cable layouts and mechanical combinations, when does a learned action-outcome selector improve clip-preserving recovery over competent cable-aware rules and planning at matched experience and inference cost?
+**Endpoint:** held, clip-preserving seating before gripper release. The robot still holds the plug, real tip/base engagement and a continuous 0.5 s dwell are reached before the deadline, the required open clip stays captured, and no load limit or state-mutation rule is broken. Not a released or latched connection, electrical function, learned pickup, grasp-robustness result or hardware transfer.
 
-## Verified state (block v2 r01, 2026-09-10)
+**The question, as pre-registered:** when a supervisor must choose a clearance repair, is the boundary between a repair that keeps the required clip and one that overdraws the cable a simple analytic function of the observable state, or does it need a learned action-outcome model?
+
+## Verified state (block v3 r01, 2026-09-11)
 
 | Item | Verified state |
 | --- | --- |
-| Task | Built and executed. World-fixed mount plate on standoffs, riser, shelf, support column, one escapable open clip, one shallow post, an instrumented strain relief, and a 0.46 m cable clamped at the boot and the strain relief. [Runtime config](configs/cable_recovery_task_v2.json). |
-| Clocks | Separated. 50 Hz policy, 500 Hz servo, 4 kHz physics. Doubling to 8 kHz leaves job duration, servo tick count, dwell, outcome and clip margin unchanged (margins agree to 2e-8 m). |
-| Forces | One authoritative post-step stream replaces the v1 two-sample maximum. Strain-relief reaction read from the connect constraint, cross-checked against a sensor whose 0.0496 N static offset is measured by an unloaded control. |
-| Mass | Compiled cable mass equals the declared 0.05 kg exactly; v1 compiled 6.67% heavy. |
-| Guards | Fail-closed mutation guard on every controller call; a deliberate 1e-4 rad pose write fails the job. |
-| Replay | 34 of 34 replayable requests reproduce status, reason, witness, dwell and elapsed time exactly from the stored ledgers. One request was rejected before the job clock and has no samples. [Replay record](evidence/cable_recovery_replay_v2.json). |
-| Physical envelope | The open clip releases after **84.4 mm** of plug retreat from the port. Release is kinematic slack exhaustion: the strain-relief reaction stays under 0.2 N throughout. |
-| Recovery witness | A blind existing routine jams on a mounting offset and produces a witnessed contact stall on two layouts; with no repair the request runs out its deadline with the stall active; with a robot-driven repair every request reaches held clip-preserving seating. |
-| Constraint matters | The same `over_travel_clear` macro releases the required clip when issued near home (84.4 mm retreat) and preserves it when issued from the inserted pose (about 79 mm). Identical action, opposite consequence, decided by state. |
-| Screen | 18 of 18 requests across installed service loop 2/4/6 mm by mounting offset 0/2/4 mm completed with the clip retained under both arms. No witness fired, so the cable-aware repair layer never ran. |
-| Failed control | The 46-segment spatial refinement does not survive its own settling transient. Discretisation insensitivity is **not** established. Preserved, not retried under a changed rule. |
-| Learning | None. No predictor, recurrent baseline or policy has been trained on any cable task. |
-| Cost | 35 requests, 1,447,106 job steps plus 720,000 settling steps, 708 s summed worker time in 87 s of wall time on 12 workers. Measured aggregate 25.0k native steps/s against the v1 serial 1.78k. |
-| Release | [Block record](evidence/cable_recovery_block_v2.json), [labelled figure](evidence/cable_recovery_v2.png), [replay record](evidence/cable_recovery_replay_v2.json). |
-| **Single next action** | Broaden the registered support to conditions the competent first attempt cannot prevent, then re-screen before any acquisition or training. |
+| Block | 1,440 registered requests over 60 contexts: 5 layouts x 3 installed service loops x 2 port mounts x 2 decision poses, 24 clearance actions each. Launched from a clean tree at `01d87b4`, the pre-registration commit. [Contract](configs/cable_repair_boundary_v3.json), [record](evidence/cable_repair_boundary_v3.json), [figure](evidence/cable_repair_boundary_v3.png). |
+| Denominator | 1,440 requested, 1,440 executed, 1,440 scored. 739 reached held clip-preserving seating, 322 released the clip, 379 aborted on load. No deadlines, no settling rejections, no infeasible constructions. |
+| Guards | 0 forbidden mutation events across the whole block. |
+| Cost | 72,874,693 job steps plus 28,800,000 settling steps; 32,620 s summed worker time in 2,737 s of wall time on 12 workers; median request 22.6 s; 3,117 native steps/s per worker and 37,147 aggregate. No training ran during collection. |
+| Held-out design | Whole (layout, installed loop) families. Train 7 groups, dev 3, test 5, frozen before launch. Test: 480 requests, 142 clip losses, 20 contexts. |
+| **B0** analytic budget | One fitted scalar: reject a repair whose straight-line plug-boot to strain-relief distance at the commanded endpoint exceeds **409.4 mm**. Held-out false-safe rate **0.162**, ranking regret **0.25**. |
+| **B1** feature model | L2-regularised logistic regression over 14 named features; linear variant chosen on dev. False-safe **0.156**, ranking regret **0.25**. Makes the **identical decision to B0 in all 20 held-out contexts**. |
+| **M** learned model | Action-conditioned MLP over the 24-vertex centreline, pose and action; three seeds, checkpoints by dev loss inside a frozen budget. False-safe **0.148**, ranking regret **0.15**. |
+| No filter | Reference, not a predictor: allowing every repair gives a 0.296 clip-loss rate and issues the wrong repair in **18 of 20** contexts. |
+| Is M's advantage real? | It is two contexts out of twenty, paired sign-test p = 0.5. Its three seeds give 0.15 / 0.25 / 0.50, mean 0.30 — **worse than B0**; one seed of three is worse than B0. Cluster bootstrap on the false-safe gap: B0 - M = +0.016, 95% interval **[-0.017, +0.050]**, spanning zero. |
+| **Pre-registered verdict** | **`inconclusive_neither_branch_triggered`.** B0 sits inside the declared margin on the false-safe metric (gap 0.014) and outside it on ranking regret (gap 0.10), so neither the wrap-up branch nor the publication branch fired. |
+| Pre-registration defect | The margin was 0.05 and the ranking metric's resolution is one context in twenty, which is also 0.05. That branch was unresolvable by construction. Recorded, not corrected after the fact. |
+| Envelope is geometry | Release travel 84.40 / 84.88 / 85.59 mm at 4 / 20 / 40 mm/s: **1.41% over a tenfold speed range**. The 4 mm/s run reproduces the v2 ledger sample for sample. |
+| Mount control | The compliant bracket reproduces its declared stiffness to a relative error of 1.9e-13 with off-axis coupling at 1.3e-16 m, under a known load. With no compliance declared the compiled scene is unchanged from v2. |
+| Compliance is not a fault | 15 of 15 completed with the clip retained across lateral stiffness {rigid, 8000, 4000, 2000, 1000} N/m crossed with offsets {0, 2, 4} mm. Every arm sees the port's live pose, so a moving target is tracked. Preserved with the layout screen and the action shakedown in [evidence/cable_support_probes_v3.json](evidence/cable_support_probes_v3.json). |
+| Factor effects | Clip loss 28.1% from the home pose against 16.7% from the engaged pose. Load aborts 36.8% on a rigid mount against 15.8% on a compliant one. Clip loss 10.8% to 37.2% across the five layouts. |
+| **Open failure** | The 46-segment spatial refinement does not survive settling at 4, 8 **or** 16 kHz. Not an integration-step artefact. Discretisation insensitivity is **not** established and every result is scoped to the 23-segment cable model. |
 
-## Why learning is not yet earned
+## What this settles, and what it does not
 
-Gate G4 requires competent rules or planning to leave a reproducible feasible residual failure, or a predeclared material cost deficit. On the registered G3 support they leave neither: exact target knowledge plus bounded force-guided retries prevents every cell outright, and a prevented visible offset is prevention, not recovery. That is a result about this support, not a claim that learning is unnecessary in general. Do not open acquisition or training until a re-screen produces a measured residual.
+It settles that on this task a repair supervisor needs a safety filter and that one number is a sufficient one. Nothing that saw more of the state — fourteen engineered features, or the entire cable centreline — changed the decision by more than its own training noise. Learning does not earn its data cost here.
 
-## Next block
+It does not settle that the safe-repair boundary is simple in general. It is one task, one connector, one cable model, and one observation interface in which the port's true pose is handed to the controller at 500 Hz. The honest reading is narrower than the headline: **when the constraint that a repair can violate is a length budget, and that budget's endpoint is computable in closed form from the observed pose, a scalar is the right representation.** Where a repair's consequence is not a budget, none of this transfers.
 
-1. **Widen the support to what competence cannot prevent.** Candidates, in order of expected yield: unmodelled mounting compliance so the true port pose moves under contact; installed service loop taken close to the measured 84.4 mm envelope so ordinary repairs approach clip release; distal catch routes that survive settling. Each needs its own G1 controls before it enters a screen.
-2. **Fix the two open measurement gaps.** The 46-segment spatial control must pass or the model must be revised; cable tension is still not a named measured channel; peak contact sums differ about 70% between the two physics resolutions and must never be quoted as resolution-independent.
-3. **Re-screen with the same arms** on the widened support, 64-128 registered development contexts across layout and mechanical families, whole-request and common-cohort accounting kept separate.
-4. **Only on a measured residual**, start with a compact action-conditioned outcome ranker over the shared repair library, include bad repairs in held-out prediction, and compare separate local/distal predictors and a direct history-based selector before claiming anything a joint model adds.
+## The single next action
 
-Budget the next block from the measured throughput above, not from the v1 extrapolation: 12 workers sustain roughly 25k native steps/s on the corrected task, so a 128-request screen costs a few minutes of wall time and a 3,000-request acquisition is hours, not days. Keep one serial queue for any GPU work. Time exhaustion is an incomplete handoff, not a result.
+**None for the research line.** If anyone resumes this work, the one action that gates everything else is the open failure above: **make the 46-segment cable model survive its settling transient, or revise the cable model, and re-run the block.** Until that passes, every number in this repository is a property of a 23-segment discretisation, and a reviewer is entitled to ask whether the 409 mm threshold is a property of the cable or of its polyline.
 
-## Distal catch: a specific unresolved construction
+Two smaller items, in order of value if that one passes: cable tension is now a named measured channel at the boot connect constraint but has never been used as a predictor feature; and the load-abort class (26% of requests) is censored with respect to clip loss, since an action that aborts never gets to test the clip.
 
-Routing the cable around the shallow post is registered in the task but does not yet survive settling: the detour route either folds at construction or the cable migrates out of the clip channel during relaxation. Diagnosed cause is that surplus service-loop cable has no stable resting place near a 20 mm clip channel. The gravity ramp fixed the free route; the catch route needs either a longer shelf run past the clip, a second clip, or a catch expressed as a post the cable is pressed against rather than routed around. Every failed attempt is preserved in the run artifacts.
+## Why the earlier plan changed
 
-## The open question: publish or finish
+The v2 block ended with a plan to widen the support until the competent first attempt failed, then measure whether a learned selector could repair those failures better than rules. That plan was executed as far as the physics allowed and then abandoned on evidence.
 
-A literature check on 2026-09-10 closed off three framings. Building a constrained-cable connector task is not a contribution: [WireCraft](https://arxiv.org/abs/2606.18097) already benchmarks connector insertion, clip routing and channel seating with articulated and deformable physics, real UR5 trajectories and RL/IL/VLA baselines. Predicting whether a planned cable motion is safe is not new: [joint shape and tension prediction](https://arxiv.org/abs/2505.13889) enforces exactly that in a trajectory optimiser. Retry and recovery after failure is not new either: [FAR](https://arxiv.org/abs/2607.01111), reset-free trial-and-error, neuro-symbolic plan repair and the tactile/corrective/predictive connector work all precede us.
+Mounting compliance was built, verified against a known load, and defeated nothing. Combined with the 18 of 18 already on record for mounting offsets, the reason became clear and is a property of the interface rather than the mechanics: the observation hands every arm the port's live pose, so a port that moves under contact is tracked rather than missed. The available routes to a residual failure were then to hide information from the comparison arms — which the operating rules forbid, and which would have manufactured the cohort — or to measure something the data genuinely supports.
 
-What none of them do is treat recovery as spending a **physical budget that a bad repair can overdraw, undoing a step already completed**, or report the measurement substrate that makes such a comparison trustworthy. That is the only framing left, and it is the one the next block tests.
-
-**The decision, pre-registered:** is the boundary between a repair that completes with the clip retained and one that overdraws the cable budget a simple analytic function of observable state, or does it need a learned action-outcome model? If a one-scalar geometric budget comes within a declared margin of a learned model on held-out layout groups, the research line closes and this becomes an engineering repository. If the learned model beats it materially and that survives into closed-loop completion at matched cost, the line continues. The honest prior is that the simple rule wins: the measured 84.4 mm envelope already explains the one state-dependence result we have.
-
-Either outcome is a four-page, non-archival submission to the CoRL 2026 workshop [Everything Beneath the Policy](https://beneath-the-policy.github.io/) (deadline 9 October 2026, workshop 12 November 2026), which explicitly invites controlled studies of design choices, factorial ablations, negative results and tools that expose hidden choices, and judges papers on what they teach about the substrate beneath the policy rather than task performance.
-
-## Handover
-
-The next-session prompt is at `artifacts/prompts/cable_recovery_decision_handover_20260910.txt` (ignored artifacts). It carries the literature positioning, the decisive experiment and the pre-registration requirement. The maintained plan is here.
+The safe-repair boundary is well posed whether or not the first attempt fails: given a decision state and a candidate repair, does that repair release the clip? That question was pre-registered, executed and answered. It is also the only framing the 2026-09-10 literature check left open — prior work plans safe cable motions and retries after failure, but does not treat a repair as spending a physical budget it can overdraw and undo a completed step.
 
 ## History
 
-Closed cycles, the preserved peg study, the first free-cable cycle and the earlier adaptive-sampling design are kept verbatim in [evidence/roadmap_history_v1.json](evidence/roadmap_history_v1.json) with their original evidence files unchanged. [evidence/INDEX.json](evidence/INDEX.json) lists every evidence record with its own declared id, status and scope so one file can be chosen without reading many.
+Closed cycles, the preserved peg study, the first free-cable cycle and the earlier adaptive-sampling design are kept verbatim in [evidence/roadmap_history_v1.json](evidence/roadmap_history_v1.json) with their original evidence files unchanged. The v2 task and gate block are in [evidence/cable_recovery_block_v2.json](evidence/cable_recovery_block_v2.json) and its [independent replay](evidence/cable_recovery_replay_v2.json). [evidence/INDEX.json](evidence/INDEX.json) lists every record with its declared id, status and scope.

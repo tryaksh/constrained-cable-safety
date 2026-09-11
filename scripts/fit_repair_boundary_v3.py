@@ -29,6 +29,7 @@ from assembly_recovery.cable_study_v3 import (  # noqa: E402
     action_displacement,
     balanced_accuracy,
     build_contexts,
+    cluster_bootstrap_difference,
     commanded_magnitude,
     content_sha256,
     false_safe_at_coverage,
@@ -37,6 +38,7 @@ from assembly_recovery.cable_study_v3 import (  # noqa: E402
     fit_b0,
     lowest_risk_choice,
     outcome_label,
+    paired_context_comparison,
     ranking_regret,
 )
 
@@ -211,9 +213,19 @@ def provenance(run_dir: Path) -> dict:
 def accounting(run_dir: Path) -> dict:
     """Measured cost of the block, read from the worker's own totals."""
     result = json.loads((run_dir / "result.json").read_text(encoding="utf-8"))
+    manifest = json.loads((run_dir / "manifest.json").read_text(encoding="utf-8"))
     cases = result["cases"]
     wall = [c["accounting"]["wall_seconds"] for c in cases]
-    return {"requests": len(cases),
+    steps = result["accounting"]["native_steps"]+result["accounting"]["settle_native_steps"]
+    launcher = float(manifest.get("elapsed_seconds") or 0.0)
+    return {"launcher_wall_seconds": round(launcher, 1),
+            "total_native_steps": steps,
+            "aggregate_native_steps_per_second": round(steps/launcher, 1) if launcher else None,
+            "per_worker_native_steps_per_second": round(steps/sum(wall), 1) if sum(wall) else None,
+            "throughput_note": "Aggregate is total steps over launcher wall time on twelve workers, the "
+                               "same convention the v2 block used, where it measured 25,244.7. This block "
+                               "runs faster because visual mesh export is off for study requests.",
+            "requests": len(cases),
             "expected_requests": result.get("expected_requests"),
             "native_steps": result["accounting"]["native_steps"],
             "settle_native_steps": result["accounting"]["settle_native_steps"],
@@ -304,6 +316,30 @@ def main() -> int:
         "ranking_regret_completion": ranking_regret(test, unfiltered, "completed", retract),
     }
 
+    # Post-hoc and labelled as such: the registered margin is 0.05 and the
+    # ranking metric's own resolution is one context in twenty, which is also
+    # 0.05. A gap of one or two contexts therefore cannot be read as a win, so
+    # the pairing and the seed spread are reported beside the registered numbers.
+    safe_sets = {"B0": b0_safe_test, "B1": b1_scores_test < 0.5, "M": m_scores_test < 0.5}
+    results["exploratory_paired_comparisons"] = {
+        f"{a}_vs_{b}": paired_context_comparison(test, safe_sets[a], safe_sets[b], "clip_lost", retract)
+        for a, b in (("B0", "M"), ("B0", "B1"), ("B1", "M"))}
+    results["exploratory_false_safe_bootstrap"] = {
+        "B0_minus_M": cluster_bootstrap_difference(test, b0_scores_test, m_scores_test, b0_safe_test),
+        "B0_minus_B1": cluster_bootstrap_difference(test, b0_scores_test, b1_scores_test, b0_safe_test),
+        "note": "Positive means B0 lets through more clip losses than the comparison predictor at the "
+                "same coverage. An interval spanning zero means the metric cannot tell them apart."}
+    seed_regrets = [results[f"M_seed{f['seed']}"]["ranking_regret_clip"]["regret"] for f in m_fits]
+    seed_false_safe = [results[f"M_seed{f['seed']}"]["false_safe_rate_matched_coverage"] for f in m_fits]
+    results["exploratory_seed_spread"] = {
+        "M_per_seed_ranking_regret": seed_regrets,
+        "M_per_seed_ranking_regret_mean": float(np.mean(seed_regrets)),
+        "M_per_seed_false_safe_matched_coverage": seed_false_safe,
+        "B0_ranking_regret": results["B0"]["ranking_regret_clip"]["regret"],
+        "seeds_worse_than_B0_on_ranking_regret": int(sum(
+            r > results["B0"]["ranking_regret_clip"]["regret"] for r in seed_regrets)),
+        "status": "exploratory_post_hoc_not_part_of_the_decision_rule"}
+
     margin = contract["decision_rule"]["margin"]
     best_other_a = min(results["B1"]["false_safe_rate_matched_coverage"],
                        results["M"]["false_safe_rate_matched_coverage"])
@@ -351,6 +387,17 @@ def main() -> int:
             "b0_minus_best_other_false_safe": gap_a,
             "b0_minus_best_other_ranking_regret": gap_b,
             "verdict": verdict,
+            "metric_b_resolution": results["B0"]["ranking_regret_clip"]["resolution"],
+            "margin_cannot_resolve_one_context": bool(
+                margin <= results["B0"]["ranking_regret_clip"]["resolution"]),
+            "pre_registration_defect": (
+                "The registered margin and the ranking metric's own resolution are both one context in "
+                "twenty. A margin equal to the smallest difference the metric can express cannot "
+                "separate signal from a single context changing hands, so the metric-B branch of the "
+                "rule was unresolvable by construction. This is a flaw in the pre-registration, not in "
+                "the data; it is recorded rather than corrected after the fact. A future block wanting "
+                "to decide on this metric needs either more held-out contexts or a margin of at least "
+                "two contexts, set before collection."),
             "rule": contract["decision_rule"],
         },
         "scope_and_limitations": contract["scope_and_limitations"],

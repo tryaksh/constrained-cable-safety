@@ -1,0 +1,147 @@
+{
+  "schema": 1,
+  "id": "cable_boundary_controls_v3",
+  "created_on": "2026-09-11",
+  "status": "executed_controls_for_the_safe_repair_boundary_block",
+  "scope": "Physical and construction controls declared by the safe-repair boundary contract. Not a study result and not a hardware claim.",
+  "contract": "configs/cable_repair_boundary_v3.json",
+  "known_load_mount_stiffness": {
+    "verdict": "pass",
+    "settled": true,
+    "settle_reason": null,
+    "settle_native_steps": 20000,
+    "worst_relative_stiffness_error": 1.9077560864388943e-13,
+    "worst_off_axis_m": 1.3178736625862962e-16,
+    "measurements": [
+      {
+        "axis": "lateral_run",
+        "applied_n": 2.0,
+        "deflection_m": 0.0005000000000000004,
+        "off_axis_m": 1.3178736625862962e-16,
+        "declared_stiffness_n_per_m": 4000.0,
+        "measured_stiffness_n_per_m": 3999.9999999999964,
+        "relative_error": 9.094947017729283e-16
+      },
+      {
+        "axis": "lateral_side",
+        "applied_n": 2.0,
+        "deflection_m": 0.0004999999999999728,
+        "off_axis_m": 6.188783291566049e-17,
+        "declared_stiffness_n_per_m": 4000.0,
+        "measured_stiffness_n_per_m": 4000.000000000218,
+        "relative_error": 5.4455995268654076e-14
+      },
+      {
+        "axis": "axial",
+        "applied_n": 10.0,
+        "deflection_m": 0.0004000000000000763,
+        "off_axis_m": 1.5764067585373794e-17,
+        "declared_stiffness_n_per_m": 25000.0,
+        "measured_stiffness_n_per_m": 24999.99999999523,
+        "relative_error": 1.9077560864388943e-13
+      }
+    ],
+    "note": "Measured from the settled configuration. The bracket contact with the standoffs is excluded when the mount is compliant, so the declared springs and nothing else carry the mounting load."
+  },
+  "rigid_path_unchanged": {
+    "verdict": "pass",
+    "checks": [
+      {
+        "case": "g1_nominal_seating",
+        "normalised_scene_sha256": "865acbe999d15bdbbe122c467c17d19588a894b47ee1e0fee54dd6dd2d809439",
+        "nq": 103,
+        "nv": 80,
+        "nbody": 45,
+        "port_mount": "world_fixed_rigid"
+      },
+      {
+        "case": "g2_o3_rules",
+        "normalised_scene_sha256": "4d8595ed5dfe5757aa76d7029d648592c15f1c269fb8ed3a2cf75ad7bbdca773",
+        "nq": 103,
+        "nv": 80,
+        "nbody": 45,
+        "port_mount": "world_fixed_rigid"
+      },
+      {
+        "case": "g3_l6_o4_ca",
+        "normalised_scene_sha256": "b42445088636e61a321c694b7a55aefdc4ba852dda09fd225c66d6b049285b4c",
+        "nq": 103,
+        "nv": 80,
+        "nbody": 45,
+        "port_mount": "world_fixed_rigid"
+      }
+    ],
+    "note": "Hashes are over the compiled scene with the temporary visual-mesh directory normalised away, because that path differs between two builds of the same scene. Degrees of freedom are unchanged from v2 (nq 103, nv 80, nbody 45)."
+  },
+  "release_rate_dependence": {
+    "verdict": "measured",
+    "runs": [
+      {
+        "speed_m_per_s": 0.004,
+        "status": "failed",
+        "failure_reason": "lost_required_clip",
+        "released": true,
+        "release_travel_3d_m": 0.0843984947538825,
+        "release_travel_axial_m": 0.08425421845722494,
+        "release_time_s": 21.198,
+        "anchor_reaction_at_release_n": 0.14078284664099464,
+        "peak_clip_contact_n": 0.006500980029456469
+      },
+      {
+        "speed_m_per_s": 0.02,
+        "status": "failed",
+        "failure_reason": "lost_required_clip",
+        "released": true,
+        "release_travel_3d_m": 0.08488068704032421,
+        "release_travel_axial_m": 0.08473629658354173,
+        "release_time_s": 4.312,
+        "anchor_reaction_at_release_n": 0.14271435576390326,
+        "peak_clip_contact_n": 0.0171209936346092
+      },
+      {
+        "speed_m_per_s": 0.04,
+        "status": "failed",
+        "failure_reason": "lost_required_clip",
+        "released": true,
+        "release_travel_3d_m": 0.08559099163868879,
+        "release_travel_axial_m": 0.08544623757271579,
+        "release_time_s": 2.204,
+        "anchor_reaction_at_release_n": 0.14016691818347732,
+        "peak_clip_contact_n": 0.017376811199528937
+      }
+    ],
+    "speed_range_factor": 10.0,
+    "release_travel_3d_spread_m": 0.001192496884806285,
+    "release_travel_3d_spread_fraction": 0.014129362002056651,
+    "v2_recorded_release_travel_m": 0.08439845043197147,
+    "reproduces_v2_ledger": "The 4 mm/s run reproduces the v2 g1_release_ramp servo ledger sample for sample; the recorded 84.4 mm is its three-dimensional tip travel, not its axial component.",
+    "interpretation": "Over a tenfold range of retreat speed the release travel moves by this spread. The envelope may be quoted as geometry only to that tolerance, and always with the speed it was measured at."
+  },
+  "spatial_refinement": {
+    "verdict": "preserved_failure",
+    "runs": [
+      {
+        "physics_hz": 4000,
+        "status": "failed",
+        "failure_reason": "settle_instability",
+        "settled": false,
+        "settle_reason": "settle_instability"
+      },
+      {
+        "physics_hz": 8000,
+        "status": "failed",
+        "failure_reason": "settle_instability",
+        "settled": false,
+        "settle_reason": "settle_instability"
+      },
+      {
+        "physics_hz": 16000,
+        "status": "failed",
+        "failure_reason": "settle_instability",
+        "settled": false,
+        "settle_reason": "settle_instability"
+      }
+    ],
+    "interpretation": "Halving the segment length does not survive the settling transient at any rate tested, so the failure is not an integration-step artefact. Discretisation insensitivity is not established and every result in this repository is scoped to the 23-segment cable model."
+  }
+}

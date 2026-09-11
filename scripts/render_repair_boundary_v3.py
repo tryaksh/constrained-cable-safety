@@ -23,7 +23,8 @@ import matplotlib.pyplot as plt  # noqa: E402
 SURFACE = "#fcfcfb"
 INK, INK_2, MUTED, GRID = "#0b0b0b", "#52514e", "#898781", "#e1e0d9"
 RETAINED, LOST = "#2a78d6", "#e34948"
-PREDICTOR = {"B0": "#2a78d6", "B1": "#eb6834", "M": "#1baf7a"}
+PREDICTOR = {"B0": "#2a78d6", "B1": "#eb6834", "M": "#1baf7a", "none": "#898781"}
+BAR_LABEL = {"B0": "B0", "B1": "B1", "M": "M", "none": "none"}
 OUTCOME_ORDER = ["completed_clip_retained", "load_abort", "deadline", "clip_lost", "completed_clip_lost"]
 OUTCOME_LABEL = {"completed_clip_retained": "seated, clip kept", "load_abort": "load abort",
                  "deadline": "deadline", "clip_lost": "clip released",
@@ -61,7 +62,8 @@ def panel_boundary(axes, rows, threshold_mm):
     axes.set_yticklabels([OUTCOME_LABEL[o] for o in present], fontsize=8)
     axes.set_xlabel("straight-line plug-boot to strain-relief distance\nat the commanded endpoint (mm)",
                     fontsize=8, color=INK_2)
-    axes.set_title("A  One number separates the outcomes", fontsize=9.5, color=INK, loc="left", pad=8)
+    axes.set_title("A  Clip loss against the one-number budget", fontsize=9.5,
+                   color=INK, loc="left", pad=8)
     axes.grid(axis="x", color=GRID, linewidth=0.7)
     axes.set_axisbelow(True)
 
@@ -91,16 +93,23 @@ def panel_predictors(axes, results, margin):
     """Held-out comparison on the two pre-registered metrics."""
     metrics = [("false-safe rate\n(matched coverage)", "false_safe_rate_matched_coverage"),
                ("ranking regret\n(largest safe repair)", None)]
-    names = ["B0", "B1", "M"]
-    width, ceiling = 0.26, 0.0
+    names = ["B0", "B1", "M", "none"]
+    width, ceiling = 0.21, 0.0
     # Each bar is labelled with its predictor and its value, so identity never
     # rests on colour and the sub-3:1 aqua slot carries the required relief.
+    reference = results["no_filter_reference"]
     for slot, name in enumerate(names):
+        entry = reference if name == "none" else results[name]
         values = []
         for _, key in metrics:
-            value = results[name][key] if key else results[name]["ranking_regret_clip"]["regret"]
+            if key is None:
+                value = entry["ranking_regret_clip"]["regret"]
+            elif name == "none":
+                value = entry["clip_loss_base_rate"]   # full coverage by construction
+            else:
+                value = entry[key]
             values.append(float("nan") if value is None else float(value))
-        positions = np.arange(len(metrics))+(slot-1)*width
+        positions = np.arange(len(metrics))+(slot-1.5)*width
         bars = axes.bar(positions, [0.0 if math.isnan(v) else v for v in values],
                         width=width*0.86, color=PREDICTOR[name], linewidth=0)
         for bar, value in zip(bars, values, strict=True):
@@ -109,11 +118,11 @@ def panel_predictors(axes, results, margin):
             axes.text(bar.get_x()+bar.get_width()/2, height+0.008,
                       "n/a" if math.isnan(value) else f"{value:.2f}",
                       ha="center", va="bottom", fontsize=7.5, color=INK_2)
-            axes.text(bar.get_x()+bar.get_width()/2, -0.012, name, ha="center", va="top",
-                      fontsize=7.5, color=PREDICTOR[name])
+            axes.text(bar.get_x()+bar.get_width()/2, -0.02, BAR_LABEL[name], ha="center", va="top",
+                      fontsize=7.5, color=PREDICTOR[name], linespacing=0.95)
     axes.set_xticks(np.arange(len(metrics)))
     axes.set_xticklabels([label for label, _ in metrics], fontsize=8)
-    axes.tick_params(axis="x", pad=16)
+    axes.tick_params(axis="x", pad=26)
     axes.set_ylabel("held-out rate (lower is better)", fontsize=8, color=INK_2)
     axes.set_title(f"C  Held-out groups, decision margin {margin:g}", fontsize=9.5,
                    color=INK, loc="left", pad=8)
@@ -135,8 +144,8 @@ def main() -> int:
     test_rows = [r for r in rows if r["split"] == "test"]
     threshold_mm = 1000*dataset["b0_threshold_m"]
 
-    figure, axes = plt.subplots(1, 3, figsize=(12.6, 4.1), facecolor=SURFACE,
-                                gridspec_kw={"width_ratios": [1.15, 1.0, 1.0], "wspace": 0.32})
+    figure, axes = plt.subplots(1, 3, figsize=(13.2, 4.3), facecolor=SURFACE,
+                                gridspec_kw={"width_ratios": [1.12, 0.95, 1.05], "wspace": 0.3})
     for pane in axes:
         style(pane)
     panel_boundary(axes[0], rows, threshold_mm)
@@ -153,6 +162,7 @@ def main() -> int:
         "Outcomes: " + ", ".join(f"{OUTCOME_LABEL.get(k, k)} {v}" for k, v in sorted(counts.items())) + ". "
         f"Held-out test groups {', '.join(splits['test']['groups'])}: "
         f"{splits['test']['requests']} requests, {splits['test']['clip_lost']} clip losses. "
+        "The no-filter bar allows every action, so it sits at full coverage by construction. "
         f"Pre-registered verdict: {report['decision']['verdict']}. "
         "Simulation only; no hardware, released retention or latching claim."
     )

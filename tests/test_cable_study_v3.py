@@ -282,7 +282,7 @@ def test_commanded_magnitude_matches_the_displacement_norm():
 def test_ranking_regret_issues_the_largest_safe_action():
     rows = [scored_row(0, 0.02, 0, 1), scored_row(1, 0.06, 0, 1), scored_row(2, 0.11, 1, 0)]
     kept = ranking_regret(rows, np.array([True, True, False]), "clip_lost", 0.006)
-    assert kept == {"contexts": 1, "scored": 1, "abstentions": 0, "regret": 0.0}
+    assert kept == {"contexts": 1, "scored": 1, "abstentions": 0, "regret": 0.0, "resolution": 1.0}
     generous = ranking_regret(rows, np.array([True, True, True]), "clip_lost", 0.006)
     assert generous["regret"] == 1.0
 
@@ -292,6 +292,12 @@ def test_ranking_regret_counts_abstention_instead_of_scoring_it():
     result = ranking_regret(rows, np.array([False, False]), "clip_lost", 0.006)
     assert result["abstentions"] == 1 and result["scored"] == 0
     assert math.isnan(result["regret"])
+
+
+def test_ranking_regret_resolution_is_one_context():
+    """The metric cannot express a difference smaller than one context."""
+    rows = [scored_row(i, 0.02*i, 0, 1, f"c{i}") for i in range(20)]
+    assert ranking_regret(rows, np.ones(20, dtype=bool), "clip_lost", 0.006)["resolution"] == 0.05
 
 
 def test_ranking_regret_separates_contexts():

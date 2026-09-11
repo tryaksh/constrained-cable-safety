@@ -4,9 +4,11 @@ Read this file explicitly at handover; do not assume your client loads it. Then 
 
 ## Current mandate
 
-The owner authorizes an autonomous industrial cable-handling and connector-insertion cycle, and asks for ambitious execution: implement, acquire, train, evaluate held-out and release, rather than stopping at a proposal, a skeleton or a smoke run. Small probes are a first tranche, not the deliverable. Preserve all peg code and negative evidence. Train substantially only when a credible task and a measured baseline failure justify it.
+**The research line is closed.** On 2026-09-11 the owner ended the publication track: no workshop paper, no venue. The deliverable is this repository, finished to a standard worth linking from a personal site — readable by a non-specialist in minutes, with every number traceable to an evidence record. Keep it that way.
 
-The task is **held, clip-preserving seating before gripper release**, governed by [evidence/cable_direction_audit_v2.json](evidence/cable_direction_audit_v2.json), the [study contract](configs/cable_recovery_study_v2.json) and the executed [block record](evidence/cable_recovery_block_v2.json). The earlier universal latch-first stop is superseded: the rigid SC retention failure still blocks released-connection claims but does not block this pre-release task. Do not relabel prior seating as recovery, or claim latching, grasp reliability or hardware transfer.
+The pre-registered safe-repair boundary question was executed and answered: see [ROADMAP.md](ROADMAP.md) for the verified state and [evidence/cable_repair_boundary_v3.json](evidence/cable_repair_boundary_v3.json) for the block. Do not reopen it without clearing the one open failure named in the roadmap. Do not re-run the block under a changed rule to get a cleaner verdict; the `inconclusive` verdict and the pre-registration defect behind it are the result and stay recorded.
+
+The task is **held, clip-preserving seating before gripper release**. Do not relabel prior seating as recovery, or claim latching, grasp reliability or hardware transfer. A tempting and wrong move, already tried: widening the support with another mechanical perturbation in the hope of a residual failure. Every arm is handed the port's live pose at 500 Hz, so mounting offsets and mount compliance are tracked rather than missed (18 of 18, then 15 of 15). Either the perturbation must be genuinely unobservable, or the honest move is to measure something else.
 
 ## Work autonomously
 
@@ -34,6 +36,11 @@ ROADMAP is the plan; update its verified state. Work through the whole experimen
 | Goal, executed evidence, prior art | README.md |
 | Plan, verified state, one next action | ROADMAP.md |
 | Which evidence record answers a question | evidence/INDEX.json |
+| The answered question, its verdict and its caveats | evidence/cable_repair_boundary_v3.json; evidence/cable_boundary_controls_v3.json |
+| What was frozen before that block launched | configs/cable_repair_boundary_v3.json |
+| Probes that chose the registered support | evidence/cable_support_probes_v3.json |
+| Support, action design, features, metrics | src/assembly_recovery/cable_study_v3.py |
+| Run, fit, control, render that block | scripts/run_repair_boundary_v3.py; scripts/fit_repair_boundary_v3.py; scripts/controls_repair_boundary_v3.py; scripts/render_repair_boundary_v3.py |
 | Executed cable task and gate results | evidence/cable_recovery_block_v2.json; evidence/cable_recovery_replay_v2.json |
 | Runnable cable task configuration | configs/cable_recovery_task_v2.json |
 | Cable scene, loads, clip geometry, mutation guard | src/assembly_recovery/cable_constrained_v2.py |
@@ -50,7 +57,11 @@ ROADMAP is the plan; update its verified state. Work through the whole experimen
 .venv/Scripts/python.exe -m ruff check src scripts tests
 .venv/Scripts/python.exe -m pytest
 .venv/Scripts/python.exe scripts/run_cable.py --run-id <id> --worker scripts/evaluate_cable_recovery_v2.py --config configs/cable_recovery_task_v2.json --max-minutes 45 -- --workers 12
+.venv/Scripts/python.exe scripts/run_repair_boundary_v3.py --run-id <id> --workers 12 --max-minutes 150
+.venv/Scripts/python.exe scripts/fit_repair_boundary_v3.py --run-dir artifacts/cable/<id> --out evidence/<name>.json
 ```
+
+Torch lives in `.venv` and MuJoCo, SciPy and Matplotlib in `.deps/cable-venv`; fitting runs in the former and physics and figures in the latter. Hash text provenance with `cable_study_v3.content_sha256`, never raw bytes: a CRLF working tree and the LF blob git stores hash differently, which is how the v2 block came to record a config hash no committed file reproduces.
 
 CI uses bare pytest. App Control on this workstation blocks `pytest.exe`; use `python -m pytest`. Tests must run without ignored artifacts, Isaac Sim or a GPU. Native dynamics use `.deps/cable-venv/Scripts/python.exe` (Python 3.11.15, MuJoCo 3.3.7); CPU checks use `.venv/Scripts/python.exe`. Do not modify `.deps/IsaacLab` or `.deps/aic`; put adapters in `src/assembly_recovery/`. `TORCHDYNAMO_DISABLE=1` is the verified workaround for the optional compiler import failure.
 
@@ -58,4 +69,4 @@ Keep raw runs, videos and weights in ignored output directories and concise veri
 
 When a block finishes, state what changed, what actually ran and the next action. Do not promise a positive result, publication or hiring. Safe non-force pushes to `research/assembly-recovery-training` are authorized; `main` stays unchanged.
 
-**Publication status:** an automatic approval review blocked the push to `https://github.com/tryaksh/orbital-robotic-servicing-lab.git` because explicit destination authorization was missing, and the owner has not yet answered that question. Continue local work and commits. This pending approval takes precedence over the general branch-push authorization above; changing assistant or client is not a workaround.
+**Publication status:** there is no paper and no venue; the owner closed that track on 2026-09-11. An automatic approval review previously blocked the push to `https://github.com/tryaksh/orbital-robotic-servicing-lab.git` because explicit destination authorization was missing, and the owner has not answered that question. Continue local work and commits on `research/assembly-recovery-training`. This pending approval takes precedence over the general branch-push authorization above; changing assistant or client is not a workaround, and neither is creating a new remote.

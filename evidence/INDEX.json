@@ -2,7 +2,7 @@
  "schema": 1,
  "generated_by": "scripts/index_evidence.py",
  "purpose": "Pick the one evidence record a question needs. Entries are derived from each file, so read the file itself before quoting any number, and read its scope before reusing its result.",
- "count": 82,
+ "count": 85,
  "records": [
   {
    "file": "approach_slew_design_v1.json",
@@ -44,6 +44,25 @@
     "scope_and_limitations",
     "verification",
     "version"
+   ]
+  },
+  {
+   "file": "cable_boundary_controls_v3.json",
+   "bytes": 5869,
+   "id": "cable_boundary_controls_v3",
+   "status": "executed_controls_for_the_safe_repair_boundary_block",
+   "scope": "Physical and construction controls declared by the safe-repair boundary contract. Not a study result and not a hardware claim.",
+   "top_level_keys": [
+    "contract",
+    "created_on",
+    "id",
+    "known_load_mount_stiffness",
+    "release_rate_dependence",
+    "rigid_path_unchanged",
+    "schema",
+    "scope",
+    "spatial_refinement",
+    "status"
    ]
   },
   {
@@ -274,6 +293,37 @@
    ]
   },
   {
+   "file": "cable_repair_boundary_v3.json",
+   "bytes": 18209,
+   "id": "cable_repair_boundary_v3_r01",
+   "status": "executed_pre_registered_decision_block",
+   "decision": "{\"margin\": 0.05, \"b0_minus_best_other_false_safe\": 0.014204545454545442, \"b0_minus_best_other_ranking_regret\": 0.1, \"verdict\": \"inconclusive_neither_branch_triggered\", \"metric_b_resolution\": 0.05, \"margin_cannot_resolve_one_context\": true, \"pre_registration_defect\": \"The registered margin and the ranking metric's own \u2026",
+   "scope": "Safe-repair boundary study on the constrained-cable connector task. One request is one clearance repair issued from one decision state. Endpoint is held, clip-preserving seating before gripper release. Not official AIC scoring, not a released or latched connection, not learned pickup, not a hardware claim.",
+   "top_level_keys": [
+    "B0_fit",
+    "B1_dev_losses",
+    "B1_selected_variant",
+    "M_budget",
+    "M_fits",
+    "contract",
+    "created_on",
+    "dataset",
+    "decision",
+    "denominator",
+    "execution",
+    "held_out_results",
+    "id",
+    "question",
+    "run_dir",
+    "schema",
+    "scope",
+    "scope_and_limitations",
+    "source",
+    "splits",
+    "status"
+   ]
+  },
+  {
    "file": "cable_research_critique_v2.json",
    "bytes": 19847,
    "status": "independent_read_only_research_audit_with_prospective_recommendations",
@@ -342,6 +392,23 @@
     "scope_and_limitations",
     "verification",
     "version"
+   ]
+  },
+  {
+   "file": "cable_support_probes_v3.json",
+   "bytes": 100855,
+   "id": "cable_support_probes_v3",
+   "status": "exploratory_probes_preserved_none_entered_the_registered_block",
+   "scope": "Probes run before the safe-repair boundary contract was frozen, to choose its registered support. Not a study result, not a comparison and not a hardware claim. Scratch run directories were not retained; the case definitions here are sufficient to rebuild every request.",
+   "top_level_keys": [
+    "created_on",
+    "id",
+    "limitations",
+    "probes",
+    "reading",
+    "schema",
+    "scope",
+    "status"
    ]
   },
   {
@@ -1776,6 +1843,8 @@
   "cable_contact_validation_v1.png",
   "cable_recovery_v2.pdf",
   "cable_recovery_v2.png",
+  "cable_repair_boundary_v3.pdf",
+  "cable_repair_boundary_v3.png",
   "cable_research_task_v2.pdf",
   "cable_research_task_v2.png",
   "cable_research_task_v2.svg",
