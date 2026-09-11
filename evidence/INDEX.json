@@ -2,7 +2,7 @@
  "schema": 1,
  "generated_by": "scripts/index_evidence.py",
  "purpose": "Pick the one evidence record a question needs. Entries are derived from each file, so read the file itself before quoting any number, and read its scope before reusing its result.",
- "count": 85,
+ "count": 89,
  "records": [
   {
    "file": "approach_slew_design_v1.json",
@@ -206,6 +206,29 @@
    ]
   },
   {
+   "file": "cable_discretisation_v4.json",
+   "bytes": 43040,
+   "id": "cable_discretisation_v4",
+   "status": "executed_discretisation_control",
+   "scope": "Spatial refinement and settling control for the constrained-cable model. Re-opens the one open failure the v3 block left. Not a study result and not a hardware claim.",
+   "top_level_keys": [
+    "agreement",
+    "corrected_refinement",
+    "created_on",
+    "damping_scaling",
+    "headline",
+    "id",
+    "label_boundary_finding",
+    "long_settle_probe",
+    "preserved_v3_refinement",
+    "question",
+    "schema",
+    "scope",
+    "scope_and_limitations",
+    "status"
+   ]
+  },
+  {
    "file": "cable_evidence_audit_v2.json",
    "bytes": 25074,
    "id": "cable_evidence_audit_v2",
@@ -234,6 +257,32 @@
    ]
   },
   {
+   "file": "cable_layout_screen_v4.json",
+   "bytes": 49368,
+   "id": "cable_layout_screen_v4",
+   "status": "executed_layout_screen",
+   "scope": "Settling and installed-geometry screen for the perception study support. Not a study result and not a hardware claim.",
+   "top_level_keys": [
+    "accepted_groups",
+    "accepted_layouts",
+    "c2_spec_m",
+    "candidates",
+    "created_on",
+    "declared_lateral_floor_verdict",
+    "declared_lateral_floor_withdrawn",
+    "id",
+    "registered",
+    "rejected_groups",
+    "rule",
+    "runs",
+    "schema",
+    "scope",
+    "screened_cells",
+    "status",
+    "unit"
+   ]
+  },
+  {
    "file": "cable_literature_review_v1.json",
    "bytes": 29964,
    "decision": "{\"status\": \"baseline_first_novelty_unestablished\", \"simplest_credible_baseline\": \"Force-controlled approach, bounded probe/depart grid or spiral search, insertion and retract/retry; precontact wrench compensation; add a visible-snag lift/arc rule only after its geometric feasibility is demonstrated.\", \"practical_refer\u2026",
@@ -250,6 +299,49 @@
     "schema_version",
     "scope",
     "scope_and_limitations"
+   ]
+  },
+  {
+   "file": "cable_perception_controls_v4.json",
+   "bytes": 4437,
+   "id": "cable_perception_controls_v4",
+   "status": "executed_controls_for_the_perception_study",
+   "verdict": "pass",
+   "scope": "Controls the perception contract declares. Not a study result and not a hardware claim.",
+   "top_level_keys": [
+    "contract",
+    "cost",
+    "created_on",
+    "estimate",
+    "id",
+    "note",
+    "privilege_guard_negative",
+    "privilege_guard_positive",
+    "schema",
+    "scope",
+    "status",
+    "verdict"
+   ]
+  },
+  {
+   "file": "cable_perception_pilot_v4.json",
+   "bytes": 8220,
+   "id": "cable_perception_pilot_v4",
+   "status": "executed_pilot_for_sizing_and_calibration",
+   "scope": "Sizing and calibration pilots for the perception study. NOT a study result: the contexts are a strided subset, each error level draws different layout cells, and no predictor is fitted here. Kept because two registered choices were made from it before the block launched.",
+   "top_level_keys": [
+    "c2_finding",
+    "created_on",
+    "guards",
+    "id",
+    "ladder_finding",
+    "purpose",
+    "runs",
+    "schema",
+    "scope",
+    "scope_and_limitations",
+    "status",
+    "throughput_finding"
    ]
   },
   {

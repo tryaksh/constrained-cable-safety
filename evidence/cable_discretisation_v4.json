@@ -1,0 +1,1159 @@
+{
+  "schema": 1,
+  "id": "cable_discretisation_v4",
+  "created_on": "2026-09-11",
+  "status": "executed_discretisation_control",
+  "scope": "Spatial refinement and settling control for the constrained-cable model. Re-opens the one open failure the v3 block left. Not a study result and not a hardware claim.",
+  "question": "Does the constrained-cable model survive spatial refinement, and was the v3 refinement failure a property of the cable or of the control that tested it?",
+  "damping_scaling": {
+    "registered_v3": "c scaled as L: 2e-4 at 20 mm segments became 1e-4 at 10 mm.",
+    "corrected_v4": "c scaled as 1/L: 2e-4 at 20 mm segments becomes 4e-4 at 10 mm and 8e-4 at 5 mm.",
+    "derivation": "A discrete bending joint carries the continuum Kelvin-Voigt moment over one segment. The dissipation functional 0.5*gamma*I*integral(kappadot^2) discretises to 0.5*(gamma*I/L)*thetadot^2 with theta = kappa*L, so the per-joint coefficient is gamma*I/L and RISES under refinement. The registered scaling is the one a drag per unit length would take, and it quartered the damping ratio of the stiffest representable mode at exactly the refinement where it needed to rise.",
+    "conserved_across_refinement": "Total mass, rest length, radius, Young's modulus and twist modulus are unchanged; only the segment count, the segment length and the joint damping move."
+  },
+  "preserved_v3_refinement": [
+    {
+      "segments": 46,
+      "segment_length_m": 0.01,
+      "joint_damping": 0.0001,
+      "physics_hz": 4000,
+      "gravity_ramp_s": 1.5,
+      "window_s": 5.0,
+      "built": true,
+      "settled": false,
+      "reason": "settle_instability",
+      "unstable_at_s": 0.3595,
+      "peak_transient_speed_m_per_s": 483.80633954484733,
+      "peak_at_s": 0.358,
+      "reached_rest_at_s": null,
+      "at_v3_five_second_deadline": null,
+      "lateral_trace": [],
+      "native_steps": 1439,
+      "clip_retained": true,
+      "retained_passages": 1,
+      "crossings": 1,
+      "crossing_lateral_m": 0.0006818264712322103,
+      "crossing_height_m": 0.0025355293207218054,
+      "clip_lateral_wall_m": 0.004,
+      "lateral_wall_gap_m": 0.0033181735287677898,
+      "min_bend_radius_m": 0.026240034793850744,
+      "routed_length_m": 0.45999997718979674,
+      "boot_to_anchor_m": 0.3508250224772514,
+      "cable_lowest_z_m": 1.2198704481124878,
+      "compiled_cable_mass_kg": 0.0499999984185785,
+      "max_initial_turn_deg": 21.969922719706194,
+      "wall_seconds": 1.0,
+      "settings": "v3_registered: 1.5 s ramp, 5 s window, damping 1e-4 (scaled as c ~ L)"
+    },
+    {
+      "segments": 46,
+      "segment_length_m": 0.01,
+      "joint_damping": 0.0001,
+      "physics_hz": 8000,
+      "gravity_ramp_s": 1.5,
+      "window_s": 5.0,
+      "built": true,
+      "settled": false,
+      "reason": "settle_instability",
+      "unstable_at_s": 0.44775,
+      "peak_transient_speed_m_per_s": 137.89219892460488,
+      "peak_at_s": 0.446,
+      "reached_rest_at_s": null,
+      "at_v3_five_second_deadline": null,
+      "lateral_trace": [],
+      "native_steps": 3583,
+      "clip_retained": true,
+      "retained_passages": 1,
+      "crossings": 1,
+      "crossing_lateral_m": 0.0006818264712322103,
+      "crossing_height_m": 0.0025355293207218054,
+      "clip_lateral_wall_m": 0.004,
+      "lateral_wall_gap_m": 0.0033181735287677898,
+      "min_bend_radius_m": 0.026240034793850744,
+      "routed_length_m": 0.45999997718979674,
+      "boot_to_anchor_m": 0.3508250224772514,
+      "cable_lowest_z_m": 1.2198704481124878,
+      "compiled_cable_mass_kg": 0.0499999984185785,
+      "max_initial_turn_deg": 21.969922719706194,
+      "wall_seconds": 2.5,
+      "settings": "v3_registered: 1.5 s ramp, 5 s window, damping 1e-4 (scaled as c ~ L)"
+    },
+    {
+      "segments": 46,
+      "segment_length_m": 0.01,
+      "joint_damping": 0.0001,
+      "physics_hz": 16000,
+      "gravity_ramp_s": 1.5,
+      "window_s": 5.0,
+      "built": true,
+      "settled": false,
+      "reason": "settle_instability",
+      "unstable_at_s": 0.638875,
+      "peak_transient_speed_m_per_s": 151.7113725235402,
+      "peak_at_s": 0.638,
+      "reached_rest_at_s": null,
+      "at_v3_five_second_deadline": null,
+      "lateral_trace": [],
+      "native_steps": 10223,
+      "clip_retained": true,
+      "retained_passages": 1,
+      "crossings": 1,
+      "crossing_lateral_m": 0.0006818264712322103,
+      "crossing_height_m": 0.0025355293207218054,
+      "clip_lateral_wall_m": 0.004,
+      "lateral_wall_gap_m": 0.0033181735287677898,
+      "min_bend_radius_m": 0.026240034793850744,
+      "routed_length_m": 0.45999997718979674,
+      "boot_to_anchor_m": 0.3508250224772514,
+      "cable_lowest_z_m": 1.2198704481124878,
+      "compiled_cable_mass_kg": 0.0499999984185785,
+      "max_initial_turn_deg": 21.969922719706194,
+      "wall_seconds": 5.4,
+      "settings": "v3_registered: 1.5 s ramp, 5 s window, damping 1e-4 (scaled as c ~ L)"
+    }
+  ],
+  "corrected_refinement": [
+    {
+      "segments": 23,
+      "segment_length_m": 0.02,
+      "joint_damping": 0.00020000000000000004,
+      "physics_hz": 4000,
+      "gravity_ramp_s": 1.5,
+      "window_s": 5.0,
+      "built": true,
+      "settled": true,
+      "reason": null,
+      "reached_rest_at_s": 3.0,
+      "peak_transient_speed_m_per_s": 1.9910419790099398,
+      "peak_at_s": 0.438,
+      "final_cable_speed_m_per_s": 0.008356945836946595,
+      "final_lateral_drift_m": 0.00022718885889342635,
+      "tip_tracking_m": 0.0001523929726211294,
+      "at_v3_five_second_deadline": {
+        "lateral_m": 0.0021316468197812902,
+        "clip_retained": true
+      },
+      "lateral_trace": [
+        {
+          "t_s": 1.0,
+          "lateral_m": 0.0011413299845985572,
+          "cable_speed_m_per_s": 0.009015466403069834
+        },
+        {
+          "t_s": 2.0,
+          "lateral_m": 0.0013526772436878748,
+          "cable_speed_m_per_s": 0.01197756747489212
+        },
+        {
+          "t_s": 3.0,
+          "lateral_m": 0.0016456982438030057,
+          "cable_speed_m_per_s": 0.010836106864866423
+        },
+        {
+          "t_s": 4.0,
+          "lateral_m": 0.0019044579608878639,
+          "cable_speed_m_per_s": 0.009487376404354729
+        },
+        {
+          "t_s": 5.0,
+          "lateral_m": 0.0021316468197812902,
+          "cable_speed_m_per_s": 0.008357205113508364
+        }
+      ],
+      "native_steps": 20000,
+      "clip_retained": true,
+      "retained_passages": 1,
+      "crossings": 1,
+      "crossing_lateral_m": 0.002131700061580286,
+      "crossing_height_m": 0.0019719152745072384,
+      "clip_lateral_wall_m": 0.004,
+      "lateral_wall_gap_m": 0.0018682999384197142,
+      "min_bend_radius_m": 0.04960659835000516,
+      "routed_length_m": 0.4599999549556476,
+      "boot_to_anchor_m": 0.35065675673070146,
+      "cable_lowest_z_m": 1.219301453876228,
+      "compiled_cable_mass_kg": 0.049999996524735676,
+      "max_initial_turn_deg": 40.478939507304155,
+      "wall_seconds": 4.1,
+      "settings": "v4_corrected: 1.5 s ramp, 5 s window, damping scaled as c ~ 1/L"
+    },
+    {
+      "segments": 23,
+      "segment_length_m": 0.02,
+      "joint_damping": 0.00020000000000000004,
+      "physics_hz": 8000,
+      "gravity_ramp_s": 1.5,
+      "window_s": 5.0,
+      "built": true,
+      "settled": true,
+      "reason": null,
+      "reached_rest_at_s": 3.0,
+      "peak_transient_speed_m_per_s": 2.121938321072506,
+      "peak_at_s": 0.094,
+      "final_cable_speed_m_per_s": 0.002545323830348458,
+      "final_lateral_drift_m": 7.452674957969193e-05,
+      "tip_tracking_m": 0.0001485800478439084,
+      "at_v3_five_second_deadline": {
+        "lateral_m": -0.0009434137465999056,
+        "clip_retained": true
+      },
+      "lateral_trace": [
+        {
+          "t_s": 1.0,
+          "lateral_m": -0.001220466047636423,
+          "cable_speed_m_per_s": 0.008342667850379742
+        },
+        {
+          "t_s": 2.0,
+          "lateral_m": -0.0012043251599602907,
+          "cable_speed_m_per_s": 0.004050944805416825
+        },
+        {
+          "t_s": 3.0,
+          "lateral_m": -0.0011052034654760253,
+          "cable_speed_m_per_s": 0.003569126560529689
+        },
+        {
+          "t_s": 4.0,
+          "lateral_m": -0.0010179404961795976,
+          "cable_speed_m_per_s": 0.0030022967212691896
+        },
+        {
+          "t_s": 5.0,
+          "lateral_m": -0.0009434137465999056,
+          "cable_speed_m_per_s": 0.0025453756105678084
+        }
+      ],
+      "native_steps": 40000,
+      "clip_retained": true,
+      "retained_passages": 1,
+      "crossings": 1,
+      "crossing_lateral_m": -0.0009434051636779972,
+      "crossing_height_m": 0.001971766343303396,
+      "clip_lateral_wall_m": 0.004,
+      "lateral_wall_gap_m": 0.003056594836322003,
+      "min_bend_radius_m": 0.04924535997260362,
+      "routed_length_m": 0.459999954955648,
+      "boot_to_anchor_m": 0.35067612050519803,
+      "cable_lowest_z_m": 1.2192986968300519,
+      "compiled_cable_mass_kg": 0.049999996524735676,
+      "max_initial_turn_deg": 40.478939507304155,
+      "wall_seconds": 7.6,
+      "settings": "v4_corrected: 1.5 s ramp, 5 s window, damping scaled as c ~ 1/L"
+    },
+    {
+      "segments": 23,
+      "segment_length_m": 0.02,
+      "joint_damping": 0.00020000000000000004,
+      "physics_hz": 16000,
+      "gravity_ramp_s": 1.5,
+      "window_s": 5.0,
+      "built": true,
+      "settled": false,
+      "reason": "settle_clip_not_retained",
+      "reached_rest_at_s": 3.0,
+      "peak_transient_speed_m_per_s": 67.81845986072508,
+      "peak_at_s": 0.616,
+      "final_cable_speed_m_per_s": 0.010843367789837837,
+      "final_lateral_drift_m": 3.612646007052078e-05,
+      "tip_tracking_m": 0.00015504311903962622,
+      "at_v3_five_second_deadline": {
+        "lateral_m": -0.02962187207693962,
+        "clip_retained": false
+      },
+      "lateral_trace": [
+        {
+          "t_s": 1.0,
+          "lateral_m": -0.0423422014029494,
+          "cable_speed_m_per_s": 2.0709107012859658
+        },
+        {
+          "t_s": 2.0,
+          "lateral_m": -0.029539571569162357,
+          "cable_speed_m_per_s": 0.022185715367004703
+        },
+        {
+          "t_s": 3.0,
+          "lateral_m": -0.02953191511741041,
+          "cable_speed_m_per_s": 0.01501886004360853
+        },
+        {
+          "t_s": 4.0,
+          "lateral_m": -0.029585745616869098,
+          "cable_speed_m_per_s": 0.01268906927875641
+        },
+        {
+          "t_s": 5.0,
+          "lateral_m": -0.02962187207693962,
+          "cable_speed_m_per_s": 0.010843467016414336
+        }
+      ],
+      "native_steps": 80000,
+      "clip_retained": false,
+      "retained_passages": 0,
+      "crossings": 1,
+      "crossing_lateral_m": -0.029621873520662343,
+      "crossing_height_m": 0.001974238423874173,
+      "clip_lateral_wall_m": 0.004,
+      "lateral_wall_gap_m": -0.025621873520662343,
+      "min_bend_radius_m": 0.05398639825574102,
+      "routed_length_m": 0.4599999549556476,
+      "boot_to_anchor_m": 0.350671044757354,
+      "cable_lowest_z_m": 1.2193156277118988,
+      "compiled_cable_mass_kg": 0.049999996524735676,
+      "max_initial_turn_deg": 40.478939507304155,
+      "wall_seconds": 15.4,
+      "settings": "v4_corrected: 1.5 s ramp, 5 s window, damping scaled as c ~ 1/L"
+    },
+    {
+      "segments": 46,
+      "segment_length_m": 0.01,
+      "joint_damping": 0.0004000000000000001,
+      "physics_hz": 4000,
+      "gravity_ramp_s": 1.5,
+      "window_s": 5.0,
+      "built": true,
+      "settled": false,
+      "reason": "settle_clip_not_retained",
+      "reached_rest_at_s": 3.0,
+      "peak_transient_speed_m_per_s": 77.08074027481587,
+      "peak_at_s": 0.472,
+      "final_cable_speed_m_per_s": 0.003536960327738188,
+      "final_lateral_drift_m": 0.00017911985151985998,
+      "tip_tracking_m": 2.5640212780444243e-05,
+      "at_v3_five_second_deadline": {
+        "lateral_m": 0.028925718409671623,
+        "clip_retained": false
+      },
+      "lateral_trace": [
+        {
+          "t_s": 1.0,
+          "lateral_m": 0.032335203418666116,
+          "cable_speed_m_per_s": 0.11363106572977216
+        },
+        {
+          "t_s": 2.0,
+          "lateral_m": 0.029406565047660666,
+          "cable_speed_m_per_s": 0.005314210218495874
+        },
+        {
+          "t_s": 3.0,
+          "lateral_m": 0.029270002145542078,
+          "cable_speed_m_per_s": 0.0038147284967909065
+        },
+        {
+          "t_s": 4.0,
+          "lateral_m": 0.029104838261191483,
+          "cable_speed_m_per_s": 0.0036493260650531877
+        },
+        {
+          "t_s": 5.0,
+          "lateral_m": 0.028925718409671623,
+          "cable_speed_m_per_s": 0.0035369812544817016
+        }
+      ],
+      "native_steps": 20000,
+      "clip_retained": false,
+      "retained_passages": 0,
+      "crossings": 1,
+      "crossing_lateral_m": 0.028925672713540088,
+      "crossing_height_m": 0.001977983444384876,
+      "clip_lateral_wall_m": 0.004,
+      "lateral_wall_gap_m": -0.024925672713540088,
+      "min_bend_radius_m": 0.0586784320435123,
+      "routed_length_m": 0.459999977189797,
+      "boot_to_anchor_m": 0.3508302588589199,
+      "cable_lowest_z_m": 1.2192769754710395,
+      "compiled_cable_mass_kg": 0.0499999984185785,
+      "max_initial_turn_deg": 21.969922719706194,
+      "wall_seconds": 16.7,
+      "settings": "v4_corrected: 1.5 s ramp, 5 s window, damping scaled as c ~ 1/L"
+    },
+    {
+      "segments": 46,
+      "segment_length_m": 0.01,
+      "joint_damping": 0.0004000000000000001,
+      "physics_hz": 8000,
+      "gravity_ramp_s": 1.5,
+      "window_s": 5.0,
+      "built": true,
+      "settled": false,
+      "reason": "settle_clip_not_retained",
+      "reached_rest_at_s": 4.0,
+      "peak_transient_speed_m_per_s": 56.3908829286107,
+      "peak_at_s": 0.654,
+      "final_cable_speed_m_per_s": 0.017823536274978295,
+      "final_lateral_drift_m": 8.201024918304267e-05,
+      "tip_tracking_m": 0.00016796456597038763,
+      "at_v3_five_second_deadline": {
+        "lateral_m": 0.033923829968582266,
+        "clip_retained": false
+      },
+      "lateral_trace": [
+        {
+          "t_s": 1.0,
+          "lateral_m": 0.0016202139054949235,
+          "cable_speed_m_per_s": 3.9834297704651576
+        },
+        {
+          "t_s": 2.0,
+          "lateral_m": 0.03420507116592332,
+          "cable_speed_m_per_s": 0.010663357891761578
+        },
+        {
+          "t_s": 3.0,
+          "lateral_m": 0.034088006341618994,
+          "cable_speed_m_per_s": 0.022439049805290726
+        },
+        {
+          "t_s": 4.0,
+          "lateral_m": 0.03400584021776531,
+          "cable_speed_m_per_s": 0.006615554256294806
+        },
+        {
+          "t_s": 5.0,
+          "lateral_m": 0.033923829968582266,
+          "cable_speed_m_per_s": 0.01791177139579494
+        }
+      ],
+      "native_steps": 40000,
+      "clip_retained": false,
+      "retained_passages": 0,
+      "crossings": 1,
+      "crossing_lateral_m": 0.03392382018991668,
+      "crossing_height_m": 0.001978017375614258,
+      "clip_lateral_wall_m": 0.004,
+      "lateral_wall_gap_m": -0.02992382018991668,
+      "min_bend_radius_m": 0.05424461499451136,
+      "routed_length_m": 0.45999997718979724,
+      "boot_to_anchor_m": 0.3506473502651516,
+      "cable_lowest_z_m": 1.219266503649522,
+      "compiled_cable_mass_kg": 0.0499999984185785,
+      "max_initial_turn_deg": 21.969922719706194,
+      "wall_seconds": 34.1,
+      "settings": "v4_corrected: 1.5 s ramp, 5 s window, damping scaled as c ~ 1/L"
+    },
+    {
+      "segments": 46,
+      "segment_length_m": 0.01,
+      "joint_damping": 0.0004000000000000001,
+      "physics_hz": 16000,
+      "gravity_ramp_s": 1.5,
+      "window_s": 5.0,
+      "built": true,
+      "settled": true,
+      "reason": null,
+      "reached_rest_at_s": 3.0,
+      "peak_transient_speed_m_per_s": 5.354696129030039,
+      "peak_at_s": 0.238,
+      "final_cable_speed_m_per_s": 0.0020485171197601065,
+      "final_lateral_drift_m": 9.85115289214402e-05,
+      "tip_tracking_m": 2.8545463001713295e-05,
+      "at_v3_five_second_deadline": {
+        "lateral_m": -0.0014593798675648698,
+        "clip_retained": true
+      },
+      "lateral_trace": [
+        {
+          "t_s": 1.0,
+          "lateral_m": -0.0018967309709617282,
+          "cable_speed_m_per_s": 0.016602099427803666
+        },
+        {
+          "t_s": 2.0,
+          "lateral_m": -0.0017690934559179815,
+          "cable_speed_m_per_s": 0.0023904702144965655
+        },
+        {
+          "t_s": 3.0,
+          "lateral_m": -0.0016602927614859106,
+          "cable_speed_m_per_s": 0.0023473170345894943
+        },
+        {
+          "t_s": 4.0,
+          "lateral_m": -0.00155789139648631,
+          "cable_speed_m_per_s": 0.002170696397913972
+        },
+        {
+          "t_s": 5.0,
+          "lateral_m": -0.0014593798675648698,
+          "cable_speed_m_per_s": 0.002048523476179491
+        }
+      ],
+      "native_steps": 80000,
+      "clip_retained": true,
+      "retained_passages": 1,
+      "crossings": 1,
+      "crossing_lateral_m": -0.0014593738049097573,
+      "crossing_height_m": 0.001976665212760977,
+      "clip_lateral_wall_m": 0.004,
+      "lateral_wall_gap_m": 0.002540626195090243,
+      "min_bend_radius_m": 0.05256431296082845,
+      "routed_length_m": 0.45999997718979696,
+      "boot_to_anchor_m": 0.35083686493530525,
+      "cable_lowest_z_m": 1.21927309301395,
+      "compiled_cable_mass_kg": 0.0499999984185785,
+      "max_initial_turn_deg": 21.969922719706194,
+      "wall_seconds": 59.9,
+      "settings": "v4_corrected: 1.5 s ramp, 5 s window, damping scaled as c ~ 1/L"
+    },
+    {
+      "segments": 92,
+      "segment_length_m": 0.005,
+      "joint_damping": 0.0008000000000000001,
+      "physics_hz": 4000,
+      "gravity_ramp_s": 1.5,
+      "window_s": 5.0,
+      "built": true,
+      "settled": true,
+      "reason": null,
+      "reached_rest_at_s": 3.0,
+      "peak_transient_speed_m_per_s": 7.3071622316599525,
+      "peak_at_s": 0.104,
+      "final_cable_speed_m_per_s": 0.004554088613498627,
+      "final_lateral_drift_m": 6.911982158050271e-06,
+      "tip_tracking_m": 0.00014723450204466633,
+      "at_v3_five_second_deadline": {
+        "lateral_m": 0.003996524623957173,
+        "clip_retained": true
+      },
+      "lateral_trace": [
+        {
+          "t_s": 1.0,
+          "lateral_m": 0.0039983314882876325,
+          "cable_speed_m_per_s": 0.0799485946533229
+        },
+        {
+          "t_s": 2.0,
+          "lateral_m": 0.004004921501190277,
+          "cable_speed_m_per_s": 0.01266566976843559
+        },
+        {
+          "t_s": 3.0,
+          "lateral_m": 0.004008351870911065,
+          "cable_speed_m_per_s": 0.00710752197305611
+        },
+        {
+          "t_s": 4.0,
+          "lateral_m": 0.004003436606115223,
+          "cable_speed_m_per_s": 0.005395157035872123
+        },
+        {
+          "t_s": 5.0,
+          "lateral_m": 0.003996524623957173,
+          "cable_speed_m_per_s": 0.004554245018757985
+        }
+      ],
+      "native_steps": 20000,
+      "clip_retained": true,
+      "retained_passages": 1,
+      "crossings": 1,
+      "crossing_lateral_m": 0.003996522318112536,
+      "crossing_height_m": 0.0019817212050891203,
+      "clip_lateral_wall_m": 0.004,
+      "lateral_wall_gap_m": 3.4776818874640222e-06,
+      "min_bend_radius_m": 0.049986092237640445,
+      "routed_length_m": 0.45999999769384686,
+      "boot_to_anchor_m": 0.35066250270826793,
+      "cable_lowest_z_m": 1.2192707880454603,
+      "compiled_cable_mass_kg": 0.05000000049683902,
+      "max_initial_turn_deg": 11.8222019008698,
+      "wall_seconds": 107.3,
+      "settings": "v4_corrected: 1.5 s ramp, 5 s window, damping scaled as c ~ 1/L"
+    },
+    {
+      "segments": 92,
+      "segment_length_m": 0.005,
+      "joint_damping": 0.0008000000000000001,
+      "physics_hz": 8000,
+      "gravity_ramp_s": 1.5,
+      "window_s": 5.0,
+      "built": true,
+      "settled": true,
+      "reason": null,
+      "reached_rest_at_s": 3.0,
+      "peak_transient_speed_m_per_s": 13.904775022093917,
+      "peak_at_s": 0.174,
+      "final_cable_speed_m_per_s": 0.0048318314961517264,
+      "final_lateral_drift_m": 1.049240782453019e-05,
+      "tip_tracking_m": 0.0001474254797617747,
+      "at_v3_five_second_deadline": {
+        "lateral_m": 0.003957285741066465,
+        "clip_retained": true
+      },
+      "lateral_trace": [
+        {
+          "t_s": 1.0,
+          "lateral_m": 0.003957063539744857,
+          "cable_speed_m_per_s": 0.08947037015389983
+        },
+        {
+          "t_s": 2.0,
+          "lateral_m": 0.003964749124663732,
+          "cable_speed_m_per_s": 0.013564740733213876
+        },
+        {
+          "t_s": 3.0,
+          "lateral_m": 0.003977821733139674,
+          "cable_speed_m_per_s": 0.008327097770378966
+        },
+        {
+          "t_s": 4.0,
+          "lateral_m": 0.003967778148890995,
+          "cable_speed_m_per_s": 0.005698354478942359
+        },
+        {
+          "t_s": 5.0,
+          "lateral_m": 0.003957285741066465,
+          "cable_speed_m_per_s": 0.004831916281299442
+        }
+      ],
+      "native_steps": 40000,
+      "clip_retained": true,
+      "retained_passages": 1,
+      "crossings": 1,
+      "crossing_lateral_m": 0.003957284454741897,
+      "crossing_height_m": 0.001981781071272677,
+      "clip_lateral_wall_m": 0.004,
+      "lateral_wall_gap_m": 4.271554525810302e-05,
+      "min_bend_radius_m": 0.04997804807460753,
+      "routed_length_m": 0.45999999769384736,
+      "boot_to_anchor_m": 0.35066234837543636,
+      "cable_lowest_z_m": 1.219270781875499,
+      "compiled_cable_mass_kg": 0.05000000049683902,
+      "max_initial_turn_deg": 11.8222019008698,
+      "wall_seconds": 214.3,
+      "settings": "v4_corrected: 1.5 s ramp, 5 s window, damping scaled as c ~ 1/L"
+    },
+    {
+      "segments": 92,
+      "segment_length_m": 0.005,
+      "joint_damping": 0.0008000000000000001,
+      "physics_hz": 16000,
+      "gravity_ramp_s": 1.5,
+      "window_s": 5.0,
+      "built": true,
+      "settled": true,
+      "reason": null,
+      "reached_rest_at_s": 3.0,
+      "peak_transient_speed_m_per_s": 3.4526222533036774,
+      "peak_at_s": 0.024,
+      "final_cable_speed_m_per_s": 0.0018218046055920533,
+      "final_lateral_drift_m": 0.000102502535864164,
+      "tip_tracking_m": 0.0001756472256884279,
+      "at_v3_five_second_deadline": {
+        "lateral_m": -0.0010456384042178551,
+        "clip_retained": true
+      },
+      "lateral_trace": [
+        {
+          "t_s": 1.0,
+          "lateral_m": -0.0003385832358841572,
+          "cable_speed_m_per_s": 0.04516017634135035
+        },
+        {
+          "t_s": 2.0,
+          "lateral_m": -0.000659916619138875,
+          "cable_speed_m_per_s": 0.007926462968414746
+        },
+        {
+          "t_s": 3.0,
+          "lateral_m": -0.0008214472394962734,
+          "cable_speed_m_per_s": 0.004309340912738041
+        },
+        {
+          "t_s": 4.0,
+          "lateral_m": -0.0009431358683536911,
+          "cable_speed_m_per_s": 0.0019235452515863917
+        },
+        {
+          "t_s": 5.0,
+          "lateral_m": -0.0010456384042178551,
+          "cable_speed_m_per_s": 0.0018218252694929761
+        }
+      ],
+      "native_steps": 80000,
+      "clip_retained": true,
+      "retained_passages": 1,
+      "crossings": 1,
+      "crossing_lateral_m": -0.0010456444004438182,
+      "crossing_height_m": 0.001980653982237993,
+      "clip_lateral_wall_m": 0.004,
+      "lateral_wall_gap_m": 0.002954355599556182,
+      "min_bend_radius_m": 0.07213344102206222,
+      "routed_length_m": 0.45999999769384703,
+      "boot_to_anchor_m": 0.3506688877246459,
+      "cable_lowest_z_m": 1.2192956146966991,
+      "compiled_cable_mass_kg": 0.05000000049683902,
+      "max_initial_turn_deg": 11.8222019008698,
+      "wall_seconds": 381.2,
+      "settings": "v4_corrected: 1.5 s ramp, 5 s window, damping scaled as c ~ 1/L"
+    }
+  ],
+  "long_settle_probe": [
+    {
+      "segments": 23,
+      "segment_length_m": 0.02,
+      "joint_damping": 0.00020000000000000004,
+      "physics_hz": 4000,
+      "gravity_ramp_s": 6.0,
+      "window_s": 30.0,
+      "built": true,
+      "settled": false,
+      "reason": "settle_clip_not_retained",
+      "reached_rest_at_s": 14.0,
+      "peak_transient_speed_m_per_s": 1.589530533015818,
+      "peak_at_s": 0.626,
+      "final_cable_speed_m_per_s": 0.00487762689439764,
+      "final_lateral_drift_m": 1.1924148078656938e-07,
+      "tip_tracking_m": 0.00015554031815150773,
+      "at_v3_five_second_deadline": {
+        "lateral_m": 0.003657559419018152,
+        "clip_retained": true
+      },
+      "lateral_trace": [
+        {
+          "t_s": 1.0,
+          "lateral_m": 0.002205503609919291,
+          "cable_speed_m_per_s": 0.021765326248536315
+        },
+        {
+          "t_s": 2.0,
+          "lateral_m": 0.002334708555850474,
+          "cable_speed_m_per_s": 0.009995880132844605
+        },
+        {
+          "t_s": 3.0,
+          "lateral_m": 0.0026425416186204665,
+          "cable_speed_m_per_s": 0.018509013521857246
+        },
+        {
+          "t_s": 4.0,
+          "lateral_m": 0.003106881191998936,
+          "cable_speed_m_per_s": 0.02440524236346935
+        },
+        {
+          "t_s": 5.0,
+          "lateral_m": 0.003657559419018152,
+          "cable_speed_m_per_s": 0.026665885592333374
+        },
+        {
+          "t_s": 6.0,
+          "lateral_m": 0.003878885994263234,
+          "cable_speed_m_per_s": 0.01115067363261734
+        },
+        {
+          "t_s": 7.0,
+          "lateral_m": 0.003943874987556275,
+          "cable_speed_m_per_s": 0.010015258515604041
+        },
+        {
+          "t_s": 8.0,
+          "lateral_m": 0.0039864006000450425,
+          "cable_speed_m_per_s": 0.00907572666970851
+        },
+        {
+          "t_s": 9.0,
+          "lateral_m": 0.004003209570469599,
+          "cable_speed_m_per_s": 0.0075811904375854035
+        },
+        {
+          "t_s": 10.0,
+          "lateral_m": 0.004003323511003223,
+          "cable_speed_m_per_s": 0.0068967956019574785
+        },
+        {
+          "t_s": 11.0,
+          "lateral_m": 0.004003312702970787,
+          "cable_speed_m_per_s": 0.006235584192768031
+        },
+        {
+          "t_s": 12.0,
+          "lateral_m": 0.004003179860128572,
+          "cable_speed_m_per_s": 0.005676966020789502
+        },
+        {
+          "t_s": 13.0,
+          "lateral_m": 0.004003030789625151,
+          "cable_speed_m_per_s": 0.00523660858391726
+        },
+        {
+          "t_s": 14.0,
+          "lateral_m": 0.004002911548144365,
+          "cable_speed_m_per_s": 0.004877712042255986
+        }
+      ],
+      "native_steps": 56000,
+      "clip_retained": false,
+      "retained_passages": 0,
+      "crossings": 1,
+      "crossing_lateral_m": 0.004002911523009347,
+      "crossing_height_m": 0.0019736094503049655,
+      "clip_lateral_wall_m": 0.004,
+      "lateral_wall_gap_m": -2.911523009347175e-06,
+      "min_bend_radius_m": 0.050012702891462854,
+      "routed_length_m": 0.4599999549556479,
+      "boot_to_anchor_m": 0.3506546048121923,
+      "cable_lowest_z_m": 1.2193039980496936,
+      "compiled_cable_mass_kg": 0.049999996524735676,
+      "max_initial_turn_deg": 40.478939507304155,
+      "wall_seconds": 15.0,
+      "settings": "long-settle probe: 6 s ramp, 30 s window, two-condition rest criterion"
+    },
+    {
+      "segments": 23,
+      "segment_length_m": 0.02,
+      "joint_damping": 0.00020000000000000004,
+      "physics_hz": 8000,
+      "gravity_ramp_s": 6.0,
+      "window_s": 30.0,
+      "built": true,
+      "settled": false,
+      "reason": "settle_no_rest_within_window",
+      "reached_rest_at_s": null,
+      "peak_transient_speed_m_per_s": 77.0255613065313,
+      "peak_at_s": 1.054,
+      "final_cable_speed_m_per_s": 0.005387749609372894,
+      "final_lateral_drift_m": 0.0001541176729670593,
+      "tip_tracking_m": 7.347522411228225e-05,
+      "at_v3_five_second_deadline": {
+        "lateral_m": 0.03910228823249211,
+        "clip_retained": false
+      },
+      "lateral_trace": [
+        {
+          "t_s": 7.0,
+          "lateral_m": 0.03880215170100618,
+          "cable_speed_m_per_s": 0.005887143743508822
+        },
+        {
+          "t_s": 8.0,
+          "lateral_m": 0.038653815928113205,
+          "cable_speed_m_per_s": 0.005683448892907897
+        },
+        {
+          "t_s": 9.0,
+          "lateral_m": 0.03850118730087143,
+          "cable_speed_m_per_s": 0.005647206418412012
+        },
+        {
+          "t_s": 10.0,
+          "lateral_m": 0.03834522531989155,
+          "cable_speed_m_per_s": 0.005677754731931626
+        },
+        {
+          "t_s": 11.0,
+          "lateral_m": 0.03818643332219447,
+          "cable_speed_m_per_s": 0.0057293901478157345
+        },
+        {
+          "t_s": 12.0,
+          "lateral_m": 0.038025280268058896,
+          "cable_speed_m_per_s": 0.005785097074464004
+        },
+        {
+          "t_s": 13.0,
+          "lateral_m": 0.03786218521023865,
+          "cable_speed_m_per_s": 0.005835075911072638
+        },
+        {
+          "t_s": 14.0,
+          "lateral_m": 0.03769754795379056,
+          "cable_speed_m_per_s": 0.005878134468227074
+        },
+        {
+          "t_s": 15.0,
+          "lateral_m": 0.03753170802787629,
+          "cable_speed_m_per_s": 0.0059120709431771295
+        },
+        {
+          "t_s": 16.0,
+          "lateral_m": 0.03736498614124901,
+          "cable_speed_m_per_s": 0.005936841185566241
+        },
+        {
+          "t_s": 17.0,
+          "lateral_m": 0.03719767139753806,
+          "cable_speed_m_per_s": 0.005952830278822372
+        },
+        {
+          "t_s": 18.0,
+          "lateral_m": 0.037030023318391316,
+          "cable_speed_m_per_s": 0.005960667702194181
+        },
+        {
+          "t_s": 19.0,
+          "lateral_m": 0.03686227368655753,
+          "cable_speed_m_per_s": 0.005961081431375276
+        },
+        {
+          "t_s": 20.0,
+          "lateral_m": 0.03669462836907075,
+          "cable_speed_m_per_s": 0.0059551490564019646
+        },
+        {
+          "t_s": 21.0,
+          "lateral_m": 0.036528843524496236,
+          "cable_speed_m_per_s": 0.005749148991034006
+        },
+        {
+          "t_s": 22.0,
+          "lateral_m": 0.03636708049857622,
+          "cable_speed_m_per_s": 0.005595155288839156
+        },
+        {
+          "t_s": 23.0,
+          "lateral_m": 0.03620685329030362,
+          "cable_speed_m_per_s": 0.005582129928345707
+        },
+        {
+          "t_s": 24.0,
+          "lateral_m": 0.036047256993770205,
+          "cable_speed_m_per_s": 0.005566274580819179
+        },
+        {
+          "t_s": 25.0,
+          "lateral_m": 0.0358883656521305,
+          "cable_speed_m_per_s": 0.005545159768391951
+        },
+        {
+          "t_s": 26.0,
+          "lateral_m": 0.035730275296296764,
+          "cable_speed_m_per_s": 0.00551970011068326
+        },
+        {
+          "t_s": 27.0,
+          "lateral_m": 0.03557307411430117,
+          "cable_speed_m_per_s": 0.0054906518160604285
+        },
+        {
+          "t_s": 28.0,
+          "lateral_m": 0.03541683882890383,
+          "cable_speed_m_per_s": 0.005458642571159579
+        },
+        {
+          "t_s": 29.0,
+          "lateral_m": 0.03526163483747802,
+          "cable_speed_m_per_s": 0.00542419673755464
+        },
+        {
+          "t_s": 30.0,
+          "lateral_m": 0.03510751716451096,
+          "cable_speed_m_per_s": 0.005387754273248425
+        }
+      ],
+      "native_steps": 240000,
+      "clip_retained": false,
+      "retained_passages": 0,
+      "crossings": 1,
+      "crossing_lateral_m": 0.03510749796970136,
+      "crossing_height_m": 0.0019742104778673604,
+      "clip_lateral_wall_m": 0.004,
+      "lateral_wall_gap_m": -0.031107497969701362,
+      "min_bend_radius_m": 0.0630596996481555,
+      "routed_length_m": 0.45999995495564777,
+      "boot_to_anchor_m": 0.35075708699221675,
+      "cable_lowest_z_m": 1.2192952276644526,
+      "compiled_cable_mass_kg": 0.049999996524735676,
+      "max_initial_turn_deg": 40.478939507304155,
+      "wall_seconds": 53.8,
+      "settings": "long-settle probe: 6 s ramp, 30 s window, two-condition rest criterion"
+    },
+    {
+      "segments": 23,
+      "segment_length_m": 0.02,
+      "joint_damping": 0.00020000000000000004,
+      "physics_hz": 16000,
+      "gravity_ramp_s": 6.0,
+      "window_s": 30.0,
+      "built": true,
+      "settled": false,
+      "reason": "settle_clip_not_retained",
+      "reached_rest_at_s": 12.0,
+      "peak_transient_speed_m_per_s": 8.477824248689908,
+      "peak_at_s": 0.226,
+      "final_cable_speed_m_per_s": 0.004874450780166984,
+      "final_lateral_drift_m": 3.924102601953611e-06,
+      "tip_tracking_m": 0.00015639216622997322,
+      "at_v3_five_second_deadline": {
+        "lateral_m": 0.004009606606219511,
+        "clip_retained": false
+      },
+      "lateral_trace": [
+        {
+          "t_s": 1.0,
+          "lateral_m": 0.003934382196732153,
+          "cable_speed_m_per_s": 0.04468988190497949
+        },
+        {
+          "t_s": 2.0,
+          "lateral_m": 0.003978891521205339,
+          "cable_speed_m_per_s": 0.009136235461485356
+        },
+        {
+          "t_s": 3.0,
+          "lateral_m": 0.003994143843413399,
+          "cable_speed_m_per_s": 0.0063308385003759855
+        },
+        {
+          "t_s": 4.0,
+          "lateral_m": 0.004008179227086437,
+          "cable_speed_m_per_s": 0.0062223348997224315
+        },
+        {
+          "t_s": 5.0,
+          "lateral_m": 0.004009606606219511,
+          "cable_speed_m_per_s": 0.007084566218120518
+        },
+        {
+          "t_s": 6.0,
+          "lateral_m": 0.004010767154255678,
+          "cable_speed_m_per_s": 0.00790557906773866
+        },
+        {
+          "t_s": 7.0,
+          "lateral_m": 0.004010852641351963,
+          "cable_speed_m_per_s": 0.007738606020029052
+        },
+        {
+          "t_s": 8.0,
+          "lateral_m": 0.004010449895729367,
+          "cable_speed_m_per_s": 0.007105229265467895
+        },
+        {
+          "t_s": 9.0,
+          "lateral_m": 0.0040100170291232145,
+          "cable_speed_m_per_s": 0.00656138312291834
+        },
+        {
+          "t_s": 10.0,
+          "lateral_m": 0.004009807618819711,
+          "cable_speed_m_per_s": 0.0060917964591590355
+        },
+        {
+          "t_s": 11.0,
+          "lateral_m": 0.004009178966682053,
+          "cable_speed_m_per_s": 0.005475505887772195
+        },
+        {
+          "t_s": 12.0,
+          "lateral_m": 0.0040052548640801,
+          "cable_speed_m_per_s": 0.004874471733819657
+        }
+      ],
+      "native_steps": 192000,
+      "clip_retained": false,
+      "retained_passages": 0,
+      "crossings": 1,
+      "crossing_lateral_m": 0.004005254569895245,
+      "crossing_height_m": 0.0019738925762001164,
+      "clip_lateral_wall_m": 0.004,
+      "lateral_wall_gap_m": -5.2545698952452535e-06,
+      "min_bend_radius_m": 0.050135673304678954,
+      "routed_length_m": 0.45999995495564694,
+      "boot_to_anchor_m": 0.3506540192031801,
+      "cable_lowest_z_m": 1.2193048753044464,
+      "compiled_cable_mass_kg": 0.049999996524735676,
+      "max_initial_turn_deg": 40.478939507304155,
+      "wall_seconds": 48.9,
+      "settings": "long-settle probe: 6 s ramp, 30 s window, two-condition rest criterion"
+    }
+  ],
+  "agreement": {
+    "verdict": "partial",
+    "boot_to_anchor_verdict": "pass",
+    "min_bend_radius_verdict": "fail",
+    "no_cell_was_unstable": true,
+    "reference": [
+      23,
+      4000
+    ],
+    "settled_cells": 6,
+    "of": 9,
+    "refined_segment_counts_that_settled": [
+      46,
+      92
+    ],
+    "integration_rates_that_settled": [
+      4000,
+      8000,
+      16000
+    ],
+    "worst_boot_to_anchor_delta_m": 0.0001801082046037905,
+    "worst_min_bend_radius_delta_m": 0.02252684267205706,
+    "tolerances": {
+      "boot_to_anchor_m": 0.0005,
+      "min_bend_radius_m": 0.002
+    },
+    "rows": [
+      {
+        "segments": 23,
+        "physics_hz": 4000,
+        "boot_to_anchor_delta_m": 0.0,
+        "min_bend_radius_delta_m": 0.0,
+        "routed_length_delta_m": 0.0,
+        "lateral_wall_gap_m": 0.0018682999384197142
+      },
+      {
+        "segments": 23,
+        "physics_hz": 8000,
+        "boot_to_anchor_delta_m": 1.936377449657245e-05,
+        "min_bend_radius_delta_m": -0.0003612383774015404,
+        "routed_length_delta_m": 3.885780586188048e-16,
+        "lateral_wall_gap_m": 0.003056594836322003
+      },
+      {
+        "segments": 46,
+        "physics_hz": 16000,
+        "boot_to_anchor_delta_m": 0.0001801082046037905,
+        "min_bend_radius_delta_m": 0.002957714610823295,
+        "routed_length_delta_m": 2.223414935498269e-08,
+        "lateral_wall_gap_m": 0.002540626195090243
+      },
+      {
+        "segments": 92,
+        "physics_hz": 4000,
+        "boot_to_anchor_delta_m": 5.745977566473659e-06,
+        "min_bend_radius_delta_m": 0.0003794938876352863,
+        "routed_length_delta_m": 4.273819925737499e-08,
+        "lateral_wall_gap_m": 3.4776818874640222e-06
+      },
+      {
+        "segments": 92,
+        "physics_hz": 8000,
+        "boot_to_anchor_delta_m": 5.591644734903589e-06,
+        "min_bend_radius_delta_m": 0.000371449724602374,
+        "routed_length_delta_m": 4.273819975697535e-08,
+        "lateral_wall_gap_m": 4.271554525810302e-05
+      },
+      {
+        "segments": 92,
+        "physics_hz": 16000,
+        "boot_to_anchor_delta_m": 1.213099394442585e-05,
+        "min_bend_radius_delta_m": 0.02252684267205706,
+        "routed_length_delta_m": 4.273819942390844e-08,
+        "lateral_wall_gap_m": 0.002954355599556182
+      }
+    ],
+    "reading": "A pass on a quantity means a refinement of the cable settles to the same initial configuration as the registered discretisation, within the declared tolerance for that quantity. It is a statement about the initial configuration, not about a whole rollout."
+  },
+  "label_boundary_finding": {
+    "predicate": "clip_passages retains a crossing when |lateral| <= half_width - cable_radius, which for this clip is exactly 4.000 mm.",
+    "measurement": "The routed cable is not at rest at the registered 5 s deadline. It slides laterally along the clip channel for roughly twenty seconds and comes to rest against the clip wall, where the crossing was measured 2.9 micrometres PAST the predicate's boundary. The predicate's lateral test coincides with the physical wall-contact position, so at rest the retention label is decided by contact penetration of order a micrometre. The long-settle probe above carries the trace.",
+    "consequence": "Clip retention at long settling times cannot be resolution-independent, and that is a property of the label's definition, not of the cable. The registered 5 s deadline samples the configuration mid-slide, well inside the boundary, which is why every block in this repository has a stable label. The deadline is part of the task definition and is recorded as such rather than treated as an approximation to rest.",
+    "not_changed": "The retention predicate is NOT changed here, and neither is the settling deadline. Changing either would change the task and invalidate every comparison with the v2 and v3 blocks."
+  },
+  "scope_and_limitations": [
+    "Simulation only. A converged discretisation is not a hardware claim.",
+    "Agreement is measured on the settled initial configuration, not on a whole rollout.",
+    "The settling transient is contact-rich and its long-time lateral coordinate is sensitive to the integration rate; only the registered 5 s initialization is claimed.",
+    "Peak contact sums still move about 70 percent between physics resolutions and must never be quoted as resolution-independent."
+  ],
+  "headline": {
+    "v3_open_failure": "The 46-segment spatial refinement did not survive the settling transient at 4, 8 or 16 kHz, so discretisation insensitivity was not established and every result was scoped to a 23-segment polyline.",
+    "cause": "The control scaled the cable's per-joint bending damping as c ~ L when a continuum Kelvin-Voigt bending moment scales as c ~ 1/L. Halving the segment length halved the damping where it should have doubled it, quartering the damping ratio of the stiffest representable mode at exactly the refinement where it needed to rise. The preserved section above reproduces the original instability at all three rates; with the corrected scaling not one of the nine cells is unstable.",
+    "what_now_holds": "Under the corrected scaling and the registered five-second initialization, a fourfold refinement (92 segments at 5 mm) settles at 4, 8 and 16 kHz, retains the required clip at all three, and reproduces the registered 23-segment settled boot-to-anchor distance to 5.7 micrometres at the matched rate and 0.18 mm across every settled cell. That distance is the quantity the analytic safety threshold is built on.",
+    "what_does_not_hold": "Minimum bend radius does not agree within its declared 2 mm tolerance across every settled cell: five of six agree to 3.3 mm and one cell, 92 segments at 16 kHz, sits 22.5 mm away. C2 results stay scoped to the registered 23-segment model at 4 kHz and the refined models are not interchangeable for a curvature claim.",
+    "what_replaces_the_open_failure": "The routed cable is not at rest at the registered five-second deadline. It slides laterally along the clip channel for roughly twelve to fourteen seconds and comes to rest against the clip wall, which is exactly where the retention predicate's lateral test sits: the measured resting crossing is 2.9 micrometres past it at 4 kHz and 5.3 micrometres past it at 16 kHz. The five-second deadline samples the configuration before the slide completes, which is why every block in this repository has a stable label. The open item is now the initialization and the label's boundary, not the cable's discretisation."
+  }
+}

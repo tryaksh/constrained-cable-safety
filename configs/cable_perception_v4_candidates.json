@@ -1,0 +1,354 @@
+{
+ "schema": 1,
+ "id": "cable_perception_v4_candidates",
+ "created_on": "2026-09-11",
+ "status": "declared_candidate_support_before_screening",
+ "scope": "Candidate layouts for the perception study. Declared before screening so the registered support is a measured subset of a written list, not a hand-picked one. Every rejection is kept in evidence/cable_layout_screen_v4.json.",
+ "c2_spec_m": 0.024,
+ "c2_spec_note": "A layout whose installed route already sits at or below the C2 minimum bend radius cannot be used to measure whether a repair violates it, so it is rejected by the screen rather than run.",
+ "lateral_wall_gap_floor_m": 0.001,
+ "lateral_wall_gap_floor_note": "The clip-retention predicate retains a crossing when |lateral| <= half_width - cable_radius, which is exactly the coordinate at which the cable surface touches the clip wall; evidence/cable_discretisation_v4.json measures a settled cable sitting 2.9 micrometres past it. A layout that installs closer than this floor to that line would start every job next to the label's boundary, so it is rejected rather than run.",
+ "installed_loop_m": [
+  0.002,
+  0.004,
+  0.006
+ ],
+ "layouts": [
+  {
+   "id": "L1",
+   "run_direction_xy": [
+    1.0,
+    0.0
+   ],
+   "outward_xy": [
+    1.0,
+    0.0
+   ],
+   "route_waypoints_along_across_m": [
+    [
+     0.09,
+     0.0
+    ],
+    [
+     0.17,
+     0.0
+    ]
+   ],
+   "clip_along_m": 0.17,
+   "description": "The validated v2/v3 layout: straight run, clip at 170 mm."
+  },
+  {
+   "id": "L2",
+   "run_direction_xy": [
+    0.9781476007338057,
+    -0.20791169081775934
+   ],
+   "outward_xy": [
+    1.0,
+    0.0
+   ],
+   "route_waypoints_along_across_m": [
+    [
+     0.09,
+     0.0
+    ],
+    [
+     0.17,
+     0.0
+    ]
+   ],
+   "clip_along_m": 0.17,
+   "description": "v3: run rotated 12 degrees from the cable exit, clip at 170 mm."
+  },
+  {
+   "id": "L3",
+   "run_direction_xy": [
+    0.9781476007338057,
+    -0.20791169081775934
+   ],
+   "outward_xy": [
+    1.0,
+    0.0
+   ],
+   "route_waypoints_along_across_m": [
+    [
+     0.09,
+     0.02
+    ],
+    [
+     0.17,
+     0.0
+    ]
+   ],
+   "clip_along_m": 0.17,
+   "description": "v3: rotated run with a 20 mm dogleg before the clip at 170 mm."
+  },
+  {
+   "id": "L4",
+   "run_direction_xy": [
+    0.9781476007338057,
+    -0.20791169081775934
+   ],
+   "outward_xy": [
+    1.0,
+    0.0
+   ],
+   "route_waypoints_along_across_m": [
+    [
+     0.09,
+     0.0
+    ],
+    [
+     0.15,
+     0.0
+    ]
+   ],
+   "clip_along_m": 0.15,
+   "description": "v3: rotated run, clip 20 mm nearer the port."
+  },
+  {
+   "id": "L5",
+   "run_direction_xy": [
+    0.9781476007338057,
+    -0.20791169081775934
+   ],
+   "outward_xy": [
+    1.0,
+    0.0
+   ],
+   "route_waypoints_along_across_m": [
+    [
+     0.09,
+     0.02
+    ],
+    [
+     0.15,
+     0.0
+    ]
+   ],
+   "clip_along_m": 0.15,
+   "description": "v3: rotated run with a dogleg, clip 20 mm nearer the port."
+  },
+  {
+   "id": "L6",
+   "run_direction_xy": [
+    1.0,
+    0.0
+   ],
+   "outward_xy": [
+    1.0,
+    0.0
+   ],
+   "route_waypoints_along_across_m": [
+    [
+     0.08,
+     0.0
+    ],
+    [
+     0.13,
+     0.0
+    ]
+   ],
+   "clip_along_m": 0.13,
+   "description": "New: straight run, clip at 130 mm, nearer the port than any v3 cell."
+  },
+  {
+   "id": "L7",
+   "run_direction_xy": [
+    1.0,
+    0.0
+   ],
+   "outward_xy": [
+    1.0,
+    0.0
+   ],
+   "route_waypoints_along_across_m": [
+    [
+     0.1,
+     0.0
+    ],
+    [
+     0.195,
+     0.0
+    ]
+   ],
+   "clip_along_m": 0.195,
+   "description": "New: straight run, clip at 195 mm, farther from the port than any v3 cell."
+  },
+  {
+   "id": "L8",
+   "run_direction_xy": [
+    0.9781476007338057,
+    -0.20791169081775934
+   ],
+   "outward_xy": [
+    1.0,
+    0.0
+   ],
+   "route_waypoints_along_across_m": [
+    [
+     0.1,
+     0.0
+    ],
+    [
+     0.195,
+     0.0
+    ]
+   ],
+   "clip_along_m": 0.195,
+   "description": "New: rotated run, clip at 195 mm."
+  },
+  {
+   "id": "L9",
+   "run_direction_xy": [
+    1.0,
+    0.0
+   ],
+   "outward_xy": [
+    1.0,
+    0.0
+   ],
+   "route_waypoints_along_across_m": [
+    [
+     0.09,
+     0.045
+    ],
+    [
+     0.17,
+     0.0
+    ]
+   ],
+   "clip_along_m": 0.17,
+   "description": "New: a genuine corner. A 45 mm dogleg the cable must turn through before the clip, so the minimum bend radius is loaded by the route and not only by the repair."
+  },
+  {
+   "id": "L10",
+   "run_direction_xy": [
+    0.9781476007338057,
+    0.20791169081775934
+   ],
+   "outward_xy": [
+    1.0,
+    0.0
+   ],
+   "route_waypoints_along_across_m": [
+    [
+     0.09,
+     -0.035
+    ],
+    [
+     0.16,
+     0.0
+    ]
+   ],
+   "clip_along_m": 0.16,
+   "description": "New: run rotated 12 degrees the other way with a 35 mm dogleg to the opposite side, so the corner sense is not confounded with the run rotation."
+  },
+  {
+   "id": "L11",
+   "run_direction_xy": [
+    1.0,
+    0.0
+   ],
+   "outward_xy": [
+    1.0,
+    0.0
+   ],
+   "route_waypoints_along_across_m": [
+    [
+     0.09,
+     0.0
+    ],
+    [
+     0.17,
+     0.0
+    ]
+   ],
+   "clip_along_m": 0.17,
+   "fixture_overrides": {
+    "shelf_drop_m": 0.15
+   },
+   "description": "New: the validated route on a shelf raised 20 mm, so shelf height is varied independently of the route."
+  },
+  {
+   "id": "L12",
+   "run_direction_xy": [
+    0.9781476007338057,
+    -0.20791169081775934
+   ],
+   "outward_xy": [
+    1.0,
+    0.0
+   ],
+   "route_waypoints_along_across_m": [
+    [
+     0.09,
+     0.02
+    ],
+    [
+     0.17,
+     0.0
+    ]
+   ],
+   "clip_along_m": 0.17,
+   "fixture_overrides": {
+    "shelf_drop_m": 0.19
+   },
+   "description": "New: the v3 dogleg route on a shelf lowered 20 mm."
+  },
+  {
+   "id": "L13",
+   "run_direction_xy": [
+    1.0,
+    0.0
+   ],
+   "outward_xy": [
+    1.0,
+    0.0
+   ],
+   "route_waypoints_along_across_m": [
+    [
+     0.07,
+     0.0
+    ],
+    [
+     0.12,
+     0.03
+    ],
+    [
+     0.17,
+     0.0
+    ]
+   ],
+   "clip_along_m": 0.17,
+   "cable_overrides": {
+    "fillet_radius_m": 0.028
+   },
+   "description": "New: a three-waypoint S-bend with a tighter construction fillet, the sharpest route the construction cap admits."
+  },
+  {
+   "id": "L14",
+   "run_direction_xy": [
+    0.9781476007338057,
+    -0.20791169081775934
+   ],
+   "outward_xy": [
+    1.0,
+    0.0
+   ],
+   "route_waypoints_along_across_m": [
+    [
+     0.09,
+     0.03
+    ],
+    [
+     0.145,
+     0.0
+    ]
+   ],
+   "clip_along_m": 0.145,
+   "description": "New: a 30 mm dogleg with the clip close behind it, so the corner and the clip interact."
+  }
+ ],
+ "note": "Fourteen candidates are declared so that the contract can register at least twelve after screening. The distal catch route from the v2 probe set is not a candidate: it has never survived settling and is retired here rather than carried forward."
+}

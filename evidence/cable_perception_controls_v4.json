@@ -1,0 +1,113 @@
+{
+  "schema": 1,
+  "id": "cable_perception_controls_v4",
+  "created_on": "2026-09-11",
+  "status": "executed_controls_for_the_perception_study",
+  "scope": "Controls the perception contract declares. Not a study result and not a hardware claim.",
+  "contract": "configs/cable_perception_v4.json",
+  "privilege_guard_negative": {
+    "case": "L1_l2_rigid_near_home_E2_core05__privilege_negative",
+    "probe_truth_read_s": null,
+    "privilege_guard": {
+      "events": 0,
+      "reasons": [],
+      "verdict": "clean"
+    },
+    "job_status": "failed",
+    "failure_reason": "deadline",
+    "guard_fired": false,
+    "verdict": "pass"
+  },
+  "privilege_guard_positive": {
+    "case": "L1_l2_rigid_near_home_E2_core05__privilege_positive",
+    "probe_truth_read_s": 2.5,
+    "privilege_guard": {
+      "events": 1,
+      "reasons": [
+        "positive_control_true_port_site"
+      ],
+      "verdict": "privilege_violation"
+    },
+    "job_status": "failed",
+    "failure_reason": "privilege_violation",
+    "guard_fired": true,
+    "verdict": "pass"
+  },
+  "note": "The positive control is the evidence that the guard can fire at all. A clean guard across a whole block means nothing without it.",
+  "estimate": {
+    "per_level": {
+      "E0": {
+        "socket_offset_m": 0.0,
+        "axis_error_deg": 0.0,
+        "occluded_node_fraction": 0.0,
+        "occluded_node_error_m": 0.0,
+        "visible_node_error_m": 0.0,
+        "declared_socket_bias_m": 0.0,
+        "declared_orientation_deg": 0.0,
+        "declared_occluded_m": 0.0,
+        "mean_socket_offset_over_24_seeds_m": 0.0,
+        "estimate_is_exactly_truth": true
+      },
+      "E1": {
+        "socket_offset_m": 0.00025147141482077454,
+        "axis_error_deg": 0.09224198958667384,
+        "occluded_node_fraction": 0.25,
+        "occluded_node_error_m": 0.0008557928194876809,
+        "visible_node_error_m": 0.00016606553136628942,
+        "declared_socket_bias_m": 0.00025,
+        "declared_orientation_deg": 0.125,
+        "declared_occluded_m": 0.0005,
+        "mean_socket_offset_over_24_seeds_m": 0.0002511991748635255,
+        "estimate_is_exactly_truth": false
+      },
+      "E2": {
+        "socket_offset_m": 0.0005029428296416089,
+        "axis_error_deg": 0.184483929188974,
+        "occluded_node_fraction": 0.25,
+        "occluded_node_error_m": 0.001711585638975282,
+        "visible_node_error_m": 0.00033213106273261136,
+        "declared_socket_bias_m": 0.0005,
+        "declared_orientation_deg": 0.25,
+        "declared_occluded_m": 0.001,
+        "mean_socket_offset_over_24_seeds_m": 0.0005023983497270675,
+        "estimate_is_exactly_truth": false
+      },
+      "E3": {
+        "socket_offset_m": 0.0010058856592832985,
+        "axis_error_deg": 0.36896745845700135,
+        "occluded_node_fraction": 0.25,
+        "occluded_node_error_m": 0.0034231712779505155,
+        "visible_node_error_m": 0.0006642621254651891,
+        "declared_socket_bias_m": 0.001,
+        "declared_orientation_deg": 0.5,
+        "declared_occluded_m": 0.002,
+        "mean_socket_offset_over_24_seeds_m": 0.0010047966994541225,
+        "estimate_is_exactly_truth": false
+      },
+      "E4": {
+        "socket_offset_m": 0.00201177131856639,
+        "axis_error_deg": 0.7379317174863733,
+        "occluded_node_fraction": 0.25,
+        "occluded_node_error_m": 0.006846342555901101,
+        "visible_node_error_m": 0.0013285242509303566,
+        "declared_socket_bias_m": 0.002,
+        "declared_orientation_deg": 1.0,
+        "declared_occluded_m": 0.004,
+        "mean_socket_offset_over_24_seeds_m": 0.0020095933989082407,
+        "estimate_is_exactly_truth": false
+      }
+    },
+    "v3_anchor": {
+      "verdict": "pass",
+      "note": "At E0 the estimate is the truth, exactly, so the anchor reproduces the v3 privileged interface rather than approximating it."
+    },
+    "declared_error_realised": {
+      "verdict": "pass",
+      "note": "The socket offset at the top level must match the declared bias, the occluded nodes must carry several times the visible nodes' error, and the occluded region must be a proper part of the cable. Occlusion is derived from geometry, so the fraction is a property of the fixture and the declared camera, not a tuned number."
+    }
+  },
+  "cost": {
+    "wall_seconds": 112.5
+  },
+  "verdict": "pass"
+}

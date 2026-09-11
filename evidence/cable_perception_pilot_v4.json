@@ -1,0 +1,199 @@
+{
+  "schema": 1,
+  "id": "cable_perception_pilot_v4",
+  "created_on": "2026-09-11",
+  "status": "executed_pilot_for_sizing_and_calibration",
+  "scope": "Sizing and calibration pilots for the perception study. NOT a study result: the contexts are a strided subset, each error level draws different layout cells, and no predictor is fitted here. Kept because two registered choices were made from it before the block launched.",
+  "purpose": [
+    "Measure sustained throughput and pick a worker count.",
+    "Measure whether the declared C2 spec is loaded by the registered actions.",
+    "Measure where the error ladder saturates the task.",
+    "Exercise the privilege guard and the constraint scorer end to end."
+  ],
+  "runs": [
+    {
+      "run_id": "perception-v4-pilot-w12",
+      "workers": 12,
+      "requests": 192,
+      "launcher_wall_seconds": 577.2,
+      "total_native_steps": 16212670,
+      "aggregate_native_steps_per_second": 28086.0,
+      "per_worker_native_steps_per_second": 2504.7,
+      "median_request_wall_seconds": 27.59,
+      "native_steps_per_request": 84441.0,
+      "outcomes": {
+        "completed": 35,
+        "lost_required_clip": 94,
+        "controller_retries_exhausted": 30,
+        "deadline": 8,
+        "force_abort": 25
+      },
+      "constraint_states": {
+        "C1_clip": {
+          "respected": 65,
+          "violated": 94,
+          "censored": 33
+        },
+        "C2_bend": {
+          "respected": 127,
+          "censored": 64,
+          "violated": 1
+        },
+        "C3_anchor": {
+          "respected": 93,
+          "violated": 43,
+          "censored": 56
+        }
+      },
+      "C1_by_error_level": {
+        "E0": {
+          "respected": 32,
+          "violated": 6,
+          "censored": 10
+        },
+        "E1": {
+          "violated": 12,
+          "respected": 13,
+          "censored": 7
+        },
+        "E2": {
+          "respected": 8,
+          "censored": 1,
+          "violated": 23
+        },
+        "E3": {
+          "violated": 34,
+          "respected": 11,
+          "censored": 3
+        },
+        "E4": {
+          "violated": 19,
+          "censored": 12,
+          "respected": 1
+        }
+      },
+      "min_bend_radius_over_the_move_m": {
+        "min": 0.022875300810613872,
+        "p01": 0.02562131567518467,
+        "p05": 0.03650078584239738,
+        "median": 0.04280421836647062,
+        "fraction_below_0p024": 0.005208333333333333,
+        "fraction_below_0p040": 0.17708333333333334
+      },
+      "peak_anchor_reaction_n": {
+        "median": 0.17852992643433943,
+        "p90": 0.6683477921116853,
+        "max": 3.2696920734123553,
+        "fraction_above_0p3": 0.22395833333333334,
+        "fraction_above_1p0": 0.078125
+      },
+      "privilege_guard_events": 0,
+      "mutation_guard_events": 0
+    },
+    {
+      "run_id": "perception-v4-pilot-w20",
+      "workers": 20,
+      "requests": 320,
+      "launcher_wall_seconds": 644.7,
+      "total_native_steps": 28987572,
+      "aggregate_native_steps_per_second": 44965.9,
+      "per_worker_native_steps_per_second": 2338.8,
+      "median_request_wall_seconds": 32.59,
+      "native_steps_per_request": 90586.2,
+      "outcomes": {
+        "completed": 92,
+        "lost_required_clip": 101,
+        "controller_retries_exhausted": 62,
+        "force_abort": 46,
+        "deadline": 19
+      },
+      "constraint_states": {
+        "C1_clip": {
+          "respected": 154,
+          "violated": 101,
+          "censored": 65
+        },
+        "C2_bend": {
+          "respected": 217,
+          "censored": 73,
+          "violated": 30
+        },
+        "C3_anchor": {
+          "respected": 220,
+          "censored": 72,
+          "violated": 28
+        }
+      },
+      "C1_by_error_level": {
+        "E0": {
+          "respected": 32,
+          "violated": 21,
+          "censored": 11
+        },
+        "E1": {
+          "respected": 36,
+          "censored": 17,
+          "violated": 11
+        },
+        "E2": {
+          "violated": 24,
+          "respected": 21,
+          "censored": 19
+        },
+        "E3": {
+          "respected": 31,
+          "violated": 16,
+          "censored": 17
+        },
+        "E4": {
+          "respected": 34,
+          "violated": 29,
+          "censored": 1
+        }
+      },
+      "min_bend_radius_over_the_move_m": {
+        "min": 0.0212107687493733,
+        "p01": 0.029086570804680984,
+        "p05": 0.03885721147597262,
+        "median": 0.043317773073806055,
+        "fraction_below_0p024": 0.009375,
+        "fraction_below_0p040": 0.09375
+      },
+      "peak_anchor_reaction_n": {
+        "median": 0.11497211477072584,
+        "p90": 0.27756377004296,
+        "max": 3.618707836900769,
+        "fraction_above_0p3": 0.0875,
+        "fraction_above_1p0": 0.053125
+      },
+      "privilege_guard_events": 0,
+      "mutation_guard_events": 0
+    }
+  ],
+  "throughput_finding": {
+    "measured": "12 workers sustain 28,086 aggregate native steps per second at 2,505 per worker; 20 workers sustain 44,966 at 2,339 per worker. Twenty workers is a 1.60x aggregate speedup for a 6.6 per cent per-worker loss to contention.",
+    "machine": "24 physical cores, 33.8 GB RAM. The v3 block used 12 workers and measured 37,147 aggregate; this worker is slower per step because it also builds the estimate and scores three constraints at every servo tick.",
+    "decision": "The registered block runs on 20 workers.",
+    "gpu": "Collection stays on the CPU. MuJoCo's native step is CPU-only, and the GPU path (MJX) does not support this scene's cable elasticity plugin, composite bodies or elliptic friction cone, so moving collection to the GPU would mean a different cable model and would invalidate every comparison with the v2 and v3 blocks. Model fitting accepts --device cuda where a CUDA build of torch is present; the fits are minutes beside hours of collection."
+  },
+  "c2_finding": {
+    "measured": "The minimum bend radius over a repair bottoms out near 22.9 mm, with a first percentile of 25.6 mm and a fifth of 36.5 mm. The static 24 mm spec (6x outer diameter) is violated in 0.5 per cent of requests.",
+    "consequence": "A crossover on a constraint with a 0.5 per cent base rate cannot be measured at any sample size this project can afford.",
+    "decision": "The C2 primary spec was moved to the dynamic band, 40 mm at 10x outer diameter, which is the band that applies to a commanded motion and is cleared by every registered cell's installed route (45.2 to 82.1 mm). It fires on 9.4 per cent of requests in the second pilot. The static 24 mm band is kept as the secondary severity and is still scored."
+  },
+  "ladder_finding": {
+    "measured": "On the first draft ladder, which ran to 5 mm of socket-pose bias, clip loss rose from 12.5 per cent at zero error to 37.5 per cent at 1 mm and 72 per cent at 2 mm, and above 2 mm almost no request reached seating: 0 of 32 completions at 2 mm, 1 of 48 at 3.5 mm and 0 of 32 at 5 mm.",
+    "consequence": "A predicate comparison carries no information where every arm abstains.",
+    "decision": "The ladder was compressed onto 0, 0.25, 0.5, 1 and 2 mm of systematic bias, which spans cobot repeatability to the reported accuracy of good 6-DoF industrial pose estimation. The headline result covers that interval and no further, and the saturated regime is this record."
+  },
+  "guards": {
+    "privilege_guard_events": 0,
+    "mutation_guard_events": 0,
+    "note": "Clean across 512 pilot requests. The positive control that proves the privilege guard fires is a separate registered case, not a pilot request."
+  },
+  "scope_and_limitations": [
+    "Simulation only. Not a study result, not a predictor comparison and not a hardware claim.",
+    "Pilot contexts are a strided subset, so error levels are confounded with layout cells here and the per-level rates above must not be read as an error-rate curve.",
+    "The first pilot ran on the first draft contract; the second ran after the two changes above. Both are kept."
+  ]
+}

@@ -1,0 +1,776 @@
+{
+ "schema": 1,
+ "id": "cable_perception_v4",
+ "status": "frozen_study_contract",
+ "created_on": "2026-09-11",
+ "scope": "Perception-degradation study on the constrained-cable connector task. One request is one clearance repair issued from one decision state at one declared perception error level, scored against three safety constraints on the same rollout. Endpoint is held, clip-preserving seating before gripper release. Not official AIC scoring, not a released or latched connection, not learned pickup, not camera perception and not a hardware claim.",
+ "question": "How much must a safety check see? As the state estimate degrades the way real perception degrades, where does a predicate over richer observations start to beat a scalar over estimated state, and does that crossover move with the shape of the constraint?",
+ "why_this_question": "The v3 block measured the same predicate with every arm handed the socket's exact pose at 500 Hz and the cable's exact shape, and found that one fitted scalar tied a fourteen-feature model and a network over the whole centreline. That result is real and it is a corner case. This contract removes the corner. The zero-error level reproduces the v3 interface exactly and is the registered anchor: a measured endpoint, not a claim.",
+ "prior_work_credited_not_claimed": [
+  "Measurement-robust control barrier functions (2104.14030 and successors 2308.13943, 2508.17226, 2608.20467) already give worst-case safety certificates under bounded state-estimation error for systems with known dynamics. The B0plus arm is an APPLICATION of that idea to this predicate, not a contribution, and may well win.",
+  "Chance-constrained motion planning under perception uncertainty (CC-VPSTO 2402.01370 and the MPC/CBF line) is mature for collision avoidance on rigid systems.",
+  "Hand-chosen reduced-state representations for deformable objects are standard practice: SoftGym (2011.07215) uses ten keypoints for a rope and four corners for cloth and states plainly that this ASSUMES the reduced state captures what the task needs. That assumption is what this contract tests, against a safety constraint rather than a task reward.",
+  "Feel the Tension (2310.06424) proposes force as the fallback for DLO manipulation among fixtures when vision fails under occlusion. It proposes the fallback; it does not measure where the fallback becomes necessary. The B2 arm is here because omitting it would be the first thing a reviewer asks about.",
+  "WireCraft (2606.18097), DLO-Lab (2606.04206) and SILO (2607.04616) already provide the task and benchmark; DLO safety filters against an estimate already exist (2505.13889, 2605.01069, 2503.04007); FAR (2607.01111) and FORGE-plus (2607.21227) already cover recovery, the latter on a FORCE budget where ours is a LENGTH budget; UniStateDLO (2512.17764), UPETrack (2512.09283) and MotionDLO (2608.22398) already estimate DLO state under occlusion. This contract models their error and builds no estimator."
+ ],
+ "base_config": {
+  "path": "configs/cable_recovery_task_v2.json",
+  "content_sha256": "34d08b3b6c10dcf603ea78d1bf9050e0edca7cc85b88c927b1f0c90b93ff011f",
+  "note": "Content hash over byte-order-mark-stripped, LF-normalised bytes. Filled at freeze time by scripts/run_perception_v4.py --freeze."
+ },
+ "candidates": {
+  "path": "configs/cable_perception_v4_candidates.json",
+  "screen": "evidence/cable_layout_screen_v4.json",
+  "note": "The registered support below is the screened subset of the declared candidate list. Rejections stay in the screen record and the rejected layouts are not run."
+ },
+ "runtime_overrides": {
+  "force_guided_controller": {
+   "repair_settle_s": 0.5,
+   "repair_settle_note": "Identical to v3: a commanded detour waypoint is retired once the rate-limited reference reaches it and this window passes. Lags are counted and reported."
+  },
+  "render_visuals": false,
+  "settle_note": "The registered v2 initialization is kept unchanged: a 1.5 s gravity ramp and a 5 s settling deadline with the v2 acceptance. An earlier draft of this contract lengthened both, and evidence/cable_discretisation_v4.json is why that was withdrawn. The routed cable is not at rest at 5 s: it slides laterally along the clip channel for another eight to nine seconds and comes to rest against the clip wall, which is exactly where the retention predicate's lateral test sits, so a longer settle walks the initial configuration onto the label's own boundary instead of away from it. The 5 s deadline samples the configuration well inside that boundary, it is what every v2 and v3 block used, and keeping it is what makes the zero-error level a reproduction of v3 rather than a new task."
+ },
+ "registered_support": {
+  "selection_note": "The 12 layouts with at least one cell surviving the screen in evidence/cable_layout_screen_v4.json, in candidate order. 14 layouts and 42 cells were declared; 13 cells were rejected there. Every rejection is kept with its reason and no rejected cell is run.",
+  "layouts": [
+   {
+    "id": "L1",
+    "run_direction_xy": [
+     1.0,
+     0.0
+    ],
+    "outward_xy": [
+     1.0,
+     0.0
+    ],
+    "route_waypoints_along_across_m": [
+     [
+      0.09,
+      0.0
+     ],
+     [
+      0.17,
+      0.0
+     ]
+    ],
+    "clip_along_m": 0.17,
+    "description": "The validated v2/v3 layout: straight run, clip at 170 mm."
+   },
+   {
+    "id": "L2",
+    "run_direction_xy": [
+     0.9781476007338057,
+     -0.20791169081775934
+    ],
+    "outward_xy": [
+     1.0,
+     0.0
+    ],
+    "route_waypoints_along_across_m": [
+     [
+      0.09,
+      0.0
+     ],
+     [
+      0.17,
+      0.0
+     ]
+    ],
+    "clip_along_m": 0.17,
+    "description": "v3: run rotated 12 degrees from the cable exit, clip at 170 mm."
+   },
+   {
+    "id": "L3",
+    "run_direction_xy": [
+     0.9781476007338057,
+     -0.20791169081775934
+    ],
+    "outward_xy": [
+     1.0,
+     0.0
+    ],
+    "route_waypoints_along_across_m": [
+     [
+      0.09,
+      0.02
+     ],
+     [
+      0.17,
+      0.0
+     ]
+    ],
+    "clip_along_m": 0.17,
+    "description": "v3: rotated run with a 20 mm dogleg before the clip at 170 mm."
+   },
+   {
+    "id": "L4",
+    "run_direction_xy": [
+     0.9781476007338057,
+     -0.20791169081775934
+    ],
+    "outward_xy": [
+     1.0,
+     0.0
+    ],
+    "route_waypoints_along_across_m": [
+     [
+      0.09,
+      0.0
+     ],
+     [
+      0.15,
+      0.0
+     ]
+    ],
+    "clip_along_m": 0.15,
+    "description": "v3: rotated run, clip 20 mm nearer the port."
+   },
+   {
+    "id": "L5",
+    "run_direction_xy": [
+     0.9781476007338057,
+     -0.20791169081775934
+    ],
+    "outward_xy": [
+     1.0,
+     0.0
+    ],
+    "route_waypoints_along_across_m": [
+     [
+      0.09,
+      0.02
+     ],
+     [
+      0.15,
+      0.0
+     ]
+    ],
+    "clip_along_m": 0.15,
+    "description": "v3: rotated run with a dogleg, clip 20 mm nearer the port."
+   },
+   {
+    "id": "L6",
+    "run_direction_xy": [
+     1.0,
+     0.0
+    ],
+    "outward_xy": [
+     1.0,
+     0.0
+    ],
+    "route_waypoints_along_across_m": [
+     [
+      0.08,
+      0.0
+     ],
+     [
+      0.13,
+      0.0
+     ]
+    ],
+    "clip_along_m": 0.13,
+    "description": "New: straight run, clip at 130 mm, nearer the port than any v3 cell."
+   },
+   {
+    "id": "L7",
+    "run_direction_xy": [
+     1.0,
+     0.0
+    ],
+    "outward_xy": [
+     1.0,
+     0.0
+    ],
+    "route_waypoints_along_across_m": [
+     [
+      0.1,
+      0.0
+     ],
+     [
+      0.195,
+      0.0
+     ]
+    ],
+    "clip_along_m": 0.195,
+    "description": "New: straight run, clip at 195 mm, farther from the port than any v3 cell."
+   },
+   {
+    "id": "L8",
+    "run_direction_xy": [
+     0.9781476007338057,
+     -0.20791169081775934
+    ],
+    "outward_xy": [
+     1.0,
+     0.0
+    ],
+    "route_waypoints_along_across_m": [
+     [
+      0.1,
+      0.0
+     ],
+     [
+      0.195,
+      0.0
+     ]
+    ],
+    "clip_along_m": 0.195,
+    "description": "New: rotated run, clip at 195 mm."
+   },
+   {
+    "id": "L10",
+    "run_direction_xy": [
+     0.9781476007338057,
+     0.20791169081775934
+    ],
+    "outward_xy": [
+     1.0,
+     0.0
+    ],
+    "route_waypoints_along_across_m": [
+     [
+      0.09,
+      -0.035
+     ],
+     [
+      0.16,
+      0.0
+     ]
+    ],
+    "clip_along_m": 0.16,
+    "description": "New: run rotated 12 degrees the other way with a 35 mm dogleg to the opposite side, so the corner sense is not confounded with the run rotation."
+   },
+   {
+    "id": "L11",
+    "run_direction_xy": [
+     1.0,
+     0.0
+    ],
+    "outward_xy": [
+     1.0,
+     0.0
+    ],
+    "route_waypoints_along_across_m": [
+     [
+      0.09,
+      0.0
+     ],
+     [
+      0.17,
+      0.0
+     ]
+    ],
+    "clip_along_m": 0.17,
+    "fixture_overrides": {
+     "shelf_drop_m": 0.15
+    },
+    "description": "New: the validated route on a shelf raised 20 mm, so shelf height is varied independently of the route."
+   },
+   {
+    "id": "L12",
+    "run_direction_xy": [
+     0.9781476007338057,
+     -0.20791169081775934
+    ],
+    "outward_xy": [
+     1.0,
+     0.0
+    ],
+    "route_waypoints_along_across_m": [
+     [
+      0.09,
+      0.02
+     ],
+     [
+      0.17,
+      0.0
+     ]
+    ],
+    "clip_along_m": 0.17,
+    "fixture_overrides": {
+     "shelf_drop_m": 0.19
+    },
+    "description": "New: the v3 dogleg route on a shelf lowered 20 mm."
+   },
+   {
+    "id": "L14",
+    "run_direction_xy": [
+     0.9781476007338057,
+     -0.20791169081775934
+    ],
+    "outward_xy": [
+     1.0,
+     0.0
+    ],
+    "route_waypoints_along_across_m": [
+     [
+      0.09,
+      0.03
+     ],
+     [
+      0.145,
+      0.0
+     ]
+    ],
+    "clip_along_m": 0.145,
+    "description": "New: a 30 mm dogleg with the clip close behind it, so the corner and the clip interact."
+   }
+  ],
+  "installed_loop_m": [
+   0.002,
+   0.004,
+   0.006
+  ],
+  "port_mount": [
+   {
+    "id": "rigid",
+    "compliance": null,
+    "description": "The v2/v3 boundary: the port mount is infinitely stiff."
+   },
+   {
+    "id": "compliant4000",
+    "compliance": {
+     "lateral_stiffness_n_per_m": 4000.0,
+     "axial_stiffness_n_per_m": 25000.0,
+     "lateral_damping_ns_per_m": 6.0,
+     "axial_damping_ns_per_m": 15.0,
+     "travel_limit_m": 0.01
+    },
+    "description": "Finite-stiffness bracket, verified by the v3 known-load control to a relative error of 1.9e-13."
+   }
+  ],
+  "decision_pose": [
+   {
+    "id": "near_home",
+    "at_s": 2.0,
+    "description": "Repair requested while the plug is still short of the port."
+   },
+   {
+    "id": "mid_approach",
+    "at_s": 3.5,
+    "description": "Repair requested part way along the approach, between the two v3 poses."
+   },
+   {
+    "id": "near_seated",
+    "at_s": 5.0,
+    "description": "Repair requested from the engaged pose."
+   }
+  ],
+  "decision_pose_note": "The v3 block registered two poses. A third is registered here because the screen accepted 29 of 42 candidate cells, and 29 held-out groups split mechanically give 10 test groups; 10 groups at two mounts and three poses is exactly the 60 test contexts per error level this contract requires. The requirement was declared before the screen ran and is met by widening the support rather than by lowering the requirement.",
+  "excluded_groups": [
+   "L7_l6",
+   "L8_l6",
+   "L11_l2",
+   "L12_l4",
+   "L12_l6",
+   "L14_l4",
+   "L14_l6"
+  ],
+  "excluded_groups_note": "The 7 (layout, installed loop) cells the screen rejected, of 36 expanded from the 12 surviving layouts. They are never run and are recorded with their reasons in evidence/cable_layout_screen_v4.json."
+ },
+ "constraints": {
+  "scoring_note": "One rollout scores all three, so the factorial is contexts x error level x actions and is not multiplied by three. None of them stops the job. The job's own force abort is a separate declared event that right-censors any constraint not already violated.",
+  "C1_clip": {
+   "shape": "global length budget",
+   "definition": "The required open clip is no longer retained: the terminal clip predicate is false, or it went false during the move.",
+   "rationale": "This is the v3 constraint, kept unchanged so the zero-error level is comparable request for request. Its endpoint is computable in closed form from an observed pose, which is why one scalar sufficed in v3."
+  },
+  "C2_bend": {
+   "shape": "local curvature limit",
+   "spec_m": 0.04,
+   "secondary_m": 0.024,
+   "definition": "The discrete minimum bend radius of the cable centreline fell below the spec at any servo tick of the rollout.",
+   "rationale": "Published industrial practice for a jacketed cable is a minimum bend radius of 4-6x the outer diameter STATIC and 10-15x DYNAMIC. This cable is 4 mm OD, so 16-24 mm static and 40-60 mm dynamic. A clearance repair is a commanded motion of the installed cable, so the dynamic band is the band that applies to it, and 40 mm is its most permissive end at 10x OD. Every registered cell installs above it: the layout screen measures installed minimum bend radii from 45.2 mm to 82.1 mm, so the spec is loaded by the repair and not by the installation. The static 24 mm spec is kept as the secondary severity. No pose determines either; both are properties of the whole shape, which is what makes C2 the clean local counter-example to a global budget.",
+   "resolution_note": "A discretisation cannot express a bend radius tighter than L/(2 sin(theta_max/2)). At 20 mm segments and the 70 degree construction cap that is 17.4 mm, so both the 40 mm primary and the 24 mm secondary are resolved by the registered model. evidence/cable_discretisation_v4.json is why this had to be checked: minimum bend radius is the one quantity that did NOT agree across refinements within its declared tolerance, so C2 results are scoped to the registered 23-segment model at 4 kHz.",
+   "spec_set_before_collection": "The first draft of this contract registered the static 24 mm band as primary. The 192-request pilot recorded in evidence/cable_perception_pilot_v4.json measured that the minimum bend radius over a repair bottoms out near 22.9 mm and falls below 24 mm in 0.5 per cent of requests, so the static band is not loaded by these actions and a crossover on it could not be measured at any sample size this project can afford. The dynamic band is the physically correct band for a commanded motion and is measurable at 17.7 per cent. The swap was made from the pilot, before the block was launched, and both bands are scored."
+  },
+  "C3_anchor": {
+   "shape": "rate-dependent dynamic limit",
+   "limit_n": 0.3,
+   "secondary_n": 1.0,
+   "definition": "The peak reaction at the strain-relief equality constraint exceeded the limit at any native step of the rollout.",
+   "rationale": "The cable's own weight is 0.49 N and the settled anchor reaction is about 0.045 N. A limit of 0.3 N is the load above which a repair is pulling on the installed anchor harder than the cable's own weight, which is a declared physical threshold and not one tuned to an outcome. Measured on the v3 block it separates about 14 percent of requests from the rest, and it agrees with clip loss only weakly (phi = 0.30), so it is not a relabelling of C1. The job's own 15 N anchor abort is two orders of magnitude above it and fires on 1 request in 1,440; C3 is scored, never aborted.",
+   "declared_before_collection": "The limit was chosen from the v3 block's anchor-load distribution before any v4 request was launched, and the v3 block is a different task version whose outcomes are not rescored here."
+  }
+ },
+ "censoring": {
+  "declared_before_collection": true,
+  "rule": "A request whose commanded detour was cut short by the force abort, the deadline, an infeasible construction or a settling rejection is CENSORED on every constraint it had not already violated. A censored request is never scored as respecting a constraint.",
+  "primary_analysis": "Conditional on observation. The false-safe metric counts censored actions in its coverage - a predictor does not get to choose actions whose outcome nobody observed and be scored only on the rest - but excludes them from its numerator, and reports the censored share beside the rate.",
+  "secondary_analysis": "A right-censored survival curve of each constraint against commanded detour distance travelled, reported per constraint and per error level.",
+  "ranking_metric": "An issued action whose constraint was censored is counted and reported separately from regret, never silently as a success."
+ },
+ "error_model": {
+  "camera": {
+   "eye_world_m": [
+    0.0,
+    -0.55,
+    1.55
+   ],
+   "eye_note": "A declared pinhole eye point off to the negative-lateral side and above the shelf, the placement a fixed overhead inspection camera would take on this cell. Geometry only; nothing is rendered.",
+   "clip_length_m": 0.03,
+   "bracket_half_m": [
+    0.06,
+    0.05,
+    0.09
+   ],
+   "sight_line_samples": 24,
+   "note": "Occlusion is derived from this eye point against two real blockers: the clip channel, whose walls and lip enclose the cable over the clip length, and the mount bracket, whose plate and riser shadow the cable near the port. Each sight line is probed at fixed distances out to sight_line_length_m, because the blockers are centimetres from the cable while the eye is most of a metre away. The occluded region is exactly the region every constraint depends on. It is not uniform noise and must not be replaced by it.",
+   "sight_line_length_m": 0.1,
+   "bracket_half_note": "Half-extents of one axis-aligned box standing in for everything solid between a side camera and the cable near the port: the mount plate (32 x 45 x 4 mm half-extents), the two standoffs, the riser that spans the 170 mm shelf drop, the port body, and the gripper and plug the robot is holding above them. 120 x 100 x 180 mm centred on the shelf under the port is the bounding box of that assembly. It is a blocker model, not a rendered scene.",
+   "measured_occluded_fraction": "On the settled configuration this hides 5 to 6 of the 24 centreline nodes, 21 to 25 per cent: the run descending behind the mount and the node inside the clip channel. Both are regions a constraint depends on, which is the point."
+  },
+  "history": {
+   "length": 4,
+   "stride_s": 0.25,
+   "note": "The short window of earlier estimated snapshots the Mh arm is allowed and the M arm is not. Captured for every request so testing whether a rate-dependent constraint needs history costs no second collection."
+  },
+  "ladder_note": "Five levels. E0 is the v3 anchor: every channel exactly zero, so the v3 privileged interface is reproduced and must be checked against it before anything else is read. The ladder ends at 2 mm of systematic socket-pose bias and 1 degree of orientation error, which is the reported accuracy of good 6-DoF industrial pose estimation; cobot repeatability, at the other end, is under 0.2 mm. The centreline values are the occluded-node error an occlusion-robust DLO tracker leaves behind, about an order of magnitude larger than its visible-node error, and the dropout fraction rises with it.",
+  "levels": [
+   {
+    "id": "E0",
+    "socket_bias_m": 0.0,
+    "socket_jitter_m": 0.0,
+    "socket_orientation_deg": 0.0,
+    "centreline_visible_m": 0.0,
+    "centreline_occluded_m": 0.0,
+    "centreline_dropout_p": 0.0,
+    "process_force_n": 0.0,
+    "force_noise_fraction": 0.0,
+    "force_noise_floor_n": 0.0
+   },
+   {
+    "id": "E1",
+    "socket_bias_m": 0.00025,
+    "socket_jitter_m": 5e-05,
+    "socket_orientation_deg": 0.125,
+    "centreline_visible_m": 0.0001,
+    "centreline_occluded_m": 0.0005,
+    "centreline_dropout_p": 0.025,
+    "process_force_n": 0.005,
+    "force_noise_fraction": 0.01,
+    "force_noise_floor_n": 0.002
+   },
+   {
+    "id": "E2",
+    "socket_bias_m": 0.0005,
+    "socket_jitter_m": 0.0001,
+    "socket_orientation_deg": 0.25,
+    "centreline_visible_m": 0.0002,
+    "centreline_occluded_m": 0.001,
+    "centreline_dropout_p": 0.05,
+    "process_force_n": 0.01,
+    "force_noise_fraction": 0.02,
+    "force_noise_floor_n": 0.004
+   },
+   {
+    "id": "E3",
+    "socket_bias_m": 0.001,
+    "socket_jitter_m": 0.0002,
+    "socket_orientation_deg": 0.5,
+    "centreline_visible_m": 0.0004,
+    "centreline_occluded_m": 0.002,
+    "centreline_dropout_p": 0.1,
+    "process_force_n": 0.02,
+    "force_noise_fraction": 0.04,
+    "force_noise_floor_n": 0.008
+   },
+   {
+    "id": "E4",
+    "socket_bias_m": 0.002,
+    "socket_jitter_m": 0.0004,
+    "socket_orientation_deg": 1.0,
+    "centreline_visible_m": 0.0008,
+    "centreline_occluded_m": 0.004,
+    "centreline_dropout_p": 0.2,
+    "process_force_n": 0.04,
+    "force_noise_fraction": 0.08,
+    "force_noise_floor_n": 0.016
+   }
+  ],
+  "isolation": {
+   "at_level": "E4",
+   "channels": [
+    "socket",
+    "centreline",
+    "process"
+   ],
+   "note": "Single-factor cells at the top level, on the held-out groups only. The ladder moves all three channels together and measures the crossover; these cells attribute it. They are excluded from training, because adding a different error model to the fit would change what the ladder means."
+  },
+  "ladder_range_set_before_collection": "The first draft of this contract ran the ladder to 5 mm of socket bias, the range the handover prompt suggested. The 192-request pilot recorded in evidence/cable_perception_pilot_v4.json measured that the task saturates well below that: clip loss rises from 12.5 per cent at zero error to 37.5 per cent at 1 mm and 72 per cent at 2 mm, and above 2 mm almost no request reaches seating at all, so every arm abstains and the comparison carries no information. A predicate comparison needs a base rate inside the range the metric can express, so the ladder was compressed onto the interval the pilot showed is informative, before the block was launched. The saturated regime is not discarded: the pilot that measured it is kept as evidence, and the headline result must be read as covering 0 to 2 mm of socket-pose error and no further."
+ },
+ "action_design": {
+  "space": "Continuous clearance detour: extra axial retreat beyond the controller's own 6 mm retract, a bearing in the plane of the cable run and its lateral, and an excursion distance along that bearing. The detour returns to the retreat point and the normal approach resumes. Identical to v3.",
+  "bounds": {
+   "retreat_m": [
+    0.0,
+    0.12
+   ],
+   "excursion_m": [
+    0.0,
+    0.05
+   ],
+   "bearing_rad": [
+    0.0,
+    6.283185307179586
+   ]
+  },
+  "clearance_speed_m_per_s": 0.02,
+  "core_grid": [
+   [
+    0.0,
+    0,
+    0.0
+   ],
+   [
+    0.03,
+    0,
+    0.0
+   ],
+   [
+    0.06,
+    0,
+    0.0
+   ],
+   [
+    0.08,
+    0,
+    0.0
+   ],
+   [
+    0.1,
+    0,
+    0.0
+   ],
+   [
+    0.06,
+    0,
+    0.03
+   ],
+   [
+    0.06,
+    180,
+    0.03
+   ],
+   [
+    0.06,
+    90,
+    0.03
+   ],
+   [
+    0.06,
+    270,
+    0.03
+   ],
+   [
+    0.09,
+    0,
+    0.03
+   ],
+   [
+    0.09,
+    180,
+    0.03
+   ],
+   [
+    0.03,
+    180,
+    0.05
+   ]
+  ],
+  "core_grid_note": "The twelve v3 shared actions, unchanged, issued in every context so contexts are comparable and per-context action ranking is well defined. Bearing is in degrees here and converted once.",
+  "sampled_actions": 4,
+  "halton_skip": 97,
+  "sampler": "Halton bases 2/3/5, registered skip, one contiguous stream per context in registered context order."
+ },
+ "first_calibration_seed": 91000,
+ "perception_seed_offset": 500000,
+ "expected_requests": 16080,
+ "groups": {
+  "definition": "A group is one (layout, installed service loop) family. Whole groups are held out, never neighbouring actions, timesteps or error levels. Mounting stiffness, decision pose and error level vary inside a group.",
+  "train": [
+   "L10_l2",
+   "L10_l4",
+   "L11_l4",
+   "L14_l2",
+   "L1_l4",
+   "L2_l4",
+   "L2_l6",
+   "L3_l4",
+   "L4_l4",
+   "L4_l6",
+   "L5_l4",
+   "L6_l4",
+   "L6_l6",
+   "L7_l4"
+  ],
+  "dev": [
+   "L11_l6",
+   "L1_l6",
+   "L3_l6",
+   "L5_l6",
+   "L8_l2"
+  ],
+  "test": [
+   "L10_l6",
+   "L12_l2",
+   "L1_l2",
+   "L2_l2",
+   "L3_l2",
+   "L4_l2",
+   "L5_l2",
+   "L6_l2",
+   "L7_l2",
+   "L8_l4"
+  ],
+  "split_rule": "Surviving (layout, installed loop) cells were ordered as screened and assigned round robin to test, train, dev, test, train, train, so every split contains corner routes, straight routes, both shelf heights and all three service loops, and nobody chose which cell landed where. Frozen before any request was launched; test groups stay closed until every method and budget is frozen.",
+  "test_context_requirement": 60,
+  "test_context_requirement_note": "L3 in the v3 post-mortem: twenty held-out contexts gave the ranking metric a resolution of one context in twenty, which was also the registered margin, so that branch of the rule was unresolvable by construction. This contract requires at least sixty test contexts PER ERROR LEVEL and the runner refuses a margin below twice the coarsest metric resolution."
+ },
+ "predictors": {
+  "probability_safe_below": 0.5,
+  "B0": {
+   "name": "analytic budget over the estimate",
+   "sees": [
+    "endpoint_boot_to_anchor_m, computed from the ESTIMATED socket pose and the ESTIMATED centreline"
+   ],
+   "form": "One fitted scalar threshold: predict violation when the straight-line boot-to-anchor distance at the action endpoint exceeds it.",
+   "fit": "Exhaustive threshold sweep on train plus dev pooled over every error level, choosing the threshold that maximises balanced accuracy. Given every advantage on purpose: this is the v3 winner and it is the thing that must be beaten."
+  },
+  "B0plus": {
+   "name": "measurement-robust budget",
+   "sees": [
+    "everything B0 sees, plus the DECLARED estimator covariance for the level it is running at"
+   ],
+   "form": "B0's threshold carried with a margin sized from the declared covariance: socket bias, plus a coverage factor times the socket jitter, plus the declared occluded-node error. Computed from declared numbers, never fitted on outcomes.",
+   "coverage_sigma": 2.0,
+   "rationale": "This is measurement-robust CBF thinking applied to this predicate. It is the engineering answer, it is cheap, and the registered prediction is that it wins on C1 at every level."
+  },
+  "B2": {
+   "name": "force only",
+   "sees": "FORCE_FEATURE_NAMES in assembly_recovery.cable_study_v4: anchor reaction, boot load, wrist force, contact witnesses and the action. No vision channel.",
+   "form": "L2-regularised logistic regression on standardised features.",
+   "variants": [
+    {
+     "expansion": "linear",
+     "weight_decay": 0.0001,
+     "seed": 0
+    },
+    {
+     "expansion": "linear",
+     "weight_decay": 0.001,
+     "seed": 0
+    },
+    {
+     "expansion": "quadratic",
+     "weight_decay": 0.001,
+     "seed": 0
+    }
+   ],
+   "rationale": "Feel the Tension proposes force as the fallback under occlusion. This arm measures whether and when that fallback is right, and the registered prediction is that it wins on C3."
+  },
+  "B1": {
+   "name": "calibrated feature model",
+   "sees": "FEATURE_NAMES in assembly_recovery.cable_study_v4: the v3 fourteen computed from the estimate, plus the estimated minimum bend radius, the occluded-node fraction and the two declared sigma channels.",
+   "form": "L2-regularised logistic regression on standardised features, with a declared quadratic expansion variant.",
+   "variants": [
+    {
+     "expansion": "linear",
+     "weight_decay": 0.0001,
+     "seed": 0
+    },
+    {
+     "expansion": "linear",
+     "weight_decay": 0.001,
+     "seed": 0
+    },
+    {
+     "expansion": "quadratic",
+     "weight_decay": 0.001,
+     "seed": 0
+    }
+   ],
+   "budget": {
+    "epochs": 300,
+    "batch_size": 512,
+    "learning_rate": 0.01,
+    "weight_decay": 0.0001
+   }
+  },
+  "M": {
+   "name": "learned outcome model over the estimated shape",
+   "sees": "The whole ESTIMATED cable centreline, the estimated tip and boot pose, the estimated insertion axis, and the action.",
+   "form": "Compact action-conditioned multilayer perceptron.",
+   "budget": {
+    "hidden": [
+     128,
+     128
+    ],
+    "epochs": 400,
+    "batch_size": 256,
+    "learning_rate": 0.001,
+    "weight_decay": 0.0001,
+    "seeds": [
+     0,
+     1,
+     2
+    ],
+    "checkpoint_rule": "Lowest dev loss within the declared epoch budget. Test groups are never consulted for selection."
+   },
+   "budget_frozen_before_training": true
+  },
+  "Mh": {
+   "name": "learned outcome model with a short history",
+   "sees": "Everything M sees, plus four earlier estimated snapshots at a 0.25 s stride.",
+   "form": "The same multilayer perceptron on the wider input.",
+   "budget_note": "Identical budget to M. The only difference between the arms is the history block, so a difference between them is a statement about history and not about capacity or tuning."
+  },
+  "matched_cost": "Every arm reads the same estimated decision states and ranks the same actions, and acquisition cost is identical because all of them are fitted on the same collected requests. Inference cost and sensing requirement differ and are reported per arm as the cost axis, so 'which is worth it' is answerable and not only 'which is best'.",
+  "fitting_rule": "Each arm is fitted ONCE on the pooled training split across every error level and evaluated at every level. That is the question a practitioner faces: a safety check is deployed across conditions, not refitted for each one. B0 cannot adapt. B0plus adapts through the declared covariance. B1, M and Mh are given the declared sigma as a feature and may adapt through it."
+ },
+ "decision_rule": {
+  "margin": 0.05,
+  "margin_units": "absolute, on both metrics",
+  "margin_resolution_rule": "The margin must be at least twice the coarsest metric resolution in play, checked in code by assembly_recovery.cable_study_v4.check_margin_resolution. With sixty test contexts per level the ranking metric's resolution is 1/60 = 0.0167 and the margin is three times it. The v3 block registered a margin exactly equal to its resolution and returned a verdict that was unresolvable by construction; the runner now refuses rather than reporting such a verdict.",
+  "bootstrap_draws": 4000,
+  "metric_a": "Held-out false-safe rate: of the actions a predictor calls safe, the fraction that actually violated the constraint, evaluated at matched coverage with B0 and reported with its censored share.",
+  "metric_b": "Held-out action-ranking regret. In each test context the supervisor considers the twelve shared core actions, keeps those its predictor calls safe, and issues the one with the largest commanded displacement magnitude, because a larger clearance is the more useful repair; ties break in registered order. Regret is the fraction of test contexts whose issued action actually violated the constraint. Abstentions and censored choices are counted separately and are not scored as regret.",
+  "crossover_definition": "For one constraint, the crossover is the SMALLEST error level at which M or Mh beats B0plus by more than the margin on BOTH metrics. If no level qualifies, the crossover is absent, and that is a result.",
+  "crossover_prediction": {
+   "declared_before_collection": true,
+   "C1_clip": "NO crossover at any registered level. B0plus stays within the margin of the best of M and Mh at every level including E4, because a global length budget's endpoint is computable in closed form from an estimated pose and a margin sized from the declared covariance absorbs the estimate's error.",
+   "C2_bend": "A crossover at or below E2. At E0 and E1 no arm beats B0plus by more than the margin; at E2 or above, the best of M and Mh beats B0plus by more than the margin, because a local curvature limit is not a function of any pose and the occluded region is exactly where the curvature lives.",
+   "C3_anchor": "B2 beats B0plus by more than the margin on metric A at every level from E1 upward, and Mh beats M by more than the margin at E3 and above. A rate-dependent dynamic limit is measured by force, not seen, and needs history.",
+   "falsification": "Each of the three is falsifiable on its own. Being wrong about any of them is a result. Being vague about them would not be, which is why they are written here before collection."
+  },
+  "wrap_up_if": "No crossover exists on any constraint inside the registered error range. Meaning a scalar over an estimated pose carrying a measurement-robust margin is a sufficient safety check for this task at every error level a real perception system would produce, and richer representations cannot justify their cost here.",
+  "continue_if": "A crossover exists on at least one constraint and its level ordering across the three constraints matches or contradicts the registered prediction by more than the margin.",
+  "conflict": "Better prediction with no gain on the ranking metric is reported plainly as such and is not presented as a win.",
+  "pre_registered": "This rule, the margin, the metrics, the error ladder, the group split, the crossover prediction and the full request list are frozen in this file and committed before any request is launched."
+ },
+ "controls": {
+  "privilege_guard": "A fail-closed guard records any control-side read of a scoring-only channel and fails the request. A registered positive control deliberately reads one and must fail.",
+  "v3_anchor": "The E0 level must reproduce the v3 privileged interface. The estimate at E0 is byte-identical to truth by construction and is asserted in tests.",
+  "discretisation": "evidence/cable_discretisation_v4.json. The v3 block's one open failure, re-opened and measured.",
+  "layout_screen": "evidence/cable_layout_screen_v4.json. Every candidate layout that did not settle is recorded there and is not run.",
+  "transfer_protocol": "evidence/cable_transfer_protocol_v4.json. The fitted threshold swept over cable bending stiffness, friction, mass and damping, so an engineer can carry the right margin for a cable whose properties are known only to a tolerance. A protocol with exposed assumptions, not a transfer claim: there is no hardware.",
+  "initialization": "evidence/cable_discretisation_v4.json. The settling deadline is part of the task definition here, not an approximation to rest, and the measurement that forced that reading is recorded there."
+ },
+ "scope_and_limitations": [
+  "Simulation only. No hardware access, connector transfer, released retention or force-certified safety claim.",
+  "Fixed preset grasp is a disclosed construction boundary; grasp strength and drop robustness are not measured.",
+  "The error model is a model of how perception fails, derived from geometry and declared magnitudes. It is not camera perception, and no estimator is built or evaluated here.",
+  "Bracket compliance is translational only; bracket rotation, backlash and hysteresis are not modelled.",
+  "A single clip is modelled. Retention is therefore a single point of failure by construction, and a second clip is declared out of scope rather than approximated.",
+  "Peak contact sums move about 70 percent between physics resolutions and must never be quoted as resolution-independent."
+ ],
+ "frozen_counts": {
+  "layouts": 12,
+  "groups": 29,
+  "ladder_contexts": 870,
+  "isolation_contexts": 180,
+  "test_contexts_per_error_level": 60,
+  "requests": 16080
+ }
+}
