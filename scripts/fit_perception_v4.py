@@ -599,7 +599,5 @@ def main() -> int:
     return 0
 
 
-ARM_ORDER = ("B0", "B0plus", "B2", "B1", "M", "Mh")
-
 if __name__ == "__main__":
     raise SystemExit(main())
