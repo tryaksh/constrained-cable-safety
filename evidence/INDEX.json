@@ -2,7 +2,7 @@
  "schema": 1,
  "generated_by": "scripts/index_evidence.py",
  "purpose": "Pick the one evidence record a question needs. Entries are derived from each file, so read the file itself before quoting any number, and read its scope before reusing its result.",
- "count": 89,
+ "count": 90,
  "records": [
   {
    "file": "approach_slew_design_v1.json",
@@ -63,6 +63,26 @@
     "scope",
     "spatial_refinement",
     "status"
+   ]
+  },
+  {
+   "file": "cable_citation_check_v4.json",
+   "bytes": 7898,
+   "id": "cable_citation_check_v4",
+   "status": "executed_citation_check",
+   "scope": "Independent check of the prior-art claims the perception contract and the README lean on. Each entry was fetched from its arXiv abstract page and compared against what this project says about it. Not a study result.",
+   "top_level_keys": [
+    "checked",
+    "created_on",
+    "id",
+    "method",
+    "not_individually_checked",
+    "schema",
+    "scope",
+    "scope_and_limitations",
+    "standing_position",
+    "status",
+    "why"
    ]
   },
   {

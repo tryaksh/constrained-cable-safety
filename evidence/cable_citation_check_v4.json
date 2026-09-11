@@ -1,0 +1,86 @@
+{
+  "schema": 1,
+  "id": "cable_citation_check_v4",
+  "created_on": "2026-09-11",
+  "status": "executed_citation_check",
+  "scope": "Independent check of the prior-art claims the perception contract and the README lean on. Each entry was fetched from its arXiv abstract page and compared against what this project says about it. Not a study result.",
+  "why": "The handover that set this study going carried a literature summary and said plainly that it had been checked by search rather than read, and that any claim it got wrong changes the positioning. Two of them are wrong in the same direction - both overstate how explicitly a paper says something - and both are corrected here.",
+  "method": "Fetched each arXiv abstract page and compared the title and abstract against the sentence this repository writes about it. A claim is marked confirmed only where the abstract carries it; a claim that needs the body of the paper is marked as such rather than assumed.",
+  "checked": [
+    {
+      "arxiv": "2104.14030",
+      "title": "Measurement-Robust Control Barrier Functions: Certainty in Safety with Uncertainty in State",
+      "claim": "Gives worst-case safety certificates under bounded state-estimation error, and the B0+ arm is an application of that idea rather than a contribution.",
+      "verdict": "confirmed",
+      "note": "The abstract states theoretical guarantees on safe behaviour in the presence of imperfect measurements, combining control barrier functions with backup sets, demonstrated on a Segway with stereo-vision feedback. The credit stands."
+    },
+    {
+      "arxiv": "2606.18097",
+      "title": "WireCraft: A Simulation Benchmark for Industrial DLO Manipulation",
+      "claim": "Provides connector insertion, clip routing and channel seating; privileged-state RL over 82 per cent; the reach-to-contact-rich-alignment transition is the documented bottleneck for vision policies.",
+      "verdict": "confirmed",
+      "note": "All three task families, the 82 per cent figure and the named transition appear in the abstract. The task and the benchmark are prior art and are not claimed here."
+    },
+    {
+      "arxiv": "2505.13889",
+      "title": "Certifiably Safe Manipulation of Deformable Linear Objects via Joint Shape and Tension Prediction",
+      "claim": "A DLO safety filter that enforces safety against a predicted state already exists.",
+      "verdict": "confirmed",
+      "note": "The abstract describes a predictive model of future shape and tension inside a real-time trajectory optimiser enforcing safety constraints during execution, on a simulated wire-harness task."
+    },
+    {
+      "arxiv": "2607.21227",
+      "title": "FORGE-plus: Force-Budgeted Recovery for Contact-Rich Assembly with a Frozen LLM Supervisor",
+      "claim": "Force-budgeted recovery with an LLM supervisor, on bottle placement and 0.4 mm gear insertion; its budget is a FORCE budget where ours is a LENGTH budget.",
+      "verdict": "confirmed",
+      "note": "The abstract carries the frozen text-only LLM assigning a per-object force ceiling, the fragile bottle placement and the 0.4 mm gear insertion. The contrast between a force budget and a length budget is ours and is stated as ours."
+    },
+    {
+      "arxiv": "2607.01111",
+      "title": "FAR: Failure-Aware Retry for Test-Time Recovery and Continual Policy Improvement",
+      "claim": "Recovery after failure is established prior art.",
+      "verdict": "confirmed",
+      "note": "Preference learning from failures plus perturbed retries, about 17.6 per cent over a diffusion-policy baseline in simulation and 11.7 per cent in the real world. It is retry-after-failure, not a budget a repair can overdraw."
+    },
+    {
+      "arxiv": "2011.07215",
+      "title": "SoftGym: Benchmarking Deep Reinforcement Learning for Deformable Object Manipulation",
+      "claim": "Uses ten keypoints for a rope and four corners for cloth, and STATES PLAINLY that this assumes the reduced state captures what the task needs.",
+      "verdict": "corrected",
+      "what_is_confirmed": "The reduced states are exactly as described: the four corners of the cloth for every cloth environment, and ten evenly spaced keypoints including both endpoints for the rope environment. The benchmark deliberately compares full ground-truth state, this reduced state and image observations.",
+      "what_is_not": "The paper does not announce the sufficiency of its reduced states as an assumption. It is implicit in the design, not an explicit claim by the authors, and this repository should not put words in their mouths.",
+      "consequence": "The positioning is unchanged and arguably stronger: an assumption nobody states is a better thing to measure than one somebody already flagged. The README says 'implicitly assume'; the frozen contract still carries the stronger wording and is not edited, because editing it would break the pre-registration. This record is the correction."
+    },
+    {
+      "arxiv": "2310.06424",
+      "title": "Feel the Tension: Manipulation of Deformable Linear Objects in Environments with Fixtures using Force Information",
+      "claim": "Proposes force as the fallback BECAUSE vision fails under occlusion and cannot see small deformation or tension.",
+      "verdict": "corrected",
+      "what_is_confirmed": "DLO manipulation among fixtures using force, with a reduced model supporting blind manipulation by keeping the object under tension, and sliding, clipping and winding primitives. It is the closest neighbour to the force-only arm and is cited as such.",
+      "what_is_not": "The abstract motivates force from what humans do - manipulating cables with little or no visual information, relying mostly on force sensing - rather than from an argument that vision fails under occlusion. The occlusion framing is this project's, and belongs to this project.",
+      "consequence": "The reason the force-only arm exists is unchanged: that paper proposes force as a route and does not measure where it becomes necessary. Only the attributed motivation is corrected."
+    }
+  ],
+  "not_individually_checked": {
+    "ids": [
+      "2308.13943",
+      "2508.17226",
+      "2608.20467",
+      "2402.01370",
+      "2606.04206",
+      "2607.04616",
+      "2605.01069",
+      "2503.04007",
+      "2512.17764",
+      "2512.09283",
+      "2608.22398"
+    ],
+    "why": "These are cited as a body of existing work rather than as load-bearing claims: successors in the measurement-robust CBF line, chance-constrained planning, further DLO benchmarks and sim-to-real, further DLO safety filters, and DLO state estimation under occlusion. No number, method or framing in this repository depends on any one of them individually, and none is used to support a contribution claim.",
+    "what_would_change_if_one_is_wrong": "Nothing measured. The contract's position - that this study builds no estimator, re-derives no certificate and claims no benchmark - would stand."
+  },
+  "standing_position": "Everything load-bearing is credited to prior work: the task and benchmark, the safety filter against an estimate, recovery after failure, the measurement-robust margin, and force as a fallback under occlusion. What is measured here and not found elsewhere is an empirical crossover - at what estimation error a richer representation starts to earn its cost, for an object whose error is structured by occlusion rather than isotropically bounded - and whether that crossover moves with the shape of the constraint.",
+  "scope_and_limitations": [
+    "Abstracts were read, not full papers. A claim that needs the body of a paper is marked as needing it rather than treated as checked.",
+    "This record corrects what this repository says. It does not correct the papers, and it does not evaluate their results."
+  ]
+}
