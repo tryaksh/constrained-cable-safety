@@ -1,6 +1,6 @@
 # Roadmap: constrained-cable connector recovery
 
-**Status: the V1 question is closed; a V2 question is open.** The question this repository was built to answer has been answered with a pre-registered, held-out measurement, and re-running it would only invalidate it. The answer is a corner case, though, and the corner is named: every arm was handed the socket's exact pose and the cable's exact shape. V2 removes that and asks where the answer flips. The next-session prompt is `artifacts/prompts/cable_v2_perception_handover_20260911.txt` (ignored artifacts); this file stays the maintained plan.
+**Status: the V1 question is closed; a V2 question is open.** The question this repository was built to answer has been answered with a pre-registered, held-out measurement, and re-running it would only invalidate it. The answer is a corner case, though, and the corner is named: every arm was handed the socket's exact pose and the cable's exact shape. V2 removes that and asks how much a safety check actually needs to see, as perception degrades and across three constraint shapes. The next-session prompt is `artifacts/prompts/cable_v2_perception_handover_20260911.txt` (ignored artifacts); this file stays the maintained plan.
 
 **Active scope:** industrial cable handling and connector insertion. Establish a credible physical task, measure where competent methods actually fail, and test the smallest justified improvement.
 
