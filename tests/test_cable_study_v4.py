@@ -27,6 +27,7 @@ from assembly_recovery.cable_study_v4 import (
     build_contexts,
     check_margin_resolution,
     constraint_truth,
+    coverage_by_context,
     effective_level,
     false_safe_at_coverage,
     feature_row,
@@ -36,6 +37,7 @@ from assembly_recovery.cable_study_v4 import (
     level_by_id,
     per_context_regret,
     ranking_regret,
+    ranking_regret_matched,
 )
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -326,3 +328,47 @@ def test_contract_scope_refuses_the_claims_the_project_forbids():
     assert "simulation only" in text
     assert "not camera perception" in text
     assert "no hardware access" in text
+
+
+def test_matched_ranking_metric_scores_an_arm_that_abstains_everywhere():
+    # The registered metric cannot score an arm that calls nothing safe. The
+    # companion metric declared in the amendment asks the same question at the
+    # baseline's own coverage, so an ordering is always scored.
+    rows, scores = rowset(["respected", "violated"], [0.9, 0.95], magnitudes=[0.01, 0.09])
+    safe_none = np.array([False, False])
+    assert ranking_regret(rows, safe_none, "C1_clip", 0.006)["scored"] == 0
+    coverage = coverage_by_context(rows, np.array([True, False]))
+    assert coverage == {"ctx": 1}
+    matched = ranking_regret_matched(rows, scores, coverage, "C1_clip", 0.006)
+    assert matched["scored"] == 1
+    assert matched["abstentions"] == 0
+    # With coverage one, the arm issues only the action it ranks safest.
+    assert matched["regret"] == 0.0
+
+
+def test_matched_ranking_metric_uses_the_arms_own_order():
+    rows, _ = rowset(["respected", "violated"], [0.0, 0.0], magnitudes=[0.01, 0.09])
+    coverage = {"ctx": 1}
+    # An arm that ranks the violating action safest is punished for it.
+    bad = ranking_regret_matched(rows, np.array([0.9, 0.1]), coverage, "C1_clip", 0.006)
+    good = ranking_regret_matched(rows, np.array([0.1, 0.9]), coverage, "C1_clip", 0.006)
+    assert bad["regret"] == 1.0
+    assert good["regret"] == 0.0
+
+
+def test_matched_ranking_metric_floors_coverage_at_one():
+    rows, scores = rowset(["violated", "violated"], [0.1, 0.2], magnitudes=[0.01, 0.09])
+    matched = ranking_regret_matched(rows, scores, {"ctx": 0}, "C1_clip", 0.006)
+    assert matched["scored"] == 1
+
+
+def test_the_amendment_names_the_contract_it_amends_and_changes_no_rule():
+    amendment = json.loads(
+        (ROOT / "configs/cable_perception_v4_amendment_01.json").read_text(encoding="utf-8-sig"))
+    from assembly_recovery.cable_study_v4 import content_sha256
+    assert amendment["amends"] == "configs/cable_perception_v4.json"
+    assert amendment["amends_content_sha256"] == content_sha256(
+        ROOT / "configs/cable_perception_v4.json"), "the amended contract must still be frozen"
+    assert amendment["declared_before_the_test_split_was_read"]
+    assert "registered metrics and nothing else" in amendment["companion_metric"]["status"]
+    assert amendment["companion_metric"]["what_it_cannot_do"]

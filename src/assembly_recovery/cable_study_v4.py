@@ -419,6 +419,57 @@ def ranking_regret(rows, safe: np.ndarray, constraint: str, retract_distance_m: 
             "resolution": 1/len(scored) if scored else float("nan")}
 
 
+def per_context_regret_matched(rows, scores, coverage_by_context: dict, constraint: str,
+                              retract_distance_m: float) -> dict:
+    """The supervisor procedure at matched coverage, per context.
+
+    Declared in configs/cable_perception_v4_amendment_01.json, beside the
+    registered metric and never instead of it. An arm's safe set here is its K
+    lowest-risk actions in that context, where K is the number the analytic
+    baseline calls safe there, floored at one. That makes the comparison a
+    question about the ORDER an arm puts actions in rather than about where it
+    happens to put its probability threshold - which is what the study is asking,
+    and which the registered metric cannot answer for an arm that calls nothing
+    safe.
+
+    It is harsher than the registered metric on a cautious arm: an arm that
+    correctly refuses every action in a dangerous context is made to issue one
+    anyway. Read the two together.
+    """
+    scores = np.asarray(scores, dtype=float)
+    out = {}
+    for context, indices in core_by_context(rows).items():
+        coverage = max(1, int(coverage_by_context.get(context, 0)))
+        allowed = sorted(indices, key=lambda i: (scores[i], rows[i]["action_index"]))[:coverage]
+        chosen = max(allowed, key=lambda i: (commanded_magnitude(rows[i], retract_distance_m),
+                                             -rows[i]["action_index"]))
+        state = rows[chosen]["constraints"][constraint]["state"]
+        out[context] = "censored" if state == CENSORED else int(state == VIOLATED)
+    return out
+
+
+def ranking_regret_matched(rows, scores, coverage_by_context: dict, constraint: str,
+                           retract_distance_m: float) -> dict:
+    per_context = per_context_regret_matched(rows, scores, coverage_by_context, constraint,
+                                             retract_distance_m)
+    scored = [v for v in per_context.values() if isinstance(v, int)]
+    return {"contexts": len(per_context), "scored": len(scored),
+            "abstentions": 0,
+            "censored_choices": sum(1 for v in per_context.values() if v == "censored"),
+            "regret": sum(scored)/len(scored) if scored else float("nan"),
+            "resolution": 1/len(scored) if scored else float("nan"),
+            "status": "companion metric declared in "
+                      "configs/cable_perception_v4_amendment_01.json; the registered decision rule "
+                      "does not read it"}
+
+
+def coverage_by_context(rows, safe) -> dict:
+    """How many actions the baseline calls safe in each context."""
+    safe = np.asarray(safe)
+    return {context: int(safe[indices].sum())
+            for context, indices in core_by_context(rows).items()}
+
+
 def check_margin_resolution(margin: float, resolutions, required_ratio: float = 2.0) -> dict:
     """Refuse a margin the finest metric cannot resolve.
 
@@ -545,9 +596,11 @@ __all__ = [
     "ARMS", "ARM_COST", "CONSTRAINTS", "FEATURE_NAMES", "FORCE_FEATURE_NAMES", "HALTON_BASES",
     "b0plus_margin_m", "balanced_accuracy", "build_cases", "build_contexts",
     "check_margin_resolution", "cluster_bootstrap_difference", "commanded_magnitude",
+    "coverage_by_context",
     "constraint_truth", "content_sha256", "core_actions", "core_by_context", "effective_level",
     "false_safe_at_coverage", "feature_row", "finite", "fit_threshold", "isolation_contexts",
     "kaplan_meier", "level_by_id", "load_contract", "merge_runtime", "per_context_regret",
+    "per_context_regret_matched", "ranking_regret_matched",
     "perception_levels", "ranking_regret", "raw_sha256", "repair_basis", "sampled_actions",
     "sign_test",
 ]

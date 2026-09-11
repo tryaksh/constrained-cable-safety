@@ -1,0 +1,27 @@
+{
+ "schema": 1,
+ "id": "cable_perception_v4_amendment_01",
+ "amends": "configs/cable_perception_v4.json",
+ "amends_content_sha256": "4d508d316ff6ba212667df7dc886437293171c46a2fe49655540dd5c1da2673d",
+ "amends_commit": "0842900",
+ "hash_note": "Content hash over byte-order-mark-stripped, LF-normalised bytes, taken with cable_study_v4.content_sha256 and checked against the copy git stores at the pre-registration commit. The two are identical, so this amendment names a contract that is still frozen.",
+ "created_on": "2026-09-11",
+ "status": "declared_amendment_before_the_test_split_was_read",
+ "scope": "Adds one companion metric to the perception study. It does NOT change the registered decision rule, the margin, the metrics that rule reads, the error ladder, the group split or the request list, and the contract file it amends is unchanged byte for byte.",
+
+ "what_prompted_it": "The pilot recorded in evidence/cable_perception_pilot_v4.json shows the probabilistic arms calling ZERO actions safe on C3 at the registered operating point of 0.5, at two of five error levels, and the force-only arm calling zero at both. An arm that abstains in every context receives no ranking-regret score at all, so the registered ranking metric carries no information there. That is a property of calibration under a rare positive class - the fits carry a positive class weight, which pushes predicted probabilities up - and not a property of the representation the study is asking about.",
+
+ "why_it_is_an_amendment_and_not_an_edit": "The contract was frozen and committed at 0842900 before the first request launched, and the shard manifests record its content hash. Editing it now would break exactly the property that makes it a pre-registration. The registered rule therefore stands as written: if it is unresolvable on a constraint because arms abstain, that is reported as unresolvable, the same way the v3 block reported an inconclusive verdict rather than repairing its own margin after the fact.",
+
+ "declared_before_the_test_split_was_read": "The block was still collecting when this was written. No test-split result from the registered block had been read; the measurement that prompted it is the pilot, which is a strided subset explicitly recorded as not a study result.",
+
+ "companion_metric": {
+  "id": "metric_b_matched",
+  "definition": "The registered supervisor procedure with one change: in each test context an arm's safe set is its K lowest-risk actions among the twelve shared core actions, where K is the number B0 calls safe in that same context, floored at one. The supervisor then issues the largest commanded displacement among them, exactly as the registered metric says. Regret is the fraction of scored contexts whose issued action violated the constraint; censored choices and abstentions are reported separately, exactly as the registered metric reports them.",
+  "why_this_form": "It is the ranking metric asked at matched coverage, which is what metric A already does for the false-safe rate. Matching coverage per context makes the comparison a question about the ORDER an arm puts actions in, which is the question the study is about, rather than about where each arm happens to put its probability threshold.",
+  "what_it_cannot_do": "It cannot reward an arm for being appropriately cautious. An arm that correctly refuses every action in a dangerous context is forced to issue one anyway, so this metric is harsher than the registered one on a conservative arm and must be read beside it, never instead of it.",
+  "status": "reported beside the registered metric, and named in the record as a companion. The contract's crossover rule reads the registered metrics and nothing else."
+ },
+
+ "also_recorded": "B0 and B0+ order actions identically inside one error level, because the measurement-robust margin is a constant added to every B0 score at that level. Their false-safe rate at matched coverage is therefore equal by construction, and the margin acts on the operating point rather than on the ordering. This was noticed while writing the analysis, is a property of the arms rather than a defect, and is stated beside every level in the record so no reader mistakes the equality for agreement between two independent methods."
+}

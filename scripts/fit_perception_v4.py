@@ -41,6 +41,7 @@ from assembly_recovery.cable_study_v4 import (  # noqa: E402
     cluster_bootstrap_difference,
     constraint_truth,
     content_sha256,
+    coverage_by_context,
     effective_level,
     false_safe_at_coverage,
     feature_row,
@@ -49,6 +50,7 @@ from assembly_recovery.cable_study_v4 import (  # noqa: E402
     isolation_contexts,
     kaplan_meier,
     ranking_regret,
+    ranking_regret_matched,
 )
 
 
@@ -346,10 +348,11 @@ def safe_set(name, scores, fitted, contract, rows) -> np.ndarray:
     return scores < contract["predictors"]["probability_safe_below"]
 
 
-def evaluate_arm(name, rows, scores, safe, coverage, constraint, retract) -> dict:
+def evaluate_arm(name, rows, scores, safe, coverage, constraint, retract,
+                 per_context_coverage=None) -> dict:
     violated, observed = constraint_truth(rows, constraint)
     own = violated[safe & observed]
-    return {
+    out = {
         "arm": name,
         "predicted_safe": int(safe.sum()),
         "false_safe_rate_own_operating_point": float(own.mean()) if own.size else None,
@@ -358,6 +361,10 @@ def evaluate_arm(name, rows, scores, safe, coverage, constraint, retract) -> dic
         "ranking_regret": ranking_regret(rows, safe, constraint, retract),
         "cost": ARM_COST[name],
     }
+    if per_context_coverage is not None:
+        out["ranking_regret_matched"] = ranking_regret_matched(rows, scores, per_context_coverage,
+                                                               constraint, retract)
+    return out
 
 
 def main() -> int:
@@ -418,8 +425,9 @@ def main() -> int:
             scores = {name: arm_scores(name, fitted, test, retract, contract) for name in ARM_COST}
             safes = {name: safe_set(name, scores[name], fitted, contract, test) for name in ARM_COST}
             coverage = int(safes["B0"].sum())
+            per_context_coverage = coverage_by_context(test, safes["B0"])
             evaluated = {name: evaluate_arm(name, test, scores[name], safes[name], coverage,
-                                            constraint, retract)
+                                            constraint, retract, per_context_coverage)
                          for name in ARM_COST}
             violated, observed = constraint_truth(test, constraint)
             reference = evaluated["B0plus"]
@@ -435,6 +443,9 @@ def main() -> int:
                     "false_safe_gap_vs_B0plus": (None if a is None or b is None else float(a-b)),
                     "ranking_regret_gap_vs_B0plus": float(reference["ranking_regret"]["regret"]
                                                           - evaluated[name]["ranking_regret"]["regret"]),
+                    "ranking_regret_matched_gap_vs_B0plus": float(
+                        reference["ranking_regret_matched"]["regret"]
+                        - evaluated[name]["ranking_regret_matched"]["regret"]),
                 }
             resolutions = [evaluated[name]["ranking_regret"]["resolution"] for name in ARM_COST]
             guard_checks[f"{constraint}:{level_id}"] = check_margin_resolution(margin, resolutions)
@@ -584,6 +595,13 @@ def main() -> int:
                                                       for v in guard_checks.values())
                                       else "refused_margin_below_resolution"),
         "prediction": contract["decision_rule"]["crossover_prediction"],
+        "amendment": {
+            "path": "configs/cable_perception_v4_amendment_01.json",
+            "content_sha256": content_sha256(ROOT / "configs/cable_perception_v4_amendment_01.json"),
+            "effect": "Adds ranking_regret_matched beside the registered ranking metric. The "
+                      "registered decision rule and the crossover verdict below read the registered "
+                      "metrics and nothing else.",
+        },
         "crossover": crossover,
         "results": results,
         "cost_axis": cost,
