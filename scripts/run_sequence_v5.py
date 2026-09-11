@@ -29,44 +29,53 @@ from assembly_recovery.cable_study_v4 import content_sha256, raw_sha256  # noqa:
 def build_cases(contract: dict, perception: dict) -> list[dict]:
     """One request per held-out group, error level and supervisor."""
     support = perception["registered_support"]
+    registered = contract["registered_support"]
     layouts = {layout["id"]: layout for layout in support["layouts"]}
-    mount = next(m for m in support["port_mount"]
-                 if m["id"] == contract["registered_support"]["port_mount"])
-    levels = contract["registered_support"]["error_levels"]
+    mounts = [m for m in support["port_mount"] if m["id"] in registered["port_mount"]]
+    levels = registered["error_levels"]
+    repeats = int(registered.get("repeats", 1))
     supervisors = [s["id"] for s in contract["sequence"]["supervisors"]]
     cases, seed = [], contract["first_calibration_seed"]
     for group in perception["groups"]["test"]:
         layout_id, loop_tag = group.rsplit("_l", 1)
         layout = layouts[layout_id]
         loop = int(loop_tag)/1000.0
-        for level in levels:
-            for supervisor in supervisors:
-                case = {
-                    "id": f"{group}_{level}_{supervisor}",
-                    "controller": "sequence_supervisor",
-                    "calibration_seed": seed,
-                    "perception_seed": seed+contract["perception_seed_offset"],
-                    "run_direction_xy": layout["run_direction_xy"],
-                    "outward_xy": layout["outward_xy"],
-                    "route_waypoints_along_across_m": layout["route_waypoints_along_across_m"],
-                    "fixture_overrides": {
-                        **layout.get("fixture_overrides", {}),
-                        "clip": {**layout.get("fixture_overrides", {}).get("clip", {}),
-                                 "along_m": layout["clip_along_m"]}},
-                    "installed_loop_m": loop,
-                    "fixture_offset_m": [0.0, 0.0],
-                    "port_compliance": mount["compliance"],
-                    "error_level": level, "error_isolation": "all",
-                    "supervisor": supervisor,
-                    "study_group": group, "study_split": "sequence_holdout",
-                    "gate": "S2",
-                    "purpose": "Composition study: three filtered decisions in one sequence.",
-                }
-                if layout.get("cable_overrides"):
-                    case["cable_overrides"] = dict(layout["cable_overrides"])
-                cases.append(case)
-                seed += 1
+        for mount in mounts:
+            for level in levels:
+                for supervisor in supervisors:
+                    for repeat in range(repeats):
+                        cases.append(one_case(contract, group, layout, loop, mount, level,
+                                              supervisor, repeat, seed))
+                        seed += 1
     return cases
+
+
+def one_case(contract, group, layout, loop, mount, level, supervisor, repeat, seed) -> dict:
+    """One sequence request. The perception seed is distinct for every repeat."""
+    case = {
+        "id": f"{group}_{mount['id']}_{level}_{supervisor}_r{repeat}",
+        "controller": "sequence_supervisor",
+        "calibration_seed": seed,
+        "perception_seed": seed+contract["perception_seed_offset"],
+        "run_direction_xy": layout["run_direction_xy"],
+        "outward_xy": layout["outward_xy"],
+        "route_waypoints_along_across_m": layout["route_waypoints_along_across_m"],
+        "fixture_overrides": {
+            **layout.get("fixture_overrides", {}),
+            "clip": {**layout.get("fixture_overrides", {}).get("clip", {}),
+                     "along_m": layout["clip_along_m"]}},
+        "installed_loop_m": loop,
+        "fixture_offset_m": [0.0, 0.0],
+        "port_compliance": mount["compliance"],
+        "error_level": level, "error_isolation": "all",
+        "supervisor": supervisor, "repeat": repeat,
+        "study_group": group, "study_split": "sequence_holdout",
+        "gate": "S2",
+        "purpose": "Composition study: three filtered decisions in one sequence.",
+    }
+    if layout.get("cable_overrides"):
+        case["cable_overrides"] = dict(layout["cable_overrides"])
+    return case
 
 
 def merge_runtime(base: dict, contract: dict, perception: dict) -> dict:
@@ -120,14 +129,27 @@ def main() -> int:
         contract["base_config"]["content_sha256"] = content_sha256(base_path)
         cases = build_cases(contract, perception)
         contract["expected_requests"] = len(cases)
+        registered = contract["registered_support"]
+        per_cell = (len(perception["groups"]["test"])*len(registered["port_mount"])
+                    * int(registered.get("repeats", 1)))
         contract["frozen_counts"] = {
             "held_out_groups": len(perception["groups"]["test"]),
-            "error_levels": len(contract["registered_support"]["error_levels"]),
+            "port_mounts": len(registered["port_mount"]),
+            "repeats": int(registered.get("repeats", 1)),
+            "error_levels": len(registered["error_levels"]),
             "supervisors": len(contract["sequence"]["supervisors"]),
             "steps_per_request": len(contract["sequence"]["decision_times_s"]),
+            "sequences_per_level_and_supervisor": per_cell,
+            "per_step_metric_resolution": 1/per_cell if per_cell else None,
             "requests": len(cases),
             "decisions": len(cases)*len(contract["sequence"]["decision_times_s"]),
         }
+        required = 2*contract["decision_rule"]["margin"]
+        if per_cell and 1/per_cell > required:
+            raise SystemExit(
+                f"A per-step rate over {per_cell} sequences resolves to {1/per_cell:.4f}, which the "
+                f"registered margin of {contract['decision_rule']['margin']} cannot beat. Widen the "
+                f"support or the repeats; do not lower the margin.")
         contract["safety_filter"]["loaded_at_freeze"] = loaded.report()
         contract_path.write_text(json.dumps(contract, indent=1, ensure_ascii=False)+"\n",
                                  encoding="utf-8")

@@ -194,3 +194,21 @@ def test_the_shape_term_shifts_the_score_and_is_off_by_default():
     assert a["headroom_m"] < b["headroom_m"]
     assert shaped.report()["shape_matched"] is True
     assert "EXPLORATORY" in shaped.report()["shape_matched_status"]
+
+
+def test_the_sequence_study_is_sized_to_resolve_its_own_margin():
+    contract = json.loads((ROOT / "configs/cable_sequence_v5.json").read_text(encoding="utf-8-sig"))
+    perception = json.loads(
+        (ROOT / "configs/cable_perception_v4.json").read_text(encoding="utf-8-sig"))
+    support = contract["registered_support"]
+    per_cell = (len(perception["groups"]["test"])*len(support["port_mount"])
+                * int(support["repeats"]))
+    margin = contract["decision_rule"]["margin"]
+    # The v3 defect, checked before this study is ever launched: a per-step rate
+    # over too few sequences cannot resolve the margin it is compared against.
+    assert 1/per_cell <= 2*margin, (per_cell, 1/per_cell, margin)
+    assert per_cell >= 40
+    # Three motions per sequence need more clock than one does.
+    assert contract["runtime_overrides"]["job_limits"]["deadline_s"] > 40.0
+    # And a step whose motion was cut short must not be scored as safe.
+    assert "cut short" in contract["labels"]["per_step_censoring"]

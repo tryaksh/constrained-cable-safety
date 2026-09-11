@@ -43,6 +43,7 @@ def collect(run_dir: Path) -> list[dict]:
             "reason": result["job"]["failure_reason"] or "completed",
             "steps_offered": result.get("steps_offered", 0),
             "steps_issued": result.get("steps_issued", 0),
+            "steps_completed": result.get("steps_completed", 0),
             "abstentions": result.get("abstentions", 0),
             "issued": result.get("issued", []),
             "constraints": result.get("constraints", {}),
@@ -68,7 +69,7 @@ def per_step_rates(rows, constraint: str, steps: int, margin: float) -> dict:
     """
     out = []
     for step in range(steps):
-        intact = issued = broke = idle = 0
+        intact = scored = broke = idle = censored = 0
         for row in rows:
             broke_at = (row["attribution"].get(constraint) or {}).get("during_step")
             if broke_at is not None and broke_at < step:
@@ -78,13 +79,22 @@ def per_step_rates(rows, constraint: str, steps: int, margin: float) -> dict:
             if record is None or not record.get("requested"):
                 idle += 1
                 continue
-            issued += 1
             if broke_at == step:
+                scored += 1
                 broke += 1
-        out.append({"step": step, "reached_intact": intact, "motions_issued": issued,
-                    "no_motion_issued": idle, "violations": broke,
-                    "rate": (broke/issued if issued else None),
-                    "resolution": (1/issued if issued else None)})
+                continue
+            if not record.get("motion_completed"):
+                # The job ended during this motion, so this step never got to
+                # test the constraint. Counting it as respecting one would be the
+                # same error the single-motion study censors against.
+                censored += 1
+                continue
+            scored += 1
+        out.append({"step": step, "reached_intact": intact, "motions_scored": scored,
+                    "no_motion_issued": idle, "motion_cut_short": censored,
+                    "violations": broke,
+                    "rate": (broke/scored if scored else None),
+                    "resolution": (1/scored if scored else None)})
     first = out[0]["rate"] if out else None
     last = out[-1]["rate"] if out else None
     check = check_margin_resolution(margin, [s["resolution"] for s in out])
@@ -133,6 +143,7 @@ def main() -> int:
                 continue
             block = {"requests": len(subset),
                      "motions_issued": sum(r["steps_issued"] for r in subset),
+                     "motions_completed": sum(r.get("steps_completed", 0) for r in subset),
                      "abstentions": sum(r["abstentions"] for r in subset),
                      "by_reason": dict(sorted(
                          defaultdict(int, {k: sum(1 for r in subset if r["reason"] == k)
@@ -187,6 +198,7 @@ def main() -> int:
             "requests": len(rows),
             "decisions_offered": len(rows)*steps,
             "motions_issued": sum(r["steps_issued"] for r in rows),
+            "motions_completed": sum(r.get("steps_completed", 0) for r in rows),
             "abstentions": sum(r["abstentions"] for r in rows),
             "by_reason": {k: sum(1 for r in rows if r["reason"] == k)
                           for k in sorted({r["reason"] for r in rows})},

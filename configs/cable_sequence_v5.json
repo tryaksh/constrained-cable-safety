@@ -4,13 +4,9 @@
  "status": "frozen_study_contract",
  "created_on": "2026-09-11",
  "scope": "Composition study for the constrained-cable safety layer. One request is one SEQUENCE of commanded clearance motions, each chosen by a named supervisor from the state it can see at that moment, with all three constraints scored continuously across the whole sequence. Endpoint is held, clip-preserving seating before gripper release. Not official AIC scoring, not a released or latched connection, not learned pickup, not camera perception and not a hardware claim.",
-
  "question": "A safety check fitted on single commanded motions - does it stay calibrated when motions are chained, where each accepted step changes the state the next is judged from?",
-
  "why_this_question": "The perception study measures which representation a safety check needs for ONE motion. Nothing an industrial cell actually does is one motion. Harness work is a sequence: seat a connector, dress the cable, clip it, move to the next fixture, and the cable's remaining slack, its tightest bend and the load on its anchor are all carried from one step into the next. If a per-step check's false-safe rate is flat across a sequence, a planner can chain it and reason about a whole plan from a single-step number. If it rises - because each accepted step walks the cable into a region the check was never fitted on - then the single-step number understates the risk of every real task, and that is the thing an engineer needs to know before shipping the check. Neither outcome is a null result.",
-
  "what_this_is_not": "It is not a planning contribution and not a new safety method. The check under test is the one the perception study fitted, loaded from that study's evidence record and NOT refitted here. What is measured is whether a fitted check composes.",
-
  "base_config": {
   "path": "configs/cable_recovery_task_v2.json",
   "content_sha256": "PENDING_FREEZE"
@@ -23,67 +19,149 @@
   "why_this_arm": "It is the arm worth shipping if the perception study finds it sufficient: one distance and one comparison, no model to serve, and a margin the measurement-robust control barrier function literature already justifies. The learned arms are deliberately not packaged - their weights are not part of the evidence record, and shipping a model the study may find unnecessary would be the wrong thing to hand somebody.",
   "not_refitted": "The thresholds come out of the perception study's record unchanged. The contexts used here are held out of that fit, so the filter has never seen them."
  },
-
  "sequence": {
-  "decision_times_s": [2.0, 3.5, 5.0],
+  "decision_times_s": [
+   2.0,
+   3.5,
+   5.0
+  ],
   "decision_times_note": "Three decision points, at the three registered decision poses of the perception study, so a step here is the same kind of decision a request there was. A step is offered only when the controller is idle: a supervisor cannot interrupt a motion it already issued.",
   "candidate_actions": [
-   {"retreat_m": 0.0,  "bearing_rad": 0.0,       "excursion_m": 0.0,  "speed_m_per_s": 0.02},
-   {"retreat_m": 0.03, "bearing_rad": 0.0,       "excursion_m": 0.0,  "speed_m_per_s": 0.02},
-   {"retreat_m": 0.06, "bearing_rad": 0.0,       "excursion_m": 0.0,  "speed_m_per_s": 0.02},
-   {"retreat_m": 0.08, "bearing_rad": 0.0,       "excursion_m": 0.0,  "speed_m_per_s": 0.02},
-   {"retreat_m": 0.1,  "bearing_rad": 0.0,       "excursion_m": 0.0,  "speed_m_per_s": 0.02},
-   {"retreat_m": 0.06, "bearing_rad": 0.0,       "excursion_m": 0.03, "speed_m_per_s": 0.02},
-   {"retreat_m": 0.06, "bearing_rad": 3.141593,  "excursion_m": 0.03, "speed_m_per_s": 0.02},
-   {"retreat_m": 0.06, "bearing_rad": 1.570796,  "excursion_m": 0.03, "speed_m_per_s": 0.02},
-   {"retreat_m": 0.06, "bearing_rad": 4.712389,  "excursion_m": 0.03, "speed_m_per_s": 0.02},
-   {"retreat_m": 0.09, "bearing_rad": 0.0,       "excursion_m": 0.03, "speed_m_per_s": 0.02},
-   {"retreat_m": 0.09, "bearing_rad": 3.141593,  "excursion_m": 0.03, "speed_m_per_s": 0.02},
-   {"retreat_m": 0.03, "bearing_rad": 3.141593,  "excursion_m": 0.05, "speed_m_per_s": 0.02}
+   {
+    "retreat_m": 0.0,
+    "bearing_rad": 0.0,
+    "excursion_m": 0.0,
+    "speed_m_per_s": 0.02
+   },
+   {
+    "retreat_m": 0.03,
+    "bearing_rad": 0.0,
+    "excursion_m": 0.0,
+    "speed_m_per_s": 0.02
+   },
+   {
+    "retreat_m": 0.06,
+    "bearing_rad": 0.0,
+    "excursion_m": 0.0,
+    "speed_m_per_s": 0.02
+   },
+   {
+    "retreat_m": 0.08,
+    "bearing_rad": 0.0,
+    "excursion_m": 0.0,
+    "speed_m_per_s": 0.02
+   },
+   {
+    "retreat_m": 0.1,
+    "bearing_rad": 0.0,
+    "excursion_m": 0.0,
+    "speed_m_per_s": 0.02
+   },
+   {
+    "retreat_m": 0.06,
+    "bearing_rad": 0.0,
+    "excursion_m": 0.03,
+    "speed_m_per_s": 0.02
+   },
+   {
+    "retreat_m": 0.06,
+    "bearing_rad": 3.141593,
+    "excursion_m": 0.03,
+    "speed_m_per_s": 0.02
+   },
+   {
+    "retreat_m": 0.06,
+    "bearing_rad": 1.570796,
+    "excursion_m": 0.03,
+    "speed_m_per_s": 0.02
+   },
+   {
+    "retreat_m": 0.06,
+    "bearing_rad": 4.712389,
+    "excursion_m": 0.03,
+    "speed_m_per_s": 0.02
+   },
+   {
+    "retreat_m": 0.09,
+    "bearing_rad": 0.0,
+    "excursion_m": 0.03,
+    "speed_m_per_s": 0.02
+   },
+   {
+    "retreat_m": 0.09,
+    "bearing_rad": 3.141593,
+    "excursion_m": 0.03,
+    "speed_m_per_s": 0.02
+   },
+   {
+    "retreat_m": 0.03,
+    "bearing_rad": 3.141593,
+    "excursion_m": 0.05,
+    "speed_m_per_s": 0.02
+   }
   ],
   "candidate_actions_note": "The twelve shared core actions of the perception study, unchanged, offered identically at every step to every supervisor.",
   "supervisors": [
-   {"id": "filtered", "rule": "Apply the loaded safety filter and issue the LARGEST motion it calls safe, because a larger clearance is the more useful repair. This is the perception study's own registered supervisor procedure, run three times."},
-   {"id": "conservative", "rule": "Apply the same filter and issue the motion with the most HEADROOM instead. Same information, different appetite; it separates what the filter knows from how greedily the supervisor spends it."},
-   {"id": "unfiltered", "rule": "Issue the largest motion regardless. The reference that says what the filter is worth over a sequence, exactly as the no-filter reference did over one action."}
+   {
+    "id": "filtered",
+    "rule": "Apply the loaded safety filter and issue the LARGEST motion it calls safe, because a larger clearance is the more useful repair. This is the perception study's own registered supervisor procedure, run three times."
+   },
+   {
+    "id": "conservative",
+    "rule": "Apply the same filter and issue the motion with the most HEADROOM instead. Same information, different appetite; it separates what the filter knows from how greedily the supervisor spends it."
+   },
+   {
+    "id": "unfiltered",
+    "rule": "Issue the largest motion regardless. The reference that says what the filter is worth over a sequence, exactly as the no-filter reference did over one action."
+   }
   ]
  },
-
  "runtime_overrides": {
   "force_guided_controller": {
    "repair_settle_s": 0.5,
    "max_retries": 6,
-   "max_retries_note": "Raised from 2 so that three issued motions plus the controller's own force retries fit inside one job. The retry budget is shared, exactly as it is in every other block, and a supervisor that exhausts it is recorded as having done so."
+   "max_retries_note": "Raised from 2 so that three issued motions plus the controller's own force retries fit inside one job. The retry budget is shared, exactly as it is in every other block, and a supervisor that exhausts it is recorded as having done so.",
+   "deadline_s": 75.0
   },
-  "render_visuals": false
+  "render_visuals": false,
+  "job_limits": {
+   "deadline_s": 75.0
+  },
+  "job_limits_note": "Raised from the 40 s a single-motion request gets, because a request here is three motions plus the approach and the seating that follows them. The 40 s deadline was measured against one repair; leaving it would censor most filtered sequences at the third step for no reason but the clock, which is an artefact and not a result. Every other limit - wrist force, plug force, anchor force, dwell - is unchanged."
  },
-
  "registered_support": {
   "from": "configs/cable_perception_v4.json",
   "split": "test",
-  "rule": "Held-out (layout, installed loop) groups of the perception study only, at one mount and one route per group, so the filter has never been fitted on any context it is asked about here.",
-  "port_mount": "compliant4000",
-  "error_levels": ["E0", "E2", "E4"],
-  "error_levels_note": "The anchor, the middle of the ladder and its top, so composition is measured under no estimation error, moderate error and the most a good industrial pose estimator would leave."
+  "rule": "Held-out (layout, installed loop) groups of the perception study only, crossed with both port mounts and four perception draws, so the filter has never been fitted on any context it is asked about here.",
+  "port_mount": [
+   "rigid",
+   "compliant4000"
+  ],
+  "error_levels": [
+   "E0",
+   "E2",
+   "E4"
+  ],
+  "error_levels_note": "The anchor, the middle of the ladder and its top, so composition is measured under no estimation error, moderate error and the most a good industrial pose estimator would leave.",
+  "repeats": 4,
+  "repeats_note": "Four perception draws per (group, mount, level, supervisor). The estimate is stochastic - a per-episode bias direction, correlated jitter, node dropout and a disturbance force - so a repeat is a genuine second sample of the same physical cell under a different estimator realisation, not a duplicate. Seeds are distinct and registered.",
+  "sizing": "10 held-out groups x 2 mounts x 4 repeats = 80 sequences per (error level, supervisor) cell. A per-step violation rate over 80 has a resolution of 0.0125 and the registered margin is 0.05, four times it. Sized before freezing precisely so the runner's resolution check cannot refuse this study for the reason it refused the v3 metric-B branch."
  },
-
  "first_calibration_seed": 141000,
  "perception_seed_offset": 700000,
  "expected_requests": "PENDING_FREEZE",
-
  "labels": {
   "primary": "Whether each constraint was violated at any point in the sequence, and at which step.",
   "per_step": "Each step records what the supervisor chose, whether it abstained, the filter's per-constraint verdict and headroom, and the state the cable was in before the step ran.",
   "censoring": "Identical to the perception study: a sequence cut short by the force abort, the deadline or an infeasible construction is CENSORED on every constraint it had not already violated. A censored sequence is never counted as having respected one.",
-  "denominator": "Every registered sequence counts, including settling rejections, infeasible constructions and aborts."
+  "denominator": "Every registered sequence counts, including settling rejections, infeasible constructions and aborts.",
+  "per_step_censoring": "A step is CENSORED if its motion was issued but did not finish - the job ended during it. A step whose motion completed and did not break the constraint is counted as respecting it, even if the sequence was later cut short at a different step, because that motion did run to the end. A step nobody issued is neither."
  },
-
  "decision_rule": {
   "margin": 0.05,
   "margin_units": "absolute, on a per-step violation rate",
-  "metric": "Per-step violation rate for each constraint: of the sequences that reached step k with the constraint still intact, the fraction that broke it during step k. Computed for each supervisor and each error level. Abstentions are counted and reported; a step nobody issued cannot break anything and is excluded from that step's denominator, with the abstention count printed beside the rate.",
+  "metric": "Per-step violation rate for each constraint: of the motions issued at step k, and completed, by sequences that reached step k with the constraint still intact, the fraction that broke it during step k. Computed for each supervisor and each error level. Steps nobody issued, and steps whose motion was cut short, are counted and reported beside the rate rather than inside it.",
   "margin_resolution_rule": "The same rule the perception study applies: the margin must be at least twice the coarsest metric resolution in play, checked in code. A per-step rate computed over fewer than 40 surviving sequences cannot resolve a 0.05 margin and is reported as unresolvable rather than as a number.",
-
   "prediction": {
    "declared_before_collection": true,
    "composition": "The filtered supervisor's per-step violation rate on C1 does not rise by more than the margin between step 1 and step 3. A single-step safety check composes over a three-step sequence.",
@@ -92,21 +170,19 @@
    "value_of_the_filter": "The unfiltered supervisor's cumulative violation rate on C1 exceeds the filtered supervisor's by more than the margin at every error level. If it does not, the filter is not earning its place in a sequence either.",
    "falsification": "Each of the three is falsifiable on its own, and being wrong about any of them is a result. The interesting outcome is the second one: it would say that a safety layer must be built per constraint shape rather than fitted once and reused, which is a design consequence and not a score."
   },
-
   "reporting": "Per-step rates, cumulative rates, abstention counts, and which step each violation is attributed to, for every supervisor at every error level. The attribution is by job time, because detour progress restarts at every step and cannot order events across a sequence."
  },
-
  "controls": {
   "filter_is_the_shipped_one": "The filter under test is constructed by assembly_recovery.cable_safety_filter_v4.SafetyFilter.from_evidence and its report is written into every request record, so what ran and what is published cannot drift apart.",
   "privilege_guard": "Unchanged from the perception study: control-side reads of a scoring-only channel fail the request, and the positive control that proves the guard fires is that study's.",
   "held_out": "Every context here comes from the perception study's test split, so the filter has never been fitted on it."
  },
-
  "scope_and_limitations": [
   "Simulation only. No hardware access, connector transfer, released retention or force-certified safety claim.",
   "Three steps is a short sequence. It can show that a rate rises; it cannot establish where it settles.",
   "One filter is tested, the analytic one. A finding that it fails to compose on a constraint is a statement about THAT filter, not about every possible check.",
   "The candidate action set is the perception study's twelve. A supervisor with a richer action space might spend its budget differently.",
   "The error model is a model of how perception fails, not camera perception."
- ]
+ ],
+ "sizing_check": "Verified before freezing, against a stand-in fit: the contract expands to 720 sequences and 2,160 decisions, 80 sequences per (error level, supervisor) cell, so a per-step rate resolves to 0.0125 against a registered margin of 0.05. The launcher refuses to freeze a size whose resolution the margin cannot beat."
 }

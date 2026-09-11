@@ -155,6 +155,10 @@ def run_case(cfg, case, directory: Path) -> dict:
     history_cfg = cfg["perception"]["history"]
     history_stride = max(1, round(history_cfg["stride_s"]*cfg["clocks"]["servo_hz"]))
     issued: list[dict] = []
+    #: The step whose motion is executing, if any. A motion that never leaves the
+    #: repair phase did not finish, and a step whose motion did not finish cannot
+    #: be scored as having respected anything.
+    pending_step: int | None = None
     #: When each constraint first went, and which step was running at the time.
     #: Detour progress restarts at every step, so it cannot order events across a
     #: sequence; job time can.
@@ -181,7 +185,7 @@ def run_case(cfg, case, directory: Path) -> dict:
                 state["has_retained_passage"], clip_margin(scene, state, centreline),
                 job.first_witness_s is not None)
             perception.advance()
-            estimate, weights = estimated_observation(perception, truth)
+            estimate, weights = estimated_observation(scene, perception, truth, privilege)
             progress = (0.0 if repair_start_tip is None
                         else float(np.linalg.norm(truth.tip_position-repair_start_tip)))
             scorer.update(centreline, float(np.linalg.norm(reaction)),
@@ -226,6 +230,7 @@ def run_case(cfg, case, directory: Path) -> dict:
                                   filter_.endpoint_distance_m(decision, pick["action"],
                                                               case["run_direction_xy"])),
                               "decision_boot_to_anchor_m": decision["boot_to_anchor_m"]}
+                    record["motion_completed"] = False
                     if pick["action"] is not None:
                         macro = parametric_macro(pick["action"])
                         macros[f"seq{step_index}"] = macro
@@ -236,8 +241,13 @@ def run_case(cfg, case, directory: Path) -> dict:
                     else:
                         record["requested"] = False
                     issued.append(record)
+                    if record["requested"]:
+                        pending_step = step_index
                     step_index += 1
                 target, phase, _ = controller.step(estimate, policy_every*dt)
+                if pending_step is not None and phase not in ("retract", "repair"):
+                    issued[pending_step]["motion_completed"] = True
+                    pending_step = None
             privilege.disarm()
             apply_cartesian_impedance(scene, target, scene.target_rotation, cfg["controller"])
             guard.after_control()
@@ -284,6 +294,7 @@ def run_case(cfg, case, directory: Path) -> dict:
     mujoco.mj_forward(scene.model, data)
     terminal = clip_state(scene)
     completed_steps = sum(1 for r in issued if r.get("requested"))
+    finished_steps = sum(1 for r in issued if r.get("motion_completed"))
     move_completed = bool(settled and job.failure_reason not in (
         "force_abort", "prior_connection_load_abort", "nonfinite_dynamics", "deadline"))
     labels = scorer.labels(move_completed, terminal["has_retained_passage"])
@@ -303,6 +314,7 @@ def run_case(cfg, case, directory: Path) -> dict:
         "terminal_clip_retained": terminal["has_retained_passage"],
         "error_level": case["error_level"], "error_isolation": "all",
         "steps_offered": len(step_times), "steps_issued": completed_steps,
+        "steps_completed": finished_steps,
         "abstentions": sum(1 for r in issued if r["abstained"]),
         "issued": issued, "constraints": labels, "constraint_report": scorer.report(),
         "attribution": attribution, "move_completed": move_completed,
@@ -327,7 +339,8 @@ def run_case(cfg, case, directory: Path) -> dict:
     write(directory / "result.json", outcome)
     print(json.dumps({"case": case["id"], "supervisor": supervisor,
                       "status": outcome["job"]["status"], "reason": outcome["job"]["failure_reason"],
-                      "issued": completed_steps, "abstained": outcome["abstentions"],
+                      "issued": completed_steps, "finished": finished_steps,
+                      "abstained": outcome["abstentions"],
                       **{k: labels[k]["state"] for k in CONSTRAINTS}}), flush=True)
     return outcome
 
