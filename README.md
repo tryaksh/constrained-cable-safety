@@ -8,6 +8,8 @@ The active cycle studies industrial cable handling and SC connector insertion us
 
 [ROADMAP.md](ROADMAP.md) contains the current research plan, verified state and next action. [AGENTS.md](AGENTS.md) contains the operating rules. These are the only three maintained Markdown files.
 
+The current execution handover is prepared for **Claude Opus 5**. In this local workspace, ask it to read and execute `artifacts/prompts/cable_recovery_audited_handover_20260910.txt`. The prompt explicitly loads the maintained instructions and carries the full experimental campaign; the simulator and project code do not depend on the assistant provider.
+
 ## The audited research direction
 
 **Goal:** when a connector insertion fails, choose a physical repair that finishes insertion while preserving an earlier cable clip and respecting load/time limits. A correction near the plug may tension the rest of the cable; clearing a snag may disturb local alignment. The useful question is when a learned predictor of repair consequences improves this choice beyond competent rules or cable-aware planning.

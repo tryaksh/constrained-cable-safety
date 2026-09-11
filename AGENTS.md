@@ -1,5 +1,7 @@
 # Agent instructions
 
+The current working assistant is **Claude Opus 5**, at the owner's request. These instructions apply across assistant clients. Read this file explicitly from the handover; automatic loading is not assumed. Use the tools available in the current client, with independent agents when supported and sequential execution otherwise. The full research objective and evidence rules still apply.
+
 ## Current cable mandate (2026-09-10)
 
 The owner now authorizes an autonomous industrial cable-handling and connector-insertion cycle. This supersedes peg-first, mandatory gear, fixed simulator/robot, and single-action restrictions for new cable work. Preserve all peg code and negative evidence. Inspect and pin Intrinsic AIC; choose a practical native simulator through project-owned adapters. Establish physical connector engagement, cable deformation, contact sensing and feasible retained-connection recovery before comparative learning. Official benchmark scoring and project extensions must remain separate. Use independent agents with explicit file ownership, one serial simulator/GPU queue, bounded jobs, measured cable-task capacity, source provenance and complete-job accounting. Train substantially only when a credible task and measured baseline failure justify it. Hardware access and unseen-connector transfer are not assumed. Update the three maintained documents and concise JSON evidence; commit verified work on the existing research branch.
@@ -72,3 +74,5 @@ Read only `summary`, `key_findings`, `next_action` and `scope_and_limitations` f
 Keep raw runs, videos and weights in ignored output directories. Keep concise verified evidence in `evidence/`. Exactly three maintained Markdown documents: no HANDOFF, NOW, NEXT_WORK, new paper-plan or extra agent file. Future manuscript source can be LaTeX. References and detailed machine records belong in JSON or BibTeX.
 
 When a block finishes, state what changed, what actually ran and the next action. Do not promise a positive result, publication acceptance or hiring. Execute the evidence-backed experiment in ROADMAP.md. Safe non-force pushes to the existing research/assembly-recovery-training branch are authorized; main stays unchanged.
+
+Publication status at the Claude transfer: the prior automatic approval review blocked the push to `https://github.com/tryaksh/orbital-robotic-servicing-lab.git` because explicit destination authorization was missing. Continue local work and commits; the owner has not yet answered that publication question. Do not use another client to bypass the rejection. This concrete pending approval takes precedence over the general branch-push authorization above.
