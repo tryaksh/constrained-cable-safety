@@ -50,6 +50,10 @@ def check_case(directory: Path) -> dict:
         return {"case": result["case"]["id"], "replayed": False,
                 "reason": result["job"].get("failure_reason"), "agrees": None}
     ledger = np.load(directory / "ledger.npz", allow_pickle=False)
+    if len(ledger["servo"]) == 0:
+        return {"case": result["case"]["id"], "controller": result["controller"], "replayed": False,
+                "reason": result["job"].get("failure_reason"), "agrees": None,
+                "note": "Rejected before the job clock started; no servo samples exist to replay."}
     limits = CableJobLimits(**{**json.loads((ROOT / "configs/cable_recovery_task_v2.json")
                                             .read_text(encoding="utf-8-sig"))["job_limits"],
                                **result["case"].get("job_limits_override", {})})

@@ -1,0 +1,1383 @@
+{
+  "schema": 1,
+  "run_dir": "artifacts\\cable\\cable-recovery-v2-r01",
+  "cases": [
+    {
+      "case": "g1_bad_repair_near_home",
+      "controller": "force_guided_insertion",
+      "replayed": true,
+      "worker": {
+        "status": "failed",
+        "failure_reason": "lost_required_clip",
+        "witness_type": null,
+        "dwell_s": 0.0,
+        "elapsed_s": 25.253999999999998
+      },
+      "independent": {
+        "status": "failed",
+        "failure_reason": "lost_required_clip",
+        "witness_type": null,
+        "dwell_s": 0.0,
+        "elapsed_s": 25.253999999999998
+      },
+      "checks": {
+        "status_agrees": true,
+        "reason_agrees": true,
+        "witness_agrees": true,
+        "dwell_agrees": true,
+        "elapsed_agrees": true,
+        "native_rows_cover_job": true,
+        "native_wrist_under_limit_until_end": true,
+        "clip_flag_matches_terminal": true,
+        "no_unreported_mutation": true
+      },
+      "agrees": true,
+      "first_witness_s": null,
+      "peak_native_wrist_n": 10.69792251660578,
+      "peak_native_plug_n": 1.8899605164713889,
+      "peak_native_anchor_sensor_n": 0.14330935706850265,
+      "peak_anchor_reaction_n": 0.1432167119898703,
+      "max_retreat_travel_m": 0.08441387462900707,
+      "terminal_clip_margin_m": -0.001403651245419588,
+      "native_rows": 101009,
+      "servo_rows": 12627
+    },
+    {
+      "case": "g1_contact_witness",
+      "controller": "scripted_program",
+      "replayed": true,
+      "worker": {
+        "status": "failed",
+        "failure_reason": "deadline",
+        "witness_type": "connector_contact_stall",
+        "dwell_s": 0.0,
+        "elapsed_s": 30.0
+      },
+      "independent": {
+        "status": "failed",
+        "failure_reason": "deadline",
+        "witness_type": "connector_contact_stall",
+        "dwell_s": 0.0,
+        "elapsed_s": 30.0
+      },
+      "checks": {
+        "status_agrees": true,
+        "reason_agrees": true,
+        "witness_agrees": true,
+        "dwell_agrees": true,
+        "elapsed_agrees": true,
+        "native_rows_cover_job": true,
+        "native_wrist_under_limit_until_end": true,
+        "clip_flag_matches_terminal": true,
+        "no_unreported_mutation": true
+      },
+      "agrees": true,
+      "first_witness_s": 2.104,
+      "peak_native_wrist_n": 10.440720146865972,
+      "peak_native_plug_n": 14.683864592959083,
+      "peak_native_anchor_sensor_n": 0.09213678113388886,
+      "peak_anchor_reaction_n": 0.09213678113271578,
+      "max_retreat_travel_m": -0.0,
+      "terminal_clip_margin_m": 0.008528191764657503,
+      "native_rows": 119993,
+      "servo_rows": 15000
+    },
+    {
+      "case": "g1_good_repair_near_home",
+      "controller": "force_guided_insertion",
+      "replayed": true,
+      "worker": {
+        "status": "completed",
+        "failure_reason": null,
+        "witness_type": null,
+        "dwell_s": 0.5000000000000003,
+        "elapsed_s": 20.43
+      },
+      "independent": {
+        "status": "completed",
+        "failure_reason": null,
+        "witness_type": null,
+        "dwell_s": 0.5000000000000011,
+        "elapsed_s": 20.43
+      },
+      "checks": {
+        "status_agrees": true,
+        "reason_agrees": true,
+        "witness_agrees": true,
+        "dwell_agrees": true,
+        "elapsed_agrees": true,
+        "native_rows_cover_job": true,
+        "native_wrist_under_limit_until_end": true,
+        "clip_flag_matches_terminal": true,
+        "no_unreported_mutation": true
+      },
+      "agrees": true,
+      "first_witness_s": null,
+      "peak_native_wrist_n": 10.520267129871467,
+      "peak_native_plug_n": 13.19320115337221,
+      "peak_native_anchor_sensor_n": 0.09492823028285567,
+      "peak_anchor_reaction_n": 0.09492822923183486,
+      "max_retreat_travel_m": 0.004153943931805237,
+      "terminal_clip_margin_m": 0.008528428529821294,
+      "native_rows": 81713,
+      "servo_rows": 10215
+    },
+    {
+      "case": "g1_mutation_positive",
+      "controller": "force_guided_insertion",
+      "replayed": true,
+      "worker": {
+        "status": "failed",
+        "failure_reason": "forbidden_state_change",
+        "witness_type": null,
+        "dwell_s": 0.0,
+        "elapsed_s": 1.002
+      },
+      "independent": {
+        "status": "failed",
+        "failure_reason": "forbidden_state_change",
+        "witness_type": null,
+        "dwell_s": 0.0,
+        "elapsed_s": 1.002
+      },
+      "checks": {
+        "status_agrees": true,
+        "reason_agrees": true,
+        "witness_agrees": true,
+        "dwell_agrees": true,
+        "elapsed_agrees": true,
+        "native_rows_cover_job": true,
+        "native_wrist_under_limit_until_end": true,
+        "clip_flag_matches_terminal": true,
+        "no_unreported_mutation": true
+      },
+      "agrees": true,
+      "first_witness_s": null,
+      "peak_native_wrist_n": 10.44072014686597,
+      "peak_native_plug_n": 1.7132119512791448,
+      "peak_native_anchor_sensor_n": 0.09038125240633924,
+      "peak_anchor_reaction_n": 0.09036056989076664,
+      "max_retreat_travel_m": -0.0,
+      "terminal_clip_margin_m": 0.008528101070151872,
+      "native_rows": 4001,
+      "servo_rows": 501
+    },
+    {
+      "case": "g1_nominal_seating",
+      "controller": "force_guided_insertion",
+      "replayed": true,
+      "worker": {
+        "status": "completed",
+        "failure_reason": null,
+        "witness_type": null,
+        "dwell_s": 0.5000000000000003,
+        "elapsed_s": 6.02
+      },
+      "independent": {
+        "status": "completed",
+        "failure_reason": null,
+        "witness_type": null,
+        "dwell_s": 0.49999999999999933,
+        "elapsed_s": 6.02
+      },
+      "checks": {
+        "status_agrees": true,
+        "reason_agrees": true,
+        "witness_agrees": true,
+        "dwell_agrees": true,
+        "elapsed_agrees": true,
+        "native_rows_cover_job": true,
+        "native_wrist_under_limit_until_end": true,
+        "clip_flag_matches_terminal": true,
+        "no_unreported_mutation": true
+      },
+      "agrees": true,
+      "first_witness_s": null,
+      "peak_native_wrist_n": 10.44072014686597,
+      "peak_native_plug_n": 13.011753686905713,
+      "peak_native_anchor_sensor_n": 0.09475861485801551,
+      "peak_anchor_reaction_n": 0.094758612900247,
+      "max_retreat_travel_m": -0.0,
+      "terminal_clip_margin_m": 0.008528223502701916,
+      "native_rows": 24073,
+      "servo_rows": 3010
+    },
+    {
+      "case": "g1_numerical_8k",
+      "controller": "force_guided_insertion",
+      "replayed": true,
+      "worker": {
+        "status": "completed",
+        "failure_reason": null,
+        "witness_type": null,
+        "dwell_s": 0.5000000000000003,
+        "elapsed_s": 6.02
+      },
+      "independent": {
+        "status": "completed",
+        "failure_reason": null,
+        "witness_type": null,
+        "dwell_s": 0.49999999999999933,
+        "elapsed_s": 6.02
+      },
+      "checks": {
+        "status_agrees": true,
+        "reason_agrees": true,
+        "witness_agrees": true,
+        "dwell_agrees": true,
+        "elapsed_agrees": true,
+        "native_rows_cover_job": true,
+        "native_wrist_under_limit_until_end": true,
+        "clip_flag_matches_terminal": true,
+        "no_unreported_mutation": true
+      },
+      "agrees": true,
+      "first_witness_s": null,
+      "peak_native_wrist_n": 10.435519461478865,
+      "peak_native_plug_n": 13.235579894414537,
+      "peak_native_anchor_sensor_n": 0.09520866979652125,
+      "peak_anchor_reaction_n": 0.0952086694270467,
+      "max_retreat_travel_m": -0.0,
+      "terminal_clip_margin_m": 0.00852824110967703,
+      "native_rows": 48145,
+      "servo_rows": 3010
+    },
+    {
+      "case": "g1_release_ramp",
+      "controller": "scripted_program",
+      "replayed": true,
+      "worker": {
+        "status": "failed",
+        "failure_reason": "lost_required_clip",
+        "witness_type": null,
+        "dwell_s": 0.0,
+        "elapsed_s": 21.2
+      },
+      "independent": {
+        "status": "failed",
+        "failure_reason": "lost_required_clip",
+        "witness_type": null,
+        "dwell_s": 0.0,
+        "elapsed_s": 21.2
+      },
+      "checks": {
+        "status_agrees": true,
+        "reason_agrees": true,
+        "witness_agrees": true,
+        "dwell_agrees": true,
+        "elapsed_agrees": true,
+        "native_rows_cover_job": true,
+        "native_wrist_under_limit_until_end": true,
+        "clip_flag_matches_terminal": true,
+        "no_unreported_mutation": true
+      },
+      "agrees": true,
+      "first_witness_s": null,
+      "peak_native_wrist_n": 10.69793862127984,
+      "peak_native_plug_n": 1.8898075917224657,
+      "peak_native_anchor_sensor_n": 0.14307546217717487,
+      "peak_anchor_reaction_n": 0.14260573135987661,
+      "max_retreat_travel_m": 0.08439845043197147,
+      "terminal_clip_margin_m": -0.00140439703504853,
+      "native_rows": 84793,
+      "servo_rows": 10600
+    },
+    {
+      "case": "g1_spatial_46",
+      "controller": "force_guided_insertion",
+      "replayed": false,
+      "reason": "settle_instability",
+      "agrees": null,
+      "note": "Rejected before the job clock started; no servo samples exist to replay."
+    },
+    {
+      "case": "g1_unloaded_anchor",
+      "controller": "scripted_program",
+      "replayed": true,
+      "worker": {
+        "status": "failed",
+        "failure_reason": "deadline",
+        "witness_type": null,
+        "dwell_s": 0.0,
+        "elapsed_s": 3.0
+      },
+      "independent": {
+        "status": "failed",
+        "failure_reason": "deadline",
+        "witness_type": null,
+        "dwell_s": 0.0,
+        "elapsed_s": 3.0
+      },
+      "checks": {
+        "status_agrees": true,
+        "reason_agrees": true,
+        "witness_agrees": true,
+        "dwell_agrees": true,
+        "elapsed_agrees": true,
+        "native_rows_cover_job": true,
+        "native_wrist_under_limit_until_end": true,
+        "clip_flag_matches_terminal": true,
+        "no_unreported_mutation": true
+      },
+      "agrees": true,
+      "first_witness_s": null,
+      "peak_native_wrist_n": 10.458215882379742,
+      "peak_native_plug_n": 1.718881610870059,
+      "peak_native_anchor_sensor_n": 0.09032343566922853,
+      "peak_anchor_reaction_n": 0.09032342054838757,
+      "max_retreat_travel_m": 4.963135267210816e-07,
+      "terminal_clip_margin_m": 0.008528158539648467,
+      "native_rows": 11993,
+      "servo_rows": 1500
+    },
+    {
+      "case": "g2_o3_bad",
+      "controller": "blind_then_recover",
+      "replayed": true,
+      "worker": {
+        "status": "completed",
+        "failure_reason": null,
+        "witness_type": "connector_contact_stall",
+        "dwell_s": 0.5000000000000003,
+        "elapsed_s": 10.836
+      },
+      "independent": {
+        "status": "completed",
+        "failure_reason": null,
+        "witness_type": "connector_contact_stall",
+        "dwell_s": 0.49999999999999933,
+        "elapsed_s": 10.836
+      },
+      "checks": {
+        "status_agrees": true,
+        "reason_agrees": true,
+        "witness_agrees": true,
+        "dwell_agrees": true,
+        "elapsed_agrees": true,
+        "native_rows_cover_job": true,
+        "native_wrist_under_limit_until_end": true,
+        "clip_flag_matches_terminal": true,
+        "no_unreported_mutation": true
+      },
+      "agrees": true,
+      "first_witness_s": 2.666,
+      "peak_native_wrist_n": 10.508064447823234,
+      "peak_native_plug_n": 13.801794037752474,
+      "peak_native_anchor_sensor_n": 0.09471079032330276,
+      "peak_anchor_reaction_n": 0.09471079008250884,
+      "max_retreat_travel_m": -0.0,
+      "terminal_clip_margin_m": 0.008528200222422616,
+      "native_rows": 43337,
+      "servo_rows": 5418
+    },
+    {
+      "case": "g2_o3_local",
+      "controller": "blind_then_recover",
+      "replayed": true,
+      "worker": {
+        "status": "completed",
+        "failure_reason": null,
+        "witness_type": "connector_contact_stall",
+        "dwell_s": 0.5000000000000003,
+        "elapsed_s": 10.836
+      },
+      "independent": {
+        "status": "completed",
+        "failure_reason": null,
+        "witness_type": "connector_contact_stall",
+        "dwell_s": 0.49999999999999933,
+        "elapsed_s": 10.836
+      },
+      "checks": {
+        "status_agrees": true,
+        "reason_agrees": true,
+        "witness_agrees": true,
+        "dwell_agrees": true,
+        "elapsed_agrees": true,
+        "native_rows_cover_job": true,
+        "native_wrist_under_limit_until_end": true,
+        "clip_flag_matches_terminal": true,
+        "no_unreported_mutation": true
+      },
+      "agrees": true,
+      "first_witness_s": 2.666,
+      "peak_native_wrist_n": 10.508064447823234,
+      "peak_native_plug_n": 13.801794037752474,
+      "peak_native_anchor_sensor_n": 0.09471079032330276,
+      "peak_anchor_reaction_n": 0.09471079008250884,
+      "max_retreat_travel_m": -0.0,
+      "terminal_clip_margin_m": 0.008528200222422616,
+      "native_rows": 43337,
+      "servo_rows": 5418
+    },
+    {
+      "case": "g2_o3_none",
+      "controller": "scripted_program",
+      "replayed": true,
+      "worker": {
+        "status": "failed",
+        "failure_reason": "deadline",
+        "witness_type": "connector_contact_stall",
+        "dwell_s": 0.0,
+        "elapsed_s": 30.0
+      },
+      "independent": {
+        "status": "failed",
+        "failure_reason": "deadline",
+        "witness_type": "connector_contact_stall",
+        "dwell_s": 0.0,
+        "elapsed_s": 30.0
+      },
+      "checks": {
+        "status_agrees": true,
+        "reason_agrees": true,
+        "witness_agrees": true,
+        "dwell_agrees": true,
+        "elapsed_agrees": true,
+        "native_rows_cover_job": true,
+        "native_wrist_under_limit_until_end": true,
+        "clip_flag_matches_terminal": true,
+        "no_unreported_mutation": true
+      },
+      "agrees": true,
+      "first_witness_s": 2.666,
+      "peak_native_wrist_n": 10.440720146865972,
+      "peak_native_plug_n": 14.683145656588076,
+      "peak_native_anchor_sensor_n": 0.09262774711065863,
+      "peak_anchor_reaction_n": 0.09262774711013447,
+      "max_retreat_travel_m": -0.0,
+      "terminal_clip_margin_m": 0.0085281780939777,
+      "native_rows": 119993,
+      "servo_rows": 15000
+    },
+    {
+      "case": "g2_o3_rules",
+      "controller": "blind_then_recover",
+      "replayed": true,
+      "worker": {
+        "status": "completed",
+        "failure_reason": null,
+        "witness_type": "connector_contact_stall",
+        "dwell_s": 0.5000000000000003,
+        "elapsed_s": 10.836
+      },
+      "independent": {
+        "status": "completed",
+        "failure_reason": null,
+        "witness_type": "connector_contact_stall",
+        "dwell_s": 0.49999999999999933,
+        "elapsed_s": 10.836
+      },
+      "checks": {
+        "status_agrees": true,
+        "reason_agrees": true,
+        "witness_agrees": true,
+        "dwell_agrees": true,
+        "elapsed_agrees": true,
+        "native_rows_cover_job": true,
+        "native_wrist_under_limit_until_end": true,
+        "clip_flag_matches_terminal": true,
+        "no_unreported_mutation": true
+      },
+      "agrees": true,
+      "first_witness_s": 2.666,
+      "peak_native_wrist_n": 10.508064447823234,
+      "peak_native_plug_n": 13.801794037752474,
+      "peak_native_anchor_sensor_n": 0.09471079032330276,
+      "peak_anchor_reaction_n": 0.09471079008250884,
+      "max_retreat_travel_m": -0.0,
+      "terminal_clip_margin_m": 0.008528200222422616,
+      "native_rows": 43337,
+      "servo_rows": 5418
+    },
+    {
+      "case": "g2_o5_bad",
+      "controller": "blind_then_recover",
+      "replayed": true,
+      "worker": {
+        "status": "completed",
+        "failure_reason": null,
+        "witness_type": "connector_contact_stall",
+        "dwell_s": 0.5000000000000003,
+        "elapsed_s": 11.32
+      },
+      "independent": {
+        "status": "completed",
+        "failure_reason": null,
+        "witness_type": "connector_contact_stall",
+        "dwell_s": 0.49999999999999933,
+        "elapsed_s": 11.32
+      },
+      "checks": {
+        "status_agrees": true,
+        "reason_agrees": true,
+        "witness_agrees": true,
+        "dwell_agrees": true,
+        "elapsed_agrees": true,
+        "native_rows_cover_job": true,
+        "native_wrist_under_limit_until_end": true,
+        "clip_flag_matches_terminal": true,
+        "no_unreported_mutation": true
+      },
+      "agrees": true,
+      "first_witness_s": 2.104,
+      "peak_native_wrist_n": 10.511962085984345,
+      "peak_native_plug_n": 13.064081817605288,
+      "peak_native_anchor_sensor_n": 0.09522074055678527,
+      "peak_anchor_reaction_n": 0.09522074055678527,
+      "max_retreat_travel_m": -0.0,
+      "terminal_clip_margin_m": 0.008527910223482385,
+      "native_rows": 45273,
+      "servo_rows": 5660
+    },
+    {
+      "case": "g2_o5_local",
+      "controller": "blind_then_recover",
+      "replayed": true,
+      "worker": {
+        "status": "completed",
+        "failure_reason": null,
+        "witness_type": "connector_contact_stall",
+        "dwell_s": 0.5000000000000003,
+        "elapsed_s": 11.32
+      },
+      "independent": {
+        "status": "completed",
+        "failure_reason": null,
+        "witness_type": "connector_contact_stall",
+        "dwell_s": 0.49999999999999933,
+        "elapsed_s": 11.32
+      },
+      "checks": {
+        "status_agrees": true,
+        "reason_agrees": true,
+        "witness_agrees": true,
+        "dwell_agrees": true,
+        "elapsed_agrees": true,
+        "native_rows_cover_job": true,
+        "native_wrist_under_limit_until_end": true,
+        "clip_flag_matches_terminal": true,
+        "no_unreported_mutation": true
+      },
+      "agrees": true,
+      "first_witness_s": 2.104,
+      "peak_native_wrist_n": 10.511962085984345,
+      "peak_native_plug_n": 13.064081817605288,
+      "peak_native_anchor_sensor_n": 0.09522074055678527,
+      "peak_anchor_reaction_n": 0.09522074055678527,
+      "max_retreat_travel_m": -0.0,
+      "terminal_clip_margin_m": 0.008527910223482385,
+      "native_rows": 45273,
+      "servo_rows": 5660
+    },
+    {
+      "case": "g2_o5_none",
+      "controller": "scripted_program",
+      "replayed": true,
+      "worker": {
+        "status": "failed",
+        "failure_reason": "deadline",
+        "witness_type": "connector_contact_stall",
+        "dwell_s": 0.0,
+        "elapsed_s": 30.0
+      },
+      "independent": {
+        "status": "failed",
+        "failure_reason": "deadline",
+        "witness_type": "connector_contact_stall",
+        "dwell_s": 0.0,
+        "elapsed_s": 30.0
+      },
+      "checks": {
+        "status_agrees": true,
+        "reason_agrees": true,
+        "witness_agrees": true,
+        "dwell_agrees": true,
+        "elapsed_agrees": true,
+        "native_rows_cover_job": true,
+        "native_wrist_under_limit_until_end": true,
+        "clip_flag_matches_terminal": true,
+        "no_unreported_mutation": true
+      },
+      "agrees": true,
+      "first_witness_s": 2.104,
+      "peak_native_wrist_n": 10.440720146865972,
+      "peak_native_plug_n": 14.683660261440712,
+      "peak_native_anchor_sensor_n": 0.09213682869320042,
+      "peak_anchor_reaction_n": 0.0921368286918872,
+      "max_retreat_travel_m": -0.0,
+      "terminal_clip_margin_m": 0.008528191770114603,
+      "native_rows": 119993,
+      "servo_rows": 15000
+    },
+    {
+      "case": "g2_o5_rules",
+      "controller": "blind_then_recover",
+      "replayed": true,
+      "worker": {
+        "status": "completed",
+        "failure_reason": null,
+        "witness_type": "connector_contact_stall",
+        "dwell_s": 0.5000000000000003,
+        "elapsed_s": 11.32
+      },
+      "independent": {
+        "status": "completed",
+        "failure_reason": null,
+        "witness_type": "connector_contact_stall",
+        "dwell_s": 0.49999999999999933,
+        "elapsed_s": 11.32
+      },
+      "checks": {
+        "status_agrees": true,
+        "reason_agrees": true,
+        "witness_agrees": true,
+        "dwell_agrees": true,
+        "elapsed_agrees": true,
+        "native_rows_cover_job": true,
+        "native_wrist_under_limit_until_end": true,
+        "clip_flag_matches_terminal": true,
+        "no_unreported_mutation": true
+      },
+      "agrees": true,
+      "first_witness_s": 2.104,
+      "peak_native_wrist_n": 10.511962085984345,
+      "peak_native_plug_n": 13.064081817605288,
+      "peak_native_anchor_sensor_n": 0.09522074055678527,
+      "peak_anchor_reaction_n": 0.09522074055678527,
+      "max_retreat_travel_m": -0.0,
+      "terminal_clip_margin_m": 0.008527910223482385,
+      "native_rows": 45273,
+      "servo_rows": 5660
+    },
+    {
+      "case": "g3_l2_o0_ca",
+      "controller": "cable_aware_rules",
+      "replayed": true,
+      "worker": {
+        "status": "completed",
+        "failure_reason": null,
+        "witness_type": null,
+        "dwell_s": 0.5000000000000003,
+        "elapsed_s": 6.02
+      },
+      "independent": {
+        "status": "completed",
+        "failure_reason": null,
+        "witness_type": null,
+        "dwell_s": 0.49999999999999933,
+        "elapsed_s": 6.02
+      },
+      "checks": {
+        "status_agrees": true,
+        "reason_agrees": true,
+        "witness_agrees": true,
+        "dwell_agrees": true,
+        "elapsed_agrees": true,
+        "native_rows_cover_job": true,
+        "native_wrist_under_limit_until_end": true,
+        "clip_flag_matches_terminal": true,
+        "no_unreported_mutation": true
+      },
+      "agrees": true,
+      "first_witness_s": null,
+      "peak_native_wrist_n": 10.444563644861448,
+      "peak_native_plug_n": 13.38462664539815,
+      "peak_native_anchor_sensor_n": 0.0946002927329276,
+      "peak_anchor_reaction_n": 0.0946002927329276,
+      "max_retreat_travel_m": -0.0,
+      "terminal_clip_margin_m": 0.008527450197183014,
+      "native_rows": 24073,
+      "servo_rows": 3010
+    },
+    {
+      "case": "g3_l2_o0_fg",
+      "controller": "force_guided_insertion",
+      "replayed": true,
+      "worker": {
+        "status": "completed",
+        "failure_reason": null,
+        "witness_type": null,
+        "dwell_s": 0.5000000000000003,
+        "elapsed_s": 6.02
+      },
+      "independent": {
+        "status": "completed",
+        "failure_reason": null,
+        "witness_type": null,
+        "dwell_s": 0.49999999999999933,
+        "elapsed_s": 6.02
+      },
+      "checks": {
+        "status_agrees": true,
+        "reason_agrees": true,
+        "witness_agrees": true,
+        "dwell_agrees": true,
+        "elapsed_agrees": true,
+        "native_rows_cover_job": true,
+        "native_wrist_under_limit_until_end": true,
+        "clip_flag_matches_terminal": true,
+        "no_unreported_mutation": true
+      },
+      "agrees": true,
+      "first_witness_s": null,
+      "peak_native_wrist_n": 10.444563644861448,
+      "peak_native_plug_n": 13.38462664539815,
+      "peak_native_anchor_sensor_n": 0.0946002927329276,
+      "peak_anchor_reaction_n": 0.0946002927329276,
+      "max_retreat_travel_m": -0.0,
+      "terminal_clip_margin_m": 0.008527450197183014,
+      "native_rows": 24073,
+      "servo_rows": 3010
+    },
+    {
+      "case": "g3_l2_o2_ca",
+      "controller": "cable_aware_rules",
+      "replayed": true,
+      "worker": {
+        "status": "completed",
+        "failure_reason": null,
+        "witness_type": null,
+        "dwell_s": 0.5000000000000003,
+        "elapsed_s": 6.452
+      },
+      "independent": {
+        "status": "completed",
+        "failure_reason": null,
+        "witness_type": null,
+        "dwell_s": 0.5000000000000002,
+        "elapsed_s": 6.452
+      },
+      "checks": {
+        "status_agrees": true,
+        "reason_agrees": true,
+        "witness_agrees": true,
+        "dwell_agrees": true,
+        "elapsed_agrees": true,
+        "native_rows_cover_job": true,
+        "native_wrist_under_limit_until_end": true,
+        "clip_flag_matches_terminal": true,
+        "no_unreported_mutation": true
+      },
+      "agrees": true,
+      "first_witness_s": null,
+      "peak_native_wrist_n": 10.463494866269054,
+      "peak_native_plug_n": 13.575170396194983,
+      "peak_native_anchor_sensor_n": 0.09470546447301233,
+      "peak_anchor_reaction_n": 0.09470546195784851,
+      "max_retreat_travel_m": -0.0,
+      "terminal_clip_margin_m": 0.00852740454577464,
+      "native_rows": 25801,
+      "servo_rows": 3226
+    },
+    {
+      "case": "g3_l2_o2_fg",
+      "controller": "force_guided_insertion",
+      "replayed": true,
+      "worker": {
+        "status": "completed",
+        "failure_reason": null,
+        "witness_type": null,
+        "dwell_s": 0.5000000000000003,
+        "elapsed_s": 6.452
+      },
+      "independent": {
+        "status": "completed",
+        "failure_reason": null,
+        "witness_type": null,
+        "dwell_s": 0.5000000000000002,
+        "elapsed_s": 6.452
+      },
+      "checks": {
+        "status_agrees": true,
+        "reason_agrees": true,
+        "witness_agrees": true,
+        "dwell_agrees": true,
+        "elapsed_agrees": true,
+        "native_rows_cover_job": true,
+        "native_wrist_under_limit_until_end": true,
+        "clip_flag_matches_terminal": true,
+        "no_unreported_mutation": true
+      },
+      "agrees": true,
+      "first_witness_s": null,
+      "peak_native_wrist_n": 10.463494866269054,
+      "peak_native_plug_n": 13.575170396194983,
+      "peak_native_anchor_sensor_n": 0.09470546447301233,
+      "peak_anchor_reaction_n": 0.09470546195784851,
+      "max_retreat_travel_m": -0.0,
+      "terminal_clip_margin_m": 0.00852740454577464,
+      "native_rows": 25801,
+      "servo_rows": 3226
+    },
+    {
+      "case": "g3_l2_o4_ca",
+      "controller": "cable_aware_rules",
+      "replayed": true,
+      "worker": {
+        "status": "completed",
+        "failure_reason": null,
+        "witness_type": null,
+        "dwell_s": 0.5000000000000003,
+        "elapsed_s": 6.928
+      },
+      "independent": {
+        "status": "completed",
+        "failure_reason": null,
+        "witness_type": null,
+        "dwell_s": 0.5000000000000002,
+        "elapsed_s": 6.928
+      },
+      "checks": {
+        "status_agrees": true,
+        "reason_agrees": true,
+        "witness_agrees": true,
+        "dwell_agrees": true,
+        "elapsed_agrees": true,
+        "native_rows_cover_job": true,
+        "native_wrist_under_limit_until_end": true,
+        "clip_flag_matches_terminal": true,
+        "no_unreported_mutation": true
+      },
+      "agrees": true,
+      "first_witness_s": null,
+      "peak_native_wrist_n": 10.469322427932,
+      "peak_native_plug_n": 13.591824420657838,
+      "peak_native_anchor_sensor_n": 0.09480549397881771,
+      "peak_anchor_reaction_n": 0.09480549387364828,
+      "max_retreat_travel_m": -0.0,
+      "terminal_clip_margin_m": 0.008527359197878375,
+      "native_rows": 27705,
+      "servo_rows": 3464
+    },
+    {
+      "case": "g3_l2_o4_fg",
+      "controller": "force_guided_insertion",
+      "replayed": true,
+      "worker": {
+        "status": "completed",
+        "failure_reason": null,
+        "witness_type": null,
+        "dwell_s": 0.5000000000000003,
+        "elapsed_s": 6.928
+      },
+      "independent": {
+        "status": "completed",
+        "failure_reason": null,
+        "witness_type": null,
+        "dwell_s": 0.5000000000000002,
+        "elapsed_s": 6.928
+      },
+      "checks": {
+        "status_agrees": true,
+        "reason_agrees": true,
+        "witness_agrees": true,
+        "dwell_agrees": true,
+        "elapsed_agrees": true,
+        "native_rows_cover_job": true,
+        "native_wrist_under_limit_until_end": true,
+        "clip_flag_matches_terminal": true,
+        "no_unreported_mutation": true
+      },
+      "agrees": true,
+      "first_witness_s": null,
+      "peak_native_wrist_n": 10.469322427932,
+      "peak_native_plug_n": 13.591824420657838,
+      "peak_native_anchor_sensor_n": 0.09480549397881771,
+      "peak_anchor_reaction_n": 0.09480549387364828,
+      "max_retreat_travel_m": -0.0,
+      "terminal_clip_margin_m": 0.008527359197878375,
+      "native_rows": 27705,
+      "servo_rows": 3464
+    },
+    {
+      "case": "g3_l4_o0_ca",
+      "controller": "cable_aware_rules",
+      "replayed": true,
+      "worker": {
+        "status": "completed",
+        "failure_reason": null,
+        "witness_type": null,
+        "dwell_s": 0.5000000000000003,
+        "elapsed_s": 6.02
+      },
+      "independent": {
+        "status": "completed",
+        "failure_reason": null,
+        "witness_type": null,
+        "dwell_s": 0.49999999999999933,
+        "elapsed_s": 6.02
+      },
+      "checks": {
+        "status_agrees": true,
+        "reason_agrees": true,
+        "witness_agrees": true,
+        "dwell_agrees": true,
+        "elapsed_agrees": true,
+        "native_rows_cover_job": true,
+        "native_wrist_under_limit_until_end": true,
+        "clip_flag_matches_terminal": true,
+        "no_unreported_mutation": true
+      },
+      "agrees": true,
+      "first_witness_s": null,
+      "peak_native_wrist_n": 10.44072014686597,
+      "peak_native_plug_n": 13.011753686905713,
+      "peak_native_anchor_sensor_n": 0.09475861485801551,
+      "peak_anchor_reaction_n": 0.094758612900247,
+      "max_retreat_travel_m": -0.0,
+      "terminal_clip_margin_m": 0.008528223502701916,
+      "native_rows": 24073,
+      "servo_rows": 3010
+    },
+    {
+      "case": "g3_l4_o0_fg",
+      "controller": "force_guided_insertion",
+      "replayed": true,
+      "worker": {
+        "status": "completed",
+        "failure_reason": null,
+        "witness_type": null,
+        "dwell_s": 0.5000000000000003,
+        "elapsed_s": 6.02
+      },
+      "independent": {
+        "status": "completed",
+        "failure_reason": null,
+        "witness_type": null,
+        "dwell_s": 0.49999999999999933,
+        "elapsed_s": 6.02
+      },
+      "checks": {
+        "status_agrees": true,
+        "reason_agrees": true,
+        "witness_agrees": true,
+        "dwell_agrees": true,
+        "elapsed_agrees": true,
+        "native_rows_cover_job": true,
+        "native_wrist_under_limit_until_end": true,
+        "clip_flag_matches_terminal": true,
+        "no_unreported_mutation": true
+      },
+      "agrees": true,
+      "first_witness_s": null,
+      "peak_native_wrist_n": 10.44072014686597,
+      "peak_native_plug_n": 13.011753686905713,
+      "peak_native_anchor_sensor_n": 0.09475861485801551,
+      "peak_anchor_reaction_n": 0.094758612900247,
+      "max_retreat_travel_m": -0.0,
+      "terminal_clip_margin_m": 0.008528223502701916,
+      "native_rows": 24073,
+      "servo_rows": 3010
+    },
+    {
+      "case": "g3_l4_o2_ca",
+      "controller": "cable_aware_rules",
+      "replayed": true,
+      "worker": {
+        "status": "completed",
+        "failure_reason": null,
+        "witness_type": null,
+        "dwell_s": 0.5000000000000003,
+        "elapsed_s": 6.454
+      },
+      "independent": {
+        "status": "completed",
+        "failure_reason": null,
+        "witness_type": null,
+        "dwell_s": 0.5000000000000002,
+        "elapsed_s": 6.454
+      },
+      "checks": {
+        "status_agrees": true,
+        "reason_agrees": true,
+        "witness_agrees": true,
+        "dwell_agrees": true,
+        "elapsed_agrees": true,
+        "native_rows_cover_job": true,
+        "native_wrist_under_limit_until_end": true,
+        "clip_flag_matches_terminal": true,
+        "no_unreported_mutation": true
+      },
+      "agrees": true,
+      "first_witness_s": null,
+      "peak_native_wrist_n": 10.458976557460879,
+      "peak_native_plug_n": 13.174835937948913,
+      "peak_native_anchor_sensor_n": 0.09468981223062736,
+      "peak_anchor_reaction_n": 0.09468980809395634,
+      "max_retreat_travel_m": -0.0,
+      "terminal_clip_margin_m": 0.008528210240453669,
+      "native_rows": 25809,
+      "servo_rows": 3227
+    },
+    {
+      "case": "g3_l4_o2_fg",
+      "controller": "force_guided_insertion",
+      "replayed": true,
+      "worker": {
+        "status": "completed",
+        "failure_reason": null,
+        "witness_type": null,
+        "dwell_s": 0.5000000000000003,
+        "elapsed_s": 6.454
+      },
+      "independent": {
+        "status": "completed",
+        "failure_reason": null,
+        "witness_type": null,
+        "dwell_s": 0.5000000000000002,
+        "elapsed_s": 6.454
+      },
+      "checks": {
+        "status_agrees": true,
+        "reason_agrees": true,
+        "witness_agrees": true,
+        "dwell_agrees": true,
+        "elapsed_agrees": true,
+        "native_rows_cover_job": true,
+        "native_wrist_under_limit_until_end": true,
+        "clip_flag_matches_terminal": true,
+        "no_unreported_mutation": true
+      },
+      "agrees": true,
+      "first_witness_s": null,
+      "peak_native_wrist_n": 10.458976557460879,
+      "peak_native_plug_n": 13.174835937948913,
+      "peak_native_anchor_sensor_n": 0.09468981223062736,
+      "peak_anchor_reaction_n": 0.09468980809395634,
+      "max_retreat_travel_m": -0.0,
+      "terminal_clip_margin_m": 0.008528210240453669,
+      "native_rows": 25809,
+      "servo_rows": 3227
+    },
+    {
+      "case": "g3_l4_o4_ca",
+      "controller": "cable_aware_rules",
+      "replayed": true,
+      "worker": {
+        "status": "completed",
+        "failure_reason": null,
+        "witness_type": null,
+        "dwell_s": 0.5000000000000003,
+        "elapsed_s": 6.93
+      },
+      "independent": {
+        "status": "completed",
+        "failure_reason": null,
+        "witness_type": null,
+        "dwell_s": 0.5000000000000002,
+        "elapsed_s": 6.93
+      },
+      "checks": {
+        "status_agrees": true,
+        "reason_agrees": true,
+        "witness_agrees": true,
+        "dwell_agrees": true,
+        "elapsed_agrees": true,
+        "native_rows_cover_job": true,
+        "native_wrist_under_limit_until_end": true,
+        "clip_flag_matches_terminal": true,
+        "no_unreported_mutation": true
+      },
+      "agrees": true,
+      "first_witness_s": null,
+      "peak_native_wrist_n": 10.465541892015079,
+      "peak_native_plug_n": 13.14118047441981,
+      "peak_native_anchor_sensor_n": 0.09490069366191227,
+      "peak_anchor_reaction_n": 0.09490069280697844,
+      "max_retreat_travel_m": -0.0,
+      "terminal_clip_margin_m": 0.008528024587618924,
+      "native_rows": 27713,
+      "servo_rows": 3465
+    },
+    {
+      "case": "g3_l4_o4_fg",
+      "controller": "force_guided_insertion",
+      "replayed": true,
+      "worker": {
+        "status": "completed",
+        "failure_reason": null,
+        "witness_type": null,
+        "dwell_s": 0.5000000000000003,
+        "elapsed_s": 6.93
+      },
+      "independent": {
+        "status": "completed",
+        "failure_reason": null,
+        "witness_type": null,
+        "dwell_s": 0.5000000000000002,
+        "elapsed_s": 6.93
+      },
+      "checks": {
+        "status_agrees": true,
+        "reason_agrees": true,
+        "witness_agrees": true,
+        "dwell_agrees": true,
+        "elapsed_agrees": true,
+        "native_rows_cover_job": true,
+        "native_wrist_under_limit_until_end": true,
+        "clip_flag_matches_terminal": true,
+        "no_unreported_mutation": true
+      },
+      "agrees": true,
+      "first_witness_s": null,
+      "peak_native_wrist_n": 10.465541892015079,
+      "peak_native_plug_n": 13.14118047441981,
+      "peak_native_anchor_sensor_n": 0.09490069366191227,
+      "peak_anchor_reaction_n": 0.09490069280697844,
+      "max_retreat_travel_m": -0.0,
+      "terminal_clip_margin_m": 0.008528024587618924,
+      "native_rows": 27713,
+      "servo_rows": 3465
+    },
+    {
+      "case": "g3_l6_o0_ca",
+      "controller": "cable_aware_rules",
+      "replayed": true,
+      "worker": {
+        "status": "completed",
+        "failure_reason": null,
+        "witness_type": null,
+        "dwell_s": 0.5000000000000003,
+        "elapsed_s": 6.02
+      },
+      "independent": {
+        "status": "completed",
+        "failure_reason": null,
+        "witness_type": null,
+        "dwell_s": 0.49999999999999933,
+        "elapsed_s": 6.02
+      },
+      "checks": {
+        "status_agrees": true,
+        "reason_agrees": true,
+        "witness_agrees": true,
+        "dwell_agrees": true,
+        "elapsed_agrees": true,
+        "native_rows_cover_job": true,
+        "native_wrist_under_limit_until_end": true,
+        "clip_flag_matches_terminal": true,
+        "no_unreported_mutation": true
+      },
+      "agrees": true,
+      "first_witness_s": null,
+      "peak_native_wrist_n": 10.438697759153605,
+      "peak_native_plug_n": 13.329741056473985,
+      "peak_native_anchor_sensor_n": 0.09552461644499619,
+      "peak_anchor_reaction_n": 0.09552461526946592,
+      "max_retreat_travel_m": -0.0,
+      "terminal_clip_margin_m": 0.008529037784209636,
+      "native_rows": 24073,
+      "servo_rows": 3010
+    },
+    {
+      "case": "g3_l6_o0_fg",
+      "controller": "force_guided_insertion",
+      "replayed": true,
+      "worker": {
+        "status": "completed",
+        "failure_reason": null,
+        "witness_type": null,
+        "dwell_s": 0.5000000000000003,
+        "elapsed_s": 6.02
+      },
+      "independent": {
+        "status": "completed",
+        "failure_reason": null,
+        "witness_type": null,
+        "dwell_s": 0.49999999999999933,
+        "elapsed_s": 6.02
+      },
+      "checks": {
+        "status_agrees": true,
+        "reason_agrees": true,
+        "witness_agrees": true,
+        "dwell_agrees": true,
+        "elapsed_agrees": true,
+        "native_rows_cover_job": true,
+        "native_wrist_under_limit_until_end": true,
+        "clip_flag_matches_terminal": true,
+        "no_unreported_mutation": true
+      },
+      "agrees": true,
+      "first_witness_s": null,
+      "peak_native_wrist_n": 10.438697759153605,
+      "peak_native_plug_n": 13.329741056473985,
+      "peak_native_anchor_sensor_n": 0.09552461644499619,
+      "peak_anchor_reaction_n": 0.09552461526946592,
+      "max_retreat_travel_m": -0.0,
+      "terminal_clip_margin_m": 0.008529037784209636,
+      "native_rows": 24073,
+      "servo_rows": 3010
+    },
+    {
+      "case": "g3_l6_o2_ca",
+      "controller": "cable_aware_rules",
+      "replayed": true,
+      "worker": {
+        "status": "completed",
+        "failure_reason": null,
+        "witness_type": null,
+        "dwell_s": 0.5000000000000003,
+        "elapsed_s": 6.4559999999999995
+      },
+      "independent": {
+        "status": "completed",
+        "failure_reason": null,
+        "witness_type": null,
+        "dwell_s": 0.49999999999999933,
+        "elapsed_s": 6.4559999999999995
+      },
+      "checks": {
+        "status_agrees": true,
+        "reason_agrees": true,
+        "witness_agrees": true,
+        "dwell_agrees": true,
+        "elapsed_agrees": true,
+        "native_rows_cover_job": true,
+        "native_wrist_under_limit_until_end": true,
+        "clip_flag_matches_terminal": true,
+        "no_unreported_mutation": true
+      },
+      "agrees": true,
+      "first_witness_s": null,
+      "peak_native_wrist_n": 10.45604407418132,
+      "peak_native_plug_n": 13.129744548029036,
+      "peak_native_anchor_sensor_n": 0.09551557801945901,
+      "peak_anchor_reaction_n": 0.09551557796598913,
+      "max_retreat_travel_m": -0.0,
+      "terminal_clip_margin_m": 0.008529048379831825,
+      "native_rows": 25817,
+      "servo_rows": 3228
+    },
+    {
+      "case": "g3_l6_o2_fg",
+      "controller": "force_guided_insertion",
+      "replayed": true,
+      "worker": {
+        "status": "completed",
+        "failure_reason": null,
+        "witness_type": null,
+        "dwell_s": 0.5000000000000003,
+        "elapsed_s": 6.4559999999999995
+      },
+      "independent": {
+        "status": "completed",
+        "failure_reason": null,
+        "witness_type": null,
+        "dwell_s": 0.49999999999999933,
+        "elapsed_s": 6.4559999999999995
+      },
+      "checks": {
+        "status_agrees": true,
+        "reason_agrees": true,
+        "witness_agrees": true,
+        "dwell_agrees": true,
+        "elapsed_agrees": true,
+        "native_rows_cover_job": true,
+        "native_wrist_under_limit_until_end": true,
+        "clip_flag_matches_terminal": true,
+        "no_unreported_mutation": true
+      },
+      "agrees": true,
+      "first_witness_s": null,
+      "peak_native_wrist_n": 10.45604407418132,
+      "peak_native_plug_n": 13.129744548029036,
+      "peak_native_anchor_sensor_n": 0.09551557801945901,
+      "peak_anchor_reaction_n": 0.09551557796598913,
+      "max_retreat_travel_m": -0.0,
+      "terminal_clip_margin_m": 0.008529048379831825,
+      "native_rows": 25817,
+      "servo_rows": 3228
+    },
+    {
+      "case": "g3_l6_o4_ca",
+      "controller": "cable_aware_rules",
+      "replayed": true,
+      "worker": {
+        "status": "completed",
+        "failure_reason": null,
+        "witness_type": null,
+        "dwell_s": 0.5000000000000003,
+        "elapsed_s": 6.9319999999999995
+      },
+      "independent": {
+        "status": "completed",
+        "failure_reason": null,
+        "witness_type": null,
+        "dwell_s": 0.49999999999999933,
+        "elapsed_s": 6.9319999999999995
+      },
+      "checks": {
+        "status_agrees": true,
+        "reason_agrees": true,
+        "witness_agrees": true,
+        "dwell_agrees": true,
+        "elapsed_agrees": true,
+        "native_rows_cover_job": true,
+        "native_wrist_under_limit_until_end": true,
+        "clip_flag_matches_terminal": true,
+        "no_unreported_mutation": true
+      },
+      "agrees": true,
+      "first_witness_s": null,
+      "peak_native_wrist_n": 10.462297820209193,
+      "peak_native_plug_n": 13.194047517101932,
+      "peak_native_anchor_sensor_n": 0.09548382314882768,
+      "peak_anchor_reaction_n": 0.09548382141260472,
+      "max_retreat_travel_m": -0.0,
+      "terminal_clip_margin_m": 0.00852905343111871,
+      "native_rows": 27721,
+      "servo_rows": 3466
+    },
+    {
+      "case": "g3_l6_o4_fg",
+      "controller": "force_guided_insertion",
+      "replayed": true,
+      "worker": {
+        "status": "completed",
+        "failure_reason": null,
+        "witness_type": null,
+        "dwell_s": 0.5000000000000003,
+        "elapsed_s": 6.9319999999999995
+      },
+      "independent": {
+        "status": "completed",
+        "failure_reason": null,
+        "witness_type": null,
+        "dwell_s": 0.49999999999999933,
+        "elapsed_s": 6.9319999999999995
+      },
+      "checks": {
+        "status_agrees": true,
+        "reason_agrees": true,
+        "witness_agrees": true,
+        "dwell_agrees": true,
+        "elapsed_agrees": true,
+        "native_rows_cover_job": true,
+        "native_wrist_under_limit_until_end": true,
+        "clip_flag_matches_terminal": true,
+        "no_unreported_mutation": true
+      },
+      "agrees": true,
+      "first_witness_s": null,
+      "peak_native_wrist_n": 10.462297820209193,
+      "peak_native_plug_n": 13.194047517101932,
+      "peak_native_anchor_sensor_n": 0.09548382314882768,
+      "peak_anchor_reaction_n": 0.09548382141260472,
+      "max_retreat_travel_m": -0.0,
+      "terminal_clip_margin_m": 0.00852905343111871,
+      "native_rows": 27721,
+      "servo_rows": 3466
+    }
+  ],
+  "requests": 35,
+  "replayed": 34,
+  "agreeing": 34,
+  "disagreeing": [],
+  "scope": [
+    "Recomputes verdicts from the recorded ledgers with the same predicate; it does not re-run physics.",
+    "Agreement shows the stored ledger is sufficient to reproduce every reported verdict.",
+    "Native rows carry the authoritative abort channels at the physics rate."
+  ]
+}

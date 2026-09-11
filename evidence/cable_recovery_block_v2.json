@@ -1,0 +1,705 @@
+{
+  "schema": 1,
+  "id": "cable_recovery_block_v2_r01",
+  "created_on": "2026-09-10",
+  "status": "executed_physical_task_and_gate_block_complete_no_learning",
+  "scope": "First executed block of the constrained-cable recovery task: a world-fixed strain relief, one escapable open clip, a shallow post, a mounted port and a cable clamped at both ends. Endpoint is held, clip-preserving seating before gripper release. Not official AIC scoring, not a released or latched connection, not learned control, not hardware transfer.",
+  "source": {
+    "commit_at_start": "1633a597728272447567060c07b54ca10e857894",
+    "dirty_at_start": false,
+    "config": {
+      "path": "configs/cable_recovery_task_v2.json",
+      "sha256": "8d9082494bb6dccb98de53ae4a6208ddd8d4624b61f1f7f806db82b5afb5a2bf"
+    },
+    "source_archive": {
+      "path": "source.zip",
+      "sha256": "b54a5fbb3af02d118af2a143544048cdc1ebad73c81dde7ded69820e05679200"
+    },
+    "run_id": "cable-recovery-v2-r01",
+    "launcher_status": "completed",
+    "artifact_checks": {
+      "result_present": true,
+      "worker_completed": true,
+      "native_steps_recorded": true,
+      "declared_checkpoints_valid": true
+    },
+    "upstream": {
+      "aic": {
+        "path": "D:\\6axis-space-robotics\\.deps\\aic",
+        "commit": "e9145480c945f2afc3741f355233f44082cc3b06",
+        "dirty": false,
+        "files_sha256": {
+          "aic_assets/models/Axia80 M20/axia80_m20_macro.xacro": "c97de94cf674c87f84cdf86725e5466df582aad67dc028db733e81632ef1b908",
+          "aic_assets/models/Axia80 M20/axia_ft_sensor_visual.glb": "9c9fc8d460cf2ef4a5c07c8d048309fabc69d7dc6fc82c923dccfd72e90bfac9",
+          "aic_assets/models/Axia80 M20/model.config": "5aceae2306ae9b16185a11da74511f6d439b7de4ecfea22500513131a591dfbb",
+          "aic_assets/models/Axia80 M20/model.sdf": "837b21dd386cead6308a84310fa12a8ed0f57de65b57a40eae4b70f0e5698430",
+          "aic_assets/models/Basler Camera/basler_cam_visual.glb": "bf5a77b4ade31de20c4c1cb1b992da5c78fa17b90d39c4f51feaa2a3538a9c80",
+          "aic_assets/models/Basler Camera/basler_camera_macro.xacro": "805ccee4d79b050c557d84f029454b50859a7c65b51849fb0fb53518307c4920",
+          "aic_assets/models/Basler Camera/model.config": "2b35e0a9f1ed74895248270c0849470b11c339ab1429f65c4ce5297659d47533",
+          "aic_assets/models/Basler Camera/model.sdf": "29165a2ce2f8c59f058bca6793c82875f02318fdec5d208826f53646cefe8aa3",
+          "aic_assets/models/Camera Mount/V1015087.stl": "273ce0e2fb89593adffcbddb5919ea215c7e4309af675723dbf40e28905c37d7",
+          "aic_assets/models/Camera Mount/cam_mount_macro.xacro": "c00c1bc17f7036eb5d9d74d0de25a407273262d444f4da10cae32cf7c644c7c3",
+          "aic_assets/models/Camera Mount/cam_mount_visual.glb": "901993012e392bff4d7e7d3e0db57d8c3669b1be93ad42351be38071358ad57f",
+          "aic_assets/models/Camera Mount/model.config": "0c22771ab4e5b5a85e2d118a2a73c73274c5a35e773ef0e1a2cfdc3a011386f0",
+          "aic_assets/models/Camera Mount/model.sdf": "a5be1d70565c9f5ca75e99dafd22e1644c8d0fb3a5d8fa42ba212269a8829242",
+          "aic_assets/models/Enclosure Walls/enclosure_walls_visual.glb": "b073f3c72cdb9bed0a3cc719b36a9184955d7331d92e2f11824cfd4bafc47100",
+          "aic_assets/models/Enclosure Walls/model.config": "930831e4c504f5d94f474514de0c6d2885289283dc35e64b525815b4248fc959",
+          "aic_assets/models/Enclosure Walls/model.sdf": "be36a62f380fdf9287bde8f29b2056b899f1afce4e0e7227d22b5378b29ed3ea",
+          "aic_assets/models/Enclosure/enclosure_visual.glb": "2655a78e9e2c96cc1df1687c617f22fd4afe98db9d7e6f0f966ecda4d00bd97d",
+          "aic_assets/models/Enclosure/enclosurewalls_visual.glb": "4629d2871c0f4402ab6f5733c112a8e8bf1996c607a70351032df30ba8c39779",
+          "aic_assets/models/Enclosure/light_visual.glb": "d7b40e5d4f377237a834b3fe37c96ffe1110cb0b43223fcce62d01c9912b396c",
+          "aic_assets/models/Enclosure/model.config": "b984073bee6e4abe817a5cdb0608745bd56cd4b26e7abedc985390effd5d9d9c",
+          "aic_assets/models/Enclosure/model.sdf": "4731e1b7aba9873e0ea6bf2c22c119c91228e3fbd74851aecc50eb7712e5ab6b",
+          "aic_assets/models/Floor/floor_visual.glb": "0741c7523c7ea0c287ecaac5930ae808fde344086f7b6638cfb2167bb1f88fe8",
+          "aic_assets/models/Floor/model.config": "b329bcc6ac95138df01b30f6b3a1aa2b8f09c1f667e3c3c7ab8ee74eca9b7307",
+          "aic_assets/models/Floor/model.sdf": "112b06b0571facf79fd17462df8d2fe71e6f14100fc6277e4d71543a088d18c2",
+          "aic_assets/models/Floor/walls_visual.glb": "a61ca40cc906845282ac4dacdb3bd560a4a9fa57b467d5852825e9916b36d6d8",
+          "aic_assets/models/LC Mount/lc_mount_macro.xacro": "a013ee68b0af611ef0180745f62ee8c0169414cbf2f704e9a6cc63e2203ec0b9",
+          "aic_assets/models/LC Mount/lc_mount_visual.glb": "d4fe080d464f03bfc2512d33b160109924b0c61a51653eb37bd1ad3d4dacd6b5",
+          "aic_assets/models/LC Mount/model.config": "a04e97f8d25483b0081e83d23fd00a17d513ffa6f67f7c7748a2821aad93a749",
+          "aic_assets/models/LC Mount/model.sdf": "9e55fb8f7b66e1b3b70c6708ca8afe728ced1247b0a1fb73f17a3a96ed35589c",
+          "aic_assets/models/LC Plug/lc_plug_visual.glb": "438d323b7cefbe46b14d2291a680f6bd819f4140451c12bd0ebd24192addb034",
+          "aic_assets/models/LC Plug/model.config": "db81cea0409da934861b5e2bdc0d44fd698b4c2dddd4b67e7a600f4d8c798ad5",
+          "aic_assets/models/LC Plug/model.sdf": "f3ad13b6e2d4f04b2fc6dcf5d906259abc92b8596be45c025c722fa4a566ad15",
+          "aic_assets/models/NIC Card Mount/model.config": "5fadc11222bbc743954dce85a6f3aa60ad4efa57494f02ae4a05f9e2a15fed06",
+          "aic_assets/models/NIC Card Mount/model.sdf": "12cfe54074dbe316f82914c051542ecb4bb64d0a2ab960d29f04f25d2066a12b",
+          "aic_assets/models/NIC Card Mount/nic_card_mount_macro.xacro": "0a8e51c28058667c2ebe2506a78448d077c7393587c6bd6e4874ba8b609b2886",
+          "aic_assets/models/NIC Card Mount/nic_card_mount_visual.glb": "4b12fe1e04e80e47f1cde29d4e1055d085d080dfe7215db4694595643ef76d74",
+          "aic_assets/models/NIC Card Mount/nic_card_visual.glb": "b732ee8558271dee52fdf496eb0be7826b29904b884ff68b9d7fc74f0bca5d02",
+          "aic_assets/models/NIC Card/model.config": "909165c6c11ee7455fc7df752f85b3f246499eea35abe58df569d5611e4d4d46",
+          "aic_assets/models/NIC Card/model.sdf": "2c212e026e521da067ad2247e73a899db88ec6909888df7e6e6c99b9d0c3c4d3",
+          "aic_assets/models/NIC Card/nic_card_visual.glb": "b732ee8558271dee52fdf496eb0be7826b29904b884ff68b9d7fc74f0bca5d02",
+          "aic_assets/models/Robotiq Hand-E/hande_base_visual.glb": "f74a449de3efc7437687da62b2b5afb0b22a2ffb2e8251fc2d5d3cd5a6c95e7e",
+          "aic_assets/models/Robotiq Hand-E/hande_finger_visual.glb": "96faa218335080bd60667d7efeec5731cff5bc524ce7893c9f57ccca797b3e07",
+          "aic_assets/models/Robotiq Hand-E/model.config": "de084f7ca8a4647edbc2b779ba6c0f66e51a1038d8cce4e4b66ba2a0677dbc12",
+          "aic_assets/models/Robotiq Hand-E/model.sdf": "8c0c63eff03376642f75989b0c3a915d1bd44a4e14b68fbe877848d8f9f7c8e3",
+          "aic_assets/models/Robotiq Hand-E/robotiq_hande.ros2_control.xacro": "a4cb6c0e0e142a9a9d9ccb6fa453bdd0c45735b700866bf7e3bb9e63902a2be5",
+          "aic_assets/models/Robotiq Hand-E/robotiq_hande_macro.xacro": "11370b7a15dfec5eabcf41cfd80b982e7dcf425274362ba4d1bc0c0baf1b1c67",
+          "aic_assets/models/SC Mount/model.config": "6446a5e1185fdbff6469aef092593801df2e306e655142f8b9079333a60ec223",
+          "aic_assets/models/SC Mount/model.sdf": "1d7af72a0987bbf5f4c12d8ecfe5a60c73e1485abcb086c2807b177ec6b54e9a",
+          "aic_assets/models/SC Mount/sc_mount_macro.xacro": "daa26a926eb603b84030e94288d9a670a224002405f4236e0b49c0e73b267258",
+          "aic_assets/models/SC Mount/sc_mount_visual.glb": "710e1ed39802f67f474707aeba9051414591908574b028067605d2bbe38bf1aa",
+          "aic_assets/models/SC Plug/model.config": "c435b3d2c7ead896d67263642f4b54812dbf5e9210cf1f12e6d5a034cb5e3b08",
+          "aic_assets/models/SC Plug/model.sdf": "aa1244982c496bc7c15bf344424155c4e1caf3f99368e541b71b7ec4d14dc38d",
+          "aic_assets/models/SC Plug/sc_plug_visual.glb": "6e9132a64a6ce61015906dc16cb7d648c09405da01d8354644ef1dee73041cc9",
+          "aic_assets/models/SC Port/model.config": "d7e4402724e34ce519bafe730729f53c09c85b24b19933fa9dcf13e6ce93753a",
+          "aic_assets/models/SC Port/model.sdf": "5c36ca164b0f76d0ea54fdca296133ee10ce132ae00ee8d18f4b1a55e2bb1ef5",
+          "aic_assets/models/SC Port/sc_port_macro.xacro": "8cfdc171b3cc1c0fdc6fee1fb59764b891265920c6f1a988898bf2762e906ed7",
+          "aic_assets/models/SC Port/sc_port_visual.glb": "8425463bb8044aac09dd0e0360dccb27d279bcd8cf61f0708f70c636abba95f6",
+          "aic_assets/models/SFP Module/model.config": "d5c0e485be0fb512a37020073e84ea68c4dea94007a01cbb661bd458fb71d74d",
+          "aic_assets/models/SFP Module/model.sdf": "c06316f8914e5b8fc5d8805db5653d39185ff06f3a971f23f61ba5a59f7ab9ab",
+          "aic_assets/models/SFP Module/sfp_module_visual.glb": "cffef6cf8e171e7f134b389aef85c0a9aaed86120ad078282686e5376978b5d1",
+          "aic_assets/models/SFP Mount/model.config": "4f5dffc351454ca37f184c7b898c562ca1567d61fd625c3498bac8b4a3620d45",
+          "aic_assets/models/SFP Mount/model.sdf": "80efb3193b4d816cae83b39f3195f7361f66ffc103cefa134489f87ce1ee9931",
+          "aic_assets/models/SFP Mount/sfp_mount_macro.xacro": "1d4334b9b24e460aa555b4378ad706f2a4ef7a0e807a5eb51e3fce41eaa5ffb8",
+          "aic_assets/models/SFP Mount/sfp_mount_visual.glb": "c7b6bca528d4fbb1109ecfcbdea5271e116ffda92cb15a58dfb3429cd4a005aa",
+          "aic_assets/models/Task Board Base/base_visual.glb": "2cb612d9ed55fe154f6a50762878f8b0b65baf93067680a68877ec0d9676bf7b",
+          "aic_assets/models/Task Board Base/model.config": "1e23088766bf8f757928fd030af264cc9a0e355de5188c81aa5f4be4d1cbcea4",
+          "aic_assets/models/Task Board Base/model.sdf": "c19429091ea05481665b0fe96c778c31e003ea4dde7b9bd4fbb334a07713e1ec",
+          "aic_assets/models/Task Board Base/task_board_base_macro.xacro": "f80a71238b5feba9284ad6905d67578ad1778b62f7c6604b9595401ae9718150",
+          "aic_assets/models/cable_base_c_rotated/model.config": "8ed3e3677f6aa9380fe4e0c8def06607976a032b849d37aaef4308566215e8d3",
+          "aic_assets/models/cable_base_c_rotated/model.sdf": "197be7d8025f81f25ec3832dd41f6492472e39d16750fec0a22b5051621f3ba7",
+          "aic_assets/models/cable_base_c_rotated_reversed/model.config": "b3148e3752b9a9515d37809bccd40eeb83bfbcec30332e254d4a4a234e657087",
+          "aic_assets/models/cable_base_c_rotated_reversed/model.sdf": "4dbe4893cbb47fff6b0b7266b9ab766f0c47745c9b289ee7423081b8f2215678",
+          "aic_assets/models/lc_cable/model.config": "87477523889a13c37172d6eb1f0be058b443a81b8515b0e40fe894241e0303d0",
+          "aic_assets/models/lc_cable/model.sdf": "19543f6a0af0d755d1847d6715f5f0c4c521d54a14d7117471ed764bdebc01eb",
+          "aic_assets/models/lc_sc_cable/model.config": "ddfdbdc3fe0686d54abc03b5a2f97fa5c35891d2381803faa4c172c92699f24e",
+          "aic_assets/models/lc_sc_cable/model.sdf": "6685b7fa6d8baf327b655f44cd7728f2b235a104933b0595231fe2e4bf95f49f",
+          "aic_assets/models/sc_cable/model.config": "94a82c4b3f011b33f670005dc5ca908ab479650237b5b095c7047a4650b0aefc",
+          "aic_assets/models/sc_cable/model.sdf": "682f85f1516d663dfc9caab776eb9baa37d7f1440948fe99312a3a9146dd20e8",
+          "aic_assets/models/sfp_sc_cable/model.config": "fab9bd851ff2f2393b69ab8ab2f27d7cb520c686f25f963724a58c36a0b6e998",
+          "aic_assets/models/sfp_sc_cable/model.sdf": "9dfe1e30b07ffd8dcc84bfdc5fc786ae6d4442b12d3ccc27d4c6cdee9959800e",
+          "aic_assets/models/sfp_sc_cable_reversed/model.config": "83907d299a04727e30e54817368f15e33538537be8ccd6dab0e69c82caed41ae",
+          "aic_assets/models/sfp_sc_cable_reversed/model.sdf": "626e337de88fd36841704229b0259724782dd8b0736fb172dbd137c000166c0d",
+          "aic_utils/aic_mujoco/CMakeLists.txt": "5bb99ab06788fe04bb82694621ec8f0c5a98020e9943ce8177d69f73e8111944",
+          "aic_utils/aic_mujoco/README.md": "8ce1cf639f099762a30a7b1f42134a093f5b12bfb7b95dfdd504720d9659bed1",
+          "aic_utils/aic_mujoco/launch/aic_mujoco_bringup.launch.py": "4f85787a987b907964366efce6512b7d38524e4f70837387f37548eced21d428",
+          "aic_utils/aic_mujoco/mjcf/aic_robot.xml": "bb44d3ed7ff1f5bdfefc1b60024198b208321cbf5ba32a2ede934af2bd4e53be",
+          "aic_utils/aic_mujoco/mjcf/aic_world.xml": "589561ebb11c1d756eaeab2db866f8bf1c58030fc7f0dca63880f02cfa46a6d4",
+          "aic_utils/aic_mujoco/mjcf/scene.xml": "1e87d0273b420a0fee7b89707e9dc92d282f41a6a42168529b94349b2ee15a87",
+          "aic_utils/aic_mujoco/mujoco.repos": "772104240d3db7865cf5aff3a4352a2af4d13a29dbb4f06b29c3dcffffe4676f",
+          "aic_utils/aic_mujoco/package.xml": "2664c3a26856e81c72ae19f9e0e5b25d4c6835dd52a51a1542abd6bd254c2670",
+          "aic_utils/aic_mujoco/scripts/add_cable_plugin.py": "374df25dd5b799f3f9ae61a9e90a43b4da04f5e02aebfbcd08afb2ed5cb7086d",
+          "aic_utils/aic_mujoco/scripts/load_aic_world.py": "1cd0b0e4df566300bfbfa4adca30cf746896ca7bf04901f1f036e9b9c5e15435",
+          "aic_utils/aic_mujoco/scripts/sim_comparison_test.py": "4f21869394474ae321f31492f6c59b71a8cc0e63cf04655e935b4e589e13842b",
+          "aic_utils/aic_mujoco/scripts/view_scene.py": "c564c4acef2da220046b9da050dab5fab023ab076828cb8dd7f30fda1cbd02c9"
+        },
+        "hash_scope": [
+          "aic_assets/models",
+          "aic_utils/aic_mujoco"
+        ]
+      }
+    }
+  },
+  "registered_before_launch": "Task geometry, the three clocks, the force protocol, job limits, the repair library and the full 35-request case list were frozen in configs/cable_recovery_task_v2.json and committed before the launcher ran.",
+  "execution": {
+    "requests": 35,
+    "native_steps": 1447106,
+    "settle_native_steps": 720000,
+    "summed_worker_wall_seconds": 708.3,
+    "launcher_wall_seconds": 85.8,
+    "parallel_workers": 12,
+    "model_compilations": 70,
+    "renders": 70,
+    "training_runs": 0
+  },
+  "gates": {
+    "G1": {
+      "verdict": "pass_with_one_preserved_failure",
+      "checks": {
+        "nominal_held_clip_preserving_seating": {
+          "case": "g1_nominal_seating",
+          "status": "completed",
+          "dwell_s": 0.5000000000000003,
+          "clip_retained": true,
+          "terminal_clip_margin_m": 0.008528223502701916
+        },
+        "unloaded_anchor_zero_and_offset": {
+          "sensor_norm_mean_n": 0.09022119992880094,
+          "sensor_norm_max_n": 0.09032343566922853,
+          "constraint_reaction_mean_n": 0.04062104678370678,
+          "constraint_reaction_world_mean_n": [
+            0.03298445491250142,
+            0.0006053985766852729,
+            -0.02370047630303047
+          ],
+          "static_block_offset_n": 0.04960015314509416,
+          "clip_contact_mean_n": 0.0,
+          "shelf_contact_mean_n": 0.34062921188032164
+        },
+        "deliberate_clip_release": {
+          "release_travel_m": 0.08439845043197147,
+          "anchor_reaction_at_release_n": 0.14078284664099464,
+          "peak_anchor_reaction_n": 0.14260573135987661,
+          "peak_clip_contact_n": 0.006500980029456469,
+          "peak_native_wrist_n": 10.69793862127984,
+          "peak_native_plug_n": 1.8898075917224657,
+          "ramp_speed_m_per_s": 0.004,
+          "interpretation": "Release is a kinematic slack-exhaustion event: the open clip lets go after the plug travels this far from the port while the measured strain-relief reaction stays below a fifth of a newton. It is not a tension failure."
+        },
+        "contact_stall_witness": {
+          "case": "g1_contact_witness",
+          "witness_type": "connector_contact_stall",
+          "first_witness_s": 2.106,
+          "terminal": "deadline"
+        },
+        "mutation_guard_positive": {
+          "case": "g1_mutation_positive",
+          "failure_reason": "forbidden_state_change",
+          "detected_reasons": [
+            "controller_wrote_qpos"
+          ],
+          "note": "A deliberate controller-side pose write of 1e-4 rad failed the job at once."
+        },
+        "numerical_resolution": {
+          "physics_hz": [
+            4000,
+            8000
+          ],
+          "job_seconds": [
+            6.02,
+            6.02
+          ],
+          "dwell_s": [
+            0.5000000000000003,
+            0.5000000000000003
+          ],
+          "native_steps": [
+            24073,
+            48145
+          ],
+          "terminal_clip_margin_m": [
+            0.008528223502701916,
+            0.00852824110967703
+          ],
+          "peak_plug_port_contact_n": [
+            8.11132741364423,
+            13.750043623147118
+          ],
+          "servo_ticks": [
+            3010,
+            3010
+          ],
+          "interpretation": "Doubling the integration rate leaves the job duration, the servo tick count, the dwell and the outcome unchanged, so the registered physical clocks are independent of the integrator. Two resolutions establish insensitivity over this pair, not convergence."
+        },
+        "spatial_refinement": {
+          "case": "g1_spatial_46",
+          "status": "failed",
+          "failure_reason": "settle_instability",
+          "note": "Preserved failure. The 46-segment half-length cable at per-unit-length damping does not survive its own settling transient, so the spatial-refinement control is NOT established and no claim of discretisation insensitivity is made."
+        },
+        "repair_pair_near_home": {
+          "bad_macro": "over_travel_clear",
+          "good_macro": "slacken_arc",
+          "bad_outcome": "lost_required_clip",
+          "good_outcome": "completed",
+          "bad_max_retreat_m": 0.08441387462900707,
+          "good_max_retreat_m": 0.004153943931805237,
+          "bad_clip_retained": false,
+          "good_clip_retained": true,
+          "interpretation": "The same repair library contains an action that releases the required clip and one that preserves it, so the distal constraint is a real and reachable failure mode of a plausible repair."
+        }
+      }
+    },
+    "G2": {
+      "verdict": "pass",
+      "summary": "A blind existing insertion routine driven to the nominal seated depth jams on a measured mounting offset and produces a witnessed connector contact stall on both tested layouts. With no repair the request runs out its deadline with the stall still active. With a robot-driven repair from the shared library every request reaches held, clip-preserving seating.",
+      "retrofit_assumption": "The first attempt is a frozen local routine that does not use the measured mounting offset. This retrofit is stated explicitly; it is not a claim that prevention is impossible, and the G3 screen shows the competent first attempt prevents these same offsets.",
+      "cases": {
+        "g2_o3_rules": {
+          "status": "completed",
+          "reason": null,
+          "first_witness_s": 2.666,
+          "witness_type": "connector_contact_stall",
+          "repairs_started": 1,
+          "repair_log": [
+            {
+              "time_s": 2.68,
+              "macro": "local_realign"
+            }
+          ],
+          "clip_retained": true,
+          "terminal_clip_margin_m": 0.008528200222422616,
+          "max_retreat_m": 0.0,
+          "job_seconds": 10.836,
+          "native_steps": 43337,
+          "peak_plug_port_contact_n": 13.762673709145941,
+          "peak_anchor_reaction_n": 0.09471079008250884
+        },
+        "g2_o3_local": {
+          "status": "completed",
+          "reason": null,
+          "first_witness_s": 2.666,
+          "witness_type": "connector_contact_stall",
+          "repairs_started": 1,
+          "repair_log": [
+            {
+              "time_s": 2.68,
+              "macro": "local_realign"
+            }
+          ],
+          "clip_retained": true,
+          "terminal_clip_margin_m": 0.008528200222422616,
+          "max_retreat_m": 0.0,
+          "job_seconds": 10.836,
+          "native_steps": 43337,
+          "peak_plug_port_contact_n": 13.762673709145941,
+          "peak_anchor_reaction_n": 0.09471079008250884
+        },
+        "g2_o3_bad": {
+          "status": "completed",
+          "reason": null,
+          "first_witness_s": 2.666,
+          "witness_type": "connector_contact_stall",
+          "repairs_started": 1,
+          "repair_log": [
+            {
+              "time_s": 2.68,
+              "macro": "local_realign"
+            }
+          ],
+          "clip_retained": true,
+          "terminal_clip_margin_m": 0.008528200222422616,
+          "max_retreat_m": 0.0,
+          "job_seconds": 10.836,
+          "native_steps": 43337,
+          "peak_plug_port_contact_n": 13.762673709145941,
+          "peak_anchor_reaction_n": 0.09471079008250884
+        },
+        "g2_o3_none": {
+          "status": "failed",
+          "reason": "deadline",
+          "first_witness_s": 2.666,
+          "witness_type": "connector_contact_stall",
+          "repairs_started": 0,
+          "repair_log": [],
+          "clip_retained": true,
+          "terminal_clip_margin_m": 0.0085281780939777,
+          "max_retreat_m": 0.0,
+          "job_seconds": 30.0,
+          "native_steps": 119993,
+          "peak_plug_port_contact_n": 15.20364458105606,
+          "peak_anchor_reaction_n": 0.09262774711013447
+        },
+        "g2_o5_rules": {
+          "status": "completed",
+          "reason": null,
+          "first_witness_s": 2.106,
+          "witness_type": "connector_contact_stall",
+          "repairs_started": 1,
+          "repair_log": [
+            {
+              "time_s": 2.12,
+              "macro": "local_realign"
+            }
+          ],
+          "clip_retained": true,
+          "terminal_clip_margin_m": 0.008527910223482385,
+          "max_retreat_m": 0.0,
+          "job_seconds": 11.32,
+          "native_steps": 45273,
+          "peak_plug_port_contact_n": 9.95936380083311,
+          "peak_anchor_reaction_n": 0.09522074055678527
+        },
+        "g2_o5_local": {
+          "status": "completed",
+          "reason": null,
+          "first_witness_s": 2.106,
+          "witness_type": "connector_contact_stall",
+          "repairs_started": 1,
+          "repair_log": [
+            {
+              "time_s": 2.12,
+              "macro": "local_realign"
+            }
+          ],
+          "clip_retained": true,
+          "terminal_clip_margin_m": 0.008527910223482385,
+          "max_retreat_m": 0.0,
+          "job_seconds": 11.32,
+          "native_steps": 45273,
+          "peak_plug_port_contact_n": 9.95936380083311,
+          "peak_anchor_reaction_n": 0.09522074055678527
+        },
+        "g2_o5_bad": {
+          "status": "completed",
+          "reason": null,
+          "first_witness_s": 2.106,
+          "witness_type": "connector_contact_stall",
+          "repairs_started": 1,
+          "repair_log": [
+            {
+              "time_s": 2.12,
+              "macro": "local_realign"
+            }
+          ],
+          "clip_retained": true,
+          "terminal_clip_margin_m": 0.008527910223482385,
+          "max_retreat_m": 0.0,
+          "job_seconds": 11.32,
+          "native_steps": 45273,
+          "peak_plug_port_contact_n": 9.95936380083311,
+          "peak_anchor_reaction_n": 0.09522074055678527
+        },
+        "g2_o5_none": {
+          "status": "failed",
+          "reason": "deadline",
+          "first_witness_s": 2.106,
+          "witness_type": "connector_contact_stall",
+          "repairs_started": 0,
+          "repair_log": [],
+          "clip_retained": true,
+          "terminal_clip_margin_m": 0.008528191770114603,
+          "max_retreat_m": 0.0,
+          "job_seconds": 30.0,
+          "native_steps": 119993,
+          "peak_plug_port_contact_n": 15.20735266124874,
+          "peak_anchor_reaction_n": 0.0921368286918872
+        }
+      },
+      "state_dependence": "The over_travel_clear macro releases the required clip when requested near the home pose (84.4 mm of retreat) and preserves it when the same macro is requested from the inserted pose (about 79 mm of retreat, inside the measured 84.4 mm envelope). The consequence of an identical action depends on the state it is issued from."
+    },
+    "G3": {
+      "verdict": "no_residual_failure_on_this_support",
+      "screen": [
+        {
+          "installed_loop_mm": 2,
+          "mounting_offset_mm": 0,
+          "fg": {
+            "status": "completed",
+            "witness": null,
+            "clip": true,
+            "job_seconds": 6.02,
+            "repairs_started": 0,
+            "retries": 0,
+            "native_steps": 24073,
+            "geometric_service_loop_m": 0.04086186932075042,
+            "solved_anchor_along_m": 0.24637157906312374
+          },
+          "ca": {
+            "status": "completed",
+            "witness": null,
+            "clip": true,
+            "job_seconds": 6.02,
+            "repairs_started": 0,
+            "retries": 0,
+            "native_steps": 24073,
+            "geometric_service_loop_m": 0.04086186932075042,
+            "solved_anchor_along_m": 0.24637157906312374
+          },
+          "identical": true
+        },
+        {
+          "installed_loop_mm": 2,
+          "mounting_offset_mm": 2,
+          "fg": {
+            "status": "completed",
+            "witness": null,
+            "clip": true,
+            "job_seconds": 6.452,
+            "repairs_started": 0,
+            "retries": 0,
+            "native_steps": 25801,
+            "geometric_service_loop_m": 0.04086186932075042,
+            "solved_anchor_along_m": 0.24637157906312374
+          },
+          "ca": {
+            "status": "completed",
+            "witness": null,
+            "clip": true,
+            "job_seconds": 6.452,
+            "repairs_started": 0,
+            "retries": 0,
+            "native_steps": 25801,
+            "geometric_service_loop_m": 0.04086186932075042,
+            "solved_anchor_along_m": 0.24637157906312374
+          },
+          "identical": true
+        },
+        {
+          "installed_loop_mm": 2,
+          "mounting_offset_mm": 4,
+          "fg": {
+            "status": "completed",
+            "witness": null,
+            "clip": true,
+            "job_seconds": 6.928,
+            "repairs_started": 0,
+            "retries": 0,
+            "native_steps": 27705,
+            "geometric_service_loop_m": 0.04086186932075042,
+            "solved_anchor_along_m": 0.24637157906312374
+          },
+          "ca": {
+            "status": "completed",
+            "witness": null,
+            "clip": true,
+            "job_seconds": 6.928,
+            "repairs_started": 0,
+            "retries": 0,
+            "native_steps": 27705,
+            "geometric_service_loop_m": 0.04086186932075042,
+            "solved_anchor_along_m": 0.24637157906312374
+          },
+          "identical": true
+        },
+        {
+          "installed_loop_mm": 4,
+          "mounting_offset_mm": 0,
+          "fg": {
+            "status": "completed",
+            "witness": null,
+            "clip": true,
+            "job_seconds": 6.02,
+            "repairs_started": 0,
+            "retries": 0,
+            "native_steps": 24073,
+            "geometric_service_loop_m": 0.04286186932075037,
+            "solved_anchor_along_m": 0.24437118480989045
+          },
+          "ca": {
+            "status": "completed",
+            "witness": null,
+            "clip": true,
+            "job_seconds": 6.02,
+            "repairs_started": 0,
+            "retries": 0,
+            "native_steps": 24073,
+            "geometric_service_loop_m": 0.04286186932075037,
+            "solved_anchor_along_m": 0.24437118480989045
+          },
+          "identical": true
+        },
+        {
+          "installed_loop_mm": 4,
+          "mounting_offset_mm": 2,
+          "fg": {
+            "status": "completed",
+            "witness": null,
+            "clip": true,
+            "job_seconds": 6.454,
+            "repairs_started": 0,
+            "retries": 0,
+            "native_steps": 25809,
+            "geometric_service_loop_m": 0.04286186932075037,
+            "solved_anchor_along_m": 0.24437118480989045
+          },
+          "ca": {
+            "status": "completed",
+            "witness": null,
+            "clip": true,
+            "job_seconds": 6.454,
+            "repairs_started": 0,
+            "retries": 0,
+            "native_steps": 25809,
+            "geometric_service_loop_m": 0.04286186932075037,
+            "solved_anchor_along_m": 0.24437118480989045
+          },
+          "identical": true
+        },
+        {
+          "installed_loop_mm": 4,
+          "mounting_offset_mm": 4,
+          "fg": {
+            "status": "completed",
+            "witness": null,
+            "clip": true,
+            "job_seconds": 6.93,
+            "repairs_started": 0,
+            "retries": 0,
+            "native_steps": 27713,
+            "geometric_service_loop_m": 0.04286186932075037,
+            "solved_anchor_along_m": 0.24437118480989045
+          },
+          "ca": {
+            "status": "completed",
+            "witness": null,
+            "clip": true,
+            "job_seconds": 6.93,
+            "repairs_started": 0,
+            "retries": 0,
+            "native_steps": 27713,
+            "geometric_service_loop_m": 0.04286186932075037,
+            "solved_anchor_along_m": 0.24437118480989045
+          },
+          "identical": true
+        },
+        {
+          "installed_loop_mm": 6,
+          "mounting_offset_mm": 0,
+          "fg": {
+            "status": "completed",
+            "witness": null,
+            "clip": true,
+            "job_seconds": 6.02,
+            "repairs_started": 0,
+            "retries": 0,
+            "native_steps": 24073,
+            "geometric_service_loop_m": 0.04486186932075037,
+            "solved_anchor_along_m": 0.24237076887143022
+          },
+          "ca": {
+            "status": "completed",
+            "witness": null,
+            "clip": true,
+            "job_seconds": 6.02,
+            "repairs_started": 0,
+            "retries": 0,
+            "native_steps": 24073,
+            "geometric_service_loop_m": 0.04486186932075037,
+            "solved_anchor_along_m": 0.24237076887143022
+          },
+          "identical": true
+        },
+        {
+          "installed_loop_mm": 6,
+          "mounting_offset_mm": 2,
+          "fg": {
+            "status": "completed",
+            "witness": null,
+            "clip": true,
+            "job_seconds": 6.4559999999999995,
+            "repairs_started": 0,
+            "retries": 0,
+            "native_steps": 25817,
+            "geometric_service_loop_m": 0.04486186932075037,
+            "solved_anchor_along_m": 0.24237076887143022
+          },
+          "ca": {
+            "status": "completed",
+            "witness": null,
+            "clip": true,
+            "job_seconds": 6.4559999999999995,
+            "repairs_started": 0,
+            "retries": 0,
+            "native_steps": 25817,
+            "geometric_service_loop_m": 0.04486186932075037,
+            "solved_anchor_along_m": 0.24237076887143022
+          },
+          "identical": true
+        },
+        {
+          "installed_loop_mm": 6,
+          "mounting_offset_mm": 4,
+          "fg": {
+            "status": "completed",
+            "witness": null,
+            "clip": true,
+            "job_seconds": 6.9319999999999995,
+            "repairs_started": 0,
+            "retries": 0,
+            "native_steps": 27721,
+            "geometric_service_loop_m": 0.04486186932075037,
+            "solved_anchor_along_m": 0.24237076887143022
+          },
+          "ca": {
+            "status": "completed",
+            "witness": null,
+            "clip": true,
+            "job_seconds": 6.9319999999999995,
+            "repairs_started": 0,
+            "retries": 0,
+            "native_steps": 27721,
+            "geometric_service_loop_m": 0.04486186932075037,
+            "solved_anchor_along_m": 0.24237076887143022
+          },
+          "identical": true
+        }
+      ],
+      "summary": "Installed service loop 2/4/6 mm crossed with lateral mounting offsets 0/2/4 mm, two arms, 18 requests. All 18 reached held clip-preserving seating with the required clip retained. No witness fired in any cell, so the cable-aware repair layer was never invoked and its per-cell native step counts are identical to the plain force-guided arm.",
+      "consequence": "On this registered support a competent first attempt with exact target knowledge prevents failure outright. A prevented visible offset is prevention, not recovery, and this cell set therefore earns no learning spend. It does not show that learning is unnecessary on a broader or less observable support."
+    }
+  },
+  "measured_task_constants": {
+    "clip_release_travel_m": 0.08439845043197147,
+    "clip_release_is_kinematic": true,
+    "anchor_reaction_at_release_n": 0.14078284664099464,
+    "unloaded_anchor_sensor_offset_n": 0.04960015314509416,
+    "nominal_seating_job_seconds": 6.02,
+    "compiled_cable_mass_kg": 0.049999996524735676,
+    "declared_cable_mass_kg": 0.05,
+    "note": "The envelope is the plug travel away from the port at which the open clip lets go. It is a kinematic slack-exhaustion limit measured at a 4 mm/s ramp, not a tension limit and not a hardware rating."
+  },
+  "independent_replay": {
+    "file": "evidence/cable_recovery_replay_v2.json",
+    "requests": 35,
+    "replayed": 34,
+    "agreeing": 34,
+    "disagreeing": [],
+    "note": "One request (g1_spatial_46) was rejected before the job clock started and has no servo samples to replay. For every other request an independent checker rebuilt the status, failure reason, witness type, dwell and elapsed time from the stored ledgers alone and agreed exactly."
+  },
+  "technical_audit_disposition": {
+    "TA01": "Addressed in part: strain relief, open clip, post and mounted board are built, instrumented and physically validated; passive latch retention stays out of scope for this pre-release endpoint.",
+    "TA02": "Addressed: a fail-closed mutation guard wraps every controller call and is demonstrated by a positive control.",
+    "TA03": "Partly addressed: compiled cable mass now equals the declared target exactly and is conserved by construction; the 46-segment spatial control fails and discretisation insensitivity is NOT established.",
+    "TA04": "Addressed: policy, servo and physics clocks are separated and the 4/8 kHz pair leaves job duration, servo tick count, dwell and outcome unchanged.",
+    "TA05": "Addressed in part: clip, post, shelf, connector and robot contacts are separated with signed resultants reported alongside sums, and the strain-relief reaction is read from the constraint force and cross-checked against a sensor with a measured static offset. Cable tension itself is still not a named measured channel.",
+    "TA06": "Addressed: native-rate abort rows plus servo-rate witness rows and full states at decision boundaries reproduce every verdict independently.",
+    "TA07": "Partly addressed: achieved retreat travel, repair waypoints and per-component clipping are recorded; a commanded-norm limit is still not enforced.",
+    "TA08": "Unchanged idealisation, now explicit: all arms share exact target knowledge and exact-model bias feedforward. The G2 blind first attempt is a separately labelled retrofit, not a removal of truth from the comparison arms.",
+    "TA09": "Addressed: the port is mounted on standoffs over a plate, riser, shelf and support column in one common frame.",
+    "TA10": "Addressed: measured throughput on the corrected task replaces the v1 extrapolation."
+  },
+  "cost_and_capacity": {
+    "per_worker_native_steps_per_second": 3059.7,
+    "twelve_worker_aggregate_native_steps_per_second": 25244.7,
+    "v1_serial_baseline_native_steps_per_second": 1779.0,
+    "workstation": "24 physical cores, 31.4 GB RAM, CPU MuJoCo 3.3.7",
+    "note": "Measured on the corrected task with two rendered frames per request included. The per-worker rate is about 1.2x the v1 serial baseline and the twelve-worker aggregate about 14x it. No optimizer, batched environment or GPU work is included."
+  },
+  "scope_and_limitations": [
+    "Simulation only. No hardware access, connector transfer, released retention, latching or force-certified safety claim.",
+    "Fixed preset grasp and a world-fixed rigid fixture are disclosed construction boundaries; grip strength, drop recovery and fixture compliance are not measured.",
+    "All arms receive full simulated state and exact-model bias feedforward. This is not camera perception.",
+    "Contact channels are sums of contact force norms: positive witnesses, not net forces. Signed resultants are reported separately.",
+    "Peak plug-port contact differs by about 70% between the two physics resolutions even though outcome, timing and dwell are identical, so peak contact sums must not be quoted as resolution-independent.",
+    "Two physics resolutions establish insensitivity over that pair, not convergence. The spatial control failed and is preserved.",
+    "The G3 screen is a small deterministic development grid with no repeated seeds, so it supports no reliability or generalisation claim.",
+    "No learned model, predictor, recurrent baseline or policy was trained in this block."
+  ],
+  "decision": {
+    "verdict": "task_and_measurement_gates_pass_learning_not_yet_earned",
+    "reasoning": "The physical task, its instrumentation and its independent replay are established, and both a clip-preserving repair and a clip-releasing repair are demonstrated on real physics. But the registered G3 support is solved outright by the competent first attempt, so there is no measured residual failure and no cost deficit to justify learning on this support.",
+    "next_action": "Broaden the registered support to conditions the competent first attempt cannot prevent - unmodelled mounting compliance, service loop near the measured 84.4 mm envelope, and distal catch routes that survive settling - and re-screen before any acquisition or training."
+  }
+}
