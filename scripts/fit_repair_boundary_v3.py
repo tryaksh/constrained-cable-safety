@@ -27,10 +27,17 @@ sys.path[:0] = [str(ROOT), str(ROOT / "src")]
 from assembly_recovery.cable_study_v3 import (  # noqa: E402
     FEATURE_NAMES,
     action_displacement,
+    balanced_accuracy,
     build_contexts,
+    commanded_magnitude,
     content_sha256,
+    false_safe_at_coverage,
     feature_row,
+    finite,
+    fit_b0,
+    lowest_risk_choice,
     outcome_label,
+    ranking_regret,
 )
 
 CLIP_LOST_LABELS = {"clip_lost", "completed_clip_lost"}
@@ -124,22 +131,6 @@ def standardise(train: np.ndarray, *others: np.ndarray):
     return [(m-mean)/scale for m in (train, *others)]
 
 
-def fit_b0(values: np.ndarray, labels: np.ndarray) -> dict:
-    """One scalar threshold on the analytic endpoint distance, by balanced accuracy."""
-    order = np.unique(values)
-    midpoints = np.concatenate([[order[0]-1e-6], (order[:-1]+order[1:])/2, [order[-1]+1e-6]])
-    positive, negative = labels == 1, labels == 0
-    best = None
-    for threshold in midpoints:
-        predicted = values > threshold
-        if not positive.any() or not negative.any():
-            continue
-        score = 0.5*(predicted[positive].mean()+(~predicted[negative]).mean())
-        if best is None or score > best[1]:
-            best = (float(threshold), float(score))
-    return {"threshold_m": best[0], "train_balanced_accuracy": best[1]}
-
-
 def train_torch(inputs, labels, dev_inputs, dev_labels, budget: dict, seed: int, hidden=None) -> dict:
     """One fit to a declared budget, selecting the checkpoint by dev loss only."""
     torch.manual_seed(seed)
@@ -189,55 +180,48 @@ def probabilities(model, inputs) -> np.ndarray:
         return torch.sigmoid(model(torch.tensor(inputs, dtype=torch.float32))).numpy().ravel()
 
 
-def false_safe_at_coverage(scores: np.ndarray, truth: np.ndarray, coverage: int) -> float:
-    """Of the `coverage` actions a predictor is most confident are safe, how many lost the clip."""
-    if coverage <= 0:
-        return float("nan")
-    order = np.argsort(scores, kind="stable")[:coverage]
-    return float(truth[order].mean())
-
-
-def ranking_regret(rows, scores: np.ndarray, safe: np.ndarray, key: str) -> dict:
-    """The registered supervisor procedure, scored per test context."""
-    core = [i for i, row in enumerate(rows) if row["action_kind"] == "core"]
-    contexts: dict[str, list[int]] = {}
-    for i in core:
-        contexts.setdefault(rows[i]["context"], []).append(i)
-    regret = abstain = scored = 0
-    for indices in contexts.values():
-        allowed = [i for i in indices if safe[i]]
-        if not allowed:
-            abstain += 1
-            continue
-        chosen = max(allowed, key=lambda i: (np.linalg.norm([rows[i]["action"]["retreat_m"],
-                                                             rows[i]["action"]["excursion_m"]]),
-                                             -rows[i]["action_index"]))
-        scored += 1
-        bad = rows[chosen]["clip_lost"] if key == "clip_lost" else 1-rows[chosen]["completed"]
-        regret += int(bad)
-    return {"contexts": len(contexts), "scored": scored, "abstentions": abstain,
-            "regret": regret/scored if scored else float("nan"),
-            "mean_predicted_risk": float(np.mean(scores[core])) if core else float("nan")}
-
-
-def evaluate(name, rows, scores, safe, coverage) -> dict:
+def evaluate(name, rows, scores, safe, coverage, retract_distance_m, score_units) -> dict:
     truth = np.asarray([row["clip_lost"] for row in rows])
     return {
         "predictor": name,
+        "score_units": score_units,
         "predicted_safe": int(safe.sum()),
         "false_safe_rate_own_operating_point": float(truth[safe].mean()) if safe.any() else float("nan"),
         "false_safe_rate_matched_coverage": false_safe_at_coverage(scores, truth, coverage),
         "balanced_accuracy": balanced_accuracy(truth, ~safe),
-        "ranking_regret_clip": ranking_regret(rows, scores, safe, "clip_lost"),
-        "ranking_regret_completion": ranking_regret(rows, scores, safe, "completed"),
+        "ranking_regret_clip": ranking_regret(rows, safe, "clip_lost", retract_distance_m),
+        "ranking_regret_completion": ranking_regret(rows, safe, "completed", retract_distance_m),
+        "lowest_risk_choice": lowest_risk_choice(rows, scores, retract_distance_m),
     }
 
 
-def balanced_accuracy(truth: np.ndarray, predicted: np.ndarray) -> float:
-    positive, negative = truth == 1, truth == 0
-    if not positive.any() or not negative.any():
-        return float("nan")
-    return float(0.5*(predicted[positive].mean()+(~predicted[negative]).mean()))
+def provenance(run_dir: Path) -> dict:
+    """The launcher's prelaunch record, reduced to what the evidence file needs."""
+    manifest = json.loads((run_dir / "manifest.json").read_text(encoding="utf-8"))
+    return {"commit_at_start": manifest["source_commit_at_start"],
+            "dirty_at_start": manifest["source_dirty_at_start"],
+            "config": manifest["config"],
+            "source_archive": manifest["source_archive"],
+            "run_id": manifest["run_id"],
+            "launcher_status": manifest.get("status"),
+            "native_environment": manifest.get("native_environment"),
+            "upstream_commit": manifest.get("upstream", {}).get("aic", {}).get("commit")}
+
+
+def accounting(run_dir: Path) -> dict:
+    """Measured cost of the block, read from the worker's own totals."""
+    result = json.loads((run_dir / "result.json").read_text(encoding="utf-8"))
+    cases = result["cases"]
+    wall = [c["accounting"]["wall_seconds"] for c in cases]
+    return {"requests": len(cases),
+            "expected_requests": result.get("expected_requests"),
+            "native_steps": result["accounting"]["native_steps"],
+            "settle_native_steps": result["accounting"]["settle_native_steps"],
+            "summed_worker_wall_seconds": round(sum(wall), 1),
+            "median_request_wall_seconds": round(float(np.median(wall)), 2),
+            "training_runs_during_collection": result["accounting"]["training_runs"],
+            "repairs_issued": sum(int(c.get("repairs_started", 0) > 0) for c in cases),
+            "mutation_guard_events": sum(c.get("mutation_guard", {}).get("forbidden_events", 0) for c in cases)}
 
 
 def main() -> int:
@@ -245,6 +229,7 @@ def main() -> int:
     parser.add_argument("--run-dir", type=Path, required=True)
     parser.add_argument("--contract", type=Path, default=Path("configs/cable_repair_boundary_v3.json"))
     parser.add_argument("--out", type=Path, required=True)
+    parser.add_argument("--dataset-out", type=Path, default=None)
     args = parser.parse_args()
 
     contract = json.loads((ROOT / args.contract).read_text(encoding="utf-8-sig"))
@@ -294,14 +279,30 @@ def main() -> int:
     m_scores = np.stack([probabilities(f["model"], ss) for f in m_fits])
     m_scores_test = m_scores.mean(0)
 
+    distance = "metres: the analytic endpoint boot-to-anchor distance, a monotone risk score"
+    probability = "probability of clip loss"
     results = {
-        "B0": evaluate("B0", test, b0_scores_test, b0_safe_test, coverage),
-        "B1": evaluate("B1", test, b1_scores_test, b1_scores_test < 0.5, coverage),
-        "M": evaluate("M", test, m_scores_test, m_scores_test < 0.5, coverage),
+        "B0": evaluate("B0", test, b0_scores_test, b0_safe_test, coverage, retract, distance),
+        "B1": evaluate("B1", test, b1_scores_test, b1_scores_test < 0.5, coverage, retract, probability),
+        "M": evaluate("M", test, m_scores_test, m_scores_test < 0.5, coverage, retract, probability),
     }
     for seed_index, fit in enumerate(m_fits):
         results[f"M_seed{fit['seed']}"] = evaluate(
-            f"M_seed{fit['seed']}", test, m_scores[seed_index], m_scores[seed_index] < 0.5, coverage)
+            f"M_seed{fit['seed']}", test, m_scores[seed_index], m_scores[seed_index] < 0.5,
+            coverage, retract, probability)
+
+    # Reference, not a predictor: a supervisor with no safety filter at all, which
+    # is what the repair library does today. It says what the filter is worth.
+    truth_test = np.asarray([r["clip_lost"] for r in test])
+    unfiltered = np.ones(len(test), dtype=bool)
+    results["no_filter_reference"] = {
+        "predictor": "no filter", "score_units": "none; every action is allowed",
+        "status": "reference, not one of the three registered predictors",
+        "predicted_safe": int(len(test)),
+        "clip_loss_base_rate": float(truth_test.mean()),
+        "ranking_regret_clip": ranking_regret(test, unfiltered, "clip_lost", retract),
+        "ranking_regret_completion": ranking_regret(test, unfiltered, "completed", retract),
+    }
 
     margin = contract["decision_rule"]["margin"]
     best_other_a = min(results["B1"]["false_safe_rate_matched_coverage"],
@@ -322,9 +323,14 @@ def main() -> int:
     for entry in denominator:
         outcome_counts[entry["outcome"]] = outcome_counts.get(entry["outcome"], 0)+1
     report = {
-        "schema": 1, "id": "cable_repair_boundary_v3_fit", "created_on": "2026-09-11",
+        "schema": 1, "id": "cable_repair_boundary_v3_r01", "created_on": "2026-09-11",
+        "status": "executed_pre_registered_decision_block",
+        "scope": contract["scope"],
+        "question": contract["question"],
         "contract": {"path": args.contract.as_posix(), "content_sha256": content_sha256(ROOT / args.contract)},
         "run_dir": args.run_dir.as_posix(),
+        "source": provenance(ROOT / args.run_dir),
+        "execution": accounting(ROOT / args.run_dir),
         "denominator": {"requests": len(denominator), "usable_for_fitting": len(rows),
                         "outcome_counts": outcome_counts,
                         "note": "Unusable requests are those whose repair was never issued, so no decision "
@@ -347,11 +353,29 @@ def main() -> int:
             "verdict": verdict,
             "rule": contract["decision_rule"],
         },
-        "scope": contract["scope_and_limitations"],
+        "scope_and_limitations": contract["scope_and_limitations"],
     }
+    # A compact, centreline-free copy of the dataset so the figure and any later
+    # check can be rebuilt without torch and without re-reading every ledger.
+    dataset = ROOT / (args.dataset_out or (args.run_dir / "study_dataset.json"))
+    scores = {"B0": dict(zip([r["case"] for r in test], b0_scores_test.tolist(), strict=True)),
+              "B1": dict(zip([r["case"] for r in test], b1_scores_test.tolist(), strict=True)),
+              "M": dict(zip([r["case"] for r in test], m_scores_test.tolist(), strict=True))}
+    dataset.write_text(json.dumps({
+        "contract_content_sha256": report["contract"]["content_sha256"],
+        "b0_threshold_m": b0["threshold_m"],
+        "denominator": data["denominator"],
+        "rows": [{k: row[k] for k in ("case", "context", "group", "split", "action_kind",
+                                      "action_index", "action", "features", "outcome",
+                                      "clip_lost", "completed", "mount_id", "decision_pose_id")}
+                 | {"commanded_magnitude_m": commanded_magnitude(row, retract)} for row in rows],
+        "test_scores": scores,
+    }, indent=1, default=float), encoding="utf-8")
+
     out = ROOT / args.out
     out.parent.mkdir(parents=True, exist_ok=True)
-    out.write_text(json.dumps(report, indent=2, allow_nan=True, default=float), encoding="utf-8")
+    report["dataset"] = dataset.relative_to(ROOT).as_posix()
+    out.write_text(json.dumps(finite(report), indent=2, allow_nan=False, default=float), encoding="utf-8")
     print(json.dumps({"verdict": verdict, "requests": len(denominator), "usable": len(rows),
                       "b0_threshold_m": b0["threshold_m"], "out": args.out.as_posix()}, indent=1))
     return 0

@@ -17,15 +17,22 @@ from assembly_recovery.cable_recovery_control_v2 import RepairMacro, parametric_
 from assembly_recovery.cable_study_v3 import (
     FEATURE_NAMES,
     action_displacement,
+    balanced_accuracy,
     build_cases,
     build_contexts,
+    commanded_magnitude,
     content_sha256,
     core_actions,
+    false_safe_at_coverage,
     feature_row,
+    finite,
+    fit_b0,
     halton,
+    lowest_risk_choice,
     merge_runtime,
     normalised_bytes,
     outcome_label,
+    ranking_regret,
     raw_sha256,
     repair_basis,
     sampled_actions,
@@ -225,3 +232,97 @@ def test_merge_runtime_does_not_mutate_the_base_task():
 def test_contract_declares_the_base_task_it_was_frozen_against():
     assert CONTRACT["base_config"]["content_sha256"] == content_sha256(
         ROOT / CONTRACT["base_config"]["path"])
+
+
+def scored_row(index, retreat, clip_lost, completed, context="ctx"):
+    return {"action_kind": "core", "context": context, "action_index": index,
+            "action": {"retreat_m": retreat, "bearing_rad": 0.0, "excursion_m": 0.0},
+            "decision": {"insertion_axis": AXIS.tolist()}, "run_direction_xy": [1.0, 0.0],
+            "clip_lost": clip_lost, "completed": completed}
+
+
+def test_fit_b0_recovers_a_separating_threshold():
+    values = np.array([0.30, 0.32, 0.34, 0.41, 0.43, 0.45])
+    labels = np.array([0, 0, 0, 1, 1, 1])
+    fit = fit_b0(values, labels)
+    assert 0.34 < fit["threshold_m"] < 0.41
+    assert fit["train_balanced_accuracy"] == 1.0
+
+
+def test_fit_b0_reports_an_imperfect_split_honestly():
+    values = np.array([0.30, 0.42, 0.34, 0.41])
+    labels = np.array([0, 0, 1, 1])
+    assert fit_b0(values, labels)["train_balanced_accuracy"] < 1.0
+
+
+def test_false_safe_at_coverage_scores_the_lowest_scoring_actions():
+    scores = np.array([0.9, 0.1, 0.5, 0.2])
+    truth = np.array([1, 0, 1, 1])
+    assert false_safe_at_coverage(scores, truth, 2) == 0.5   # picks 0.1 and 0.2
+    assert false_safe_at_coverage(scores, truth, 1) == 0.0
+    assert math.isnan(false_safe_at_coverage(scores, truth, 0))
+
+
+def test_balanced_accuracy_averages_the_two_class_rates():
+    truth = np.array([1, 1, 0, 0, 0, 0])
+    predicted = np.array([True, False, False, False, False, True])
+    assert balanced_accuracy(truth, predicted) == pytest.approx(0.5*(0.5+0.75))
+
+
+def test_balanced_accuracy_is_undefined_with_one_class_present():
+    assert math.isnan(balanced_accuracy(np.array([1, 1]), np.array([True, True])))
+
+
+def test_commanded_magnitude_matches_the_displacement_norm():
+    row = scored_row(0, 0.09, 0, 1)
+    expected = np.linalg.norm(action_displacement(row["action"], AXIS, RUN, 0.006))
+    assert commanded_magnitude(row, 0.006) == pytest.approx(expected)
+
+
+def test_ranking_regret_issues_the_largest_safe_action():
+    rows = [scored_row(0, 0.02, 0, 1), scored_row(1, 0.06, 0, 1), scored_row(2, 0.11, 1, 0)]
+    kept = ranking_regret(rows, np.array([True, True, False]), "clip_lost", 0.006)
+    assert kept == {"contexts": 1, "scored": 1, "abstentions": 0, "regret": 0.0}
+    generous = ranking_regret(rows, np.array([True, True, True]), "clip_lost", 0.006)
+    assert generous["regret"] == 1.0
+
+
+def test_ranking_regret_counts_abstention_instead_of_scoring_it():
+    rows = [scored_row(0, 0.02, 0, 1), scored_row(1, 0.06, 1, 0)]
+    result = ranking_regret(rows, np.array([False, False]), "clip_lost", 0.006)
+    assert result["abstentions"] == 1 and result["scored"] == 0
+    assert math.isnan(result["regret"])
+
+
+def test_ranking_regret_separates_contexts():
+    rows = [scored_row(0, 0.02, 0, 1, "a"), scored_row(1, 0.11, 1, 0, "a"),
+            scored_row(0, 0.02, 0, 1, "b"), scored_row(1, 0.11, 0, 1, "b")]
+    result = ranking_regret(rows, np.ones(4, dtype=bool), "clip_lost", 0.006)
+    assert result["contexts"] == 2 and result["scored"] == 2 and result["regret"] == 0.5
+
+
+def test_ranking_regret_can_score_the_completion_label():
+    rows = [scored_row(0, 0.02, 0, 1), scored_row(1, 0.11, 0, 0)]
+    assert ranking_regret(rows, np.ones(2, dtype=bool), "completed", 0.006)["regret"] == 1.0
+
+
+def test_ranking_regret_ignores_non_core_actions():
+    rows = [scored_row(0, 0.02, 0, 1), {**scored_row(1, 0.11, 1, 0), "action_kind": "halton"}]
+    assert ranking_regret(rows, np.ones(2, dtype=bool), "clip_lost", 0.006)["regret"] == 0.0
+
+
+def test_lowest_risk_choice_takes_the_action_the_predictor_likes_most():
+    rows = [scored_row(0, 0.02, 1, 0), scored_row(1, 0.11, 0, 1)]
+    result = lowest_risk_choice(rows, np.array([0.8, 0.1]), 0.006)
+    assert result["clip_loss_rate"] == 0.0 and result["incompletion_rate"] == 0.0
+    assert result["status"].startswith("exploratory")
+
+
+def test_finite_replaces_non_finite_numbers_with_null():
+    payload = {"a": float("nan"), "b": [1.0, float("inf")], "c": {"d": -float("inf")}, "e": 2}
+    assert finite(payload) == {"a": None, "b": [1.0, None], "c": {"d": None}, "e": 2}
+
+
+def test_finite_leaves_ordinary_values_alone():
+    payload = {"a": 1.5, "b": ["x", 2], "c": True}
+    assert finite(payload) == payload

@@ -251,3 +251,103 @@ def merge_runtime(base: dict, contract: dict) -> dict:
     runtime["scope"] = contract["scope"]
     runtime["cases"] = build_cases(contract)
     return runtime
+
+
+def finite(value):
+    """Replace non-finite floats with null so the record is valid JSON.
+
+    A metric that is undefined - a rate over an empty set - is recorded as null
+    rather than as NaN, which no strict JSON reader accepts.
+    """
+    if isinstance(value, dict):
+        return {k: finite(v) for k, v in value.items()}
+    if isinstance(value, list):
+        return [finite(v) for v in value]
+    if isinstance(value, float) and not np.isfinite(value):
+        return None
+    return value
+
+def commanded_magnitude(row, retract_distance_m: float) -> float:
+    """Magnitude of the commanded detour displacement, as the contract words it."""
+    axis = np.asarray(row["decision"]["insertion_axis"], dtype=float)
+    run = np.array([*row["run_direction_xy"], 0.0])
+    return float(np.linalg.norm(action_displacement(row["action"], axis, run, retract_distance_m)))
+
+def core_by_context(rows) -> dict[str, list[int]]:
+    contexts: dict[str, list[int]] = {}
+    for i, row in enumerate(rows):
+        if row["action_kind"] == "core":
+            contexts.setdefault(row["context"], []).append(i)
+    return contexts
+
+def ranking_regret(rows, safe: np.ndarray, key: str, retract_distance_m: float) -> dict:
+    """The registered supervisor procedure, scored per test context.
+
+    The supervisor keeps the actions its predictor calls safe and issues the one
+    with the largest commanded displacement, because a larger clearance is the
+    more useful repair. A predictor whose safe set is too generous is punished
+    exactly where it matters.
+    """
+    regret = abstain = scored = 0
+    for indices in core_by_context(rows).values():
+        allowed = [i for i in indices if safe[i]]
+        if not allowed:
+            abstain += 1
+            continue
+        chosen = max(allowed, key=lambda i: (commanded_magnitude(rows[i], retract_distance_m),
+                                             -rows[i]["action_index"]))
+        scored += 1
+        regret += int(rows[chosen]["clip_lost"] if key == "clip_lost" else 1-rows[chosen]["completed"])
+    return {"contexts": len(core_by_context(rows)), "scored": scored, "abstentions": abstain,
+            "regret": regret/scored if scored else float("nan")}
+
+def lowest_risk_choice(rows, scores: np.ndarray, retract_distance_m: float) -> dict:
+    """Exploratory, not pre-registered: issue the action the predictor likes most.
+
+    Reported beside the registered metric because the largest safe clearance is a
+    deliberately stressful choice, and a supervisor that simply takes the action
+    it believes is safest is the other obvious policy.
+    """
+    lost = incomplete = 0
+    contexts = core_by_context(rows)
+    for indices in contexts.values():
+        chosen = min(indices, key=lambda i: (float(scores[i]), rows[i]["action_index"]))
+        lost += rows[chosen]["clip_lost"]
+        incomplete += 1-rows[chosen]["completed"]
+    total = max(len(contexts), 1)
+    return {"contexts": len(contexts), "clip_loss_rate": lost/total,
+            "incompletion_rate": incomplete/total,
+            "mean_commanded_magnitude_m": float(np.mean([
+                commanded_magnitude(rows[min(indices, key=lambda i: (float(scores[i]),
+                                                                     rows[i]["action_index"]))],
+                                    retract_distance_m)
+                for indices in contexts.values()])) if contexts else float("nan"),
+            "status": "exploratory_diagnostic_not_part_of_the_decision_rule"}
+
+def fit_b0(values: np.ndarray, labels: np.ndarray) -> dict:
+    """One scalar threshold on the analytic endpoint distance, by balanced accuracy."""
+    order = np.unique(values)
+    midpoints = np.concatenate([[order[0]-1e-6], (order[:-1]+order[1:])/2, [order[-1]+1e-6]])
+    positive, negative = labels == 1, labels == 0
+    best = None
+    for threshold in midpoints:
+        predicted = values > threshold
+        if not positive.any() or not negative.any():
+            continue
+        score = 0.5*(predicted[positive].mean()+(~predicted[negative]).mean())
+        if best is None or score > best[1]:
+            best = (float(threshold), float(score))
+    return {"threshold_m": best[0], "train_balanced_accuracy": best[1]}
+
+def false_safe_at_coverage(scores: np.ndarray, truth: np.ndarray, coverage: int) -> float:
+    """Of the `coverage` actions a predictor is most confident are safe, how many lost the clip."""
+    if coverage <= 0:
+        return float("nan")
+    order = np.argsort(scores, kind="stable")[:coverage]
+    return float(truth[order].mean())
+
+def balanced_accuracy(truth: np.ndarray, predicted: np.ndarray) -> float:
+    positive, negative = truth == 1, truth == 0
+    if not positive.any() or not negative.any():
+        return float("nan")
+    return float(0.5*(predicted[positive].mean()+(~predicted[negative]).mean()))
