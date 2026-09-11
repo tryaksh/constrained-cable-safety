@@ -477,6 +477,7 @@ class ConstrainedScene:
     plug_sensor: tuple
     anchor_sensor: tuple
     anchor_equality: int
+    boot_equality: int
     clip_origin: object
     clip_rotation: object
     clip_predicate: dict
@@ -488,6 +489,48 @@ class ConstrainedScene:
 def _sensor(model, name):
     sensor = model.sensor(name)
     return int(sensor.adr[0]), int(sensor.dim[0])
+
+
+def mount_port(root, world, port_body, tip_rotation, compliance: dict | None) -> dict:
+    """Attach the port to the world rigidly, or on a bracket of finite stiffness.
+
+    Rigid is the v2 boundary: an infinitely stiff mount, so the seated pose the
+    robot measured before contact is still the seated pose during contact. A
+    compliant bracket is three orthogonal linear springs in the tip frame - two
+    lateral, one axial - with declared travel stops, so contact moves the target.
+    Stiffness is declared here and *measured* by its own known-load control;
+    bracket rotation is not modelled and is declared out of scope.
+    """
+    if not compliance:
+        world.append(port_body)
+        return {"kind": "world_fixed_rigid",
+                "scope": "Infinitely rigid mounting geometry; fixture compliance is not modelled."}
+    mount = ET.SubElement(world, "body", name="port_mount", pos="0 0 0")
+    lateral = compliance["lateral_stiffness_n_per_m"]
+    axial = compliance["axial_stiffness_n_per_m"]
+    travel = compliance["travel_limit_m"]
+    axes = (("run", tip_rotation[:, 0], lateral, compliance["lateral_damping_ns_per_m"]),
+            ("side", tip_rotation[:, 1], lateral, compliance["lateral_damping_ns_per_m"]),
+            ("axial", tip_rotation[:, 2], axial, compliance["axial_damping_ns_per_m"]))
+    for name, axis, stiffness, damping in axes:
+        ET.SubElement(mount, "joint", name=f"port_mount_{name}", type="slide", axis=fmt(axis),
+                      stiffness=str(stiffness), damping=str(damping), limited="true",
+                      range=f"{-travel} {travel}", armature=str(compliance.get("armature", 0.0)))
+    mount.append(port_body)
+    # The standoffs and plate are the bracket. Once the port can move they would
+    # otherwise carry the load as a frictional contact and dominate the declared
+    # spring, so the bracket contact is excluded and the springs are the whole
+    # mounting stiffness. Measured, not assumed: see the known-load control.
+    contact = root.find("contact")
+    if contact is None:
+        contact = ET.SubElement(root, "contact")
+    ET.SubElement(contact, "exclude", body1="port", body2="fixture")
+    return {"kind": "compliant_bracket", "lateral_stiffness_n_per_m": lateral,
+            "axial_stiffness_n_per_m": axial, "travel_limit_m": travel,
+            "axes": "Two lateral springs and one axial spring in the measured tip frame.",
+            "excluded_contact": "port<->fixture, so the springs and not the standoff contact carry the mount load",
+            "scope": "Translational bracket compliance only. Bracket rotation, backlash and hysteresis "
+                     "are not modelled. Declared stiffness is verified by the known-load control, not assumed."}
 
 
 def build_scene(project_root: Path, cfg: dict, case: dict, directory: Path) -> ConstrainedScene:
@@ -563,7 +606,8 @@ def build_scene(project_root: Path, cfg: dict, case: dict, directory: Path) -> C
     quaternion = np.empty(4)
     mujoco.mju_mat2Quat(quaternion, tip_rotation.flatten())
     port.body.attrib.update(Pose(tuple(goal), tuple(quaternion)).compose(port.frames["sc_port_base_link"].inverse()).attributes())
-    world.append(port.body)
+    mount_report = mount_port(root, world, port.body, tip_rotation,
+                              case.get("port_compliance", cfg.get("port_compliance")))
     scene_path = directory/"scene.xml"
     ET.indent(root)
     scene_path.write_text(ET.tostring(root, encoding="unicode"), encoding="utf-8")
@@ -615,7 +659,9 @@ def build_scene(project_root: Path, cfg: dict, case: dict, directory: Path) -> C
                                      "native wrist and plug force-torque", "cable centerline vertices",
                                      "measured anchor reaction", "model Jacobian and generalized bias force"],
               "observation_limitations": "No camera perception; simulator state and exact model feedforward are idealized.",
-              "fixture_scope": "World-fixed infinitely rigid mounting geometry; fixture compliance is not modelled."}
+              "port_mount": mount_report,
+              "fixture_scope": "World-fixed rigid shelf, clip, post and strain relief. The port mount is "
+                               f"{mount_report['kind']}; see report['port_mount']."}
     scene = ConstrainedScene(
         model, data, model.site("plug__frame__sc_tip_link").id, model.site("port__frame__sc_port_base_link").id,
         model.body("plug").id,
@@ -626,6 +672,7 @@ def build_scene(project_root: Path, cfg: dict, case: dict, directory: Path) -> C
         _sensor(model, "AtiForceTorqueSensor_force"), _sensor(model, "plug_load_force"),
         _sensor(model, "strain_relief_load_force"),
         int(model.equality("strain_relief_connection").id),
+        int(model.equality("plug_boot_connection").id),
         np.asarray(fixture["clip_origin_world"]), np.asarray(fixture["clip_rotation_world"]),
         fixture["clip_predicate"], fixture, detector, report)
     scene.report["detector_geom_count"] = int(detector.sum())
@@ -719,27 +766,47 @@ def measure_loads(scene: ConstrainedScene) -> dict:
             sums["other_contact_n"] += magnitude
     wrist, plug, anchor = raw_loads(scene)
     sums["raw_wrist_load_n"], sums["raw_plug_load_n"], sums["anchor_load_n"] = wrist, plug, anchor
+    boot = cable_boot_tension(scene)
     sums["anchor_constraint_world_n"] = anchor_constraint_force(scene).tolist()
+    sums["cable_boot_load_world_n"] = boot.tolist()
+    sums["cable_boot_load_n"] = float(np.linalg.norm(boot))
     for key, value in resultants.items():
         sums[key+"_resultant_world_n"] = value.tolist()
     return sums
 
 
-def anchor_constraint_force(scene: ConstrainedScene):
-    """World-frame reaction carried by the strain-relief equality constraint.
+def equality_constraint_force(scene: ConstrainedScene, equality_id: int):
+    """World-frame reaction carried by one point-connect equality constraint.
 
     Read from the active constraint rows rather than inferred, and cross-checked
-    against the strain-relief force sensor by the known-load positive control.
+    against a force sensor by the known-load positive control.
     """
     import mujoco
     import numpy as np
 
     data = scene.data
     rows = np.flatnonzero((data.efc_type[:data.nefc] == mujoco.mjtConstraint.mjCNSTR_EQUALITY)
-                          & (data.efc_id[:data.nefc] == scene.anchor_equality))
+                          & (data.efc_id[:data.nefc] == equality_id))
     if rows.size != 3:
         return np.zeros(3)
     return data.efc_force[rows].copy()
+
+
+def anchor_constraint_force(scene: ConstrainedScene):
+    """Reaction at the strain relief: the distal boundary load on the cable."""
+    return equality_constraint_force(scene, scene.anchor_equality)
+
+
+def cable_boot_tension(scene: ConstrainedScene):
+    """Named cable tension channel: the reaction the cable applies at the plug boot.
+
+    This is the force the boot connect constraint carries, so it is the whole
+    load the cable transmits to the connector, axial tension and transverse
+    shear together. It is not a pure axial tension measured along the
+    centreline, and it is not a strain gauge reading. Reported as a world vector
+    plus its norm so a later analysis can project it onto any direction.
+    """
+    return equality_constraint_force(scene, scene.boot_equality)
 
 
 def cable_centerline(scene: ConstrainedScene):
@@ -776,7 +843,7 @@ class MutationGuard:
 
     FIELDS = ("eq_active0", "eq_obj1id", "eq_obj2id", "eq_data", "eq_type",
               "actuator_ctrllimited", "actuator_ctrlrange", "geom_contype", "geom_conaffinity",
-              "body_mass", "dof_damping")
+              "body_mass", "dof_damping", "jnt_stiffness", "jnt_range")
 
     def __init__(self, scene: ConstrainedScene):
         import numpy as np

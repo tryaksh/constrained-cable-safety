@@ -133,7 +133,8 @@ def fake_scene():
         eq_active0=np.ones(2), eq_obj1id=np.zeros(2), eq_obj2id=np.ones(2), eq_data=np.zeros((2, 11)),
         eq_type=np.zeros(2), actuator_ctrllimited=np.ones(3), actuator_ctrlrange=np.zeros((3, 2)),
         geom_contype=np.ones(4), geom_conaffinity=np.ones(4), body_mass=np.ones(5),
-        dof_damping=np.zeros(6), opt=types.SimpleNamespace(gravity=np.array([0.0, 0.0, -9.81])))
+        dof_damping=np.zeros(6), jnt_stiffness=np.zeros(6), jnt_range=np.zeros((6, 2)),
+        opt=types.SimpleNamespace(gravity=np.array([0.0, 0.0, -9.81])))
     data = types.SimpleNamespace(time=0.0, qpos=np.zeros(7), qvel=np.zeros(6))
     return types.SimpleNamespace(model=model, data=data)
 

@@ -63,6 +63,29 @@ class RepairMacro:
         return [np.asarray(tip, dtype=float)+basis @ np.asarray(offset, dtype=float) for offset in self.offsets_m]
 
 
+def parametric_macro(action: dict) -> RepairMacro:
+    """One continuous repair action in the local repair frame.
+
+    ``retreat_m`` is extra travel away from the port beyond the controller's own
+    fixed retract, ``bearing_rad`` is the direction within the plane spanned by
+    the cable run and its lateral, and ``excursion_m`` is the distance travelled
+    in that direction. The three together are a cylinder of clearance motions
+    around the retreat point, which is dense enough for a decision boundary to
+    exist. The controller returns to the approach standoff afterwards, so the
+    action is a detour and not a new goal.
+    """
+    import math
+
+    bearing, excursion = float(action["bearing_rad"]), float(action["excursion_m"])
+    offset = (excursion*math.cos(bearing), excursion*math.sin(bearing), -float(action["retreat_m"]))
+    # Out and back at the clearance speed, so the detour is a detour: the slow
+    # insertion approach is paid once, on the final approach, not twice.
+    return RepairMacro("parametric", (offset, (0.0, 0.0, 0.0)),
+                       float(action.get("speed_m_per_s", 0.02)),
+                       "Parametric clearance detour: retreat along the insertion axis, move by the "
+                       "declared excursion on the declared bearing, and return to the retreat point.")
+
+
 def repair_library(cfg: dict) -> dict[str, RepairMacro]:
     """Shared physically validated repair library used by every arm."""
     return {name: RepairMacro(name, tuple(tuple(o) for o in spec["offsets_m"]),
@@ -142,6 +165,9 @@ class ForceGuidedInsertion:
         self._retract_goal = None
         self._repair: list[np.ndarray] = []
         self._repair_name: str | None = None
+        self._repair_speed = cfg["speed_m_per_s"]
+        self._reference_arrived_s: float | None = None
+        self.waypoint_lags = 0
         self.repairs_started = 0
         self.repair_log: list[dict] = []
 
@@ -155,7 +181,14 @@ class ForceGuidedInsertion:
         self._retract_goal = np.asarray(tip, dtype=float)-self.axis*self.cfg["retract_distance_m"]
         self._repair = macro.waypoints(self._retract_goal, self.axis, run)
         self._repair_name = macro.name
-        self.repair_log.append({"time_s": time_s, "macro": macro.name})
+        self._reference_arrived_s = None
+        # A clearance detour is not an insertion approach. Until this line the
+        # declared macro speed was carried and never applied, so every macro ran
+        # at the base approach speed. Every v2 library macro declares exactly the
+        # base speed, so no earlier result changes; large detours become affordable.
+        self._repair_speed = macro.speed_m_per_s
+        self.repair_log.append({"time_s": time_s, "macro": macro.name,
+                                "speed_m_per_s": macro.speed_m_per_s})
         return True
 
     def _retry(self, tip):
@@ -166,6 +199,8 @@ class ForceGuidedInsertion:
         self.phase = "retract"
         self._retract_goal = np.asarray(tip, dtype=float)-self.axis*self.cfg["retract_distance_m"]
         self._repair, self._repair_name = [], None
+        self._repair_speed = self.cfg["speed_m_per_s"]
+        self._reference_arrived_s = None
 
     def step(self, observation: RecoveryObservation, dt: float):
         cfg = self.cfg
@@ -188,8 +223,24 @@ class ForceGuidedInsertion:
                     self.phase = "repair" if self._repair else "align"
             elif self.phase == "repair":
                 goal = self._repair[0]
-                if float(np.linalg.norm(tip-goal)) <= cfg["position_tolerance_m"]:
+                speed = self._repair_speed
+                # A commanded detour is finished when the command is finished. The
+                # tip is allowed a registered settling window to converge onto the
+                # waypoint; if the cable holds it short the waypoint is still
+                # retired and the lag is counted, so one unreachable waypoint
+                # cannot silently consume the whole job deadline. Absent
+                # ``repair_settle_s`` the rule is off and the v2 behaviour stands.
+                if self._reference_arrived_s is None and float(
+                        np.linalg.norm(self.reference.position-goal)) <= 1e-9:
+                    self._reference_arrived_s = observation.time_s
+                reached = float(np.linalg.norm(tip-goal)) <= cfg["position_tolerance_m"]
+                settle_window = cfg.get("repair_settle_s")
+                lagged = (settle_window is not None and self._reference_arrived_s is not None
+                          and observation.time_s-self._reference_arrived_s >= settle_window)
+                if reached or lagged:
+                    self.waypoint_lags += 0 if reached else 1
                     self._repair.pop(0)
+                    self._reference_arrived_s = None
                     if not self._repair:
                         self.phase = "align"
             elif self.phase == "align":

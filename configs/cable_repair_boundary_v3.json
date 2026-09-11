@@ -1,0 +1,139 @@
+{
+  "schema": 1,
+  "id": "cable_repair_boundary_v3",
+  "status": "frozen_study_contract",
+  "created_on": "2026-09-11",
+  "scope": "Safe-repair boundary study on the constrained-cable connector task. One request is one clearance repair issued from one decision state. Endpoint is held, clip-preserving seating before gripper release. Not official AIC scoring, not a released or latched connection, not learned pickup, not a hardware claim.",
+  "question": "When a supervisor must choose a clearance repair, is the boundary between a repair that keeps the required clip and one that overdraws the cable a simple analytic function of the observable state, or does it need a learned action-outcome model?",
+  "base_config": {
+    "path": "configs/cable_recovery_task_v2.json",
+    "content_sha256": "34d08b3b6c10dcf603ea78d1bf9050e0edca7cc85b88c927b1f0c90b93ff011f",
+    "note": "Content hash over byte-order-mark-stripped, LF-normalised bytes. The v2 block recorded 8d9082494bb6dccb98de53ae4a6208ddd8d4624b61f1f7f806db82b5afb5a2bf, which is the same content hashed as CRLF; no committed file reproduces it. Both hashes are recorded by the runner."
+  },
+  "runtime_overrides": {
+    "force_guided_controller": {
+      "repair_settle_s": 0.5,
+      "repair_settle_note": "A commanded detour waypoint is retired once the rate-limited reference reaches it and this window passes, whether or not the tip converged. Absent in v2, where the rule is off; declared here so one unreachable waypoint cannot consume the whole deadline. Lags are counted and reported."
+    },
+    "render_visuals": false
+  },
+  "registered_support": {
+    "selection_note": "Layouts were screened for a settled initial configuration before the study was frozen. 24 candidate layout cells were built and 14 settled; the five layouts below are the surviving families. Settling rejections inside the study still count in the whole-request denominator.",
+    "layouts": [
+      {"id": "L1", "run_direction_xy": [1.0, 0.0], "outward_xy": [1.0, 0.0],
+       "route_waypoints_along_across_m": [[0.09, 0.0], [0.17, 0.0]], "clip_along_m": 0.17,
+       "description": "The validated v2 layout: straight run, clip at 170 mm."},
+      {"id": "L2", "run_direction_xy": [0.9781476007338057, -0.20791169081775934], "outward_xy": [1.0, 0.0],
+       "route_waypoints_along_across_m": [[0.09, 0.0], [0.17, 0.0]], "clip_along_m": 0.17,
+       "description": "Run rotated 12 degrees from the cable exit, clip at 170 mm."},
+      {"id": "L3", "run_direction_xy": [0.9781476007338057, -0.20791169081775934], "outward_xy": [1.0, 0.0],
+       "route_waypoints_along_across_m": [[0.09, 0.02], [0.17, 0.0]], "clip_along_m": 0.17,
+       "description": "Rotated run with a 20 mm dogleg before the clip at 170 mm."},
+      {"id": "L4", "run_direction_xy": [0.9781476007338057, -0.20791169081775934], "outward_xy": [1.0, 0.0],
+       "route_waypoints_along_across_m": [[0.09, 0.0], [0.15, 0.0]], "clip_along_m": 0.15,
+       "description": "Rotated run, clip moved 20 mm nearer the port."},
+      {"id": "L5", "run_direction_xy": [0.9781476007338057, -0.20791169081775934], "outward_xy": [1.0, 0.0],
+       "route_waypoints_along_across_m": [[0.09, 0.02], [0.15, 0.0]], "clip_along_m": 0.15,
+       "description": "Rotated run with a dogleg, clip moved 20 mm nearer the port."}
+    ],
+    "installed_loop_m": [0.002, 0.004, 0.006],
+    "port_mount": [
+      {"id": "rigid", "compliance": null,
+       "description": "The v2 boundary: the port mount is infinitely stiff."},
+      {"id": "compliant4000",
+       "compliance": {"lateral_stiffness_n_per_m": 4000.0, "axial_stiffness_n_per_m": 25000.0,
+                      "lateral_damping_ns_per_m": 6.0, "axial_damping_ns_per_m": 15.0,
+                      "travel_limit_m": 0.01},
+       "description": "Finite-stiffness bracket: two lateral springs and one axial spring in the measured tip frame, with 10 mm travel stops. Verified by a known-load control."}
+    ],
+    "decision_pose": [
+      {"id": "near_home", "at_s": 2.0, "description": "Repair requested while the plug is still short of the port."},
+      {"id": "near_seated", "at_s": 5.0, "description": "Repair requested from the engaged pose."}
+    ]
+  },
+  "action_design": {
+    "space": "Continuous clearance detour: extra axial retreat beyond the controller's own 6 mm retract, a bearing in the plane of the cable run and its lateral, and an excursion distance along that bearing. The detour returns to the retreat point and the normal approach resumes.",
+    "bounds": {"retreat_m": [0.0, 0.12], "excursion_m": [0.0, 0.05], "bearing_rad": [0.0, 6.283185307179586]},
+    "clearance_speed_m_per_s": 0.02,
+    "clearance_speed_note": "A clearance detour is not an insertion approach. The 84.4 mm release envelope measured in v2 was measured on a 4 mm/s ramp; the rate control in this block measures whether the envelope moves with speed.",
+    "core_grid": [
+      [0.0, 0, 0.0], [0.03, 0, 0.0], [0.06, 0, 0.0], [0.08, 0, 0.0], [0.1, 0, 0.0],
+      [0.06, 0, 0.03], [0.06, 180, 0.03], [0.06, 90, 0.03], [0.06, 270, 0.03],
+      [0.09, 0, 0.03], [0.09, 180, 0.03], [0.03, 180, 0.05]
+    ],
+    "core_grid_note": "Twelve shared actions issued in every context, so contexts are comparable and per-context action ranking is well defined. Bearing is in degrees here and converted once.",
+    "sampled_actions": 12,
+    "halton_skip": 97,
+    "sampler": "Halton bases 2/3/5, registered skip, one contiguous stream per context in registered context order."
+  },
+  "first_calibration_seed": 51000,
+  "expected_requests": 1440,
+  "groups": {
+    "definition": "A group is one (layout, installed service loop) family. Whole groups are held out, never neighbouring actions or timesteps. Mounting stiffness and decision pose vary inside a group.",
+    "train": ["L1_l2", "L2_l2", "L2_l4", "L3_l4", "L4_l2", "L4_l4", "L5_l6"],
+    "dev": ["L1_l6", "L3_l6", "L5_l2"],
+    "test": ["L1_l4", "L2_l6", "L3_l2", "L4_l6", "L5_l4"],
+    "frozen_note": "Registered before any request was launched. Test groups stay closed until every method and budget is frozen."
+  },
+  "labels": {
+    "primary": "clip_lost",
+    "primary_definition": "The required open clip was not retained: the job failed with lost_required_clip, or the terminal clip predicate is false.",
+    "secondary": "completed_clip_retained",
+    "secondary_definition": "The job reached held, clip-preserving seating with the required clip retained.",
+    "outcome_classes": ["completed_clip_retained", "completed_clip_lost", "clip_lost", "load_abort",
+                        "deadline", "settling_rejected", "construction_infeasible", "failed_other"],
+    "outcome_classes_note": "completed_clip_lost is seating reached with the clip predicate already false at the terminal state. It counts as a clip loss for the primary label and never as a success.",
+    "denominator": "Every request in the registered list counts, including settling rejections, infeasible constructions and load aborts."
+  },
+  "predictors": {
+    "B0": {
+      "name": "analytic budget",
+      "sees": ["endpoint_boot_to_anchor_m"],
+      "form": "One fitted scalar threshold: predict clip loss when the straight-line boot-to-anchor distance at the action endpoint exceeds it.",
+      "fit": "Exhaustive threshold sweep on train plus dev, choosing the threshold that maximises balanced accuracy. Given every advantage on purpose: this is the baseline that must be beaten.",
+      "rationale": "The plug is rigid and its commanded orientation is held, so the boot displacement equals the tip displacement and the endpoint is computable in closed form from the decision state and the action. This is the strongest one-number geometric rule available."
+    },
+    "B1": {
+      "name": "calibrated feature model",
+      "sees": "FEATURE_NAMES in assembly_recovery.cable_study_v3",
+      "form": "L2-regularised logistic regression on standardised features, with a declared quadratic expansion variant.",
+      "fit": "Full-batch LBFGS-free gradient descent to a declared budget; regularisation chosen on dev only."
+    },
+    "M": {
+      "name": "learned outcome model",
+      "sees": "Full cable centreline (24 vertices), tip and boot pose, insertion axis, and the action.",
+      "form": "Compact action-conditioned multilayer perceptron.",
+      "budget": {"hidden": [128, 128], "epochs": 400, "batch_size": 256, "learning_rate": 0.001,
+                 "weight_decay": 0.0001, "seeds": [0, 1, 2],
+                 "checkpoint_rule": "Lowest dev loss within the declared epoch budget. Test groups are never consulted for selection."},
+      "budget_frozen_before_training": true
+    },
+    "matched_cost": "All three predictors read the same decision states and rank the same actions. Acquisition cost is identical because all three are fitted on the same collected requests."
+  },
+  "decision_rule": {
+    "margin": 0.05,
+    "margin_units": "absolute, on both metrics",
+    "metric_a": "Held-out false-safe rate: of the actions a predictor calls safe, the fraction that actually lost the clip, evaluated at matched coverage with B0.",
+    "metric_b": "Held-out action-ranking regret. In each test context the supervisor considers the twelve shared core actions, keeps those its predictor calls safe, and issues the one with the largest commanded displacement magnitude, because a larger clearance is the more useful repair; ties break in registered order. Regret is the fraction of test contexts whose issued action actually lost the clip. Contexts where a predictor calls no action safe are counted separately as abstentions and are not scored as regret.",
+    "metric_b_secondary": "The same procedure scored on the secondary label instead: the fraction of test contexts whose issued action did not reach held, clip-preserving seating. Reported beside metric B so a predictor that is safe but useless cannot pass as a win.",
+    "predicted_safe_set": "For B1 and M, predicted probability of clip loss below 0.5. For B0, the fitted threshold rule itself.",
+    "wrap_up_if": "B0 is within the margin of the best of B1 and M on both metrics. Meaning the safe boundary is a one-dimensional physical budget, engineering already solves it, and learning cannot justify its data cost here.",
+    "continue_if": "M beats both B0 and B1 by more than the margin on both metrics, and that advantage survives into closed-loop clip-preserving completion at matched cost.",
+    "conflict": "Better prediction with no closed-loop gain is reported plainly as such and is not presented as a win.",
+    "pre_registered": "This rule, the margin, the metrics, the group split and the full request list were frozen in this file and committed before any request was launched."
+  },
+  "controls": {
+    "known_load_mount_stiffness": "A constant world force applied to the port from the settled configuration must reproduce the declared bracket stiffness on each axis, with no off-axis coupling.",
+    "rigid_path_unchanged": "With no compliance declared, the compiled scene must be byte-identical to v2 apart from the visual mesh directory, and the v2 repair controls must reproduce their recorded dwell, margin and step count exactly.",
+    "release_rate_dependence": "The deliberate clip-release ramp is repeated at 4, 20 and 40 mm/s to measure whether the release envelope is a geometric constant or moves with speed.",
+    "spatial_refinement": "The 46-segment refinement is retried at 4, 8 and 16 kHz. It is a preserved failure, not a passed control."
+  },
+  "scope_and_limitations": [
+    "Simulation only. No hardware access, connector transfer, released retention or force-certified safety claim.",
+    "Fixed preset grasp is a disclosed construction boundary; grasp strength and drop robustness are not measured.",
+    "Every arm and every predictor reads simulator state, not camera perception.",
+    "Bracket compliance is translational only; bracket rotation, backlash and hysteresis are not modelled.",
+    "Cable discretisation insensitivity is not established: the 46-segment control fails at every integration rate tested.",
+    "Peak contact sums move about 70 percent between physics resolutions and must never be quoted as resolution-independent."
+  ]
+}

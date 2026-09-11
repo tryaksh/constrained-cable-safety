@@ -37,6 +37,7 @@ from assembly_recovery.cable_recovery_control_v2 import (  # noqa: E402
     ForceGuidedInsertion,
     RecoveryObservation,
     ScriptedProgram,
+    parametric_macro,
     repair_library,
 )
 from scripts.probe_cable_robot import render  # noqa: E402
@@ -108,6 +109,43 @@ def settle(scene, cfg):
     return steps, reason is None, reason
 
 
+def observed_decision_state(scene, observation, loads) -> dict:
+    """The observable state at the tick a repair is chosen.
+
+    This is the predictor input for the safe-repair study: everything a
+    supervisor could see at the decision, and nothing else. The cable centreline
+    is stored at full resolution so a model over the whole shape and a model over
+    a handful of scalars read the same moment. Stored as float64 lists, because a
+    float32 ledger already broke exact replay once on this project.
+    """
+    tip = np.asarray(observation.tip_position, dtype=float)
+    centerline = np.asarray(observation.cable_centerline, dtype=float)
+    anchor = np.asarray(scene.fixture["anchor_site_world"], dtype=float)
+    boot = centerline[0]
+    return {
+        "time_s": float(observation.time_s),
+        "tip_position_m": tip.tolist(),
+        "boot_position_m": boot.tolist(),
+        "anchor_site_m": anchor.tolist(),
+        "insertion_axis": np.asarray(observation.insertion_axis, dtype=float).tolist(),
+        "seated_position_m": np.asarray(observation.seated_position, dtype=float).tolist(),
+        "boot_to_anchor_m": float(np.linalg.norm(boot - anchor)),
+        "tip_to_seated_m": float(np.linalg.norm(tip - np.asarray(observation.seated_position, dtype=float))),
+        "depth_along_axis_m": float((tip - scene.initial_tip) @ np.asarray(observation.insertion_axis, dtype=float)),
+        "routed_length_m": float(np.linalg.norm(np.diff(centerline, axis=0), axis=1).sum()),
+        "clip_margin_m": float(observation.clip_margin_m),
+        "clip_retained": bool(observation.clip_retained),
+        "connector_contact_n": float(observation.connector_contact_n),
+        "clip_contact_n": float(observation.clip_contact_n),
+        "post_contact_n": float(observation.post_contact_n),
+        "shelf_contact_n": float(loads["cable_shelf_contact_n"]),
+        "anchor_reaction_n": float(np.linalg.norm(observation.anchor_reaction_world)),
+        "cable_boot_load_n": float(loads["cable_boot_load_n"]),
+        "wrist_force_n": float(np.linalg.norm(observation.wrist_force_world - observation.precontact_bias_world)),
+        "centerline_m": centerline.tolist(),
+    }
+
+
 def build_controller(cfg, case, scene, macros):
     """Instantiate the registered controller for this request."""
     name = case["controller"]
@@ -151,6 +189,10 @@ def run_case(cfg, case, directory: Path) -> dict:
         job.fail(settle_reason)
 
     macros = repair_library(cfg["repair_library"])
+    if case.get("repair_action"):
+        # A registered continuous action joins the named library under its own
+        # name, so one code path issues both and the ledger records either.
+        macros["parametric"] = parametric_macro(case["repair_action"])
     controller, run_direction = build_controller(cfg, case, scene, macros)
     native = np.zeros((round(limits.deadline_s * physics) + 2, 4))
     servo = np.zeros((round(limits.deadline_s * cfg["clocks"]["servo_hz"]) + 2, SERVO_CHANNELS))
@@ -159,6 +201,7 @@ def run_case(cfg, case, directory: Path) -> dict:
     target = scene.initial_tip.copy()
     peaks = dict.fromkeys(LOAD_KEYS, 0.0)
     witness_macro = None
+    decision_state = None
     injection = case.get("inject_forbidden_write_s")
     injected = False
     forced = case.get("forced_macro")
@@ -203,6 +246,7 @@ def run_case(cfg, case, directory: Path) -> dict:
                         chosen = controller.on_witness(observation, run_direction, job_time)
                         if chosen:
                             witness_macro = chosen
+                            decision_state = observed_decision_state(scene, observation, loads)
                             record_event("repair_start")
                     due = (job.first_witness_s is not None if case.get("forced_macro_at_s") == "witness"
                            else job_time >= (case.get("forced_macro_at_s") or 0.0))
@@ -210,6 +254,7 @@ def run_case(cfg, case, directory: Path) -> dict:
                             and controller.request_repair(macros[forced], observation.tip_position,
                                                           run_direction, job_time)):
                         witness_macro = forced
+                        decision_state = observed_decision_state(scene, observation, loads)
                         record_event("repair_start")
                     target, phase, _ = controller.step(observation, policy_every * dt)
             apply_cartesian_impedance(scene, target, scene.target_rotation, cfg["controller"])
@@ -286,6 +331,8 @@ def run_case(cfg, case, directory: Path) -> dict:
         "repair_log": getattr(controller, "repair_log", []),
         "retries_started": getattr(controller, "retries", 0),
         "witness_macro": witness_macro, "last_phase": phase,
+        "repair_action": case.get("repair_action"),
+        "decision_state": decision_state,
         "precontact_bias_world_n": bias.tolist(), "peak_loads": peaks,
         "mutation_guard": guard.report(),
         "compiled_cable_mass_kg": scene.report["compiled_cable_mass_kg"],

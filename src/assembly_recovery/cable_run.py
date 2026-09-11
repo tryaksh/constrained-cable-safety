@@ -11,6 +11,7 @@ import zipfile
 from datetime import UTC, datetime
 from pathlib import Path, PureWindowsPath
 
+from assembly_recovery.cable_study_v3 import content_sha256
 from assembly_recovery.protocol import assess_completion, sha256, validate_run_id, write_json
 from scripts.run_experiment import git, run_bounded
 
@@ -219,7 +220,12 @@ def execute_run(
             source_hashes=snapshot_source(root, run_dir / "source.zip", (worker, config, *external_files)),
             upstream=external_provenance(root),
             native_environment=native_environment(python),
-            config={"path": config.relative_to(root).as_posix(), "sha256": sha256(config)},
+            config={"path": config.relative_to(root).as_posix(), "sha256": sha256(config),
+                    "content_sha256": content_sha256(config),
+                    "content_sha256_note": "Hash over byte-order-mark-stripped, LF-normalised bytes. "
+                                           "The raw hash above depends on the working-tree line endings, "
+                                           "so a CRLF checkout and the LF blob git stores hash differently "
+                                           "and a recorded raw hash may not be reproducible from the repository."},
         )
         manifest["external_files"] = [
             {
