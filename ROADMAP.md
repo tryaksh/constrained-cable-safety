@@ -43,9 +43,19 @@ Budget the next block from the measured throughput above, not from the v1 extrap
 
 Routing the cable around the shallow post is registered in the task but does not yet survive settling: the detour route either folds at construction or the cable migrates out of the clip channel during relaxation. Diagnosed cause is that surplus service-loop cable has no stable resting place near a 20 mm clip channel. The gravity ramp fixed the free route; the catch route needs either a longer shelf run past the clip, a second clip, or a catch expressed as a post the cable is pressed against rather than routed around. Every failed attempt is preserved in the run artifacts.
 
+## The open question: publish or finish
+
+A literature check on 2026-09-10 closed off three framings. Building a constrained-cable connector task is not a contribution: [WireCraft](https://arxiv.org/abs/2606.18097) already benchmarks connector insertion, clip routing and channel seating with articulated and deformable physics, real UR5 trajectories and RL/IL/VLA baselines. Predicting whether a planned cable motion is safe is not new: [joint shape and tension prediction](https://arxiv.org/abs/2505.13889) enforces exactly that in a trajectory optimiser. Retry and recovery after failure is not new either: [FAR](https://arxiv.org/abs/2607.01111), reset-free trial-and-error, neuro-symbolic plan repair and the tactile/corrective/predictive connector work all precede us.
+
+What none of them do is treat recovery as spending a **physical budget that a bad repair can overdraw, undoing a step already completed**, or report the measurement substrate that makes such a comparison trustworthy. That is the only framing left, and it is the one the next block tests.
+
+**The decision, pre-registered:** is the boundary between a repair that completes with the clip retained and one that overdraws the cable budget a simple analytic function of observable state, or does it need a learned action-outcome model? If a one-scalar geometric budget comes within a declared margin of a learned model on held-out layout groups, the research line closes and this becomes an engineering repository. If the learned model beats it materially and that survives into closed-loop completion at matched cost, the line continues. The honest prior is that the simple rule wins: the measured 84.4 mm envelope already explains the one state-dependence result we have.
+
+Either outcome is a four-page, non-archival submission to the CoRL 2026 workshop [Everything Beneath the Policy](https://beneath-the-policy.github.io/) (deadline 9 October 2026, workshop 12 November 2026), which explicitly invites controlled studies of design choices, factorial ablations, negative results and tools that expose hidden choices, and judges papers on what they teach about the substrate beneath the policy rather than task performance.
+
 ## Handover
 
-The next-session prompt is at `artifacts/prompts/cable_recovery_block_v2_handover_20260910.txt` (ignored artifacts). It is a pointer into this document and [the block record](evidence/cable_recovery_block_v2.json), not a substitute for them: the maintained plan is here.
+The next-session prompt is at `artifacts/prompts/cable_recovery_decision_handover_20260910.txt` (ignored artifacts). It carries the literature positioning, the decisive experiment and the pre-registration requirement. The maintained plan is here.
 
 ## History
 
