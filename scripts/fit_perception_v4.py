@@ -41,13 +41,13 @@ from assembly_recovery.cable_study_v4 import (  # noqa: E402
     cluster_bootstrap_difference,
     constraint_truth,
     content_sha256,
+    effective_level,
     false_safe_at_coverage,
     feature_row,
     finite,
     fit_threshold,
     isolation_contexts,
     kaplan_meier,
-    level_by_id,
     ranking_regret,
 )
 
@@ -106,16 +106,20 @@ def canonical_frame(run_direction_xy):
     return np.column_stack([run, np.cross([0.0, 0.0, 1.0], run), [0.0, 0.0, 1.0]])
 
 
-def shape_inputs(rows, retract_distance_m: float, with_history: bool) -> np.ndarray:
+def shape_inputs(rows, retract_distance_m: float, with_history: bool,
+                 history_length: int = 0) -> np.ndarray:
     """Learned-model input: the estimated shape, the pose and the action.
 
     Everything is expressed in the fixture frame with the strain relief at the
     origin, so one model transfers across layouts without being told which layout
     it is looking at. ``with_history`` appends the short window of earlier
     estimated snapshots that the Mh arm is allowed and the M arm is not.
+
+    ``history_length`` is the contract's declared window and is passed in rather
+    than inferred, so a train split and a test split cannot end up with different
+    input widths because one of them happened to carry a shorter window.
     """
     out = []
-    history_length = max((len(row["decision"].get("history") or []) for row in rows), default=0)
     for row in rows:
         decision, action = row["decision"], row["action"]
         basis = canonical_frame(row["run_direction_xy"])
@@ -131,9 +135,8 @@ def shape_inputs(rows, retract_distance_m: float, with_history: bool) -> np.ndar
                  [float(action["retreat_m"]), float(action["excursion_m"]),
                   np.sin(bearing), np.cos(bearing)]]
         if with_history:
-            window = list(decision.get("history") or [])
-            window = window[-history_length:] if history_length else []
-            padded = [window[0]] * (history_length-len(window))+window if window else []
+            recent = list(decision.get("history") or [])[-history_length:]
+            padded = ([recent[0]]*(history_length-len(recent))+recent) if recent else []
             block = []
             for snapshot in padded:
                 block.extend([
@@ -288,9 +291,10 @@ def fit_arms(rows, contract: dict, constraint: str, retract: float, device=None)
                 best = fit
         fitted[name] = best
 
+    window = int(contract["error_model"]["history"]["length"])
     for name, history in (("M", False), ("Mh", True)):
-        xt = shape_inputs(train, retract, history)
-        xd = shape_inputs(dev, retract, history)
+        xt = shape_inputs(train, retract, history, window)
+        xd = shape_inputs(dev, retract, history, window)
         xt, xd = standardise(xt, xd)
         seeds = []
         for seed in budget_m["seeds"]:
@@ -306,8 +310,12 @@ def arm_scores(name, fitted, rows, retract, contract, level_id=None) -> np.ndarr
         return np.asarray([row["features"]["endpoint_boot_to_anchor_m"] for row in rows])
     if name == "B0plus":
         coverage = contract["predictors"]["B0plus"]["coverage_sigma"]
+        # An isolation cell has one error channel on, so the declared covariance
+        # B0+ carries its margin from is that cell's, not the full level's.
         return np.asarray([row["features"]["endpoint_boot_to_anchor_m"]
-                           + b0plus_margin_m(level_by_id(contract, row["level"]), coverage)
+                           + b0plus_margin_m(effective_level(contract, row["level"],
+                                                             row.get("isolation", "all")),
+                                             coverage)
                            for row in rows])
     if name in ("B1", "B2"):
         names = FEATURE_NAMES if name == "B1" else FORCE_FEATURE_NAMES
@@ -319,7 +327,8 @@ def arm_scores(name, fitted, rows, retract, contract, level_id=None) -> np.ndarr
         matrix = (matrix-reference[0])/reference[1]
         return probabilities(fitted[name]["model"], matrix)
     if name in ("M", "Mh"):
-        matrix = shape_inputs(rows, retract, name == "Mh")
+        matrix = shape_inputs(rows, retract, name == "Mh",
+                              int(contract["error_model"]["history"]["length"]))
         reference = fitted[f"_{name}_reference"]
         matrix = (matrix-reference[0])/reference[1]
         return np.mean([probabilities(seed["model"], matrix) for seed in fitted[name]["seeds"]], axis=0)
@@ -391,8 +400,9 @@ def main() -> int:
             scale = matrix.std(0)
             scale[scale < 1e-12] = 1.0
             fitted[f"_{name}_reference"] = (matrix.mean(0), scale)
+        window = int(contract["error_model"]["history"]["length"])
         for name in ("M", "Mh"):
-            matrix = shape_inputs(train, retract, name == "Mh")
+            matrix = shape_inputs(train, retract, name == "Mh", window)
             scale = matrix.std(0)
             scale[scale < 1e-12] = 1.0
             fitted[f"_{name}_reference"] = (matrix.mean(0), scale)
@@ -426,6 +436,14 @@ def main() -> int:
             resolutions = [evaluated[name]["ranking_regret"]["resolution"] for name in ARM_COST]
             guard_checks[f"{constraint}:{level_id}"] = check_margin_resolution(margin, resolutions)
             per_level[level_id] = {
+                "b0plus_note": (
+                    "Within one error level the B0+ margin is a constant added to every B0 score, "
+                    "so the two arms RANK actions identically and their false-safe rate at matched "
+                    "coverage is identical by construction. The margin acts on the operating "
+                    "point, not on the ordering: read predicted_safe and "
+                    "false_safe_rate_own_operating_point to see what it buys. The crossover rule "
+                    "compares a learned arm against B0+ on the matched-coverage metric, which is "
+                    "therefore a question about the REPRESENTATION rather than about the margin."),
                 "test_requests": len(test),
                 "test_contexts": len({row["context"] for row in test}),
                 "violation_rate_observed": (float(violated[observed].mean()) if observed.any() else None),
@@ -491,7 +509,7 @@ def main() -> int:
                 test = [row for row in ladder if row["split"] == "test" and row["level"] == level_id]
                 if not test:
                     continue
-                matrix = shape_inputs(test, retract, name == "Mh")
+                matrix = shape_inputs(test, retract, name == "Mh", window)
                 reference = fitted[f"_{name}_reference"]
                 matrix = (matrix-reference[0])/reference[1]
                 violated, observed = constraint_truth(test, constraint)
@@ -542,9 +560,10 @@ def main() -> int:
             "requests": len(denominator),
             "usable_for_fitting": sum(1 for r in denominator if r["usable"]),
             "by_constraint": outcome_counts,
-            "by_job_reason": {reason: sum(1 for r in denominator if r["reason"] == reason)
-                              for reason in sorted({r["reason"] or "completed" for r in denominator},
-                                                   key=str)},
+            "by_job_reason": {reason: sum(1 for r in denominator
+                                          if (r["reason"] or "completed") == reason)
+                              for reason in sorted({r["reason"] or "completed"
+                                                    for r in denominator}, key=str)},
             "note": "Every registered request counts, including settling rejections, infeasible "
                     "constructions and load aborts. A load abort censors the constraints it had "
                     "not already violated; it is never scored as a success.",
