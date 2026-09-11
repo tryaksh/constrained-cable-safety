@@ -33,3 +33,4 @@ environment-lock.local.json
 
 # Per-machine coding-agent settings.
 .claude/settings.local.json
+MUJOCO_LOG.TXT

@@ -1,0 +1,1570 @@
+{
+ "schema": 1,
+ "id": "cable_recovery_task_v2",
+ "status": "executable_runtime_configuration",
+ "scope": "Constrained-cable connector recovery: world-fixed mount plate, shelf, escapable open clip, shallow post and instrumented strain relief. Endpoint is held, clip-preserving seating before gripper release. Not official AIC scoring, not a released or latched connection, not learned pickup.",
+ "aic_commit": "e9145480c945f2afc3741f355233f44082cc3b06",
+ "runtime": {
+  "mujoco": "3.3.7",
+  "python": "3.11.15"
+ },
+ "asset_models": [
+  "SC Plug",
+  "SC Port"
+ ],
+ "external_files": [
+  "artifacts/cable/asset_probe_robot_meshes/base.stl",
+  "artifacts/cable/asset_probe_robot_meshes/shoulder.stl",
+  "artifacts/cable/asset_probe_robot_meshes/upperarm.stl",
+  "artifacts/cable/asset_probe_robot_meshes/forearm.stl",
+  "artifacts/cable/asset_probe_robot_meshes/wrist1.stl",
+  "artifacts/cable/asset_probe_robot_meshes/wrist2.stl",
+  "artifacts/cable/asset_probe_robot_meshes/wrist3.stl"
+ ],
+ "robot_mesh_directory": "artifacts/cable/asset_probe_robot_meshes",
+ "render_visuals": true,
+ "home_q_rad": [
+  0,
+  -1.57,
+  1.57,
+  -1.57,
+  -1.57,
+  0
+ ],
+ "finger_opening_m": 0.0125,
+ "plug_origin_in_tool_m": [
+  0,
+  0,
+  0.1823
+ ],
+ "initial_distance_m": 0.022,
+ "preset_grasp": "Plug rigidly fixed to native ati/tool_link. Disclosed construction boundary; drop robustness and grip strength are not measured.",
+ "clocks": {
+  "physics_hz": 4000,
+  "servo_hz": 500,
+  "policy_hz": 50,
+  "rule": "Torque commands are recomputed only at servo ticks and held between them. Policy references, observations and witnesses are sampled at their own registered rates. Doubling physics_hz doubles the tick ratios and leaves every physical cadence unchanged.",
+  "force_sample": "Raw wrist/plug/anchor sensor norms are read at every native step. Grouped contact witnesses, clip geometry and progress witnesses are evaluated at the servo rate."
+ },
+ "force_protocol": {
+  "authoritative_stream": "post_step_native_solve",
+  "definition": "After mj_step the constraint solution, sensor readings and contact forces are the solution applied over the interval just integrated. Native rows are timestamped at that interval's start. At a servo tick the solution currently in data is sampled once, drives the control decision and the witness at that tick, and is held for the servo interval that follows. It is the single authoritative stream: no post-forward refresh sample is taken and no maximum over two streams is formed.",
+  "supersedes": "The v1 max(native_solve, post_forward) convention is preserved as the v1 protocol and is not applied to this task version.",
+  "not_a_safety_guarantee": "Aborting after the solve records a load excursion; it does not prevent the first excursion or certify hardware safety.",
+  "anchor_channel": "The authoritative strain-relief reaction is the world-frame connect-constraint force, recorded at every servo tick. The native-rate anchor abort uses the strain-relief force sensor, which additionally carries the anchor block's own static weight; that offset is measured by the unloaded control and makes the native abort marginally conservative."
+ },
+ "cable": {
+  "segments": 23,
+  "segment_length_m": 0.02,
+  "radius_m": 0.002,
+  "total_mass_kg": 0.05,
+  "youngs_modulus_pa": 10000000.0,
+  "twist_modulus_pa": 4000000.0,
+  "joint_damping": 0.0002,
+  "joint_damping_convention": "Distributed damping per unit length. 2e-4 N m s/rad at 20 mm segments is a bending damping ratio of about 0.32 against the linearised per-joint bending mode, inside the loss range of a polymer cable jacket and the smallest value that settles the routed configuration robustly. The registered material-sensitivity control uses 8e-5 (ratio about 0.13). Refinement to 10 mm segments halves it to 1e-4.",
+  "friction": [
+   0.5,
+   0.005,
+   0.0001
+  ],
+  "attachment_back_m": 0.052,
+  "endpoint_solref": "0.004 1",
+  "endpoint_solimp": "0.99 0.999 0.0001",
+  "mass_correction": "Density is solved from the actual capsule volume, so compiled total mass equals the declared target and is conserved under segment refinement. The v1 cylinder formula compiled 6.67% heavy (0.0533 kg against a nominal 0.05 kg).",
+  "length_note": "Rest length 0.46 m at 20 mm segments, fixed across every case. Installed service loop is varied by the strain-relief position, so cable mass, discretization and mechanics are identical in all arms. The v1 0.96 m / 40 mm free cable is preserved unchanged.",
+  "support_clearance_m": 0.0005,
+  "lead_out_m": 0.07,
+  "fillet_radius_m": 0.035,
+  "max_initial_turn_deg": 70.0,
+  "max_bow_m": 0.25
+ },
+ "fixture": {
+  "shelf_drop_m": 0.17,
+  "plate_clearance_m": 0.0075,
+  "plate_half_m": [
+   0.032,
+   0.045,
+   0.004
+  ],
+  "port_flange_bottom_m": 0.00248,
+  "standoff_offsets_y_m": [
+   -0.0183,
+   0.0183
+  ],
+  "standoff_radius_m": 0.0025,
+  "riser_back_m": 0.02,
+  "riser_half_m": [
+   0.008,
+   0.045
+  ],
+  "shelf_centre_along_m": 0.2,
+  "shelf_centre_across_m": 0.0,
+  "shelf_half_m": [
+   0.26,
+   0.1,
+   0.006
+  ],
+  "column_along_m": 0.42,
+  "column_across_m": -0.07,
+  "column_half_m": [
+   0.02,
+   0.02,
+   0.602
+  ],
+  "clip": {
+   "along_m": 0.17,
+   "across_m": 0.0,
+   "length_m": 0.03,
+   "half_width_m": 0.006,
+   "floor_height_m": -0.001,
+   "lip_height_m": 0.0125,
+   "lip_gap_m": 0.005,
+   "lip_thickness_m": 0.002,
+   "wall_thickness_m": 0.003,
+   "friction": [
+    0.5,
+    0.005,
+    0.0001
+   ],
+   "friction_note": "A real routed-cable clip grips the jacket. High clip friction makes the retained cable resist being drawn through, so the plug-side service loop, not the whole cable, sets the recovery envelope.",
+   "capture_note": "A 20 mm channel with a 5.5 mm lip gap reliably captures the 4 mm cable during installation while leaving a physically escapable opening. Capture is verified after settling, never assumed."
+  },
+  "post": {
+   "along_m": 0.14,
+   "across_m": 0.012,
+   "radius_m": 0.005,
+   "height_m": 0.018,
+   "friction": [
+    0.2,
+    0.005,
+    0.0001
+   ]
+  },
+  "strain_relief": {
+   "along_m": 0.235,
+   "across_m": 0.0,
+   "height_m": 0.004,
+   "block_offset_m": 0.014,
+   "block_half_m": [
+    0.01,
+    0.012,
+    0.008
+   ],
+   "block_density": 800
+  },
+  "scope": "World-fixed infinitely rigid mounting geometry in one common frame derived from the measured seated tip pose. Fixture compliance is not modelled; the clip is open and physically escapable by design.",
+  "route_height_m": 0.0025,
+  "route_waypoints_along_across_m": [
+   [
+    0.09,
+    0.0
+   ],
+   [
+    0.17,
+    0.0
+   ]
+  ],
+  "slack_bow_across": 1.0,
+  "slack_bow_along": 0.0,
+  "slack_bow_up": 0.0,
+  "slack_bow_note": "Surplus service-loop cable is built as a lateral meander on the descent leg between the boot lead-out and the shelf landing. Its amplitude is solved so the routed guide length equals the cable rest length; the resting shape is decided by settling.",
+  "slack_bow_leg": "last",
+  "shelf_friction": [
+   0.6,
+   0.005,
+   0.0001
+  ],
+  "installed_loop_m": 0.008,
+  "anchor_search_along_m": [
+   0.1,
+   0.45
+  ],
+  "installed_loop_note": "Installed service loop is the registered experimental factor: the strain-relief position is solved so the routed path is exactly this much shorter than the cable. Cable mass, rest length, radius, moduli, damping and discretization are byte-identical across every condition, and no surplus loop has to be parked in mid-air."
+ },
+ "controller": {
+  "translation_stiffness_n_per_m": 1500,
+  "translation_damping_ns_per_m": 90,
+  "rotation_stiffness_nm_per_rad": 80,
+  "rotation_damping_nms_per_rad": 15,
+  "cartesian_force_limit_n": 15,
+  "cartesian_torque_limit_nm": 8,
+  "joint_torque_limits_nm": [
+   150,
+   150,
+   150,
+   28,
+   28,
+   28
+  ],
+  "finger_opening_m": 0.0125,
+  "authority": "Per-component Cartesian clipping, so a 15 N component limit admits up to sqrt(3)*15 N of commanded norm before joint clipping. Tool orientation is commanded but held at the registered grasp rotation. These are commanded limits, not physical contact ceilings.",
+  "feedforward": "Native qfrc_bias on arm joints, an exact-model idealization applied identically to every arm."
+ },
+ "settle_seconds": 5.0,
+ "settle_acceptance": {
+  "max_tip_tracking_m": 0.002,
+  "max_plug_port_contact_n": 0.001,
+  "max_cable_speed_m_per_s": 0.02,
+  "require_clip_retained": true,
+  "note": "Measured relaxation: peak 0.83 m/s at 0.5 s, 0.008 m/s by 2.0 s, then a slow quasi-static creep below 0.006 m/s. Three seconds with a 0.02 m/s ceiling accepts the settled routed configuration and rejects an excited or escaped cable."
+ },
+ "job_limits": {
+  "deadline_s": 40.0,
+  "dwell_s": 0.5,
+  "position_tolerance_m": 0.001,
+  "orientation_tolerance_rad": 0.03,
+  "wrist_force_n": 20.0,
+  "plug_force_n": 20.0,
+  "anchor_force_n": 15.0,
+  "contact_witness_n": 0.05,
+  "stall_window_s": 0.5,
+  "minimum_commanded_progress_m": 0.001,
+  "maximum_new_progress_m": 0.0001
+ },
+ "limits_note": "Development starting points, not hardware damage ratings. The raw wrist/plug/anchor abort thresholds and the witness window are frozen here before any comparison.",
+ "ledger": {
+  "native_channels": [
+   "time_s",
+   "raw_wrist_load_n",
+   "raw_plug_load_n",
+   "anchor_load_n"
+  ],
+  "servo_channels": [
+   "time_s",
+   "tip_x",
+   "tip_y",
+   "tip_z",
+   "target_x",
+   "target_y",
+   "target_z",
+   "seating_error_m",
+   "seating_angle_rad",
+   "insertion_depth_m",
+   "commanded_depth_m",
+   "plug_port_contact_n",
+   "port_detector_contact_n",
+   "cable_clip_contact_n",
+   "cable_post_contact_n",
+   "cable_shelf_contact_n",
+   "cable_robot_contact_n",
+   "other_contact_n",
+   "raw_wrist_load_n",
+   "raw_plug_load_n",
+   "anchor_load_n",
+   "anchor_cx",
+   "anchor_cy",
+   "anchor_cz",
+   "clip_retained",
+   "clip_passages",
+   "forbidden_events",
+   "phase_code"
+  ],
+  "full_state_events": [
+   "settled",
+   "policy_phase_change",
+   "first_witness",
+   "repair_start",
+   "terminal"
+  ],
+  "dense_state_stride_s": 0.01
+ },
+ "scope_and_limitations": [
+  "Simulation only. No hardware access, connector transfer, released retention or force-certified safety claim.",
+  "Fixed preset grasp and world-fixed fixture are disclosed construction boundaries.",
+  "Full simulated robot, plug, port, cable and fixture state with exact-model bias feedforward is the common interface for every arm. This is not camera perception.",
+  "The strain relief is a fixed boundary condition, not a validated earlier latched connector."
+ ],
+ "probe_cases": [
+  {
+   "id": "calib_nominal",
+   "run_direction_xy": [
+    1.0,
+    0.0
+   ],
+   "outward_xy": [
+    1.0,
+    0.0
+   ],
+   "fixture_offset_m": [
+    0.0,
+    0.0
+   ],
+   "calibration_seed": 31000
+  },
+  {
+   "id": "calib_catch",
+   "run_direction_xy": [
+    1.0,
+    0.0
+   ],
+   "outward_xy": [
+    1.0,
+    0.0
+   ],
+   "fixture_offset_m": [
+    0.0,
+    0.0
+   ],
+   "route_waypoints_along_across_m": [
+    [
+     0.15,
+     0.0
+    ],
+    [
+     0.17,
+     0.021
+    ],
+    [
+     0.2,
+     0.0
+    ]
+   ],
+   "calibration_seed": 31001
+  }
+ ],
+ "force_guided_controller": {
+  "speed_m_per_s": 0.004,
+  "deadline_s": 40.0,
+  "alignment_standoff_m": 0.018,
+  "position_tolerance_m": 0.0003,
+  "retract_distance_m": 0.006,
+  "insertion_overtravel_m": 0.0003,
+  "slowdown_force_n": 4.0,
+  "retract_force_n": 15.0,
+  "max_retries": 2,
+  "note": "Registered development settings. The measured compensated axial load at full SC seating exceeds 8 N, so the v1 free-cable retreat threshold cannot seat this connector under the separated clocks; 15 N stays below the 20 N raw abort."
+ },
+ "repair_library": {
+  "local_realign": {
+   "offsets_m": [],
+   "description": "Retract along the insertion axis and realign to the observed port. No cable-specific motion."
+  },
+  "slacken_arc": {
+   "offsets_m": [
+    [
+     0.02,
+     0.0,
+     -0.006
+    ],
+    [
+     0.0,
+     0.0,
+     -0.004
+    ]
+   ],
+   "speed_m_per_s": 0.004,
+   "description": "Clip-preserving clearance arc: move toward the strain relief and lift slightly to shorten the required route, then return to the approach standoff."
+  },
+  "lateral_clear": {
+   "offsets_m": [
+    [
+     0.0,
+     0.02,
+     -0.006
+    ],
+    [
+     0.0,
+     0.0,
+     -0.004
+    ]
+   ],
+   "speed_m_per_s": 0.004,
+   "description": "Lateral clearance arc across the cable run direction."
+  },
+  "tension_lift": {
+   "offsets_m": [
+    [
+     -0.015,
+     0.0,
+     -0.03
+    ]
+   ],
+   "speed_m_per_s": 0.004,
+   "description": "Plausible bad repair: lift away from the strain relief, lengthening the required route and loading the open clip."
+  },
+  "over_travel_clear": {
+   "offsets_m": [
+    [
+     0.0,
+     0.0,
+     -0.095
+    ]
+   ],
+   "speed_m_per_s": 0.004,
+   "description": "Registered negative control: a clearance lift beyond the measured cable envelope, expected to release the required clip."
+  }
+ },
+ "cable_aware_rules": {
+  "distal_contact_witness_n": 0.05,
+  "distal_load_witness_n": 0.5,
+  "distal_macro": "slacken_arc",
+  "local_macro": "local_realign",
+  "scope": "Fixed visible rules over the shared observation and repair library. No learning, no extra simulator access."
+ },
+ "cases": [
+  {
+   "run_direction_xy": [
+    1.0,
+    0.0
+   ],
+   "outward_xy": [
+    1.0,
+    0.0
+   ],
+   "route_waypoints_along_across_m": [
+    [
+     0.09,
+     0.0
+    ],
+    [
+     0.17,
+     0.0
+    ]
+   ],
+   "id": "g1_unloaded_anchor",
+   "controller": "scripted_program",
+   "calibration_seed": 31000,
+   "installed_loop_m": 0.004,
+   "fixture_offset_m": [
+    0.0,
+    0.0
+   ],
+   "program": [
+    {
+     "offset_m": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "hold_s": 3.0,
+     "speed_m_per_s": 0.004,
+     "label": "program"
+    }
+   ],
+   "job_limits_override": {
+    "deadline_s": 3.0
+   },
+   "gate": "G1",
+   "purpose": "Unloaded control: strain-relief zero, block-weight offset and constraint/sensor cross-check."
+  },
+  {
+   "run_direction_xy": [
+    1.0,
+    0.0
+   ],
+   "outward_xy": [
+    1.0,
+    0.0
+   ],
+   "route_waypoints_along_across_m": [
+    [
+     0.09,
+     0.0
+    ],
+    [
+     0.17,
+     0.0
+    ]
+   ],
+   "id": "g1_release_ramp",
+   "controller": "scripted_program",
+   "calibration_seed": 31001,
+   "installed_loop_m": 0.004,
+   "fixture_offset_m": [
+    0.0,
+    0.0
+   ],
+   "program": [
+    {
+     "offset_m": [
+      0.0,
+      0.0,
+      -0.12
+     ],
+     "hold_s": 1.0,
+     "speed_m_per_s": 0.004,
+     "label": "program"
+    }
+   ],
+   "job_limits_override": {
+    "deadline_s": 40.0,
+    "anchor_force_n": 14.0
+   },
+   "gate": "G1",
+   "purpose": "Known-load and deliberate clip-release control: ramp the plug away from the port until the open clip releases."
+  },
+  {
+   "run_direction_xy": [
+    1.0,
+    0.0
+   ],
+   "outward_xy": [
+    1.0,
+    0.0
+   ],
+   "route_waypoints_along_across_m": [
+    [
+     0.09,
+     0.0
+    ],
+    [
+     0.17,
+     0.0
+    ]
+   ],
+   "id": "g1_nominal_seating",
+   "controller": "force_guided_insertion",
+   "calibration_seed": 31002,
+   "installed_loop_m": 0.004,
+   "fixture_offset_m": [
+    0.0,
+    0.0
+   ],
+   "gate": "G1",
+   "purpose": "Nominal held clip-preserving seating under the competent first attempt."
+  },
+  {
+   "run_direction_xy": [
+    1.0,
+    0.0
+   ],
+   "outward_xy": [
+    1.0,
+    0.0
+   ],
+   "route_waypoints_along_across_m": [
+    [
+     0.09,
+     0.0
+    ],
+    [
+     0.17,
+     0.0
+    ]
+   ],
+   "id": "g1_mutation_positive",
+   "controller": "force_guided_insertion",
+   "calibration_seed": 31003,
+   "installed_loop_m": 0.004,
+   "fixture_offset_m": [
+    0.0,
+    0.0
+   ],
+   "inject_forbidden_write_s": 1.0,
+   "gate": "G1",
+   "purpose": "Mutation-guard positive control: a deliberate controller-side pose write must fail the job."
+  },
+  {
+   "run_direction_xy": [
+    1.0,
+    0.0
+   ],
+   "outward_xy": [
+    1.0,
+    0.0
+   ],
+   "route_waypoints_along_across_m": [
+    [
+     0.09,
+     0.0
+    ],
+    [
+     0.17,
+     0.0
+    ]
+   ],
+   "id": "g1_contact_witness",
+   "controller": "scripted_program",
+   "calibration_seed": 31004,
+   "installed_loop_m": 0.004,
+   "fixture_offset_m": [
+    0.004,
+    0.0
+   ],
+   "program": [
+    {
+     "offset_m": [
+      0.0,
+      0.0,
+      0.026
+     ],
+     "hold_s": 25.0,
+     "speed_m_per_s": 0.004,
+     "label": "program"
+    }
+   ],
+   "job_limits_override": {
+    "deadline_s": 30.0
+   },
+   "gate": "G1",
+   "purpose": "Contact-stall witness positive control: press a laterally offset port and require a witnessed stall."
+  },
+  {
+   "run_direction_xy": [
+    1.0,
+    0.0
+   ],
+   "outward_xy": [
+    1.0,
+    0.0
+   ],
+   "route_waypoints_along_across_m": [
+    [
+     0.09,
+     0.0
+    ],
+    [
+     0.17,
+     0.0
+    ]
+   ],
+   "id": "g1_numerical_8k",
+   "controller": "force_guided_insertion",
+   "calibration_seed": 31005,
+   "installed_loop_m": 0.004,
+   "fixture_offset_m": [
+    0.0,
+    0.0
+   ],
+   "clocks_override": {
+    "physics_hz": 8000
+   },
+   "gate": "G1",
+   "purpose": "Numerical control: identical physical clocks at double physics resolution."
+  },
+  {
+   "run_direction_xy": [
+    1.0,
+    0.0
+   ],
+   "outward_xy": [
+    1.0,
+    0.0
+   ],
+   "route_waypoints_along_across_m": [
+    [
+     0.09,
+     0.0
+    ],
+    [
+     0.17,
+     0.0
+    ]
+   ],
+   "id": "g1_spatial_46",
+   "controller": "force_guided_insertion",
+   "calibration_seed": 31006,
+   "installed_loop_m": 0.004,
+   "fixture_offset_m": [
+    0.0,
+    0.0
+   ],
+   "cable_overrides": {
+    "segments": 46,
+    "segment_length_m": 0.01,
+    "joint_damping": 0.0001
+   },
+   "gate": "G1",
+   "purpose": "Spatial control: 46 half-length segments at conserved mass, rest length, radius and moduli."
+  },
+  {
+   "run_direction_xy": [
+    1.0,
+    0.0
+   ],
+   "outward_xy": [
+    1.0,
+    0.0
+   ],
+   "route_waypoints_along_across_m": [
+    [
+     0.09,
+     0.0
+    ],
+    [
+     0.17,
+     0.0
+    ]
+   ],
+   "id": "g1_bad_repair_near_home",
+   "controller": "force_guided_insertion",
+   "calibration_seed": 31007,
+   "installed_loop_m": 0.004,
+   "fixture_offset_m": [
+    0.0,
+    0.0
+   ],
+   "forced_macro": "over_travel_clear",
+   "forced_macro_at_s": 2.0,
+   "gate": "G1",
+   "purpose": "Negative control: a clearance lift beyond the measured envelope, requested near the home pose, must release the required clip."
+  },
+  {
+   "run_direction_xy": [
+    1.0,
+    0.0
+   ],
+   "outward_xy": [
+    1.0,
+    0.0
+   ],
+   "route_waypoints_along_across_m": [
+    [
+     0.09,
+     0.0
+    ],
+    [
+     0.17,
+     0.0
+    ]
+   ],
+   "id": "g1_good_repair_near_home",
+   "controller": "force_guided_insertion",
+   "calibration_seed": 31008,
+   "installed_loop_m": 0.004,
+   "fixture_offset_m": [
+    0.0,
+    0.0
+   ],
+   "forced_macro": "slacken_arc",
+   "forced_macro_at_s": 2.0,
+   "gate": "G1",
+   "purpose": "Paired control: the clip-preserving clearance arc must reach held seating with the clip retained."
+  },
+  {
+   "run_direction_xy": [
+    1.0,
+    0.0
+   ],
+   "outward_xy": [
+    1.0,
+    0.0
+   ],
+   "route_waypoints_along_across_m": [
+    [
+     0.09,
+     0.0
+    ],
+    [
+     0.17,
+     0.0
+    ]
+   ],
+   "id": "g3_l2_o0_fg",
+   "controller": "force_guided_insertion",
+   "calibration_seed": 31309,
+   "installed_loop_m": 0.002,
+   "fixture_offset_m": [
+    0.0,
+    0.0
+   ],
+   "gate": "G3",
+   "purpose": "G3 screen: installed service loop crossed with a lateral mounting offset under identical observations and authority."
+  },
+  {
+   "run_direction_xy": [
+    1.0,
+    0.0
+   ],
+   "outward_xy": [
+    1.0,
+    0.0
+   ],
+   "route_waypoints_along_across_m": [
+    [
+     0.09,
+     0.0
+    ],
+    [
+     0.17,
+     0.0
+    ]
+   ],
+   "id": "g3_l2_o0_ca",
+   "controller": "cable_aware_rules",
+   "calibration_seed": 31310,
+   "installed_loop_m": 0.002,
+   "fixture_offset_m": [
+    0.0,
+    0.0
+   ],
+   "gate": "G3",
+   "purpose": "G3 screen: installed service loop crossed with a lateral mounting offset under identical observations and authority."
+  },
+  {
+   "run_direction_xy": [
+    1.0,
+    0.0
+   ],
+   "outward_xy": [
+    1.0,
+    0.0
+   ],
+   "route_waypoints_along_across_m": [
+    [
+     0.09,
+     0.0
+    ],
+    [
+     0.17,
+     0.0
+    ]
+   ],
+   "id": "g3_l2_o2_fg",
+   "controller": "force_guided_insertion",
+   "calibration_seed": 31311,
+   "installed_loop_m": 0.002,
+   "fixture_offset_m": [
+    0.002,
+    0.0
+   ],
+   "gate": "G3",
+   "purpose": "G3 screen: installed service loop crossed with a lateral mounting offset under identical observations and authority."
+  },
+  {
+   "run_direction_xy": [
+    1.0,
+    0.0
+   ],
+   "outward_xy": [
+    1.0,
+    0.0
+   ],
+   "route_waypoints_along_across_m": [
+    [
+     0.09,
+     0.0
+    ],
+    [
+     0.17,
+     0.0
+    ]
+   ],
+   "id": "g3_l2_o2_ca",
+   "controller": "cable_aware_rules",
+   "calibration_seed": 31312,
+   "installed_loop_m": 0.002,
+   "fixture_offset_m": [
+    0.002,
+    0.0
+   ],
+   "gate": "G3",
+   "purpose": "G3 screen: installed service loop crossed with a lateral mounting offset under identical observations and authority."
+  },
+  {
+   "run_direction_xy": [
+    1.0,
+    0.0
+   ],
+   "outward_xy": [
+    1.0,
+    0.0
+   ],
+   "route_waypoints_along_across_m": [
+    [
+     0.09,
+     0.0
+    ],
+    [
+     0.17,
+     0.0
+    ]
+   ],
+   "id": "g3_l2_o4_fg",
+   "controller": "force_guided_insertion",
+   "calibration_seed": 31313,
+   "installed_loop_m": 0.002,
+   "fixture_offset_m": [
+    0.004,
+    0.0
+   ],
+   "gate": "G3",
+   "purpose": "G3 screen: installed service loop crossed with a lateral mounting offset under identical observations and authority."
+  },
+  {
+   "run_direction_xy": [
+    1.0,
+    0.0
+   ],
+   "outward_xy": [
+    1.0,
+    0.0
+   ],
+   "route_waypoints_along_across_m": [
+    [
+     0.09,
+     0.0
+    ],
+    [
+     0.17,
+     0.0
+    ]
+   ],
+   "id": "g3_l2_o4_ca",
+   "controller": "cable_aware_rules",
+   "calibration_seed": 31314,
+   "installed_loop_m": 0.002,
+   "fixture_offset_m": [
+    0.004,
+    0.0
+   ],
+   "gate": "G3",
+   "purpose": "G3 screen: installed service loop crossed with a lateral mounting offset under identical observations and authority."
+  },
+  {
+   "run_direction_xy": [
+    1.0,
+    0.0
+   ],
+   "outward_xy": [
+    1.0,
+    0.0
+   ],
+   "route_waypoints_along_across_m": [
+    [
+     0.09,
+     0.0
+    ],
+    [
+     0.17,
+     0.0
+    ]
+   ],
+   "id": "g3_l4_o0_fg",
+   "controller": "force_guided_insertion",
+   "calibration_seed": 31315,
+   "installed_loop_m": 0.004,
+   "fixture_offset_m": [
+    0.0,
+    0.0
+   ],
+   "gate": "G3",
+   "purpose": "G3 screen: installed service loop crossed with a lateral mounting offset under identical observations and authority."
+  },
+  {
+   "run_direction_xy": [
+    1.0,
+    0.0
+   ],
+   "outward_xy": [
+    1.0,
+    0.0
+   ],
+   "route_waypoints_along_across_m": [
+    [
+     0.09,
+     0.0
+    ],
+    [
+     0.17,
+     0.0
+    ]
+   ],
+   "id": "g3_l4_o0_ca",
+   "controller": "cable_aware_rules",
+   "calibration_seed": 31316,
+   "installed_loop_m": 0.004,
+   "fixture_offset_m": [
+    0.0,
+    0.0
+   ],
+   "gate": "G3",
+   "purpose": "G3 screen: installed service loop crossed with a lateral mounting offset under identical observations and authority."
+  },
+  {
+   "run_direction_xy": [
+    1.0,
+    0.0
+   ],
+   "outward_xy": [
+    1.0,
+    0.0
+   ],
+   "route_waypoints_along_across_m": [
+    [
+     0.09,
+     0.0
+    ],
+    [
+     0.17,
+     0.0
+    ]
+   ],
+   "id": "g3_l4_o2_fg",
+   "controller": "force_guided_insertion",
+   "calibration_seed": 31317,
+   "installed_loop_m": 0.004,
+   "fixture_offset_m": [
+    0.002,
+    0.0
+   ],
+   "gate": "G3",
+   "purpose": "G3 screen: installed service loop crossed with a lateral mounting offset under identical observations and authority."
+  },
+  {
+   "run_direction_xy": [
+    1.0,
+    0.0
+   ],
+   "outward_xy": [
+    1.0,
+    0.0
+   ],
+   "route_waypoints_along_across_m": [
+    [
+     0.09,
+     0.0
+    ],
+    [
+     0.17,
+     0.0
+    ]
+   ],
+   "id": "g3_l4_o2_ca",
+   "controller": "cable_aware_rules",
+   "calibration_seed": 31318,
+   "installed_loop_m": 0.004,
+   "fixture_offset_m": [
+    0.002,
+    0.0
+   ],
+   "gate": "G3",
+   "purpose": "G3 screen: installed service loop crossed with a lateral mounting offset under identical observations and authority."
+  },
+  {
+   "run_direction_xy": [
+    1.0,
+    0.0
+   ],
+   "outward_xy": [
+    1.0,
+    0.0
+   ],
+   "route_waypoints_along_across_m": [
+    [
+     0.09,
+     0.0
+    ],
+    [
+     0.17,
+     0.0
+    ]
+   ],
+   "id": "g3_l4_o4_fg",
+   "controller": "force_guided_insertion",
+   "calibration_seed": 31319,
+   "installed_loop_m": 0.004,
+   "fixture_offset_m": [
+    0.004,
+    0.0
+   ],
+   "gate": "G3",
+   "purpose": "G3 screen: installed service loop crossed with a lateral mounting offset under identical observations and authority."
+  },
+  {
+   "run_direction_xy": [
+    1.0,
+    0.0
+   ],
+   "outward_xy": [
+    1.0,
+    0.0
+   ],
+   "route_waypoints_along_across_m": [
+    [
+     0.09,
+     0.0
+    ],
+    [
+     0.17,
+     0.0
+    ]
+   ],
+   "id": "g3_l4_o4_ca",
+   "controller": "cable_aware_rules",
+   "calibration_seed": 31320,
+   "installed_loop_m": 0.004,
+   "fixture_offset_m": [
+    0.004,
+    0.0
+   ],
+   "gate": "G3",
+   "purpose": "G3 screen: installed service loop crossed with a lateral mounting offset under identical observations and authority."
+  },
+  {
+   "run_direction_xy": [
+    1.0,
+    0.0
+   ],
+   "outward_xy": [
+    1.0,
+    0.0
+   ],
+   "route_waypoints_along_across_m": [
+    [
+     0.09,
+     0.0
+    ],
+    [
+     0.17,
+     0.0
+    ]
+   ],
+   "id": "g3_l6_o0_fg",
+   "controller": "force_guided_insertion",
+   "calibration_seed": 31321,
+   "installed_loop_m": 0.006,
+   "fixture_offset_m": [
+    0.0,
+    0.0
+   ],
+   "gate": "G3",
+   "purpose": "G3 screen: installed service loop crossed with a lateral mounting offset under identical observations and authority."
+  },
+  {
+   "run_direction_xy": [
+    1.0,
+    0.0
+   ],
+   "outward_xy": [
+    1.0,
+    0.0
+   ],
+   "route_waypoints_along_across_m": [
+    [
+     0.09,
+     0.0
+    ],
+    [
+     0.17,
+     0.0
+    ]
+   ],
+   "id": "g3_l6_o0_ca",
+   "controller": "cable_aware_rules",
+   "calibration_seed": 31322,
+   "installed_loop_m": 0.006,
+   "fixture_offset_m": [
+    0.0,
+    0.0
+   ],
+   "gate": "G3",
+   "purpose": "G3 screen: installed service loop crossed with a lateral mounting offset under identical observations and authority."
+  },
+  {
+   "run_direction_xy": [
+    1.0,
+    0.0
+   ],
+   "outward_xy": [
+    1.0,
+    0.0
+   ],
+   "route_waypoints_along_across_m": [
+    [
+     0.09,
+     0.0
+    ],
+    [
+     0.17,
+     0.0
+    ]
+   ],
+   "id": "g3_l6_o2_fg",
+   "controller": "force_guided_insertion",
+   "calibration_seed": 31323,
+   "installed_loop_m": 0.006,
+   "fixture_offset_m": [
+    0.002,
+    0.0
+   ],
+   "gate": "G3",
+   "purpose": "G3 screen: installed service loop crossed with a lateral mounting offset under identical observations and authority."
+  },
+  {
+   "run_direction_xy": [
+    1.0,
+    0.0
+   ],
+   "outward_xy": [
+    1.0,
+    0.0
+   ],
+   "route_waypoints_along_across_m": [
+    [
+     0.09,
+     0.0
+    ],
+    [
+     0.17,
+     0.0
+    ]
+   ],
+   "id": "g3_l6_o2_ca",
+   "controller": "cable_aware_rules",
+   "calibration_seed": 31324,
+   "installed_loop_m": 0.006,
+   "fixture_offset_m": [
+    0.002,
+    0.0
+   ],
+   "gate": "G3",
+   "purpose": "G3 screen: installed service loop crossed with a lateral mounting offset under identical observations and authority."
+  },
+  {
+   "run_direction_xy": [
+    1.0,
+    0.0
+   ],
+   "outward_xy": [
+    1.0,
+    0.0
+   ],
+   "route_waypoints_along_across_m": [
+    [
+     0.09,
+     0.0
+    ],
+    [
+     0.17,
+     0.0
+    ]
+   ],
+   "id": "g3_l6_o4_fg",
+   "controller": "force_guided_insertion",
+   "calibration_seed": 31325,
+   "installed_loop_m": 0.006,
+   "fixture_offset_m": [
+    0.004,
+    0.0
+   ],
+   "gate": "G3",
+   "purpose": "G3 screen: installed service loop crossed with a lateral mounting offset under identical observations and authority."
+  },
+  {
+   "run_direction_xy": [
+    1.0,
+    0.0
+   ],
+   "outward_xy": [
+    1.0,
+    0.0
+   ],
+   "route_waypoints_along_across_m": [
+    [
+     0.09,
+     0.0
+    ],
+    [
+     0.17,
+     0.0
+    ]
+   ],
+   "id": "g3_l6_o4_ca",
+   "controller": "cable_aware_rules",
+   "calibration_seed": 31326,
+   "installed_loop_m": 0.006,
+   "fixture_offset_m": [
+    0.004,
+    0.0
+   ],
+   "gate": "G3",
+   "purpose": "G3 screen: installed service loop crossed with a lateral mounting offset under identical observations and authority."
+  },
+  {
+   "run_direction_xy": [
+    1.0,
+    0.0
+   ],
+   "outward_xy": [
+    1.0,
+    0.0
+   ],
+   "route_waypoints_along_across_m": [
+    [
+     0.09,
+     0.0
+    ],
+    [
+     0.17,
+     0.0
+    ]
+   ],
+   "id": "g2_o3_rules",
+   "controller": "blind_then_recover",
+   "calibration_seed": 31427,
+   "installed_loop_m": 0.004,
+   "fixture_offset_m": [
+    0.003,
+    0.0
+   ],
+   "gate": "G2",
+   "purpose": "G2 witness block: blind first attempt to a physically witnessed stall, then a robot-driven repair."
+  },
+  {
+   "run_direction_xy": [
+    1.0,
+    0.0
+   ],
+   "outward_xy": [
+    1.0,
+    0.0
+   ],
+   "route_waypoints_along_across_m": [
+    [
+     0.09,
+     0.0
+    ],
+    [
+     0.17,
+     0.0
+    ]
+   ],
+   "id": "g2_o3_local",
+   "controller": "blind_then_recover",
+   "calibration_seed": 31428,
+   "installed_loop_m": 0.004,
+   "fixture_offset_m": [
+    0.003,
+    0.0
+   ],
+   "gate": "G2",
+   "forced_macro": "local_realign",
+   "forced_macro_at_s": "witness",
+   "purpose": "G2 witness block: blind first attempt to a physically witnessed stall, then a robot-driven repair."
+  },
+  {
+   "run_direction_xy": [
+    1.0,
+    0.0
+   ],
+   "outward_xy": [
+    1.0,
+    0.0
+   ],
+   "route_waypoints_along_across_m": [
+    [
+     0.09,
+     0.0
+    ],
+    [
+     0.17,
+     0.0
+    ]
+   ],
+   "id": "g2_o3_bad",
+   "controller": "blind_then_recover",
+   "calibration_seed": 31429,
+   "installed_loop_m": 0.004,
+   "fixture_offset_m": [
+    0.003,
+    0.0
+   ],
+   "gate": "G2",
+   "forced_macro": "over_travel_clear",
+   "forced_macro_at_s": "witness",
+   "purpose": "G2 witness block: blind first attempt to a physically witnessed stall, then a robot-driven repair."
+  },
+  {
+   "run_direction_xy": [
+    1.0,
+    0.0
+   ],
+   "outward_xy": [
+    1.0,
+    0.0
+   ],
+   "route_waypoints_along_across_m": [
+    [
+     0.09,
+     0.0
+    ],
+    [
+     0.17,
+     0.0
+    ]
+   ],
+   "id": "g2_o3_none",
+   "controller": "scripted_program",
+   "calibration_seed": 31440,
+   "installed_loop_m": 0.004,
+   "fixture_offset_m": [
+    0.003,
+    0.0
+   ],
+   "gate": "G2",
+   "program": [
+    {
+     "offset_m": [
+      0.0,
+      0.0,
+      0.026
+     ],
+     "hold_s": 25.0,
+     "speed_m_per_s": 0.004,
+     "label": "program"
+    }
+   ],
+   "job_limits_override": {
+    "deadline_s": 30.0
+   },
+   "purpose": "G2 negative control: the same blind attempt with no repair must not complete."
+  },
+  {
+   "run_direction_xy": [
+    1.0,
+    0.0
+   ],
+   "outward_xy": [
+    1.0,
+    0.0
+   ],
+   "route_waypoints_along_across_m": [
+    [
+     0.09,
+     0.0
+    ],
+    [
+     0.17,
+     0.0
+    ]
+   ],
+   "id": "g2_o5_rules",
+   "controller": "blind_then_recover",
+   "calibration_seed": 31431,
+   "installed_loop_m": 0.004,
+   "fixture_offset_m": [
+    0.005,
+    0.0
+   ],
+   "gate": "G2",
+   "purpose": "G2 witness block: blind first attempt to a physically witnessed stall, then a robot-driven repair."
+  },
+  {
+   "run_direction_xy": [
+    1.0,
+    0.0
+   ],
+   "outward_xy": [
+    1.0,
+    0.0
+   ],
+   "route_waypoints_along_across_m": [
+    [
+     0.09,
+     0.0
+    ],
+    [
+     0.17,
+     0.0
+    ]
+   ],
+   "id": "g2_o5_local",
+   "controller": "blind_then_recover",
+   "calibration_seed": 31432,
+   "installed_loop_m": 0.004,
+   "fixture_offset_m": [
+    0.005,
+    0.0
+   ],
+   "gate": "G2",
+   "forced_macro": "local_realign",
+   "forced_macro_at_s": "witness",
+   "purpose": "G2 witness block: blind first attempt to a physically witnessed stall, then a robot-driven repair."
+  },
+  {
+   "run_direction_xy": [
+    1.0,
+    0.0
+   ],
+   "outward_xy": [
+    1.0,
+    0.0
+   ],
+   "route_waypoints_along_across_m": [
+    [
+     0.09,
+     0.0
+    ],
+    [
+     0.17,
+     0.0
+    ]
+   ],
+   "id": "g2_o5_bad",
+   "controller": "blind_then_recover",
+   "calibration_seed": 31433,
+   "installed_loop_m": 0.004,
+   "fixture_offset_m": [
+    0.005,
+    0.0
+   ],
+   "gate": "G2",
+   "forced_macro": "over_travel_clear",
+   "forced_macro_at_s": "witness",
+   "purpose": "G2 witness block: blind first attempt to a physically witnessed stall, then a robot-driven repair."
+  },
+  {
+   "run_direction_xy": [
+    1.0,
+    0.0
+   ],
+   "outward_xy": [
+    1.0,
+    0.0
+   ],
+   "route_waypoints_along_across_m": [
+    [
+     0.09,
+     0.0
+    ],
+    [
+     0.17,
+     0.0
+    ]
+   ],
+   "id": "g2_o5_none",
+   "controller": "scripted_program",
+   "calibration_seed": 31444,
+   "installed_loop_m": 0.004,
+   "fixture_offset_m": [
+    0.005,
+    0.0
+   ],
+   "gate": "G2",
+   "program": [
+    {
+     "offset_m": [
+      0.0,
+      0.0,
+      0.026
+     ],
+     "hold_s": 25.0,
+     "speed_m_per_s": 0.004,
+     "label": "program"
+    }
+   ],
+   "job_limits_override": {
+    "deadline_s": 30.0
+   },
+   "purpose": "G2 negative control: the same blind attempt with no repair must not complete."
+  }
+ ],
+ "settle_gravity_ramp_s": 1.5,
+ "registered_gravity_z": -9.81,
+ "blind_first_attempt": {
+  "depth_m": 0.0223,
+  "speed_m_per_s": 0.004,
+  "scope": "Existing local insertion routine driven to the nominal seated depth without the measured mounting offset. Disclosed retrofit assumption, identical in every arm that uses it."
+ },
+ "registered_block": {
+  "id": "cable_recovery_block_v2_r01",
+  "gates": [
+   "G1",
+   "G2",
+   "G3"
+  ],
+  "frozen_before_launch": "Task geometry, clocks, force protocol, job limits, repair library and case list are frozen in this file before launch.",
+  "denominator": "Every listed request counts, including infeasible constructions, settling rejections and controls."
+ }
+}
