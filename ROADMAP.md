@@ -43,6 +43,10 @@ Budget the next block from the measured throughput above, not from the v1 extrap
 
 Routing the cable around the shallow post is registered in the task but does not yet survive settling: the detour route either folds at construction or the cable migrates out of the clip channel during relaxation. Diagnosed cause is that surplus service-loop cable has no stable resting place near a 20 mm clip channel. The gravity ramp fixed the free route; the catch route needs either a longer shelf run past the clip, a second clip, or a catch expressed as a post the cable is pressed against rather than routed around. Every failed attempt is preserved in the run artifacts.
 
+## Handover
+
+The next-session prompt is at `artifacts/prompts/cable_recovery_block_v2_handover_20260910.txt` (ignored artifacts). It is a pointer into this document and [the block record](evidence/cable_recovery_block_v2.json), not a substitute for them: the maintained plan is here.
+
 ## History
 
 Closed cycles, the preserved peg study, the first free-cable cycle and the earlier adaptive-sampling design are kept verbatim in [evidence/roadmap_history_v1.json](evidence/roadmap_history_v1.json) with their original evidence files unchanged. [evidence/INDEX.json](evidence/INDEX.json) lists every evidence record with its own declared id, status and scope so one file can be chosen without reading many.
