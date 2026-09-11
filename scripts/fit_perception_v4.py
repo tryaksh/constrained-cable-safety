@@ -246,6 +246,75 @@ def probabilities(model, inputs) -> np.ndarray:
         return torch.sigmoid(model(tensor)).detach().cpu().numpy().ravel()
 
 
+#: The one state channel that matches each constraint's shape. C1 is a length
+#: budget and the endpoint distance already is that channel, so it gets none.
+#: Larger is worse in every case, so the bend radius enters negated.
+SHAPE_FEATURE = {
+    "C1_clip": None,
+    "C2_bend": ("min_bend_radius_m", -1.0),
+    "C3_anchor": ("anchor_reaction_n", 1.0),
+}
+
+#: Weights the shape term may take, in metres of equivalent budget. Declared as a
+#: small grid rather than fitted continuously, so the arm stays a two-parameter
+#: rule that a person can read off and a cell can evaluate with one comparison.
+SHAPE_WEIGHTS = (0.0, 0.002, 0.005, 0.01, 0.02, 0.05)
+
+
+def fit_shape_scalar(rows, constraint: str, labels) -> dict:
+    """EXPLORATORY, post hoc: a scalar that carries one shape-matched term.
+
+    The registered analytic baseline thresholds the endpoint boot-to-anchor
+    distance, which is a length budget. Applied to a curvature limit or a load
+    limit it is the same rule wearing a different label, and if the study finds
+    those constraints need more, the cheapest constructive answer is not a
+    network - it is one more term in the scalar.
+
+    Score is ``endpoint distance + weight * z(shape channel)``, where the shape
+    channel is standardised on this split and the weight is chosen from a declared
+    grid together with the threshold, by the same balanced-accuracy sweep the
+    registered baseline uses. Two parameters, one comparison at inference. It is
+    NOT one of the six registered arms and the contract's rule does not read it.
+    """
+    base = np.asarray([row["features"]["endpoint_boot_to_anchor_m"] for row in rows], dtype=float)
+    spec = SHAPE_FEATURE.get(constraint)
+    if spec is None:
+        fitted = fit_threshold(base, labels)
+        return {**fitted, "shape_channel": None, "weight_m": 0.0,
+                "reduces_to": "the registered analytic baseline, exactly",
+                "status": "exploratory_post_hoc_not_part_of_the_decision_rule"}
+    name, sign = spec
+    raw = np.asarray([row["features"][name] for row in rows], dtype=float)
+    mean, scale = float(raw.mean()), float(raw.std())
+    scale = scale if scale > 1e-12 else 1.0
+    channel = sign*(raw-mean)/scale
+    best = None
+    for weight in SHAPE_WEIGHTS:
+        fitted = fit_threshold(base+weight*channel, labels)
+        score = fitted["train_balanced_accuracy"]
+        if score == score and (best is None or score > best[0]["train_balanced_accuracy"]):
+            best = (fitted, weight)
+    if best is None:
+        return {"threshold_m": None, "train_balanced_accuracy": None, "shape_channel": name,
+                "status": "exploratory_post_hoc_not_part_of_the_decision_rule"}
+    fitted, weight = best
+    return {**fitted, "shape_channel": name, "shape_sign": sign, "weight_m": weight,
+            "standardisation": {"mean": mean, "scale": scale},
+            "reduces_to": ("the registered analytic baseline, exactly" if weight == 0.0
+                           else "a two-parameter scalar rule"),
+            "status": "exploratory_post_hoc_not_part_of_the_decision_rule"}
+
+
+def shape_scalar_scores(rows, fitted: dict) -> np.ndarray:
+    base = np.asarray([row["features"]["endpoint_boot_to_anchor_m"] for row in rows], dtype=float)
+    if not fitted.get("shape_channel") or not fitted.get("weight_m"):
+        return base
+    name, sign = fitted["shape_channel"], fitted["shape_sign"]
+    reference = fitted["standardisation"]
+    raw = np.asarray([row["features"][name] for row in rows], dtype=float)
+    return base+fitted["weight_m"]*sign*(raw-reference["mean"])/reference["scale"]
+
+
 def fit_arms(rows, contract: dict, constraint: str, retract: float, device=None) -> dict:
     """Every arm, fitted once on the pooled training split for one constraint.
 
@@ -276,6 +345,7 @@ def fit_arms(rows, contract: dict, constraint: str, retract: float, device=None)
     values = np.asarray([row["features"]["endpoint_boot_to_anchor_m"] for row in pooled])
     labels = np.concatenate([y_train, y_dev])
     fitted["B0"] = fit_threshold(values, labels)
+    fitted["B0shape"] = fit_shape_scalar(pooled, constraint, labels)
 
     for name, names in (("B1", FEATURE_NAMES), ("B2", FORCE_FEATURE_NAMES)):
         matrix_train = feature_matrix(train, names)
@@ -429,6 +499,21 @@ def main() -> int:
             evaluated = {name: evaluate_arm(name, test, scores[name], safes[name], coverage,
                                             constraint, retract, per_context_coverage)
                          for name in ARM_COST}
+            shape = fitted["B0shape"]
+            if shape.get("threshold_m") is not None:
+                shape_scores = shape_scalar_scores(test, shape)
+                shape_safe = shape_scores <= shape["threshold_m"]
+                evaluated["B0shape"] = {
+                    **evaluate_arm("B0", test, shape_scores, shape_safe, coverage, constraint,
+                                   retract, per_context_coverage),
+                    "arm": "B0shape",
+                    "cost": {"sensing": "estimated socket pose plus one state channel matched to "
+                                        "the constraint's shape",
+                             "parameters": 2, "inference": "one weighted sum and one comparison"},
+                    "shape_channel": shape.get("shape_channel"),
+                    "weight_m": shape.get("weight_m"),
+                    "status": "exploratory_post_hoc_not_part_of_the_decision_rule",
+                }
             violated, observed = constraint_truth(test, constraint)
             reference = evaluated["B0plus"]
             best_rich = min(("M", "Mh"),
@@ -506,6 +591,7 @@ def main() -> int:
         }
         selection = {
             "B0": fitted["B0"],
+            "B0shape": fitted["B0shape"],
             "B1": {"variant": fitted["B1"]["variant"], "dev_loss": fitted["B1"]["dev_loss"]},
             "B2": {"variant": fitted["B2"]["variant"], "dev_loss": fitted["B2"]["dev_loss"]},
             "M": [{"seed": s["seed"], "dev_loss": s["dev_loss"], "selected_epoch": s["selected_epoch"]}
@@ -605,6 +691,25 @@ def main() -> int:
         "crossover": crossover,
         "results": results,
         "cost_axis": cost,
+        "exploratory_shape_matched_scalar": {
+            "what": "A scalar that carries one state channel matched to the constraint's shape: "
+                    "the estimated minimum bend radius for the curvature limit, the estimated "
+                    "anchor reaction for the load limit, and nothing extra for the length budget, "
+                    "which the endpoint distance already is. Two parameters, one comparison.",
+            "why_it_is_here": "If the registered comparison finds that a length-budget scalar is "
+                              "not enough for a constraint of a different shape, the cheapest "
+                              "constructive answer is not a network - it is one more term in the "
+                              "scalar. Reporting the diagnosis without the candidate fix would be "
+                              "half the work.",
+            "status": "EXPLORATORY, post hoc, and NOT one of the six registered arms. The "
+                      "contract's decision rule and the crossover verdict do not read it. It is "
+                      "fitted on the same train-plus-dev pool the registered baseline uses and is "
+                      "scored on the same held-out split, so it is comparable - but it was chosen "
+                      "after the registered arms were, and it must be read as a lead for a future "
+                      "pre-registration rather than as a result.",
+            "weights_offered": list(SHAPE_WEIGHTS),
+            "channels": {k: (v[0] if v else None) for k, v in SHAPE_FEATURE.items()},
+        },
         "scope_and_limitations": contract["scope_and_limitations"],
     }
     out = ROOT / args.out

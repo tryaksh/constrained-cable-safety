@@ -75,12 +75,21 @@ def declared_error(socket_bias_m: float = 0.0, socket_jitter_m: float = 0.0,
 
 @dataclass(frozen=True)
 class ConstraintRule:
-    """One fitted scalar rule, with the margin a declared covariance implies."""
+    """One fitted scalar rule, with the margin a declared covariance implies.
+
+    ``shape`` is optional and off by default. When present the rule carries one
+    extra state channel matched to the constraint's shape - the estimated minimum
+    bend radius for a curvature limit, the estimated anchor reaction for a load
+    limit - standardised and weighted as the fit chose. It is still one weighted
+    sum and one comparison. The registered baseline has no shape term, and a
+    filter built with ``shape_matched=False`` is exactly that baseline.
+    """
 
     constraint: str
     threshold_m: float
     train_balanced_accuracy: float
     coverage_sigma: float = 2.0
+    shape: dict | None = None
 
     def margin(self, level: dict) -> float:
         return b0plus_margin_m(level, self.coverage_sigma)
@@ -88,6 +97,15 @@ class ConstraintRule:
     def effective_threshold(self, level: dict) -> float:
         """The threshold a measurement-robust supervisor actually applies."""
         return self.threshold_m-self.margin(level)
+
+    def shape_term(self, decision: dict) -> float:
+        """The shape-matched channel's contribution, in metres of budget."""
+        if not self.shape or not self.shape.get("weight_m"):
+            return 0.0
+        raw = float(decision.get(self.shape["channel"], 0.0))
+        reference = self.shape["standardisation"]
+        return float(self.shape["weight_m"]*self.shape["sign"]
+                     * (raw-reference["mean"])/reference["scale"])
 
 
 @dataclass
@@ -106,7 +124,8 @@ class SafetyFilter:
     spec: dict = field(default_factory=dict)
 
     @classmethod
-    def from_evidence(cls, fit_path, contract_path, base_path=None) -> SafetyFilter:
+    def from_evidence(cls, fit_path, contract_path, base_path=None,
+                      shape_matched: bool = False) -> SafetyFilter:
         """Load the fitted thresholds straight out of the study's evidence record.
 
         Nothing is recomputed here. If a number in the record changes, the filter
@@ -122,18 +141,27 @@ class SafetyFilter:
         rules = {}
         for constraint in CONSTRAINTS:
             block = fit["results"].get(constraint) or {}
-            fitted = (block.get("selection") or {}).get("B0")
+            selection = block.get("selection") or {}
+            key = "B0shape" if shape_matched and selection.get("B0shape") else "B0"
+            fitted = selection.get(key)
             if not fitted or fitted.get("threshold_m") is None:
                 continue
+            shape = None
+            if key == "B0shape" and fitted.get("shape_channel") and fitted.get("weight_m"):
+                shape = {"channel": fitted["shape_channel"], "sign": float(fitted["shape_sign"]),
+                         "weight_m": float(fitted["weight_m"]),
+                         "standardisation": fitted["standardisation"]}
             rules[constraint] = ConstraintRule(
                 constraint=constraint, threshold_m=float(fitted["threshold_m"]),
                 train_balanced_accuracy=float(fitted["train_balanced_accuracy"]),
-                coverage_sigma=coverage)
+                coverage_sigma=coverage, shape=shape)
         return cls(
             rules=rules,
             retract_distance_m=float(base["force_guided_controller"]["retract_distance_m"]),
             source={"fit": Path(fit_path).as_posix(), "contract": Path(contract_path).as_posix(),
-                    "fit_id": fit.get("id"), "created_on": fit.get("created_on")},
+                    "fit_id": fit.get("id"), "created_on": fit.get("created_on"),
+                    "arm": "B0shape (EXPLORATORY, post hoc)" if shape_matched else "B0plus",
+                    "shape_matched": bool(shape_matched)},
             spec={name: contract["constraints"][name] for name in CONSTRAINTS
                   if name in contract["constraints"]})
 
@@ -165,13 +193,17 @@ class SafetyFilter:
                                         "why": "no rule was fitted for this constraint"}
                 continue
             limit = rule.effective_threshold(level)
+            shift = rule.shape_term(decision)
+            score = distance+shift
             per_constraint[name] = {
-                "state": "safe" if distance <= limit else "refused",
+                "state": "safe" if score <= limit else "refused",
                 "endpoint_distance_m": distance,
+                "shape_term_m": shift,
+                "score_m": score,
                 "effective_threshold_m": limit,
                 "fitted_threshold_m": rule.threshold_m,
                 "margin_m": rule.margin(level),
-                "headroom_m": limit-distance,
+                "headroom_m": limit-score,
             }
         scored = [v for v in per_constraint.values() if v["state"] != "unscored"]
         refused = [name for name, v in per_constraint.items() if v["state"] == "refused"]
@@ -288,11 +320,20 @@ class SafetyFilter:
         return max(safe, key=key)
 
     def report(self) -> dict:
+        shaped = any(rule.shape for rule in self.rules.values())
         return {
-            "kind": "analytic budget with a measurement-robust margin",
+            "kind": ("analytic budget with a measurement-robust margin and a shape-matched term"
+                     if shaped else "analytic budget with a measurement-robust margin"),
+            "shape_matched": shaped,
+            "shape_matched_status": (
+                "EXPLORATORY. The shape term is post hoc and is not one of the study's registered "
+                "arms; a filter built without it is the registered baseline exactly."
+                if shaped else "off; this is the registered baseline"),
             "rules": {name: {"threshold_m": rule.threshold_m,
                              "train_balanced_accuracy": rule.train_balanced_accuracy,
-                             "coverage_sigma": rule.coverage_sigma}
+                             "coverage_sigma": rule.coverage_sigma,
+                             "shape_channel": (rule.shape or {}).get("channel"),
+                             "shape_weight_m": (rule.shape or {}).get("weight_m")}
                       for name, rule in self.rules.items()},
             "unscored": [name for name in CONSTRAINTS if name not in self.rules],
             "retract_distance_m": self.retract_distance_m,

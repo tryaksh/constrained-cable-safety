@@ -168,3 +168,29 @@ def test_a_real_estimator_can_drive_the_filter_without_the_registered_ladder():
     # An estimator that claims nothing gets no margin, which is the unsafe
     # default and the reason the argument is required rather than optional.
     assert filter_.rules["C1_clip"].margin(declared_error()) == 0.0
+
+
+def test_the_shape_term_shifts_the_score_and_is_off_by_default():
+    plain = build()
+    shaped = SafetyFilter(
+        rules={"C2_bend": ConstraintRule(
+            "C2_bend", threshold_m=0.395, train_balanced_accuracy=0.60,
+            shape={"channel": "min_bend_radius_m", "sign": -1.0, "weight_m": 0.02,
+                   "standardisation": {"mean": 0.05, "scale": 0.01}})},
+        retract_distance_m=0.006)
+    level = level_by_id(CONTRACT, "E0")
+    assert plain.rules["C1_clip"].shape_term(DECISION) == 0.0
+    assert plain.report()["shape_matched"] is False
+    # A cable already bent tighter than the fit's average scores WORSE, because
+    # the channel enters negated: less curvature headroom, less budget.
+    tight = {**DECISION, "min_bend_radius_m": 0.030}
+    loose = {**DECISION, "min_bend_radius_m": 0.070}
+    assert shaped.rules["C2_bend"].shape_term(tight) > 0
+    assert shaped.rules["C2_bend"].shape_term(loose) < 0
+    a = shaped.verdict(tight, action(), RUN, level)["constraints"]["C2_bend"]
+    b = shaped.verdict(loose, action(), RUN, level)["constraints"]["C2_bend"]
+    assert a["endpoint_distance_m"] == b["endpoint_distance_m"], "same motion, same geometry"
+    assert a["score_m"] > b["score_m"], "but the tighter cable scores worse"
+    assert a["headroom_m"] < b["headroom_m"]
+    assert shaped.report()["shape_matched"] is True
+    assert "EXPLORATORY" in shaped.report()["shape_matched_status"]

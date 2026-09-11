@@ -13,9 +13,10 @@ import json
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
-ARMS = ("B0", "B0plus", "B2", "B1", "M", "Mh")
+ARMS = ("B0", "B0plus", "B2", "B1", "M", "Mh", "B0shape")
 LABEL = {"B0": "B0  scalar", "B0plus": "B0+ scalar+margin", "B2": "B2  force only",
-         "B1": "B1  features", "M": "M   shape", "Mh": "Mh  shape+history"}
+         "B1": "B1  features", "M": "M   shape", "Mh": "Mh  shape+history",
+         "B0shape": "B0s scalar+shape term *"}
 
 
 def cell(value, width=7, places=3):
@@ -52,23 +53,27 @@ def main() -> int:
               f"B0 threshold {block['selection']['B0']['threshold_m']:.4f} m")
         levels = list(block["per_level"])
         print("\n  false-safe rate at matched coverage")
-        print("  " + "arm".ljust(20) + "".join(f"{name:>10}" for name in levels))
+        print("  " + "arm".ljust(22) + "".join(f"{name:>10}" for name in levels))
         for arm in ARMS:
+            if not all(arm in block["per_level"][level]["arms"] for level in levels):
+                continue
             row = [block["per_level"][level]["arms"][arm]["false_safe_matched_coverage"]["rate"]
                    for level in levels]
-            print(f"  {LABEL[arm]:<20}" + "".join(cell(v, 10) for v in row))
-        print("  " + "censored share".ljust(20)
+            print(f"  {LABEL[arm]:<22}" + "".join(cell(v, 10) for v in row))
+        print("  " + "censored share".ljust(22)
               + "".join(cell(block["per_level"][level]["censored_rate"], 10)
                         for level in levels))
         print("\n  action-ranking regret")
-        print("  " + "arm".ljust(20) + "".join(f"{name:>10}" for name in levels))
+        print("  " + "arm".ljust(22) + "".join(f"{name:>10}" for name in levels))
         for arm in ARMS:
+            if not all(arm in block["per_level"][level]["arms"] for level in levels):
+                continue
             row = [block["per_level"][level]["arms"][arm]["ranking_regret"]["regret"]
                    for level in levels]
-            print(f"  {LABEL[arm]:<20}" + "".join(cell(v, 10) for v in row))
+            print(f"  {LABEL[arm]:<22}" + "".join(cell(v, 10) for v in row))
         resolutions = {level: block["per_level"][level]["arms"]["B0"]["ranking_regret"]["resolution"]
                        for level in levels}
-        print("  " + "metric resolution".ljust(20)
+        print("  " + "metric resolution".ljust(22)
               + "".join(cell(v, 10) for v in resolutions.values()))
         where = ("FOUND at {level} by {arm}".format(**crossing["crossover"])
                  if crossing["crossover_found"] else "none inside the registered range")
@@ -82,6 +87,10 @@ def main() -> int:
         if key in ("declared_before_collection", "falsification"):
             continue
         print(f"  {key}: {text}")
+    if any("B0shape" in b.get("per_level", {}).get(next(iter(b["per_level"]), ""), {})
+           .get("arms", {}) for b in fit["results"].values() if "per_level" in b):
+        print("  * B0shape is EXPLORATORY and post hoc: it is not one of the six registered arms")
+        print("    and the contract's decision rule does not read it.")
     print()
     return 0
 
