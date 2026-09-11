@@ -136,6 +136,8 @@ def main() -> int:
     parser.add_argument("--work-dir", type=Path, default=Path("artifacts/cable/transfer-v4"))
     parser.add_argument("--layouts", type=int, default=4)
     parser.add_argument("--workers", type=int, default=12)
+    parser.add_argument("--max-cells", type=int, default=0,
+                        help="Run only the first N sweep cells. A smoke check, not the sweep.")
     args = parser.parse_args()
 
     contract = json.loads((ROOT / args.contract).read_text(encoding="utf-8-sig"))
@@ -154,6 +156,8 @@ def main() -> int:
                                    "history": contract["error_model"]["history"]},
                     "constraints": contract["constraints"]}
     cells, started = sweep_cells(base), time.monotonic()
+    if args.max_cells:
+        cells = cells[:args.max_cells]
     records = []
     for number, cell in enumerate(cells):
         cases = build_requests(contract, cell, layouts, seed_base=310000+number*10000)
