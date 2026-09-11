@@ -6,7 +6,7 @@ Read this file explicitly at handover; do not assume your client loads it. Then 
 
 **There is no publication track.** On 2026-09-11 the owner ended it: no workshop paper, no venue. The deliverable is this repository, finished to a standard worth linking from a personal site — readable by a non-specialist in minutes, with every number traceable to an evidence record. Keep it that way. Measuring did not stop; submitting did.
 
-Two questions have been pre-registered and executed. The **safe-repair boundary** (v3) is answered and closed: see [evidence/cable_repair_boundary_v3.json](evidence/cable_repair_boundary_v3.json). Do not re-run it under a changed rule to get a cleaner verdict; the `inconclusive` verdict and the pre-registration defect behind it are the result and stay recorded. The **perception** question (v4) asks how much a safety check must see as the state estimate degrades, and across three constraint shapes; its contract is [configs/cable_perception_v4.json](configs/cable_perception_v4.json) and [ROADMAP.md](ROADMAP.md) carries its verified state.
+Two questions have been pre-registered and executed. The **safe-repair boundary** (v3) is answered and closed: see [evidence/cable_repair_boundary_v3.json](evidence/cable_repair_boundary_v3.json). Do not re-run it under a changed rule to get a cleaner verdict; the `inconclusive` verdict and the pre-registration defect behind it are the result and stay recorded. The **perception** question (v4) asks how much a safety check must see as the state estimate degrades, and across three constraint shapes; its contract is [configs/cable_perception_v4.json](configs/cable_perception_v4.json) and [ROADMAP.md](ROADMAP.md) carries its verified state. The **composition** question (v5) asks whether the check that study produces stays calibrated when motions are chained, which is the question that decides whether any of it is usable by a real task; its contract is [configs/cable_sequence_v5.json](configs/cable_sequence_v5.json) and it can only be frozen after v4 is fitted.
 
 The task is **held, clip-preserving seating before gripper release**. Do not relabel prior seating as recovery, or claim latching, grasp reliability or hardware transfer. A tempting and wrong move, already tried and recorded: widening the support with another mechanical perturbation in the hope of a residual failure. In v2 and v3 every arm was handed the port's live pose at 500 Hz, so mounting offsets and mount compliance were tracked rather than missed (18 of 18, then 15 of 15). v4 removes that: every arm reads a declared *estimate*, ground truth is scoring-only, and a fail-closed privilege guard fails any request whose control-side code touches a truth channel. If you add an arm, it reads the same estimate as every other one. Manufacturing a failure by withholding information from one arm is forbidden and would make the cohort, not measure it.
 
@@ -45,6 +45,9 @@ ROADMAP is the plan; update its verified state. Work through the whole experimen
 | **Why the C2 spec and the error ladder are what they are** | evidence/cable_perception_pilot_v4.json |
 | **The labels re-derived from the ledgers alone** | evidence/cable_perception_replay_v4.json |
 | **How the threshold moves with the cable's own properties** | evidence/cable_transfer_protocol_v4.json |
+| **The shipped safety layer, its envelope and its budget** | src/assembly_recovery/cable_safety_filter_v4.py; scripts/demo_safety_layer_v4.py |
+| **Does the check survive being chained** | configs/cable_sequence_v5.json; evidence/cable_sequence_v5.json |
+| **Run and fit the composition study** | scripts/run_sequence_v5.py; scripts/evaluate_cable_sequence_v5.py; scripts/fit_sequence_v5.py |
 | **Estimate interface, occlusion model and privilege guard** | src/assembly_recovery/cable_perception_v4.py |
 | **The three constraints and the censoring rule** | src/assembly_recovery/cable_constraints_v4.py |
 | **Perception support, error ladder, arms, metrics** | src/assembly_recovery/cable_study_v4.py |
@@ -86,6 +89,15 @@ The perception block, in the order it must be run. Freeze reads the executed scr
 .venv/Scripts/python.exe scripts/replay_perception_v4.py --run-dir artifacts/cable/<id>-s1
 .deps/cable-venv/Scripts/python.exe scripts/render_perception_v4.py
 .deps/cable-venv/Scripts/python.exe scripts/render_perception_video_v4.py --case <request id> --run-dir artifacts/cable/<id>-s1
+```
+
+The composition study runs against the filter the perception block produced, so it can only be frozen after that block is fitted. Its launcher refuses otherwise, on purpose: there is nothing to chain without a fitted check.
+
+```powershell
+.deps/cable-venv/Scripts/python.exe scripts/demo_safety_layer_v4.py --run-dir artifacts/cable/<id>-s1
+.venv/Scripts/python.exe scripts/run_sequence_v5.py --freeze
+.venv/Scripts/python.exe scripts/run_sequence_v5.py --run-id <id> --workers 20 --max-minutes 180
+.venv/Scripts/python.exe scripts/fit_sequence_v5.py --run-dir artifacts/cable/<id>
 ```
 
 Torch lives in `.venv` and MuJoCo, SciPy and Matplotlib in `.deps/cable-venv`; fitting runs in the former and physics and figures in the latter. Hash text provenance with `cable_study_v3.content_sha256`, never raw bytes: a CRLF working tree and the LF blob git stores hash differently, which is how the v2 block came to record a config hash no committed file reproduces.

@@ -41,9 +41,15 @@ It does not settle that the safe-repair boundary is simple in general. It is one
 
 The v3 block itself: 1,440 requests over 60 contexts, 739 reaching held clip-preserving seating, 322 releasing the clip, 379 aborting on load; B0 a single 409.4 mm threshold at a held-out false-safe rate of 0.162; B1 making the identical decision in all 20 held-out contexts; M better in two contexts out of twenty, inside a bootstrap interval spanning zero and worse than B0 on one of its three seeds. Verdict `inconclusive_neither_branch_triggered`, with the pre-registration defect behind it recorded rather than corrected. [Contract](configs/cable_repair_boundary_v3.json), [record](evidence/cable_repair_boundary_v3.json), [controls](evidence/cable_boundary_controls_v3.json), [figure](evidence/cable_repair_boundary_v3.png).
 
+## What the study ships, beyond a number
+
+A predicate that judges one motion is not usable by a cell; nothing in harness work is one motion. [`SafetyFilter`](src/assembly_recovery/cable_safety_filter_v4.py) is the check itself, loading its thresholds out of the evidence record so a shipped filter and a published number cannot drift apart. It scores all three constraints and names the binding one, maps the whole continuous action space in one call so a planner sees the shape of what is allowed, and reports how much of each constraint's headroom a motion spends — which is what a plan needs, because an individually safe step can still leave the next one nothing. A constraint it has no rule for is reported as unscored rather than silently approved, and it runs off the estimator's own declared bias, jitter and worst-case node error rather than off this study's registered ladder.
+
+[The composition study](configs/cable_sequence_v5.json) then asks the question that decides whether any of it is usable: does a check fitted on single motions stay calibrated when motions are chained? Three filtered decisions per sequence, held-out contexts the filter was never fitted on, three supervisors, all three constraints scored continuously and attributed by job time to the step that broke them. Its prediction is split on purpose — the clip budget should compose because the filter measures that quantity directly, curvature and anchor load should not because one rule fitted on a length cannot see them accumulate. Being wrong about either half is a result; the second half holding would be a design consequence, not a score.
+
 ## The single next action
 
-**Fit the executed perception block and apply the registered crossover rule.** Every downstream tool is written, committed and smoke-tested against the pilot: the fitter, the ledger replay, the release figure, the video renderer and the summariser. Nothing in the analysis may be changed after the test split is read.
+**Fit the executed perception block, apply the registered crossover rule, then freeze, commit and run the composition study against the filter it produces.** Every downstream tool is written, committed and smoke-tested: the fitter, the ledger replay, the release figure, the video renderer, the summariser, the safety layer and its demonstration. Nothing in the analysis may be changed after the test split is read.
 
 ## History
 

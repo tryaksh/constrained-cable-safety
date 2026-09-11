@@ -152,3 +152,19 @@ def test_the_sequence_contract_tests_the_filter_it_ships():
     # Three steps is the whole point; a one-step sequence would test nothing.
     assert len(contract["sequence"]["decision_times_s"]) >= 3
     assert len(contract["sequence"]["candidate_actions"]) == 12
+
+
+def test_a_real_estimator_can_drive_the_filter_without_the_registered_ladder():
+    from assembly_recovery.cable_safety_filter_v4 import declared_error
+
+    filter_ = build()
+    # An estimator that reports 1.5 mm of bias, 0.3 mm of jitter and 5 mm of
+    # worst-case error on a node it cannot see. No registered level involved.
+    mine = declared_error(socket_bias_m=0.0015, socket_jitter_m=0.0003,
+                          centreline_occluded_m=0.005)
+    rule = filter_.rules["C1_clip"]
+    assert math.isclose(rule.margin(mine), 0.0015+2*0.0003+0.005, rel_tol=1e-12)
+    assert filter_.verdict(DECISION, action(), RUN, mine)["safe"] in (True, False)
+    # An estimator that claims nothing gets no margin, which is the unsafe
+    # default and the reason the argument is required rather than optional.
+    assert filter_.rules["C1_clip"].margin(declared_error()) == 0.0

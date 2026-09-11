@@ -24,6 +24,15 @@ Three things it does that a per-action yes/no cannot:
                  which is what a multi-step plan actually needs: a step that is
                  individually safe can still leave nothing for the next one.
 
+Using it with a real estimator. Every call takes a ``level``: a dict of what the
+estimator says about its OWN error, not about the world. Three numbers are read
+from it - ``socket_bias_m``, ``socket_jitter_m`` and ``centreline_occluded_m`` -
+so any pose estimator that reports a systematic bias, a jitter standard deviation
+and a worst-case node error can drive this directly. ``declared_error`` builds
+one from those three numbers without needing the study's registered ladder. An
+estimator that reports nothing gets a zero margin, which is the unsafe default and
+is why it has to be passed explicitly rather than defaulted.
+
 Scope. Fitted on one task, one connector, one cable model, in simulation. The
 thresholds are properties of that; the interface is not. Read
 ``evidence/cable_perception_v4.json`` before quoting a number from it.
@@ -48,6 +57,20 @@ HEADROOM_UNITS = {
     "C2_bend": ("metres of bend radius above the declared spec", "larger is safer"),
     "C3_anchor": ("newtons below the declared anchor limit", "larger is safer"),
 }
+
+
+def declared_error(socket_bias_m: float = 0.0, socket_jitter_m: float = 0.0,
+                   centreline_occluded_m: float = 0.0, **extra) -> dict:
+    """What an estimator says about its own error, in the form the filter reads.
+
+    Three numbers, all of which a deployed pose or shape estimator can report:
+    the systematic offset it believes it carries, the standard deviation of its
+    jitter, and the worst-case position error it leaves on a node it cannot see.
+    Nothing here is measured from the world; it is the estimator's own account of
+    itself, which is exactly what a measurement-robust margin is built on.
+    """
+    return {"socket_bias_m": float(socket_bias_m), "socket_jitter_m": float(socket_jitter_m),
+            "centreline_occluded_m": float(centreline_occluded_m), **extra}
 
 
 @dataclass(frozen=True)

@@ -22,6 +22,20 @@ Six arms read the identical estimate and rank the identical actions: the v3 scal
 
 **The block is executing.** 16,080 registered requests over 870 ladder contexts and 180 single-factor isolation cells, held out by whole layout family, in four shards on 20 workers. The contract — the error ladder, the metrics, the margin, the group split, the full request list and a specific falsifiable crossover prediction for each of the three constraints — was frozen and committed at `0842900` before the first request launched. Its verdict lands here when the block is fitted.
 
+## What you can actually use
+
+A predicate that answers *yes or no about one motion* is not much use to a cell. Nothing in harness work is one motion: you seat a connector, dress the cable, clip it, move to the next fixture — and the cable's remaining slack, its tightest bend and the load on its anchor are all carried from one step into the next. So the study ships a **safety layer**, not a number, and then asks whether that layer survives being used the way a real task would use it.
+
+[`SafetyFilter`](src/assembly_recovery/cable_safety_filter_v4.py) loads its thresholds straight out of the evidence record, so a shipped filter and a published number cannot drift apart. It does three things a per-action verdict cannot:
+
+- **`verdict`** scores all three constraints and names which one a motion would break, reporting a constraint it has no rule for as *unscored* rather than silently approving it.
+- **`envelope`** maps the whole continuous action space in one call — retreat × bearing × excursion — so a planner sees the shape of what is allowed instead of probing it action by action.
+- **`budget`** reports how much of each constraint's headroom a motion spends, because a step that is individually safe can still leave the next one nothing.
+
+It runs off *the estimator's own account of itself* — a systematic bias, a jitter standard deviation and a worst-case error on a node it cannot see — so any pose estimator that reports those three numbers can drive it without the study's registered ladder.
+
+**And then the harder question: does it chain?** [A separate pre-registered study](configs/cable_sequence_v5.json) issues three filtered decisions in one sequence on held-out contexts the filter was never fitted on, against three supervisors — the filter taking the largest safe motion, the same filter taking the most cautious one, and no filter at all. Its prediction is deliberately split: the *clip budget* should compose, because the filter measures that quantity directly at every step and therefore tracks its own spending; *curvature and anchor load should not*, because the filter carries one rule fitted on a length and has no way to see curvature accumulating or load being carried forward. If that second half holds, the consequence is a design one rather than a score — a safety layer has to be fitted per constraint shape, not fitted once and reused.
+
 ## Study 1 — the 409 mm rule
 
 **1,440 physical repair attempts** across 60 registered cable layouts and mounting conditions — 101.7 million simulation steps and 9.1 worker-hours in 46 minutes of wall time, every request kept in the denominator.
@@ -101,11 +115,20 @@ Six defects surfaced during this work. They are listed because finding them was 
 .deps/cable-venv/Scripts/python.exe scripts/render_perception_v4.py --fit evidence/my-fit.json --out evidence/my-fig.png
 ```
 
+Then the layer, and whether it chains:
+
+```powershell
+.deps/cable-venv/Scripts/python.exe scripts/demo_safety_layer_v4.py --run-dir artifacts/cable/my-run-s1
+.venv/Scripts/python.exe scripts/run_sequence_v5.py --freeze
+.venv/Scripts/python.exe scripts/run_sequence_v5.py --run-id my-sequence --workers 20
+.venv/Scripts/python.exe scripts/fit_sequence_v5.py --run-dir artifacts/cable/my-sequence
+```
+
 Freezing refuses to run if fewer layouts survived the screen than the contract needs, or if the split would leave fewer held-out contexts per error level than the metric resolution requires. The runner refuses to launch if the frozen task it merges onto is not the one the contract declares. The launcher captures commit, dirty state, source archive, asset hashes, environment and command before the worker starts, and reserves an immutable run id.
 
 **Collection is CPU-only, and that is a constraint rather than a preference.** MuJoCo's native step is CPU, and the GPU path (MJX) does not support this scene's cable elasticity plugin, composite bodies or elliptic friction cone — moving collection to the GPU would mean a different cable model and would invalidate every comparison with the earlier blocks. The lever that does exist is worker count: on 24 physical cores this task sustains **28,086 aggregate native steps/s on 12 workers against 44,966 on 20**, a 1.60× speedup for a 6.6% per-worker loss. Model fitting takes `--device cuda` where a CUDA build of torch is installed; those fits are minutes beside hours of collection.
 
-498 tests run without a GPU, a simulator or any ignored artifact.
+513 tests run without a GPU, a simulator or any ignored artifact.
 
 ## Scope
 
