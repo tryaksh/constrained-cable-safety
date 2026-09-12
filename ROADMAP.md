@@ -82,4 +82,4 @@ A predicate that judges one motion is not usable by a cell; nothing in harness w
 
 ## History
 
-Closed cycles, the preserved peg study, the first free-cable cycle and the earlier adaptive-sampling design are kept verbatim in [evidence/roadmap_history_v1.json](evidence/roadmap_history_v1.json) with their original evidence files unchanged. The v2 task and gate block are in [evidence/cable_recovery_block_v2.json](evidence/cable_recovery_block_v2.json) and its [independent replay](evidence/cable_recovery_replay_v2.json). [evidence/INDEX.json](evidence/INDEX.json) lists every record with its declared id, status and scope.
+Closed cycles from before this repository existed - the retired peg study, the first free-cable cycle and the earlier adaptive-sampling design - stayed behind in the space-robotics repository this work was carved out of, with their original evidence files unchanged. The v2 task and gate block are in [evidence/cable_recovery_block_v2.json](evidence/cable_recovery_block_v2.json) and its [independent replay](evidence/cable_recovery_replay_v2.json). [evidence/INDEX.json](evidence/INDEX.json) lists every record with its declared id, status and scope.
