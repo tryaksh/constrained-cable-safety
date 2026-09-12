@@ -1,0 +1,342 @@
+{
+ "schema": 1,
+ "id": "cable_routing_v6",
+ "status": "frozen_study_contract",
+ "created_on": "2026-09-12",
+ "scope": "Routing study for the constrained-cable safety layer. One request is one ROUTE through a five-clip CAD-authored cell: the cable is installed through every clip, settled, and a named supervisor is offered a decision at each of five registered decision points. Success is EVERY required clip still retained AND the connector seated for the declared dwell. Endpoint is held, clip-preserving seating before gripper release, extended from one clip to five. Not official AIC scoring, not a released or latched connection, not learned pickup, not camera perception and not a hardware claim.",
+ "question": "A safety check fitted on single motions, and measured to lose calibration over a three-decision chain on the one constraint it reads directly - does it still earn its place over a five-clip route, which is a longer chain in a cell it was never fitted on?",
+ "why_this_question": "The composition study answered two things and opened one. It answered that the filter is worth having over a sequence: without it the cable came out of the clip in 240 of 240 sequences at every error level. It answered that the check does NOT compose on C1 - the per-step clip-budget violation rate rose 0.089 from the first decision to the third at 2 mm of error, past the registered margin, because every accepted step spends slack the next step is judged against. What it could not answer is where that rise settles, because three steps is a short chain. A five-clip route is the shortest thing that is recognisably harness work and it is a longer chain than anything measured here. If the rise continues, a planner cannot chain this check at all past a couple of steps and has to re-fit per route length. If it flattens, the single-step number is a bounded underestimate and an engineer can budget for it.",
+ "what_this_is_not": "It is not a planning contribution, not a new safety method and not a refit. The check under test is the one the perception study fitted, loaded from that study's evidence record unchanged. It is also NOT a rescoring of the composition study under a new task: that block keeps its own numbers, this one is a new task version, and the two are reported side by side and never merged.",
+ "extension_not_relabelling": "The composition study's endpoint was one required clip preserved across three decisions. This endpoint is FIVE required clips preserved across five decisions plus a seated connector. Strictly more is required of a success here than there, the cell is different geometry, and no earlier request is rescored under this definition.",
+ "base_config": {
+  "path": "configs/cable_recovery_task_v2.json",
+  "content_sha256": "34d08b3b6c10dcf603ea78d1bf9050e0edca7cc85b88c927b1f0c90b93ff011f"
+ },
+ "cell": {
+  "candidates": "configs/cable_cell_v6_candidates.json",
+  "screen": "evidence/cable_cell_screen_v6.json",
+  "cad": "evidence/cable_cell_cad_v6.json",
+  "registered_cell": "RC1",
+  "why_this_cell": "It is the candidate that survived at the most service loops in the registered screen - 6 of 7, against 2, 1 and 0 for the other three declared candidates - which is the selection rule the candidate file declared before the screen ran.",
+  "collision": "The CAD meshes are VISUAL geoms, contype=0 conaffinity=0 group=2 mass=0. The cable collides with the primitive boxes and cylinders build_fixture writes, which is bit-identical to the scene every published number was measured in. Measured, not asserted: settling with and without the meshes agrees to 0.0 m at three service loops.",
+  "asset_hashes": "Every mesh's SHA-256 on LF-normalised bytes is in evidence/cable_cell_cad_v6.json and is written into every compiled scene report, so a later tool can check it is showing the cell that was measured.",
+  "candidates_content_sha256": "9b51a7d9f9e2ff737dc5ee5272685a8b06e5eeef7dc116ce17839df2ab31f5c1",
+  "screen_content_sha256": "e8b9e92d3cd8950f806d9cd1cb963970dd31fb0b685aa68bb12c643436899051",
+  "cad_content_sha256": "5dfae770e81eab5e94189bb214fb9458b4f3e8b5036330c4b704a7926488f953",
+  "asset_sha256": {
+   "board": "6c1e3c1e771ef7397016d37cc19f8453b8eb4e5a81f3731a4b58e2781f434083",
+   "c1": "6d8626dd59f178bbcec2d06c08da5d7624a3fa45b3920f4718210412c066367e",
+   "c2": "f9afa50155f35ff23fbb568484b26f67ac6be287914ea03d665a04ca69422088",
+   "c3": "9ce92e35644c286059024e37c78549d44ca5bd321f23230531c9ef65713f29bf",
+   "c4": "9fee52459b2c82256278062e7d898d4128c86e14af2d16cee8fb7272c3d14cb0",
+   "c5": "3635f07cbc87fd95335ef94de3ca7d038d503c547081fa5d20e4644bdc8d44a4",
+   "clamp": "d220092fca4a680d7a844d90047241953e4fce373815c13ffb624f4e768197c7",
+   "socket": "38e43b8896617110eed2a3243a4c730a8a5b2fb8169e4f15f4ad7a5d208d9ca5"
+  }
+ },
+ "safety_filter": {
+  "fit": "evidence/cable_perception_v4.json",
+  "contract": "configs/cable_perception_v4.json",
+  "base": "configs/cable_recovery_task_v2.json",
+  "arm": "B0plus: the analytic budget carrying a margin sized from the declared estimator covariance",
+  "not_refitted": "The thresholds come out of the perception study's record unchanged.",
+  "fitted_on_single_clip_layouts": "The filter was fitted on single-clip layouts and has never seen a five-clip cell. That is not a confound to be removed; it is the deployment situation the study is about, and it is declared here so the result is read as what it is - a shipped check applied to a longer chain in new geometry.",
+  "loaded_at_freeze": {
+   "kind": "analytic budget with a measurement-robust margin",
+   "shape_matched": false,
+   "shape_matched_status": "off; this is the registered baseline",
+   "rules": {
+    "C1_clip": {
+     "threshold_m": 0.41364132161414274,
+     "train_balanced_accuracy": 0.7439452628687202,
+     "coverage_sigma": 2.0,
+     "shape_channel": null,
+     "shape_weight_m": null
+    },
+    "C2_bend": {
+     "threshold_m": 0.414370929950032,
+     "train_balanced_accuracy": 0.5442108859078006,
+     "coverage_sigma": 2.0,
+     "shape_channel": null,
+     "shape_weight_m": null
+    },
+    "C3_anchor": {
+     "threshold_m": 0.40756645091981014,
+     "train_balanced_accuracy": 0.7109765119066107,
+     "coverage_sigma": 2.0,
+     "shape_channel": null,
+     "shape_weight_m": null
+    }
+   },
+   "unscored": [],
+   "retract_distance_m": 0.006,
+   "source": {
+    "fit": "D:/constrained-cable-safety/evidence/cable_perception_v4.json",
+    "contract": "D:/constrained-cable-safety/configs/cable_perception_v4.json",
+    "fit_id": "cable_perception_v4_fit",
+    "created_on": "2026-09-11",
+    "arm": "B0plus",
+    "shape_matched": false
+   },
+   "scope": "Fitted on one task, one connector and one cable model, in simulation. The thresholds are properties of that. No hardware, no force-certified safety claim, and no guarantee outside the registered action space."
+  }
+ },
+ "route": {
+  "decision_times_s": [
+   2.0,
+   4.0,
+   6.0,
+   8.0,
+   10.0
+  ],
+  "decision_times_note": "Five decision points, 2 s apart. A step is offered only when the controller is idle: a supervisor cannot interrupt a motion it already issued, so the effective times slip later than these and the recorded time_s of each step is what is analysed.",
+  "candidate_actions": [
+   {
+    "retreat_m": 0.0,
+    "bearing_rad": 0.0,
+    "excursion_m": 0.0,
+    "speed_m_per_s": 0.02
+   },
+   {
+    "retreat_m": 0.03,
+    "bearing_rad": 0.0,
+    "excursion_m": 0.0,
+    "speed_m_per_s": 0.02
+   },
+   {
+    "retreat_m": 0.06,
+    "bearing_rad": 0.0,
+    "excursion_m": 0.0,
+    "speed_m_per_s": 0.02
+   },
+   {
+    "retreat_m": 0.08,
+    "bearing_rad": 0.0,
+    "excursion_m": 0.0,
+    "speed_m_per_s": 0.02
+   },
+   {
+    "retreat_m": 0.1,
+    "bearing_rad": 0.0,
+    "excursion_m": 0.0,
+    "speed_m_per_s": 0.02
+   },
+   {
+    "retreat_m": 0.06,
+    "bearing_rad": 0.0,
+    "excursion_m": 0.03,
+    "speed_m_per_s": 0.02
+   },
+   {
+    "retreat_m": 0.06,
+    "bearing_rad": 3.141593,
+    "excursion_m": 0.03,
+    "speed_m_per_s": 0.02
+   },
+   {
+    "retreat_m": 0.06,
+    "bearing_rad": 1.570796,
+    "excursion_m": 0.03,
+    "speed_m_per_s": 0.02
+   },
+   {
+    "retreat_m": 0.06,
+    "bearing_rad": 4.712389,
+    "excursion_m": 0.03,
+    "speed_m_per_s": 0.02
+   },
+   {
+    "retreat_m": 0.09,
+    "bearing_rad": 0.0,
+    "excursion_m": 0.03,
+    "speed_m_per_s": 0.02
+   },
+   {
+    "retreat_m": 0.09,
+    "bearing_rad": 3.141593,
+    "excursion_m": 0.03,
+    "speed_m_per_s": 0.02
+   },
+   {
+    "retreat_m": 0.03,
+    "bearing_rad": 3.141593,
+    "excursion_m": 0.05,
+    "speed_m_per_s": 0.02
+   }
+  ],
+  "candidate_actions_note": "The twelve shared core actions of the perception study and the composition study, unchanged, offered identically at every step to every supervisor. Changing them would break the comparison with both.",
+  "supervisors": [
+   {
+    "id": "filtered",
+    "rule": "Apply the loaded safety filter and issue the LARGEST motion it calls safe. The perception study's registered supervisor procedure, run five times."
+   },
+   {
+    "id": "conservative",
+    "rule": "Apply the same filter and issue the motion with the most HEADROOM instead. Same information, different appetite. The composition study found this dominated - 8 clips lost against 32, 72 routes completed against 48 at E0 - POST HOC and with no verdict. Registering it here is the promotion that finding earned."
+   },
+   {
+    "id": "unfiltered",
+    "rule": "Issue the largest motion regardless. The reference that says what the filter is worth over a route."
+   }
+  ]
+ },
+ "runtime_overrides": {
+  "force_guided_controller": {
+   "repair_settle_s": 0.5,
+   "max_retries": 10,
+   "max_retries_note": "Raised from the composition study's 6 so that five issued motions plus the controller's own force retries fit inside one job. The retry budget is shared, exactly as in every other block, and a supervisor that exhausts it is recorded as having done so.",
+   "deadline_s": 115.0
+  },
+  "render_visuals": false,
+  "job_limits": {
+   "deadline_s": 115.0
+  },
+  "job_limits_note": "Raised from the composition study's 75 s, because a request here is five motions plus the approach and the seating that follows them, against three there. Sized from the pilot, not guessed: the pilot's longest completed route is recorded in the freeze. Every other limit - wrist force, plug force, anchor force, dwell - is unchanged from the registered task."
+ },
+ "registered_support": {
+  "cell": "RC1",
+  "groups": [
+   "RC1_l15",
+   "RC1_l20",
+   "RC1_l25",
+   "RC1_l30",
+   "RC1_l40",
+   "RC1_l45"
+  ],
+  "rule": "Every (cell, installed service loop) the registered screen accepted, crossed with both port mounts and a declared number of perception draws.",
+  "port_mount": [
+   "rigid",
+   "compliant4000"
+  ],
+  "error_levels": [
+   "E0",
+   "E2",
+   "E4"
+  ],
+  "error_levels_note": "The anchor, the middle of the ladder and its top, matching the composition study exactly so the two are comparable step for step.",
+  "support_limitation": "The support is ONE cell at six installed service loops, crossed with two port mounts and five mounting offsets - 60 physical contexts, not ten held-out layouts. A five-clip route that installs at all is a narrow object: the registered screen rejected 19 of 28 declared cells and three of the four declared candidates survived at two loops or fewer. Physical diversity here is thinner than the composition study's and a finding is a statement about this cell.",
+  "mount_offsets_m": [
+   [
+    0.0,
+    0.0
+   ],
+   [
+    0.0004,
+    0.0
+   ],
+   [
+    -0.0004,
+    0.0
+   ],
+   [
+    0.0,
+    0.0004
+   ],
+   [
+    0.0,
+    -0.0004
+   ]
+  ],
+  "mount_offsets_note": "A declared mounting offset of the socket, in the measured tip frame - the registered local fault of this task, which v2 already used to separate nominal from offset requests. Five positions: nominal and 0.4 mm on each lateral axis, well inside the 1 mm seating tolerance. It is here because it is the only factor that makes two E0 routes physically different: at E0 the estimate IS the truth, so a second perception draw would be a byte-identical repeat. Measured on the pilot, not assumed - at E0 the offsets flip conservative-supervisor outcomes within a single group.",
+  "repeats_by_error_level": {
+   "E0": 1,
+   "E2": 6,
+   "E4": 6
+  },
+  "repeats_note": "Perception draws per physical context. ONE at E0, because the estimate a supervisor reads at E0 is the truth exactly and further draws would be duplicates that inflate n without adding information; the composition study took four there and its E0 resolution was optimistic by that factor. SIX at E2 and E4, where a draw is a genuine second sample: a per-episode bias direction, correlated jitter, node dropout and a disturbance force. Seeds are distinct and registered."
+ },
+ "first_calibration_seed": 161000,
+ "perception_seed_offset": 900000,
+ "expected_requests": 2340,
+ "labels": {
+  "primary": "Whether each constraint was violated at any point in the route, and at which step.",
+  "route_completed": "Every required clip retained AND the connector seated for the declared dwell. Strictly stronger than the composition study's completion.",
+  "per_step": "Each step records what the supervisor chose, whether it abstained, the filter's per-constraint verdict and headroom, the BUDGET the motion spends on each constraint, the per-clip retention picture before and after the motion, and whether the motion finished.",
+  "per_clip": "Which clip was lost, at what job time, and which step was running - a five-clip route can lose a clip the supervisor never went near, so a loss is attributed to a clip as well as to a step.",
+  "censoring": "Identical to the perception and composition studies: a route cut short by the force abort, the deadline or an infeasible construction is CENSORED on every constraint it had not already violated, and is never counted as having respected one.",
+  "denominator": "Every registered route counts, including settling rejections, infeasible constructions and aborts.",
+  "per_step_censoring": "A step is CENSORED if its motion was issued but did not finish. A step whose motion completed and did not break the constraint is counted as respecting it even if the route was later cut short at a different step. A step nobody issued is neither."
+ },
+ "decision_rule": {
+  "margin": 0.05,
+  "margin_units": "absolute, on a per-step violation rate",
+  "metric": "Per-step violation rate for each constraint: of the motions issued at step k, and completed, by routes that reached step k with the constraint still intact, the fraction that broke it during step k. Computed for each supervisor and each error level. Steps nobody issued, and steps whose motion was cut short, are counted and reported beside the rate rather than inside it.",
+  "margin_resolution_rule": "The margin must be at least twice the coarsest metric resolution in play, checked in code before the freeze is written, LEVEL BY LEVEL so a well-sized E4 cannot hide an unresolvable E0. A per-step rate computed over fewer than 40 surviving routes cannot resolve a 0.05 margin and is reported as unresolvable rather than as a number. If the check refuses, the block adds routes; the margin is never lowered.",
+  "prediction": {
+   "declared_before_collection": true,
+   "p1_the_filter_still_earns_its_place": "The unfiltered supervisor loses at least one required clip in more routes than the filtered supervisor by MORE than the margin, at every error level. The composition study measured a gap of 0.600, 0.431 and 0.455 over three steps; five steps and five clips should not reverse that.",
+   "p2_c1_keeps_decaying": "For the supervisor that actually reaches step 5 - the conservative one, by the pilot's measurement - the per-step C1 violation rate rises by MORE than the margin between step 1 and step 5 at E2 and E4. This is the continuation prediction: the composition study measured +0.089 over three steps at E4, and the mechanism it identified, each accepted step spending slack the next is judged against, does not stop at step three. Where a supervisor does not reach step 5 the rate is reported as unresolvable, not as a number.",
+   "p3_appetite_beats_representation": "The conservative supervisor completes more routes than the filtered supervisor by more than the margin at E0 and E2, and the advantage collapses to inside the margin at E4. This is the composition study's post-hoc appetite finding, stated as a registered prediction with its collapse included, so that being wrong about the collapse is also a result.",
+   "falsification": "Each prediction is falsifiable on its own and being wrong about any of them is a result. The interesting failure is p2 flattening: it would say the chain decay is bounded rather than compounding, which is the difference between a check a planner can budget for and one it cannot use past a couple of steps.",
+   "what_would_make_this_uninformative": "The pilot already shows that filtered and unfiltered both lose a clip at the first step in most contexts, so their per-step rates at steps 2 to 5 will be computed over very little and are expected to be unresolvable. That is declared here in advance: those cells will be reported as unresolvable rather than as numbers, and the route-level rates will carry the comparison for those two arms. The five-step chain evidence comes from the conservative arm."
+  },
+  "reporting": "Per-step rates, cumulative rates, abstention counts, route completion, per-clip loss attribution, and the budget spent per step, for every supervisor at every error level. Attribution is by job time, because detour progress restarts at every step and cannot order events across a route."
+ },
+ "controls": {
+  "filter_is_the_shipped_one": "Constructed by assembly_recovery.cable_safety_filter_v4.SafetyFilter.from_evidence and its report is written into every request record, so what ran and what is published cannot drift apart.",
+  "privilege_guard": "Unchanged: control-side reads of a scoring-only channel fail the request, and the positive control that proves the guard fires is the perception study's.",
+  "mutation_guard": "Unchanged and armed on every request.",
+  "refactor_did_not_change_the_task": "The multi-clip scene refactor was verified against the pre-refactor code on two registered perception contexts: byte-identical compiled scene XML and settled centreline agreement of 0.0 m. Recorded in artifacts/cell/scene.json.",
+  "cad_did_not_change_the_physics": "Settling with and without the CAD meshes agrees to 0.0 m at three service loops."
+ },
+ "scope_and_limitations": [
+  "Simulation only. No hardware access, connector transfer, released retention or force-certified safety claim.",
+  "ONE cell. The support is one five-clip geometry at six service loops, not a family of layouts; the screen rejected most of what was drawn. A finding is a statement about this cell.",
+  "Five steps is a longer chain than three, not a long chain. It can show whether a rate is still rising at step five; it cannot establish where it settles.",
+  "One filter is tested, the analytic one, fitted on single-clip layouts. A finding that it fails to compose is a statement about THAT filter.",
+  "The candidate action set is the perception study's twelve. A supervisor with a richer action space might spend its budget differently.",
+  "The error model is a model of how perception fails, not camera perception.",
+  "C2 stays scoped to the 23-segment cable model at 4 kHz: the minimum bend radius does not agree across refinements.",
+  "The five-second settling deadline is part of the task definition, not an approximation to rest, and is unchanged.",
+  "The filter is applied to a cell whose slack geometry differs from the one it was fitted on. That is the deployment situation under test, not a confound that was overlooked, and it was measured in the pilot above before any request was scored."
+ ],
+ "frozen_counts": {
+  "registered_groups": 6,
+  "port_mounts": 2,
+  "mount_offsets": 5,
+  "repeats_by_error_level": {
+   "E0": 1,
+   "E2": 6,
+   "E4": 6
+  },
+  "routes_per_cell_by_error_level": {
+   "E0": 60,
+   "E2": 360,
+   "E4": 360
+  },
+  "error_levels": 3,
+  "supervisors": 3,
+  "steps_per_request": 5,
+  "required_clips": 5,
+  "routes_per_level_and_supervisor": 60,
+  "per_step_metric_resolution": 0.016666666666666666,
+  "requests": 2340,
+  "decisions": 11700
+ },
+ "pilot": {
+  "declared": true,
+  "status": "Run before the freeze, scored by nothing, in no denominator.",
+  "what_was_piloted": "21 single-action probes over three registered groups, sweeping the commanded retreat from 4 to 50 mm, and 42 mounting-offset probes over two groups and three supervisors. 63 pilot requests, 376 worker-seconds.",
+  "measurement_1_what_the_cell_admits": {
+   "result": "A five-clip route admits a commanded retreat of about 18 mm. At 4, 8, 12 and 18 mm the route completes: five motions issued, five finished, all five clips retained, connector seated. At 25 mm a clip goes at the fifth step, at 35 mm at the third, at 50 mm at the first.",
+   "why": "The cable is pinned at five points, so the only slack a retreat can draw on is the span between the boot and the first clip. The single-clip cell could straighten 45 mm of routed cable; this one cannot."
+  },
+  "measurement_2_what_the_filter_permits": {
+   "result": "The shipped filter's tightest effective threshold on this cell is 0.4076 m at E0 against an installed boot-to-anchor distance of 0.348 m, so it carries 58 mm of headroom and approves eleven of the twelve registered candidate motions. It refuses only the largest. The motion it then issues has an endpoint distance of 0.401 m and spends 82 per cent of the headroom it reports, and the cell loses a clip on that motion.",
+   "why_this_is_the_question_and_not_a_bug": "The threshold is a fitted property of the cell it was fitted on - how much cable lies between the boot and the anchor, and how much of it can straighten. It is not a property of the cable. Applying it unchanged to a longer route is exactly what a shipped scalar check invites an engineer to do, and measuring what happens is the point of this block. The filter is NOT refitted and the action set is NOT rescaled to flatter it: either would answer a different question."
+  },
+  "measurement_3_the_arms_are_distinct": "Verified on the pilot rather than assumed: from the same state, unfiltered issues candidate 4 (magnitude 0.106 m, endpoint 0.4256 m), filtered issues candidate 9 (0.1006 m, 0.401 m) because the filter refuses the largest, and conservative issues candidate 0 (0.006 m, 0.3481 m). Three different motions.",
+  "measurement_4_the_budget_decays_and_is_visible": "The conservative supervisor's reported C1 headroom over five steps at one pilot context: 0.0699, 0.0666, 0.0633, 0.0600, 0.0567 m - 3.3 mm spent per step, with a spent fraction rising 0.061 to 0.078. That is the composition mechanism measured directly, per step, and it is what the workbench renders.",
+  "measurement_5_cost": {
+   "requests": 21,
+   "mean_wall_seconds": 17.9,
+   "max_wall_seconds": 32.8,
+   "mean_native_plus_settle_steps": 82639,
+   "max_steps": 144977,
+   "full_five_step_route_mean_wall_seconds": 27.8,
+   "note": "Measured on 3 workers. The block is sized from this, not extrapolated from the composition study's three-motion cost."
+  },
+  "considered_and_not_registered": "A fourth supervisor capping the fraction of reported headroom one step may spend - the obvious engineering fix, and it uses only what the shipped layer already reports. The pilot measured the spent fractions the registered action set produces: 0.061 for the smallest motion and 0.819 for the one the filter issues, with nothing between them at the first step. A fair-share cap of one fifth would therefore select the smallest motion and be indistinguishable from the conservative arm, and any cap that separates them would have to be tuned. It needs its own action set and its own sizing, so it is left to the workbench session rather than registered here half-sized.",
+  "what_the_pilot_did_not_change": "Not the action set, not the filter, not the cell, not the margin, not the retention predicate and not the settling deadline. It set the job deadline, the retry budget and the block size."
+ }
+}

@@ -34,7 +34,7 @@ import sys
 from pathlib import Path
 
 import FreeCAD as App  # noqa: N813
-import Mesh
+import Mesh  # noqa: F401 - importing it registers the mesh writers MeshPart needs
 import MeshPart
 import Part
 
@@ -212,7 +212,7 @@ def main() -> int:
                       .read_text(encoding="utf-8-sig"))
     screen = json.loads((ROOT / "evidence/cable_cell_screen_v6.json")
                         .read_text(encoding="utf-8"))
-    cell_id = screen["registered_cell"] if "registered_cell" in screen else "RC1"
+    cell_id = screen.get("registered_cell", "RC1")
     layout = next(entry for entry in candidates["layouts"] if entry["id"] == cell_id)
     accepted = [a for a in screen["accepted_cell_detail"] if a["layout"] == cell_id]
     if not accepted:

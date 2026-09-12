@@ -41,7 +41,6 @@ from __future__ import annotations
 
 import argparse
 import json
-import os
 import subprocess
 import sys
 import tempfile
@@ -151,18 +150,18 @@ PRIMITIVES = """      <geom name="c_base" type="box" size="0.015 0.009 0.0015" p
 
 def assets_block(meshdir: Path) -> str:
     return "\n".join(
-        '    <mesh name="%s" file="probe_%s.stl" scale="0.001 0.001 0.001"/>' % (name, name)
+        f'    <mesh name="{name}" file="probe_{name}.stl" scale="0.001 0.001 0.001"/>'
         for name in NAMES)
 
 
 def visual_meshes() -> str:
     return "\n".join(
-        '      <geom name="v_%s" type="mesh" mesh="%s" contype="0" conaffinity="0" '
-        'group="2" rgba=".6 .62 .68 1"/>' % (name, name) for name in NAMES)
+        f'      <geom name="v_{name}" type="mesh" mesh="{name}" contype="0" conaffinity="0" '
+        f'group="2" rgba=".6 .62 .68 1"/>' for name in NAMES)
 
 
 def collide_meshes() -> str:
-    return "\n".join('      <geom name="m_%s" type="mesh" mesh="%s"/>' % (name, name)
+    return "\n".join(f'      <geom name="m_{name}" type="mesh" mesh="{name}"/>'
                      for name in NAMES)
 
 
