@@ -1,113 +1,103 @@
 # Agent instructions
 
-Read this file explicitly at handover; do not assume your client loads it. Then read [ROADMAP.md](ROADMAP.md) for the verified state and the single next action, and [README.md](README.md) for the explanation and prior-art boundaries. These three files are the only maintained Markdown. Use the tools your client actually has; tool names and agent ids from a previous assistant are history, not requirements.
+Read this file at handover. Then [ROADMAP.md](ROADMAP.md) for verified state and
+the one next action, and [README.md](README.md) for what the project is. These
+three are the only maintained Markdown. Use the tools your client actually has;
+tool names from a previous assistant are history, not requirements.
 
-## Current mandate
+## Mandate
 
-**There is no publication track.** On 2026-09-11 the owner ended it: no workshop paper, no venue. The deliverable is this repository, finished to a standard worth linking from a personal site — readable by a non-specialist in minutes, with every number traceable to an evidence record. Keep it that way. Measuring did not stop; submitting did.
+**There is no publication track.** The owner closed it on 2026-09-11: no paper,
+no venue. The deliverable is this repository, finished to a standard worth
+linking from a personal site. Measuring did not stop; submitting did.
 
-Two questions have been pre-registered and executed. The **safe-repair boundary** (v3) is answered and closed: see [evidence/cable_repair_boundary_v3.json](evidence/cable_repair_boundary_v3.json). Do not re-run it under a changed rule to get a cleaner verdict; the `inconclusive` verdict and the pre-registration defect behind it are the result and stay recorded. The **perception** question (v4) asks how much a safety check must see as the state estimate degrades, and across three constraint shapes; its contract is [configs/cable_perception_v4.json](configs/cable_perception_v4.json) and [ROADMAP.md](ROADMAP.md) carries its verified state. The **composition** question (v5) asks whether the check that study produces stays calibrated when motions are chained, which is the question that decides whether any of it is usable by a real task; its contract is [configs/cable_sequence_v5.json](configs/cable_sequence_v5.json) and it can only be frozen after v4 is fitted. The **routing** question (v6) asks whether that check still earns its place over a five-clip harness route in a cell it was never fitted on; its contract is [configs/cable_routing_v6.json](configs/cable_routing_v6.json) and its cell is the one [the screen](evidence/cable_cell_screen_v6.json) registered.
+**All four measurement questions are closed.** Do not start a fifth, do not refit
+the safety layer, and do not re-run a fitted block for nicer numbers. What remains
+is in [docs/handover/v7_final_session.txt](docs/handover/v7_final_session.txt),
+which is the last planned session: a local tool, and a public demonstration the
+owner has explicitly authorized.
 
-The task is **held, clip-preserving seating before gripper release** — in the routing study, extended so that *every* required clip of a five-clip route must still be held, which is strictly more than one and is a new task version rather than a relabelling. No earlier block is rescored under it. Do not relabel prior seating as recovery, or claim latching, grasp reliability or hardware transfer. A tempting and wrong move, already tried and recorded: widening the support with another mechanical perturbation in the hope of a residual failure. In v2 and v3 every arm was handed the port's live pose at 500 Hz, so mounting offsets and mount compliance were tracked rather than missed (18 of 18, then 15 of 15). v4 removes that: every arm reads a declared *estimate*, ground truth is scoring-only, and a fail-closed privilege guard fails any request whose control-side code touches a truth channel. If you add an arm, it reads the same estimate as every other one. Manufacturing a failure by withholding information from one arm is forbidden and would make the cohort, not measure it.
+The task is **held, clip-preserving seating before gripper release** — extended in
+the routing study so that *every* required clip of a five-clip route must still be
+held. That is a new task version, not a relabelling, and no earlier block is
+rescored under it. Do not claim latching, grasp reliability or hardware transfer.
 
-**Two instrument findings constrain what may be claimed**, both in [evidence/cable_discretisation_v4.json](evidence/cable_discretisation_v4.json). The cable model *does* refine: the v3 refinement failure was a bending-damping scaling error in the control that tested it, and a fourfold refinement now settles at three integration rates. But the routed cable is **not at rest** at the registered five-second settling deadline — it slides along the clip channel and comes to rest against the clip wall, which is exactly where the retention predicate's lateral test sits. The deadline is therefore part of the task definition, not an approximation to rest. Do not lengthen it, and do not change the retention predicate; either would change the task and invalidate every comparison with v2 and v3.
+## How to work
 
-## Work autonomously
+Work autonomously with bounded jobs and one serial simulator queue. Ask only for a
+genuinely missing external resource or a real scope decision; resolve ordinary
+implementation choices yourself. Keep done-conditions on disk, commit at every
+stage boundary, verify per stage rather than at the end, and do not poll long runs.
 
-ROADMAP is the plan; update its verified state. Work through the whole experiment cycle with bounded jobs, one serial GPU queue, and time reserved for verification and handoff. Ask only for a genuinely missing external resource or a real high-level scope decision; resolve ordinary implementation choices yourself. Suggest a manual action only after identifying a concrete obstacle it would clear faster, and then give a prepared case and an exact short instruction.
+## Rules that decide results
 
-## Scientific and engineering rules
+1. Report the controller that produced the actions. No inherited historical
+   success rates.
+2. Keep task, observations, geometry, force budget and success criteria identical
+   across a comparison. A task correction invalidates affected comparisons: keep
+   the previous result and rerun both arms.
+3. Inside a job there is no reset, pose write, teleport or attachment change.
+   Count any such event as a failed job.
+4. Success requires the declared dwell. Include failures, force violations,
+   aborts, infeasible constructions and timeouts in denominators.
+5. Freeze support, action design, error model, split, metric resolutions, margin
+   and predictions in a config, and **commit before launch**. The margin must be
+   at least twice the coarsest metric resolution, checked in code. Never lower a
+   margin to pass.
+6. Every arm reads the same estimate. Ground truth is scoring-only and the
+   privilege guard stays armed with its positive control passing.
+7. A request cut short is **censored**, never counted as respecting a constraint
+   it never got to test.
+8. Keep failed experiments, rejections and losing arms as immutable JSON with
+   their scope. Correct an interpretation in place with an explicit `superseded`
+   field; never delete one.
+9. Post-hoc findings are labelled post-hoc and carry no verdict.
+10. Capture commit, dirty state, source hashes, config, seeds and environment
+    **before** launch. Primary results need a clean tree.
+11. Simulator pose plus noise is not perception. Simulation is not hardware
+    transfer. No force-certified safety claim.
+12. Read an evidence record's scope before quoting its result.
 
-1. Report the controller that produced the actions. Scripted, retrofitted, upstream and proposed controllers get different labels. No inherited historical success rates.
-2. Keep task, observations, geometry, force budget, reward and success criteria identical across a comparison. A task correction invalidates affected comparisons: keep the previous result and rerun both arms.
-3. Derive feasible fault ranges from geometry and actions before spending compute. Audit action transforms and clamps, not only observation tensors. Contact filters must use real geometry ids and pass positive controls.
-4. Initialization between jobs may write state. Inside a job there is no reset, pose write, teleport or attachment change; count any such event as a failed job. A dropped part ends the job.
-5. Success requires the declared dwell. Include failures, force violations, aborts, infeasible constructions and timeouts in denominators. Reward shaping is not a hard force ceiling.
-6. Match total simulator transitions, nominal practice, architecture and tuning budget, including fault mining and probes. Keep training, development and test seeds and combinations separate. Select checkpoints by declared budget, never by final-test performance.
-7. Keep failed experiments as immutable JSON with scope and limitations. Correct an interpretation in place with an explicit superseded field; never delete a losing arm.
-8. Capture commit, dirty state, source hashes, upstream revision, config, seeds, command, environment and checkpoint hashes **before** launch. Primary results need a clean tree or an exact archived snapshot.
-9. Use unique run ids and reject collisions. Check artifact contents, not log exit lines. Timeouts and process failures stay failures even if partial weights exist.
-10. Measure sustained throughput and memory for the actual task. Leave RAM and time for evaluation. Avoid editing executing scripts.
-11. Simulator pose plus noise is not perception. Simulation is not hardware transfer. Preset grasping is not learned pickup. No force-certified safety or autonomous-factory claim.
-12. Read an evidence file's scope before quoting its result. Distinguish recovery after a witnessed failure from prevention. A high isolated-skill rate does not establish reliable complete jobs.
+Two instrument findings constrain every claim, both in
+[evidence/cable_discretisation_v4.json](evidence/cable_discretisation_v4.json).
+The cable model *does* refine, but minimum bend radius does not agree across
+refinements, so **C2 stays scoped to the 23-segment model at 4 kHz**. And the
+routed cable is **not at rest** at the 5 s settling deadline — it comes to rest
+2.9 µm past the retention predicate's own lateral test. The deadline is part of
+the task definition. Do not lengthen it and do not change the predicate.
 
-## Files and commands
+## Where things are
 
 | Need | Read or run |
 | --- | --- |
-| Goal, executed evidence, prior art | README.md |
-| Plan, verified state, one next action | ROADMAP.md |
-| Which evidence record answers a question | evidence/INDEX.json |
-| **The perception question, its verdict and its caveats** | evidence/cable_perception_v4.json; evidence/cable_perception_controls_v4.json |
-| **What was frozen before the perception block launched** | configs/cable_perception_v4.json; configs/cable_perception_v4_candidates.json |
-| **Does the cable model refine, and is the initial state at rest** | evidence/cable_discretisation_v4.json |
-| **Which candidate layouts survived, and why the others did not** | evidence/cable_layout_screen_v4.json |
-| **Why the C2 spec and the error ladder are what they are** | evidence/cable_perception_pilot_v4.json |
-| **The labels re-derived from the ledgers alone** | evidence/cable_perception_replay_v4.json |
-| **How the threshold moves with the cable's own properties** | evidence/cable_transfer_protocol_v4.json |
-| **The shipped safety layer, its envelope and its budget** | src/assembly_recovery/cable_safety_filter_v4.py; scripts/demo_safety_layer_v4.py |
-| **Does the check survive being chained** | configs/cable_sequence_v5.json; evidence/cable_sequence_v5.json |
-| **Does it still earn its place over a five-clip route** | configs/cable_routing_v6.json; evidence/cable_routing_v6.json |
-| **The routing cell: what it is, and how a config becomes a scene** | src/assembly_recovery/cable_cell_v6.py; configs/cable_cell_v6_candidates.json |
-| **Which routing cells survived, and why the others did not** | evidence/cable_cell_screen_v6.json |
-| **The CAD cell, its parts and their hashes** | evidence/cable_cell_cad_v6.json; assets/cell_v6/ |
-| **Author, screen, run and fit the routing block** | scripts/build_cell_cad.py; scripts/screen_cell_v6.py; scripts/run_routing_v6.py; scripts/evaluate_cable_routing_v6.py; scripts/fit_routing_v6.py |
-| **Run and fit the composition study** | scripts/run_sequence_v5.py; scripts/evaluate_cable_sequence_v5.py; scripts/fit_sequence_v5.py |
-| **Estimate interface, occlusion model and privilege guard** | src/assembly_recovery/cable_perception_v4.py |
-| **The three constraints and the censoring rule** | src/assembly_recovery/cable_constraints_v4.py |
-| **Perception support, error ladder, arms, metrics** | src/assembly_recovery/cable_study_v4.py |
-| **Freeze, run, fit, control, replay, render, film that block** | scripts/run_perception_v4.py; scripts/evaluate_cable_perception_v4.py; scripts/fit_perception_v4.py; scripts/controls_perception_v4.py; scripts/replay_perception_v4.py; scripts/render_perception_v4.py; scripts/render_perception_video_v4.py; scripts/summarize_perception_v4.py |
-| The earlier answered question, its verdict and its caveats | evidence/cable_repair_boundary_v3.json; evidence/cable_boundary_controls_v3.json |
-| What was frozen before that block launched | configs/cable_repair_boundary_v3.json |
-| Probes that chose the registered support | evidence/cable_support_probes_v3.json |
-| Support, action design, features, metrics | src/assembly_recovery/cable_study_v3.py |
-| Run, fit, control, render that block | scripts/run_repair_boundary_v3.py; scripts/fit_repair_boundary_v3.py; scripts/controls_repair_boundary_v3.py; scripts/render_repair_boundary_v3.py |
-| Executed cable task and gate results | evidence/cable_recovery_block_v2.json; evidence/cable_recovery_replay_v2.json |
-| Runnable cable task configuration | configs/cable_recovery_task_v2.json |
-| Cable scene, loads, clip geometry, mutation guard | src/assembly_recovery/cable_constrained_v2.py |
-| Controllers and the shared repair library | src/assembly_recovery/cable_recovery_control_v2.py |
-| Run, review, render a block | scripts/run_cable.py; scripts/evaluate_cable_recovery_v2.py; scripts/review_cable_recovery_v2.py; scripts/render_cable_recovery_v2.py |
-| Design intent and open critiques | evidence/cable_direction_audit_v2.json; evidence/cable_technical_audit_v2.json; evidence/cable_research_critique_v2.json |
-| Retired plan and README history | evidence/roadmap_history_v1.json; evidence/readme_peg_history_v1.json |
+| What this is, and the four results | README.md |
+| Verified state, what is open, next action | ROADMAP.md |
+| Which record answers a question | evidence/INDEX.json |
+| **The shipped safety layer** | src/assembly_recovery/cable_safety_filter_v4.py |
+| **The scene: fixture, clips, cable, guards** | src/assembly_recovery/cable_constrained_v2.py |
+| **The routing cell, config to scene** | src/assembly_recovery/cable_cell_v6.py; configs/cable_cell_v6_candidates.json |
+| **The three constraints and censoring** | src/assembly_recovery/cable_constraints_v4.py |
+| **Estimate interface, occlusion, privilege guard** | src/assembly_recovery/cable_perception_v4.py |
+| v4 perception study | configs/cable_perception_v4.json; evidence/cable_perception_v4.json; scripts/{screen_layouts,run_perception,fit_perception,controls_perception,replay_perception,summarize_perception}_v4.py |
+| v5 composition study | configs/cable_sequence_v5.json; evidence/cable_sequence_v5.json; scripts/{run,evaluate,fit}_sequence_v5.py |
+| v6 routing study | configs/cable_routing_v6.json; evidence/cable_routing_v6.json; scripts/{build_cell_cad,screen_cell,render_cell}_v6.py; scripts/{run,evaluate,fit}_routing_v6.py |
+| v6 stage records and decision log | artifacts/cell/ |
+| v3 boundary study, closed inconclusive | configs/cable_repair_boundary_v3.json; evidence/cable_repair_boundary_v3.json |
+| v2 task and gate block | configs/cable_recovery_task_v2.json; evidence/cable_recovery_block_v2.json |
 | Machine versions | environment-lock.example.json; local environment-lock.local.json |
-| Compact lessons from the retired project | maintenance/lessons.json |
-| Recover an old file or branch | maintenance/archive_index.json, on demand only |
+
+## Commands
 
 ```powershell
-.venv/Scripts/python.exe scripts/setup_cable.py
+.venv/Scripts/python.exe -m pytest                    # 250 tests, CPU-only, ~2 s
 .venv/Scripts/python.exe -m ruff check src scripts tests
-.venv/Scripts/python.exe -m pytest
-.venv/Scripts/python.exe scripts/run_cable.py --run-id <id> --worker scripts/evaluate_cable_recovery_v2.py --config configs/cable_recovery_task_v2.json --max-minutes 45 -- --workers 12
-.venv/Scripts/python.exe scripts/run_repair_boundary_v3.py --run-id <id> --workers 12 --max-minutes 150
-.venv/Scripts/python.exe scripts/fit_repair_boundary_v3.py --run-dir artifacts/cable/<id> --out evidence/<name>.json
+.venv/Scripts/python.exe scripts/index_evidence.py    # after adding a record
 ```
 
-The perception block, in the order it must be run. Freeze reads the executed screen and writes the surviving support, the split and the request count into the contract; the contract is then **committed before anything launches**. The launcher caps a run at 300 minutes, so the block is sharded on whole contexts and the fitter reads every shard together.
-
-```powershell
-.deps/cable-venv/Scripts/python.exe scripts/screen_layouts_v4.py --workers 14
-.venv/Scripts/python.exe scripts/run_perception_v4.py --freeze
-.deps/cable-venv/Scripts/python.exe scripts/controls_perception_v4.py
-.venv/Scripts/python.exe scripts/run_perception_v4.py --run-id <id>-s1 --shard 1 --of 4 --workers 20 --max-minutes 290
-.venv/Scripts/python.exe scripts/fit_perception_v4.py --run-dir artifacts/cable/<id>-s1 --run-dir artifacts/cable/<id>-s2 --out evidence/cable_perception_v4.json --dataset-out artifacts/cable/<id>-s1/study_dataset.json
-.venv/Scripts/python.exe scripts/summarize_perception_v4.py
-.venv/Scripts/python.exe scripts/replay_perception_v4.py --run-dir artifacts/cable/<id>-s1
-.deps/cable-venv/Scripts/python.exe scripts/render_perception_v4.py
-.deps/cable-venv/Scripts/python.exe scripts/render_perception_video_v4.py --case <request id> --run-dir artifacts/cable/<id>-s1
-```
-
-The composition study runs against the filter the perception block produced, so it can only be frozen after that block is fitted. Its launcher refuses otherwise, on purpose: there is nothing to chain without a fitted check.
-
-```powershell
-.deps/cable-venv/Scripts/python.exe scripts/demo_safety_layer_v4.py --run-dir artifacts/cable/<id>-s1
-.venv/Scripts/python.exe scripts/run_sequence_v5.py --freeze
-.venv/Scripts/python.exe scripts/run_sequence_v5.py --run-id <id> --workers 20 --max-minutes 180
-.venv/Scripts/python.exe scripts/fit_sequence_v5.py --run-dir artifacts/cable/<id>
-```
-
-The routing block, in the order it must be run. The cell is authored from the candidate file, the
-screen decides which cells are registered, the freeze reads the screen and is **committed before
-anything launches**, and the fitter reads one or more shards together.
+The routing block, in the order it must run. The cell is authored from the
+candidate file, the screen decides which cells are registered, the freeze reads
+the screen and is **committed before anything launches**, and the fitter reads one
+or more shards together.
 
 ```powershell
 "C:/Users/tryak/AppData/Local/Programs/FreeCAD 1.1/bin/freecadcmd.exe" scripts/build_cell_cad.py
@@ -117,25 +107,79 @@ anything launches**, and the fitter reads one or more shards together.
 .venv/Scripts/python.exe scripts/fit_routing_v6.py --run-dir artifacts/cable/<id>
 ```
 
-`freecadcmd` runs a script file under a module name of its own, so an `if __name__ == "__main__"`
-guard never fires: the script exits 0 having done nothing, silently. Call `main()` directly.
-**Windows Application Control blocks `.deps/cable-venv/Scripts/python.exe`**; the same
-environment's `pythonw.exe` is the identical interpreter and is what every native step here uses.
-Pass `--python .deps/cable-venv/Scripts/pythonw.exe` to any launcher, and never copy or rename the
-blocked binary to get around the policy.
+The perception and composition blocks follow the same shape:
+`run_perception_v4.py --freeze` then `--run-id <id> --shard N --of M`, then
+`fit_perception_v4.py`; `run_sequence_v5.py --freeze` then `--run-id <id>`, then
+`fit_sequence_v5.py`. The launcher caps a run at 300 minutes, so longer blocks are
+sharded on whole contexts and the fitter reads every shard together.
 
-Torch lives in `.venv` and MuJoCo, SciPy and Matplotlib in `.deps/cable-venv`; fitting runs in the former and physics and figures in the latter. Hash text provenance with `cable_study_v3.content_sha256`, never raw bytes: a CRLF working tree and the LF blob git stores hash differently, which is how the v2 block came to record a config hash no committed file reproduces.
+## This machine
 
-**Collection is CPU-only and that is a constraint, not a preference.** MuJoCo's native step is CPU, and the GPU path (MJX) does not support this scene's cable elasticity plugin, composite bodies or elliptic friction cone, so moving collection to the GPU would mean a different cable model and would invalidate every comparison with v2 and v3. The lever that does exist is worker count: this machine has 24 physical cores, and the perception pilot measured 28,086 aggregate native steps per second on 12 workers against 44,966 on 20, a 1.60x speedup for a 6.6 per cent per-worker loss. Model fitting accepts `--device cuda` where a CUDA build of torch is installed; the fits are minutes beside hours of collection.
+- **Collection is CPU-only and that is a constraint.** MuJoCo's native step is
+  CPU, and MJX does not support this scene's cable elasticity plugin, composite
+  bodies or elliptic friction cone — moving collection to the GPU would mean a
+  different cable model and would invalidate every comparison. The lever is worker
+  count: 24 physical cores, **44,966 aggregate steps/s on 20 workers** against
+  28,086 on 12. The GPU is for rendering.
+- **Windows Application Control blocks `.deps/cable-venv/Scripts/python.exe`.**
+  The same environment's `pythonw.exe` is the identical interpreter with identical
+  packages and is what every native step uses. Pass
+  `--python .deps/cable-venv/Scripts/pythonw.exe` to any launcher. Never copy or
+  rename the blocked binary. App Control also blocks `pytest.exe`; use
+  `python -m pytest`.
+- **Two interpreters.** Torch lives in `.venv` and MuJoCo, SciPy and Matplotlib in
+  `.deps/cable-venv`. Fitting runs in the former, physics and figures in the
+  latter. `TORCHDYNAMO_DISABLE=1` is the verified workaround for the optional
+  compiler import failure.
+- **Hash text provenance with `cable_study_v3.content_sha256`, never raw bytes.**
+  A CRLF working tree and the LF blob git stores hash differently, which is how the
+  v2 block came to record a config hash no committed file reproduces.
+- **Multi-line edits: write a Python patch script with `assert old in s` before
+  each replace.** Bash heredocs fail here on apostrophes and triple quotes; this
+  has cost time in five separate sessions.
+- **Do not edit a module a running block imports.** Workers respawn and re-import.
+- Do not modify `.deps/aic` (the pinned upstream connector assets); put adapters in
+  `src/assembly_recovery/`.
 
-CI uses bare pytest. App Control on this workstation blocks `pytest.exe`; use `python -m pytest`. Tests must run without ignored artifacts, Isaac Sim or a GPU. Native dynamics use `.deps/cable-venv/Scripts/python.exe` (Python 3.11.15, MuJoCo 3.3.7); CPU checks use `.venv/Scripts/python.exe`. Do not modify `.deps/IsaacLab` or `.deps/aic`; put adapters in `src/assembly_recovery/`. `TORCHDYNAMO_DISABLE=1` is the verified workaround for the optional compiler import failure.
+## CAD
 
-**CAD geometry is authored by `freecadcmd.exe`, not through the MCP server.** The MCP server talks to an RPC server that must be started from a button on the FreeCAD GUI toolbar; there is no GUI on this box and starting one is a hazard for autonomous work. The `.mcp.json` entry stays in place as an option for a human. Two rules from [the toolchain check](evidence/cell_toolchain_v6.json) are load-bearing: a fuse only welds solids that **interpenetrate**, so adjoining parts overlap by about 0.01 mm, and a clip needs a **floor** or the cable falls out of the bottom. CAD meshes are **visual geoms only** — `contype="0" conaffinity="0" group="2"` — and collision stays on the primitive boxes and cylinders `build_fixture` writes: mesh collision does hold the cable, but on a different contact manifold, and the retention predicate is decided within about 4 mm. Any new scene must inherit the project contact defaults at `cable_constrained_v2.py`, without which a 0.23 g capsule sinks through a 3 mm plate.
+Geometry is authored by `freecadcmd.exe` at
+`%LOCALAPPDATA%\Programs\FreeCAD 1.1in\`, **not** through the FreeCAD MCP
+server — that server needs an RPC server started from a GUI toolbar button, and
+there is no GUI here.
 
-**The historical MCP route, kept for a human:** FreeCAD 1.1.3 is installed per-user at `%LOCALAPPDATA%\Programs\FreeCAD 1.1`, the RPC addon at `%APPDATA%\FreeCAD\v1-1\Mod\FreeCADMCP`, and `.mcp.json` registers the server as `uvx freecad-mcp`. The tools connect only while the FreeCAD GUI is running; `freecad_mcp_settings.json` in `%APPDATA%\FreeCAD\v1-1\` sets `auto_start_rpc`, so launching FreeCAD is enough and the server binds 127.0.0.1:9875. If the tools are missing, FreeCAD is closed; **View -> Workbench -> MCP Addon** then **Start RPC Server** does it by hand. FreeCAD works in millimetres and MuJoCo in metres, so every exported mesh carries `scale="0.001 0.001 0.001"` on its `<mesh>` asset, and exported STL is non-convex: keep it visual-only and build collision geoms by convex decomposition, the same split the taskboard assets in `.deps/aic/aic_assets/taskboard_cad/` already use.
+Three rules from [the toolchain check](evidence/cell_toolchain_v6.json) are
+load-bearing:
 
-Keep raw runs, videos and weights in ignored output directories and concise verified results in `evidence/`. Regenerate `evidence/INDEX.json` with `scripts/index_evidence.py` after adding a record. Exactly three maintained Markdown documents: no HANDOFF, NOW, NEXT_WORK or extra agent file. Manuscript source, if any, is LaTeX; references and machine records are JSON or BibTeX.
+- A fuse only welds solids that **interpenetrate**. Overlap adjoining parts by
+  about 0.01 mm, or the tessellation is not watertight.
+- A clip needs a **floor**, or the cable falls out of the bottom.
+- CAD meshes are **visual geoms only** (`contype="0" conaffinity="0" group="2"`,
+  `scale="0.001 0.001 0.001"`). Collision stays on the primitives `build_fixture`
+  writes: mesh collision does hold the cable, but on a different contact manifold,
+  and the retention predicate is decided within about 4 mm. Any new scene must
+  also inherit the contact defaults in `cable_constrained_v2.py`, without which a
+  0.23 g capsule sinks through a 3 mm plate.
 
-When a block finishes, state what changed, what actually ran and the next action. Do not promise a positive result, publication or hiring. Safe non-force pushes to `research/assembly-recovery-training` are authorized; `main` stays unchanged.
+And one that cost twenty minutes: `freecadcmd script.py` runs the file under a
+module name of its own, so `if __name__ == "__main__":` never fires and the script
+exits 0 having done nothing. Call `main()` directly; `__file__` is not bound
+either.
 
-**Publication status:** there is no paper and no venue; the owner closed that track on 2026-09-11. An automatic approval review previously blocked the push to `https://github.com/tryaksh/orbital-robotic-servicing-lab.git` because explicit destination authorization was missing, and the owner has not answered that question. Continue local work and commits on `research/assembly-recovery-training`. This pending approval takes precedence over the general branch-push authorization above; changing assistant or client is not a workaround, and neither is creating a new remote.
+## Outputs and remotes
+
+Keep raw runs, videos and weights in ignored output directories, and concise
+verified results in `evidence/`. `artifacts/cell/` is the one exception and is
+committed: the stage records are small and are what a later session reads.
+Regenerate `evidence/INDEX.json` after adding a record. Exactly three maintained
+Markdown documents — no HANDOFF, NOW or extra agent file.
+
+When a block finishes, state what changed, what actually ran and the next action.
+Do not promise a positive result, publication or hiring.
+
+**Push status:** an automatic approval review previously blocked a push to
+`https://github.com/tryaksh/orbital-robotic-servicing-lab.git` because explicit
+destination authorization was missing, and the owner has not answered. Continue
+local work and commits. This pending approval takes precedence over any general
+branch-push authorization; changing assistant or client is not a workaround, and
+neither is creating a new remote.

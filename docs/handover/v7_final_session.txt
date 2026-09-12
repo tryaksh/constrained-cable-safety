@@ -1,0 +1,328 @@
+FINAL SESSION - BUILD THE TOOL AND THE PUBLIC DEMONSTRATION, THEN CLOSE THE PROJECT
+Prepared 2026-09-12, after the routing block was run and fitted. Supersedes
+v7_workbench.txt.
+
+THIS IS THE LAST SESSION. There is no session after it. Nothing may be left
+"for next time". If you run out of time, cut scope from the BOTTOM of section 4,
+never from the top, and say plainly in the final summary what you cut.
+
+THE MEASURING IS FINISHED. Four studies are registered, run and fitted. Do not
+start a fifth. Do not refit anything. Do not re-run a block for nicer numbers.
+Your job is to make the finished result usable and legible, and then stop.
+
+=======================================================================
+0. READ THIS MUCH AND NO MORE
+=======================================================================
+  README.md                        the story, written for a stranger
+  evidence/cable_routing_v6.json   the newest result - read `verdicts` first
+  artifacts/cell/block.json        what the routing block did, in one file
+  this file, section 7            what is on disk and where
+Stop there and start building. ROADMAP.md and AGENTS.md are for checking a
+detail, not for reading through.
+
+=======================================================================
+1. WHAT YOU ARE SHOWING - FOUR BEATS, ALL MEASURED
+=======================================================================
+BEAT 1  ONE NUMBER IS ENOUGH, for a single move. 16,080 registered requests. A
+        single scalar carrying a margin sized from the estimator's declared error
+        is not beaten by any richer representation at any error level on any of
+        three constraint shapes. The ~30,000-parameter network over the whole
+        cable centreline is significantly WORSE on clip retention: gap 0.074,
+        bootstrap interval excluding zero.
+
+BEAT 2  IT MATTERS WHEN YOU CHAIN MOVES. 720 sequences. All 240 unfiltered
+        sequences pulled the cable out of the clip, at every error level, against
+        0.400-0.569 filtered. Universal, and therefore honest to show.
+
+BEAT 3  AND THEN IT STOPS WORKING. 2,340 routes through a five-clip jig. The
+        check bought NOTHING: with it and without it lose a clip at the same
+        rate (gaps 0.000, +0.025, -0.008, all inside the 0.05 margin), both
+        issuing exactly one move and losing a clip on it. The reason is
+        measurable and was measured before scoring: the route tolerates about
+        18 mm of pull-back and the check permits 58 mm, because its threshold is
+        a property of the jig it was fitted on, not of the cable.
+
+BEAT 4  WHAT DOES CARRY IS HOW MUCH YOU TAKE. Same check, same estimate, ranked
+        by remaining headroom instead of "largest allowed": 20/60, 76/360 and
+        9/360 routes completed against 0 of 780 for the greedy reading. This was
+        an unplanned observation in study 2 and a REGISTERED prediction in study
+        3, where it held at E0 and E2 and collapsed inside the margin at E4
+        exactly as predicted. It is the one thing here that may be stated as a
+        certified finding about appetite.
+
+THE ONE-LINE TAKEAWAY, and it is honest: USE THE CHECK'S RANKING, NOT ITS
+THRESHOLD. The ranking transfers to a jig it was never fitted on. The threshold
+does not.
+
+A detail worth drawing: of 1,144 clip losses, 1,017 were the clip at the TOP OF
+THE RIDGE and 127 the clip nearest the plug. The other three never let go.
+
+=======================================================================
+2. THE OWNER HAS AUTHORIZED A PUBLIC PAGE
+=======================================================================
+Earlier handovers said DO NOT PUBLISH. That instruction is LIFTED. On 2026-09-12
+the owner asked, in their own words, for "a public facing demonstration in high
+quality" as part of this final session. Build it and publish it.
+
+Publish it as an Artifact and give the owner the URL. Do not push it to any
+remote, do not create a remote, and do not touch the existing private page at
+claude.ai/code/artifact/ef74d2ed-947f-4eab-a8bd-8674d4b917f4 unless asked.
+
+The page is the deliverable a stranger sees. It must be good. It must also be
+true: every number on it traces to an evidence record by name, every exploratory
+claim is labelled, and the scope paragraph appears on the page and not only in
+the repository. A demonstration that overstates is worse than none.
+
+=======================================================================
+3. WORKING DISCIPLINE
+=======================================================================
+  Done-conditions on disk BEFORE each stage, under artifacts/showcase/. One
+    append-only artifacts/showcase/PROGRESS.md, one line per decision with the
+    number that drove it.
+  Commit at every stage boundary, even an ugly one.
+  Verify per stage. Every stage below has a check that runs in under a minute.
+  YOU ARE BUILDING THINGS A HUMAN LOOKS AT AND YOU CANNOT LOOK AT THEM. Render
+    to a file and inspect the file programmatically: frame count, resolution,
+    non-blank frames, expected overlays present. A command exiting zero is not
+    evidence that a render worked. For the page, read it back after publishing.
+  Do not poll long runs. Launch, do the next independent thing.
+  MULTI-LINE EDITS: a Python patch script with `assert old in s` before each
+    replace. Bash heredocs fail here on apostrophes and triple quotes; this has
+    now cost time in five separate sessions.
+  WINDOWS APPLICATION CONTROL blocks .deps/cable-venv/Scripts/python.exe. Use
+    pythonw.exe in the same venv - identical interpreter, identical packages.
+    Never copy or rename the blocked binary.
+  250 tests, about 2 seconds, no GPU and no simulator. Run after every stage.
+
+=======================================================================
+4. WHAT TO BUILD, IN PRIORITY ORDER
+=======================================================================
+Cut from the bottom, never the top.
+
+------------------------------------------------------------------
+STAGE A - THE REPLAY CLIPS            done-condition: artifacts/showcase/video.json
+------------------------------------------------------------------
+Short offline-rendered clips, because the page and the tool are both much weaker
+without them, and because they are the only thing that makes the result visible
+rather than tabulated.
+
+scripts/render_perception_video_v4.py is the pattern and already solves the hard
+part: it re-runs a registered request with its registered seeds, ASSERTS the
+outcome matches what the block recorded (`reproduces_block`), and renders offline
+from captured states with ghost markers showing the estimate against the truth.
+Extend it to the routing worker; do not start over. scripts/render_cell_v6.py
+shows the camera set-ups that frame the five-clip cell well.
+
+  THE TRAP, already paid for once: the capture path must consume the RNG in
+  EXACTLY the same order as the block or it silently diverges. A previous session
+  lost hours to a capture that skipped `observed_decision_state` and therefore
+  drew fewer random numbers. Assert `reproduces_block` on every clip and refuse
+  to publish one that fails.
+
+  WHICH REQUESTS. 165 requests kept their per-tick ledgers; the rest were pruned
+  and are listed with the rule in artifacts/cable/routing-v6-s1/ledger_retention.json.
+  It deliberately kept MATCHED TRIPLES - the same cell and the same estimate under
+  all three supervisors - which is exactly what a side-by-side needs. Any pruned
+  ledger is reproducible: re-run one request with
+    scripts/evaluate_cable_routing_v6.py --run-dir <dir> --config <runtime> --case <id>
+
+  THE CLIPS THAT EARN THEIR PLACE:
+    1. The side-by-side. One context, three supervisors, same frame. Greedy loses
+       the clip on its first move; conservative routes all five and seats.
+    2. The estimate against the truth, with the occluded span visibly wrong.
+    3. The budget draining: headroom at each decision and what the move spends.
+       The measured series is 0.0699, 0.0666, 0.0633, 0.0600, 0.0567 m.
+  1280x720 or better, 30 fps, written under artifacts/ (git-ignored).
+
+VERIFY: open each file, count frames, confirm resolution, confirm a sample of
+frames is not uniformly blank, confirm `reproduces_block` is true for every clip.
+Record all of it in video.json.
+
+------------------------------------------------------------------
+STAGE B - THE PUBLIC PAGE             done-condition: artifacts/showcase/page.json
+------------------------------------------------------------------
+This is what the owner asked for and what a stranger will actually see. One page,
+generated by scripts/build_showcase.py from the evidence records plus the Stage A
+clips. No server, no runtime, no GPU.
+
+  GENERATE IT, DO NOT HAND-WRITE IT. The page is built from a JSON the script
+  emits out of evidence/. Change a number in an evidence record, rebuild, and the
+  page changes. This is the same discipline SafetyFilter.from_evidence already
+  follows and it is the reason to trust the page at all.
+
+  WHAT A VISITOR GETS, in this order:
+    - the four beats of section 1, in plain language, with the pictures
+    - the two numbers that explain beat 3: 18 mm tolerated against 58 mm permitted
+    - the three-supervisor comparison as one clear figure, with denominators on it
+    - the replay clips, playable inline
+    - the one-line takeaway: use the ranking, not the threshold
+    - the scope paragraph, on the page
+    - each claim's evidence record named beside it
+
+  PUBLISH IT as an Artifact and hand the owner the URL. Load the artifact-design
+  skill before writing the page - this one is meant to be good, not merely
+  correct. Read it back after publishing and confirm it renders.
+
+  HONESTY RULES ON THE PAGE, not just in the repository: every figure carries its
+  denominator; anything post-hoc is labelled post-hoc on screen; nothing implies
+  hardware, released retention, or camera perception.
+
+------------------------------------------------------------------
+STAGE C - THE WORKBENCH               done-condition: artifacts/showcase/tool.json
+------------------------------------------------------------------
+A local tool an engineer clones and runs: scripts/workbench.py. A Python program
+using MuJoCo's own viewer, not a web app and not a new GUI dependency.
+
+  WHAT IT DOES: load the cell from config; move a clip; change the service loop;
+  pick an error level; show what the safety layer allows over the action space;
+  run the route; report per-constraint budget spent and the outcome.
+
+  THE CELL IS ALREADY PARAMETRIC. src/assembly_recovery/cable_cell_v6.py is the
+  single place a declared cell becomes fixture overrides, CAD parts or a request.
+  Build on it. Moving a clip is a config edit today and must stay one.
+
+  A CONSTRAINT YOU CANNOT ESCAPE: you have no display, so you cannot run the
+  viewer and look at it. Architect everything except the window to be testable
+  headlessly - a WorkbenchSession class that loads, mutates, runs and reports,
+  with the viewer as a thin shell over it. Unit-test the class. Then the single
+  untested line is launch_passive, and the owner can run it.
+  SAY IN THE FINAL SUMMARY that the interactive window was never executed
+  in-session. Do not claim to have verified something you could not see.
+
+  RE-RUN THE SCREEN, NOT JUST THE COMPILE, when a user moves a clip. A cell that
+  compiles is not a cell that installs: the registered screen rejected 19 of 28
+  declared cells, and three of the four candidates survived at two service loops
+  or fewer. scripts/screen_cell_v6.py is one call and takes about six seconds a
+  cell.
+
+VERIFY: headless tests covering load, move a clip, re-run, report. Plus one
+end-to-end headless run on an UNMUTATED cell that reproduces a number already in
+an evidence record.
+
+------------------------------------------------------------------
+STAGE D - USD EXPORT, ONLY IF EVERYTHING ABOVE IS DONE
+------------------------------------------------------------------
+Optional. The owner wants the OPTION of rendering this in Isaac Sim later for
+visual quality, without moving the physics.
+
+  MuJoCo 3.3.7 ships mujoco.usd.exporter. It needs usd-core (which provides pxr)
+  and pillow, neither of which is in the cable venv. INSTALL THEM IN A SEPARATE
+  VENV. That venv's exact package set is recorded in every run manifest and the
+  project's provenance depends on it not drifting.
+
+  THE GOTCHA: pass output_directory as a RELATIVE name and output_directory_root
+  as its absolute parent. An absolute output_directory is joined into an invalid
+  path and throws from inside OpenUSD.
+
+  Verified previously: 200 stepped frames of a scene carrying CAD visual meshes
+  over primitive collision geometry exported to a single ~300 KB .usd stage.
+
+  SCOPE IT HONESTLY: it is a rendering export. It does not make this an Isaac Sim
+  project and nothing measured in MuJoCo may be described as validated elsewhere.
+
+=======================================================================
+5. RULES THAT ARE NOT NEGOTIABLE
+=======================================================================
+  Do not refit the safety layer. Do not re-run a fitted block. Do not rescore an
+    earlier block under a newer task version - the four studies are four task
+    versions and their numbers are never merged.
+  Every number shown anywhere traces to an evidence record, by name.
+  Post-hoc findings are labelled post-hoc, on screen as well as in the record.
+  Aborted requests are censored, never counted as successes.
+  No hardware, released-retention, latching, novelty or acceptance claim. The
+    error model is a model of how perception fails, not camera perception.
+  C2 stays scoped to the 23-segment cable at 4 kHz; the minimum bend radius does
+    not agree across refinements.
+  The 5 s settling deadline and the retention predicate are part of the task
+    definition. Do not change either.
+  The single-clip code path must keep compiling byte-identically. If you touch
+    build_fixture, re-run the reproduction check in artifacts/cell/scene.json.
+
+=======================================================================
+6. CLOSING THE PROJECT - DO THIS EVEN IF YOU CUT STAGE C OR D
+=======================================================================
+  README.md      is already written for a first-time reader. Update only the
+                 "What is left" section to point at what now exists, and add the
+                 page URL and the workbench command.
+  ROADMAP.md     state what is closed, what is open, and the honest remaining
+                 uncertainty. It should end as a record, not as a plan.
+  AGENTS.md      match the final file map and command sequence.
+  evidence/INDEX.json  regenerate with scripts/index_evidence.py.
+  artifacts/showcase/PROGRESS.md  leave it in place.
+
+  THE HONEST OPEN ITEMS, which should survive into the final ROADMAP:
+    - Force-only sensing had the lowest false-safe rate on all three constraints
+      at every error level and never by more than the declared margin, so nothing
+      could be certified. One block aimed at that single comparison, with a margin
+      near 0.01 and therefore at least 200 held-out contexts per cell, would close
+      it. It is the most interesting measurement this project did not buy.
+    - A supervisor that caps the FRACTION of reported headroom one step may spend
+      is the obvious engineering fix for beat 3, uses only what the shipped layer
+      already reports, and was deliberately not registered in study 3 because the
+      registered action set produces spent fractions of 0.061 and 0.819 with
+      nothing in between. It needs its own action set and its own sizing. The
+      reasoning is in configs/cable_routing_v6.json under
+      pilot.considered_and_not_registered.
+    - The routing support is one cell at six service loops crossed with two mounts
+      and five mounting offsets: 60 physical contexts, thinner than study 2's ten
+      held-out layouts. A finding there is a statement about that cell.
+
+FINISH WITH
+  The decision, the measurement behind it, the cost, the remaining uncertainty.
+  The page URL. The workbench command. The video paths. And a plain statement of
+  anything you cut and why.
+
+=======================================================================
+7. WHAT IS ON DISK, AND WHERE
+=======================================================================
+THE CELL IS PARAMETRIC IN CONFIG, NOT IN CODE.
+  configs/cable_cell_v6_candidates.json   four declared cells; RC1 is registered
+  src/assembly_recovery/cable_cell_v6.py  the ONE place a declared cell becomes
+                                          fixture overrides, CAD parts or a case
+  scripts/build_cell_cad.py               authors the CAD from that config
+  scripts/screen_cell_v6.py               settles a cell and decides if it counts
+  scripts/render_cell_v6.py               still views, CAD and primitives
+  assets/cell_v6/                         8 STLs plus the source .FCStd
+  Change `clips` in the candidate file, re-run the CAD script, re-run the screen,
+  and everything downstream follows. Nothing about the cell is hard-coded.
+
+THE ASSET HASHES, so a tool can prove which cell it is showing.
+  evidence/cable_cell_cad_v6.json carries every STL's SHA-256 on LF-normalised
+  bytes; configs/cable_routing_v6.json copies them into cell.asset_sha256 at
+  freeze time; every compiled scene report carries them under fixture.cad_visuals.
+  Check them rather than trusting a filename.
+
+THE PER-STEP TRACES, for EVERY request and not a sample.
+  artifacts/cable/routing-v6-s1/<request>/result.json -> `issued`, one record per
+  decision: action and index, abstained, the filter's per-constraint verdict and
+  headroom, `budget` (headroom_at_decision_m, spent_by_this_motion_m,
+  spent_fraction, headroom_left_m), state_before and state_after with the
+  per-clip retention picture, and motion_completed - false means the job ended
+  during that motion, which is CENSORED and not "safe". Per request:
+  clip_loss_attribution (which clip, when, during which step), installed_clips,
+  terminal_clips, seated, route_completed.
+
+  artifacts/cable/routing-v6-s1/<request>/ledger.npz -> per-tick servo and native
+  ledgers, for the 165 requests listed in ledger_retention.json. The servo
+  ledger's channel that was a single clip boolean now carries the RETAINED
+  REQUIRED-CLIP COUNT, so a five-clip route can be drawn losing clips one by one.
+
+THE STAGE RECORDS, committed, small, and worth reading before rebuilding anything.
+  artifacts/cell/PROGRESS.md   append-only decision log from the cell session
+  artifacts/cell/cad.json      stage 1, the CAD and its provenance
+  artifacts/cell/scene.json    stage 2, both reproduction checks
+  artifacts/cell/routes.json   stage 3, the screen and what it rejected
+  artifacts/cell/block.json    stage 4, the frozen contract and the verdicts
+
+TWO THINGS THAT COST THE LAST SESSION REAL TIME.
+  freecadcmd runs a script under a module name of its own, so an
+  `if __name__ == "__main__"` guard never fires: the process prints its banner,
+  exits 0, and writes nothing. Call main() directly. __file__ is not bound either.
+
+  At E0 the estimate a supervisor reads IS the truth, asserted in the compiled
+  scene, so a second perception draw at E0 is a byte-identical duplicate. v5 took
+  four there and its E0 resolution is optimistic by that factor - worth a sentence
+  if you write about v5, and not a criticism of its verdicts, which do not turn on
+  it. v6 takes one draw at E0 and gets its E0 diversity from a registered
+  five-point mounting-offset ladder instead.
+

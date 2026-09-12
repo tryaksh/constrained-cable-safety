@@ -1,0 +1,47 @@
+{
+ "stage": 1,
+ "name": "Author the cell in CAD",
+ "status": "done",
+ "acceptance_declared_before_the_work": [
+  "A credible wiring-harness jig authored as separate parts in assembly coordinates: a backing board, three to five routing clips at different heights and bearings, at least one channel the cable is pressed into, one corner it turns, a strain-relief clamp and a connector socket.",
+  "Every clip cross-section stays compatible with the existing retention predicate.",
+  "Lead-ins filleted.",
+  "One STL per part plus the source .FCStd in the repository.",
+  "Every part reports isSolid() True. A part that does not is a part whose solids did not fuse.",
+  "Recorded: FreeCAD version, every part's file, facet count, watertightness, bounding box, and each STL's SHA-256 on LF-normalised bytes."
+ ],
+ "measured": {
+  "freecad_version": "1.1.3",
+  "parts": 8,
+  "all_watertight": true,
+  "all_single_solid_after_fuse": true,
+  "all_lead_ins_filleted": true,
+  "total_facets": 3704,
+  "clips": 5,
+  "distinct_clip_heights_mm": [
+   0.0,
+   3.0,
+   6.0
+  ],
+  "distinct_clip_bearings_deg": [
+   0.0,
+   -8.43,
+   -24.04,
+   -28.89
+  ]
+ },
+ "how_to_rebuild": "\"C:/Users/tryak/AppData/Local/Programs/FreeCAD 1.1/bin/freecadcmd.exe\" scripts/build_cell_cad.py, from the repository root. It reads the cell out of configs/cable_cell_v6_candidates.json, so moving a clip is a config edit.",
+ "gotcha_found": "freecadcmd runs a script file under a module name of its own, so a __main__ guard never fires and the script exits silently having done nothing, with status 0. The toolchain probe's verified pattern has no guard, which is why it worked. Call main() directly.",
+ "record": "evidence/cable_cell_cad_v6.json",
+ "assets": [
+  "assets/cell_v6/cell_v6_board.stl",
+  "assets/cell_v6/cell_v6_c1.stl",
+  "assets/cell_v6/cell_v6_c2.stl",
+  "assets/cell_v6/cell_v6_c3.stl",
+  "assets/cell_v6/cell_v6_c4.stl",
+  "assets/cell_v6/cell_v6_c5.stl",
+  "assets/cell_v6/cell_v6_clamp.stl",
+  "assets/cell_v6/cell_v6_socket.stl",
+  "assets/cell_v6/cell_v6.FCStd"
+ ]
+}

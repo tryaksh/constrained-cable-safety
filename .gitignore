@@ -13,6 +13,11 @@ htmlcov/
 
 # Isaac Sim / Isaac Lab runtime output
 artifacts/
+# ...except the stage records, which are small, are linked from the maintained
+# documents, and are what a later session reads before rebuilding anything.
+!artifacts/cell/
+!artifacts/cell/*.json
+!artifacts/cell/*.md
 benchmarks/*.json
 outputs/
 logs/

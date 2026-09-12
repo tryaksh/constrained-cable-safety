@@ -1,139 +1,226 @@
 # Constrained-cable safety
 
-**How much does a robot's safety check need to *see* before it moves a cable — and does the answer change with what "unsafe" means?**
+A robot pushes a connector into a socket. The connector's cable is clipped into
+brackets along the way, the way a wiring loom is dressed inside a machine. When
+the insertion fails and the robot backs off to try again, it can pull the cable
+out of a clip — undoing work that was already done.
 
-A robot plugs a connector into a socket. The connector's cable is clipped into a bracket partway along its run, the way a real wiring loom is dressed. When the first attempt fails, the robot backs off to try again — but the cable is only so long. Back off too far and it lifts out of the clip, undoing work that was already finished. Bend it too tightly and the jacket is damaged. Pull too hard and the strain relief takes the load.
+Something should check each move before it happens. This repository measures what
+that check needs to know, and what it is worth.
 
-So before a recovery move, something should ask: *will this break anything?* This repository measures how much that check has to see.
+Everything is simulation: MuJoCo, a UR5e arm, connector models from the
+[Intrinsic Assembly Industrial Benchmark](https://github.com/intrinsic-ai/assembly-industrial-benchmark).
+Four studies, each with its question, its method and its success criteria written
+down and committed to git before any of it ran.
 
-Everything here is simulation, on a UR5e with pinned [Intrinsic AIC](https://github.com/intrinsic-ai/assembly-industrial-benchmark) connector assets through a purpose-built native MuJoCo adapter. Three pre-registered studies, each frozen and committed before a single run launched.
+![The five-clip routing cell](evidence/cable_cell_v6_clips_cad.png)
 
 ---
 
-## The answer
+## The setup
 
-**One number is enough.** A scalar — the straight-line distance from where the cable leaves the connector to where it is clamped, computed for the endpoint the move would reach — is not beaten by anything richer, at any level of measurement error, on any of three different failure modes.
+The robot holds a plug. A cable leaves the back of the plug, runs down to a
+board, passes through one or more clips, and is clamped at the far end. Three
+things can go wrong when the robot retreats to retry:
 
-**16,080 simulated repair attempts. 1.49 billion integration steps. 9 hours. Zero guard violations.**
+- **the cable comes out of a clip** — there is only so much slack
+- **the cable is bent too tightly** — below a declared minimum bend radius
+- **the clamp takes too much load** — a declared force limit
 
-| Safety check | Parameters | Clip-loss rate, perfect info → 2 mm error |
+A "safety check" here is a function that looks at the robot's estimate of the
+world, looks at a candidate move, and says whether that move would break any of
+the three. The studies ask what that function has to see, and whether it keeps
+working when you use it repeatedly.
+
+---
+
+## What the four studies found
+
+### 1. One number is enough — for a single move
+
+Five candidate checks were compared, from a single scalar to a ~30,000-parameter
+neural network reading the cable's full 24-point shape. The scalar wins: the
+straight-line distance from where the cable leaves the plug to where it is
+clamped, computed for the position the move would end at, plus a safety margin
+sized from what the estimator reports about its own error.
+
+| Check | Parameters | Clip-loss rate, perfect info → 2 mm error |
 | --- | --- | --- |
-| **one number + a margin** | **1** | **0.133 → 0.220** |
+| **one distance + a margin** | **1** | **0.133 → 0.220** |
 | force sensing only, no vision | 10 | 0.116 → 0.203 |
 | 18 hand-designed features | 19 | 0.145 → 0.190 |
 | network over the whole cable shape | ~30,000 | 0.208 → 0.288 |
 | …plus a short history | ~30,000 | 0.226 → 0.309 |
 
-The network that watches all 24 points of the cable is not merely tied — on the constraint that matters most it is **significantly worse**, by 0.074 with a bootstrap interval excluding zero, and the spread across three training seeds is too tight for that to be chance.
+Nothing beat the scalar by more than the margin declared in advance. The network
+was *worse* on clip retention — by 0.074, with a bootstrap interval excluding
+zero and a spread across training seeds too tight to be chance.
 
-The first study established this when the robot was handed the simulator's *exact* truth. The obvious objection was that no real cell has that. So the second study took it away: every method now reads an estimate with a systematic bias that does not average out, error concentrated exactly where the fixture hides the cable, whole points dropping out, and a disturbance nothing could attribute. The answer did not change.
+16,080 runs, 1.49 billion simulation steps, 9 hours.
+[Record](evidence/cable_perception_v4.json) ·
+[contract](configs/cable_perception_v4.json)
 
----
+This held whether the check was handed the simulator's exact truth or a degraded
+estimate — a systematic bias that does not average out, extra error exactly where
+the fixture hides the cable, points dropping out entirely, and an unattributable
+disturbance force.
 
-## Does the check survive being chained?
+### 2. Chaining moves is where the check earns its keep
 
-A predicate that judges one motion is not usable by a cell; nothing in harness work is one motion. So a third study issues **three** decisions in one sequence, on held-out layouts the check was never fitted on.
+A check that judges one move is not much use; real work is a sequence. Three
+decisions per run, on cable layouts the check had never been fitted on:
 
-**720 sequences. 2,160 decisions. 72.9 million steps.**
-
-| Over a three-step sequence | Clip lost, no error / 1 mm / 2 mm | Route completed |
+| Over a three-step sequence | Clip lost (no error / 1 mm / 2 mm) | Route completed |
 | --- | --- | --- |
-| no check, largest motion every time | **80 / 80 / 80 of 80** | 0 / 0 / 0 |
-| check, take the largest safe motion | 32 / 33 / 36 of 80 | 48 / 25 / 0 |
-| check, take the motion with most headroom | **8 / 10 / 37 of 80** | **72 / 41 / 3** |
+| no check, largest move every time | **80 / 80 / 80 of 80** | 0 / 0 / 0 |
+| check, take the largest allowed move | 32 / 33 / 36 of 80 | 48 / 25 / 0 |
+| check, take the move with most headroom | **8 / 10 / 37 of 80** | **72 / 41 / 3** |
 
-**Without the check the cable comes out every single time** — 240 of 240 sequences, at every error level. That is what the safety layer is worth.
+Without the check the cable came out **every single time** — 240 of 240 runs.
+That is what the safety layer was worth on this layout.
 
-**But it does not chain for free.** The clip budget — the one quantity the check measures directly — is the one that degrades: its per-step failure rate *rises* 0.089 by the third decision once error reaches 2 mm, past the margin declared in advance. Curvature and anchor load, which the check only judges indirectly, both hold. That is the reverse of the prediction, and the more useful direction: every accepted step spends slack that the next step is then judged against.
+But it did not chain for free. The clip budget — the one quantity the check
+measures directly — is the one that degraded, its per-step failure rate rising
+0.089 by the third decision at 2 mm error. Each accepted step spends slack that
+the next step is then judged against.
 
----
+720 sequences, 2,160 decisions.
+[Record](evidence/cable_sequence_v5.json) ·
+[contract](configs/cable_sequence_v5.json)
 
-## What was surprising
+### 3. On a different cell, the check stops working
 
-**Force sensing quietly won.** With no vision channel at all, it had the lowest false-safe rate on all three failure modes at every error level. It never beat the baseline by more than the margin declared in advance, so it cannot be certified as a win — but the direction is unambiguous and consistent, and it is the single most interesting thing left open here.
+The first three studies used one clip. Real harness work is a route. So: a
+CAD-authored jig with five clips at three heights and four bearings, a ridge the
+cable climbs over, a corner it turns, and a clamp at the end — the picture at the
+top of this page. Success now means **all five clips still held and the connector
+seated**, across five decisions instead of three.
 
-**Appetite mattered more than representation.** Same check, same estimate — but a supervisor that takes the motion with the most *headroom* instead of the largest *permitted* one loses 8 clips instead of 32 and completes 72 routes instead of 48. That comparison was not pre-registered and carries no verdict. It is reported as exploratory, because the honest reading is that the safety check tells you what is allowed, and how much of that you take is a separate decision nobody optimised here.
-
-**Four of six predictions were wrong**, each written down before collection. The length budget would need nothing more (correct). The curvature limit would need the whole shape (wrong — nothing separated). Force would beat everything on the load limit by a certifiable margin (wrong — it won, but not by enough). The clip budget would compose over a chain (wrong — it is the one that does not). Curvature and load would not compose (wrong — they do). The check would be worth having in a sequence (correct, overwhelmingly).
-
-**A bug in a test, not in the model.** A refined cable model had been failing for months and the cable was blamed. The test was scaling the cable's internal damping backwards when halving segment length — a discretised bending joint carries damping proportional to `1/L`, so halving the segment must *double* it. Corrected, the refinement is stable at three timestep settings and reproduces the coarse model's settled geometry to 5.7 micrometres.
-
-**A label whose boundary is where the cable rests.** Clip retention is decided by whether the cable's crossing sits within `half-width − radius` of the channel centre — exactly the position at which the cable touches the clip wall. Left to settle, the cable slides along the channel and stops 2.9 micrometres past that line. The registered settling deadline samples it well before then, which is why every result here is stable — so that deadline is part of the task's definition, not an approximation, and is now written down as one.
-
----
-
-## A real route, and what it costs the check
-
-Everything above is one connector and one clip. Harness work is routing, so there
-is now a cell worth routing through: a CAD-authored jig with a backing board,
-**five clips at three heights and four bearings**, a ridge the cable climbs over,
-a corner it turns and a strain-relief clamp at the end. It is authored in FreeCAD
-from a config — move a clip in the config and the jig, the screen and the block
-all move with it — and its meshes are visual only. The cable still collides with
-the same primitive boxes every published number was measured against, verified to
-**0.0 m** with the meshes attached and removed.
-
-Two numbers, measured before anything was scored, say what the fourth study is
-about:
+Two numbers, measured before anything was scored, explain the result:
 
 | | |
 | --- | --- |
-| what a five-clip route physically admits | about **18 mm** of commanded retreat |
-| what the shipped check permits on that route | **58 mm**, and eleven of twelve candidate motions |
+| what the five-clip route physically tolerates | about **18 mm** of pull-back |
+| what the shipped check permits on that route | **58 mm**, and 11 of its 12 candidate moves |
 
-The check's threshold is a fitted property of the cell it was fitted on — how much
-cable lies between the boot and the anchor, and how much of it can straighten.
-It is not a property of the cable, and a five-clip route is a different cell.
-So the check approves a motion that spends 82% of the headroom it reports, and
-the route loses a clip on it.
+The check's threshold is a fitted property of *the jig it was fitted on* — how
+much cable lies between the plug and the clamp, and how much of that can
+straighten out. It is not a property of the cable. Five clips pin the cable, so
+almost none of it can straighten, and the check does not know that.
 
-**2,340 routes and 11,700 decisions** are running now on that question, frozen and
-committed before launch: does the check still earn its place over five clips, does
-the clip budget keep decaying past the three steps the composition study could
-see, and does the supervisor's *appetite* — the thing that study found post hoc and
-could not certify — matter more than what the check is. The contract, its three
-predictions and the pilot that sized it are in
-[configs/cable_routing_v6.json](configs/cable_routing_v6.json). Nothing is claimed
-from it until it is fitted.
+The result, over 2,340 routes and 11,700 decisions:
+
+| Over a five-clip route | Lost a clip | Route completed |
+| --- | --- | --- |
+| no check, largest move every time | 0.667 / 0.636 / 0.489 | **0 of 780** |
+| check, take the largest allowed move | 0.667 / 0.611 / 0.497 | **0 of 780** |
+| check, take the move with most headroom | 0.333 / 0.314 / 0.353 | 20 / 76 / 9 |
+
+**The check bought nothing.** With it and without it are the same supervisor
+here: both issue one move, both lose a clip on it, and the gaps between them
+(0.000, +0.025, −0.008) are all inside the declared 0.05 margin. What did work is
+*taking less* — the same check, read for which move has the most room to spare
+rather than which is the largest one allowed.
+
+One further thing worth knowing: the clip that lets go is almost always the one
+at the top of the ridge — 1,017 of 1,144 losses, against 127 for the clip nearest
+the plug and none at all for the other three.
+
+266.8 million simulation steps, 87 minutes, zero guard violations.
+[Record](evidence/cable_routing_v6.json) ·
+[contract](configs/cable_routing_v6.json)
+
+### 4. What was predicted, and what actually happened
+
+Nine predictions were written down before collection. **Three were right:** that
+the length budget would need nothing richer than a scalar, that the check would be
+worth having over a sequence, and the one below.
+
+The six that were wrong, and what they taught: the curvature limit was predicted to need the whole cable
+shape (nothing separated); force sensing was predicted to win the load limit by a
+certifiable margin (it won everywhere, but never by enough to certify); the clip
+budget was predicted to chain cleanly (it is the one that degrades); curvature and
+load were predicted not to chain (they do); the check was predicted to still be
+worth having over a five-clip route (it is not); and the per-step risk was
+predicted to keep compounding (it does the opposite — on the route, risk is
+concentrated in the *first* move, and a route that survives that is mostly safe).
+
+The one prediction that landed squarely: **how greedily the supervisor spends what
+the check permits matters more than what the check is.** That started as an
+unplanned observation in study 2, was registered as a formal prediction in study
+3, and held — completing 33% and 21% of routes where the greedy version completed
+none, and collapsing inside the margin at the highest error level, exactly as
+predicted.
 
 ---
 
-## Why you can believe the numbers
+## Why the numbers are trustworthy
 
-- **Truth is scoring-only, and proved so.** A fail-closed guard fails any run whose control code reads a scoring channel, verified by a positive control that *fires*.
-- **The labels survive independent re-derivation.** All 16,080 runs re-scored from the raw per-tick logs alone: 26,652 comparisons, zero disagreements, peak anchor load reconstructed to exactly 0.0 N.
-- **The margin can resolve the difference.** An earlier block set a decision margin exactly equal to its own metric's resolution, making it undecidable. The runner now *refuses* a margin below twice the coarsest resolution — and refused three of fifteen cells here, which are reported as refused.
-- **Aborted runs are censored, not successes.** A move cut short never got to test the constraints it hadn't already broken.
-- **Frozen, committed, then launched.** Every contract's hash is recorded in the run manifests.
+- **The answer key is never readable by the code being tested.** A guard fails
+  any run whose control code touches a scoring-only channel, and a deliberate
+  positive control confirms the guard actually fires.
+- **Labels were re-derived independently.** All 16,080 runs of study 1 re-scored
+  from the raw per-tick logs alone: 26,652 comparisons, zero disagreements.
+- **The margin can resolve the difference it claims to measure.** An earlier
+  study set a decision margin equal to its own measurement resolution, making the
+  question unanswerable. The launcher now refuses to start a study whose margin is
+  smaller than twice its resolution — and refused three of fifteen comparisons.
+- **Runs cut short are excluded, not counted as successes.** A move that aborted
+  never got the chance to break the constraints it had not already broken.
+- **Frozen, committed, then launched**, with every contract's hash recorded in
+  the run manifest.
+- **Rejections are kept.** The screen that chose the five-clip jig rejected 19 of
+  the 28 candidates it was given, and all 19 are in the record with reasons.
 
 ---
 
-## What you can use
+## What you can actually use
 
-[`SafetyFilter`](src/assembly_recovery/cable_safety_filter_v4.py) loads its thresholds straight from the evidence record, so the published number and the running check cannot drift apart. It scores all three constraints and names which one binds, maps the whole continuous action space in one call so a planner sees the shape of what is allowed, and reports how much of each constraint's headroom a move spends. It runs off whatever a real estimator reports about its own error — a bias, a jitter, a worst-case error on a point it cannot see.
+[`SafetyFilter`](src/assembly_recovery/cable_safety_filter_v4.py) is the check
+itself, packaged. It reads its thresholds straight out of the evidence file, so
+the published number and the running code cannot drift apart. It scores all three
+constraints, names which one binds, maps the whole space of allowed moves in one
+call, and reports how much of each constraint's headroom a move spends. It runs
+off whatever a real pose estimator reports about its own error.
 
-The transfer sweep says which cable property matters: a ±30% uncertainty in **friction** implies 12.5 mm of extra margin, against 4.3 mm for bending stiffness.
+Study 3 says how to read it: **use its ranking, not its threshold.** The
+threshold does not transfer to a jig it was not fitted on. Ranking candidate moves
+by remaining headroom and taking a conservative one does.
+
+The jig itself is defined in config, not code — move a clip in
+[`configs/cable_cell_v6_candidates.json`](configs/cable_cell_v6_candidates.json)
+and the CAD, the screen and the study all follow.
 
 ```powershell
-.venv/Scripts/python.exe -m pytest                          # 235 tests, CPU-only
-.venv/Scripts/python.exe scripts/summarize_perception_v4.py
-.venv/Scripts/python.exe scripts/probe_cell_toolchain_v6.py # checks the CAD toolchain
+.venv/Scripts/python.exe -m pytest                          # 250 tests, no GPU, no simulator
+.venv/Scripts/python.exe scripts/summarize_perception_v4.py # study 1, in a paragraph
+.deps/cable-venv/Scripts/pythonw.exe scripts/render_cell_v6.py
 ```
 
-`AGENTS.md` has the operating rules and the full command sequence. `evidence/INDEX.json` lists every record with its own declared scope.
+`AGENTS.md` has the operating rules and the full command sequence.
+`evidence/INDEX.json` lists every record with its own declared scope.
 
 ---
 
-## What is next
+## Limits of these claims
 
-The cell exists and the routing block is running. What is missing is the tool: something an engineer can open, move a clip in, and re-run. That is [the workbench](docs/handover/v7_workbench.txt), and it reads what this session left — the fitted record, the per-step traces every request carries, and the asset hashes that say which cell was measured. The cell itself was built to [the routing-cell plan](docs/handover/v6_routing_cell.txt), on a CAD toolchain checked on this machine and recorded in [evidence/cell_toolchain_v6.json](evidence/cell_toolchain_v6.json).
+Simulation only. No hardware, no released or latched connection, no electrical
+function, no learned grasping, no force-certified safety claim. The endpoint is
+*held, clip-preserving seating before the gripper opens*.
+
+The degraded-perception model is a model of **how perception fails** — built from
+geometry and declared error magnitudes. It renders nothing, and no camera or
+estimator is built or evaluated here.
+
+One task, one connector, one cable model, two jigs. "One number is enough" is a
+measured statement about a single move on the first jig — and study 3 is the
+measurement of where that stops being true.
 
 ---
 
-## Scope
+## What is left
 
-Simulation only. No hardware, no released or latched connection, no electrical function, no learned grasping, no force-certified safety claim. The endpoint is *held, clip-preserving seating before gripper release* — extended, in the routing study, to every clip of a five-clip route rather than one.
-
-The error model is a model of **how perception fails** — derived from geometry and declared magnitudes. It is not camera perception, it renders nothing, and no estimator is built or evaluated here.
-
-One task, one connector, one cable model, one observation interface. "One number is enough" is a measured statement about that, not about cable manipulation in general.
+The measurements are done. What is missing is a tool an engineer can open, move a
+clip in, and re-run, plus a page that makes the result legible to someone who will
+not read this far. Both are specified in
+[docs/handover/v7_final_session.txt](docs/handover/v7_final_session.txt).

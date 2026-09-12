@@ -5,6 +5,7 @@ from __future__ import annotations
 import hashlib
 import json
 import os
+import signal
 import subprocess
 import time
 import zipfile
@@ -13,10 +14,56 @@ from pathlib import Path, PureWindowsPath
 
 from assembly_recovery.cable_study_v3 import content_sha256
 from assembly_recovery.protocol import assess_completion, sha256, validate_run_id, write_json
-from scripts.run_experiment import git, run_bounded
 
 AIC_COMMIT = "e9145480c945f2afc3741f355233f44082cc3b06"
 MUJOCO_VERSION = "3.3.7"
+
+
+def git(directory: Path, *arguments: str) -> str:
+    """One git command against a directory, as text."""
+    return subprocess.check_output(
+        ["git", "-c", f"safe.directory={directory.as_posix()}", "-C", str(directory), *arguments],
+        text=True, stderr=subprocess.PIPE).strip()
+
+
+def stop_owned_process(process: subprocess.Popen) -> None:
+    """Kill a worker and everything it spawned. A worker pool leaves children."""
+    if os.name == "nt":
+        subprocess.run(["taskkill", "/PID", str(process.pid), "/T", "/F"],
+                       check=False, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
+    else:
+        os.killpg(process.pid, signal.SIGKILL)
+    process.wait(timeout=30)
+
+
+def run_bounded(command: list[str], log_path: Path, deadline: float, env: dict,
+                cwd: Path | None = None) -> tuple[int, bool]:
+    """Run one owned process to a hard deadline; report whether it was cut short.
+
+    A timeout is a FAILURE, not a partial success, and the caller records it as
+    one. The process gets its own group so the whole worker pool dies with it.
+    """
+    kwargs = ({"creationflags": subprocess.CREATE_NO_WINDOW | subprocess.CREATE_NEW_PROCESS_GROUP}
+              if os.name == "nt" else {"start_new_session": True})
+    with log_path.open("w", encoding="utf8") as log:
+        process = subprocess.Popen(command, cwd=cwd, env=env, stdout=log,
+                                   stderr=subprocess.STDOUT, **kwargs)
+        try:
+            while process.poll() is None:
+                remaining = deadline-time.monotonic()
+                if remaining <= 0:
+                    stop_owned_process(process)
+                    return process.returncode, True
+                try:
+                    process.wait(timeout=min(30, remaining))
+                except subprocess.TimeoutExpired:
+                    print(f"Running PID {process.pid}; deadline in "
+                          f"{max(0, int(deadline-time.monotonic()))}s; log: {log_path}", flush=True)
+            return process.returncode, False
+        except BaseException:
+            if process.poll() is None:
+                stop_owned_process(process)
+            raise
 
 
 def snapshot_source(root: Path, output: Path, extra_paths=()) -> dict:
@@ -248,6 +295,7 @@ def execute_run(
             run_dir / "process.log",
             started + 60 * max_minutes,
             {**os.environ, **manifest["environment_overrides"]},
+            cwd=root,
         )
         report, checks = check_result(run_dir)
         boolean_checks = {key: value for key, value in checks.items() if type(value) is bool}

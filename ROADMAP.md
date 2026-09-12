@@ -1,110 +1,94 @@
-# Roadmap: constrained-cable connector recovery
+# Roadmap
 
-**Status: every measurement question this repository registered is closed, and one more is running.** v3 asked where the safe-repair boundary is, v4 asked how much a safety check must see as perception degrades, and v5 asked whether that check survives being chained. v6 builds the cell those answers were always pointing at — a five-clip harness route — and asks whether the shipped check still earns its place over it. What remains after that is not a measurement but a demonstration. The first question this repository asked has been answered with a pre-registered, held-out measurement, and re-running it would only invalidate it. The answer is a corner case, though, and the corner was named: every arm was handed the socket's exact pose at 500 Hz and the cable's exact shape. v4 removes that and asks how much a safety check actually needs to see, as perception degrades and across three constraint shapes. Its contract is [configs/cable_perception_v4.json](configs/cable_perception_v4.json), frozen and committed before launch.
+**Every measurement question this repository registered is closed.** Four
+pre-registered studies are run and fitted. What remains is not a measurement: a
+tool an engineer can open and a page that makes the result legible. Both are
+specified in [docs/handover/v7_final_session.txt](docs/handover/v7_final_session.txt),
+which is the last planned session.
 
-**Active scope:** industrial cable handling and connector insertion. Establish a credible physical task, measure where competent methods actually fail, and test the smallest justified improvement.
+**Scope.** Industrial cable handling and connector insertion, in simulation.
+**Endpoint:** held, clip-preserving seating before gripper release — the robot
+still holds the plug, real tip/base engagement and a continuous 0.5 s dwell are
+reached before the deadline, every required clip stays captured, and no load
+limit or state-mutation rule is broken. In the routing study "every required
+clip" means all five of a route, not one. Not a released or latched connection,
+electrical function, learned pickup, grasp-robustness result or hardware transfer.
 
-**Endpoint:** held, clip-preserving seating before gripper release. The robot still holds the plug, real tip/base engagement and a continuous 0.5 s dwell are reached before the deadline, the required open clip stays captured, and no load limit or state-mutation rule is broken. Not a released or latched connection, electrical function, learned pickup, grasp-robustness result or hardware transfer.
+---
 
-## The v4 question, as pre-registered
+## The four studies
 
-**How much must a safety check see?** As the state estimate degrades the way real perception degrades, where does a predicate over richer observations start to beat a scalar over estimated state — and does that crossover move with the *shape* of the constraint?
+| | Question | Verdict | Record |
+| --- | --- | --- | --- |
+| **v3** | Where is the safe-repair boundary? | `inconclusive_neither_branch_triggered`. The margin equalled the metric's own resolution, so the question was undecidable by construction. Kept, with the pre-registration defect, rather than re-run. | [record](evidence/cable_repair_boundary_v3.json) |
+| **v4** | How much must a safety check *see*, as perception degrades, across three constraint shapes? | **No crossover anywhere.** Nothing beats a one-parameter scalar by more than the registered margin at any error level on any constraint. The ~30k-parameter network is significantly *worse* on clip retention (gap 0.074, interval excluding zero). 1 of 3 predictions correct. | [record](evidence/cable_perception_v4.json) |
+| **v5** | Does that check survive being chained? | **Yes, decisively — but it does not compose.** Unfiltered lost the clip in 80 of 80 sequences at every error level. The clip budget's per-step rate *rises* 0.089 by the third decision at E4, past the margin; curvature and load hold. 1 of 3 correct, wrong in the informative direction. | [record](evidence/cable_sequence_v5.json) |
+| **v6** | Does it still earn its place over a five-clip route in a cell it was never fitted on? | **No.** Filtered and unfiltered are the same supervisor there (gaps 0.000 / +0.025 / −0.008, all inside the margin), both issuing one motion and losing a clip on it. Per-step risk *falls* rather than compounding. What holds is appetite, registered here and certified. 1 of 3 correct. | [record](evidence/cable_routing_v6.json) |
 
-Three constraints are scored on the same rollout, chosen so their shapes differ as much as the task allows: **C1** clip retention, a global length budget; **C2** minimum bend radius, a local curvature limit; **C3** peak anchor load, a rate-dependent dynamic limit. Six arms read the identical estimate: the v3 scalar, that scalar carrying a margin sized from the declared estimator covariance, a force-only arm, a feature model, a network over the whole estimated centreline, and that network plus a short observation history. The crossover prediction, the margin, the metrics, the group split and the full request list were frozen in the contract and committed at `0842900` before the first request launched.
+**What this adds up to.** A scalar check carrying a margin sized from the
+estimator's declared error is sufficient for a single move and worth having over a
+short chain — and its *threshold* is a fitted property of the jig it was fitted
+on, not of the cable. Move to a jig with five clips and the threshold permits
+58 mm where the route tolerates 18 mm, and the check stops buying anything. Its
+*ranking* still transfers: reading the same check for which move has the most
+headroom completes routes where taking the largest permitted one completes none.
+
+---
 
 ## Verified state: the instrument
 
-| Item | Verified state |
+| Item | State |
 | --- | --- |
-| **The v3 open failure** | **Cleared, and relocated.** The 46-segment refinement did not fail because of discretisation. The control that tested it scaled per-joint bending damping as `c ∝ L`; a continuum Kelvin–Voigt bending moment discretises to `γI/L`, so halving the segment length must *double* it. [The control](evidence/cable_discretisation_v4.json) reproduces the original instability at 4, 8 and 16 kHz at the registered damping, and with the corrected scaling **not one of nine cells is unstable**. |
-| Does the cable model refine? | Yes, on the quantity the safety threshold is built on. A fourfold refinement (92 segments at 5 mm) settles at 4, 8 and 16 kHz, retains the clip at all three, and reproduces the registered 23-segment settled boot-to-anchor distance to **5.7 µm** at the matched rate and **0.18 mm** across every settled cell. Minimum bend radius does **not** agree within its declared 2 mm tolerance, so C2 stays scoped to the 23-segment model at 4 kHz. |
-| **The new open item** | The routed cable is **not at rest** at the registered 5 s settling deadline. It slides laterally along the clip channel for another eight seconds and comes to rest against the clip wall — which is exactly where the retention predicate's lateral test sits. The measured resting crossing is **2.9 µm past it** at 4 kHz and 5.3 µm past it at 16 kHz. The deadline is part of the task definition, not an approximation to rest. Neither it nor the predicate was changed. |
-| Support, widened | 12 layouts × up to 3 installed loops, screened per cell: **29 of 42 candidate cells registered, 13 rejected** with their reasons in [the screen](evidence/cable_layout_screen_v4.json). v3 had 5 layouts and 15 groups. Clip positions from 130 to 195 mm, doglegs to 35 mm, two shelf heights, and a corner route. The distal catch route that never survived settling is retired rather than carried forward. |
-| A criterion withdrawn, not tuned | The candidate file declared a 1 mm floor on the installed clearance between the cable and the retention predicate's own wall. The screen measures that this floor rejects **L1, the validated v2/v3 layout the whole repository is built on** — its cells install at 0.14, 1.87 and 1.05 mm. A criterion that rejects the reference cannot be the right criterion, so it is withdrawn and reported as a diagnostic. Both verdicts are kept. |
-| Privilege guard | Fail-closed, with a **positive control that fires**: a request that deliberately reads a scoring-only channel inside the control window fails with `privilege_violation`, and the same request without the probe runs clean. [Controls](evidence/cable_perception_controls_v4.json). |
-| The zero-error anchor | At E0 the estimate a controller reads **is** the truth, exactly — asserted in the compiled scene, not in prose — so the anchor reproduces the v3 interface rather than approximating it. |
-| Occlusion is geometry | Derived from a declared camera eye against the clip channel and the mount assembly. It hides **5 to 6 of the 24 centreline nodes**: the run descending behind the mount and the node inside the clip. The occluded nodes carry about five times the visible nodes' error. Not uniform noise. |
-| Two choices made from the pilot | The C2 spec moved from the static band (4–6× OD) to the dynamic one (10–15× OD), because the static band fires on 0.5% of requests and cannot be measured, while a repair is a commanded *motion* and every registered cell installs above 40 mm. The error ladder was compressed to 0–2 mm of socket bias, because above that almost nothing reaches seating and every arm abstains. Both are recorded with the measurement that forced them in [the pilot](evidence/cable_perception_pilot_v4.json). |
-| Metric resolution, in code | 60 test contexts per error level, so the ranking metric's resolution is 1/60 and the registered margin of 0.05 is three times it. The runner **refuses** a margin below twice the coarsest resolution. v3 registered a margin exactly equal to its resolution and returned a verdict that was unresolvable by construction; that cannot happen again. |
-| Censoring, declared before collection | A request cut short by the force abort is **censored** on every constraint it had not already violated, never scored as respecting one. Censored actions count in a predictor's coverage — so it cannot hide behind them — but not in its numerator, and the censored share is reported beside every rate. |
-| Throughput | 28,086 aggregate native steps/s on 12 workers against **44,966 on 20** — a 1.60× speedup for a 6.6% per-worker loss, on 24 physical cores. Collection is CPU-only: MJX does not support this scene's cable elasticity plugin, composite bodies or elliptic friction cone. |
-
-## Verified state: the block
-
-| Item | Verified state |
-| --- | --- |
-| Block | 16,080 registered requests over 870 ladder contexts and 180 single-factor isolation cells, in four shards on 20 workers. **1,491,168,847 integration steps in 9.05 hours.** [Contract](configs/cable_perception_v4.json), [record](evidence/cable_perception_v4.json), [figure](evidence/cable_perception_v4.png). |
-| Denominator | 16,080 requested, 16,080 executed, 15,476 usable for fitting. C1 violated 4,903 / respected 8,505 / censored 2,672. C2 2,208 / 10,895 / 2,977. C3 2,067 / 11,177 / 2,836. |
-| Guards | **0 privilege-guard events and 0 mutation-guard events** across the whole block. |
-| Ledger replay | Every clip and anchor label re-derived from the stored servo ledgers alone: **13,408 and 13,244 comparisons, 0 disagreements**, peak anchor reaction reconstructed to **exactly 0.0 N**. [Record](evidence/cable_perception_replay_v4.json). |
-| Held-out design | 60 test contexts per error level (58 at E4), 865–960 test requests per level. Whole (layout, loop) families, frozen before launch. |
-| **The verdict** | **No crossover, on any constraint, anywhere in the range.** Nothing beats the one-number baseline by more than the registered margin at any error level. |
-| C1, the length budget | B0 false-safe rises 0.133 → 0.220 across the ladder. **M is worse at every level** (0.208 → 0.288), and Mh worse still. The cluster bootstrap puts B0+ ahead of the best learned arm by 0.074, 0.069 and 0.075 at E0–E2 with **intervals excluding zero**. Per-seed spread is 0.201/0.218/0.209 at E0 — not seed noise. |
-| C2, the curvature limit | Everything bunches: B0 0.029 → 0.059, M 0.042 → 0.052. No arm separates by more than the margin, at any level. |
-| C3, the load limit | Force-only is best at every level (0.008 → 0.031 against B0's 0.034 → 0.044) but by 0.013 to 0.035, never more than the 0.05 margin. |
-| Cost | B0+ carries **1 fitted parameter**, B2 10, B1 19, M and Mh about 30,000. The 30,000-parameter arms buy a *worse* answer on C1 and a tied one elsewhere. |
-| Predictions | **1 of 3 correct.** C1 behaved as predicted. C2 did **not** need the richer representation, and the force-only arm did **not** beat the baseline by more than the margin on C3 — though it is consistently better on all three. |
-| Metric resolution | 12 of 15 cells usable. **3 refused** (C1:E2, C2:E0, C3:E2) because abstentions coarsened the resolution to 0.027–0.032 there; the guard refuses rather than reporting an undecidable number. |
-| Isolation | Attributing the effect: with only socket error on, B0 0.153 and M 0.206. Only centreline error, 0.128 and 0.219. Only process noise, 0.093 and 0.176. The ordering holds in every channel. |
-| Transfer protocol | Nominal threshold **399.7 mm**. A ±30% uncertainty in the cable's sliding friction implies **12.5 mm** of extra margin, against 13.3 mm for linear density, 4.3 mm for bending stiffness and 0.5 mm for material damping. Two of nine cells could not be fitted and are recorded as such. [Record](evidence/cable_transfer_protocol_v4.json). |
-| Exploratory shape term | The post-hoc shape-matched scalar chose **weight zero on all three constraints** at full scale. The extra term earned nothing; the pilot signal that motivated it was noise, and that is recorded as a negative rather than dropped. |
-
-**What this means.** Handing the safety check more of the state did not help, and handing it the whole cable shape actively hurt on the constraint that matters most. The honest reading is that the *representation* was never the binding problem here: a scalar computed in closed form from an estimated pose, carrying a margin sized from what the estimator says about itself, is sufficient across the whole range of estimation error a good industrial pose estimator would produce — for a global length budget, a local curvature limit and a rate-dependent load limit alike.
-
-## What v3 settled, and what it did not
-
-It settles that on this task a repair supervisor needs a safety filter and that one number is a sufficient one. Nothing that saw more of the state — fourteen engineered features, or the entire cable centreline — changed the decision by more than its own training noise. Learning does not earn its data cost there.
-
-It does not settle that the safe-repair boundary is simple in general. It is one task, one connector, one cable model, and one observation interface in which the port's true pose is handed to the controller at 500 Hz. The honest reading is narrower than the headline: **when the constraint that a repair can violate is a length budget, and that budget's endpoint is computable in closed form from the observed pose, a scalar is the right representation.** Where a repair's consequence is not a budget, none of that transfers — which is why v4 scores three constraint shapes rather than one.
-
-The v3 block itself: 1,440 requests over 60 contexts, 739 reaching held clip-preserving seating, 322 releasing the clip, 379 aborting on load; B0 a single 409.4 mm threshold at a held-out false-safe rate of 0.162; B1 making the identical decision in all 20 held-out contexts; M better in two contexts out of twenty, inside a bootstrap interval spanning zero and worse than B0 on one of its three seeds. Verdict `inconclusive_neither_branch_triggered`, with the pre-registration defect behind it recorded rather than corrected. [Contract](configs/cable_repair_boundary_v3.json), [record](evidence/cable_repair_boundary_v3.json), [controls](evidence/cable_boundary_controls_v3.json), [figure](evidence/cable_repair_boundary_v3.png).
-
-## What the study ships, beyond a number
-
-A predicate that judges one motion is not usable by a cell; nothing in harness work is one motion. [`SafetyFilter`](src/assembly_recovery/cable_safety_filter_v4.py) is the check itself, loading its thresholds out of the evidence record so a shipped filter and a published number cannot drift apart. It scores all three constraints and names the binding one, maps the whole continuous action space in one call so a planner sees the shape of what is allowed, and reports how much of each constraint's headroom a motion spends — which is what a plan needs, because an individually safe step can still leave the next one nothing. A constraint it has no rule for is reported as unscored rather than silently approved, and it runs off the estimator's own declared bias, jitter and worst-case node error rather than off this study's registered ladder.
-
-## Verified state: the composition study
-
-| Item | Verified state |
-| --- | --- |
-| Block | **720 registered sequences, 2,160 decisions offered, 1,433 motions issued, 72,910,827 integration steps.** Three supervisors by three error levels by 80 held-out sequences. [Contract](configs/cable_sequence_v5.json), [record](evidence/cable_sequence_v5.json). |
-| Guards | 0 privilege-guard events, 0 mutation-guard events. |
-| Does the filter earn its place | **Yes, decisively.** The unfiltered supervisor lost the required clip in **80 of 80 sequences at every error level** (rate 1.000) against 0.400 / 0.569 / 0.545 filtered. Gaps of 0.600, 0.431 and 0.455, all far beyond the 0.05 margin. |
-| Does the check compose | **C1 does not; C2 and C3 do.** The clip budget per-step violation rate rises **+0.089** from the first decision to the last at E4, past the margin. Curvature (+0.050 worst) and anchor load (-0.033 worst) stay inside it at every level. |
-| Predictions | **1 of 3 correct**, and wrong in the informative direction. C1 was predicted to compose and does not. C2 and C3 were predicted to fail and do not. The filter was predicted to be worth it over a sequence, and is. |
-| Appetite (post-hoc) | Same filter, same estimate. Taking the motion with the **most headroom** rather than the largest safe one: clip loss 0.100 against 0.400 at E0, 0.159 against 0.569 at E2, and completion 0.900 against 0.600 and 0.513 against 0.313. At E4 the advantage collapses to 0.077, inside the margin. Not pre-registered, reported as exploratory, no verdict. |
-
-**What this means.** A safety check fitted on single motions is worth having in a sequence — without it the cable comes out every time. But the constraint it measures directly is the one that degrades along a chain, because each accepted step spends slack the next step is judged against, and the two constraints it only judges indirectly are the ones that hold. A planner may therefore chain curvature and load decisions; it must re-examine the length budget at every step rather than trusting a per-step rate fitted in isolation. Separately, and outside any verdict, the supervisor appetite moved the outcome further than the filter representation did in the perception study — which is the honest place to point the next piece of work.
+| Does the cable model refine? | Yes, on the quantity the threshold is built on. A fourfold refinement settles at 4, 8 and 16 kHz and reproduces the registered settled boot-to-anchor distance to **5.7 µm**. Minimum bend radius does **not** agree across refinements, so C2 stays scoped to the 23-segment model at 4 kHz. [record](evidence/cable_discretisation_v4.json) |
+| Is the initial state at rest? | **No, and that is part of the task.** The routed cable slides along the clip channel for another eight seconds and comes to rest **2.9 µm past** the retention predicate's own lateral test. The 5 s settling deadline is a task definition, not an approximation. Neither it nor the predicate was changed. |
+| Privilege guard | Fail-closed, with a positive control that **fires**. Zero events across v4, v5 and v6. [controls](evidence/cable_perception_controls_v4.json) |
+| Mutation guard | Armed on every request. Zero events across v4, v5 and v6. |
+| Ledger replay | Every v4 clip and anchor label re-derived from the stored servo ledgers alone: **13,408 and 13,244 comparisons, 0 disagreements**. [record](evidence/cable_perception_replay_v4.json) |
+| Margin resolution | Checked in code before any freeze, and in v6 level by level so a well-sized cell cannot hide an unresolvable one. v4 refused 3 of 15 comparisons and reports them as refused. |
+| Throughput | 24 physical cores, CPU-only. **44,966 aggregate native steps/s on 20 workers** against 28,086 on 12. MJX does not support this scene's cable plugin, composite bodies or elliptic friction cone, so the GPU is for rendering only. |
+| Transfer | Nominal threshold **399.7 mm**. A ±30% uncertainty in sliding friction implies **12.5 mm** of extra margin, against 4.3 mm for bending stiffness. [record](evidence/cable_transfer_protocol_v4.json) |
 
 ## Verified state: the routing cell
 
-| Item | Verified state |
+| Item | State |
 | --- | --- |
-| The cell | A CAD-authored wiring jig: a backing board, **five routing clips** at three heights and four bearings, a ridge the route climbs over, a corner it turns, a strain-relief clamp and a connector-socket surround. Authored in FreeCAD 1.1.3 from the cell config, **8 parts, all watertight, all a single solid after the fuse, 3,704 facets**, lead-ins filleted. [Record](evidence/cable_cell_cad_v6.json), assets in `assets/cell_v6/`. |
-| Every clip keeps the predicate | Every clip carries the registered cross-section in every dimension the retention predicate reads: 12 mm channel, 6 mm half-width, 5 mm lip gap, 12.5 mm lip height, −1 mm floor. Only the channel **length** is shortened, 30 mm to 12 mm, and length does not enter the predicate. |
-| The CAD cannot move a number | Meshes are **visual only** — `contype=0 conaffinity=0 group=2 mass=0` — and the cable collides with the primitives `build_fixture` already writes. Measured, not asserted: settling with and without the meshes agrees to **0.0 m** at three service loops. |
-| The refactor did not change the task | `build_fixture` now carries N clips from a `clips` list; the registered `clip` key reads as a one-element list. Two registered perception contexts recompiled through the new path: **byte-identical scene XML** and settled centreline agreement of **0.0 m**, against a declared 1e-6 m tolerance. |
-| The screen | 4 candidate cells × 7 service loops declared before it ran. **28 screened, 9 accepted, 19 rejected** with their reasons. **RC1** wins the selection rule written down first — it survives at **6 of 7** loops against 2, 1 and 0. Worst installed lateral clearance 0.41–0.53 mm, inside the 0.14–1.87 mm band the v4 reference layout installs at. [Record](evidence/cable_cell_screen_v6.json). |
-| What the cell admits | Measured on a 63-request pilot: a five-clip route admits about **18 mm** of commanded retreat. At 4/8/12/18 mm the route completes — five motions issued and finished, all five clips kept, connector seated. At 25 mm a clip goes at step 5, at 35 mm at step 3, at 50 mm at step 1. |
-| What the shipped filter permits | **58 mm** of headroom on this cell, and it approves **eleven of the twelve** registered candidate motions. It refuses only the largest, then issues one that spends **82 per cent** of its own reported headroom — and the cell loses a clip on that motion. The threshold is a fitted property of the cell it was fitted on, not of the cable. The filter is **not** refitted and the action set is **not** rescaled; either would answer a different question. |
-| The block | **2,340 routes, 11,700 decisions**, three supervisors × three error levels × 60 physical contexts, five decisions each. Frozen and committed at `26596c8` **before** launch. Per-step resolution 0.0167 at E0 and 0.0028 at E2/E4 against a 0.05 margin, checked level by level so a well-sized E4 cannot hide an unresolvable E0. [Contract](configs/cable_routing_v6.json). |
-| E0 repeats are not repeats | At E0 the estimate a supervisor reads **is** the truth, so a second perception draw is a byte-identical duplicate. The composition study took four there and its E0 resolution was optimistic by that factor. This block takes one draw at E0 and gets its E0 diversity from a registered five-point mounting-offset ladder instead, measured to flip outcomes within a single group. |
-| Status | **Running.** Launched 2026-09-12 18:23 UTC as `routing-v6-s1` on 20 workers, measured at about 110 minutes against a 290-minute cap. Fit with `scripts/fit_routing_v6.py`; `--partial` reads an unfinished block and labels the record as provisional. |
+| The cell | Five clips at three heights and four bearings, a ridge, a corner, a strain-relief clamp, a socket surround. Authored in FreeCAD **from config**: 8 parts, all watertight, all one solid after the fuse, 3,704 facets. [record](evidence/cable_cell_cad_v6.json), assets in `assets/cell_v6/`. |
+| The CAD cannot move a number | Meshes are visual only (`contype=0 conaffinity=0 group=2 mass=0`); the cable collides with the primitives every published number was measured against. Settling with and without them agrees to **0.0 m** at three service loops. |
+| The refactor did not change the task | `build_fixture` carries N clips; the registered `clip` key reads as a one-element list. Two registered v4 contexts recompile to **byte-identical scene XML** with settled centreline agreement of **0.0 m**. [check](artifacts/cell/scene.json) |
+| The screen | 28 cells declared before it ran, **9 accepted, 19 rejected** with reasons. RC1 wins the selection rule written down first — surviving at 6 of 7 service loops against 2, 1 and 0. [record](evidence/cable_cell_screen_v6.json) |
+| The block | **2,340 routes, 11,700 decisions, 266.8M integration steps, 87 minutes**, zero guard events, zero settling rejections. Frozen and committed before launch. [contract](configs/cable_routing_v6.json) |
+| Which clip lets go | The raised one at the top of the ridge: **1,017 of 1,144 losses**, against 127 for the clip nearest the plug and none for the other three. |
+
+---
+
+## Open, and honestly so
+
+- **Force-only sensing.** Lowest false-safe rate on all three constraints at
+  every error level, never by more than the declared 0.05 margin, so nothing
+  could be certified. Closing it needs a margin near 0.01 and therefore at least
+  200 held-out contexts per cell. The most interesting measurement this project
+  did not buy.
+- **A budget-capped supervisor.** The obvious fix for the v6 result, using only
+  what the shipped layer already reports. Not registered in v6 because the
+  registered action set produces spent fractions of 0.061 and 0.819 with nothing
+  between them, so any cap that separates the arms would have to be tuned. It
+  needs its own action set and its own sizing.
+- **v6's support is thin.** One cell at six service loops crossed with two mounts
+  and five mounting offsets — 60 physical contexts, against v5's ten held-out
+  layouts. A v6 finding is a statement about that cell.
+- **v3 stays inconclusive.** Re-running it under a changed rule would not fix the
+  pre-registration defect; it would hide it.
 
 ## The single next action
 
-**Fit the routing block, then build the workbench.** The block is running and needs
-nothing but time; `.venv/Scripts/python.exe scripts/fit_routing_v6.py --run-dir
-artifacts/cable/routing-v6-s1` writes `evidence/cable_routing_v6.json`
-and answers the three registered predictions separately. Then the second planned
-session builds the engineering tool and the showcase on top of it —
-[the workbench](docs/handover/v7_workbench.txt), with a note from this session on what is on disk and what is still running at
-[docs/handover/v6_to_v7_note.txt](docs/handover/v6_to_v7_note.txt) — from the per-step traces every
-request already carries: the commanded action, the filter's per-constraint verdict
-and headroom, the budget the motion spends, and the per-clip retention picture
-before and after. The measurement questions this repository registered are closed;
-what is left is making the answer legible.
+Build the tool and the public page, to
+[docs/handover/v7_final_session.txt](docs/handover/v7_final_session.txt), then
+close the project. No further measurement is planned.
 
 ## History
 
-Closed cycles from before this repository existed - the retired peg study, the first free-cable cycle and the earlier adaptive-sampling design - stayed behind in the space-robotics repository this work was carved out of, with their original evidence files unchanged. The v2 task and gate block are in [evidence/cable_recovery_block_v2.json](evidence/cable_recovery_block_v2.json) and its [independent replay](evidence/cable_recovery_replay_v2.json). [evidence/INDEX.json](evidence/INDEX.json) lists every record with its declared id, status and scope.
+Earlier closed cycles — the retired peg study, the first free-cable cycle and the
+earlier adaptive-sampling design — stayed behind in the space-robotics repository
+this work was cut from, with their evidence unchanged.
+[evidence/INDEX.json](evidence/INDEX.json) lists every record here with its
+declared scope.

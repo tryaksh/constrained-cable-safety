@@ -763,28 +763,8 @@
   }
  ],
  "figures": [
-  "cable_baseline_v2.pdf",
-  "cable_baseline_v2.png",
-  "cable_cell_v6_cell_cad.png",
-  "cable_cell_v6_cell_primitives.png",
   "cable_cell_v6_clips_cad.png",
-  "cable_cell_v6_clips_primitives.png",
-  "cable_cell_v6_corner_cad.png",
-  "cable_cell_v6_corner_primitives.png",
-  "cable_contact_validation_v1.pdf",
-  "cable_contact_validation_v1.png",
   "cable_perception_v4.png",
-  "cable_recovery_v2.pdf",
-  "cable_recovery_v2.png",
-  "cable_repair_boundary_v3.pdf",
-  "cable_repair_boundary_v3.png",
-  "cable_research_task_v2.pdf",
-  "cable_research_task_v2.png",
-  "cable_research_task_v2.svg",
-  "cable_retention_v1.pdf",
-  "cable_retention_v1.png",
-  "cable_robot_validation_v1.pdf",
-  "cable_robot_validation_v1.png",
-  "cable_video_v1.jpg"
+  "cable_repair_boundary_v3.png"
  ]
 }

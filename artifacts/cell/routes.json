@@ -1,0 +1,32 @@
+{
+ "stage": 3,
+ "name": "Route construction and screen",
+ "status": "done",
+ "acceptance_declared_before_the_work": [
+  "guide_route is EXTENDED to a multi-clip route, not replaced: the cable is never hand-placed.",
+  "Every candidate cell passes the same settling screen the registered support passed.",
+  "A cell is admitted only if it settles, retains EVERY required clip and installs above the C2 spec.",
+  "Rejections stay in the denominator, with their reasons.",
+  "Roughly a third of what is drawn is expected to be rejected."
+ ],
+ "how_the_route_is_built": "guide_route already walks fixture route waypoints; the only change is that a waypoint may now carry its own height, so a route can climb over a raised clip. rounded_path, matched_guide, fit_chain and the folded-chain rejection are unchanged, and cable_routes.slack_filter still refuses a length that cannot reach.",
+ "screened_cells": 28,
+ "accepted_cells": 9,
+ "rejected_cells": 19,
+ "rejection_rate": 0.679,
+ "accepted_groups": [
+  "RC1_l15",
+  "RC1_l20",
+  "RC1_l25",
+  "RC1_l30",
+  "RC1_l40",
+  "RC1_l45",
+  "RC2_l20",
+  "RC2_l30",
+  "RC3_l20"
+ ],
+ "selection_rule": "The registered cell is the candidate that survives at the MOST service loops. Ties are broken by the larger worst-clip lateral clearance, and then by the candidate with more clips. Declared here before the screen ran. The losing candidates stay in this file and their rejections stay in the record.",
+ "registered_cell": "RC1",
+ "why_RC1": "It survives at 6 of 7 declared service loops against RC2's 2, RC3's 1 and RC4's 0, which is the selection rule declared in the candidate file before the screen ran.",
+ "record": "evidence/cable_cell_screen_v6.json"
+}

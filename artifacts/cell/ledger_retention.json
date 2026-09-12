@@ -1,0 +1,18 @@
+{
+ "schema": 1,
+ "id": "routing_v6_ledger_retention",
+ "run_id": "routing-v6-s1",
+ "what_was_kept": "Every request's result.json, which carries the whole per-step trace. Raw per-tick ledgers and compiled scenes for a declared subset only.",
+ "why": "The ledgers are 8.1 GB and only a handful can ever be rendered. Keeping all of them would make the working tree unusable for no gain.",
+ "how_to_get_a_removed_ledger_back": ".deps/cable-venv/Scripts/pythonw.exe scripts/evaluate_cable_routing_v6.py --run-dir artifacts/cable/routing-v6-s1 --config artifacts/cable/routing-v6-s1__runtime.json --case <request id>. The seeds are registered, so the re-run reproduces the request exactly.",
+ "selection_rule": [
+  "Matched triples: every (group, error level) under all three supervisors, at the rigid mount, nominal offset, first draw. A side-by-side replay needs the same cell under three rules.",
+  "Every route that completed.",
+  "One example of every distinct failure reason under every supervisor."
+ ],
+ "requests_total": 2340,
+ "requests_with_ledgers_kept": 165,
+ "files_removed": 4350,
+ "gigabytes_removed": 7.538,
+ "gigabytes_kept": 0.678
+}

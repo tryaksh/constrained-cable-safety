@@ -1,0 +1,84 @@
+{
+ "stage": 2,
+ "name": "Bring the cell into MuJoCo",
+ "status": "done",
+ "acceptance_declared_before_the_work": [
+  "build_fixture carries N clips from a config key `clips`, a list.",
+  "The registered single-clip key `clip` still compiles, and a test asserts it.",
+  "clip_state returns a per-clip list plus a route summary and does not change what the first clip computes.",
+  "One registered perception context recompiles through the new code path and reproduces the settled geometry the old code produced, to better than 1e-6 m.",
+  "CAD meshes enter as VISUAL geoms only; collision stays on the primitives build_fixture already writes.",
+  "The scene inherits the project contact defaults solref=0.004 1 solimp=0.95 0.99 0.001."
+ ],
+ "reproduction": {
+  "tolerance_m": 1e-06,
+  "contexts": {
+   "L1_l6": {
+    "scene_xml_sha256_identical": true,
+    "max_vertex_distance_m": 0.0,
+    "solved_anchor_along_delta_m": 0.0
+   },
+   "L10_l4": {
+    "scene_xml_sha256_identical": true,
+    "max_vertex_distance_m": 0.0,
+    "solved_anchor_along_delta_m": 0.0
+   }
+  },
+  "verdict": "Both registered contexts recompile to a BYTE-IDENTICAL scene XML and settle to exactly the same centreline, 0.0 m. The refactor did not change the task.",
+  "how": "scratchpad reproduce.py built each context against the pre-refactor module from git HEAD and against the current tree, and compared the compiled XML hash, the initial chain and the settled centreline."
+ },
+ "measured": {
+  "tests": "235 pass, up from 221; 14 new in tests/test_cable_cell_v6.py"
+ },
+ "cad_is_physics_neutral": {
+  "question": "The CAD enters as visual geoms. Does attaching it change the physics at all?",
+  "measured": {
+   "RC1_l20": {
+    "geoms_primitives_only": 122,
+    "geoms_with_cad": 130,
+    "cad_meshes_attached": 8,
+    "settled_both": [
+     true,
+     true
+    ],
+    "all_required_retained_both": [
+     true,
+     true
+    ],
+    "max_settled_vertex_distance_m": 0.0,
+    "min_bend_radius_delta_m": 0.0
+   },
+   "RC1_l30": {
+    "geoms_primitives_only": 122,
+    "geoms_with_cad": 130,
+    "cad_meshes_attached": 8,
+    "settled_both": [
+     true,
+     true
+    ],
+    "all_required_retained_both": [
+     true,
+     true
+    ],
+    "max_settled_vertex_distance_m": 0.0,
+    "min_bend_radius_delta_m": 0.0
+   },
+   "RC1_l40": {
+    "geoms_primitives_only": 122,
+    "geoms_with_cad": 130,
+    "cad_meshes_attached": 8,
+    "settled_both": [
+     true,
+     true
+    ],
+    "all_required_retained_both": [
+     true,
+     true
+    ],
+    "max_settled_vertex_distance_m": 0.0,
+    "min_bend_radius_delta_m": 0.0
+   }
+  },
+  "verdict": "No. Three service loops, settled with the primitives alone and with the eight CAD meshes attached: the settled centreline agrees to 0.0 m exactly and the installed minimum bend radius to 0.0 m. Eight geoms are added, all contype=0 conaffinity=0 group=2 with mass=0, and nothing the cable touches changes."
+ }
+}

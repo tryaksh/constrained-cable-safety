@@ -1,0 +1,146 @@
+{
+ "stage": 4,
+ "name": "The routing block",
+ "status": "fitted",
+ "acceptance_declared_before_the_work": [
+  "One request is: from a settled free end, press the cable into every clip of the route, then seat the connector, with a declared dwell. Success is every required clip retained AND the connector seated.",
+  "At every routing step the supervisor asks the filter which moves are safe, issues one, and the layer reports what it spent.",
+  "At least three arms, and the third earns its place: the filter taking the largest safe motion, the filter taking the most headroom, and no filter at all.",
+  "The contract is frozen and COMMITTED BEFORE LAUNCH.",
+  "The margin is at least twice the coarsest metric resolution, checked in code; if the check refuses, add sequences, never lower the margin.",
+  "Pilot 2 to 4 contexts, measure the real per-request cost, then size the block to the time available. Measure, do not extrapolate.",
+  "Launch in the background. If it will not finish inside this session, that is fine and expected."
+ ],
+ "frozen": {
+  "contract": "configs/cable_routing_v6.json",
+  "content_sha256": "1d735d5100a3d2b6589df7ca3a4d5a2e3f91aa00a1e9fb56314584abc966ef90",
+  "committed_before_launch": "26596c8",
+  "requests": 2340,
+  "decisions": 11700,
+  "steps_per_request": 5,
+  "required_clips": 5,
+  "supervisors": [
+   "filtered",
+   "conservative",
+   "unfiltered"
+  ],
+  "error_levels": [
+   "E0",
+   "E2",
+   "E4"
+  ],
+  "physical_contexts": 60,
+  "physical_contexts_note": "6 registered (cell, service loop) groups x 2 port mounts x 5 mounting offsets.",
+  "routes_per_cell_by_error_level": {
+   "E0": 60,
+   "E2": 360,
+   "E4": 360
+  },
+  "per_step_metric_resolution": {
+   "E0": 0.0167,
+   "E2": 0.0028,
+   "E4": 0.0028
+  },
+  "margin": 0.05,
+  "resolution_check": "The runner refuses to freeze unless the margin is at least twice the resolution AT EVERY ERROR LEVEL, so a well-sized E4 cannot hide an unresolvable E0. It passed at 3.0x, 18.0x and 18.0x."
+ },
+ "launch": {
+  "run_id": "routing-v6-s1",
+  "command": ".venv/Scripts/python.exe scripts/run_routing_v6.py --run-id routing-v6-s1 --workers 20 --max-minutes 290",
+  "started_utc": "2026-09-12T18:23:40Z",
+  "worker": "scripts/evaluate_cable_routing_v6.py",
+  "runtime_config": "artifacts/cable/routing-v6-s1__runtime.json",
+  "tree_at_launch": "clean, at 26596c8",
+  "measured_rate": "52 routes in the first 2.5 minutes on 20 workers, so about 110 minutes for the whole block against a 290-minute cap. One shard; no sharding needed.",
+  "how_to_fit": ".venv/Scripts/python.exe scripts/fit_routing_v6.py --run-dir artifacts/cable/routing-v6-s1",
+  "how_to_fit_if_it_did_not_finish": "Add --partial. The record then says so in its status and carries a partial_note, and every rate in it is provisional because the cells are unequally filled."
+ },
+ "pilot": {
+  "requests": 63,
+  "worker_seconds": 376,
+  "in_any_denominator": false,
+  "what_it_decided": [
+   "The job deadline, 115 s, from the measured cost of a five-motion route.",
+   "The retry budget, 10, so five issued motions plus the controller's own force retries fit.",
+   "The block size, from a measured 17.9 s mean per request rather than an extrapolation of the composition study's three-motion cost.",
+   "The mounting-offset ladder, because at E0 the estimate is the truth and perception draws there would be duplicates."
+  ],
+  "what_it_did_not_change": "Not the action set, not the filter, not the cell, not the margin, not the retention predicate and not the settling deadline."
+ },
+ "the_two_numbers_the_block_turns_on": {
+  "what_the_cell_admits_m": 0.018,
+  "what_the_filter_permits_m": 0.058,
+  "note": "The cell loses a clip somewhere between 18 and 25 mm of commanded retreat. The shipped filter carries 58 mm of headroom on this cell and approves eleven of the twelve registered candidate motions, then issues one that spends 82 per cent of its own reported headroom. The threshold is a fitted property of the cell it was fitted on, not of the cable, and a five-clip route is a different cell. Whether that gap costs anything an engineer would notice is what the block measures."
+ },
+ "what_v7_reads_from_this": [
+  "evidence/cable_routing_v6.json once fitted - every comparison as a field, not a sentence.",
+  "artifacts/cable/routing-v6-s1/<request>/result.json - the per-step trace for EVERY request: the commanded action, the filter's per-constraint verdict and headroom, the budget the motion spends, the per-clip retention picture before and after, and whether the motion finished.",
+  "artifacts/cable/routing-v6-s1/<request>/ledger.npz - the per-tick servo and native ledgers, including the required-clip count at every servo tick.",
+  "artifacts/cable/routing-v6-s1/<request>/scene.xml - the compiled scene, carrying the CAD mesh assets by path."
+ ],
+ "executed": {
+  "run_id": "routing-v6-s1",
+  "finished_utc": "2026-09-12T19:51:02Z",
+  "wall_minutes": 87,
+  "routes": 2340,
+  "decisions_offered": 11700,
+  "motions_issued": 4414,
+  "motions_completed": 2431,
+  "routes_completed": 105,
+  "native_steps": 266805778,
+  "summed_worker_hours": 28.7,
+  "guards": {
+   "privilege_guard_events": 0,
+   "mutation_guard_events": 0
+  },
+  "by_reason": {
+   "completed": 105,
+   "controller_retries_exhausted": 135,
+   "deadline": 268,
+   "force_abort": 683,
+   "lost_required_clip": 1144,
+   "prior_connection_load_abort": 5
+  },
+  "record": "evidence/cable_routing_v6.json"
+ },
+ "verdicts": {
+  "p1_filter_earns_its_place_over_a_route": {
+   "held": false,
+   "by_level": {
+    "E0": false,
+    "E2": false,
+    "E4": false
+   },
+   "gaps": {
+    "E0": 0.0,
+    "E2": 0.02499999999999991,
+    "E4": -0.00833333333333336
+   }
+  },
+  "p2_clip_budget_keeps_decaying": {
+   "held": false,
+   "read_on": "conservative",
+   "why_that_arm": "The contract named it in advance as the only arm expected to reach step 5. The other two lose a clip at step 1 in every route, so their per-step rates past step 1 are computed over nothing and are reported as unresolvable, exactly as declared.",
+   "rise_first_to_last": {
+    "E0": -0.3333333333333333,
+    "E2": -0.3138888888888889,
+    "E4": -0.09090038314176245
+   }
+  },
+  "p3_appetite_beats_representation": {
+   "held": {
+    "E0": true,
+    "E2": true,
+    "E4": false
+   },
+   "gaps": {
+    "E0": 0.3333333333333333,
+    "E2": 0.2111111111111111,
+    "E4": 0.025
+   },
+   "status": "PRE-REGISTERED here, unlike the composition study where the same comparison was post hoc and carried no verdict."
+  },
+  "correct": 1,
+  "of": 3
+ }
+}
