@@ -1,6 +1,6 @@
 # Roadmap: constrained-cable connector recovery
 
-**Status: the v3 question is closed; the v4 question is executing.** The first question this repository asked has been answered with a pre-registered, held-out measurement, and re-running it would only invalidate it. The answer is a corner case, though, and the corner was named: every arm was handed the socket's exact pose at 500 Hz and the cable's exact shape. v4 removes that and asks how much a safety check actually needs to see, as perception degrades and across three constraint shapes. Its contract is [configs/cable_perception_v4.json](configs/cable_perception_v4.json), frozen and committed before launch.
+**Status: the v3 and v4 questions are both closed; the v5 composition question is the last one open.** The first question this repository asked has been answered with a pre-registered, held-out measurement, and re-running it would only invalidate it. The answer is a corner case, though, and the corner was named: every arm was handed the socket's exact pose at 500 Hz and the cable's exact shape. v4 removes that and asks how much a safety check actually needs to see, as perception degrades and across three constraint shapes. Its contract is [configs/cable_perception_v4.json](configs/cable_perception_v4.json), frozen and committed before launch.
 
 **Active scope:** industrial cable handling and connector insertion. Establish a credible physical task, measure where competent methods actually fail, and test the smallest justified improvement.
 
@@ -31,7 +31,25 @@ Three constraints are scored on the same rollout, chosen so their shapes differ 
 
 ## Verified state: the block
 
-**Executing.** 16,080 registered requests across 870 ladder contexts and 180 single-factor isolation cells, in four shards on 20 workers. The block's verified state, the crossover verdict and the release figure land here when it completes and is fitted.
+| Item | Verified state |
+| --- | --- |
+| Block | 16,080 registered requests over 870 ladder contexts and 180 single-factor isolation cells, in four shards on 20 workers. **1,491,168,847 integration steps in 9.05 hours.** [Contract](configs/cable_perception_v4.json), [record](evidence/cable_perception_v4.json), [figure](evidence/cable_perception_v4.png). |
+| Denominator | 16,080 requested, 16,080 executed, 15,476 usable for fitting. C1 violated 4,903 / respected 8,505 / censored 2,672. C2 2,208 / 10,895 / 2,977. C3 2,067 / 11,177 / 2,836. |
+| Guards | **0 privilege-guard events and 0 mutation-guard events** across the whole block. |
+| Ledger replay | Every clip and anchor label re-derived from the stored servo ledgers alone: **13,408 and 13,244 comparisons, 0 disagreements**, peak anchor reaction reconstructed to **exactly 0.0 N**. [Record](evidence/cable_perception_replay_v4.json). |
+| Held-out design | 60 test contexts per error level (58 at E4), 865–960 test requests per level. Whole (layout, loop) families, frozen before launch. |
+| **The verdict** | **No crossover, on any constraint, anywhere in the range.** Nothing beats the one-number baseline by more than the registered margin at any error level. |
+| C1, the length budget | B0 false-safe rises 0.133 → 0.220 across the ladder. **M is worse at every level** (0.208 → 0.288), and Mh worse still. The cluster bootstrap puts B0+ ahead of the best learned arm by 0.074, 0.069 and 0.075 at E0–E2 with **intervals excluding zero**. Per-seed spread is 0.201/0.218/0.209 at E0 — not seed noise. |
+| C2, the curvature limit | Everything bunches: B0 0.029 → 0.059, M 0.042 → 0.052. No arm separates by more than the margin, at any level. |
+| C3, the load limit | Force-only is best at every level (0.008 → 0.031 against B0's 0.034 → 0.044) but by 0.013 to 0.035, never more than the 0.05 margin. |
+| Cost | B0+ carries **1 fitted parameter**, B2 10, B1 19, M and Mh about 30,000. The 30,000-parameter arms buy a *worse* answer on C1 and a tied one elsewhere. |
+| Predictions | **1 of 3 correct.** C1 behaved as predicted. C2 did **not** need the richer representation, and the force-only arm did **not** beat the baseline by more than the margin on C3 — though it is consistently better on all three. |
+| Metric resolution | 12 of 15 cells usable. **3 refused** (C1:E2, C2:E0, C3:E2) because abstentions coarsened the resolution to 0.027–0.032 there; the guard refuses rather than reporting an undecidable number. |
+| Isolation | Attributing the effect: with only socket error on, B0 0.153 and M 0.206. Only centreline error, 0.128 and 0.219. Only process noise, 0.093 and 0.176. The ordering holds in every channel. |
+| Transfer protocol | Nominal threshold **399.7 mm**. A ±30% uncertainty in the cable's sliding friction implies **12.5 mm** of extra margin, against 13.3 mm for linear density, 4.3 mm for bending stiffness and 0.5 mm for material damping. Two of nine cells could not be fitted and are recorded as such. [Record](evidence/cable_transfer_protocol_v4.json). |
+| Exploratory shape term | The post-hoc shape-matched scalar chose **weight zero on all three constraints** at full scale. The extra term earned nothing; the pilot signal that motivated it was noise, and that is recorded as a negative rather than dropped. |
+
+**What this means.** Handing the safety check more of the state did not help, and handing it the whole cable shape actively hurt on the constraint that matters most. The honest reading is that the *representation* was never the binding problem here: a scalar computed in closed form from an estimated pose, carrying a margin sized from what the estimator says about itself, is sufficient across the whole range of estimation error a good industrial pose estimator would produce — for a global length budget, a local curvature limit and a rate-dependent load limit alike.
 
 ## What v3 settled, and what it did not
 

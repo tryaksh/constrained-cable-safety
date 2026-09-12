@@ -20,7 +20,21 @@ Three constraints are scored **on the same rollout**, chosen so their shapes dif
 
 Six arms read the identical estimate and rank the identical actions: the v3 scalar (**B0**); that scalar carrying a margin sized from the *declared* estimator covariance (**B0+**, which is measurement-robust control-barrier-function thinking applied to this predicate, credited not claimed); force only, with no vision channel at all (**B2**); a feature model (**B1**); a network over the whole estimated centreline (**M**); and that network plus a short observation history (**Mh**).
 
-**The block is executing.** 16,080 registered requests over 870 ladder contexts and 180 single-factor isolation cells, held out by whole layout family, in four shards on 20 workers. The contract — the error ladder, the metrics, the margin, the group split, the full request list and a specific falsifiable crossover prediction for each of the three constraints — was frozen and committed at `0842900` before the first request launched. Its verdict lands here when the block is fitted.
+**16,080 requests, 1.49 billion integration steps, 9.05 hours, zero guard violations.** The contract — the error ladder, the metrics, the margin, the group split, the full request list and a falsifiable prediction for each constraint — was frozen and committed at `0842900` before the first request launched.
+
+| Safety check | Carries | C1 false-safe, no error → 2 mm | C3 false-safe |
+| --- | --- | --- | --- |
+| **B0+** scalar + declared margin | **1 parameter** | **0.133 → 0.220** | 0.034 → 0.044 |
+| **B2** force only, no vision | 10 | 0.116 → 0.203 | **0.008 → 0.031** |
+| **B1** feature model | 19 | 0.145 → 0.190 | 0.012 → 0.044 |
+| **M** learned over the whole shape | ~30,000 | 0.208 → 0.288 | 0.013 → 0.033 |
+| **Mh** + short history | ~30,000 | 0.226 → 0.309 | 0.027 → 0.055 |
+
+**No crossover, on any of the three constraints, anywhere in the range.** Nothing beats one number by more than the registered margin at any error level — and on the clip budget the network watching the whole cable is *significantly worse*, by 0.074 with a bootstrap interval excluding zero, with a per-seed spread too tight for that to be noise.
+
+**Two of the three pre-registered predictions were wrong, which is the useful part.** The length budget behaved as predicted. The curvature limit did not need the richer representation. And force-only — the fallback the cable-manipulation literature proposes for exactly this situation — is the best arm on all three constraints at every level, but never by more than the 0.05 margin the contract declared, so it cannot be certified as a win. Three of fifteen cells were refused outright by the resolution check, and are reported as refused.
+
+![How much must a safety check see](evidence/cable_perception_v4.png)
 
 ## What you can actually use
 
@@ -128,7 +142,7 @@ Freezing refuses to run if fewer layouts survived the screen than the contract n
 
 **Collection is CPU-only, and that is a constraint rather than a preference.** MuJoCo's native step is CPU, and the GPU path (MJX) does not support this scene's cable elasticity plugin, composite bodies or elliptic friction cone — moving collection to the GPU would mean a different cable model and would invalidate every comparison with the earlier blocks. The lever that does exist is worker count: on 24 physical cores this task sustains **28,086 aggregate native steps/s on 12 workers against 44,966 on 20**, a 1.60× speedup for a 6.6% per-worker loss. Model fitting takes `--device cuda` where a CUDA build of torch is installed; those fits are minutes beside hours of collection.
 
-513 tests run without a GPU, a simulator or any ignored artifact.
+515 tests run without a GPU, a simulator or any ignored artifact.
 
 ## Scope
 
