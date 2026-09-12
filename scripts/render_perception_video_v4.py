@@ -59,6 +59,7 @@ from assembly_recovery.cable_study_v4 import build_cases, merge_runtime  # noqa:
 from scripts.evaluate_cable_perception_v4 import (  # noqa: E402
     effective_level,
     estimated_observation,
+    observed_decision_state,
 )
 from scripts.evaluate_cable_recovery_v2 import clip_margin, settle, wrist_world  # noqa: E402
 
@@ -182,6 +183,11 @@ def capture(case: dict, runtime: dict, contract: dict, out_dir: Path, capture_hz
                         and controller.request_repair(macros[case["forced_macro"]],
                                                       estimate.tip_position, run_direction,
                                                       job_time)):
+                    # The worker builds its decision state here, and doing so draws
+                    # from the perception generator. Skipping it would leave this
+                    # replay on a different random stream from the request it
+                    # claims to be showing, so it is built and discarded.
+                    observed_decision_state(scene, estimate, loads, perception, weights, [])
                     repair_start_tip = np.asarray(truth.tip_position, dtype=float).copy()
                     repair_at = job_time
                 target, phase, _ = controller.step(estimate, policy_every*dt)

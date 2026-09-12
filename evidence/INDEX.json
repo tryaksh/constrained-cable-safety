@@ -2,7 +2,7 @@
  "schema": 1,
  "generated_by": "scripts/index_evidence.py",
  "purpose": "Pick the one evidence record a question needs. Entries are derived from each file, so read the file itself before quoting any number, and read its scope before reusing its result.",
- "count": 90,
+ "count": 92,
  "records": [
   {
    "file": "approach_slew_design_v1.json",
@@ -362,6 +362,57 @@
     "scope_and_limitations",
     "status",
     "throughput_finding"
+   ]
+  },
+  {
+   "file": "cable_perception_replay_v4.json",
+   "bytes": 1952,
+   "id": "cable_perception_replay_v4",
+   "status": "executed_ledger_replay",
+   "scope": "Independent re-derivation of the recorded constraint labels from the stored servo ledgers. Runs no physics and fits nothing. Not a study result.",
+   "top_level_keys": [
+    "C1_clip",
+    "C2_bend",
+    "C3_anchor",
+    "C3_peak_anchor_reconstruction",
+    "created_on",
+    "id",
+    "reading",
+    "requests_replayed",
+    "requests_without_a_ledger",
+    "run_dirs",
+    "schema",
+    "scope",
+    "status"
+   ]
+  },
+  {
+   "file": "cable_perception_v4.json",
+   "bytes": 314858,
+   "id": "cable_perception_v4_fit",
+   "status": "fitted_perception_study",
+   "scope": "Perception-degradation study on the constrained-cable connector task. One request is one clearance repair issued from one decision state at one declared perception error level, scored against three safety constraints on the same rollout. Endpoint is held, clip-preserving seating before gripper release. Not official AI\u2026",
+   "top_level_keys": [
+    "amendment",
+    "contract",
+    "cost_axis",
+    "created_on",
+    "crossover",
+    "denominator",
+    "exploratory_shape_matched_scalar",
+    "fitting_device",
+    "guards",
+    "id",
+    "margin_resolution_checks",
+    "margin_resolution_verdict",
+    "prediction",
+    "question",
+    "results",
+    "run_dirs",
+    "schema",
+    "scope",
+    "scope_and_limitations",
+    "status"
    ]
   },
   {
@@ -1953,6 +2004,7 @@
   "cable_baseline_v2.png",
   "cable_contact_validation_v1.pdf",
   "cable_contact_validation_v1.png",
+  "cable_perception_v4.png",
   "cable_recovery_v2.pdf",
   "cable_recovery_v2.png",
   "cable_repair_boundary_v3.pdf",

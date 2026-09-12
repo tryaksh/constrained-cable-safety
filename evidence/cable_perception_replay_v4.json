@@ -1,0 +1,41 @@
+{
+  "schema": 1,
+  "id": "cable_perception_replay_v4",
+  "created_on": "2026-09-11",
+  "status": "executed_ledger_replay",
+  "scope": "Independent re-derivation of the recorded constraint labels from the stored servo ledgers. Runs no physics and fits nothing. Not a study result.",
+  "run_dirs": [
+    "artifacts/cable/perception-v4-r01-s1",
+    "artifacts/cable/perception-v4-r01-s2",
+    "artifacts/cable/perception-v4-r01-s3",
+    "artifacts/cable/perception-v4-r01-s4"
+  ],
+  "requests_replayed": 16080,
+  "requests_without_a_ledger": 0,
+  "C1_clip": {
+    "tested": 13408,
+    "agree": 13408,
+    "disagree": 0,
+    "verdict": "pass",
+    "first_disagreements": []
+  },
+  "C3_anchor": {
+    "tested": 13244,
+    "agree": 13244,
+    "disagree": 0,
+    "verdict": "pass",
+    "first_disagreements": []
+  },
+  "C3_peak_anchor_reconstruction": {
+    "max_absolute_error_n": 0.0,
+    "note": "The scorer reads the anchor reaction at servo ticks and the ledger stores it at servo ticks, so the peak must be recovered exactly. A non-zero error here would mean the record and the ledger disagree about what was measured."
+  },
+  "C2_bend": {
+    "checkable_from_the_ledger": false,
+    "why": "The minimum bend radius is a running minimum over the whole centreline at every servo tick, and the ledger stores the centreline only at the registered events. Storing 16,080 dense centrelines was not affordable.",
+    "spot_check": "The terminal centreline IS stored, so the terminal radius is recomputed for every request and reported beside the recorded label. It is a weaker check than the C1 and C3 replays and must not be read as an equivalent one.",
+    "terminal_radius_below_spec": 948,
+    "recorded_violated": 2208
+  },
+  "reading": "A pass means the label in the record is the label the stored physics supports. It does not establish that the physics is right, only that the record is not drifting from it."
+}
