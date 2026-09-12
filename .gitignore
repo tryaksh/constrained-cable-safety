@@ -18,6 +18,10 @@ artifacts/
 !artifacts/cell/
 !artifacts/cell/*.json
 !artifacts/cell/*.md
+!artifacts/showcase/
+!artifacts/showcase/*.json
+!artifacts/showcase/*.md
+!artifacts/showcase/*.html
 benchmarks/*.json
 outputs/
 logs/
