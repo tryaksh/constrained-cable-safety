@@ -48,7 +48,25 @@ A predicate that answers *yes or no about one motion* is not much use to a cell.
 
 It runs off *the estimator's own account of itself* — a systematic bias, a jitter standard deviation and a worst-case error on a node it cannot see — so any pose estimator that reports those three numbers can drive it without the study's registered ladder.
 
-**And then the harder question: does it chain?** [A separate pre-registered study](configs/cable_sequence_v5.json) issues three filtered decisions in one sequence on held-out contexts the filter was never fitted on, against three supervisors — the filter taking the largest safe motion, the same filter taking the most cautious one, and no filter at all. Its prediction is deliberately split: the *clip budget* should compose, because the filter measures that quantity directly at every step and therefore tracks its own spending; *curvature and anchor load should not*, because the filter carries one rule fitted on a length and has no way to see curvature accumulating or load being carried forward. If that second half holds, the consequence is a design one rather than a score — a safety layer has to be fitted per constraint shape, not fitted once and reused.
+## Study 3 — does the check chain?
+
+A predicate that judges one motion is not usable by a cell; nothing in harness work is one motion. [A second pre-registered study](configs/cable_sequence_v5.json) issues **three** filtered decisions in one sequence, on held-out contexts the filter was never fitted on, against three supervisors: the filter taking the largest safe motion, the same filter taking the most cautious one, and no filter at all.
+
+**720 sequences, 2,160 decisions, 72.9 million steps, zero guard violations.**
+
+| Over a three-step sequence | Clip lost, no error / 1 mm / 2 mm | Route completed |
+| --- | --- | --- |
+| no filter, largest motion every time | **80 / 80 / 80 of 80** | 0 / 0 / 0 |
+| filter, take the largest safe motion | 32 / 33 / 36 of 80 | 48 / 25 / 0 |
+| filter, take the motion with most headroom | **8 / 10 / 37 of 80** | **72 / 41 / 3** |
+
+**The filter earns its place, and it is not close.** Every single unfiltered sequence pulled the cable out of the clip — a rate of 1.000 at all three error levels, against 0.40 to 0.57 filtered.
+
+**But the check does not chain for free.** The per-step violation rate for the clip budget *rises* by 0.089 between the first decision and the last once estimation error reaches 2 mm — more than the registered 0.05 margin, so **the clip budget does not compose**. Curvature and anchor load do. That is the reverse of what was predicted, and it is the more useful answer: the constraint the filter measures directly is the one that degrades along a chain, because each accepted step spends slack the next step is then judged against.
+
+**And how greedily you spend what the filter allows dominates the result.** Same filter, same estimate, different appetite: taking the motion with the most headroom rather than the largest safe one cuts clip loss from 0.40 to 0.10 *and* raises completion from 0.60 to 0.90. That comparison was not pre-registered and carries no verdict — it is reported as exploratory — but it says something a score would hide: the safety check tells you what is permitted, and how much of that you take is a separate engineering decision that this study did not optimise.
+
+
 
 ## Study 1 — the 409 mm rule
 

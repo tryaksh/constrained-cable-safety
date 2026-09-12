@@ -187,6 +187,32 @@ def main() -> int:
                            "beats_by_more_than_margin": (None if a is None or b is None
                                                          else bool(b-a > margin))}
 
+    # POST-HOC, and labelled as such. Two supervisors read the same filter and
+    # differ only in how greedily they spend what it allows. Nothing predicted
+    # this comparison, so it is reported as exploratory and carries no verdict.
+    appetite = {}
+    for level in levels:
+        row = {}
+        for supervisor in ("filtered", "conservative"):
+            block = results.get(f"{supervisor}:{level}")
+            if not block:
+                continue
+            done = block["by_reason"].get("completed", 0)
+            row[supervisor] = {
+                "clip_violation_rate": block["C1_clip"]["cumulative"]["rate"],
+                "clip_violated": block["C1_clip"]["cumulative"]["violated"],
+                "sequences": block["requests"],
+                "completed": done,
+                "completion_rate": round(done / block["requests"], 4) if block["requests"] else None,
+                "motions_issued": block["motions_issued"],
+            }
+        if len(row) == 2:
+            a = row["filtered"]["clip_violation_rate"]
+            b = row["conservative"]["clip_violation_rate"]
+            row["conservative_minus_filtered"] = (None if a is None or b is None
+                                                  else round(float(b - a), 4))
+        appetite[level] = row
+
     report = {
         "schema": 1, "id": "cable_sequence_v5", "created_on": contract["created_on"],
         "status": "fitted_composition_study",
@@ -212,6 +238,17 @@ def main() -> int:
         "prediction": contract["decision_rule"]["prediction"],
         "verdicts": verdicts,
         "is_the_filter_worth_it_over_a_sequence": worth_it,
+        "how_greedily_the_supervisor_spends": {
+            "status": "exploratory, post-hoc, not pre-registered and carrying no verdict",
+            "what_differs": "Both supervisors read the same filter and the same estimate. "
+                            "`filtered` issues the largest motion the filter calls safe; "
+                            "`conservative` issues the one with the most headroom.",
+            "per_level": appetite,
+            "reading": "The filter says what is permitted. How much of the permitted range a "
+                       "supervisor takes is a separate choice, and this study cannot say which "
+                       "appetite is right - only that the two differ enough to matter and that "
+                       "the difference is not a property of the safety check.",
+        },
         "results": results,
         "reading": "A constraint that composes is one a planner may chain: the per-step violation "
                    "rate does not rise by more than the margin from the first decision to the "

@@ -1,0 +1,1759 @@
+{
+  "schema": 1,
+  "id": "cable_sequence_v5",
+  "created_on": "2026-09-11",
+  "status": "fitted_composition_study",
+  "scope": "Composition study for the constrained-cable safety layer. One request is one SEQUENCE of commanded clearance motions, each chosen by a named supervisor from the state it can see at that moment, with all three constraints scored continuously across the whole sequence. Endpoint is held, clip-preserving seating before gripper release. Not official AIC scoring, not a released or latched connection, not learned pickup, not camera perception and not a hardware claim.",
+  "question": "A safety check fitted on single commanded motions - does it stay calibrated when motions are chained, where each accepted step changes the state the next is judged from?",
+  "contract": {
+    "path": "configs/cable_sequence_v5.json",
+    "content_sha256": "36fef181f0d9e7c5f81bbc9bd53450f26e70149ff8bf90d0138d76cd15fe7b9d"
+  },
+  "run_dir": "artifacts/cable/sequence-v5-r01",
+  "denominator": {
+    "requests": 720,
+    "decisions_offered": 2160,
+    "motions_issued": 1433,
+    "motions_completed": 1131,
+    "abstentions": 0,
+    "by_reason": {
+      "completed": 189,
+      "controller_retries_exhausted": 81,
+      "deadline": 51,
+      "force_abort": 3,
+      "lost_required_clip": 396
+    },
+    "note": "Every registered sequence counts. A sequence cut short is censored on every constraint it had not already violated, never counted as respecting one."
+  },
+  "guards": {
+    "privilege_guard_events": 0,
+    "mutation_guard_events": 0
+  },
+  "cost": {
+    "native_steps": 72910827,
+    "summed_worker_wall_seconds": 37355.1
+  },
+  "prediction": {
+    "declared_before_collection": true,
+    "composition": "The filtered supervisor's per-step violation rate on C1 does not rise by more than the margin between step 1 and step 3. A single-step safety check composes over a three-step sequence.",
+    "why_predicted": "C1 is a budget on a quantity the filter measures directly at every step, so a step that spends budget leaves a smaller headroom that the next call sees. The filter is state-dependent, not open-loop, and should therefore track its own spending.",
+    "c2_and_c3": "C2 and C3 are NOT budgets the filter measures. It carries one rule, fitted on a boot-to-anchor distance, and applies it to all three. The prediction is that the per-step rate rises on C2 or C3 by more than the margin where it does not on C1 - because a check that tracks a length budget has no way to see curvature accumulating or load being carried forward.",
+    "value_of_the_filter": "The unfiltered supervisor's cumulative violation rate on C1 exceeds the filtered supervisor's by more than the margin at every error level. If it does not, the filter is not earning its place in a sequence either.",
+    "falsification": "Each of the three is falsifiable on its own, and being wrong about any of them is a result. The interesting outcome is the second one: it would say that a safety layer must be built per constraint shape rather than fitted once and reused, which is a design consequence and not a score."
+  },
+  "verdicts": {
+    "C1_clip": {
+      "per_level": {
+        "E0": {
+          "rise": -0.4,
+          "rises_by_more_than_margin": false,
+          "readable": true
+        },
+        "E2": {
+          "rise": -0.3424657534246575,
+          "rises_by_more_than_margin": false,
+          "readable": true
+        },
+        "E4": {
+          "rise": 0.08858447488584476,
+          "rises_by_more_than_margin": true,
+          "readable": true
+        }
+      },
+      "composes": false,
+      "levels_readable": 3,
+      "levels": 3
+    },
+    "C2_bend": {
+      "per_level": {
+        "E0": {
+          "rise": -0.14285714285714285,
+          "rises_by_more_than_margin": false,
+          "readable": true
+        },
+        "E2": {
+          "rise": -0.14285714285714285,
+          "rises_by_more_than_margin": false,
+          "readable": true
+        },
+        "E4": {
+          "rise": 0.05,
+          "rises_by_more_than_margin": false,
+          "readable": true
+        }
+      },
+      "composes": true,
+      "levels_readable": 3,
+      "levels": 3
+    },
+    "C3_anchor": {
+      "per_level": {
+        "E0": {
+          "rise": -0.14285714285714285,
+          "rises_by_more_than_margin": false,
+          "readable": true
+        },
+        "E2": {
+          "rise": -0.15789473684210525,
+          "rises_by_more_than_margin": false,
+          "readable": true
+        },
+        "E4": {
+          "rise": -0.03278688524590164,
+          "rises_by_more_than_margin": false,
+          "readable": true
+        }
+      },
+      "composes": true,
+      "levels_readable": 3,
+      "levels": 3
+    }
+  },
+  "is_the_filter_worth_it_over_a_sequence": {
+    "E0": {
+      "filtered_rate": 0.4,
+      "unfiltered_rate": 1.0,
+      "gap": 0.6,
+      "beats_by_more_than_margin": true
+    },
+    "E2": {
+      "filtered_rate": 0.5689655172413793,
+      "unfiltered_rate": 1.0,
+      "gap": 0.43103448275862066,
+      "beats_by_more_than_margin": true
+    },
+    "E4": {
+      "filtered_rate": 0.5454545454545454,
+      "unfiltered_rate": 1.0,
+      "gap": 0.4545454545454546,
+      "beats_by_more_than_margin": true
+    }
+  },
+  "how_greedily_the_supervisor_spends": {
+    "status": "exploratory, post-hoc, not pre-registered and carrying no verdict",
+    "what_differs": "Both supervisors read the same filter and the same estimate. `filtered` issues the largest motion the filter calls safe; `conservative` issues the one with the most headroom.",
+    "per_level": {
+      "E0": {
+        "filtered": {
+          "clip_violation_rate": 0.4,
+          "clip_violated": 32,
+          "sequences": 80,
+          "completed": 48,
+          "completion_rate": 0.6,
+          "motions_issued": 176
+        },
+        "conservative": {
+          "clip_violation_rate": 0.1,
+          "clip_violated": 8,
+          "sequences": 80,
+          "completed": 72,
+          "completion_rate": 0.9,
+          "motions_issued": 232
+        },
+        "conservative_minus_filtered": -0.3
+      },
+      "E2": {
+        "filtered": {
+          "clip_violation_rate": 0.5689655172413793,
+          "clip_violated": 33,
+          "sequences": 80,
+          "completed": 25,
+          "completion_rate": 0.3125,
+          "motions_issued": 168
+        },
+        "conservative": {
+          "clip_violation_rate": 0.15873015873015872,
+          "clip_violated": 10,
+          "sequences": 80,
+          "completed": 41,
+          "completion_rate": 0.5125,
+          "motions_issued": 220
+        },
+        "conservative_minus_filtered": -0.4102
+      },
+      "E4": {
+        "filtered": {
+          "clip_violation_rate": 0.5454545454545454,
+          "clip_violated": 36,
+          "sequences": 80,
+          "completed": 0,
+          "completion_rate": 0.0,
+          "motions_issued": 193
+        },
+        "conservative": {
+          "clip_violation_rate": 0.46835443037974683,
+          "clip_violated": 37,
+          "sequences": 80,
+          "completed": 3,
+          "completion_rate": 0.0375,
+          "motions_issued": 217
+        },
+        "conservative_minus_filtered": -0.0771
+      }
+    },
+    "reading": "The filter says what is permitted. How much of the permitted range a supervisor takes is a separate choice, and this study cannot say which appetite is right - only that the two differ enough to matter and that the difference is not a property of the safety check."
+  },
+  "results": {
+    "filtered:E0": {
+      "requests": 80,
+      "motions_issued": 176,
+      "motions_completed": 144,
+      "abstentions": 0,
+      "by_reason": {
+        "completed": 48,
+        "lost_required_clip": 32
+      },
+      "C1_clip": {
+        "per_step": {
+          "steps": [
+            {
+              "step": 0,
+              "reached_intact": 80,
+              "motions_scored": 80,
+              "no_motion_issued": 0,
+              "motion_cut_short": 0,
+              "violations": 32,
+              "rate": 0.4,
+              "resolution": 0.0125
+            },
+            {
+              "step": 1,
+              "reached_intact": 48,
+              "motions_scored": 48,
+              "no_motion_issued": 0,
+              "motion_cut_short": 0,
+              "violations": 0,
+              "rate": 0.0,
+              "resolution": 0.020833333333333332
+            },
+            {
+              "step": 2,
+              "reached_intact": 48,
+              "motions_scored": 48,
+              "no_motion_issued": 0,
+              "motion_cut_short": 0,
+              "violations": 0,
+              "rate": 0.0,
+              "resolution": 0.020833333333333332
+            }
+          ],
+          "rise_first_to_last": -0.4,
+          "rises_by_more_than_margin": false,
+          "margin_resolution": {
+            "margin": 0.05,
+            "coarsest_resolution": 0.020833333333333332,
+            "required_ratio": 2.0,
+            "required_margin": 0.041666666666666664,
+            "verdict": "usable",
+            "note": "A margin below twice the coarsest metric resolution cannot separate signal from one context changing hands. v3 registered a margin exactly equal to its resolution and returned an unresolvable verdict; this check is why that cannot happen again."
+          },
+          "readable": true
+        },
+        "cumulative": {
+          "sequences": 80,
+          "observed": 80,
+          "censored": 0,
+          "violated": 32,
+          "rate": 0.4
+        }
+      },
+      "C2_bend": {
+        "per_step": {
+          "steps": [
+            {
+              "step": 0,
+              "reached_intact": 80,
+              "motions_scored": 56,
+              "no_motion_issued": 0,
+              "motion_cut_short": 24,
+              "violations": 8,
+              "rate": 0.14285714285714285,
+              "resolution": 0.017857142857142856
+            },
+            {
+              "step": 1,
+              "reached_intact": 72,
+              "motions_scored": 48,
+              "no_motion_issued": 24,
+              "motion_cut_short": 0,
+              "violations": 0,
+              "rate": 0.0,
+              "resolution": 0.020833333333333332
+            },
+            {
+              "step": 2,
+              "reached_intact": 72,
+              "motions_scored": 48,
+              "no_motion_issued": 24,
+              "motion_cut_short": 0,
+              "violations": 0,
+              "rate": 0.0,
+              "resolution": 0.020833333333333332
+            }
+          ],
+          "rise_first_to_last": -0.14285714285714285,
+          "rises_by_more_than_margin": false,
+          "margin_resolution": {
+            "margin": 0.05,
+            "coarsest_resolution": 0.020833333333333332,
+            "required_ratio": 2.0,
+            "required_margin": 0.041666666666666664,
+            "verdict": "usable",
+            "note": "A margin below twice the coarsest metric resolution cannot separate signal from one context changing hands. v3 registered a margin exactly equal to its resolution and returned an unresolvable verdict; this check is why that cannot happen again."
+          },
+          "readable": true
+        },
+        "cumulative": {
+          "sequences": 80,
+          "observed": 80,
+          "censored": 0,
+          "violated": 8,
+          "rate": 0.1
+        }
+      },
+      "C3_anchor": {
+        "per_step": {
+          "steps": [
+            {
+              "step": 0,
+              "reached_intact": 80,
+              "motions_scored": 56,
+              "no_motion_issued": 0,
+              "motion_cut_short": 24,
+              "violations": 8,
+              "rate": 0.14285714285714285,
+              "resolution": 0.017857142857142856
+            },
+            {
+              "step": 1,
+              "reached_intact": 72,
+              "motions_scored": 48,
+              "no_motion_issued": 24,
+              "motion_cut_short": 0,
+              "violations": 0,
+              "rate": 0.0,
+              "resolution": 0.020833333333333332
+            },
+            {
+              "step": 2,
+              "reached_intact": 72,
+              "motions_scored": 48,
+              "no_motion_issued": 24,
+              "motion_cut_short": 0,
+              "violations": 0,
+              "rate": 0.0,
+              "resolution": 0.020833333333333332
+            }
+          ],
+          "rise_first_to_last": -0.14285714285714285,
+          "rises_by_more_than_margin": false,
+          "margin_resolution": {
+            "margin": 0.05,
+            "coarsest_resolution": 0.020833333333333332,
+            "required_ratio": 2.0,
+            "required_margin": 0.041666666666666664,
+            "verdict": "usable",
+            "note": "A margin below twice the coarsest metric resolution cannot separate signal from one context changing hands. v3 registered a margin exactly equal to its resolution and returned an unresolvable verdict; this check is why that cannot happen again."
+          },
+          "readable": true
+        },
+        "cumulative": {
+          "sequences": 80,
+          "observed": 80,
+          "censored": 0,
+          "violated": 8,
+          "rate": 0.1
+        }
+      }
+    },
+    "filtered:E2": {
+      "requests": 80,
+      "motions_issued": 168,
+      "motions_completed": 142,
+      "abstentions": 0,
+      "by_reason": {
+        "completed": 25,
+        "deadline": 21,
+        "force_abort": 1,
+        "lost_required_clip": 33
+      },
+      "C1_clip": {
+        "per_step": {
+          "steps": [
+            {
+              "step": 0,
+              "reached_intact": 73,
+              "motions_scored": 73,
+              "no_motion_issued": 0,
+              "motion_cut_short": 0,
+              "violations": 25,
+              "rate": 0.3424657534246575,
+              "resolution": 0.0136986301369863
+            },
+            {
+              "step": 1,
+              "reached_intact": 48,
+              "motions_scored": 48,
+              "no_motion_issued": 0,
+              "motion_cut_short": 0,
+              "violations": 1,
+              "rate": 0.020833333333333332,
+              "resolution": 0.020833333333333332
+            },
+            {
+              "step": 2,
+              "reached_intact": 47,
+              "motions_scored": 47,
+              "no_motion_issued": 0,
+              "motion_cut_short": 0,
+              "violations": 0,
+              "rate": 0.0,
+              "resolution": 0.02127659574468085
+            }
+          ],
+          "rise_first_to_last": -0.3424657534246575,
+          "rises_by_more_than_margin": false,
+          "margin_resolution": {
+            "margin": 0.05,
+            "coarsest_resolution": 0.02127659574468085,
+            "required_ratio": 2.0,
+            "required_margin": 0.0425531914893617,
+            "verdict": "usable",
+            "note": "A margin below twice the coarsest metric resolution cannot separate signal from one context changing hands. v3 registered a margin exactly equal to its resolution and returned an unresolvable verdict; this check is why that cannot happen again."
+          },
+          "readable": true
+        },
+        "cumulative": {
+          "sequences": 80,
+          "observed": 58,
+          "censored": 22,
+          "violated": 33,
+          "rate": 0.5689655172413793
+        }
+      },
+      "C2_bend": {
+        "per_step": {
+          "steps": [
+            {
+              "step": 0,
+              "reached_intact": 80,
+              "motions_scored": 56,
+              "no_motion_issued": 7,
+              "motion_cut_short": 17,
+              "violations": 8,
+              "rate": 0.14285714285714285,
+              "resolution": 0.017857142857142856
+            },
+            {
+              "step": 1,
+              "reached_intact": 72,
+              "motions_scored": 47,
+              "no_motion_issued": 24,
+              "motion_cut_short": 1,
+              "violations": 0,
+              "rate": 0.0,
+              "resolution": 0.02127659574468085
+            },
+            {
+              "step": 2,
+              "reached_intact": 72,
+              "motions_scored": 47,
+              "no_motion_issued": 25,
+              "motion_cut_short": 0,
+              "violations": 0,
+              "rate": 0.0,
+              "resolution": 0.02127659574468085
+            }
+          ],
+          "rise_first_to_last": -0.14285714285714285,
+          "rises_by_more_than_margin": false,
+          "margin_resolution": {
+            "margin": 0.05,
+            "coarsest_resolution": 0.02127659574468085,
+            "required_ratio": 2.0,
+            "required_margin": 0.0425531914893617,
+            "verdict": "usable",
+            "note": "A margin below twice the coarsest metric resolution cannot separate signal from one context changing hands. v3 registered a margin exactly equal to its resolution and returned an unresolvable verdict; this check is why that cannot happen again."
+          },
+          "readable": true
+        },
+        "cumulative": {
+          "sequences": 80,
+          "observed": 58,
+          "censored": 22,
+          "violated": 8,
+          "rate": 0.13793103448275862
+        }
+      },
+      "C3_anchor": {
+        "per_step": {
+          "steps": [
+            {
+              "step": 0,
+              "reached_intact": 80,
+              "motions_scored": 57,
+              "no_motion_issued": 7,
+              "motion_cut_short": 16,
+              "violations": 9,
+              "rate": 0.15789473684210525,
+              "resolution": 0.017543859649122806
+            },
+            {
+              "step": 1,
+              "reached_intact": 71,
+              "motions_scored": 47,
+              "no_motion_issued": 23,
+              "motion_cut_short": 1,
+              "violations": 0,
+              "rate": 0.0,
+              "resolution": 0.02127659574468085
+            },
+            {
+              "step": 2,
+              "reached_intact": 71,
+              "motions_scored": 47,
+              "no_motion_issued": 24,
+              "motion_cut_short": 0,
+              "violations": 0,
+              "rate": 0.0,
+              "resolution": 0.02127659574468085
+            }
+          ],
+          "rise_first_to_last": -0.15789473684210525,
+          "rises_by_more_than_margin": false,
+          "margin_resolution": {
+            "margin": 0.05,
+            "coarsest_resolution": 0.02127659574468085,
+            "required_ratio": 2.0,
+            "required_margin": 0.0425531914893617,
+            "verdict": "usable",
+            "note": "A margin below twice the coarsest metric resolution cannot separate signal from one context changing hands. v3 registered a margin exactly equal to its resolution and returned an unresolvable verdict; this check is why that cannot happen again."
+          },
+          "readable": true
+        },
+        "cumulative": {
+          "sequences": 80,
+          "observed": 58,
+          "censored": 22,
+          "violated": 9,
+          "rate": 0.15517241379310345
+        }
+      }
+    },
+    "filtered:E4": {
+      "requests": 80,
+      "motions_issued": 193,
+      "motions_completed": 180,
+      "abstentions": 0,
+      "by_reason": {
+        "controller_retries_exhausted": 30,
+        "deadline": 14,
+        "lost_required_clip": 36
+      },
+      "C1_clip": {
+        "per_step": {
+          "steps": [
+            {
+              "step": 0,
+              "reached_intact": 73,
+              "motions_scored": 73,
+              "no_motion_issued": 0,
+              "motion_cut_short": 0,
+              "violations": 13,
+              "rate": 0.1780821917808219,
+              "resolution": 0.0136986301369863
+            },
+            {
+              "step": 1,
+              "reached_intact": 60,
+              "motions_scored": 60,
+              "no_motion_issued": 0,
+              "motion_cut_short": 0,
+              "violations": 0,
+              "rate": 0.0,
+              "resolution": 0.016666666666666666
+            },
+            {
+              "step": 2,
+              "reached_intact": 60,
+              "motions_scored": 60,
+              "no_motion_issued": 0,
+              "motion_cut_short": 0,
+              "violations": 16,
+              "rate": 0.26666666666666666,
+              "resolution": 0.016666666666666666
+            }
+          ],
+          "rise_first_to_last": 0.08858447488584476,
+          "rises_by_more_than_margin": true,
+          "margin_resolution": {
+            "margin": 0.05,
+            "coarsest_resolution": 0.016666666666666666,
+            "required_ratio": 2.0,
+            "required_margin": 0.03333333333333333,
+            "verdict": "usable",
+            "note": "A margin below twice the coarsest metric resolution cannot separate signal from one context changing hands. v3 registered a margin exactly equal to its resolution and returned an unresolvable verdict; this check is why that cannot happen again."
+          },
+          "readable": true
+        },
+        "cumulative": {
+          "sequences": 80,
+          "observed": 66,
+          "censored": 14,
+          "violated": 36,
+          "rate": 0.5454545454545454
+        }
+      },
+      "C2_bend": {
+        "per_step": {
+          "steps": [
+            {
+              "step": 0,
+              "reached_intact": 80,
+              "motions_scored": 60,
+              "no_motion_issued": 7,
+              "motion_cut_short": 13,
+              "violations": 0,
+              "rate": 0.0,
+              "resolution": 0.016666666666666666
+            },
+            {
+              "step": 1,
+              "reached_intact": 80,
+              "motions_scored": 60,
+              "no_motion_issued": 20,
+              "motion_cut_short": 0,
+              "violations": 0,
+              "rate": 0.0,
+              "resolution": 0.016666666666666666
+            },
+            {
+              "step": 2,
+              "reached_intact": 80,
+              "motions_scored": 60,
+              "no_motion_issued": 20,
+              "motion_cut_short": 0,
+              "violations": 3,
+              "rate": 0.05,
+              "resolution": 0.016666666666666666
+            }
+          ],
+          "rise_first_to_last": 0.05,
+          "rises_by_more_than_margin": false,
+          "margin_resolution": {
+            "margin": 0.05,
+            "coarsest_resolution": 0.016666666666666666,
+            "required_ratio": 2.0,
+            "required_margin": 0.03333333333333333,
+            "verdict": "usable",
+            "note": "A margin below twice the coarsest metric resolution cannot separate signal from one context changing hands. v3 registered a margin exactly equal to its resolution and returned an unresolvable verdict; this check is why that cannot happen again."
+          },
+          "readable": true
+        },
+        "cumulative": {
+          "sequences": 80,
+          "observed": 69,
+          "censored": 11,
+          "violated": 3,
+          "rate": 0.043478260869565216
+        }
+      },
+      "C3_anchor": {
+        "per_step": {
+          "steps": [
+            {
+              "step": 0,
+              "reached_intact": 78,
+              "motions_scored": 61,
+              "no_motion_issued": 5,
+              "motion_cut_short": 12,
+              "violations": 2,
+              "rate": 0.03278688524590164,
+              "resolution": 0.01639344262295082
+            },
+            {
+              "step": 1,
+              "reached_intact": 76,
+              "motions_scored": 59,
+              "no_motion_issued": 17,
+              "motion_cut_short": 0,
+              "violations": 1,
+              "rate": 0.01694915254237288,
+              "resolution": 0.01694915254237288
+            },
+            {
+              "step": 2,
+              "reached_intact": 75,
+              "motions_scored": 58,
+              "no_motion_issued": 17,
+              "motion_cut_short": 0,
+              "violations": 0,
+              "rate": 0.0,
+              "resolution": 0.017241379310344827
+            }
+          ],
+          "rise_first_to_last": -0.03278688524590164,
+          "rises_by_more_than_margin": false,
+          "margin_resolution": {
+            "margin": 0.05,
+            "coarsest_resolution": 0.017241379310344827,
+            "required_ratio": 2.0,
+            "required_margin": 0.034482758620689655,
+            "verdict": "usable",
+            "note": "A margin below twice the coarsest metric resolution cannot separate signal from one context changing hands. v3 registered a margin exactly equal to its resolution and returned an unresolvable verdict; this check is why that cannot happen again."
+          },
+          "readable": true
+        },
+        "cumulative": {
+          "sequences": 80,
+          "observed": 68,
+          "censored": 12,
+          "violated": 5,
+          "rate": 0.07352941176470588
+        }
+      }
+    },
+    "conservative:E0": {
+      "requests": 80,
+      "motions_issued": 232,
+      "motions_completed": 232,
+      "abstentions": 0,
+      "by_reason": {
+        "completed": 72,
+        "lost_required_clip": 8
+      },
+      "C1_clip": {
+        "per_step": {
+          "steps": [
+            {
+              "step": 0,
+              "reached_intact": 80,
+              "motions_scored": 80,
+              "no_motion_issued": 0,
+              "motion_cut_short": 0,
+              "violations": 0,
+              "rate": 0.0,
+              "resolution": 0.0125
+            },
+            {
+              "step": 1,
+              "reached_intact": 80,
+              "motions_scored": 80,
+              "no_motion_issued": 0,
+              "motion_cut_short": 0,
+              "violations": 8,
+              "rate": 0.1,
+              "resolution": 0.0125
+            },
+            {
+              "step": 2,
+              "reached_intact": 72,
+              "motions_scored": 72,
+              "no_motion_issued": 0,
+              "motion_cut_short": 0,
+              "violations": 0,
+              "rate": 0.0,
+              "resolution": 0.013888888888888888
+            }
+          ],
+          "rise_first_to_last": 0.0,
+          "rises_by_more_than_margin": false,
+          "margin_resolution": {
+            "margin": 0.05,
+            "coarsest_resolution": 0.013888888888888888,
+            "required_ratio": 2.0,
+            "required_margin": 0.027777777777777776,
+            "verdict": "usable",
+            "note": "A margin below twice the coarsest metric resolution cannot separate signal from one context changing hands. v3 registered a margin exactly equal to its resolution and returned an unresolvable verdict; this check is why that cannot happen again."
+          },
+          "readable": true
+        },
+        "cumulative": {
+          "sequences": 80,
+          "observed": 80,
+          "censored": 0,
+          "violated": 8,
+          "rate": 0.1
+        }
+      },
+      "C2_bend": {
+        "per_step": {
+          "steps": [
+            {
+              "step": 0,
+              "reached_intact": 80,
+              "motions_scored": 80,
+              "no_motion_issued": 0,
+              "motion_cut_short": 0,
+              "violations": 0,
+              "rate": 0.0,
+              "resolution": 0.0125
+            },
+            {
+              "step": 1,
+              "reached_intact": 80,
+              "motions_scored": 80,
+              "no_motion_issued": 0,
+              "motion_cut_short": 0,
+              "violations": 0,
+              "rate": 0.0,
+              "resolution": 0.0125
+            },
+            {
+              "step": 2,
+              "reached_intact": 80,
+              "motions_scored": 72,
+              "no_motion_issued": 8,
+              "motion_cut_short": 0,
+              "violations": 0,
+              "rate": 0.0,
+              "resolution": 0.013888888888888888
+            }
+          ],
+          "rise_first_to_last": 0.0,
+          "rises_by_more_than_margin": false,
+          "margin_resolution": {
+            "margin": 0.05,
+            "coarsest_resolution": 0.013888888888888888,
+            "required_ratio": 2.0,
+            "required_margin": 0.027777777777777776,
+            "verdict": "usable",
+            "note": "A margin below twice the coarsest metric resolution cannot separate signal from one context changing hands. v3 registered a margin exactly equal to its resolution and returned an unresolvable verdict; this check is why that cannot happen again."
+          },
+          "readable": true
+        },
+        "cumulative": {
+          "sequences": 80,
+          "observed": 80,
+          "censored": 0,
+          "violated": 0,
+          "rate": 0.0
+        }
+      },
+      "C3_anchor": {
+        "per_step": {
+          "steps": [
+            {
+              "step": 0,
+              "reached_intact": 80,
+              "motions_scored": 80,
+              "no_motion_issued": 0,
+              "motion_cut_short": 0,
+              "violations": 0,
+              "rate": 0.0,
+              "resolution": 0.0125
+            },
+            {
+              "step": 1,
+              "reached_intact": 80,
+              "motions_scored": 80,
+              "no_motion_issued": 0,
+              "motion_cut_short": 0,
+              "violations": 0,
+              "rate": 0.0,
+              "resolution": 0.0125
+            },
+            {
+              "step": 2,
+              "reached_intact": 80,
+              "motions_scored": 72,
+              "no_motion_issued": 8,
+              "motion_cut_short": 0,
+              "violations": 0,
+              "rate": 0.0,
+              "resolution": 0.013888888888888888
+            }
+          ],
+          "rise_first_to_last": 0.0,
+          "rises_by_more_than_margin": false,
+          "margin_resolution": {
+            "margin": 0.05,
+            "coarsest_resolution": 0.013888888888888888,
+            "required_ratio": 2.0,
+            "required_margin": 0.027777777777777776,
+            "verdict": "usable",
+            "note": "A margin below twice the coarsest metric resolution cannot separate signal from one context changing hands. v3 registered a margin exactly equal to its resolution and returned an unresolvable verdict; this check is why that cannot happen again."
+          },
+          "readable": true
+        },
+        "cumulative": {
+          "sequences": 80,
+          "observed": 80,
+          "censored": 0,
+          "violated": 0,
+          "rate": 0.0
+        }
+      }
+    },
+    "conservative:E2": {
+      "requests": 80,
+      "motions_issued": 220,
+      "motions_completed": 217,
+      "abstentions": 0,
+      "by_reason": {
+        "completed": 41,
+        "controller_retries_exhausted": 12,
+        "deadline": 15,
+        "force_abort": 2,
+        "lost_required_clip": 10
+      },
+      "C1_clip": {
+        "per_step": {
+          "steps": [
+            {
+              "step": 0,
+              "reached_intact": 75,
+              "motions_scored": 75,
+              "no_motion_issued": 0,
+              "motion_cut_short": 0,
+              "violations": 2,
+              "rate": 0.02666666666666667,
+              "resolution": 0.013333333333333334
+            },
+            {
+              "step": 1,
+              "reached_intact": 73,
+              "motions_scored": 73,
+              "no_motion_issued": 0,
+              "motion_cut_short": 0,
+              "violations": 1,
+              "rate": 0.0136986301369863,
+              "resolution": 0.0136986301369863
+            },
+            {
+              "step": 2,
+              "reached_intact": 72,
+              "motions_scored": 72,
+              "no_motion_issued": 0,
+              "motion_cut_short": 0,
+              "violations": 2,
+              "rate": 0.027777777777777776,
+              "resolution": 0.013888888888888888
+            }
+          ],
+          "rise_first_to_last": 0.0011111111111111079,
+          "rises_by_more_than_margin": false,
+          "margin_resolution": {
+            "margin": 0.05,
+            "coarsest_resolution": 0.013888888888888888,
+            "required_ratio": 2.0,
+            "required_margin": 0.027777777777777776,
+            "verdict": "usable",
+            "note": "A margin below twice the coarsest metric resolution cannot separate signal from one context changing hands. v3 registered a margin exactly equal to its resolution and returned an unresolvable verdict; this check is why that cannot happen again."
+          },
+          "readable": true
+        },
+        "cumulative": {
+          "sequences": 80,
+          "observed": 63,
+          "censored": 17,
+          "violated": 10,
+          "rate": 0.15873015873015872
+        }
+      },
+      "C2_bend": {
+        "per_step": {
+          "steps": [
+            {
+              "step": 0,
+              "reached_intact": 80,
+              "motions_scored": 73,
+              "no_motion_issued": 5,
+              "motion_cut_short": 2,
+              "violations": 0,
+              "rate": 0.0,
+              "resolution": 0.0136986301369863
+            },
+            {
+              "step": 1,
+              "reached_intact": 80,
+              "motions_scored": 72,
+              "no_motion_issued": 7,
+              "motion_cut_short": 1,
+              "violations": 0,
+              "rate": 0.0,
+              "resolution": 0.013888888888888888
+            },
+            {
+              "step": 2,
+              "reached_intact": 80,
+              "motions_scored": 72,
+              "no_motion_issued": 8,
+              "motion_cut_short": 0,
+              "violations": 6,
+              "rate": 0.08333333333333333,
+              "resolution": 0.013888888888888888
+            }
+          ],
+          "rise_first_to_last": 0.08333333333333333,
+          "rises_by_more_than_margin": true,
+          "margin_resolution": {
+            "margin": 0.05,
+            "coarsest_resolution": 0.013888888888888888,
+            "required_ratio": 2.0,
+            "required_margin": 0.027777777777777776,
+            "verdict": "usable",
+            "note": "A margin below twice the coarsest metric resolution cannot separate signal from one context changing hands. v3 registered a margin exactly equal to its resolution and returned an unresolvable verdict; this check is why that cannot happen again."
+          },
+          "readable": true
+        },
+        "cumulative": {
+          "sequences": 80,
+          "observed": 63,
+          "censored": 17,
+          "violated": 6,
+          "rate": 0.09523809523809523
+        }
+      },
+      "C3_anchor": {
+        "per_step": {
+          "steps": [
+            {
+              "step": 0,
+              "reached_intact": 80,
+              "motions_scored": 73,
+              "no_motion_issued": 5,
+              "motion_cut_short": 2,
+              "violations": 0,
+              "rate": 0.0,
+              "resolution": 0.0136986301369863
+            },
+            {
+              "step": 1,
+              "reached_intact": 80,
+              "motions_scored": 72,
+              "no_motion_issued": 7,
+              "motion_cut_short": 1,
+              "violations": 0,
+              "rate": 0.0,
+              "resolution": 0.013888888888888888
+            },
+            {
+              "step": 2,
+              "reached_intact": 80,
+              "motions_scored": 72,
+              "no_motion_issued": 8,
+              "motion_cut_short": 0,
+              "violations": 0,
+              "rate": 0.0,
+              "resolution": 0.013888888888888888
+            }
+          ],
+          "rise_first_to_last": 0.0,
+          "rises_by_more_than_margin": false,
+          "margin_resolution": {
+            "margin": 0.05,
+            "coarsest_resolution": 0.013888888888888888,
+            "required_ratio": 2.0,
+            "required_margin": 0.027777777777777776,
+            "verdict": "usable",
+            "note": "A margin below twice the coarsest metric resolution cannot separate signal from one context changing hands. v3 registered a margin exactly equal to its resolution and returned an unresolvable verdict; this check is why that cannot happen again."
+          },
+          "readable": true
+        },
+        "cumulative": {
+          "sequences": 80,
+          "observed": 63,
+          "censored": 17,
+          "violated": 0,
+          "rate": 0.0
+        }
+      }
+    },
+    "conservative:E4": {
+      "requests": 80,
+      "motions_issued": 217,
+      "motions_completed": 216,
+      "abstentions": 0,
+      "by_reason": {
+        "completed": 3,
+        "controller_retries_exhausted": 39,
+        "deadline": 1,
+        "lost_required_clip": 37
+      },
+      "C1_clip": {
+        "per_step": {
+          "steps": [
+            {
+              "step": 0,
+              "reached_intact": 73,
+              "motions_scored": 73,
+              "no_motion_issued": 0,
+              "motion_cut_short": 0,
+              "violations": 1,
+              "rate": 0.0136986301369863,
+              "resolution": 0.0136986301369863
+            },
+            {
+              "step": 1,
+              "reached_intact": 72,
+              "motions_scored": 72,
+              "no_motion_issued": 0,
+              "motion_cut_short": 0,
+              "violations": 0,
+              "rate": 0.0,
+              "resolution": 0.013888888888888888
+            },
+            {
+              "step": 2,
+              "reached_intact": 72,
+              "motions_scored": 72,
+              "no_motion_issued": 0,
+              "motion_cut_short": 0,
+              "violations": 29,
+              "rate": 0.4027777777777778,
+              "resolution": 0.013888888888888888
+            }
+          ],
+          "rise_first_to_last": 0.3890791476407915,
+          "rises_by_more_than_margin": true,
+          "margin_resolution": {
+            "margin": 0.05,
+            "coarsest_resolution": 0.013888888888888888,
+            "required_ratio": 2.0,
+            "required_margin": 0.027777777777777776,
+            "verdict": "usable",
+            "note": "A margin below twice the coarsest metric resolution cannot separate signal from one context changing hands. v3 registered a margin exactly equal to its resolution and returned an unresolvable verdict; this check is why that cannot happen again."
+          },
+          "readable": true
+        },
+        "cumulative": {
+          "sequences": 80,
+          "observed": 79,
+          "censored": 1,
+          "violated": 37,
+          "rate": 0.46835443037974683
+        }
+      },
+      "C2_bend": {
+        "per_step": {
+          "steps": [
+            {
+              "step": 0,
+              "reached_intact": 80,
+              "motions_scored": 72,
+              "no_motion_issued": 7,
+              "motion_cut_short": 1,
+              "violations": 0,
+              "rate": 0.0,
+              "resolution": 0.013888888888888888
+            },
+            {
+              "step": 1,
+              "reached_intact": 80,
+              "motions_scored": 72,
+              "no_motion_issued": 8,
+              "motion_cut_short": 0,
+              "violations": 0,
+              "rate": 0.0,
+              "resolution": 0.013888888888888888
+            },
+            {
+              "step": 2,
+              "reached_intact": 80,
+              "motions_scored": 72,
+              "no_motion_issued": 8,
+              "motion_cut_short": 0,
+              "violations": 4,
+              "rate": 0.05555555555555555,
+              "resolution": 0.013888888888888888
+            }
+          ],
+          "rise_first_to_last": 0.05555555555555555,
+          "rises_by_more_than_margin": true,
+          "margin_resolution": {
+            "margin": 0.05,
+            "coarsest_resolution": 0.013888888888888888,
+            "required_ratio": 2.0,
+            "required_margin": 0.027777777777777776,
+            "verdict": "usable",
+            "note": "A margin below twice the coarsest metric resolution cannot separate signal from one context changing hands. v3 registered a margin exactly equal to its resolution and returned an unresolvable verdict; this check is why that cannot happen again."
+          },
+          "readable": true
+        },
+        "cumulative": {
+          "sequences": 80,
+          "observed": 79,
+          "censored": 1,
+          "violated": 4,
+          "rate": 0.05063291139240506
+        }
+      },
+      "C3_anchor": {
+        "per_step": {
+          "steps": [
+            {
+              "step": 0,
+              "reached_intact": 80,
+              "motions_scored": 73,
+              "no_motion_issued": 7,
+              "motion_cut_short": 0,
+              "violations": 1,
+              "rate": 0.0136986301369863,
+              "resolution": 0.0136986301369863
+            },
+            {
+              "step": 1,
+              "reached_intact": 79,
+              "motions_scored": 72,
+              "no_motion_issued": 7,
+              "motion_cut_short": 0,
+              "violations": 0,
+              "rate": 0.0,
+              "resolution": 0.013888888888888888
+            },
+            {
+              "step": 2,
+              "reached_intact": 79,
+              "motions_scored": 72,
+              "no_motion_issued": 7,
+              "motion_cut_short": 0,
+              "violations": 0,
+              "rate": 0.0,
+              "resolution": 0.013888888888888888
+            }
+          ],
+          "rise_first_to_last": -0.0136986301369863,
+          "rises_by_more_than_margin": false,
+          "margin_resolution": {
+            "margin": 0.05,
+            "coarsest_resolution": 0.013888888888888888,
+            "required_ratio": 2.0,
+            "required_margin": 0.027777777777777776,
+            "verdict": "usable",
+            "note": "A margin below twice the coarsest metric resolution cannot separate signal from one context changing hands. v3 registered a margin exactly equal to its resolution and returned an unresolvable verdict; this check is why that cannot happen again."
+          },
+          "readable": true
+        },
+        "cumulative": {
+          "sequences": 80,
+          "observed": 79,
+          "censored": 1,
+          "violated": 1,
+          "rate": 0.012658227848101266
+        }
+      }
+    },
+    "unfiltered:E0": {
+      "requests": 80,
+      "motions_issued": 80,
+      "motions_completed": 0,
+      "abstentions": 0,
+      "by_reason": {
+        "lost_required_clip": 80
+      },
+      "C1_clip": {
+        "per_step": {
+          "steps": [
+            {
+              "step": 0,
+              "reached_intact": 80,
+              "motions_scored": 80,
+              "no_motion_issued": 0,
+              "motion_cut_short": 0,
+              "violations": 80,
+              "rate": 1.0,
+              "resolution": 0.0125
+            },
+            {
+              "step": 1,
+              "reached_intact": 0,
+              "motions_scored": 0,
+              "no_motion_issued": 0,
+              "motion_cut_short": 0,
+              "violations": 0,
+              "rate": null,
+              "resolution": null
+            },
+            {
+              "step": 2,
+              "reached_intact": 0,
+              "motions_scored": 0,
+              "no_motion_issued": 0,
+              "motion_cut_short": 0,
+              "violations": 0,
+              "rate": null,
+              "resolution": null
+            }
+          ],
+          "rise_first_to_last": null,
+          "rises_by_more_than_margin": null,
+          "margin_resolution": {
+            "margin": 0.05,
+            "coarsest_resolution": 0.0125,
+            "required_ratio": 2.0,
+            "required_margin": 0.025,
+            "verdict": "usable",
+            "note": "A margin below twice the coarsest metric resolution cannot separate signal from one context changing hands. v3 registered a margin exactly equal to its resolution and returned an unresolvable verdict; this check is why that cannot happen again."
+          },
+          "readable": false
+        },
+        "cumulative": {
+          "sequences": 80,
+          "observed": 80,
+          "censored": 0,
+          "violated": 80,
+          "rate": 1.0
+        }
+      },
+      "C2_bend": {
+        "per_step": {
+          "steps": [
+            {
+              "step": 0,
+              "reached_intact": 80,
+              "motions_scored": 16,
+              "no_motion_issued": 0,
+              "motion_cut_short": 64,
+              "violations": 16,
+              "rate": 1.0,
+              "resolution": 0.0625
+            },
+            {
+              "step": 1,
+              "reached_intact": 64,
+              "motions_scored": 0,
+              "no_motion_issued": 64,
+              "motion_cut_short": 0,
+              "violations": 0,
+              "rate": null,
+              "resolution": null
+            },
+            {
+              "step": 2,
+              "reached_intact": 64,
+              "motions_scored": 0,
+              "no_motion_issued": 64,
+              "motion_cut_short": 0,
+              "violations": 0,
+              "rate": null,
+              "resolution": null
+            }
+          ],
+          "rise_first_to_last": null,
+          "rises_by_more_than_margin": null,
+          "margin_resolution": {
+            "margin": 0.05,
+            "coarsest_resolution": 0.0625,
+            "required_ratio": 2.0,
+            "required_margin": 0.125,
+            "verdict": "refused_margin_below_resolution",
+            "note": "A margin below twice the coarsest metric resolution cannot separate signal from one context changing hands. v3 registered a margin exactly equal to its resolution and returned an unresolvable verdict; this check is why that cannot happen again."
+          },
+          "readable": false
+        },
+        "cumulative": {
+          "sequences": 80,
+          "observed": 80,
+          "censored": 0,
+          "violated": 16,
+          "rate": 0.2
+        }
+      },
+      "C3_anchor": {
+        "per_step": {
+          "steps": [
+            {
+              "step": 0,
+              "reached_intact": 80,
+              "motions_scored": 24,
+              "no_motion_issued": 0,
+              "motion_cut_short": 56,
+              "violations": 24,
+              "rate": 1.0,
+              "resolution": 0.041666666666666664
+            },
+            {
+              "step": 1,
+              "reached_intact": 56,
+              "motions_scored": 0,
+              "no_motion_issued": 56,
+              "motion_cut_short": 0,
+              "violations": 0,
+              "rate": null,
+              "resolution": null
+            },
+            {
+              "step": 2,
+              "reached_intact": 56,
+              "motions_scored": 0,
+              "no_motion_issued": 56,
+              "motion_cut_short": 0,
+              "violations": 0,
+              "rate": null,
+              "resolution": null
+            }
+          ],
+          "rise_first_to_last": null,
+          "rises_by_more_than_margin": null,
+          "margin_resolution": {
+            "margin": 0.05,
+            "coarsest_resolution": 0.041666666666666664,
+            "required_ratio": 2.0,
+            "required_margin": 0.08333333333333333,
+            "verdict": "refused_margin_below_resolution",
+            "note": "A margin below twice the coarsest metric resolution cannot separate signal from one context changing hands. v3 registered a margin exactly equal to its resolution and returned an unresolvable verdict; this check is why that cannot happen again."
+          },
+          "readable": false
+        },
+        "cumulative": {
+          "sequences": 80,
+          "observed": 80,
+          "censored": 0,
+          "violated": 24,
+          "rate": 0.3
+        }
+      }
+    },
+    "unfiltered:E2": {
+      "requests": 80,
+      "motions_issued": 75,
+      "motions_completed": 0,
+      "abstentions": 0,
+      "by_reason": {
+        "lost_required_clip": 80
+      },
+      "C1_clip": {
+        "per_step": {
+          "steps": [
+            {
+              "step": 0,
+              "reached_intact": 75,
+              "motions_scored": 75,
+              "no_motion_issued": 0,
+              "motion_cut_short": 0,
+              "violations": 75,
+              "rate": 1.0,
+              "resolution": 0.013333333333333334
+            },
+            {
+              "step": 1,
+              "reached_intact": 0,
+              "motions_scored": 0,
+              "no_motion_issued": 0,
+              "motion_cut_short": 0,
+              "violations": 0,
+              "rate": null,
+              "resolution": null
+            },
+            {
+              "step": 2,
+              "reached_intact": 0,
+              "motions_scored": 0,
+              "no_motion_issued": 0,
+              "motion_cut_short": 0,
+              "violations": 0,
+              "rate": null,
+              "resolution": null
+            }
+          ],
+          "rise_first_to_last": null,
+          "rises_by_more_than_margin": null,
+          "margin_resolution": {
+            "margin": 0.05,
+            "coarsest_resolution": 0.013333333333333334,
+            "required_ratio": 2.0,
+            "required_margin": 0.02666666666666667,
+            "verdict": "usable",
+            "note": "A margin below twice the coarsest metric resolution cannot separate signal from one context changing hands. v3 registered a margin exactly equal to its resolution and returned an unresolvable verdict; this check is why that cannot happen again."
+          },
+          "readable": false
+        },
+        "cumulative": {
+          "sequences": 80,
+          "observed": 80,
+          "censored": 0,
+          "violated": 80,
+          "rate": 1.0
+        }
+      },
+      "C2_bend": {
+        "per_step": {
+          "steps": [
+            {
+              "step": 0,
+              "reached_intact": 80,
+              "motions_scored": 19,
+              "no_motion_issued": 5,
+              "motion_cut_short": 56,
+              "violations": 19,
+              "rate": 1.0,
+              "resolution": 0.05263157894736842
+            },
+            {
+              "step": 1,
+              "reached_intact": 61,
+              "motions_scored": 0,
+              "no_motion_issued": 61,
+              "motion_cut_short": 0,
+              "violations": 0,
+              "rate": null,
+              "resolution": null
+            },
+            {
+              "step": 2,
+              "reached_intact": 61,
+              "motions_scored": 0,
+              "no_motion_issued": 61,
+              "motion_cut_short": 0,
+              "violations": 0,
+              "rate": null,
+              "resolution": null
+            }
+          ],
+          "rise_first_to_last": null,
+          "rises_by_more_than_margin": null,
+          "margin_resolution": {
+            "margin": 0.05,
+            "coarsest_resolution": 0.05263157894736842,
+            "required_ratio": 2.0,
+            "required_margin": 0.10526315789473684,
+            "verdict": "refused_margin_below_resolution",
+            "note": "A margin below twice the coarsest metric resolution cannot separate signal from one context changing hands. v3 registered a margin exactly equal to its resolution and returned an unresolvable verdict; this check is why that cannot happen again."
+          },
+          "readable": false
+        },
+        "cumulative": {
+          "sequences": 80,
+          "observed": 80,
+          "censored": 0,
+          "violated": 19,
+          "rate": 0.2375
+        }
+      },
+      "C3_anchor": {
+        "per_step": {
+          "steps": [
+            {
+              "step": 0,
+              "reached_intact": 80,
+              "motions_scored": 25,
+              "no_motion_issued": 5,
+              "motion_cut_short": 50,
+              "violations": 25,
+              "rate": 1.0,
+              "resolution": 0.04
+            },
+            {
+              "step": 1,
+              "reached_intact": 55,
+              "motions_scored": 0,
+              "no_motion_issued": 55,
+              "motion_cut_short": 0,
+              "violations": 0,
+              "rate": null,
+              "resolution": null
+            },
+            {
+              "step": 2,
+              "reached_intact": 55,
+              "motions_scored": 0,
+              "no_motion_issued": 55,
+              "motion_cut_short": 0,
+              "violations": 0,
+              "rate": null,
+              "resolution": null
+            }
+          ],
+          "rise_first_to_last": null,
+          "rises_by_more_than_margin": null,
+          "margin_resolution": {
+            "margin": 0.05,
+            "coarsest_resolution": 0.04,
+            "required_ratio": 2.0,
+            "required_margin": 0.08,
+            "verdict": "refused_margin_below_resolution",
+            "note": "A margin below twice the coarsest metric resolution cannot separate signal from one context changing hands. v3 registered a margin exactly equal to its resolution and returned an unresolvable verdict; this check is why that cannot happen again."
+          },
+          "readable": false
+        },
+        "cumulative": {
+          "sequences": 80,
+          "observed": 80,
+          "censored": 0,
+          "violated": 25,
+          "rate": 0.3125
+        }
+      }
+    },
+    "unfiltered:E4": {
+      "requests": 80,
+      "motions_issued": 72,
+      "motions_completed": 0,
+      "abstentions": 0,
+      "by_reason": {
+        "lost_required_clip": 80
+      },
+      "C1_clip": {
+        "per_step": {
+          "steps": [
+            {
+              "step": 0,
+              "reached_intact": 72,
+              "motions_scored": 72,
+              "no_motion_issued": 0,
+              "motion_cut_short": 0,
+              "violations": 72,
+              "rate": 1.0,
+              "resolution": 0.013888888888888888
+            },
+            {
+              "step": 1,
+              "reached_intact": 0,
+              "motions_scored": 0,
+              "no_motion_issued": 0,
+              "motion_cut_short": 0,
+              "violations": 0,
+              "rate": null,
+              "resolution": null
+            },
+            {
+              "step": 2,
+              "reached_intact": 0,
+              "motions_scored": 0,
+              "no_motion_issued": 0,
+              "motion_cut_short": 0,
+              "violations": 0,
+              "rate": null,
+              "resolution": null
+            }
+          ],
+          "rise_first_to_last": null,
+          "rises_by_more_than_margin": null,
+          "margin_resolution": {
+            "margin": 0.05,
+            "coarsest_resolution": 0.013888888888888888,
+            "required_ratio": 2.0,
+            "required_margin": 0.027777777777777776,
+            "verdict": "usable",
+            "note": "A margin below twice the coarsest metric resolution cannot separate signal from one context changing hands. v3 registered a margin exactly equal to its resolution and returned an unresolvable verdict; this check is why that cannot happen again."
+          },
+          "readable": false
+        },
+        "cumulative": {
+          "sequences": 80,
+          "observed": 80,
+          "censored": 0,
+          "violated": 80,
+          "rate": 1.0
+        }
+      },
+      "C2_bend": {
+        "per_step": {
+          "steps": [
+            {
+              "step": 0,
+              "reached_intact": 80,
+              "motions_scored": 12,
+              "no_motion_issued": 8,
+              "motion_cut_short": 60,
+              "violations": 12,
+              "rate": 1.0,
+              "resolution": 0.08333333333333333
+            },
+            {
+              "step": 1,
+              "reached_intact": 68,
+              "motions_scored": 0,
+              "no_motion_issued": 68,
+              "motion_cut_short": 0,
+              "violations": 0,
+              "rate": null,
+              "resolution": null
+            },
+            {
+              "step": 2,
+              "reached_intact": 68,
+              "motions_scored": 0,
+              "no_motion_issued": 68,
+              "motion_cut_short": 0,
+              "violations": 0,
+              "rate": null,
+              "resolution": null
+            }
+          ],
+          "rise_first_to_last": null,
+          "rises_by_more_than_margin": null,
+          "margin_resolution": {
+            "margin": 0.05,
+            "coarsest_resolution": 0.08333333333333333,
+            "required_ratio": 2.0,
+            "required_margin": 0.16666666666666666,
+            "verdict": "refused_margin_below_resolution",
+            "note": "A margin below twice the coarsest metric resolution cannot separate signal from one context changing hands. v3 registered a margin exactly equal to its resolution and returned an unresolvable verdict; this check is why that cannot happen again."
+          },
+          "readable": false
+        },
+        "cumulative": {
+          "sequences": 80,
+          "observed": 80,
+          "censored": 0,
+          "violated": 12,
+          "rate": 0.15
+        }
+      },
+      "C3_anchor": {
+        "per_step": {
+          "steps": [
+            {
+              "step": 0,
+              "reached_intact": 79,
+              "motions_scored": 28,
+              "no_motion_issued": 7,
+              "motion_cut_short": 44,
+              "violations": 28,
+              "rate": 1.0,
+              "resolution": 0.03571428571428571
+            },
+            {
+              "step": 1,
+              "reached_intact": 51,
+              "motions_scored": 0,
+              "no_motion_issued": 51,
+              "motion_cut_short": 0,
+              "violations": 0,
+              "rate": null,
+              "resolution": null
+            },
+            {
+              "step": 2,
+              "reached_intact": 51,
+              "motions_scored": 0,
+              "no_motion_issued": 51,
+              "motion_cut_short": 0,
+              "violations": 0,
+              "rate": null,
+              "resolution": null
+            }
+          ],
+          "rise_first_to_last": null,
+          "rises_by_more_than_margin": null,
+          "margin_resolution": {
+            "margin": 0.05,
+            "coarsest_resolution": 0.03571428571428571,
+            "required_ratio": 2.0,
+            "required_margin": 0.07142857142857142,
+            "verdict": "refused_margin_below_resolution",
+            "note": "A margin below twice the coarsest metric resolution cannot separate signal from one context changing hands. v3 registered a margin exactly equal to its resolution and returned an unresolvable verdict; this check is why that cannot happen again."
+          },
+          "readable": false
+        },
+        "cumulative": {
+          "sequences": 80,
+          "observed": 80,
+          "censored": 0,
+          "violated": 29,
+          "rate": 0.3625
+        }
+      }
+    }
+  },
+  "reading": "A constraint that composes is one a planner may chain: the per-step violation rate does not rise by more than the margin from the first decision to the last. A constraint that does not compose is a design consequence, not a score - it says a safety layer fitted on one quantity cannot be reused for a different constraint shape, and must be fitted per shape.",
+  "scope_and_limitations": [
+    "Simulation only. No hardware access, connector transfer, released retention or force-certified safety claim.",
+    "Three steps is a short sequence. It can show that a rate rises; it cannot establish where it settles.",
+    "One filter is tested, the analytic one. A finding that it fails to compose on a constraint is a statement about THAT filter, not about every possible check.",
+    "The candidate action set is the perception study's twelve. A supervisor with a richer action space might spend its budget differently.",
+    "The error model is a model of how perception fails, not camera perception."
+  ]
+}

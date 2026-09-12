@@ -2,7 +2,7 @@
  "schema": 1,
  "generated_by": "scripts/index_evidence.py",
  "purpose": "Pick the one evidence record a question needs. Entries are derived from each file, so read the file itself before quoting any number, and read its scope before reusing its result.",
- "count": 93,
+ "count": 94,
  "records": [
   {
    "file": "approach_slew_design_v1.json",
@@ -555,6 +555,33 @@
     "scope_and_limitations",
     "verification",
     "version"
+   ]
+  },
+  {
+   "file": "cable_sequence_v5.json",
+   "bytes": 61517,
+   "id": "cable_sequence_v5",
+   "status": "fitted_composition_study",
+   "scope": "Composition study for the constrained-cable safety layer. One request is one SEQUENCE of commanded clearance motions, each chosen by a named supervisor from the state it can see at that moment, with all three constraints scored continuously across the whole sequence. Endpoint is held, clip-preserving seating before gr\u2026",
+   "top_level_keys": [
+    "contract",
+    "cost",
+    "created_on",
+    "denominator",
+    "guards",
+    "how_greedily_the_supervisor_spends",
+    "id",
+    "is_the_filter_worth_it_over_a_sequence",
+    "prediction",
+    "question",
+    "reading",
+    "results",
+    "run_dir",
+    "schema",
+    "scope",
+    "scope_and_limitations",
+    "status",
+    "verdicts"
    ]
   },
   {
