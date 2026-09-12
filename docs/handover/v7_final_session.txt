@@ -2,6 +2,12 @@ FINAL SESSION - BUILD THE TOOL AND THE PUBLIC DEMONSTRATION, THEN CLOSE THE PROJ
 Prepared 2026-09-12, after the routing block was run and fitted. Supersedes
 v7_workbench.txt.
 
+EXECUTED 2026-09-12. All four stages were built and verified; nothing was cut.
+The records are artifacts/showcase/{video,page,tool,usd}.json and the decision
+log is artifacts/showcase/PROGRESS.md. The page is at
+https://claude.ai/code/artifact/71352222-82b3-4676-901c-c2c4852eea3c.
+This file is now history. Do not run it again.
+
 THIS IS THE LAST SESSION. There is no session after it. Nothing may be left
 "for next time". If you run out of time, cut scope from the BOTTOM of section 4,
 never from the top, and say plainly in the final summary what you cut.
