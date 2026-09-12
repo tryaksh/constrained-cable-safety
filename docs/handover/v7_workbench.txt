@@ -1,0 +1,240 @@
+SESSION V7 OF 2 - BUILD THE WORKBENCH AND THE SHOWCASE, THEN CLOSE THE PROJECT
+Prepared 2026-09-12 for the repository `constrained-cable-safety`. Runs AFTER
+cable_v6_routing_cell_handover_20260912.txt, which builds the multi-clip routing
+cell and runs the routing block.
+
+DO NOT START THIS SESSION until V6's stage 2 done-condition
+(artifacts/cell/scene.json) exists and says the multi-clip scene reproduces the
+old task. Everything here is built on that. If V6's block is still running, that
+is expected - fit it first, then build.
+
+Take ownership and work autonomously. Do not contact people, book hardware or
+buy services.
+
+=======================================================================
+1. THE MISSION
+=======================================================================
+Turn a measured result into something an engineer can USE and a stranger can
+UNDERSTAND in two minutes, then close the project.
+
+Three deliverables, in this priority order:
+
+  A. THE DEMONSTRATION. A video and a still figure where every number traces to
+     an evidence record. This is what makes the work legible. If you build only
+     one thing, build this.
+  B. THE WORKBENCH. A local tool an engineer clones and runs: move a clip, change
+     the slack, re-run MuJoCo, see what the safety layer allows and what it
+     costs.
+  C. THE SHOWCASE. A static page driven entirely by precomputed results - pick
+     two clip layouts, compare measured outcomes, watch the matching replays.
+     No server, no GPU, no live simulator.
+
+The owner's plan is: portfolio site as the front door, GitHub for the runnable
+project, and this page as the thing a visitor actually explores.
+
+TWO THINGS MUST BE TRUE AT THE END:
+  1. A person watching two minutes understands what was built, what the safety
+     layer does, and why it matters - without narration.
+  2. Every claim the repository makes is still one the measurements support.
+If those conflict, the second wins. A demo that overstates is worse than no demo.
+
+=======================================================================
+2. THE SAME WORKING DISCIPLINE AS V6
+=======================================================================
+Done-conditions on disk before each stage, under artifacts/showcase/. One
+append-only artifacts/showcase/PROGRESS.md. Commit at every stage boundary.
+Verify per stage, not at the end. Suspect the instrument before the finding.
+Do not poll long runs.
+
+One addition specific to this session: YOU ARE BUILDING THINGS A HUMAN LOOKS AT,
+AND YOU CANNOT LOOK AT THEM THE SAME WAY. Render to a file and inspect the file
+programmatically - frame count, resolution, non-blank frames, expected overlays
+present. Do not assume a render worked because the command exited zero.
+
+=======================================================================
+3. WHAT YOU ARE SHOWING - THE NUMBERS THAT CARRY THE STORY
+=======================================================================
+Read README.md, then evidence/cable_perception_v4.json and
+evidence/cable_sequence_v5.json, then whatever V6 produced. The story has three
+beats and they are all measured:
+
+  BEAT 1 - ONE NUMBER IS ENOUGH. 16,080 pre-registered requests. A single scalar
+  with a margin sized from the estimator's declared error is not beaten by any
+  richer representation, at any error level, on any of three constraint shapes.
+  The ~30,000-parameter network over the whole cable centreline is significantly
+  WORSE on clip retention: bootstrap gap 0.074, interval excluding zero.
+
+  BEAT 2 - IT MATTERS MOST WHEN YOU CHAIN MOVES. 720 sequences. Every one of the
+  240 unfiltered sequences pulled the cable out of the clip - a rate of 1.000 at
+  every error level - against 0.400 to 0.569 filtered. This is the side-by-side
+  the video is built around, and it is honest because it is universal.
+
+  BEAT 3 - AND THE CHECK IS NOT THE WHOLE STORY. The clip budget stops composing
+  at 2 mm error (per-step rate rising 0.089, past the 0.05 margin) while
+  curvature and load hold. And post-hoc, how greedily the supervisor spends what
+  the filter allows moved the outcome further than representation did: 8 clips
+  lost instead of 32, 72 routes completed instead of 48. Label that exploratory
+  ON SCREEN as well as in the record.
+
+DO NOT let the demo imply beat 3 is a certified result. It is not. A caption that
+says "not pre-registered" costs nothing and is the difference between a portfolio
+piece an engineer trusts and one they discount.
+
+=======================================================================
+4. STAGE A - THE DEMONSTRATION    done-condition: artifacts/showcase/video.json
+=======================================================================
+scripts/render_perception_video_v4.py is the pattern and already does the hard
+part: it re-runs a registered request with its registered seeds, ASSERTS the
+outcome matches what the block recorded (`reproduces_block`), and renders offline
+from captured states with ghost markers showing the ESTIMATE against the truth.
+Extend it; do not start over. Four working videos already exist under
+artifacts/cable/video-v4/ - watch what they do before changing anything.
+
+  A WARNING PAID FOR IN THIS PROJECT: the capture path must consume the RNG in
+  exactly the same order as the block or it silently diverges. A previous session
+  lost time to a capture that skipped `observed_decision_state` and therefore drew
+  fewer random numbers. Assert `reproduces_block` on every clip you render and
+  refuse to publish one that fails.
+
+The video must show, without a voiceover:
+  - the cell, recognisably a wiring jig rather than a physics toy
+  - the cable routed clip by clip, with the estimate drawn beside the truth and
+    the occluded span visibly wrong
+  - the safety envelope shrinking as declared error grows
+  - the budget spent per step and what is left
+  - the side-by-side: filtered completes the route, unfiltered pulls the cable out
+  - every constraint's live value against its declared limit
+
+1280x720 or better, 30 fps, under artifacts/ (ignored). Also produce one still
+figure in the style of evidence/cable_perception_v4.png.
+
+VERIFY: open each rendered file, count frames, confirm resolution, confirm a
+sample of frames is not uniformly blank, and confirm `reproduces_block` is true
+for every clip. Record all of that in video.json.
+
+=======================================================================
+5. STAGE B - THE WORKBENCH        done-condition: artifacts/showcase/tool.json
+=======================================================================
+A local engineering tool, `scripts/workbench.py`, that an engineer clones and
+runs. Not a web app - a Python program using MuJoCo's own viewer.
+
+  WHAT IT DOES: load the cell from config; let the user move a clip, change cable
+  slack, and pick an error level; show the safety layer's envelope over the action
+  space; run the route; report per-constraint budget spent and the outcome.
+
+  HOW IT RENDERS: `mujoco.viewer.launch_passive` is present in this environment
+  (MuJoCo 3.3.7). Controls can be a simple parameter panel or keyboard bindings -
+  do not build a GUI framework dependency.
+
+  A CONSTRAINT YOU CANNOT ESCAPE: you have no display. You CANNOT run the viewer
+  and see it. So architect the tool so everything except the window is testable
+  headlessly: a `WorkbenchSession` class that loads, mutates, runs and reports,
+  with the viewer as a thin shell over it. Unit-test the class. Then the one
+  untested line is `launch_passive`, and the owner can run it.
+  SAY CLEARLY IN THE FINAL SUMMARY that the interactive window was never executed
+  in-session. Do not claim you verified something you could not see.
+
+  IT MUST BE PARAMETRIC. V6 was told to keep clip positions in config rather than
+  code. If that did not happen, fix it here before building on top.
+
+VERIFY: headless tests covering load, mutate a clip position, re-run, and report.
+Plus one end-to-end headless run producing the same numbers as an evidence record
+for an unmutated cell.
+
+=======================================================================
+6. STAGE C - THE SHOWCASE PAGE     done-condition: artifacts/showcase/page.json
+=======================================================================
+A single static page, generated by `scripts/build_showcase.py` from evidence
+records plus the rendered clips. No server, no runtime, no GPU. It must work
+opened from a file and it must work hosted anywhere.
+
+  WHAT A VISITOR DOES: reads the three beats in section 3; picks two clip layouts
+  from a precomputed set and sees their measured outcomes side by side; plays the
+  matching replay clips; sees each claim's evidence record named beside it.
+
+  GENERATE IT, DO NOT HAND-WRITE IT. The page reads a JSON the build script emits
+  from the evidence. If a number changes in an evidence record, rebuilding the
+  page changes the page. That is the whole point, and it is the same discipline
+  `SafetyFilter.from_evidence` already follows.
+
+  KEEP IT HONEST. Every figure carries its denominator. Every exploratory result
+  is labelled exploratory. The scope paragraph - simulation only, no hardware, no
+  released retention, error model is a model of how perception fails - appears on
+  the page, not only in the repository.
+
+DO NOT PUBLISH IT. Write the files and give the owner the paths. The owner will
+decide where it goes and will ask separately. A private page already exists at
+claude.ai/code/artifact/ef74d2ed-947f-4eab-a8bd-8674d4b917f4 - do not touch it
+unless asked.
+
+=======================================================================
+7. STAGE D - USD EXPORT FOR OMNIVERSE, IF TIME REMAINS
+=======================================================================
+The owner wants the option of rendering this in Isaac Sim / Omniverse LATER, for
+visual quality, WITHOUT moving the physics. That path is verified and cheap.
+
+  MuJoCo 3.3.7 ships `mujoco.usd.exporter`. It needs two packages beside it that
+  are NOT currently installed in the cable venv: `usd-core` (provides `pxr`) and
+  `pillow`. Both resolve cleanly - usd-core 26.8 was checked.
+
+  INSTALL THEM IN A SEPARATE VENV, NOT IN .deps/cable-venv. That venv's exact
+  package set is recorded in every run manifest's native_environment block and
+  the project's provenance depends on it not drifting. A render-only venv with
+  mujoco==3.3.7 + usd-core + pillow + numpy is the right shape; it was built and
+  exercised during the v6 preparation.
+
+  THE GOTCHA, which will waste twenty minutes otherwise: pass `output_directory`
+  as a RELATIVE name and `output_directory_root` as its absolute parent. Give it
+  an absolute `output_directory` and it joins them into `./C:\...` and throws a
+  path error from inside OpenUSD.
+
+  VERIFIED WORKING: 200 stepped frames of a scene carrying CAD visual meshes over
+  primitive collision geometry exported to a single ~300 KB .usd stage.
+
+  SCOPE IT HONESTLY: this is a rendering export. It does not make the project an
+  Isaac Sim project, and nothing measured in MuJoCo may be described as validated
+  in Omniverse.
+
+=======================================================================
+8. RULES THAT ARE NOT NEGOTIABLE
+=======================================================================
+  Do not refit the safety layer. Do not re-run a fitted block to get nicer
+    numbers. Do not rescore an earlier block under a new task version.
+  Every number shown anywhere traces to an evidence record, by name.
+  Post-hoc findings are labelled post-hoc, on screen as well as in the record.
+  Aborted requests are censored, never counted as successes.
+  No hardware, released-retention, latching, novelty or acceptance claim. The
+    error model is a model of how perception fails, not camera perception.
+  Do not publish a public page.
+  515+ tests, about 6 seconds, no GPU and no simulator. Run after every stage.
+  MULTI-LINE EDITS: Python patch script with `assert old in s`, never a bash
+    heredoc - they fail here on apostrophes and triple quotes.
+  WINDOWS APPLICATION CONTROL blocks .deps/cable-venv/Scripts/python.exe. Use
+    pythonw.exe in the same venv. Do not copy or rename the blocked binary.
+
+=======================================================================
+9. CLOSING THE PROJECT
+=======================================================================
+When A, B and C exist, close it properly:
+  - README.md rewritten around the finished story, with the showcase and the
+    workbench documented as things a reader can actually use.
+  - ROADMAP.md stating what is closed, what is open, and what the honest
+    remaining uncertainty is.
+  - AGENTS.md matching the final file map and command sequence.
+  - evidence/INDEX.json regenerated.
+  - A short note on what a next person would do first, if there is a next person.
+
+THE ONE MEASUREMENT STILL WORTH BUYING, if the session has hours left after C:
+the force-only arm had the lowest false-safe rate on all three constraints at
+every error level (C3: 0.008-0.031 against the baseline's 0.034-0.044) and never
+by more than the declared 0.05 margin, so nothing could be certified. One block
+aimed at that single comparison, sized so its margin can resolve gaps of
+0.013-0.035 - a margin near 0.01, therefore at least 200 held-out contexts per
+cell, or a paired per-context test instead of a rate comparison. If it certifies,
+the project closes on a genuinely surprising line: for this task you may not need
+to see the cable at all.
+
+FINISH WITH
+The decision, the measurement that produced it, the cost, the remaining
+uncertainty, and ONE next action. Give the owner the video paths, the showcase
+path, and the command that runs the workbench.

@@ -1,0 +1,394 @@
+SESSION V6 OF 2 - BUILD THE ROUTING CELL AND MEASURE IT
+Prepared 2026-09-12 for the repository `constrained-cable-safety`, after the v4
+perception block and the v5 composition block both closed. Supersedes
+cable_v2_perception_handover_20260911.txt.
+
+This is the FIRST of two planned sessions. You build the cell and run the
+measurement. The SECOND session (artifacts/prompts/cable_v7_workbench_handover_
+20260912.txt) builds the engineering tool and the public showcase on top of what
+you leave behind. Read the last section, "WHAT V7 NEEDS FROM YOU", before you
+start, because it constrains what you write to disk.
+
+Take ownership and work autonomously. One serial simulator queue. Do not contact
+people, book hardware or buy services. No routine technical permission questions
+are needed.
+
+Why two sessions and not one. A pre-registered block must be frozen, committed,
+and then run for hours, and nothing in the analysis may change after the test
+split is read. Interleaving that with interface work risks either the block
+never launching or the discipline slipping. So this session ends with the block
+RUNNING or FITTED, and the tool is somebody else's turn.
+
+=======================================================================
+1. THE MISSION
+=======================================================================
+Extend this project from one clip to a real harness route, and measure whether
+the safety layer that was fitted on single moves still earns its place over a
+five-clip installation.
+
+At the end of this session, three things exist:
+  1. A CAD-authored wiring jig with multiple clips, in the repository, with
+     provenance, that compiles into MuJoCo without changing any existing number.
+  2. A pre-registered routing block, frozen and committed before launch, either
+     fitted or running.
+  3. An evidence record whose scope block says plainly what is new and what is
+     inherited.
+
+If you only get two of those, get 1 and 2.
+
+=======================================================================
+2. HOW TO WORK ACROSS A LONG SESSION
+=======================================================================
+The dominant failure mode for a session this long is not a hard bug. It is
+drift: by hour six the working context is mostly stale detail, and the session
+starts re-deriving what it already settled or forgetting a constraint it agreed
+to in hour one. Defend mechanically, not by remembering harder.
+
+  WRITE THE DONE-CONDITION TO DISK BEFORE YOU START EACH STAGE. Each stage below
+    names a file under artifacts/cell/. Create it with the acceptance criteria
+    BEFORE doing the work, then fill in the measured values. A stage is finished
+    when its file says so. This is the one habit that survives a context reset.
+  KEEP ONE APPEND-ONLY LOG: artifacts/cell/PROGRESS.md, one line per decision
+    with the number that drove it. Never rewrite earlier lines.
+  CHECKPOINT BY COMMITTING at the end of every stage, even an ugly one.
+  VERIFY AT EACH STAGE, NOT AT THE END. Every stage has a check that runs in
+    under a minute. A pipeline wrong at stage 2 and caught at stage 5 costs the
+    session.
+  SUSPECT THE INSTRUMENT FIRST. This project has now been bitten three times by
+    a measurement whose apparatus was wrong: a bending-damping control scaled
+    backwards, a video capture that consumed the wrong number of RNG draws, and
+    a collision probe built without the project's contact defaults (section 4).
+    Every one looked like a finding. Before you believe a surprising number, ask
+    what would have to be true about the apparatus for it to be wrong.
+  DO NOT POLL LONG RUNS. Launch, then do the next independent thing. You are
+    notified when a background command finishes.
+
+=======================================================================
+3. WHAT IS ALREADY ESTABLISHED - CREDIT IT, DO NOT RE-DERIVE IT
+=======================================================================
+Read these, in this order, then stop reading and start building:
+  1. README.md                              what this is and what it found
+  2. AGENTS.md                              rules, file map, command sequence
+  3. ROADMAP.md                             verified state, the one next action
+  4. evidence/cable_perception_v4.json      the main result and its caveats
+  5. evidence/cable_sequence_v5.json        does the check survive chaining
+  6. evidence/cell_toolchain_v6.json        the CAD toolchain, checked on this box
+
+THE PERCEPTION RESULT. 16,080 pre-registered requests, 1.49 billion integration
+steps, 9.05 hours, zero guard violations, every label independently re-derived
+from the raw ledgers with zero disagreements. A single fitted scalar - the
+straight-line boot-to-anchor distance at the endpoint a move would reach,
+carrying a margin sized from the estimator's own declared error - is not beaten
+by more than the registered margin by ANY richer representation, at ANY level of
+estimation error, on ANY of three constraint shapes. On clip retention the
+network over the whole 24-vertex centreline is significantly WORSE (bootstrap
+gap 0.074, interval excluding zero, tight across seeds).
+
+THE COMPOSITION RESULT, which is what the routing task builds on. 720 registered
+sequences, 2,160 decisions, 72.9 million steps, zero guard events:
+  - The filter earns its place and it is not close. Every one of the 240
+    unfiltered sequences lost the required clip - rate 1.000 at all three error
+    levels - against 0.400 / 0.569 / 0.545 filtered.
+  - The clip budget does NOT compose. Its per-step violation rate rises 0.089
+    from the first decision to the last at 2 mm error, past the 0.05 margin.
+    Curvature and anchor load DO compose. That is the reverse of the registered
+    prediction and the useful direction: the constraint the filter measures
+    directly is the one that decays along a chain, because every accepted step
+    spends slack the next step is then judged against.
+  - POST-HOC, no verdict: appetite dominated. The same filter read by a
+    supervisor taking the motion with the most HEADROOM rather than the largest
+    safe one loses 8 clips instead of 32 and completes 72 routes instead of 48 at
+    E0. Carry it as exploratory. Do not promote it to a finding.
+
+  THE DIRECT CONSEQUENCE FOR YOUR TASK: a five-clip route is a LONGER chain than
+  anything measured. The v5 numbers do not cover it and must not be quoted as if
+  they did. Your block is what extends them.
+
+THE SHIPPED LAYER. src/assembly_recovery/cable_safety_filter_v4.py loads its
+thresholds from the evidence record so a running check and a published number
+cannot drift apart. It scores all three constraints and names the binding one,
+maps the whole continuous action space in one call, and reports how much of each
+constraint's headroom a move spends. It runs off a plain dict of what an
+estimator says about its own error - use `declared_error(...)`. USE THIS LAYER.
+Do not rewrite it and do not refit it.
+
+TWO INSTRUMENT FINDINGS THAT CONSTRAIN EVERY CLAIM YOU MAKE:
+  - The cable model DOES refine. The old refinement failure was a bending-damping
+    scaling error in the control that tested it: a discrete bending joint carries
+    the continuum damping as gamma*I/L, so halving the segment length must DOUBLE
+    the per-joint damping. Corrected, a fourfold refinement settles at three
+    integration rates and reproduces the registered settled geometry to 5.7 um.
+    Minimum bend radius does NOT agree across refinements, so any curvature claim
+    stays scoped to the 23-segment model at 4 kHz.
+  - The routed cable is NOT at rest at the registered five-second settling
+    deadline. It slides along the clip channel and comes to rest against the clip
+    wall, 2.9 um past where the retention predicate's own lateral test sits. The
+    deadline is part of the task definition, not an approximation to rest. DO NOT
+    lengthen it and DO NOT change the retention predicate; either would change
+    the task and void every comparison with the existing blocks.
+
+=======================================================================
+4. THE CAD TOOLCHAIN - CHECKED ON THIS MACHINE, 2026-09-12
+=======================================================================
+Everything here was RUN, not assumed, and it is recorded in
+evidence/cell_toolchain_v6.json. Re-run the check in about a minute with
+
+    .deps/cable-venv/Scripts/pythonw.exe scripts/probe_cell_toolchain_v6.py
+
+WHAT IS INSTALLED
+  FreeCAD 1.1.3 (Libs 1.1.3R20260725), installed by winget at
+    C:\Users\tryak\AppData\Local\Programs\FreeCAD 1.1
+  The headless console interpreter, which is what you will use:
+    C:\Users\tryak\AppData\Local\Programs\FreeCAD 1.1\bin\freecadcmd.exe
+  The FreeCADMCP addon is already in C:\Users\tryak\AppData\Roaming\FreeCAD\Mod
+    and .mcp.json already declares a `freecad` MCP server (uvx freecad-mcp).
+
+USE freecadcmd.exe, NOT THE MCP SERVER. The MCP server talks to an RPC server
+that must be started from a button on the FreeCAD GUI toolbar. There is no GUI
+here and starting one is a hazard for autonomous work. Leave the MCP entry in
+place as an option for a human; your path is a Python script run by freecadcmd.
+Verified end to end: build solids with `Part`, tessellate with
+`MeshPart.meshFromShape`, write STL with `Mesh.write`, save with `doc.saveAs`.
+
+    "C:\Users\tryak\AppData\Local\Programs\FreeCAD 1.1\bin\freecadcmd.exe" build_cell.py
+
+`build123d` is also a real option and resolves cleanly from PyPI if you prefer
+authoring in the main interpreter. FreeCAD is what has been checked here; do not
+spend session time evaluating the alternative.
+
+TRAP 1 - A FUSE ONLY WELDS SOLIDS THAT INTERPENETRATE. Two boxes sharing a face
+do not fuse: you get a compound of several solids and its tessellation is NOT
+watertight. Overlap adjoining parts by about 0.01 mm. Measured and recorded:
+face-touching gives 2 solids, a 0.01 mm overlap gives 1.
+
+TRAP 2 - MUJOCO MOVES YOUR MESH, AND THAT IS FINE. The compiler recentres every
+mesh on its centre of mass and rotates it to principal axes, so the raw vertex
+data of a 30x18x3 base comes back with its 30 mm on Z. Do not fight it. The geom
+frame compensates exactly: transform compiled vertices by `data.geom_xmat` and
+`data.geom_xpos` and you recover CAD assembly coordinates. Measured worst
+placement error over five parts: 0.000 mm. Export in ASSEMBLY coordinates and
+give the geom no pos or quat.
+
+TRAP 3 - THE CONTACT DEFAULTS ARE LOAD-BEARING, AND THIS ONE COST AN HOUR.
+This project's scenes compile with
+
+    <default><geom solref="0.004 1" solimp="0.95 0.99 0.001"/></default>
+
+set at cable_constrained_v2.py:547. That is not cosmetic. Under MuJoCo's OWN
+contact defaults a 0.23 g capsule dropped onto a 3 mm plate sinks through it and
+from 8 mm up tunnels outright, at every timestep tried, with primitives just as
+much as with meshes. Measured rest heights from an 8 / 20 / 50 mm drop: 1.996 mm
+with the project defaults, and -73558 / -77048 / -77331 mm without them. ANY new
+scene you build must inherit that defaults block.
+
+TRAP 4 - COLLIDE AGAINST PRIMITIVES, NOT MESHES - BUT NOT FOR THE OBVIOUS REASON.
+With the defaults above, mesh collision DOES hold the cable. It simply holds it
+differently: 1.722 mm on one contact, against 1.996 mm on two for the primitive
+channel. A quarter-millimetre is small in the abstract and large here, where the
+retention predicate is decided within about 4 mm of channel half-width and the
+settling behaviour was characterised to micrometres.
+
+  THE RULE: CAD meshes are VISUAL geoms - contype="0" conaffinity="0" group="2".
+  Collision stays on the primitive boxes and cylinders `build_fixture` already
+  writes. The CAD makes it look like a real jig; the primitives make it behave
+  like the one that was measured, bit-identical, so the CAD cannot invalidate a
+  single published number. Say exactly this in the evidence record.
+
+  (An earlier pass of this probe concluded mesh collision loses the cable
+  outright. It was built without TRAP 3's defaults. Instrument, not collider.)
+
+TRAP 5 - A CLIP NEEDS A FLOOR. The first probe drew two walls and two lips and
+the cable fell out of the bottom. The compiled fixture has a shelf under its
+clip, which is why it works. Any clip you author needs a base or a shelf.
+
+A WORKING PATTERN, verified:
+    import FreeCAD as App, Part, MeshPart
+    doc = App.newDocument("cell")
+    solid = Part.makeBox(...)            # assembly coordinates, millimetres
+    fused = a.fuse(b).removeSplitter()   # only with ~0.01 mm interpenetration
+    mesh = MeshPart.meshFromShape(Shape=solid, LinearDeflection=0.05,
+                                  AngularDeflection=0.5, Relative=False)
+    mesh.write("part.stl")               # assert mesh.isSolid()
+    doc.saveAs("cell.FCStd")
+
+=======================================================================
+5. THE BUILD - FOUR STAGES, EACH WITH A DONE-CONDITION ON DISK
+=======================================================================
+Everything measured so far is ONE connector and ONE recovery move. Real harness
+work is routing: take a cable already attached at one end, lay it into a
+sequence of clips and guides along a board, then seat the connector at the far
+end. That is the task worth measuring, and it is exactly where a budget-aware
+safety layer earns its place - which v5 turned from a slogan into a number.
+
+------------------------------------------------------------------
+STAGE 1 - AUTHOR THE CELL IN CAD          done-condition: artifacts/cell/cad.json
+------------------------------------------------------------------
+Write scripts/build_cell_cad.py, run by freecadcmd.exe, authoring a credible
+wiring-harness jig as separate parts in assembly coordinates: a backing board;
+three to five routing clips at different heights and bearings; at least one
+channel the cable must be pressed into; one corner it must turn; a strain-relief
+clamp at the origin end; a connector socket at the far end.
+
+Keep every clip cross-section compatible with the existing predicate or you
+invalidate every retention number this project has: the cable is 4 mm OD and the
+current channel is 12 mm wide with a 5 mm lip gap. `cable_routes.clip_passages`
+will REFUSE dimensions that cannot contain the cable - let it. Fillet the
+lead-ins; a real clip has them and they render better.
+
+Export one STL per part plus the source .FCStd into the repository. Record in
+cad.json: the FreeCAD version, every part's file, facet count, watertightness,
+bounding box, and each STL's SHA-256 on LF-normalised bytes - the same provenance
+discipline every other asset here carries.
+
+VERIFY: every part reports isSolid() True. Any part that does not is a part whose
+solids did not fuse; go back and overlap them.
+
+------------------------------------------------------------------
+STAGE 2 - BRING IT INTO MUJOCO         done-condition: artifacts/cell/scene.json
+------------------------------------------------------------------
+Extend `build_fixture` in src/assembly_recovery/cable_constrained_v2.py (line
+303) so the fixture carries N clips instead of one. Today it reads
+`cfg["fixture"]["clip"]` and returns a single `clip_origin_world`,
+`clip_rotation_world` and `clip_predicate`; `ConstrainedScene` and `clip_state`
+(line 827) consume those three singulars.
+
+  Make the config key `clips`, a LIST. Keep `clip` working as a one-element list
+  so every existing config - and therefore every existing record - still
+  compiles and still reproduces. Add a test asserting exactly that.
+  Make `clip_state` return a per-clip list plus a summary. Do not change what the
+  single-clip predicate computes.
+
+Add the CAD meshes as visual geoms over the primitives, per TRAP 4, and inherit
+the contact defaults, per TRAP 3.
+
+VERIFY, and this is the cheapest high-value check in the session: recompile one
+registered context from the perception block through the new multi-clip code path
+and confirm it reproduces the settled geometry the old code produced. If it does
+not, the refactor changed the task. Record the agreement in metres in scene.json.
+Anything above 1e-6 m needs explaining before you go on.
+
+------------------------------------------------------------------
+STAGE 3 - ROUTE CONSTRUCTION AND SCREEN  done-condition: artifacts/cell/routes.json
+------------------------------------------------------------------
+DO NOT hand-place the cable. Route construction exists and already rejects a
+folded initial chain: `guide_route` (cable_constrained_v2.py:130), `rounded_path`
+(:90), `matched_guide` (:153), `fit_chain` (:191), with
+`cable_routes.slack_filter` refusing lengths that cannot reach. Extend
+`guide_route` to a multi-clip route; do not replace it.
+
+Then SCREEN BEFORE YOU SPEND. Every new clip position and route passes the same
+settling screen the current support did - scripts/screen_layouts_v4.py is the
+pattern. A layout is admitted only if it settles, retains exactly the required
+clips, installs above the C2 spec, and reports its clearance inside the retention
+boundary. Rejections stay in the denominator. Expect to reject roughly a third of
+what you draw; the screen exists so you find out before the block, not after.
+
+------------------------------------------------------------------
+STAGE 4 - THE ROUTING BLOCK            done-condition: artifacts/cell/block.json
+------------------------------------------------------------------
+One request is: from a settled free end, press the cable into clip 1, then clip
+2, ... then seat the connector, with a declared dwell. Success is every required
+clip retained AND the connector seated. This is a genuine EXTENSION of "held,
+clip-preserving seating", not a relabelling - say so in the scope block of every
+record you write.
+
+At every routing step the supervisor asks the filter which moves are safe, issues
+one, and the layer reports what it spent. Run at least three arms and make the
+third earn its place: the filter taking the largest safe motion, the filter
+taking the most headroom, and no filter at all. v5 makes the appetite comparison
+a live question rather than a footnote - registering it here is the right way to
+promote it.
+
+Freeze the contract and COMMIT BEFORE LAUNCH. The margin must be at least twice
+the coarsest metric resolution; the runner already refuses otherwise, and if it
+refuses you add sequences, never lower the margin. Pilot 2 to 4 contexts, measure
+the real per-request cost, then size the block to the time you actually have. A
+three-motion sequence cost about 101,000 steps and 52 worker-seconds; a five-clip
+route will cost more - measure, do not extrapolate.
+
+Launch it in the background. If it will not finish inside this session, that is
+FINE and expected: leave it running and say so in the handover you write at the
+end. V7 can fit it.
+
+=======================================================================
+6. RULES THAT ARE NOT NEGOTIABLE
+=======================================================================
+  Freeze support, action design, error model, group split, metric resolutions,
+    the margin and any prediction in a config, and COMMIT BEFORE LAUNCH.
+  The margin must be at least twice the finest metric's resolution, checked in
+    code. Do not lower a margin to pass.
+  Every arm reads the same estimate. Ground truth is scoring-only and the
+    privilege guard stays armed with its positive control passing.
+  A request cut short is CENSORED, never counted as respecting a constraint it
+    never got to test.
+  Preserve every failed probe, infeasible construction and settling rejection in
+    the whole-request denominator.
+  Do not rescore an earlier block under a new task version. Keep both and rerun.
+  Post-hoc findings are labelled post-hoc and carry no verdict. The appetite
+    comparison in v5 is the model for how to report one.
+  No hardware, released-retention, latching, novelty or acceptance claim. The
+    error model is a model of how perception fails, not camera perception.
+  If the result comes out against the interesting hypothesis, that is the result.
+  DO NOT publish a public page. The owner will ask separately. A private page
+    exists at claude.ai/code/artifact/ef74d2ed-947f-4eab-a8bd-8674d4b917f4.
+
+=======================================================================
+7. THE MACHINE
+=======================================================================
+  COLLECTION IS CPU-ONLY AND THAT IS A CONSTRAINT, NOT AN OVERSIGHT. MuJoCo's
+    native step is CPU; MJX does not support this scene's cable elasticity
+    plugin, composite bodies or elliptic friction cone. Porting would mean a
+    different cable and would void every comparison. Do not spend time on it.
+    The RTX 5070 Ti in this machine is for rendering, not for collection.
+  24 physical cores. Measured: 28,086 aggregate steps/s on 12 workers against
+    44,966 on 20. USE 20 WORKERS.
+  WINDOWS APPLICATION CONTROL HAS BLOCKED .deps/cable-venv/Scripts/python.exe.
+    The same environment's pythonw.exe is permitted, is the identical interpreter
+    with identical packages, and is what the last two sessions used for every
+    native step. Pass --python .deps/cable-venv/Scripts/pythonw.exe to any
+    launcher. Do NOT copy or rename the blocked binary to get around the policy.
+    If pythonw is blocked too, build a fresh venv with `uv venv --python 3.11.15`
+    and install the versions in any manifest's native_environment block.
+  The launcher caps a run at 300 minutes. Shard longer blocks on whole contexts
+    and fit the shards together; run_perception_v4.py --shard N --of M is the
+    pattern.
+  MULTI-LINE EDITS: write a Python patch script with `assert old in s` before
+    each replace and run it. Bash heredocs here fail on apostrophes and triple
+    quotes - this has now cost time in four separate sessions.
+  Torch in .venv is CPU-only; fitting takes minutes and needs no GPU.
+  Do not edit a module a running block imports. Workers respawn and re-import.
+  515 tests, about 6 seconds, no GPU and no simulator. Run after every stage.
+
+=======================================================================
+8. WHAT V7 NEEDS FROM YOU - READ THIS BEFORE YOU START
+=======================================================================
+The second session builds a local engineering tool and a public showcase from
+what you leave. It cannot re-run your physics. So:
+
+  WRITE MACHINE-READABLE RESULTS, NOT ONLY PROSE. Every comparison V7 will show
+    - layout A against layout B, filtered against unfiltered, per-step budget
+    spent - must exist as fields in an evidence record, not as a sentence in a
+    Markdown file.
+  KEEP PER-STEP TRACES for at least a handful of representative requests: the
+    commanded action, the filter's verdict, the budget spent, the constraint
+    values, and the outcome. V7 renders these; it cannot reconstruct them.
+  MAKE THE CELL PARAMETRIC IN CONFIG, not in code. V7's tool lets an engineer
+    move a clip and re-run. If clip positions are hard-coded, that tool cannot
+    exist.
+  RECORD THE ASSET HASHES so the tool can verify it is showing the same cell
+    that was measured.
+  LEAVE artifacts/cell/PROGRESS.md AND THE DONE-CONDITION FILES IN PLACE.
+
+=======================================================================
+9. DELIVERABLE
+=======================================================================
+The CAD cell with provenance, the multi-clip scene that provably did not change
+the old task, the screened layouts with their rejections, and the routing block
+fitted or running. Evidence records for everything new. README, ROADMAP and
+AGENTS updated around the outcome.
+
+FINISH WITH
+The decision, the measurement that produced it, the cost, the remaining
+uncertainty, and ONE next action - plus a short note to V7 saying what is on
+disk, what is still running, and anything you learned that its handover does not
+already say.
