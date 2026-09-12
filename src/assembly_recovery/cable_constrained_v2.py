@@ -279,7 +279,7 @@ def solve_anchor_along(cfg: dict, seated_tip, run_direction_xy, route_waypoints,
 
     def routed(along):
         points = [boot, boot+outward*cable_cfg["lead_out_m"]]
-        points += [at(a, c, height) for a, c in route_waypoints]
+        points += [route_point(at, w, height) for w in route_waypoints]
         points.append(at(along, strain["across_m"], strain["height_m"]))
         return route_length(rounded_path(points, cable_cfg["fillet_radius_m"]))
 
@@ -294,6 +294,46 @@ def solve_anchor_along(cfg: dict, seated_tip, run_direction_xy, route_waypoints,
         else:
             high = middle
     return 0.5*(low+high)
+
+
+def route_point(at, waypoint, default_height: float):
+    """World position of one route waypoint: (along, across) or (along, across, up).
+
+    The registered two-element form keeps the shelf-level route height it always
+    had. A third element lifts that waypoint, which is what a route climbing over
+    a raised clip needs, so every existing config compiles unchanged.
+    """
+    values = list(waypoint)
+    if len(values) == 2:
+        return at(values[0], values[1], default_height)
+    if len(values) == 3:
+        return at(values[0], values[1], values[2])
+    raise ValueError("A route waypoint is (along, across) or (along, across, up)")
+
+
+def clip_list(fixture_cfg: dict) -> list[dict]:
+    """The fixture clips as a list, whatever form the config declares them in.
+
+    ``clips`` is the multi-clip form. ``clip`` is the registered single-clip form
+    and is read as a one-element list, so every config written before the routing
+    cell existed compiles to byte-identical XML. Later clips inherit every key
+    they do not override from the first, so a routing clip only has to declare
+    where it is.
+    """
+    if "clips" in fixture_cfg:
+        declared = list(fixture_cfg["clips"])
+        if not declared:
+            raise ValueError("A fixture needs at least one clip")
+        first = {**dict(fixture_cfg.get("clip", {})), **declared[0]}
+        clips = [first]+[{**first, **entry} for entry in declared[1:]]
+    else:
+        clips = [dict(fixture_cfg["clip"])]
+    for index, clip in enumerate(clips):
+        clip.setdefault("id", "clip" if index == 0 else f"clip{index+1}")
+        clip.setdefault("required", True)
+        clip.setdefault("up_m", 0.0)
+        clip.setdefault("bearing_rad", 0.0)
+    return clips
 
 
 def _box(parent, name, centre, half, rgba, **kwargs):
@@ -342,22 +382,50 @@ def build_fixture(world, cfg: dict, seated_tip, run_direction_xy, route_waypoint
     column_centre = at(f["column_along_m"], f["column_across_m"], -shelf_half[2]*2-column[2])
     _box(body, "fixture_column", column_centre, column, ".38 .4 .45 1")
 
-    clip = f["clip"]
-    clip_origin = at(clip["along_m"], clip["across_m"], 0.0)
-    quaternion = np.empty(4)
-    mujoco.mju_mat2Quat(quaternion, np.column_stack([run, side, [0.0, 0.0, 1.0]]).flatten())
-    clip_body = ET.SubElement(body, "body", name="fixture_clip", pos=fmt(clip_origin), quat=fmt(quaternion))
-    wall = clip["wall_thickness_m"]
-    half_width, lip, gap = clip["half_width_m"], clip["lip_height_m"], clip["lip_gap_m"]
-    length = clip["length_m"]
-    for sign in (1, -1):
-        _box(clip_body, f"fixture_clip_wall_{'p' if sign > 0 else 'm'}",
-             [0.0, sign*(half_width+0.5*wall), 0.5*lip], [0.5*length, 0.5*wall, 0.5*lip], ".85 .55 .15 1",
-             friction=fmt(clip["friction"]))
-        _box(clip_body, f"fixture_clip_lip_{'p' if sign > 0 else 'm'}",
-             [0.0, sign*0.5*(0.5*gap+half_width), lip+0.5*clip["lip_thickness_m"]],
-             [0.5*length, 0.5*(half_width-0.5*gap), 0.5*clip["lip_thickness_m"]], ".9 .62 .2 1",
-             friction=fmt(clip["friction"]))
+    clips = clip_list(f)
+    clip_records = []
+    for index, clip in enumerate(clips):
+        suffix = "" if index == 0 else f"_{index+1}"
+        up = float(clip["up_m"])
+        clip_origin = at(clip["along_m"], clip["across_m"], up)
+        bearing = float(clip["bearing_rad"])
+        forward = run*math.cos(bearing)+side*math.sin(bearing)
+        lateral = -run*math.sin(bearing)+side*math.cos(bearing)
+        rotation = np.column_stack([forward, lateral, [0.0, 0.0, 1.0]])
+        quaternion = np.empty(4)
+        mujoco.mju_mat2Quat(quaternion, rotation.flatten())
+        clip_body = ET.SubElement(body, "body", name=f"fixture_clip{suffix}",
+                                  pos=fmt(clip_origin), quat=fmt(quaternion))
+        wall = clip["wall_thickness_m"]
+        half_width, lip, gap = clip["half_width_m"], clip["lip_height_m"], clip["lip_gap_m"]
+        length = clip["length_m"]
+        for sign in (1, -1):
+            _box(clip_body, f"fixture_clip{suffix}_wall_{'p' if sign > 0 else 'm'}",
+                 [0.0, sign*(half_width+0.5*wall), 0.5*lip], [0.5*length, 0.5*wall, 0.5*lip], ".85 .55 .15 1",
+                 friction=fmt(clip["friction"]))
+            _box(clip_body, f"fixture_clip{suffix}_lip_{'p' if sign > 0 else 'm'}",
+                 [0.0, sign*0.5*(0.5*gap+half_width), lip+0.5*clip["lip_thickness_m"]],
+                 [0.5*length, 0.5*(half_width-0.5*gap), 0.5*clip["lip_thickness_m"]], ".9 .62 .2 1",
+                 friction=fmt(clip["friction"]))
+        # TRAP 5 of the toolchain probe: a clip needs a floor. The registered clip
+        # sits on the shelf and the shelf is its floor. A clip lifted off the
+        # shelf carries its own pedestal, or the cable falls out of the bottom.
+        if up > 1e-9:
+            top = up+float(clip["floor_height_m"])
+            _box(body, f"fixture_clip{suffix}_pedestal",
+                 at(clip["along_m"], clip["across_m"], 0.5*top),
+                 [0.5*length, half_width+wall, 0.5*top+1e-5], ".5 .52 .57 1",
+                 friction=fmt(clip["friction"]))
+        clip_records.append({
+            "id": clip["id"], "index": index, "required": bool(clip["required"]),
+            "origin_world": clip_origin.tolist(), "rotation_world": rotation.tolist(),
+            "predicate": {"half_width_m": half_width, "floor_height_m": clip["floor_height_m"],
+                          "lip_height_m": lip, "cable_radius_m": cfg["cable"]["radius_m"]},
+            "along_m": clip["along_m"], "across_m": clip["across_m"], "up_m": up,
+            "bearing_rad": bearing, "length_m": length})
+    clip = clips[0]
+    clip_origin = np.asarray(clip_records[0]["origin_world"])
+    half_width, lip = clip["half_width_m"], clip["lip_height_m"]
 
     post = f["post"]
     post_centre = at(post["along_m"], post["across_m"], 0.5*post["height_m"])
@@ -379,7 +447,9 @@ def build_fixture(world, cfg: dict, seated_tip, run_direction_xy, route_waypoint
     return {"shelf_top_z": shelf_top, "run_direction_xy": list(run[:2]), "side_direction_xy": list(side[:2]),
             "anchor_site_world": anchor_site.tolist(),
             "clip_origin_world": clip_origin.tolist(),
-            "clip_rotation_world": np.column_stack([run, side, [0.0, 0.0, 1.0]]).tolist(),
+            "clip_rotation_world": clip_records[0]["rotation_world"],
+            "clips": clip_records,
+            "required_clip_ids": [c["id"] for c in clip_records if c["required"]],
             "post_centre_world": post_centre.tolist(), "post_radius_m": post["radius_m"],
             "post_top_z": float(post_centre[2]+0.5*post["height_m"]),
             "slack_bow_leg": f["slack_bow_leg"],
@@ -387,8 +457,8 @@ def build_fixture(world, cfg: dict, seated_tip, run_direction_xy, route_waypoint
                                     + np.array([0.0, 0.0, f["slack_bow_up"]])).tolist(),
             "clip_predicate": {"half_width_m": half_width, "floor_height_m": clip["floor_height_m"],
                                "lip_height_m": lip, "cable_radius_m": cfg["cable"]["radius_m"]},
-            "route_waypoints_world": [at(along, across, f["route_height_m"]).tolist()
-                                      for along, across in route_waypoints],
+            "route_waypoints_world": [route_point(at, w, f["route_height_m"]).tolist()
+                                      for w in route_waypoints],
             "route_waypoints_along_across_m": [list(p) for p in route_waypoints],
             "plate_top_z": plate_top, "fixture_origin_world": origin.tolist()}
 
@@ -484,6 +554,11 @@ class ConstrainedScene:
     fixture: dict
     detector_geoms: object = None
     report: dict = field(default_factory=dict)
+    #: Every clip the fixture carries, in route order, each with its own world
+    #: frame and retention predicate. ``clip_origin``/``clip_rotation``/
+    #: ``clip_predicate`` above stay the FIRST clip, so every reader written
+    #: against the single-clip scene keeps reading exactly what it did.
+    clips: list = field(default_factory=list)
 
 
 def _sensor(model, name):
@@ -674,7 +749,7 @@ def build_scene(project_root: Path, cfg: dict, case: dict, directory: Path) -> C
         int(model.equality("strain_relief_connection").id),
         int(model.equality("plug_boot_connection").id),
         np.asarray(fixture["clip_origin_world"]), np.asarray(fixture["clip_rotation_world"]),
-        fixture["clip_predicate"], fixture, detector, report)
+        fixture["clip_predicate"], fixture, detector, report, list(fixture["clips"]))
     scene.report["detector_geom_count"] = int(detector.sum())
     return scene
 
@@ -825,12 +900,45 @@ def cable_centerline(scene: ConstrainedScene):
 
 
 def clip_state(scene: ConstrainedScene, centerline=None) -> dict:
-    """Geometric passage of the cable centerline through the open clip channel."""
+    """Geometric passage of the cable centerline through the open clip channels.
+
+    The top-level keys are the FIRST clip passage and are computed exactly as the
+    single-clip scene computed them, so every existing reader is unaffected.
+    ``per_clip`` adds the same predicate evaluated at every other clip the fixture
+    carries and ``summary`` says whether the route as a whole is still installed,
+    which is what a multi-clip request is scored on.
+    """
     import numpy as np
 
-    points = cable_centerline(scene) if centerline is None else centerline
-    local = (np.asarray(points)-scene.clip_origin) @ scene.clip_rotation
-    return clip_passages(local.tolist(), **scene.clip_predicate)
+    points = np.asarray(cable_centerline(scene) if centerline is None else centerline)
+    state = clip_passages(((points-scene.clip_origin) @ scene.clip_rotation).tolist(),
+                          **scene.clip_predicate)
+    if not scene.clips:
+        return state
+    per_clip = []
+    for index, clip in enumerate(scene.clips):
+        origin = np.asarray(clip["origin_world"], dtype=float)
+        rotation = np.asarray(clip["rotation_world"], dtype=float)
+        passage = (state if index == 0
+                   else clip_passages(((points-origin) @ rotation).tolist(), **clip["predicate"]))
+        per_clip.append({"id": clip["id"], "index": index, "required": bool(clip["required"]),
+                         "has_retained_passage": bool(passage["has_retained_passage"]),
+                         "ambiguous_multiple_passages": bool(passage["ambiguous_multiple_passages"]),
+                         "retained_passages": len(passage["retained_passages"]),
+                         "crossings": len(passage["all_crossings"])})
+    required = [c for c in per_clip if c["required"]]
+    lost = [c["id"] for c in required if not c["has_retained_passage"]]
+    state["per_clip"] = per_clip
+    state["summary"] = {
+        "clips": len(per_clip),
+        "required_ids": [c["id"] for c in required],
+        "retained_ids": [c["id"] for c in per_clip if c["has_retained_passage"]],
+        "lost_required_ids": lost,
+        "required_retained": len(required)-len(lost),
+        "required_count": len(required),
+        "all_required_retained": not lost,
+    }
+    return state
 
 
 class MutationGuard:
