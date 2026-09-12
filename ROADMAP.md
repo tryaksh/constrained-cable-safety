@@ -98,7 +98,8 @@ nothing but time; `.venv/Scripts/python.exe scripts/fit_routing_v6.py --run-dir
 artifacts/cable/routing-v6-s1` writes `evidence/cable_routing_v6.json`
 and answers the three registered predictions separately. Then the second planned
 session builds the engineering tool and the showcase on top of it —
-[the workbench](docs/handover/v7_workbench.txt) — from the per-step traces every
+[the workbench](docs/handover/v7_workbench.txt), with a note from this session on what is on disk and what is still running at
+[docs/handover/v6_to_v7_note.txt](docs/handover/v6_to_v7_note.txt) — from the per-step traces every
 request already carries: the commanded action, the filter's per-constraint verdict
 and headroom, the budget the motion spends, and the per-clip retention picture
 before and after. The measurement questions this repository registered are closed;
