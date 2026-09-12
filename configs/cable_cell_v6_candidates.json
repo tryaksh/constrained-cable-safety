@@ -1,0 +1,92 @@
+{
+ "schema": 1,
+ "id": "cable_cell_v6_candidates",
+ "created_on": "2026-09-12",
+ "status": "declared_candidate_list",
+ "scope": "Candidate multi-clip routing cells for the v6 routing block, declared before the registered screen ran. Each candidate is a complete cell: where every clip sits, at what height and bearing, the route the cable is constructed along, and where the strain relief anchors it. Screened by scripts/screen_cell_v6.py. Not a study result and not a hardware claim.",
+ "why_a_candidate_list": "The perception study registered a support a settling screen had accepted, with its rejections kept. A five-clip route is a much bigger object than a clip position, so the same discipline applies harder: a route that does not install is not a cell, and finding that out after the block has launched costs the block.",
+ "pilot": {
+  "declared": true,
+  "what_was_piloted": "Cell geometry was chosen by an unregistered pilot sweep before this list was written: 11 hand-drawn cells, then 24 cells over (first clip position, clip pitch, ridge height, corner), then 27 cells over a finer grid around the survivor, each settled at two to seven service loops. 132 pilot cells in total, none of them scored and none of them part of any denominator here.",
+  "what_the_pilot_decided": "Three things, each of which was a measurement and not a preference. (1) The service-loop surplus must be parked on the leg AFTER the last clip, not on the descent: a 6 mm surplus bowed into the 250 mm descent leg is a 28 mm lateral excursion, which drags the cable out of every clip near the landing. (2) The first clip cannot sit at the landing point: a clip at along 80 mm is lost in almost every cell, because the cable is still descending steeply there. (3) Clip pitch of 22 mm with a 12 mm channel installs; 18 mm pitch does not reliably.",
+  "what_the_pilot_did_not_decide": "Which of the four candidates below is registered. That is decided by the screen in this file, by the rule stated below, and the losers are kept.",
+  "why_a_pilot_was_needed": "The v4 pilot did the same job for the C2 spec and the error ladder: some choices cannot be made from geometry alone, and making them from the block would be tuning on the measurement."
+ },
+ "c2_spec_m": 0.024,
+ "c2_spec_note": "The registered dynamic bend-radius spec, 10-15x the 4 mm outside diameter, taken from configs/cable_perception_v4_candidates.json unchanged. A cell whose route already installs below it cannot measure whether a repair breaks it.",
+ "installed_loop_m": [0.0015, 0.002, 0.0025, 0.003, 0.0035, 0.004, 0.0045],
+ "installed_loop_note": "The service-loop ladder, in half-millimetre steps. It is finer and smaller than the perception study's 2/4/6 mm because a five-clip route has 60 mm of free leg to park surplus in, not 72 mm of open shelf, and the loop is the only factor that varies the installed state at fixed cell geometry. The strain-relief position is solved from it, so cable mass, rest length, radius, moduli, damping and discretisation are byte-identical across every cell and every earlier block.",
+ "cable_unchanged": "The cable is NOT modified: 23 segments at 20 mm, 0.46 m rest length, the registered moduli and damping. The shipped filter's C1 rule is a threshold on a boot-to-anchor DISTANCE fitted against exactly this cable, so lengthening it to buy board space would silently invalidate the threshold, and refitting the filter is forbidden.",
+ "clip_cross_section_note": "Every clip keeps the registered cross-section in every dimension the retention predicate reads: 12 mm channel, 6 mm half-width, 5 mm lip gap, 12.5 mm lip height, -1 mm floor, for a 4 mm cable. Only the channel LENGTH is shortened, from 30 mm to 12 mm, because five clips have to fit in the 90 mm of shelf run the cable can reach with slack to spare. Length is not an argument to cable_routes.clip_passages and does not enter the predicate.",
+ "selection_rule": "The registered cell is the candidate that survives at the MOST service loops. Ties are broken by the larger worst-clip lateral clearance, and then by the candidate with more clips. Declared here before the screen ran. The losing candidates stay in this file and their rejections stay in the record.",
+ "rule": "A cell is registered only if it builds, settles, retains EVERY required clip, and installs at a minimum bend radius strictly above the C2 spec. The lateral-clearance floor that evidence/cable_layout_screen_v4.json withdrew stays withdrawn: it is reported per clip as a diagnostic, not applied as a criterion.",
+ "run_direction_xy": [1.0, 0.0],
+ "outward_xy": [1.0, 0.0],
+ "run_direction_note": "Every candidate uses the validated straight run and cable exit of layout L1, so the only thing varying across the list is the cell.",
+ "layouts": [
+  {
+   "id": "RC1",
+   "description": "The full routing cell: five clips at 22 mm pitch from 100 to 188 mm, climbing over a 6 mm ridge at the middle clip, turning a corner through the last two, and ending at a strain relief 40 mm off the run axis. Three distinct heights, four distinct bearings, one channel per clip.",
+   "clips": [
+    {"id": "c1", "along_m": 0.100, "across_m": 0.000000, "up_m": 0.000, "bearing_rad": 0.0, "length_m": 0.012, "half_width_m": 0.006, "floor_height_m": -0.001, "lip_height_m": 0.0125, "lip_gap_m": 0.005, "lip_thickness_m": 0.002, "wall_thickness_m": 0.003},
+    {"id": "c2", "along_m": 0.122, "across_m": 0.000000, "up_m": 0.003, "bearing_rad": 0.0, "length_m": 0.012, "half_width_m": 0.006, "floor_height_m": -0.001, "lip_height_m": 0.0125, "lip_gap_m": 0.005, "lip_thickness_m": 0.002, "wall_thickness_m": 0.003},
+    {"id": "c3", "along_m": 0.144, "across_m": 0.000000, "up_m": 0.006, "bearing_rad": -0.147124, "length_m": 0.012, "half_width_m": 0.006, "floor_height_m": -0.001, "lip_height_m": 0.0125, "lip_gap_m": 0.005, "lip_thickness_m": 0.002, "wall_thickness_m": 0.003},
+    {"id": "c4", "along_m": 0.166, "across_m": -0.006667, "up_m": 0.003, "bearing_rad": -0.419551, "length_m": 0.012, "half_width_m": 0.006, "floor_height_m": -0.001, "lip_height_m": 0.0125, "lip_gap_m": 0.005, "lip_thickness_m": 0.002, "wall_thickness_m": 0.003},
+    {"id": "c5", "along_m": 0.188, "across_m": -0.020000, "up_m": 0.000, "bearing_rad": -0.504250, "length_m": 0.012, "half_width_m": 0.006, "floor_height_m": -0.001, "lip_height_m": 0.0125, "lip_gap_m": 0.005, "lip_thickness_m": 0.002, "wall_thickness_m": 0.003}
+   ],
+   "route_waypoints_along_across_m": [[0.100, 0.000000, 0.0025], [0.122, 0.000000, 0.0055], [0.144, 0.000000, 0.0085], [0.166, -0.006667, 0.0055], [0.188, -0.020000, 0.0025]],
+   "strain_relief_across_m": -0.040,
+   "anchor_search_along_m": [0.193, 0.45],
+   "slack_bow_leg": "last",
+   "slack_bow": [0.0, 1.0, 0.0]
+  },
+  {
+   "id": "RC2",
+   "description": "RC1 with the ridge flattened: the same five clip positions and bearings, all at shelf height. Isolates the climb from the corner.",
+   "clips": [
+    {"id": "c1", "along_m": 0.100, "across_m": 0.000000, "up_m": 0.0, "bearing_rad": 0.0, "length_m": 0.012, "half_width_m": 0.006, "floor_height_m": -0.001, "lip_height_m": 0.0125, "lip_gap_m": 0.005, "lip_thickness_m": 0.002, "wall_thickness_m": 0.003},
+    {"id": "c2", "along_m": 0.122, "across_m": 0.000000, "up_m": 0.0, "bearing_rad": 0.0, "length_m": 0.012, "half_width_m": 0.006, "floor_height_m": -0.001, "lip_height_m": 0.0125, "lip_gap_m": 0.005, "lip_thickness_m": 0.002, "wall_thickness_m": 0.003},
+    {"id": "c3", "along_m": 0.144, "across_m": 0.000000, "up_m": 0.0, "bearing_rad": -0.147124, "length_m": 0.012, "half_width_m": 0.006, "floor_height_m": -0.001, "lip_height_m": 0.0125, "lip_gap_m": 0.005, "lip_thickness_m": 0.002, "wall_thickness_m": 0.003},
+    {"id": "c4", "along_m": 0.166, "across_m": -0.006667, "up_m": 0.0, "bearing_rad": -0.419551, "length_m": 0.012, "half_width_m": 0.006, "floor_height_m": -0.001, "lip_height_m": 0.0125, "lip_gap_m": 0.005, "lip_thickness_m": 0.002, "wall_thickness_m": 0.003},
+    {"id": "c5", "along_m": 0.188, "across_m": -0.020000, "up_m": 0.0, "bearing_rad": -0.504250, "length_m": 0.012, "half_width_m": 0.006, "floor_height_m": -0.001, "lip_height_m": 0.0125, "lip_gap_m": 0.005, "lip_thickness_m": 0.002, "wall_thickness_m": 0.003}
+   ],
+   "route_waypoints_along_across_m": [[0.100, 0.000000, 0.0025], [0.122, 0.000000, 0.0025], [0.144, 0.000000, 0.0025], [0.166, -0.006667, 0.0025], [0.188, -0.020000, 0.0025]],
+   "strain_relief_across_m": -0.040,
+   "anchor_search_along_m": [0.193, 0.45],
+   "slack_bow_leg": "last",
+   "slack_bow": [0.0, 1.0, 0.0]
+  },
+  {
+   "id": "RC3",
+   "description": "RC1 with the corner straightened: the same five clip positions and heights, all on the run axis, anchoring straight ahead. Isolates the corner from the climb.",
+   "clips": [
+    {"id": "c1", "along_m": 0.100, "across_m": 0.0, "up_m": 0.000, "bearing_rad": 0.0, "length_m": 0.012, "half_width_m": 0.006, "floor_height_m": -0.001, "lip_height_m": 0.0125, "lip_gap_m": 0.005, "lip_thickness_m": 0.002, "wall_thickness_m": 0.003},
+    {"id": "c2", "along_m": 0.122, "across_m": 0.0, "up_m": 0.003, "bearing_rad": 0.0, "length_m": 0.012, "half_width_m": 0.006, "floor_height_m": -0.001, "lip_height_m": 0.0125, "lip_gap_m": 0.005, "lip_thickness_m": 0.002, "wall_thickness_m": 0.003},
+    {"id": "c3", "along_m": 0.144, "across_m": 0.0, "up_m": 0.006, "bearing_rad": 0.0, "length_m": 0.012, "half_width_m": 0.006, "floor_height_m": -0.001, "lip_height_m": 0.0125, "lip_gap_m": 0.005, "lip_thickness_m": 0.002, "wall_thickness_m": 0.003},
+    {"id": "c4", "along_m": 0.166, "across_m": 0.0, "up_m": 0.003, "bearing_rad": 0.0, "length_m": 0.012, "half_width_m": 0.006, "floor_height_m": -0.001, "lip_height_m": 0.0125, "lip_gap_m": 0.005, "lip_thickness_m": 0.002, "wall_thickness_m": 0.003},
+    {"id": "c5", "along_m": 0.188, "across_m": 0.0, "up_m": 0.000, "bearing_rad": 0.0, "length_m": 0.012, "half_width_m": 0.006, "floor_height_m": -0.001, "lip_height_m": 0.0125, "lip_gap_m": 0.005, "lip_thickness_m": 0.002, "wall_thickness_m": 0.003}
+   ],
+   "route_waypoints_along_across_m": [[0.100, 0.0, 0.0025], [0.122, 0.0, 0.0055], [0.144, 0.0, 0.0085], [0.166, 0.0, 0.0055], [0.188, 0.0, 0.0025]],
+   "strain_relief_across_m": 0.0,
+   "anchor_search_along_m": [0.193, 0.45],
+   "slack_bow_leg": "last",
+   "slack_bow": [0.0, 1.0, 0.0]
+  },
+  {
+   "id": "RC4",
+   "description": "Four clips at 30 mm pitch with the same ridge and corner, the fallback if five clips cannot all be installed at once.",
+   "clips": [
+    {"id": "c1", "along_m": 0.100, "across_m": 0.000, "up_m": 0.000, "bearing_rad": 0.0, "length_m": 0.016, "half_width_m": 0.006, "floor_height_m": -0.001, "lip_height_m": 0.0125, "lip_gap_m": 0.005, "lip_thickness_m": 0.002, "wall_thickness_m": 0.003},
+    {"id": "c2", "along_m": 0.130, "across_m": 0.000, "up_m": 0.006, "bearing_rad": 0.0, "length_m": 0.016, "half_width_m": 0.006, "floor_height_m": -0.001, "lip_height_m": 0.0125, "lip_gap_m": 0.005, "lip_thickness_m": 0.002, "wall_thickness_m": 0.003},
+    {"id": "c3", "along_m": 0.160, "across_m": -0.007, "up_m": 0.003, "bearing_rad": -0.350000, "length_m": 0.016, "half_width_m": 0.006, "floor_height_m": -0.001, "lip_height_m": 0.0125, "lip_gap_m": 0.005, "lip_thickness_m": 0.002, "wall_thickness_m": 0.003},
+    {"id": "c4", "along_m": 0.188, "across_m": -0.021, "up_m": 0.000, "bearing_rad": -0.500000, "length_m": 0.016, "half_width_m": 0.006, "floor_height_m": -0.001, "lip_height_m": 0.0125, "lip_gap_m": 0.005, "lip_thickness_m": 0.002, "wall_thickness_m": 0.003}
+   ],
+   "route_waypoints_along_across_m": [[0.100, 0.000, 0.0025], [0.130, 0.000, 0.0085], [0.160, -0.007, 0.0055], [0.188, -0.021, 0.0025]],
+   "strain_relief_across_m": -0.040,
+   "anchor_search_along_m": [0.193, 0.45],
+   "slack_bow_leg": "last",
+   "slack_bow": [0.0, 1.0, 0.0]
+  }
+ ],
+ "note": "Rejections are kept. A candidate that does not survive is recorded with its reason and is never run."
+}

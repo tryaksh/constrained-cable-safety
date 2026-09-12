@@ -1,0 +1,3565 @@
+{
+  "schema": 1,
+  "id": "cable_cell_screen_v6",
+  "created_on": "2026-09-12",
+  "status": "executed_cell_screen",
+  "scope": "Settling and installed-geometry screen for the v6 routing cell. Not a study result, not a safety claim and not a hardware claim.",
+  "candidates": "cable_cell_v6_candidates.json",
+  "c2_spec_m": 0.024,
+  "unit": "One screened unit is one (cell, installed service loop), which is also the routing block's registered group. A cell whose loops do not all survive is not discarded whole: the surviving ones are registered and the rest are recorded here and never run.",
+  "rule": "A cell is registered only if it builds, settles, retains EVERY required clip, and installs at a minimum bend radius strictly above the C2 spec. The lateral-clearance floor that evidence/cable_layout_screen_v4.json withdrew stays withdrawn: it is reported per clip as a diagnostic, not applied as a criterion.",
+  "selection_rule": "The registered cell is the candidate that survives at the MOST service loops. Ties are broken by the larger worst-clip lateral clearance, and then by the candidate with more clips. Declared here before the screen ran. The losing candidates stay in this file and their rejections stay in the record.",
+  "pilot": {
+    "declared": true,
+    "what_was_piloted": "Cell geometry was chosen by an unregistered pilot sweep before this list was written: 11 hand-drawn cells, then 24 cells over (first clip position, clip pitch, ridge height, corner), then 27 cells over a finer grid around the survivor, each settled at two to seven service loops. 132 pilot cells in total, none of them scored and none of them part of any denominator here.",
+    "what_the_pilot_decided": "Three things, each of which was a measurement and not a preference. (1) The service-loop surplus must be parked on the leg AFTER the last clip, not on the descent: a 6 mm surplus bowed into the 250 mm descent leg is a 28 mm lateral excursion, which drags the cable out of every clip near the landing. (2) The first clip cannot sit at the landing point: a clip at along 80 mm is lost in almost every cell, because the cable is still descending steeply there. (3) Clip pitch of 22 mm with a 12 mm channel installs; 18 mm pitch does not reliably.",
+    "what_the_pilot_did_not_decide": "Which of the four candidates below is registered. That is decided by the screen in this file, by the rule stated below, and the losers are kept.",
+    "why_a_pilot_was_needed": "The v4 pilot did the same job for the C2 spec and the error ladder: some choices cannot be made from geometry alone, and making them from the block would be tuning on the measurement."
+  },
+  "withdrawn_lateral_floor": "The 1 mm installed lateral-clearance floor that evidence/cable_layout_screen_v4.json withdrew, because it rejects the validated reference layout, stays withdrawn. The clearance is reported per clip as a diagnostic.",
+  "accepted_groups": [
+    "RC1_l15",
+    "RC1_l20",
+    "RC1_l25",
+    "RC1_l30",
+    "RC1_l40",
+    "RC1_l45",
+    "RC2_l20",
+    "RC2_l30",
+    "RC3_l20"
+  ],
+  "accepted_cell_detail": [
+    {
+      "group": "RC1_l15",
+      "layout": "RC1",
+      "installed_loop_m": 0.0015,
+      "clips": 5,
+      "worst_lateral_wall_gap_m": 0.00044841915669628293,
+      "installed_min_bend_radius_m": 0.05008719991617175,
+      "boot_to_anchor_m": 0.34928284240380614,
+      "solved_anchor_along_m": 0.2390652023850907
+    },
+    {
+      "group": "RC1_l20",
+      "layout": "RC1",
+      "installed_loop_m": 0.002,
+      "clips": 5,
+      "worst_lateral_wall_gap_m": 0.00041185503478934505,
+      "installed_min_bend_radius_m": 0.055439926831349705,
+      "boot_to_anchor_m": 0.3490706569764733,
+      "solved_anchor_along_m": 0.2385264218376822
+    },
+    {
+      "group": "RC1_l25",
+      "layout": "RC1",
+      "installed_loop_m": 0.0025,
+      "clips": 5,
+      "worst_lateral_wall_gap_m": 0.0004511126277951176,
+      "installed_min_bend_radius_m": 0.05512782834504765,
+      "boot_to_anchor_m": 0.3487063899405614,
+      "solved_anchor_along_m": 0.23798687637894272
+    },
+    {
+      "group": "RC1_l30",
+      "layout": "RC1",
+      "installed_loop_m": 0.003,
+      "clips": 5,
+      "worst_lateral_wall_gap_m": 0.0004885215196888649,
+      "installed_min_bend_radius_m": 0.05483380331340837,
+      "boot_to_anchor_m": 0.3483409884127235,
+      "solved_anchor_along_m": 0.23744654142586769
+    },
+    {
+      "group": "RC1_l40",
+      "layout": "RC1",
+      "installed_loop_m": 0.004,
+      "clips": 5,
+      "worst_lateral_wall_gap_m": 0.000524048453387179,
+      "installed_min_bend_radius_m": 0.05568879752461868,
+      "boot_to_anchor_m": 0.3475918174422536,
+      "solved_anchor_along_m": 0.23636339897948017
+    },
+    {
+      "group": "RC1_l45",
+      "layout": "RC1",
+      "installed_loop_m": 0.0045,
+      "clips": 5,
+      "worst_lateral_wall_gap_m": 0.000533256303959769,
+      "installed_min_bend_radius_m": 0.059706025046534016,
+      "boot_to_anchor_m": 0.3472130863278348,
+      "solved_anchor_along_m": 0.23582053638429107
+    },
+    {
+      "group": "RC2_l20",
+      "layout": "RC2",
+      "installed_loop_m": 0.002,
+      "clips": 5,
+      "worst_lateral_wall_gap_m": 0.00044058592331133,
+      "installed_min_bend_radius_m": 0.051657308528443587,
+      "boot_to_anchor_m": 0.3488992551569211,
+      "solved_anchor_along_m": 0.2384974685190468
+    },
+    {
+      "group": "RC2_l30",
+      "layout": "RC2",
+      "installed_loop_m": 0.003,
+      "clips": 5,
+      "worst_lateral_wall_gap_m": 0.0005634416519158855,
+      "installed_min_bend_radius_m": 0.04949277994372576,
+      "boot_to_anchor_m": 0.34817599052938,
+      "solved_anchor_along_m": 0.2374179690763218
+    },
+    {
+      "group": "RC3_l20",
+      "layout": "RC3",
+      "installed_loop_m": 0.002,
+      "clips": 5,
+      "worst_lateral_wall_gap_m": 2.3798409815513344e-05,
+      "installed_min_bend_radius_m": 0.06366794634517706,
+      "boot_to_anchor_m": 0.35254858586700605,
+      "solved_anchor_along_m": 0.2468277119765238
+    }
+  ],
+  "rejected_groups": [
+    {
+      "group": "RC1_l35",
+      "layout": "RC1",
+      "installed_loop_m": 0.0035,
+      "clips": 5,
+      "reason": "settle_clip_not_retained"
+    },
+    {
+      "group": "RC2_l15",
+      "layout": "RC2",
+      "installed_loop_m": 0.0015,
+      "clips": 5,
+      "reason": "settle_cable_motion"
+    },
+    {
+      "group": "RC2_l25",
+      "layout": "RC2",
+      "installed_loop_m": 0.0025,
+      "clips": 5,
+      "reason": "settle_instability"
+    },
+    {
+      "group": "RC2_l35",
+      "layout": "RC2",
+      "installed_loop_m": 0.0035,
+      "clips": 5,
+      "reason": "settle_clip_not_retained"
+    },
+    {
+      "group": "RC2_l40",
+      "layout": "RC2",
+      "installed_loop_m": 0.004,
+      "clips": 5,
+      "reason": "settle_clip_not_retained"
+    },
+    {
+      "group": "RC2_l45",
+      "layout": "RC2",
+      "installed_loop_m": 0.0045,
+      "clips": 5,
+      "reason": "settle_clip_not_retained"
+    },
+    {
+      "group": "RC3_l15",
+      "layout": "RC3",
+      "installed_loop_m": 0.0015,
+      "clips": 5,
+      "reason": "settle_clip_not_retained"
+    },
+    {
+      "group": "RC3_l25",
+      "layout": "RC3",
+      "installed_loop_m": 0.0025,
+      "clips": 5,
+      "reason": "settle_clip_not_retained"
+    },
+    {
+      "group": "RC3_l30",
+      "layout": "RC3",
+      "installed_loop_m": 0.003,
+      "clips": 5,
+      "reason": "settle_cable_motion"
+    },
+    {
+      "group": "RC3_l35",
+      "layout": "RC3",
+      "installed_loop_m": 0.0035,
+      "clips": 5,
+      "reason": "settle_clip_not_retained"
+    },
+    {
+      "group": "RC3_l40",
+      "layout": "RC3",
+      "installed_loop_m": 0.004,
+      "clips": 5,
+      "reason": "settle_clip_not_retained"
+    },
+    {
+      "group": "RC3_l45",
+      "layout": "RC3",
+      "installed_loop_m": 0.0045,
+      "clips": 5,
+      "reason": "settle_instability"
+    },
+    {
+      "group": "RC4_l15",
+      "layout": "RC4",
+      "installed_loop_m": 0.0015,
+      "clips": 4,
+      "reason": "settle_clip_not_retained"
+    },
+    {
+      "group": "RC4_l20",
+      "layout": "RC4",
+      "installed_loop_m": 0.002,
+      "clips": 4,
+      "reason": "settle_clip_not_retained"
+    },
+    {
+      "group": "RC4_l25",
+      "layout": "RC4",
+      "installed_loop_m": 0.0025,
+      "clips": 4,
+      "reason": "settle_instability"
+    },
+    {
+      "group": "RC4_l30",
+      "layout": "RC4",
+      "installed_loop_m": 0.003,
+      "clips": 4,
+      "reason": "settle_clip_not_retained"
+    },
+    {
+      "group": "RC4_l35",
+      "layout": "RC4",
+      "installed_loop_m": 0.0035,
+      "clips": 4,
+      "reason": "settle_clip_not_retained"
+    },
+    {
+      "group": "RC4_l40",
+      "layout": "RC4",
+      "installed_loop_m": 0.004,
+      "clips": 4,
+      "reason": "settle_clip_not_retained"
+    },
+    {
+      "group": "RC4_l45",
+      "layout": "RC4",
+      "installed_loop_m": 0.0045,
+      "clips": 4,
+      "reason": "settle_clip_not_retained"
+    }
+  ],
+  "accepted_cells": 9,
+  "rejected_cells": 19,
+  "screened_cells": 28,
+  "runs": [
+    {
+      "layout": "RC1",
+      "installed_loop_m": 0.0015,
+      "clips": 5,
+      "built": true,
+      "settled": true,
+      "reason": null,
+      "per_clip": [
+        {
+          "id": "c1",
+          "index": 0,
+          "required": true,
+          "has_retained_passage": true,
+          "ambiguous_multiple_passages": false,
+          "retained_passages": 1,
+          "crossings": 1
+        },
+        {
+          "id": "c2",
+          "index": 1,
+          "required": true,
+          "has_retained_passage": true,
+          "ambiguous_multiple_passages": false,
+          "retained_passages": 1,
+          "crossings": 1
+        },
+        {
+          "id": "c3",
+          "index": 2,
+          "required": true,
+          "has_retained_passage": true,
+          "ambiguous_multiple_passages": false,
+          "retained_passages": 1,
+          "crossings": 1
+        },
+        {
+          "id": "c4",
+          "index": 3,
+          "required": true,
+          "has_retained_passage": true,
+          "ambiguous_multiple_passages": false,
+          "retained_passages": 1,
+          "crossings": 1
+        },
+        {
+          "id": "c5",
+          "index": 4,
+          "required": true,
+          "has_retained_passage": true,
+          "ambiguous_multiple_passages": false,
+          "retained_passages": 1,
+          "crossings": 1
+        }
+      ],
+      "summary": {
+        "clips": 5,
+        "required_ids": [
+          "c1",
+          "c2",
+          "c3",
+          "c4",
+          "c5"
+        ],
+        "retained_ids": [
+          "c1",
+          "c2",
+          "c3",
+          "c4",
+          "c5"
+        ],
+        "lost_required_ids": [],
+        "required_retained": 5,
+        "required_count": 5,
+        "all_required_retained": true
+      },
+      "lateral_wall_gaps": [
+        {
+          "clip": "c1",
+          "crossings": 1,
+          "lateral_m": 0.0032407878336768213,
+          "height_m": 0.0028178004147951918,
+          "lateral_wall_gap_m": 0.0007592121663231787
+        },
+        {
+          "clip": "c2",
+          "crossings": 1,
+          "lateral_m": 0.00026926317378483467,
+          "height_m": 0.002422179074661338,
+          "lateral_wall_gap_m": 0.0037307368262151654
+        },
+        {
+          "clip": "c3",
+          "crossings": 1,
+          "lateral_m": -0.003551580843303717,
+          "height_m": 0.0011271381909189195,
+          "lateral_wall_gap_m": 0.00044841915669628293
+        },
+        {
+          "clip": "c4",
+          "crossings": 1,
+          "lateral_m": -0.0026342449420079443,
+          "height_m": 0.002505510835001611,
+          "lateral_wall_gap_m": 0.0013657550579920558
+        },
+        {
+          "clip": "c5",
+          "crossings": 1,
+          "lateral_m": 0.002440380565799795,
+          "height_m": 0.0028090677738582745,
+          "lateral_wall_gap_m": 0.0015596194342002052
+        }
+      ],
+      "worst_lateral_wall_gap_m": 0.00044841915669628293,
+      "installed_min_bend_radius_m": 0.05008719991617175,
+      "max_initial_turn_deg": 59.237873500782484,
+      "routed_direct_length_m": 0.4172014808683636,
+      "geometric_service_loop_m": 0.0427985191316364,
+      "solved_anchor_along_m": 0.2390652023850907,
+      "boot_to_anchor_m": 0.34928284240380614,
+      "settle_native_steps": 20000,
+      "wall_s": 4.9
+    },
+    {
+      "layout": "RC1",
+      "installed_loop_m": 0.002,
+      "clips": 5,
+      "built": true,
+      "settled": true,
+      "reason": null,
+      "per_clip": [
+        {
+          "id": "c1",
+          "index": 0,
+          "required": true,
+          "has_retained_passage": true,
+          "ambiguous_multiple_passages": false,
+          "retained_passages": 1,
+          "crossings": 1
+        },
+        {
+          "id": "c2",
+          "index": 1,
+          "required": true,
+          "has_retained_passage": true,
+          "ambiguous_multiple_passages": false,
+          "retained_passages": 1,
+          "crossings": 1
+        },
+        {
+          "id": "c3",
+          "index": 2,
+          "required": true,
+          "has_retained_passage": true,
+          "ambiguous_multiple_passages": false,
+          "retained_passages": 1,
+          "crossings": 1
+        },
+        {
+          "id": "c4",
+          "index": 3,
+          "required": true,
+          "has_retained_passage": true,
+          "ambiguous_multiple_passages": false,
+          "retained_passages": 1,
+          "crossings": 1
+        },
+        {
+          "id": "c5",
+          "index": 4,
+          "required": true,
+          "has_retained_passage": true,
+          "ambiguous_multiple_passages": false,
+          "retained_passages": 1,
+          "crossings": 1
+        }
+      ],
+      "summary": {
+        "clips": 5,
+        "required_ids": [
+          "c1",
+          "c2",
+          "c3",
+          "c4",
+          "c5"
+        ],
+        "retained_ids": [
+          "c1",
+          "c2",
+          "c3",
+          "c4",
+          "c5"
+        ],
+        "lost_required_ids": [],
+        "required_retained": 5,
+        "required_count": 5,
+        "all_required_retained": true
+      },
+      "lateral_wall_gaps": [
+        {
+          "clip": "c1",
+          "crossings": 1,
+          "lateral_m": 0.0031400843968251812,
+          "height_m": 0.002709207602976227,
+          "lateral_wall_gap_m": 0.0008599156031748188
+        },
+        {
+          "clip": "c2",
+          "crossings": 1,
+          "lateral_m": 5.7655291991825456e-05,
+          "height_m": 0.002325569256871628,
+          "lateral_wall_gap_m": 0.003942344708008175
+        },
+        {
+          "clip": "c3",
+          "crossings": 1,
+          "lateral_m": -0.003588144965210655,
+          "height_m": 0.001158268271103616,
+          "lateral_wall_gap_m": 0.00041185503478934505
+        },
+        {
+          "clip": "c4",
+          "crossings": 1,
+          "lateral_m": -0.0024454606092822553,
+          "height_m": 0.002547045618339077,
+          "lateral_wall_gap_m": 0.0015545393907177448
+        },
+        {
+          "clip": "c5",
+          "crossings": 1,
+          "lateral_m": 0.002766442607254515,
+          "height_m": 0.0028262517384596525,
+          "lateral_wall_gap_m": 0.0012335573927454851
+        }
+      ],
+      "worst_lateral_wall_gap_m": 0.00041185503478934505,
+      "installed_min_bend_radius_m": 0.055439926831349705,
+      "max_initial_turn_deg": 59.228317808717875,
+      "routed_direct_length_m": 0.4167014808683635,
+      "geometric_service_loop_m": 0.043298519131636515,
+      "solved_anchor_along_m": 0.2385264218376822,
+      "boot_to_anchor_m": 0.3490706569764733,
+      "settle_native_steps": 20000,
+      "wall_s": 4.8
+    },
+    {
+      "layout": "RC1",
+      "installed_loop_m": 0.0025,
+      "clips": 5,
+      "built": true,
+      "settled": true,
+      "reason": null,
+      "per_clip": [
+        {
+          "id": "c1",
+          "index": 0,
+          "required": true,
+          "has_retained_passage": true,
+          "ambiguous_multiple_passages": false,
+          "retained_passages": 1,
+          "crossings": 1
+        },
+        {
+          "id": "c2",
+          "index": 1,
+          "required": true,
+          "has_retained_passage": true,
+          "ambiguous_multiple_passages": false,
+          "retained_passages": 1,
+          "crossings": 1
+        },
+        {
+          "id": "c3",
+          "index": 2,
+          "required": true,
+          "has_retained_passage": true,
+          "ambiguous_multiple_passages": false,
+          "retained_passages": 1,
+          "crossings": 1
+        },
+        {
+          "id": "c4",
+          "index": 3,
+          "required": true,
+          "has_retained_passage": true,
+          "ambiguous_multiple_passages": false,
+          "retained_passages": 1,
+          "crossings": 1
+        },
+        {
+          "id": "c5",
+          "index": 4,
+          "required": true,
+          "has_retained_passage": true,
+          "ambiguous_multiple_passages": false,
+          "retained_passages": 1,
+          "crossings": 1
+        }
+      ],
+      "summary": {
+        "clips": 5,
+        "required_ids": [
+          "c1",
+          "c2",
+          "c3",
+          "c4",
+          "c5"
+        ],
+        "retained_ids": [
+          "c1",
+          "c2",
+          "c3",
+          "c4",
+          "c5"
+        ],
+        "lost_required_ids": [],
+        "required_retained": 5,
+        "required_count": 5,
+        "all_required_retained": true
+      },
+      "lateral_wall_gaps": [
+        {
+          "clip": "c1",
+          "crossings": 1,
+          "lateral_m": 0.0031564685250053404,
+          "height_m": 0.002691817842369596,
+          "lateral_wall_gap_m": 0.0008435314749946597
+        },
+        {
+          "clip": "c2",
+          "crossings": 1,
+          "lateral_m": 0.00011048026287842957,
+          "height_m": 0.002308048914186406,
+          "lateral_wall_gap_m": 0.0038895197371215705
+        },
+        {
+          "clip": "c3",
+          "crossings": 1,
+          "lateral_m": -0.0035488873722048825,
+          "height_m": 0.0011997585694704948,
+          "lateral_wall_gap_m": 0.0004511126277951176
+        },
+        {
+          "clip": "c4",
+          "crossings": 1,
+          "lateral_m": -0.0024675213339882106,
+          "height_m": 0.0025775255035548677,
+          "lateral_wall_gap_m": 0.0015324786660117894
+        },
+        {
+          "clip": "c5",
+          "crossings": 1,
+          "lateral_m": 0.002672691179294452,
+          "height_m": 0.0028362321747179096,
+          "lateral_wall_gap_m": 0.001327308820705548
+        }
+      ],
+      "worst_lateral_wall_gap_m": 0.0004511126277951176,
+      "installed_min_bend_radius_m": 0.05512782834504765,
+      "max_initial_turn_deg": 59.230034759210284,
+      "routed_direct_length_m": 0.4162014808683636,
+      "geometric_service_loop_m": 0.043798519131636404,
+      "solved_anchor_along_m": 0.23798687637894272,
+      "boot_to_anchor_m": 0.3487063899405614,
+      "settle_native_steps": 20000,
+      "wall_s": 4.8
+    },
+    {
+      "layout": "RC1",
+      "installed_loop_m": 0.003,
+      "clips": 5,
+      "built": true,
+      "settled": true,
+      "reason": null,
+      "per_clip": [
+        {
+          "id": "c1",
+          "index": 0,
+          "required": true,
+          "has_retained_passage": true,
+          "ambiguous_multiple_passages": false,
+          "retained_passages": 1,
+          "crossings": 1
+        },
+        {
+          "id": "c2",
+          "index": 1,
+          "required": true,
+          "has_retained_passage": true,
+          "ambiguous_multiple_passages": false,
+          "retained_passages": 1,
+          "crossings": 1
+        },
+        {
+          "id": "c3",
+          "index": 2,
+          "required": true,
+          "has_retained_passage": true,
+          "ambiguous_multiple_passages": false,
+          "retained_passages": 1,
+          "crossings": 1
+        },
+        {
+          "id": "c4",
+          "index": 3,
+          "required": true,
+          "has_retained_passage": true,
+          "ambiguous_multiple_passages": false,
+          "retained_passages": 1,
+          "crossings": 1
+        },
+        {
+          "id": "c5",
+          "index": 4,
+          "required": true,
+          "has_retained_passage": true,
+          "ambiguous_multiple_passages": false,
+          "retained_passages": 1,
+          "crossings": 1
+        }
+      ],
+      "summary": {
+        "clips": 5,
+        "required_ids": [
+          "c1",
+          "c2",
+          "c3",
+          "c4",
+          "c5"
+        ],
+        "retained_ids": [
+          "c1",
+          "c2",
+          "c3",
+          "c4",
+          "c5"
+        ],
+        "lost_required_ids": [],
+        "required_retained": 5,
+        "required_count": 5,
+        "all_required_retained": true
+      },
+      "lateral_wall_gaps": [
+        {
+          "clip": "c1",
+          "crossings": 1,
+          "lateral_m": 0.0031712962738266446,
+          "height_m": 0.0026700696424987007,
+          "lateral_wall_gap_m": 0.0008287037261733555
+        },
+        {
+          "clip": "c2",
+          "crossings": 1,
+          "lateral_m": 0.00015865541744789153,
+          "height_m": 0.002286077498176569,
+          "lateral_wall_gap_m": 0.0038413445825521086
+        },
+        {
+          "clip": "c3",
+          "crossings": 1,
+          "lateral_m": -0.0035114784803111352,
+          "height_m": 0.001241219025781359,
+          "lateral_wall_gap_m": 0.0004885215196888649
+        },
+        {
+          "clip": "c4",
+          "crossings": 1,
+          "lateral_m": -0.0024986576867236116,
+          "height_m": 0.002602832545691541,
+          "lateral_wall_gap_m": 0.0015013423132763885
+        },
+        {
+          "clip": "c5",
+          "crossings": 1,
+          "lateral_m": 0.0025890654405086467,
+          "height_m": 0.0028445931708461192,
+          "lateral_wall_gap_m": 0.0014109345594913534
+        }
+      ],
+      "worst_lateral_wall_gap_m": 0.0004885215196888649,
+      "installed_min_bend_radius_m": 0.05483380331340837,
+      "max_initial_turn_deg": 59.229702422711284,
+      "routed_direct_length_m": 0.41570148086836367,
+      "geometric_service_loop_m": 0.04429851913163635,
+      "solved_anchor_along_m": 0.23744654142586769,
+      "boot_to_anchor_m": 0.3483409884127235,
+      "settle_native_steps": 20000,
+      "wall_s": 4.9
+    },
+    {
+      "layout": "RC1",
+      "installed_loop_m": 0.0035,
+      "clips": 5,
+      "built": true,
+      "settled": false,
+      "reason": "settle_clip_not_retained",
+      "per_clip": [
+        {
+          "id": "c1",
+          "index": 0,
+          "required": true,
+          "has_retained_passage": false,
+          "ambiguous_multiple_passages": false,
+          "retained_passages": 0,
+          "crossings": 1
+        },
+        {
+          "id": "c2",
+          "index": 1,
+          "required": true,
+          "has_retained_passage": false,
+          "ambiguous_multiple_passages": false,
+          "retained_passages": 0,
+          "crossings": 1
+        },
+        {
+          "id": "c3",
+          "index": 2,
+          "required": true,
+          "has_retained_passage": false,
+          "ambiguous_multiple_passages": false,
+          "retained_passages": 0,
+          "crossings": 1
+        },
+        {
+          "id": "c4",
+          "index": 3,
+          "required": true,
+          "has_retained_passage": false,
+          "ambiguous_multiple_passages": false,
+          "retained_passages": 0,
+          "crossings": 1
+        },
+        {
+          "id": "c5",
+          "index": 4,
+          "required": true,
+          "has_retained_passage": false,
+          "ambiguous_multiple_passages": false,
+          "retained_passages": 0,
+          "crossings": 1
+        }
+      ],
+      "summary": {
+        "clips": 5,
+        "required_ids": [
+          "c1",
+          "c2",
+          "c3",
+          "c4",
+          "c5"
+        ],
+        "retained_ids": [],
+        "lost_required_ids": [
+          "c1",
+          "c2",
+          "c3",
+          "c4",
+          "c5"
+        ],
+        "required_retained": 0,
+        "required_count": 5,
+        "all_required_retained": false
+      },
+      "lateral_wall_gaps": [
+        {
+          "clip": "c1",
+          "crossings": 1,
+          "lateral_m": -0.0089189666639256,
+          "height_m": 0.003995149326642973,
+          "lateral_wall_gap_m": -0.004918966663925601
+        },
+        {
+          "clip": "c2",
+          "crossings": 1,
+          "lateral_m": -0.020746887063360583,
+          "height_m": -0.001004472970365851,
+          "lateral_wall_gap_m": -0.016746887063360583
+        },
+        {
+          "clip": "c3",
+          "crossings": 1,
+          "lateral_m": -0.027676984544825887,
+          "height_m": -0.004032814784664774,
+          "lateral_wall_gap_m": -0.023676984544825887
+        },
+        {
+          "clip": "c4",
+          "crossings": 1,
+          "lateral_m": -0.027042949024704173,
+          "height_m": -0.001015594057312178,
+          "lateral_wall_gap_m": -0.023042949024704173
+        },
+        {
+          "clip": "c5",
+          "crossings": 1,
+          "lateral_m": -0.017981067702378964,
+          "height_m": 0.0019718583428840627,
+          "lateral_wall_gap_m": -0.013981067702378964
+        }
+      ],
+      "worst_lateral_wall_gap_m": -0.023676984544825887,
+      "installed_min_bend_radius_m": 0.037570667587999956,
+      "max_initial_turn_deg": 59.22531567064577,
+      "routed_direct_length_m": 0.41520148086836356,
+      "geometric_service_loop_m": 0.04479851913163646,
+      "solved_anchor_along_m": 0.2369053912641132,
+      "boot_to_anchor_m": 0.347809935649219,
+      "settle_native_steps": 20000,
+      "wall_s": 6.5
+    },
+    {
+      "layout": "RC1",
+      "installed_loop_m": 0.004,
+      "clips": 5,
+      "built": true,
+      "settled": true,
+      "reason": null,
+      "per_clip": [
+        {
+          "id": "c1",
+          "index": 0,
+          "required": true,
+          "has_retained_passage": true,
+          "ambiguous_multiple_passages": false,
+          "retained_passages": 1,
+          "crossings": 1
+        },
+        {
+          "id": "c2",
+          "index": 1,
+          "required": true,
+          "has_retained_passage": true,
+          "ambiguous_multiple_passages": false,
+          "retained_passages": 1,
+          "crossings": 1
+        },
+        {
+          "id": "c3",
+          "index": 2,
+          "required": true,
+          "has_retained_passage": true,
+          "ambiguous_multiple_passages": false,
+          "retained_passages": 1,
+          "crossings": 1
+        },
+        {
+          "id": "c4",
+          "index": 3,
+          "required": true,
+          "has_retained_passage": true,
+          "ambiguous_multiple_passages": false,
+          "retained_passages": 1,
+          "crossings": 1
+        },
+        {
+          "id": "c5",
+          "index": 4,
+          "required": true,
+          "has_retained_passage": true,
+          "ambiguous_multiple_passages": false,
+          "retained_passages": 1,
+          "crossings": 1
+        }
+      ],
+      "summary": {
+        "clips": 5,
+        "required_ids": [
+          "c1",
+          "c2",
+          "c3",
+          "c4",
+          "c5"
+        ],
+        "retained_ids": [
+          "c1",
+          "c2",
+          "c3",
+          "c4",
+          "c5"
+        ],
+        "lost_required_ids": [],
+        "required_retained": 5,
+        "required_count": 5,
+        "all_required_retained": true
+      },
+      "lateral_wall_gaps": [
+        {
+          "clip": "c1",
+          "crossings": 1,
+          "lateral_m": 0.0031157615942099108,
+          "height_m": 0.0025896162520046275,
+          "lateral_wall_gap_m": 0.0008842384057900893
+        },
+        {
+          "clip": "c2",
+          "crossings": 1,
+          "lateral_m": 9.304325221954875e-05,
+          "height_m": 0.002213142630401899,
+          "lateral_wall_gap_m": 0.003906956747780452
+        },
+        {
+          "clip": "c3",
+          "crossings": 1,
+          "lateral_m": -0.003475951546612821,
+          "height_m": 0.0013223175084025357,
+          "lateral_wall_gap_m": 0.000524048453387179
+        },
+        {
+          "clip": "c4",
+          "crossings": 1,
+          "lateral_m": -0.002502636121275589,
+          "height_m": 0.0026515975088542685,
+          "lateral_wall_gap_m": 0.0014973638787244112
+        },
+        {
+          "clip": "c5",
+          "crossings": 1,
+          "lateral_m": 0.0025044521398191215,
+          "height_m": 0.0028564795181245236,
+          "lateral_wall_gap_m": 0.0014955478601808786
+        }
+      ],
+      "worst_lateral_wall_gap_m": 0.000524048453387179,
+      "installed_min_bend_radius_m": 0.05568879752461868,
+      "max_initial_turn_deg": 59.22039378347657,
+      "routed_direct_length_m": 0.41470148086836356,
+      "geometric_service_loop_m": 0.04529851913163646,
+      "solved_anchor_along_m": 0.23636339897948017,
+      "boot_to_anchor_m": 0.3475918174422536,
+      "settle_native_steps": 20000,
+      "wall_s": 5.0
+    },
+    {
+      "layout": "RC1",
+      "installed_loop_m": 0.0045,
+      "clips": 5,
+      "built": true,
+      "settled": true,
+      "reason": null,
+      "per_clip": [
+        {
+          "id": "c1",
+          "index": 0,
+          "required": true,
+          "has_retained_passage": true,
+          "ambiguous_multiple_passages": false,
+          "retained_passages": 1,
+          "crossings": 1
+        },
+        {
+          "id": "c2",
+          "index": 1,
+          "required": true,
+          "has_retained_passage": true,
+          "ambiguous_multiple_passages": false,
+          "retained_passages": 1,
+          "crossings": 1
+        },
+        {
+          "id": "c3",
+          "index": 2,
+          "required": true,
+          "has_retained_passage": true,
+          "ambiguous_multiple_passages": false,
+          "retained_passages": 1,
+          "crossings": 1
+        },
+        {
+          "id": "c4",
+          "index": 3,
+          "required": true,
+          "has_retained_passage": true,
+          "ambiguous_multiple_passages": false,
+          "retained_passages": 1,
+          "crossings": 1
+        },
+        {
+          "id": "c5",
+          "index": 4,
+          "required": true,
+          "has_retained_passage": true,
+          "ambiguous_multiple_passages": false,
+          "retained_passages": 1,
+          "crossings": 1
+        }
+      ],
+      "summary": {
+        "clips": 5,
+        "required_ids": [
+          "c1",
+          "c2",
+          "c3",
+          "c4",
+          "c5"
+        ],
+        "retained_ids": [
+          "c1",
+          "c2",
+          "c3",
+          "c4",
+          "c5"
+        ],
+        "lost_required_ids": [],
+        "required_retained": 5,
+        "required_count": 5,
+        "all_required_retained": true
+      },
+      "lateral_wall_gaps": [
+        {
+          "clip": "c1",
+          "crossings": 1,
+          "lateral_m": 0.003046476336969648,
+          "height_m": 0.0024746627339440426,
+          "lateral_wall_gap_m": 0.0009535236630303519
+        },
+        {
+          "clip": "c2",
+          "crossings": 1,
+          "lateral_m": -3.037602246933318e-06,
+          "height_m": 0.002121142554112905,
+          "lateral_wall_gap_m": 0.003996962397753066
+        },
+        {
+          "clip": "c3",
+          "crossings": 1,
+          "lateral_m": -0.003466743696040231,
+          "height_m": 0.0013611600594024558,
+          "lateral_wall_gap_m": 0.000533256303959769
+        },
+        {
+          "clip": "c4",
+          "crossings": 1,
+          "lateral_m": -0.002531097883119247,
+          "height_m": 0.0026791498730498794,
+          "lateral_wall_gap_m": 0.0014689021168807531
+        },
+        {
+          "clip": "c5",
+          "crossings": 1,
+          "lateral_m": 0.0023765519415365113,
+          "height_m": 0.0028644045664775438,
+          "lateral_wall_gap_m": 0.0016234480584634888
+        }
+      ],
+      "worst_lateral_wall_gap_m": 0.000533256303959769,
+      "installed_min_bend_radius_m": 0.059706025046534016,
+      "max_initial_turn_deg": 59.21508037435937,
+      "routed_direct_length_m": 0.4142014808683635,
+      "geometric_service_loop_m": 0.04579851913163652,
+      "solved_anchor_along_m": 0.23582053638429107,
+      "boot_to_anchor_m": 0.3472130863278348,
+      "settle_native_steps": 20000,
+      "wall_s": 5.0
+    },
+    {
+      "layout": "RC2",
+      "installed_loop_m": 0.0015,
+      "clips": 5,
+      "built": true,
+      "settled": false,
+      "reason": "settle_cable_motion",
+      "per_clip": [
+        {
+          "id": "c1",
+          "index": 0,
+          "required": true,
+          "has_retained_passage": false,
+          "ambiguous_multiple_passages": false,
+          "retained_passages": 0,
+          "crossings": 1
+        },
+        {
+          "id": "c2",
+          "index": 1,
+          "required": true,
+          "has_retained_passage": true,
+          "ambiguous_multiple_passages": false,
+          "retained_passages": 1,
+          "crossings": 1
+        },
+        {
+          "id": "c3",
+          "index": 2,
+          "required": true,
+          "has_retained_passage": false,
+          "ambiguous_multiple_passages": false,
+          "retained_passages": 0,
+          "crossings": 1
+        },
+        {
+          "id": "c4",
+          "index": 3,
+          "required": true,
+          "has_retained_passage": false,
+          "ambiguous_multiple_passages": false,
+          "retained_passages": 0,
+          "crossings": 1
+        },
+        {
+          "id": "c5",
+          "index": 4,
+          "required": true,
+          "has_retained_passage": false,
+          "ambiguous_multiple_passages": false,
+          "retained_passages": 0,
+          "crossings": 1
+        }
+      ],
+      "summary": {
+        "clips": 5,
+        "required_ids": [
+          "c1",
+          "c2",
+          "c3",
+          "c4",
+          "c5"
+        ],
+        "retained_ids": [
+          "c2"
+        ],
+        "lost_required_ids": [
+          "c1",
+          "c3",
+          "c4",
+          "c5"
+        ],
+        "required_retained": 1,
+        "required_count": 5,
+        "all_required_retained": false
+      },
+      "lateral_wall_gaps": [
+        {
+          "clip": "c1",
+          "crossings": 1,
+          "lateral_m": -0.01894514362810279,
+          "height_m": 0.020029597775242186,
+          "lateral_wall_gap_m": -0.01494514362810279
+        },
+        {
+          "clip": "c2",
+          "crossings": 1,
+          "lateral_m": -0.003509987075675904,
+          "height_m": 0.009989551753020097,
+          "lateral_wall_gap_m": 0.0004900129243240962
+        },
+        {
+          "clip": "c3",
+          "crossings": 1,
+          "lateral_m": 0.006575203340326813,
+          "height_m": 0.004436751787920076,
+          "lateral_wall_gap_m": -0.0025752033403268126
+        },
+        {
+          "clip": "c4",
+          "crossings": 1,
+          "lateral_m": 0.020880817476312284,
+          "height_m": 0.0021612858873507517,
+          "lateral_wall_gap_m": -0.016880817476312284
+        },
+        {
+          "clip": "c5",
+          "crossings": 1,
+          "lateral_m": 0.024277904377729528,
+          "height_m": 0.001990026635984886,
+          "lateral_wall_gap_m": -0.020277904377729528
+        }
+      ],
+      "worst_lateral_wall_gap_m": -0.020277904377729528,
+      "installed_min_bend_radius_m": 0.037969234382733745,
+      "max_initial_turn_deg": 47.40239434772474,
+      "routed_direct_length_m": 0.4171139732562448,
+      "geometric_service_loop_m": 0.042886026743755246,
+      "solved_anchor_along_m": 0.23903606440132524,
+      "boot_to_anchor_m": 0.34928554526784605,
+      "settle_native_steps": 20000,
+      "wall_s": 8.4
+    },
+    {
+      "layout": "RC2",
+      "installed_loop_m": 0.002,
+      "clips": 5,
+      "built": true,
+      "settled": true,
+      "reason": null,
+      "per_clip": [
+        {
+          "id": "c1",
+          "index": 0,
+          "required": true,
+          "has_retained_passage": true,
+          "ambiguous_multiple_passages": false,
+          "retained_passages": 1,
+          "crossings": 1
+        },
+        {
+          "id": "c2",
+          "index": 1,
+          "required": true,
+          "has_retained_passage": true,
+          "ambiguous_multiple_passages": false,
+          "retained_passages": 1,
+          "crossings": 1
+        },
+        {
+          "id": "c3",
+          "index": 2,
+          "required": true,
+          "has_retained_passage": true,
+          "ambiguous_multiple_passages": false,
+          "retained_passages": 1,
+          "crossings": 1
+        },
+        {
+          "id": "c4",
+          "index": 3,
+          "required": true,
+          "has_retained_passage": true,
+          "ambiguous_multiple_passages": false,
+          "retained_passages": 1,
+          "crossings": 1
+        },
+        {
+          "id": "c5",
+          "index": 4,
+          "required": true,
+          "has_retained_passage": true,
+          "ambiguous_multiple_passages": false,
+          "retained_passages": 1,
+          "crossings": 1
+        }
+      ],
+      "summary": {
+        "clips": 5,
+        "required_ids": [
+          "c1",
+          "c2",
+          "c3",
+          "c4",
+          "c5"
+        ],
+        "retained_ids": [
+          "c1",
+          "c2",
+          "c3",
+          "c4",
+          "c5"
+        ],
+        "lost_required_ids": [],
+        "required_retained": 5,
+        "required_count": 5,
+        "all_required_retained": true
+      },
+      "lateral_wall_gaps": [
+        {
+          "clip": "c1",
+          "crossings": 1,
+          "lateral_m": 0.0030966142772165394,
+          "height_m": 0.0019414265844646208,
+          "lateral_wall_gap_m": 0.0009033857227834607
+        },
+        {
+          "clip": "c2",
+          "crossings": 1,
+          "lateral_m": 2.088124494374578e-05,
+          "height_m": 0.0019665863801508095,
+          "lateral_wall_gap_m": 0.003979118755056254
+        },
+        {
+          "clip": "c3",
+          "crossings": 1,
+          "lateral_m": -0.00355941407668867,
+          "height_m": 0.0019756627790048645,
+          "lateral_wall_gap_m": 0.00044058592331133
+        },
+        {
+          "clip": "c4",
+          "crossings": 1,
+          "lateral_m": -0.0026148984011971498,
+          "height_m": 0.0019742102069387393,
+          "lateral_wall_gap_m": 0.0013851015988028503
+        },
+        {
+          "clip": "c5",
+          "crossings": 1,
+          "lateral_m": 0.00233549465262594,
+          "height_m": 0.0019671251126497685,
+          "lateral_wall_gap_m": 0.0016645053473740602
+        }
+      ],
+      "worst_lateral_wall_gap_m": 0.00044058592331133,
+      "installed_min_bend_radius_m": 0.051657308528443587,
+      "max_initial_turn_deg": 47.394350758930564,
+      "routed_direct_length_m": 0.41661397325624466,
+      "geometric_service_loop_m": 0.04338602674375536,
+      "solved_anchor_along_m": 0.2384974685190468,
+      "boot_to_anchor_m": 0.3488992551569211,
+      "settle_native_steps": 20000,
+      "wall_s": 6.7
+    },
+    {
+      "layout": "RC2",
+      "installed_loop_m": 0.0025,
+      "clips": 5,
+      "built": true,
+      "settled": false,
+      "reason": "settle_instability",
+      "per_clip": [
+        {
+          "id": "c1",
+          "index": 0,
+          "required": true,
+          "has_retained_passage": false,
+          "ambiguous_multiple_passages": false,
+          "retained_passages": 0,
+          "crossings": 1
+        },
+        {
+          "id": "c2",
+          "index": 1,
+          "required": true,
+          "has_retained_passage": true,
+          "ambiguous_multiple_passages": false,
+          "retained_passages": 1,
+          "crossings": 1
+        },
+        {
+          "id": "c3",
+          "index": 2,
+          "required": true,
+          "has_retained_passage": true,
+          "ambiguous_multiple_passages": false,
+          "retained_passages": 1,
+          "crossings": 1
+        },
+        {
+          "id": "c4",
+          "index": 3,
+          "required": true,
+          "has_retained_passage": true,
+          "ambiguous_multiple_passages": false,
+          "retained_passages": 1,
+          "crossings": 1
+        },
+        {
+          "id": "c5",
+          "index": 4,
+          "required": true,
+          "has_retained_passage": true,
+          "ambiguous_multiple_passages": false,
+          "retained_passages": 1,
+          "crossings": 1
+        }
+      ],
+      "summary": {
+        "clips": 5,
+        "required_ids": [
+          "c1",
+          "c2",
+          "c3",
+          "c4",
+          "c5"
+        ],
+        "retained_ids": [
+          "c2",
+          "c3",
+          "c4",
+          "c5"
+        ],
+        "lost_required_ids": [
+          "c1"
+        ],
+        "required_retained": 4,
+        "required_count": 5,
+        "all_required_retained": false
+      },
+      "lateral_wall_gaps": [
+        {
+          "clip": "c1",
+          "crossings": 1,
+          "lateral_m": -2.792601630154588e-07,
+          "height_m": 0.012467532804589858,
+          "lateral_wall_gap_m": 0.003999720739836984
+        },
+        {
+          "clip": "c2",
+          "crossings": 1,
+          "lateral_m": 9.54736074534872e-05,
+          "height_m": 0.002521623889746116,
+          "lateral_wall_gap_m": 0.003904526392546513
+        },
+        {
+          "clip": "c3",
+          "crossings": 1,
+          "lateral_m": -0.0006892986668417607,
+          "height_m": 0.0025088851975557536,
+          "lateral_wall_gap_m": 0.0033107013331582394
+        },
+        {
+          "clip": "c4",
+          "crossings": 1,
+          "lateral_m": -0.0001773693685367041,
+          "height_m": 0.002499954474762589,
+          "lateral_wall_gap_m": 0.003822630631463296
+        },
+        {
+          "clip": "c5",
+          "crossings": 1,
+          "lateral_m": 0.0020899162188070686,
+          "height_m": 0.0026028754903381413,
+          "lateral_wall_gap_m": 0.0019100837811929314
+        }
+      ],
+      "worst_lateral_wall_gap_m": 0.0019100837811929314,
+      "installed_min_bend_radius_m": 0.0248815206018194,
+      "max_initial_turn_deg": 47.39448550904257,
+      "routed_direct_length_m": 0.4161139732562447,
+      "geometric_service_loop_m": 0.0438860267437553,
+      "solved_anchor_along_m": 0.23795811160105723,
+      "boot_to_anchor_m": 0.3486969840735943,
+      "settle_native_steps": 20000,
+      "wall_s": 1.5
+    },
+    {
+      "layout": "RC2",
+      "installed_loop_m": 0.003,
+      "clips": 5,
+      "built": true,
+      "settled": true,
+      "reason": null,
+      "per_clip": [
+        {
+          "id": "c1",
+          "index": 0,
+          "required": true,
+          "has_retained_passage": true,
+          "ambiguous_multiple_passages": false,
+          "retained_passages": 1,
+          "crossings": 1
+        },
+        {
+          "id": "c2",
+          "index": 1,
+          "required": true,
+          "has_retained_passage": true,
+          "ambiguous_multiple_passages": false,
+          "retained_passages": 1,
+          "crossings": 1
+        },
+        {
+          "id": "c3",
+          "index": 2,
+          "required": true,
+          "has_retained_passage": true,
+          "ambiguous_multiple_passages": false,
+          "retained_passages": 1,
+          "crossings": 1
+        },
+        {
+          "id": "c4",
+          "index": 3,
+          "required": true,
+          "has_retained_passage": true,
+          "ambiguous_multiple_passages": false,
+          "retained_passages": 1,
+          "crossings": 1
+        },
+        {
+          "id": "c5",
+          "index": 4,
+          "required": true,
+          "has_retained_passage": true,
+          "ambiguous_multiple_passages": false,
+          "retained_passages": 1,
+          "crossings": 1
+        }
+      ],
+      "summary": {
+        "clips": 5,
+        "required_ids": [
+          "c1",
+          "c2",
+          "c3",
+          "c4",
+          "c5"
+        ],
+        "retained_ids": [
+          "c1",
+          "c2",
+          "c3",
+          "c4",
+          "c5"
+        ],
+        "lost_required_ids": [],
+        "required_retained": 5,
+        "required_count": 5,
+        "all_required_retained": true
+      },
+      "lateral_wall_gaps": [
+        {
+          "clip": "c1",
+          "crossings": 1,
+          "lateral_m": 0.0034365583480841146,
+          "height_m": 0.0019444408650111378,
+          "lateral_wall_gap_m": 0.0005634416519158855
+        },
+        {
+          "clip": "c2",
+          "crossings": 1,
+          "lateral_m": 0.0006980266998581641,
+          "height_m": 0.0019702655670939765,
+          "lateral_wall_gap_m": 0.003301973300141836
+        },
+        {
+          "clip": "c3",
+          "crossings": 1,
+          "lateral_m": -0.003346261183837523,
+          "height_m": 0.0019747265435989744,
+          "lateral_wall_gap_m": 0.0006537388161624771
+        },
+        {
+          "clip": "c4",
+          "crossings": 1,
+          "lateral_m": -0.0028073433937129176,
+          "height_m": 0.0019733907514024726,
+          "lateral_wall_gap_m": 0.0011926566062870824
+        },
+        {
+          "clip": "c5",
+          "crossings": 1,
+          "lateral_m": 0.002074455534276179,
+          "height_m": 0.0019673307656292503,
+          "lateral_wall_gap_m": 0.001925544465723821
+        }
+      ],
+      "worst_lateral_wall_gap_m": 0.0005634416519158855,
+      "installed_min_bend_radius_m": 0.04949277994372576,
+      "max_initial_turn_deg": 47.39402853104169,
+      "routed_direct_length_m": 0.4156139732562447,
+      "geometric_service_loop_m": 0.0443860267437553,
+      "solved_anchor_along_m": 0.2374179690763218,
+      "boot_to_anchor_m": 0.34817599052938,
+      "settle_native_steps": 20000,
+      "wall_s": 6.4
+    },
+    {
+      "layout": "RC2",
+      "installed_loop_m": 0.0035,
+      "clips": 5,
+      "built": true,
+      "settled": false,
+      "reason": "settle_clip_not_retained",
+      "per_clip": [
+        {
+          "id": "c1",
+          "index": 0,
+          "required": true,
+          "has_retained_passage": false,
+          "ambiguous_multiple_passages": false,
+          "retained_passages": 0,
+          "crossings": 1
+        },
+        {
+          "id": "c2",
+          "index": 1,
+          "required": true,
+          "has_retained_passage": false,
+          "ambiguous_multiple_passages": false,
+          "retained_passages": 0,
+          "crossings": 1
+        },
+        {
+          "id": "c3",
+          "index": 2,
+          "required": true,
+          "has_retained_passage": false,
+          "ambiguous_multiple_passages": false,
+          "retained_passages": 0,
+          "crossings": 1
+        },
+        {
+          "id": "c4",
+          "index": 3,
+          "required": true,
+          "has_retained_passage": false,
+          "ambiguous_multiple_passages": false,
+          "retained_passages": 0,
+          "crossings": 1
+        },
+        {
+          "id": "c5",
+          "index": 4,
+          "required": true,
+          "has_retained_passage": true,
+          "ambiguous_multiple_passages": false,
+          "retained_passages": 1,
+          "crossings": 1
+        }
+      ],
+      "summary": {
+        "clips": 5,
+        "required_ids": [
+          "c1",
+          "c2",
+          "c3",
+          "c4",
+          "c5"
+        ],
+        "retained_ids": [
+          "c5"
+        ],
+        "lost_required_ids": [
+          "c1",
+          "c2",
+          "c3",
+          "c4"
+        ],
+        "required_retained": 1,
+        "required_count": 5,
+        "all_required_retained": false
+      },
+      "lateral_wall_gaps": [
+        {
+          "clip": "c1",
+          "crossings": 1,
+          "lateral_m": -0.014260336117444143,
+          "height_m": 0.0019342833791714102,
+          "lateral_wall_gap_m": -0.010260336117444143
+        },
+        {
+          "clip": "c2",
+          "crossings": 1,
+          "lateral_m": -0.01622602011467988,
+          "height_m": 0.0019720987809999945,
+          "lateral_wall_gap_m": -0.01222602011467988
+        },
+        {
+          "clip": "c3",
+          "crossings": 1,
+          "lateral_m": -0.01757427472146661,
+          "height_m": 0.001974481762972003,
+          "lateral_wall_gap_m": -0.01357427472146661
+        },
+        {
+          "clip": "c4",
+          "crossings": 1,
+          "lateral_m": -0.013020664338131923,
+          "height_m": 0.00197367263716055,
+          "lateral_wall_gap_m": -0.009020664338131923
+        },
+        {
+          "clip": "c5",
+          "crossings": 1,
+          "lateral_m": -0.0023559465802867365,
+          "height_m": 0.0019670037354867164,
+          "lateral_wall_gap_m": 0.0016440534197132636
+        }
+      ],
+      "worst_lateral_wall_gap_m": -0.01357427472146661,
+      "installed_min_bend_radius_m": 0.04581101613126484,
+      "max_initial_turn_deg": 47.39091485249286,
+      "routed_direct_length_m": 0.4151139732562447,
+      "geometric_service_loop_m": 0.0448860267437553,
+      "solved_anchor_along_m": 0.23687701522663734,
+      "boot_to_anchor_m": 0.34780010688390467,
+      "settle_native_steps": 20000,
+      "wall_s": 6.7
+    },
+    {
+      "layout": "RC2",
+      "installed_loop_m": 0.004,
+      "clips": 5,
+      "built": true,
+      "settled": false,
+      "reason": "settle_clip_not_retained",
+      "per_clip": [
+        {
+          "id": "c1",
+          "index": 0,
+          "required": true,
+          "has_retained_passage": false,
+          "ambiguous_multiple_passages": false,
+          "retained_passages": 0,
+          "crossings": 1
+        },
+        {
+          "id": "c2",
+          "index": 1,
+          "required": true,
+          "has_retained_passage": true,
+          "ambiguous_multiple_passages": false,
+          "retained_passages": 1,
+          "crossings": 1
+        },
+        {
+          "id": "c3",
+          "index": 2,
+          "required": true,
+          "has_retained_passage": false,
+          "ambiguous_multiple_passages": false,
+          "retained_passages": 0,
+          "crossings": 1
+        },
+        {
+          "id": "c4",
+          "index": 3,
+          "required": true,
+          "has_retained_passage": false,
+          "ambiguous_multiple_passages": false,
+          "retained_passages": 0,
+          "crossings": 1
+        },
+        {
+          "id": "c5",
+          "index": 4,
+          "required": true,
+          "has_retained_passage": false,
+          "ambiguous_multiple_passages": false,
+          "retained_passages": 0,
+          "crossings": 1
+        }
+      ],
+      "summary": {
+        "clips": 5,
+        "required_ids": [
+          "c1",
+          "c2",
+          "c3",
+          "c4",
+          "c5"
+        ],
+        "retained_ids": [
+          "c2"
+        ],
+        "lost_required_ids": [
+          "c1",
+          "c3",
+          "c4",
+          "c5"
+        ],
+        "required_retained": 1,
+        "required_count": 5,
+        "all_required_retained": false
+      },
+      "lateral_wall_gaps": [
+        {
+          "clip": "c1",
+          "crossings": 1,
+          "lateral_m": -0.008904242105987798,
+          "height_m": 0.01667862048747197,
+          "lateral_wall_gap_m": -0.004904242105987798
+        },
+        {
+          "clip": "c2",
+          "crossings": 1,
+          "lateral_m": -0.0021806006767539315,
+          "height_m": 0.0014612862485314593,
+          "lateral_wall_gap_m": 0.0018193993232460686
+        },
+        {
+          "clip": "c3",
+          "crossings": 1,
+          "lateral_m": -0.004576437527552527,
+          "height_m": -0.01810657965858692,
+          "lateral_wall_gap_m": -0.0005764375275525268
+        },
+        {
+          "clip": "c4",
+          "crossings": 1,
+          "lateral_m": -0.004488400905617651,
+          "height_m": -0.022349602880018287,
+          "lateral_wall_gap_m": -0.0004884009056176511
+        },
+        {
+          "clip": "c5",
+          "crossings": 1,
+          "lateral_m": 0.00013026036163332088,
+          "height_m": -0.013091691787677029,
+          "lateral_wall_gap_m": 0.003869739638366679
+        }
+      ],
+      "worst_lateral_wall_gap_m": -0.004904242105987798,
+      "installed_min_bend_radius_m": 0.031510150322615574,
+      "max_initial_turn_deg": 47.38710315498995,
+      "routed_direct_length_m": 0.4146139732562447,
+      "geometric_service_loop_m": 0.0453860267437553,
+      "solved_anchor_along_m": 0.23633522311487837,
+      "boot_to_anchor_m": 0.3474492038487453,
+      "settle_native_steps": 20000,
+      "wall_s": 5.9
+    },
+    {
+      "layout": "RC2",
+      "installed_loop_m": 0.0045,
+      "clips": 5,
+      "built": true,
+      "settled": false,
+      "reason": "settle_clip_not_retained",
+      "per_clip": [
+        {
+          "id": "c1",
+          "index": 0,
+          "required": true,
+          "has_retained_passage": false,
+          "ambiguous_multiple_passages": false,
+          "retained_passages": 0,
+          "crossings": 1
+        },
+        {
+          "id": "c2",
+          "index": 1,
+          "required": true,
+          "has_retained_passage": false,
+          "ambiguous_multiple_passages": false,
+          "retained_passages": 0,
+          "crossings": 1
+        },
+        {
+          "id": "c3",
+          "index": 2,
+          "required": true,
+          "has_retained_passage": false,
+          "ambiguous_multiple_passages": false,
+          "retained_passages": 0,
+          "crossings": 1
+        },
+        {
+          "id": "c4",
+          "index": 3,
+          "required": true,
+          "has_retained_passage": false,
+          "ambiguous_multiple_passages": false,
+          "retained_passages": 0,
+          "crossings": 1
+        },
+        {
+          "id": "c5",
+          "index": 4,
+          "required": true,
+          "has_retained_passage": false,
+          "ambiguous_multiple_passages": false,
+          "retained_passages": 0,
+          "crossings": 1
+        }
+      ],
+      "summary": {
+        "clips": 5,
+        "required_ids": [
+          "c1",
+          "c2",
+          "c3",
+          "c4",
+          "c5"
+        ],
+        "retained_ids": [],
+        "lost_required_ids": [
+          "c1",
+          "c2",
+          "c3",
+          "c4",
+          "c5"
+        ],
+        "required_retained": 0,
+        "required_count": 5,
+        "all_required_retained": false
+      },
+      "lateral_wall_gaps": [
+        {
+          "clip": "c1",
+          "crossings": 1,
+          "lateral_m": 0.029179405883247356,
+          "height_m": 0.003791539324213452,
+          "lateral_wall_gap_m": -0.025179405883247356
+        },
+        {
+          "clip": "c2",
+          "crossings": 1,
+          "lateral_m": 0.03319387438498313,
+          "height_m": 0.001954082054765462,
+          "lateral_wall_gap_m": -0.029193874384983127
+        },
+        {
+          "clip": "c3",
+          "crossings": 1,
+          "lateral_m": 0.0345247721175755,
+          "height_m": 0.0019680453428659508,
+          "lateral_wall_gap_m": -0.0305247721175755
+        },
+        {
+          "clip": "c4",
+          "crossings": 1,
+          "lateral_m": 0.03552186402028495,
+          "height_m": 0.001974211398847522,
+          "lateral_wall_gap_m": -0.03152186402028495
+        },
+        {
+          "clip": "c5",
+          "crossings": 1,
+          "lateral_m": 0.03412925998583804,
+          "height_m": 0.0019653152778737726,
+          "lateral_wall_gap_m": -0.030129259985838038
+        }
+      ],
+      "worst_lateral_wall_gap_m": -0.03152186402028495,
+      "installed_min_bend_radius_m": 0.06588558746621859,
+      "max_initial_turn_deg": 47.383180483573874,
+      "routed_direct_length_m": 0.41411397325624466,
+      "geometric_service_loop_m": 0.04588602674375536,
+      "solved_anchor_along_m": 0.23579256450754732,
+      "boot_to_anchor_m": 0.34704570662673906,
+      "settle_native_steps": 20000,
+      "wall_s": 6.7
+    },
+    {
+      "layout": "RC3",
+      "installed_loop_m": 0.0015,
+      "clips": 5,
+      "built": true,
+      "settled": false,
+      "reason": "settle_clip_not_retained",
+      "per_clip": [
+        {
+          "id": "c1",
+          "index": 0,
+          "required": true,
+          "has_retained_passage": false,
+          "ambiguous_multiple_passages": false,
+          "retained_passages": 0,
+          "crossings": 1
+        },
+        {
+          "id": "c2",
+          "index": 1,
+          "required": true,
+          "has_retained_passage": false,
+          "ambiguous_multiple_passages": false,
+          "retained_passages": 0,
+          "crossings": 1
+        },
+        {
+          "id": "c3",
+          "index": 2,
+          "required": true,
+          "has_retained_passage": false,
+          "ambiguous_multiple_passages": false,
+          "retained_passages": 0,
+          "crossings": 1
+        },
+        {
+          "id": "c4",
+          "index": 3,
+          "required": true,
+          "has_retained_passage": false,
+          "ambiguous_multiple_passages": false,
+          "retained_passages": 0,
+          "crossings": 1
+        },
+        {
+          "id": "c5",
+          "index": 4,
+          "required": true,
+          "has_retained_passage": false,
+          "ambiguous_multiple_passages": false,
+          "retained_passages": 0,
+          "crossings": 1
+        }
+      ],
+      "summary": {
+        "clips": 5,
+        "required_ids": [
+          "c1",
+          "c2",
+          "c3",
+          "c4",
+          "c5"
+        ],
+        "retained_ids": [],
+        "lost_required_ids": [
+          "c1",
+          "c2",
+          "c3",
+          "c4",
+          "c5"
+        ],
+        "required_retained": 0,
+        "required_count": 5,
+        "all_required_retained": false
+      },
+      "lateral_wall_gaps": [
+        {
+          "clip": "c1",
+          "crossings": 1,
+          "lateral_m": -0.024765033791597713,
+          "height_m": 0.007574809484730161,
+          "lateral_wall_gap_m": -0.020765033791597713
+        },
+        {
+          "clip": "c2",
+          "crossings": 1,
+          "lateral_m": -0.02231361259994241,
+          "height_m": -0.00017251780566089918,
+          "lateral_wall_gap_m": -0.018313612599942408
+        },
+        {
+          "clip": "c3",
+          "crossings": 1,
+          "lateral_m": -0.019731501230498973,
+          "height_m": -0.004053544723208872,
+          "lateral_wall_gap_m": -0.015731501230498973
+        },
+        {
+          "clip": "c4",
+          "crossings": 1,
+          "lateral_m": -0.016850630066334783,
+          "height_m": -0.0010347820329045967,
+          "lateral_wall_gap_m": -0.012850630066334783
+        },
+        {
+          "clip": "c5",
+          "crossings": 1,
+          "lateral_m": -0.013344081826742992,
+          "height_m": 0.0019656302774733337,
+          "lateral_wall_gap_m": -0.009344081826742992
+        }
+      ],
+      "worst_lateral_wall_gap_m": -0.020765033791597713,
+      "installed_min_bend_radius_m": 0.01599613491933041,
+      "max_initial_turn_deg": 59.28733754888256,
+      "routed_direct_length_m": 0.4172014808683636,
+      "geometric_service_loop_m": 0.0427985191316364,
+      "solved_anchor_along_m": 0.24732782395198322,
+      "boot_to_anchor_m": 0.3529369045446139,
+      "settle_native_steps": 20000,
+      "wall_s": 6.6
+    },
+    {
+      "layout": "RC3",
+      "installed_loop_m": 0.002,
+      "clips": 5,
+      "built": true,
+      "settled": true,
+      "reason": null,
+      "per_clip": [
+        {
+          "id": "c1",
+          "index": 0,
+          "required": true,
+          "has_retained_passage": true,
+          "ambiguous_multiple_passages": false,
+          "retained_passages": 1,
+          "crossings": 1
+        },
+        {
+          "id": "c2",
+          "index": 1,
+          "required": true,
+          "has_retained_passage": true,
+          "ambiguous_multiple_passages": false,
+          "retained_passages": 1,
+          "crossings": 1
+        },
+        {
+          "id": "c3",
+          "index": 2,
+          "required": true,
+          "has_retained_passage": true,
+          "ambiguous_multiple_passages": false,
+          "retained_passages": 1,
+          "crossings": 1
+        },
+        {
+          "id": "c4",
+          "index": 3,
+          "required": true,
+          "has_retained_passage": true,
+          "ambiguous_multiple_passages": false,
+          "retained_passages": 1,
+          "crossings": 1
+        },
+        {
+          "id": "c5",
+          "index": 4,
+          "required": true,
+          "has_retained_passage": true,
+          "ambiguous_multiple_passages": false,
+          "retained_passages": 1,
+          "crossings": 1
+        }
+      ],
+      "summary": {
+        "clips": 5,
+        "required_ids": [
+          "c1",
+          "c2",
+          "c3",
+          "c4",
+          "c5"
+        ],
+        "retained_ids": [
+          "c1",
+          "c2",
+          "c3",
+          "c4",
+          "c5"
+        ],
+        "lost_required_ids": [],
+        "required_retained": 5,
+        "required_count": 5,
+        "all_required_retained": true
+      },
+      "lateral_wall_gaps": [
+        {
+          "clip": "c1",
+          "crossings": 1,
+          "lateral_m": 0.002590386304901844,
+          "height_m": 0.0026461102798264672,
+          "lateral_wall_gap_m": 0.0014096136950981562
+        },
+        {
+          "clip": "c2",
+          "crossings": 1,
+          "lateral_m": -0.0012718928726536054,
+          "height_m": 0.0022846246953423742,
+          "lateral_wall_gap_m": 0.0027281071273463947
+        },
+        {
+          "clip": "c3",
+          "crossings": 1,
+          "lateral_m": -0.0033181095406158937,
+          "height_m": 0.0010636283968403978,
+          "lateral_wall_gap_m": 0.0006818904593841064
+        },
+        {
+          "clip": "c4",
+          "crossings": 1,
+          "lateral_m": -0.003976201590184487,
+          "height_m": 0.002430464355042917,
+          "lateral_wall_gap_m": 2.3798409815513344e-05
+        },
+        {
+          "clip": "c5",
+          "crossings": 1,
+          "lateral_m": -0.003621276869118975,
+          "height_m": 0.002998168423326751,
+          "lateral_wall_gap_m": 0.0003787231308810253
+        }
+      ],
+      "worst_lateral_wall_gap_m": 2.3798409815513344e-05,
+      "installed_min_bend_radius_m": 0.06366794634517706,
+      "max_initial_turn_deg": 59.260508383695516,
+      "routed_direct_length_m": 0.4167014808683636,
+      "geometric_service_loop_m": 0.043298519131636404,
+      "solved_anchor_along_m": 0.2468277119765238,
+      "boot_to_anchor_m": 0.35254858586700605,
+      "settle_native_steps": 20000,
+      "wall_s": 5.3
+    },
+    {
+      "layout": "RC3",
+      "installed_loop_m": 0.0025,
+      "clips": 5,
+      "built": true,
+      "settled": false,
+      "reason": "settle_clip_not_retained",
+      "per_clip": [
+        {
+          "id": "c1",
+          "index": 0,
+          "required": true,
+          "has_retained_passage": false,
+          "ambiguous_multiple_passages": false,
+          "retained_passages": 0,
+          "crossings": 1
+        },
+        {
+          "id": "c2",
+          "index": 1,
+          "required": true,
+          "has_retained_passage": false,
+          "ambiguous_multiple_passages": false,
+          "retained_passages": 0,
+          "crossings": 1
+        },
+        {
+          "id": "c3",
+          "index": 2,
+          "required": true,
+          "has_retained_passage": false,
+          "ambiguous_multiple_passages": false,
+          "retained_passages": 0,
+          "crossings": 1
+        },
+        {
+          "id": "c4",
+          "index": 3,
+          "required": true,
+          "has_retained_passage": false,
+          "ambiguous_multiple_passages": false,
+          "retained_passages": 0,
+          "crossings": 1
+        },
+        {
+          "id": "c5",
+          "index": 4,
+          "required": true,
+          "has_retained_passage": false,
+          "ambiguous_multiple_passages": false,
+          "retained_passages": 0,
+          "crossings": 1
+        }
+      ],
+      "summary": {
+        "clips": 5,
+        "required_ids": [
+          "c1",
+          "c2",
+          "c3",
+          "c4",
+          "c5"
+        ],
+        "retained_ids": [],
+        "lost_required_ids": [
+          "c1",
+          "c2",
+          "c3",
+          "c4",
+          "c5"
+        ],
+        "required_retained": 0,
+        "required_count": 5,
+        "all_required_retained": false
+      },
+      "lateral_wall_gaps": [
+        {
+          "clip": "c1",
+          "crossings": 1,
+          "lateral_m": 0.03635463100313513,
+          "height_m": 0.005098977650359531,
+          "lateral_wall_gap_m": -0.032354631003135126
+        },
+        {
+          "clip": "c2",
+          "crossings": 1,
+          "lateral_m": 0.0453936986428758,
+          "height_m": -0.0009357927160692997,
+          "lateral_wall_gap_m": -0.0413936986428758
+        },
+        {
+          "clip": "c3",
+          "crossings": 1,
+          "lateral_m": 0.05003653968596874,
+          "height_m": -0.004051464371646539,
+          "lateral_wall_gap_m": -0.04603653968596874
+        },
+        {
+          "clip": "c4",
+          "crossings": 1,
+          "lateral_m": 0.04971104853422768,
+          "height_m": -0.001026776988059055,
+          "lateral_wall_gap_m": -0.04571104853422768
+        },
+        {
+          "clip": "c5",
+          "crossings": 1,
+          "lateral_m": 0.043942398458011386,
+          "height_m": 0.001971764918083851,
+          "lateral_wall_gap_m": -0.03994239845801138
+        }
+      ],
+      "worst_lateral_wall_gap_m": -0.04603653968596874,
+      "installed_min_bend_radius_m": 0.04897820139805005,
+      "max_initial_turn_deg": 59.24175164941846,
+      "routed_direct_length_m": 0.4162014808683635,
+      "geometric_service_loop_m": 0.043798519131636515,
+      "solved_anchor_along_m": 0.24632759821626277,
+      "boot_to_anchor_m": 0.3519903731533917,
+      "settle_native_steps": 20000,
+      "wall_s": 5.9
+    },
+    {
+      "layout": "RC3",
+      "installed_loop_m": 0.003,
+      "clips": 5,
+      "built": true,
+      "settled": false,
+      "reason": "settle_cable_motion",
+      "per_clip": [
+        {
+          "id": "c1",
+          "index": 0,
+          "required": true,
+          "has_retained_passage": false,
+          "ambiguous_multiple_passages": false,
+          "retained_passages": 0,
+          "crossings": 1
+        },
+        {
+          "id": "c2",
+          "index": 1,
+          "required": true,
+          "has_retained_passage": false,
+          "ambiguous_multiple_passages": false,
+          "retained_passages": 0,
+          "crossings": 1
+        },
+        {
+          "id": "c3",
+          "index": 2,
+          "required": true,
+          "has_retained_passage": false,
+          "ambiguous_multiple_passages": false,
+          "retained_passages": 0,
+          "crossings": 1
+        },
+        {
+          "id": "c4",
+          "index": 3,
+          "required": true,
+          "has_retained_passage": false,
+          "ambiguous_multiple_passages": false,
+          "retained_passages": 0,
+          "crossings": 1
+        },
+        {
+          "id": "c5",
+          "index": 4,
+          "required": true,
+          "has_retained_passage": false,
+          "ambiguous_multiple_passages": false,
+          "retained_passages": 0,
+          "crossings": 1
+        }
+      ],
+      "summary": {
+        "clips": 5,
+        "required_ids": [
+          "c1",
+          "c2",
+          "c3",
+          "c4",
+          "c5"
+        ],
+        "retained_ids": [],
+        "lost_required_ids": [
+          "c1",
+          "c2",
+          "c3",
+          "c4",
+          "c5"
+        ],
+        "required_retained": 0,
+        "required_count": 5,
+        "all_required_retained": false
+      },
+      "lateral_wall_gaps": [
+        {
+          "clip": "c1",
+          "crossings": 1,
+          "lateral_m": -0.03592173315471532,
+          "height_m": 0.00597769070589407,
+          "lateral_wall_gap_m": -0.03192173315471532
+        },
+        {
+          "clip": "c2",
+          "crossings": 1,
+          "lateral_m": -0.03617716004705575,
+          "height_m": -0.00028802580376504825,
+          "lateral_wall_gap_m": -0.032177160047055745
+        },
+        {
+          "clip": "c3",
+          "crossings": 1,
+          "lateral_m": -0.035683146799550224,
+          "height_m": -0.0021277082456717398,
+          "lateral_wall_gap_m": -0.03168314679955023
+        },
+        {
+          "clip": "c4",
+          "crossings": 1,
+          "lateral_m": -0.03392299283555761,
+          "height_m": 0.0027813133626376366,
+          "lateral_wall_gap_m": -0.029922992835557608
+        },
+        {
+          "clip": "c5",
+          "crossings": 1,
+          "lateral_m": -0.030256101642604644,
+          "height_m": 0.0027361367605319583,
+          "lateral_wall_gap_m": -0.026256101642604644
+        }
+      ],
+      "worst_lateral_wall_gap_m": -0.032177160047055745,
+      "installed_min_bend_radius_m": 0.028032610541031643,
+      "max_initial_turn_deg": 59.22844508611424,
+      "routed_direct_length_m": 0.41570148086836356,
+      "geometric_service_loop_m": 0.04429851913163646,
+      "solved_anchor_along_m": 0.24582748262862192,
+      "boot_to_anchor_m": 0.3518067375094829,
+      "settle_native_steps": 20000,
+      "wall_s": 5.8
+    },
+    {
+      "layout": "RC3",
+      "installed_loop_m": 0.0035,
+      "clips": 5,
+      "built": true,
+      "settled": false,
+      "reason": "settle_clip_not_retained",
+      "per_clip": [
+        {
+          "id": "c1",
+          "index": 0,
+          "required": true,
+          "has_retained_passage": false,
+          "ambiguous_multiple_passages": false,
+          "retained_passages": 0,
+          "crossings": 1
+        },
+        {
+          "id": "c2",
+          "index": 1,
+          "required": true,
+          "has_retained_passage": false,
+          "ambiguous_multiple_passages": false,
+          "retained_passages": 0,
+          "crossings": 1
+        },
+        {
+          "id": "c3",
+          "index": 2,
+          "required": true,
+          "has_retained_passage": false,
+          "ambiguous_multiple_passages": false,
+          "retained_passages": 0,
+          "crossings": 1
+        },
+        {
+          "id": "c4",
+          "index": 3,
+          "required": true,
+          "has_retained_passage": false,
+          "ambiguous_multiple_passages": false,
+          "retained_passages": 0,
+          "crossings": 1
+        },
+        {
+          "id": "c5",
+          "index": 4,
+          "required": true,
+          "has_retained_passage": false,
+          "ambiguous_multiple_passages": false,
+          "retained_passages": 0,
+          "crossings": 1
+        }
+      ],
+      "summary": {
+        "clips": 5,
+        "required_ids": [
+          "c1",
+          "c2",
+          "c3",
+          "c4",
+          "c5"
+        ],
+        "retained_ids": [],
+        "lost_required_ids": [
+          "c1",
+          "c2",
+          "c3",
+          "c4",
+          "c5"
+        ],
+        "required_retained": 0,
+        "required_count": 5,
+        "all_required_retained": false
+      },
+      "lateral_wall_gaps": [
+        {
+          "clip": "c1",
+          "crossings": 1,
+          "lateral_m": -0.020361187534857227,
+          "height_m": 0.0021081764562579405,
+          "lateral_wall_gap_m": -0.016361187534857227
+        },
+        {
+          "clip": "c2",
+          "crossings": 1,
+          "lateral_m": -0.01832995811954715,
+          "height_m": -0.001043226817851482,
+          "lateral_wall_gap_m": -0.01432995811954715
+        },
+        {
+          "clip": "c3",
+          "crossings": 1,
+          "lateral_m": -0.016597621623786835,
+          "height_m": -0.004027430355518595,
+          "lateral_wall_gap_m": -0.012597621623786835
+        },
+        {
+          "clip": "c4",
+          "crossings": 1,
+          "lateral_m": -0.014693090371610554,
+          "height_m": -0.0010263548081916956,
+          "lateral_wall_gap_m": -0.010693090371610554
+        },
+        {
+          "clip": "c5",
+          "crossings": 1,
+          "lateral_m": -0.012021618772394676,
+          "height_m": 0.001965729860496113,
+          "lateral_wall_gap_m": -0.008021618772394675
+        }
+      ],
+      "worst_lateral_wall_gap_m": -0.016361187534857227,
+      "installed_min_bend_radius_m": 0.07033435614315843,
+      "max_initial_turn_deg": 59.22346216662704,
+      "routed_direct_length_m": 0.41520148086836356,
+      "geometric_service_loop_m": 0.04479851913163646,
+      "solved_anchor_along_m": 0.24532736516967474,
+      "boot_to_anchor_m": 0.3515224157764715,
+      "settle_native_steps": 20000,
+      "wall_s": 5.3
+    },
+    {
+      "layout": "RC3",
+      "installed_loop_m": 0.004,
+      "clips": 5,
+      "built": true,
+      "settled": false,
+      "reason": "settle_clip_not_retained",
+      "per_clip": [
+        {
+          "id": "c1",
+          "index": 0,
+          "required": true,
+          "has_retained_passage": false,
+          "ambiguous_multiple_passages": false,
+          "retained_passages": 0,
+          "crossings": 1
+        },
+        {
+          "id": "c2",
+          "index": 1,
+          "required": true,
+          "has_retained_passage": false,
+          "ambiguous_multiple_passages": false,
+          "retained_passages": 0,
+          "crossings": 1
+        },
+        {
+          "id": "c3",
+          "index": 2,
+          "required": true,
+          "has_retained_passage": false,
+          "ambiguous_multiple_passages": false,
+          "retained_passages": 0,
+          "crossings": 1
+        },
+        {
+          "id": "c4",
+          "index": 3,
+          "required": true,
+          "has_retained_passage": false,
+          "ambiguous_multiple_passages": false,
+          "retained_passages": 0,
+          "crossings": 1
+        },
+        {
+          "id": "c5",
+          "index": 4,
+          "required": true,
+          "has_retained_passage": false,
+          "ambiguous_multiple_passages": false,
+          "retained_passages": 0,
+          "crossings": 1
+        }
+      ],
+      "summary": {
+        "clips": 5,
+        "required_ids": [
+          "c1",
+          "c2",
+          "c3",
+          "c4",
+          "c5"
+        ],
+        "retained_ids": [],
+        "lost_required_ids": [
+          "c1",
+          "c2",
+          "c3",
+          "c4",
+          "c5"
+        ],
+        "required_retained": 0,
+        "required_count": 5,
+        "all_required_retained": false
+      },
+      "lateral_wall_gaps": [
+        {
+          "clip": "c1",
+          "crossings": 1,
+          "lateral_m": -0.01824924436276517,
+          "height_m": 0.0019437257542078389,
+          "lateral_wall_gap_m": -0.01424924436276517
+        },
+        {
+          "clip": "c2",
+          "crossings": 1,
+          "lateral_m": -0.02272986165839783,
+          "height_m": -0.001036331149243104,
+          "lateral_wall_gap_m": -0.01872986165839783
+        },
+        {
+          "clip": "c3",
+          "crossings": 1,
+          "lateral_m": -0.024977924039109114,
+          "height_m": -0.004025538231316991,
+          "lateral_wall_gap_m": -0.020977924039109114
+        },
+        {
+          "clip": "c4",
+          "crossings": 1,
+          "lateral_m": -0.02453661917429731,
+          "height_m": -0.001025810030105797,
+          "lateral_wall_gap_m": -0.020536619174297308
+        },
+        {
+          "clip": "c5",
+          "crossings": 1,
+          "lateral_m": -0.02114935956589143,
+          "height_m": 0.0019660883837478945,
+          "lateral_wall_gap_m": -0.01714935956589143
+        }
+      ],
+      "worst_lateral_wall_gap_m": -0.020977924039109114,
+      "installed_min_bend_radius_m": 0.05341605715138126,
+      "max_initial_turn_deg": 59.22226833674379,
+      "routed_direct_length_m": 0.41470148086836356,
+      "geometric_service_loop_m": 0.04529851913163646,
+      "solved_anchor_along_m": 0.24482724579409482,
+      "boot_to_anchor_m": 0.3509886810656159,
+      "settle_native_steps": 20000,
+      "wall_s": 6.0
+    },
+    {
+      "layout": "RC3",
+      "installed_loop_m": 0.0045,
+      "clips": 5,
+      "built": true,
+      "settled": false,
+      "reason": "settle_instability",
+      "per_clip": [
+        {
+          "id": "c1",
+          "index": 0,
+          "required": true,
+          "has_retained_passage": false,
+          "ambiguous_multiple_passages": false,
+          "retained_passages": 0,
+          "crossings": 1
+        },
+        {
+          "id": "c2",
+          "index": 1,
+          "required": true,
+          "has_retained_passage": true,
+          "ambiguous_multiple_passages": false,
+          "retained_passages": 1,
+          "crossings": 1
+        },
+        {
+          "id": "c3",
+          "index": 2,
+          "required": true,
+          "has_retained_passage": true,
+          "ambiguous_multiple_passages": false,
+          "retained_passages": 1,
+          "crossings": 1
+        },
+        {
+          "id": "c4",
+          "index": 3,
+          "required": true,
+          "has_retained_passage": true,
+          "ambiguous_multiple_passages": false,
+          "retained_passages": 1,
+          "crossings": 1
+        },
+        {
+          "id": "c5",
+          "index": 4,
+          "required": true,
+          "has_retained_passage": true,
+          "ambiguous_multiple_passages": false,
+          "retained_passages": 1,
+          "crossings": 1
+        }
+      ],
+      "summary": {
+        "clips": 5,
+        "required_ids": [
+          "c1",
+          "c2",
+          "c3",
+          "c4",
+          "c5"
+        ],
+        "retained_ids": [
+          "c2",
+          "c3",
+          "c4",
+          "c5"
+        ],
+        "lost_required_ids": [
+          "c1"
+        ],
+        "required_retained": 4,
+        "required_count": 5,
+        "all_required_retained": false
+      },
+      "lateral_wall_gaps": [
+        {
+          "clip": "c1",
+          "crossings": 1,
+          "lateral_m": 2.7117699485903204e-06,
+          "height_m": 0.013080856687214643,
+          "lateral_wall_gap_m": 0.00399728823005141
+        },
+        {
+          "clip": "c2",
+          "crossings": 1,
+          "lateral_m": -3.12098297435973e-07,
+          "height_m": 0.002139725303192285,
+          "lateral_wall_gap_m": 0.003999687901702564
+        },
+        {
+          "clip": "c3",
+          "crossings": 1,
+          "lateral_m": 2.274337890899544e-06,
+          "height_m": 0.001745178337525496,
+          "lateral_wall_gap_m": 0.003997725662109101
+        },
+        {
+          "clip": "c4",
+          "crossings": 1,
+          "lateral_m": -6.598455140397588e-05,
+          "height_m": 0.002522513784940911,
+          "lateral_wall_gap_m": 0.003934015448596024
+        },
+        {
+          "clip": "c5",
+          "crossings": 1,
+          "lateral_m": 0.0008511265898485242,
+          "height_m": 0.0027611915290248895,
+          "lateral_wall_gap_m": 0.003148873410151476
+        }
+      ],
+      "worst_lateral_wall_gap_m": 0.003148873410151476,
+      "installed_min_bend_radius_m": 0.02023858307892647,
+      "max_initial_turn_deg": 59.22159993533189,
+      "routed_direct_length_m": 0.4142014808683636,
+      "geometric_service_loop_m": 0.045798519131636406,
+      "solved_anchor_along_m": 0.24432712445509858,
+      "boot_to_anchor_m": 0.35079432462050086,
+      "settle_native_steps": 20000,
+      "wall_s": 0.9
+    },
+    {
+      "layout": "RC4",
+      "installed_loop_m": 0.0015,
+      "clips": 4,
+      "built": true,
+      "settled": false,
+      "reason": "settle_clip_not_retained",
+      "per_clip": [
+        {
+          "id": "c1",
+          "index": 0,
+          "required": true,
+          "has_retained_passage": false,
+          "ambiguous_multiple_passages": false,
+          "retained_passages": 0,
+          "crossings": 1
+        },
+        {
+          "id": "c2",
+          "index": 1,
+          "required": true,
+          "has_retained_passage": true,
+          "ambiguous_multiple_passages": false,
+          "retained_passages": 1,
+          "crossings": 1
+        },
+        {
+          "id": "c3",
+          "index": 2,
+          "required": true,
+          "has_retained_passage": true,
+          "ambiguous_multiple_passages": false,
+          "retained_passages": 1,
+          "crossings": 1
+        },
+        {
+          "id": "c4",
+          "index": 3,
+          "required": true,
+          "has_retained_passage": true,
+          "ambiguous_multiple_passages": false,
+          "retained_passages": 1,
+          "crossings": 1
+        }
+      ],
+      "summary": {
+        "clips": 4,
+        "required_ids": [
+          "c1",
+          "c2",
+          "c3",
+          "c4"
+        ],
+        "retained_ids": [
+          "c2",
+          "c3",
+          "c4"
+        ],
+        "lost_required_ids": [
+          "c1"
+        ],
+        "required_retained": 3,
+        "required_count": 4,
+        "all_required_retained": false
+      },
+      "lateral_wall_gaps": [
+        {
+          "clip": "c1",
+          "crossings": 1,
+          "lateral_m": 0.0168009689773336,
+          "height_m": 0.004214996810669669,
+          "lateral_wall_gap_m": -0.012800968977333599
+        },
+        {
+          "clip": "c2",
+          "crossings": 1,
+          "lateral_m": -0.00014680819487985624,
+          "height_m": 0.0014376003839938836,
+          "lateral_wall_gap_m": 0.003853191805120144
+        },
+        {
+          "clip": "c3",
+          "crossings": 1,
+          "lateral_m": -0.0039558811462615286,
+          "height_m": 0.002056216792500569,
+          "lateral_wall_gap_m": 4.411885373847152e-05
+        },
+        {
+          "clip": "c4",
+          "crossings": 1,
+          "lateral_m": 9.304918537492705e-05,
+          "height_m": 0.002312382670918999,
+          "lateral_wall_gap_m": 0.003906950814625073
+        }
+      ],
+      "worst_lateral_wall_gap_m": -0.012800968977333599,
+      "installed_min_bend_radius_m": 0.044627416929392906,
+      "max_initial_turn_deg": 56.807402690833726,
+      "routed_direct_length_m": 0.41769722794304137,
+      "geometric_service_loop_m": 0.04230277205695865,
+      "solved_anchor_along_m": 0.24208696708955485,
+      "boot_to_anchor_m": 0.3513628122427479,
+      "settle_native_steps": 20000,
+      "wall_s": 5.2
+    },
+    {
+      "layout": "RC4",
+      "installed_loop_m": 0.002,
+      "clips": 4,
+      "built": true,
+      "settled": false,
+      "reason": "settle_clip_not_retained",
+      "per_clip": [
+        {
+          "id": "c1",
+          "index": 0,
+          "required": true,
+          "has_retained_passage": false,
+          "ambiguous_multiple_passages": false,
+          "retained_passages": 0,
+          "crossings": 1
+        },
+        {
+          "id": "c2",
+          "index": 1,
+          "required": true,
+          "has_retained_passage": true,
+          "ambiguous_multiple_passages": false,
+          "retained_passages": 1,
+          "crossings": 1
+        },
+        {
+          "id": "c3",
+          "index": 2,
+          "required": true,
+          "has_retained_passage": false,
+          "ambiguous_multiple_passages": false,
+          "retained_passages": 0,
+          "crossings": 1
+        },
+        {
+          "id": "c4",
+          "index": 3,
+          "required": true,
+          "has_retained_passage": true,
+          "ambiguous_multiple_passages": false,
+          "retained_passages": 1,
+          "crossings": 1
+        }
+      ],
+      "summary": {
+        "clips": 4,
+        "required_ids": [
+          "c1",
+          "c2",
+          "c3",
+          "c4"
+        ],
+        "retained_ids": [
+          "c2",
+          "c4"
+        ],
+        "lost_required_ids": [
+          "c1",
+          "c3"
+        ],
+        "required_retained": 2,
+        "required_count": 4,
+        "all_required_retained": false
+      },
+      "lateral_wall_gaps": [
+        {
+          "clip": "c1",
+          "crossings": 1,
+          "lateral_m": 0.016779238180569103,
+          "height_m": 0.003976222482335101,
+          "lateral_wall_gap_m": -0.012779238180569103
+        },
+        {
+          "clip": "c2",
+          "crossings": 1,
+          "lateral_m": -0.0001142512776718606,
+          "height_m": 0.001432311706171131,
+          "lateral_wall_gap_m": 0.0038857487223281396
+        },
+        {
+          "clip": "c3",
+          "crossings": 1,
+          "lateral_m": -0.004016849666737587,
+          "height_m": 0.002056024438454192,
+          "lateral_wall_gap_m": -1.684966673758722e-05
+        },
+        {
+          "clip": "c4",
+          "crossings": 1,
+          "lateral_m": -0.00019535061537141144,
+          "height_m": 0.0023237521848124155,
+          "lateral_wall_gap_m": 0.0038046493846285888
+        }
+      ],
+      "worst_lateral_wall_gap_m": -0.012779238180569103,
+      "installed_min_bend_radius_m": 0.04512595697022064,
+      "max_initial_turn_deg": 56.76111233377977,
+      "routed_direct_length_m": 0.41719722794304137,
+      "geometric_service_loop_m": 0.04280277205695865,
+      "solved_anchor_along_m": 0.24155596184198364,
+      "boot_to_anchor_m": 0.3509958073655677,
+      "settle_native_steps": 20000,
+      "wall_s": 4.4
+    },
+    {
+      "layout": "RC4",
+      "installed_loop_m": 0.0025,
+      "clips": 4,
+      "built": true,
+      "settled": false,
+      "reason": "settle_instability",
+      "per_clip": [
+        {
+          "id": "c1",
+          "index": 0,
+          "required": true,
+          "has_retained_passage": false,
+          "ambiguous_multiple_passages": false,
+          "retained_passages": 0,
+          "crossings": 1
+        },
+        {
+          "id": "c2",
+          "index": 1,
+          "required": true,
+          "has_retained_passage": true,
+          "ambiguous_multiple_passages": false,
+          "retained_passages": 1,
+          "crossings": 1
+        },
+        {
+          "id": "c3",
+          "index": 2,
+          "required": true,
+          "has_retained_passage": true,
+          "ambiguous_multiple_passages": false,
+          "retained_passages": 1,
+          "crossings": 1
+        },
+        {
+          "id": "c4",
+          "index": 3,
+          "required": true,
+          "has_retained_passage": true,
+          "ambiguous_multiple_passages": false,
+          "retained_passages": 1,
+          "crossings": 1
+        }
+      ],
+      "summary": {
+        "clips": 4,
+        "required_ids": [
+          "c1",
+          "c2",
+          "c3",
+          "c4"
+        ],
+        "retained_ids": [
+          "c2",
+          "c3",
+          "c4"
+        ],
+        "lost_required_ids": [
+          "c1"
+        ],
+        "required_retained": 3,
+        "required_count": 4,
+        "all_required_retained": false
+      },
+      "lateral_wall_gaps": [
+        {
+          "clip": "c1",
+          "crossings": 1,
+          "lateral_m": 7.918144840298293e-06,
+          "height_m": 0.014261536845760713,
+          "lateral_wall_gap_m": 0.0039920818551597015
+        },
+        {
+          "clip": "c2",
+          "crossings": 1,
+          "lateral_m": -0.00028851758645786856,
+          "height_m": 0.0021068535858696598,
+          "lateral_wall_gap_m": 0.0037114824135421314
+        },
+        {
+          "clip": "c3",
+          "crossings": 1,
+          "lateral_m": -0.0010557658253491635,
+          "height_m": 0.002505300670619177,
+          "lateral_wall_gap_m": 0.0029442341746508368
+        },
+        {
+          "clip": "c4",
+          "crossings": 1,
+          "lateral_m": 0.0012871370756205869,
+          "height_m": 0.002762852719550162,
+          "lateral_wall_gap_m": 0.002712862924379413
+        }
+      ],
+      "worst_lateral_wall_gap_m": 0.002712862924379413,
+      "installed_min_bend_radius_m": 0.021045121976083533,
+      "max_initial_turn_deg": 56.7406788774327,
+      "routed_direct_length_m": 0.4166972279430414,
+      "geometric_service_loop_m": 0.043302772056958594,
+      "solved_anchor_along_m": 0.2410243760063559,
+      "boot_to_anchor_m": 0.3507972212908246,
+      "settle_native_steps": 20000,
+      "wall_s": 0.7
+    },
+    {
+      "layout": "RC4",
+      "installed_loop_m": 0.003,
+      "clips": 4,
+      "built": true,
+      "settled": false,
+      "reason": "settle_clip_not_retained",
+      "per_clip": [
+        {
+          "id": "c1",
+          "index": 0,
+          "required": true,
+          "has_retained_passage": false,
+          "ambiguous_multiple_passages": false,
+          "retained_passages": 0,
+          "crossings": 1
+        },
+        {
+          "id": "c2",
+          "index": 1,
+          "required": true,
+          "has_retained_passage": true,
+          "ambiguous_multiple_passages": false,
+          "retained_passages": 1,
+          "crossings": 1
+        },
+        {
+          "id": "c3",
+          "index": 2,
+          "required": true,
+          "has_retained_passage": false,
+          "ambiguous_multiple_passages": false,
+          "retained_passages": 0,
+          "crossings": 1
+        },
+        {
+          "id": "c4",
+          "index": 3,
+          "required": true,
+          "has_retained_passage": true,
+          "ambiguous_multiple_passages": false,
+          "retained_passages": 1,
+          "crossings": 1
+        }
+      ],
+      "summary": {
+        "clips": 4,
+        "required_ids": [
+          "c1",
+          "c2",
+          "c3",
+          "c4"
+        ],
+        "retained_ids": [
+          "c2",
+          "c4"
+        ],
+        "lost_required_ids": [
+          "c1",
+          "c3"
+        ],
+        "required_retained": 2,
+        "required_count": 4,
+        "all_required_retained": false
+      },
+      "lateral_wall_gaps": [
+        {
+          "clip": "c1",
+          "crossings": 1,
+          "lateral_m": 0.015838537595885913,
+          "height_m": 0.007023216829383823,
+          "lateral_wall_gap_m": -0.011838537595885913
+        },
+        {
+          "clip": "c2",
+          "crossings": 1,
+          "lateral_m": 6.790542079113549e-05,
+          "height_m": 0.0010883998124570913,
+          "lateral_wall_gap_m": 0.003932094579208865
+        },
+        {
+          "clip": "c3",
+          "crossings": 1,
+          "lateral_m": -0.0040247773809948,
+          "height_m": 0.0020502460423800347,
+          "lateral_wall_gap_m": -2.4777380994800077e-05
+        },
+        {
+          "clip": "c4",
+          "crossings": 1,
+          "lateral_m": -0.00034363311818418616,
+          "height_m": 0.002359956646003406,
+          "lateral_wall_gap_m": 0.003656366881815814
+        }
+      ],
+      "worst_lateral_wall_gap_m": -0.011838537595885913,
+      "installed_min_bend_radius_m": 0.0762049305752861,
+      "max_initial_turn_deg": 56.75330291575838,
+      "routed_direct_length_m": 0.41619722794304137,
+      "geometric_service_loop_m": 0.04380277205695865,
+      "solved_anchor_along_m": 0.24049219210798417,
+      "boot_to_anchor_m": 0.3503120579378284,
+      "settle_native_steps": 20000,
+      "wall_s": 5.1
+    },
+    {
+      "layout": "RC4",
+      "installed_loop_m": 0.0035,
+      "clips": 4,
+      "built": true,
+      "settled": false,
+      "reason": "settle_clip_not_retained",
+      "per_clip": [
+        {
+          "id": "c1",
+          "index": 0,
+          "required": true,
+          "has_retained_passage": true,
+          "ambiguous_multiple_passages": false,
+          "retained_passages": 1,
+          "crossings": 1
+        },
+        {
+          "id": "c2",
+          "index": 1,
+          "required": true,
+          "has_retained_passage": false,
+          "ambiguous_multiple_passages": false,
+          "retained_passages": 0,
+          "crossings": 1
+        },
+        {
+          "id": "c3",
+          "index": 2,
+          "required": true,
+          "has_retained_passage": false,
+          "ambiguous_multiple_passages": false,
+          "retained_passages": 0,
+          "crossings": 1
+        },
+        {
+          "id": "c4",
+          "index": 3,
+          "required": true,
+          "has_retained_passage": false,
+          "ambiguous_multiple_passages": false,
+          "retained_passages": 0,
+          "crossings": 1
+        }
+      ],
+      "summary": {
+        "clips": 4,
+        "required_ids": [
+          "c1",
+          "c2",
+          "c3",
+          "c4"
+        ],
+        "retained_ids": [
+          "c1"
+        ],
+        "lost_required_ids": [
+          "c2",
+          "c3",
+          "c4"
+        ],
+        "required_retained": 1,
+        "required_count": 4,
+        "all_required_retained": false
+      },
+      "lateral_wall_gaps": [
+        {
+          "clip": "c1",
+          "crossings": 1,
+          "lateral_m": -1.097193331835427e-05,
+          "height_m": 0.003387561612196332,
+          "lateral_wall_gap_m": 0.003989028066681646
+        },
+        {
+          "clip": "c2",
+          "crossings": 1,
+          "lateral_m": -0.014894612952327684,
+          "height_m": -0.004064858247447861,
+          "lateral_wall_gap_m": -0.010894612952327683
+        },
+        {
+          "clip": "c3",
+          "crossings": 1,
+          "lateral_m": -0.018721056046388043,
+          "height_m": -0.0010286032034074824,
+          "lateral_wall_gap_m": -0.014721056046388042
+        },
+        {
+          "clip": "c4",
+          "crossings": 1,
+          "lateral_m": -0.013684762707283521,
+          "height_m": 0.001965078977848212,
+          "lateral_wall_gap_m": -0.009684762707283521
+        }
+      ],
+      "worst_lateral_wall_gap_m": -0.014721056046388042,
+      "installed_min_bend_radius_m": 0.02664060445709115,
+      "max_initial_turn_deg": 56.766872771196404,
+      "routed_direct_length_m": 0.4156972279430414,
+      "geometric_service_loop_m": 0.044302772056958595,
+      "solved_anchor_along_m": 0.23995939192973842,
+      "boot_to_anchor_m": 0.3498754436401421,
+      "settle_native_steps": 20000,
+      "wall_s": 5.3
+    },
+    {
+      "layout": "RC4",
+      "installed_loop_m": 0.004,
+      "clips": 4,
+      "built": true,
+      "settled": false,
+      "reason": "settle_clip_not_retained",
+      "per_clip": [
+        {
+          "id": "c1",
+          "index": 0,
+          "required": true,
+          "has_retained_passage": false,
+          "ambiguous_multiple_passages": false,
+          "retained_passages": 0,
+          "crossings": 1
+        },
+        {
+          "id": "c2",
+          "index": 1,
+          "required": true,
+          "has_retained_passage": true,
+          "ambiguous_multiple_passages": false,
+          "retained_passages": 1,
+          "crossings": 1
+        },
+        {
+          "id": "c3",
+          "index": 2,
+          "required": true,
+          "has_retained_passage": false,
+          "ambiguous_multiple_passages": false,
+          "retained_passages": 0,
+          "crossings": 1
+        },
+        {
+          "id": "c4",
+          "index": 3,
+          "required": true,
+          "has_retained_passage": true,
+          "ambiguous_multiple_passages": false,
+          "retained_passages": 1,
+          "crossings": 1
+        }
+      ],
+      "summary": {
+        "clips": 4,
+        "required_ids": [
+          "c1",
+          "c2",
+          "c3",
+          "c4"
+        ],
+        "retained_ids": [
+          "c2",
+          "c4"
+        ],
+        "lost_required_ids": [
+          "c1",
+          "c3"
+        ],
+        "required_retained": 2,
+        "required_count": 4,
+        "all_required_retained": false
+      },
+      "lateral_wall_gaps": [
+        {
+          "clip": "c1",
+          "crossings": 1,
+          "lateral_m": 0.01697996953437035,
+          "height_m": 0.003521620446026305,
+          "lateral_wall_gap_m": -0.012979969534370351
+        },
+        {
+          "clip": "c2",
+          "crossings": 1,
+          "lateral_m": -2.9642273044168084e-05,
+          "height_m": 0.0013243118909654619,
+          "lateral_wall_gap_m": 0.003970357726955832
+        },
+        {
+          "clip": "c3",
+          "crossings": 1,
+          "lateral_m": -0.004001134517103772,
+          "height_m": 0.0020345337191048055,
+          "lateral_wall_gap_m": -1.1345171037719856e-06
+        },
+        {
+          "clip": "c4",
+          "crossings": 1,
+          "lateral_m": -0.00021003359442211687,
+          "height_m": 0.002367592877292763,
+          "lateral_wall_gap_m": 0.0037899664055778834
+        }
+      ],
+      "worst_lateral_wall_gap_m": -0.012979969534370351,
+      "installed_min_bend_radius_m": 0.044543146641389836,
+      "max_initial_turn_deg": 56.781806864514735,
+      "routed_direct_length_m": 0.4151972279430414,
+      "geometric_service_loop_m": 0.044802772056958595,
+      "solved_anchor_along_m": 0.23942595647122306,
+      "boot_to_anchor_m": 0.34953355229338395,
+      "settle_native_steps": 20000,
+      "wall_s": 4.7
+    },
+    {
+      "layout": "RC4",
+      "installed_loop_m": 0.0045,
+      "clips": 4,
+      "built": true,
+      "settled": false,
+      "reason": "settle_clip_not_retained",
+      "per_clip": [
+        {
+          "id": "c1",
+          "index": 0,
+          "required": true,
+          "has_retained_passage": false,
+          "ambiguous_multiple_passages": false,
+          "retained_passages": 0,
+          "crossings": 1
+        },
+        {
+          "id": "c2",
+          "index": 1,
+          "required": true,
+          "has_retained_passage": true,
+          "ambiguous_multiple_passages": false,
+          "retained_passages": 1,
+          "crossings": 1
+        },
+        {
+          "id": "c3",
+          "index": 2,
+          "required": true,
+          "has_retained_passage": false,
+          "ambiguous_multiple_passages": false,
+          "retained_passages": 0,
+          "crossings": 1
+        },
+        {
+          "id": "c4",
+          "index": 3,
+          "required": true,
+          "has_retained_passage": true,
+          "ambiguous_multiple_passages": false,
+          "retained_passages": 1,
+          "crossings": 1
+        }
+      ],
+      "summary": {
+        "clips": 4,
+        "required_ids": [
+          "c1",
+          "c2",
+          "c3",
+          "c4"
+        ],
+        "retained_ids": [
+          "c2",
+          "c4"
+        ],
+        "lost_required_ids": [
+          "c1",
+          "c3"
+        ],
+        "required_retained": 2,
+        "required_count": 4,
+        "all_required_retained": false
+      },
+      "lateral_wall_gaps": [
+        {
+          "clip": "c1",
+          "crossings": 1,
+          "lateral_m": 0.017014769987375222,
+          "height_m": 0.003387408172789173,
+          "lateral_wall_gap_m": -0.013014769987375222
+        },
+        {
+          "clip": "c2",
+          "crossings": 1,
+          "lateral_m": -5.093165946911012e-07,
+          "height_m": 0.0012924921844843559,
+          "lateral_wall_gap_m": 0.003999490683405309
+        },
+        {
+          "clip": "c3",
+          "crossings": 1,
+          "lateral_m": -0.004007939654400913,
+          "height_m": 0.002030186117738239,
+          "lateral_wall_gap_m": -7.939654400913009e-06
+        },
+        {
+          "clip": "c4",
+          "crossings": 1,
+          "lateral_m": -0.0002632349231586227,
+          "height_m": 0.002377211092582488,
+          "lateral_wall_gap_m": 0.0037367650768413774
+        }
+      ],
+      "worst_lateral_wall_gap_m": -0.013014769987375222,
+      "installed_min_bend_radius_m": 0.04451141202569741,
+      "max_initial_turn_deg": 56.78879510090611,
+      "routed_direct_length_m": 0.4146972279430414,
+      "geometric_service_loop_m": 0.045302772056958596,
+      "solved_anchor_along_m": 0.23889186590526273,
+      "boot_to_anchor_m": 0.3491676534776677,
+      "settle_native_steps": 20000,
+      "wall_s": 4.9
+    }
+  ]
+}

@@ -104,7 +104,10 @@ def settle(scene, cfg):
         reason = "settle_initial_contact"
     elif float(speeds.max()) > acceptance["max_cable_speed_m_per_s"]:
         reason = "settle_cable_motion"
-    elif acceptance["require_clip_retained"] and not clip_state(scene)["has_retained_passage"]:
+    elif (acceptance["require_clip_retained"]
+          and not clip_state(scene)["summary"]["all_required_retained"]):
+        # One required clip is the registered case and reads exactly as before;
+        # a routing cell fails settling if ANY clip it declares required is empty.
         reason = "settle_clip_not_retained"
     return steps, reason is None, reason
 
