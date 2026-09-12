@@ -192,13 +192,46 @@ The jig itself is defined in config, not code — move a clip in
 and the CAD, the screen and the study all follow.
 
 ```powershell
-.venv/Scripts/python.exe -m pytest                          # 250 tests, no GPU, no simulator
+.venv/Scripts/python.exe -m pytest                          # 263 tests, no GPU, no simulator
 .venv/Scripts/python.exe scripts/summarize_perception_v4.py # study 1, in a paragraph
 .deps/cable-venv/Scripts/pythonw.exe scripts/render_cell_v6.py
 ```
 
 `AGENTS.md` has the operating rules and the full command sequence.
 `evidence/INDEX.json` lists every record with its own declared scope.
+
+---
+
+## The workbench
+
+The jig is defined in config, so the obvious question is what happens to a
+*different* jig. `scripts/workbench.py` is the tool for asking. It loads the
+measured cell, lets you move a clip or change the installed service loop, pick a
+perception error level and a supervisor, ask the safety layer what it would
+permit over the whole action space, and route through the cell once.
+
+```powershell
+.deps/cable-venv/Scripts/pythonw.exe scripts/workbench.py                        # what is loaded
+.deps/cable-venv/Scripts/pythonw.exe scripts/workbench.py --level E4 --allowed   # what is permitted
+.deps/cable-venv/Scripts/pythonw.exe scripts/workbench.py --move c3:up_m=0.009 --run
+.deps/cable-venv/Scripts/pythonw.exe scripts/workbench.py --run --view           # with MuJoCo's viewer
+```
+
+Moving a clip **invalidates the screen**, and the tool refuses to route until the
+screen has been run again — a cell that compiles is not a cell the cable installs
+into, and the screen that chose this jig rejected 19 of the 28 it was given.
+Running it again takes about six seconds.
+
+`--self-check` proves the tool is showing the jig it names: the request it
+expands is field-for-field the one the study ran, re-screening the unmodified
+cell reproduces
+[`evidence/cable_cell_screen_v6.json`](evidence/cable_cell_screen_v6.json) to the
+digit, and re-running the route reproduces the committed result including its
+whole clip-headroom series. [Record](artifacts/showcase/tool.json).
+
+The interactive window has never been run: the machine this was written on has no
+display. Everything behind it is headless and unit tested; the window itself is
+one call to MuJoCo's `launch_passive`.
 
 ---
 
@@ -218,9 +251,17 @@ measurement of where that stops being true.
 
 ---
 
-## What is left
+## Where the rest of it is
 
-The measurements are done. What is missing is a tool an engineer can open, move a
-clip in, and re-run, plus a page that makes the result legible to someone who will
-not read this far. Both are specified in
-[docs/handover/v7_final_session.txt](docs/handover/v7_final_session.txt).
+The measurements are done and so is the work that made them usable.
+
+| | |
+| --- | --- |
+| **The public page** | <https://claude.ai/code/artifact/71352222-82b3-4676-901c-c2c4852eea3c> — the four results for a stranger, generated from the evidence records by `scripts/build_showcase.py`. Change a number in a record, rebuild, and the page changes. [Record](artifacts/showcase/page.json). |
+| **The replay clips** | Three short videos of registered routes, re-run through the study's own control loop and refused unless they reproduce the result the study recorded. `scripts/render_routing_video_v6.py`, verified by `scripts/verify_showcase_video.py`. [Record](artifacts/showcase/video.json). |
+| **The workbench** | `scripts/workbench.py`, above. [Record](artifacts/showcase/tool.json). |
+| **A USD stage** | `scripts/export_usd_v7.py` writes one route out as USD so it can be re-rendered in a better renderer later. It is a rendering export and nothing more — no number here was measured anywhere but MuJoCo. [Record](artifacts/showcase/usd.json). |
+
+[`ROADMAP.md`](ROADMAP.md) records what is closed and what stays open.
+[`artifacts/showcase/PROGRESS.md`](artifacts/showcase/PROGRESS.md) is the decision
+log for the session that built all four.

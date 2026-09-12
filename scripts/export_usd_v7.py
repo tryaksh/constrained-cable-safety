@@ -23,8 +23,10 @@ OpenUSD, several frames below anything you wrote.
 from __future__ import annotations
 
 import argparse
+import importlib.metadata
 import json
 import re
+import sys
 import time
 import xml.etree.ElementTree as ET
 from pathlib import Path
@@ -45,6 +47,14 @@ ROOT = Path(__file__).resolve().parents[1]
 #: with the CAD meshes attached as visual geometry. Any compiled scene.xml this
 #: repository wrote will do.
 DEFAULT_SCENE = ("artifacts/showcase/video/RC1_l15_compliant4000_m0_E0_conservative_r0/scene.xml")
+
+
+def _installed(name: str) -> str | None:
+    """The version actually present, so the record is of this machine and not a wish."""
+    try:
+        return importlib.metadata.version(name)
+    except importlib.metadata.PackageNotFoundError:
+        return None
 
 
 def legalise(name: str, taken: set[str]) -> str:
@@ -235,7 +245,11 @@ def main() -> int:
                             "be. That environment's exact package set is recorded in every run "
                             "manifest and the provenance depends on it not drifting.",
             "interpreter": ".deps/usd-venv/Scripts/python.exe",
-            "packages": ["usd-core", "pillow", "mujoco==3.3.7", "numpy<2"],
+            "created_with": ".venv/Scripts/python.exe -m venv .deps/usd-venv, then "
+                            "pip install usd-core pillow mujoco==3.3.7 \"numpy<2\"",
+            "python": sys.version.split()[0],
+            "packages": {name: _installed(name)
+                         for name in ("usd-core", "pillow", "mujoco", "numpy")},
         },
         "the_gotcha": "output_directory must be RELATIVE and output_directory_root its absolute "
                       "parent. An absolute output_directory is joined into an invalid path and "

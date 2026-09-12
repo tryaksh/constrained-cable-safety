@@ -1,8 +1,9 @@
 # Agent instructions
 
-Read this file at handover. Then [ROADMAP.md](ROADMAP.md) for verified state and
-the one next action, and [README.md](README.md) for what the project is. These
-three are the only maintained Markdown. Use the tools your client actually has;
+Read this file at handover. Then [ROADMAP.md](ROADMAP.md) for the verified state
+and what stays open, and [README.md](README.md) for what the project is. These
+three are the only maintained Markdown. The project is closed; there is no next
+action waiting. Use the tools your client actually has;
 tool names from a previous assistant are history, not requirements.
 
 ## Mandate
@@ -11,11 +12,15 @@ tool names from a previous assistant are history, not requirements.
 no venue. The deliverable is this repository, finished to a standard worth
 linking from a personal site. Measuring did not stop; submitting did.
 
-**All four measurement questions are closed.** Do not start a fifth, do not refit
-the safety layer, and do not re-run a fitted block for nicer numbers. What remains
-is in [docs/handover/v7_final_session.txt](docs/handover/v7_final_session.txt),
-which is the last planned session: a local tool, and a public demonstration the
-owner has explicitly authorized.
+**All four measurement questions are closed, and so is the project.** Do not
+start a fifth study, do not refit the safety layer, and do not re-run a fitted
+block for nicer numbers. The last planned session
+([docs/handover/v7_final_session.txt](docs/handover/v7_final_session.txt)) ran on
+2026-09-12 and built what it was asked for: three replay clips, the public page,
+the workbench and a USD export. All four are verified and recorded under
+`artifacts/showcase/`. Nothing is queued. [ROADMAP.md](ROADMAP.md) is now a
+record rather than a plan; read it for what stays open and why none of it was
+bought.
 
 The task is **held, clip-preserving seating before gripper release** — extended in
 the routing study so that *every* required clip of a five-clip route must still be
@@ -82,6 +87,11 @@ the task definition. Do not lengthen it and do not change the predicate.
 | v5 composition study | configs/cable_sequence_v5.json; evidence/cable_sequence_v5.json; scripts/{run,evaluate,fit}_sequence_v5.py |
 | v6 routing study | configs/cable_routing_v6.json; evidence/cable_routing_v6.json; scripts/{build_cell_cad,screen_cell,render_cell}_v6.py; scripts/{run,evaluate,fit}_routing_v6.py |
 | v6 stage records and decision log | artifacts/cell/ |
+| **The workbench** | scripts/workbench.py over src/assembly_recovery/cable_workbench_v7.py |
+| **The replay clips** | scripts/render_routing_video_v6.py; scripts/verify_showcase_video.py |
+| **The public page** | scripts/build_showcase.py; artifacts/showcase/page.json |
+| **The USD export** | scripts/export_usd_v7.py |
+| v7 stage records and decision log | artifacts/showcase/ |
 | v3 boundary study, closed inconclusive | configs/cable_repair_boundary_v3.json; evidence/cable_repair_boundary_v3.json |
 | v2 task and gate block | configs/cable_recovery_task_v2.json; evidence/cable_recovery_block_v2.json |
 | Machine versions | environment-lock.example.json; local environment-lock.local.json |
@@ -89,10 +99,35 @@ the task definition. Do not lengthen it and do not change the predicate.
 ## Commands
 
 ```powershell
-.venv/Scripts/python.exe -m pytest                    # 250 tests, CPU-only, ~2 s
+.venv/Scripts/python.exe -m pytest                    # 263 tests, CPU-only, ~2 s
 .venv/Scripts/python.exe -m ruff check src scripts tests
 .venv/Scripts/python.exe scripts/index_evidence.py    # after adding a record
 ```
+
+The four things the last session built, in the order they depend on each other.
+The clips must exist before the page, because the page embeds them and reads
+their verification record.
+
+```powershell
+.deps/cable-venv/Scripts/pythonw.exe scripts/render_routing_video_v6.py --layout triptych --view clips `
+  --case RC1_l15_compliant4000_m0_E0_unfiltered_r0 `
+  --case RC1_l15_compliant4000_m0_E0_filtered_r0 `
+  --case RC1_l15_compliant4000_m0_E0_conservative_r0
+.deps/cable-venv/Scripts/pythonw.exe scripts/render_routing_video_v6.py --layout estimate --view wide `
+  --case RC1_l30_compliant4000_m0_E4_conservative_r2 --name estimate
+.deps/cable-venv/Scripts/pythonw.exe scripts/render_routing_video_v6.py --layout budget --view clips `
+  --case RC1_l15_compliant4000_m0_E0_conservative_r0 --name budget
+.deps/cable-venv/Scripts/pythonw.exe scripts/verify_showcase_video.py   # writes artifacts/showcase/video.json
+.venv/Scripts/python.exe scripts/build_showcase.py --published-at <artifact url>
+.deps/cable-venv/Scripts/pythonw.exe scripts/workbench.py --self-check  # writes artifacts/showcase/tool.json
+.deps/usd-venv/Scripts/python.exe scripts/export_usd_v7.py              # writes artifacts/showcase/usd.json
+```
+
+The page is published with the Artifact tool, with `index.html` plus `cell.png`
+and the three clips and their posters under `video/`. It lives at
+<https://claude.ai/code/artifact/71352222-82b3-4676-901c-c2c4852eea3c>.
+Republishing the same file path updates that URL; publishing without it creates
+a second page.
 
 The routing block, in the order it must run. The cell is authored from the
 candidate file, the screen decides which cells are registered, the freeze reads
@@ -127,10 +162,19 @@ sharded on whole contexts and the fitter reads every shard together.
   `--python .deps/cable-venv/Scripts/pythonw.exe` to any launcher. Never copy or
   rename the blocked binary. App Control also blocks `pytest.exe`; use
   `python -m pytest`.
-- **Two interpreters.** Torch lives in `.venv` and MuJoCo, SciPy and Matplotlib in
-  `.deps/cable-venv`. Fitting runs in the former, physics and figures in the
+- **Three interpreters.** Torch lives in `.venv` and MuJoCo, SciPy and Matplotlib
+  in `.deps/cable-venv`. Fitting runs in the former, physics and figures in the
   latter. `TORCHDYNAMO_DISABLE=1` is the verified workaround for the optional
-  compiler import failure.
+  compiler import failure. `.deps/usd-venv` is a third, holding `usd-core` and
+  `pillow` for the USD export **and nothing else** — the cable environment's
+  exact package set is recorded in every run manifest and the provenance depends
+  on it not drifting.
+- **The offscreen framebuffer is 1280x960.** A render wider or taller than that
+  raises from `mujoco.Renderer`. The 1920-wide replay clip is three separate
+  renders composited, not one.
+- **There is no display.** Anything that opens a window cannot be run here. Build
+  it so that everything except the window is headless and tested, render to a
+  file and inspect the file, and say in the handover what was never executed.
 - **Hash text provenance with `cable_study_v3.content_sha256`, never raw bytes.**
   A CRLF working tree and the LF blob git stores hash differently, which is how the
   v2 block came to record a config hash no committed file reproduces.
@@ -169,8 +213,10 @@ either.
 ## Outputs and remotes
 
 Keep raw runs, videos and weights in ignored output directories, and concise
-verified results in `evidence/`. `artifacts/cell/` is the one exception and is
-committed: the stage records are small and are what a later session reads.
+verified results in `evidence/`. `artifacts/cell/` and `artifacts/showcase/` are
+the exceptions and are committed: their JSON stage records and `PROGRESS.md`
+decision logs are small and are what a later session reads. The videos, renders
+and USD stages under them are not.
 Regenerate `evidence/INDEX.json` after adding a record. Exactly three maintained
 Markdown documents — no HANDOFF, NOW or extra agent file.
 
