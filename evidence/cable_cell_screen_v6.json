@@ -3561,5 +3561,15 @@
       "settle_native_steps": 20000,
       "wall_s": 4.9
     }
+  ],
+  "registered_cell": "RC1",
+  "registered_cell_why": "The selection rule declared in the candidate file before this screen ran: the cell that survives at the most service loops. Survivors per candidate: RC1 6, RC2 2, RC3 1; every other declared candidate scored 0.",
+  "registered_groups": [
+    "RC1_l15",
+    "RC1_l20",
+    "RC1_l25",
+    "RC1_l30",
+    "RC1_l40",
+    "RC1_l45"
   ]
 }

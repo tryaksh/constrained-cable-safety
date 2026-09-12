@@ -340,7 +340,47 @@ def _box(parent, name, centre, half, rgba, **kwargs):
     ET.SubElement(parent, "geom", name=name, type="box", pos=fmt(centre), size=fmt(half), rgba=rgba, **kwargs)
 
 
-def build_fixture(world, cfg: dict, seated_tip, run_direction_xy, route_waypoints=None) -> dict:
+def add_cad_visuals(root, body, cfg: dict, origin, run, side) -> list[dict]:
+    """Attach the CAD-authored cell as VISUAL geometry over the primitive fixture.
+
+    The meshes are authored in assembly coordinates - the fixture frame, in
+    millimetres - so one body carrying the fixture frame places every part with
+    no per-geom pos or quat, which is what evidence/cell_toolchain_v6.json TRAP 2
+    measured to be exact. They collide with nothing: contype and conaffinity are
+    zero and they sit in render group 2. The cable touches the primitive boxes
+    and cylinders below, which are bit-identical to the scene every published
+    number was measured in, so the CAD cannot invalidate one (TRAP 4).
+    """
+    import numpy as np
+
+    declared = cfg["fixture"].get("cad_meshes") or []
+    if root is None or not declared:
+        return []
+    import mujoco
+
+    asset = root.find("asset")
+    if asset is None:
+        asset = ET.SubElement(root, "asset")
+    quaternion = np.empty(4)
+    mujoco.mju_mat2Quat(quaternion, np.column_stack([run, side, [0.0, 0.0, 1.0]]).flatten())
+    cad = ET.SubElement(body, "body", name="fixture_cad", pos=fmt(origin), quat=fmt(quaternion))
+    attached = []
+    for entry in declared:
+        name, path = entry["name"], Path(entry["file"])
+        if not path.is_absolute():
+            path = Path(cfg.get("project_root", ".")) / path
+        ET.SubElement(asset, "mesh", name=f"cell_{name}", file=path.as_posix(),
+                      scale="0.001 0.001 0.001")
+        ET.SubElement(cad, "geom", name=f"fixture_cad_{name}", type="mesh",
+                      mesh=f"cell_{name}", contype="0", conaffinity="0", group="2",
+                      rgba=entry.get("rgba", ".72 .74 .78 1"), mass="0")
+        attached.append({"name": name, "mesh": f"cell_{name}", "file": path.as_posix(),
+                         "content_sha256": entry.get("content_sha256")})
+    return attached
+
+
+def build_fixture(world, cfg: dict, seated_tip, run_direction_xy, route_waypoints=None,
+                  root=None) -> dict:
     """Add the world-fixed mount plate, shelf, open clip, post and strain relief.
 
     All coordinates are derived from the measured seated tip pose and registered
@@ -444,7 +484,9 @@ def build_fixture(world, cfg: dict, seated_tip, run_direction_xy, route_waypoint
     ET.SubElement(anchor_body, "site", name="strain_relief_site",
                   pos=fmt(-run*strain["block_offset_m"]), size=".0015", rgba=".1 .9 .4 1")
     ET.SubElement(anchor_body, "site", name="strain_relief_load", pos="0 0 0", size=".001")
+    cad = add_cad_visuals(root, body, cfg, origin, run, side)
     return {"shelf_top_z": shelf_top, "run_direction_xy": list(run[:2]), "side_direction_xy": list(side[:2]),
+            "cad_visuals": cad,
             "anchor_site_world": anchor_site.tolist(),
             "clip_origin_world": clip_origin.tolist(),
             "clip_rotation_world": clip_records[0]["rotation_world"],
@@ -670,7 +712,9 @@ def build_scene(project_root: Path, cfg: dict, case: dict, directory: Path) -> C
                                            boot_world, cable_cfg, rest-loop)
     merged["strain_relief"] = strain
     scene_cfg["fixture"] = merged
-    fixture = build_fixture(world, scene_cfg, seated, case["run_direction_xy"], route_waypoints)
+    scene_cfg["project_root"] = str(project_root)
+    fixture = build_fixture(world, scene_cfg, seated, case["run_direction_xy"], route_waypoints,
+                            root=root)
     fixture["installed_loop_m"] = loop
     fixture["solved_anchor_along_m"] = strain["along_m"]
     ET.SubElement(sensors, "force", name="strain_relief_load_force", site="strain_relief_load")

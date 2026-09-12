@@ -1,0 +1,227 @@
+{
+  "schema": 1,
+  "id": "cable_cell_cad_v6",
+  "status": "authored_cad_asset",
+  "created_on": "2026-09-12",
+  "scope": "Provenance for the CAD-authored v6 routing cell. Geometry only: these meshes are VISUAL geoms in the compiled scene and collide with nothing. Not a study result and not a hardware claim.",
+  "freecad_version": "1.1.3",
+  "freecad_build": [
+    "1",
+    "1",
+    "3",
+    "20260725 (Git shallow)",
+    "Unknown",
+    "2026/07/25 04:52:02",
+    "grafted,grafted",
+    "145529fe741292ff0b3977a01195bf0247425794"
+  ],
+  "authored_from": {
+    "candidates": "configs/cable_cell_v6_candidates.json",
+    "cell": "RC1",
+    "base_config": "configs/cable_recovery_task_v2.json",
+    "screen": "evidence/cable_cell_screen_v6.json",
+    "clamp_anchor_along_m": 0.23798687637894272,
+    "clamp_anchor_span_over_accepted_loops_m": 0.003245
+  },
+  "frame": "Assembly coordinates: the fixture frame in millimetres, shelf top at z = 0, x along the run direction, y across it. Exported this way on purpose - MuJoCo recentres every mesh on its centre of mass and the geom frame compensates exactly only for a mesh authored in assembly coordinates.",
+  "collision": "None. Every mesh enters the scene with contype=0 conaffinity=0 group=2. The cable collides with the primitive boxes and cylinders build_fixture writes, which is bit-identical to the scene every published number was measured in, so the CAD cannot invalidate one.",
+  "tessellation": {
+    "linear_deflection_mm": 0.05,
+    "angular_deflection_rad": 0.5,
+    "relative": false
+  },
+  "overlap_mm": 0.01,
+  "source_document": {
+    "file": "assets/cell_v6/cell_v6.FCStd",
+    "content_sha256": "a90b47b19db10bfef041a5b9debd91c9096fc6936e8e17cb69eed89748e1a351"
+  },
+  "parts": [
+    {
+      "part": "board",
+      "kind": "board",
+      "file": "assets/cell_v6/cell_v6_board.stl",
+      "facets": 588,
+      "points": 296,
+      "watertight": true,
+      "self_intersecting": false,
+      "solids_after_fuse": 1,
+      "volume_mm3": 1250799.776,
+      "bbox_min_mm": [
+        -60.0,
+        -100.0,
+        -18.0
+      ],
+      "bbox_max_mm": [
+        460.0,
+        100.0,
+        0.015
+      ],
+      "lead_in_filleted": null,
+      "content_sha256": "6c1e3c1e771ef7397016d37cc19f8453b8eb4e5a81f3731a4b58e2781f434083"
+    },
+    {
+      "part": "c1",
+      "kind": "clip",
+      "file": "assets/cell_v6/cell_v6_c1.stl",
+      "facets": 412,
+      "points": 208,
+      "watertight": true,
+      "self_intersecting": false,
+      "solids_after_fuse": 1,
+      "volume_mm3": 1778.485,
+      "bbox_min_mm": [
+        94.0,
+        -9.0,
+        -3.0
+      ],
+      "bbox_max_mm": [
+        106.0,
+        9.0,
+        14.5
+      ],
+      "lead_in_filleted": true,
+      "content_sha256": "6d8626dd59f178bbcec2d06c08da5d7624a3fa45b3920f4718210412c066367e"
+    },
+    {
+      "part": "c2",
+      "kind": "clip",
+      "file": "assets/cell_v6/cell_v6_c2.stl",
+      "facets": 532,
+      "points": 268,
+      "watertight": true,
+      "self_intersecting": false,
+      "solids_after_fuse": 1,
+      "volume_mm3": 2422.193,
+      "bbox_min_mm": [
+        116.0,
+        -9.0,
+        -3.0
+      ],
+      "bbox_max_mm": [
+        128.0,
+        9.0,
+        17.5
+      ],
+      "lead_in_filleted": true,
+      "content_sha256": "f9afa50155f35ff23fbb568484b26f67ac6be287914ea03d665a04ca69422088"
+    },
+    {
+      "part": "c3",
+      "kind": "clip",
+      "file": "assets/cell_v6/cell_v6_c3.stl",
+      "facets": 596,
+      "points": 300,
+      "watertight": true,
+      "self_intersecting": false,
+      "solids_after_fuse": 1,
+      "volume_mm3": 3067.618,
+      "bbox_min_mm": [
+        136.885,
+        -9.6428,
+        -3.0
+      ],
+      "bbox_max_mm": [
+        151.1182,
+        9.646,
+        20.5
+      ],
+      "lead_in_filleted": true,
+      "content_sha256": "9ce92e35644c286059024e37c78549d44ca5bd321f23230531c9ef65713f29bf"
+    },
+    {
+      "part": "c4",
+      "kind": "clip",
+      "file": "assets/cell_v6/cell_v6_c4.stl",
+      "facets": 596,
+      "points": 300,
+      "watertight": true,
+      "self_intersecting": false,
+      "solids_after_fuse": 1,
+      "volume_mm3": 2422.193,
+      "bbox_min_mm": [
+        157.1769,
+        -17.0079,
+        -3.0
+      ],
+      "bbox_max_mm": [
+        174.8251,
+        3.6758,
+        17.5
+      ],
+      "lead_in_filleted": true,
+      "content_sha256": "9fee52459b2c82256278062e7d898d4128c86e14af2d16cee8fb7272c3d14cb0"
+    },
+    {
+      "part": "c5",
+      "kind": "clip",
+      "file": "assets/cell_v6/cell_v6_c5.stl",
+      "facets": 460,
+      "points": 232,
+      "watertight": true,
+      "self_intersecting": false,
+      "solids_after_fuse": 1,
+      "volume_mm3": 1778.485,
+      "bbox_min_mm": [
+        178.7573,
+        -30.4198,
+        -3.0
+      ],
+      "bbox_max_mm": [
+        197.2404,
+        -9.5825,
+        14.5
+      ],
+      "lead_in_filleted": true,
+      "content_sha256": "3635f07cbc87fd95335ef94de3ca7d038d503c547081fa5d20e4644bdc8d44a4"
+    },
+    {
+      "part": "clamp",
+      "kind": "clamp",
+      "file": "assets/cell_v6/cell_v6_clamp.stl",
+      "facets": 280,
+      "points": 142,
+      "watertight": true,
+      "self_intersecting": false,
+      "solids_after_fuse": 1,
+      "volume_mm3": 7806.355,
+      "bbox_min_mm": [
+        241.9869,
+        -52.0,
+        -4.0
+      ],
+      "bbox_max_mm": [
+        261.9869,
+        -28.0,
+        17.99
+      ],
+      "lead_in_filleted": null,
+      "content_sha256": "d220092fca4a680d7a844d90047241953e4fce373815c13ffb624f4e768197c7"
+    },
+    {
+      "part": "socket",
+      "kind": "socket",
+      "file": "assets/cell_v6/cell_v6_socket.stl",
+      "facets": 240,
+      "points": 120,
+      "watertight": true,
+      "self_intersecting": false,
+      "solids_after_fuse": 1,
+      "volume_mm3": 42839.984,
+      "bbox_min_mm": [
+        -32.0,
+        -45.0,
+        154.5
+      ],
+      "bbox_max_mm": [
+        32.0,
+        45.0,
+        168.0
+      ],
+      "lead_in_filleted": null,
+      "content_sha256": "38e43b8896617110eed2a3243a4c730a8a5b2fb8169e4f15f4ad7a5d208d9ca5"
+    }
+  ],
+  "all_watertight": true,
+  "all_single_solid": true,
+  "total_facets": 3704
+}

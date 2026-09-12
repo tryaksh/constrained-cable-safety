@@ -38,7 +38,25 @@ def group_id(layout_id: str, loop_m: float) -> str:
     return f"{layout_id}_l{int(round(loop_m*10000))}"
 
 
-def cell_fixture_overrides(layout: dict, base: dict) -> dict:
+#: Render colours for the CAD parts, by kind. Nothing reads these but a camera.
+CAD_RGBA = {"board": ".58 .60 .65 1", "clip": ".88 .58 .16 1",
+            "clamp": ".25 .58 .38 1", "socket": ".62 .64 .68 1"}
+
+
+def cad_mesh_entries(cad: dict) -> list[dict]:
+    """The CAD record turned into mesh declarations the scene builder can attach.
+
+    Each entry carries the asset hash it was exported with, so a compiled scene
+    records which cell it is showing and the workbench can check it is showing
+    the one that was measured.
+    """
+    return [{"name": part["part"], "file": part["file"],
+             "content_sha256": part["content_sha256"],
+             "rgba": CAD_RGBA.get(part["kind"], ".7 .7 .74 1")}
+            for part in cad["parts"]]
+
+
+def cell_fixture_overrides(layout: dict, base: dict, cad: dict | None = None) -> dict:
     """Everything a declared cell changes about the registered fixture."""
     strain = {**base["fixture"]["strain_relief"], "across_m": layout["strain_relief_across_m"]}
     along, across, up = layout.get("slack_bow", [0.0, 1.0, 0.0])
@@ -51,16 +69,18 @@ def cell_fixture_overrides(layout: dict, base: dict) -> dict:
         "post": {**base["fixture"]["post"],
                  "along_m": layout.get("post_along_m", POST_ALONG_M),
                  "across_m": layout.get("post_across_m", POST_ACROSS_M)},
+        **({"cad_meshes": cad_mesh_entries(cad)} if cad else {}),
     }
 
 
-def cell_case(layout: dict, loop_m: float, candidates: dict, base: dict, **extra) -> dict:
+def cell_case(layout: dict, loop_m: float, candidates: dict, base: dict, cad: dict | None = None,
+              **extra) -> dict:
     """One request against a declared cell, before any study-specific fields."""
     case = {
         "run_direction_xy": candidates["run_direction_xy"],
         "outward_xy": candidates["outward_xy"],
         "route_waypoints_along_across_m": layout["route_waypoints_along_across_m"],
-        "fixture_overrides": cell_fixture_overrides(layout, base),
+        "fixture_overrides": cell_fixture_overrides(layout, base, cad),
         "installed_loop_m": loop_m,
         "fixture_offset_m": [0.0, 0.0],
     }
