@@ -1,0 +1,201 @@
+{
+  "schema": 1,
+  "id": "cell_toolchain_v6",
+  "status": "machine_check",
+  "scope": "A check that the CAD-to-simulation toolchain works on this machine. Not a research result and not comparable with any study record. It records which collision strategy a CAD-authored cell must use and why.",
+  "runtime": {
+    "mujoco": "3.3.7",
+    "python": "3.11.15"
+  },
+  "freecad": {
+    "available": true,
+    "path": "C:\\Users\\tryak\\AppData\\Local\\Programs\\FreeCAD 1.1\\bin\\freecadcmd.exe",
+    "version": "1.1.3",
+    "parts": [
+      {
+        "name": "base",
+        "facets": 12,
+        "watertight": true,
+        "self_intersecting": false,
+        "volume_mm3": 1620.0,
+        "bbox_min_mm": [
+          -15.0,
+          -9.0,
+          -3.0
+        ],
+        "bbox_max_mm": [
+          15.0,
+          9.0,
+          0.0
+        ]
+      },
+      {
+        "name": "wall_left",
+        "facets": 12,
+        "watertight": true,
+        "self_intersecting": false,
+        "volume_mm3": 1125.9,
+        "bbox_min_mm": [
+          -15.0,
+          6.0,
+          -0.01
+        ],
+        "bbox_max_mm": [
+          15.0,
+          9.0,
+          12.5
+        ]
+      },
+      {
+        "name": "lip_left",
+        "facets": 12,
+        "watertight": true,
+        "self_intersecting": false,
+        "volume_mm3": 210.0,
+        "bbox_min_mm": [
+          -15.0,
+          2.5,
+          12.5
+        ],
+        "bbox_max_mm": [
+          15.0,
+          6.0,
+          14.5
+        ]
+      },
+      {
+        "name": "wall_right",
+        "facets": 12,
+        "watertight": true,
+        "self_intersecting": false,
+        "volume_mm3": 1125.9,
+        "bbox_min_mm": [
+          -15.0,
+          -9.0,
+          -0.01
+        ],
+        "bbox_max_mm": [
+          15.0,
+          -6.0,
+          12.5
+        ]
+      },
+      {
+        "name": "lip_right",
+        "facets": 12,
+        "watertight": true,
+        "self_intersecting": false,
+        "volume_mm3": 210.0,
+        "bbox_min_mm": [
+          -15.0,
+          -6.0,
+          12.5
+        ],
+        "bbox_max_mm": [
+          15.0,
+          -2.5,
+          14.5
+        ]
+      }
+    ],
+    "all_watertight": true,
+    "fuse_face_touching_solids": 1,
+    "fuse_overlapping_solids": 1,
+    "fuse_note": "A fuse only welds solids that interpenetrate. Two boxes sharing a face stay separate and their tessellation is not watertight; overlap adjoining parts by about 0.01 mm."
+  },
+  "placement": {
+    "per_part": [
+      {
+        "part": "base",
+        "placement_error_mm": 0.0
+      },
+      {
+        "part": "wall_left",
+        "placement_error_mm": 0.0
+      },
+      {
+        "part": "lip_left",
+        "placement_error_mm": 0.0
+      },
+      {
+        "part": "wall_right",
+        "placement_error_mm": 0.0
+      },
+      {
+        "part": "lip_right",
+        "placement_error_mm": 0.0
+      }
+    ],
+    "worst_placement_error_mm": 0.0
+  },
+  "collision": {
+    "mesh_collision": {
+      "rest_height_mm": 1.7218,
+      "lateral_mm": -0.0,
+      "contacts": 1,
+      "retained": true
+    },
+    "mesh_collision_nativeccd": {
+      "rest_height_mm": 1.7218,
+      "lateral_mm": -0.0,
+      "contacts": 1,
+      "retained": true
+    },
+    "visual_mesh_primitive_collision": {
+      "rest_height_mm": 1.9957,
+      "lateral_mm": 0.0,
+      "contacts": 2,
+      "retained": true
+    },
+    "primitive_only": {
+      "rest_height_mm": 1.9957,
+      "lateral_mm": 0.0,
+      "contacts": 2,
+      "retained": true
+    }
+  },
+  "contact_defaults": {
+    "used": "solref=\"0.004 1\" solimp=\"0.95 0.99 0.001\"",
+    "drop_heights_mm": [
+      8,
+      20,
+      50
+    ],
+    "with_project_defaults": [
+      1.9957,
+      1.9957,
+      1.9957
+    ],
+    "with_mujoco_defaults": [
+      -73558.1859,
+      -77047.7878,
+      -77330.8374
+    ],
+    "note": "A 4 mm capsule resting in the channel should sit at 2.0 mm. Under MuJoCo's own contact defaults it sinks through the plate instead, at every drop height and both timesteps tried. This is a property of a very light body on a thin plate, not of the CAD."
+  },
+  "collision_verdict": {
+    "retained_by_variant": {
+      "mesh_collision": true,
+      "mesh_collision_nativeccd": true,
+      "visual_mesh_primitive_collision": true,
+      "primitive_only": true
+    },
+    "rest_height_mm_by_variant": {
+      "mesh_collision": 1.7218,
+      "mesh_collision_nativeccd": 1.7218,
+      "visual_mesh_primitive_collision": 1.9957,
+      "primitive_only": 1.9957
+    },
+    "decision": "CAD meshes are visual geometry only; collision stays on primitives.",
+    "why": "Mesh collision holds the cable, but on a different contact manifold: one contact instead of two and a rest height 0.27 mm lower. The retention predicate is decided within about 4 mm of channel half-width, so a quarter-millimetre shift is not negligible here.",
+    "second_reason": "Primitive collision is bit-identical to the scene every existing record was measured in, so the CAD cannot invalidate a published number.",
+    "correction": "An earlier pass reported that mesh collision loses the cable entirely. That measurement omitted the contact defaults below; under MuJoCo's own defaults every variant fails, including pure primitives."
+  },
+  "usd": {
+    "mujoco_usd_module": true,
+    "pxr_installed": false,
+    "pillow_installed": true,
+    "exporter_usable": false,
+    "how_to_enable": "uv pip install usd-core pillow into a venv beside mujoco; pass output_directory as a RELATIVE name and output_directory_root as its absolute parent, or the exporter joins them into an invalid path"
+  }
+}

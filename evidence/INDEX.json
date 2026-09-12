@@ -2,7 +2,7 @@
  "schema": 1,
  "generated_by": "scripts/index_evidence.py",
  "purpose": "Pick the one evidence record a question needs. Entries are derived from each file, so read the file itself before quoting any number, and read its scope before reusing its result.",
- "count": 94,
+ "count": 95,
  "records": [
   {
    "file": "approach_slew_design_v1.json",
@@ -673,6 +673,26 @@
     "total_render_work",
     "verification",
     "video"
+   ]
+  },
+  {
+   "file": "cell_toolchain_v6.json",
+   "bytes": 5805,
+   "id": "cell_toolchain_v6",
+   "status": "machine_check",
+   "scope": "A check that the CAD-to-simulation toolchain works on this machine. Not a research result and not comparable with any study record. It records which collision strategy a CAD-authored cell must use and why.",
+   "top_level_keys": [
+    "collision",
+    "collision_verdict",
+    "contact_defaults",
+    "freecad",
+    "id",
+    "placement",
+    "runtime",
+    "schema",
+    "scope",
+    "status",
+    "usd"
    ]
   },
   {
