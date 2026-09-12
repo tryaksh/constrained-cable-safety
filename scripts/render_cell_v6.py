@@ -51,7 +51,9 @@ def main() -> int:
     parser.add_argument("--screen", type=Path, default=ROOT / "evidence/cable_cell_screen_v6.json")
     parser.add_argument("--cad", type=Path, default=ROOT / "evidence/cable_cell_cad_v6.json")
     parser.add_argument("--base", type=Path, default=ROOT / "configs/cable_recovery_task_v2.json")
-    parser.add_argument("--out", type=Path, default=ROOT / "evidence")
+    # Renders are regenerable binaries, so they land in the ignored artifacts area.
+    # The one figure the README carries is committed under evidence/ by hand.
+    parser.add_argument("--out", type=Path, default=ROOT / "artifacts/showcase/cell")
     parser.add_argument("--loop", type=float, help="Accepted service loop; default the middle one.")
     parser.add_argument("--width", type=int, default=1280)
     parser.add_argument("--height", type=int, default=860)
@@ -91,9 +93,10 @@ def main() -> int:
             camera.distance, camera.azimuth = spec["distance"], spec["azimuth"]
             camera.elevation = spec["elevation"]
             renderer.update_scene(scene.data, camera=camera, scene_option=options)
+            args.out.mkdir(parents=True, exist_ok=True)
             path = args.out / f"cable_cell_v6_{name}_{tag}.png"
             Image.fromarray(renderer.render()).save(path)
-            written.append(path.relative_to(ROOT).as_posix())
+            written.append(path.as_posix())
         renderer.close()
 
     print(json.dumps({"cell": cell, "installed_loop_m": loop, "written": written}, indent=1))
