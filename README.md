@@ -62,6 +62,42 @@ A predicate that judges one motion is not usable by a cell; nothing in harness w
 
 ---
 
+## A real route, and what it costs the check
+
+Everything above is one connector and one clip. Harness work is routing, so there
+is now a cell worth routing through: a CAD-authored jig with a backing board,
+**five clips at three heights and four bearings**, a ridge the cable climbs over,
+a corner it turns and a strain-relief clamp at the end. It is authored in FreeCAD
+from a config — move a clip in the config and the jig, the screen and the block
+all move with it — and its meshes are visual only. The cable still collides with
+the same primitive boxes every published number was measured against, verified to
+**0.0 m** with the meshes attached and removed.
+
+Two numbers, measured before anything was scored, say what the fourth study is
+about:
+
+| | |
+| --- | --- |
+| what a five-clip route physically admits | about **18 mm** of commanded retreat |
+| what the shipped check permits on that route | **58 mm**, and eleven of twelve candidate motions |
+
+The check's threshold is a fitted property of the cell it was fitted on — how much
+cable lies between the boot and the anchor, and how much of it can straighten.
+It is not a property of the cable, and a five-clip route is a different cell.
+So the check approves a motion that spends 82% of the headroom it reports, and
+the route loses a clip on it.
+
+**2,340 routes and 11,700 decisions** are running now on that question, frozen and
+committed before launch: does the check still earn its place over five clips, does
+the clip budget keep decaying past the three steps the composition study could
+see, and does the supervisor's *appetite* — the thing that study found post hoc and
+could not certify — matter more than what the check is. The contract, its three
+predictions and the pilot that sized it are in
+[configs/cable_routing_v6.json](configs/cable_routing_v6.json). Nothing is claimed
+from it until it is fitted.
+
+---
+
 ## Why you can believe the numbers
 
 - **Truth is scoring-only, and proved so.** A fail-closed guard fails any run whose control code reads a scoring channel, verified by a positive control that *fires*.
@@ -79,7 +115,7 @@ A predicate that judges one motion is not usable by a cell; nothing in harness w
 The transfer sweep says which cable property matters: a ±30% uncertainty in **friction** implies 12.5 mm of extra margin, against 4.3 mm for bending stiffness.
 
 ```powershell
-.venv/Scripts/python.exe -m pytest                          # 216 tests, CPU-only
+.venv/Scripts/python.exe -m pytest                          # 235 tests, CPU-only
 .venv/Scripts/python.exe scripts/summarize_perception_v4.py
 .venv/Scripts/python.exe scripts/probe_cell_toolchain_v6.py # checks the CAD toolchain
 ```
@@ -90,13 +126,13 @@ The transfer sweep says which cable property matters: a ±30% uncertainty in **f
 
 ## What is next
 
-The measurement questions are closed. What is missing is a cell worth showing: a multi-clip harness jig authored in CAD, a cable routed through it under this check, and a tool an engineer can actually open. That work is planned in two parts and both are written down — [the routing cell](docs/handover/v6_routing_cell.txt) and [the workbench](docs/handover/v7_workbench.txt) — with the CAD toolchain already checked on real hardware and recorded in [evidence/cell_toolchain_v6.json](evidence/cell_toolchain_v6.json).
+The cell exists and the routing block is running. What is missing is the tool: something an engineer can open, move a clip in, and re-run. That is [the workbench](docs/handover/v7_workbench.txt), and it reads what this session left — the fitted record, the per-step traces every request carries, and the asset hashes that say which cell was measured. The cell itself was built to [the routing-cell plan](docs/handover/v6_routing_cell.txt), on a CAD toolchain checked on this machine and recorded in [evidence/cell_toolchain_v6.json](evidence/cell_toolchain_v6.json).
 
 ---
 
 ## Scope
 
-Simulation only. No hardware, no released or latched connection, no electrical function, no learned grasping, no force-certified safety claim. The endpoint is *held, clip-preserving seating before gripper release*.
+Simulation only. No hardware, no released or latched connection, no electrical function, no learned grasping, no force-certified safety claim. The endpoint is *held, clip-preserving seating before gripper release* — extended, in the routing study, to every clip of a five-clip route rather than one.
 
 The error model is a model of **how perception fails** — derived from geometry and declared magnitudes. It is not camera perception, it renders nothing, and no estimator is built or evaluated here.
 

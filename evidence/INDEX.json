@@ -2,7 +2,7 @@
  "schema": 1,
  "generated_by": "scripts/index_evidence.py",
  "purpose": "Pick the one evidence record a question needs. Entries are derived from each file, so read the file itself before quoting any number, and read its scope before reusing its result.",
- "count": 28,
+ "count": 30,
  "records": [
   {
    "file": "cable_baseline_v2.json",
@@ -41,6 +41,63 @@
     "scope",
     "spatial_refinement",
     "status"
+   ]
+  },
+  {
+   "file": "cable_cell_cad_v6.json",
+   "bytes": 6410,
+   "id": "cable_cell_cad_v6",
+   "status": "authored_cad_asset",
+   "scope": "Provenance for the CAD-authored v6 routing cell. Geometry only: these meshes are VISUAL geoms in the compiled scene and collide with nothing. Not a study result and not a hardware claim.",
+   "top_level_keys": [
+    "all_single_solid",
+    "all_watertight",
+    "authored_from",
+    "collision",
+    "created_on",
+    "frame",
+    "freecad_build",
+    "freecad_version",
+    "id",
+    "overlap_mm",
+    "parts",
+    "schema",
+    "scope",
+    "source_document",
+    "status",
+    "tessellation",
+    "total_facets"
+   ]
+  },
+  {
+   "file": "cable_cell_screen_v6.json",
+   "bytes": 103532,
+   "id": "cable_cell_screen_v6",
+   "status": "executed_cell_screen",
+   "scope": "Settling and installed-geometry screen for the v6 routing cell. Not a study result, not a safety claim and not a hardware claim.",
+   "top_level_keys": [
+    "accepted_cell_detail",
+    "accepted_cells",
+    "accepted_groups",
+    "c2_spec_m",
+    "candidates",
+    "created_on",
+    "id",
+    "pilot",
+    "registered_cell",
+    "registered_cell_why",
+    "registered_groups",
+    "rejected_cells",
+    "rejected_groups",
+    "rule",
+    "runs",
+    "schema",
+    "scope",
+    "screened_cells",
+    "selection_rule",
+    "status",
+    "unit",
+    "withdrawn_lateral_floor"
    ]
   },
   {
@@ -655,7 +712,7 @@
   },
   {
    "file": "cell_toolchain_v6.json",
-   "bytes": 5605,
+   "bytes": 5805,
    "id": "cell_toolchain_v6",
    "status": "machine_check",
    "scope": "A check that the CAD-to-simulation toolchain works on this machine. Not a research result and not comparable with any study record. It records which collision strategy a CAD-authored cell must use and why.",
