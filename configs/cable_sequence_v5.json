@@ -9,7 +9,7 @@
  "what_this_is_not": "It is not a planning contribution and not a new safety method. The check under test is the one the perception study fitted, loaded from that study's evidence record and NOT refitted here. What is measured is whether a fitted check composes.",
  "base_config": {
   "path": "configs/cable_recovery_task_v2.json",
-  "content_sha256": "PENDING_FREEZE"
+  "content_sha256": "34d08b3b6c10dcf603ea78d1bf9050e0edca7cc85b88c927b1f0c90b93ff011f"
  },
  "safety_filter": {
   "fit": "evidence/cable_perception_v4.json",
@@ -17,7 +17,46 @@
   "base": "configs/cable_recovery_task_v2.json",
   "arm": "B0plus: the analytic budget carrying a margin sized from the declared estimator covariance",
   "why_this_arm": "It is the arm worth shipping if the perception study finds it sufficient: one distance and one comparison, no model to serve, and a margin the measurement-robust control barrier function literature already justifies. The learned arms are deliberately not packaged - their weights are not part of the evidence record, and shipping a model the study may find unnecessary would be the wrong thing to hand somebody.",
-  "not_refitted": "The thresholds come out of the perception study's record unchanged. The contexts used here are held out of that fit, so the filter has never seen them."
+  "not_refitted": "The thresholds come out of the perception study's record unchanged. The contexts used here are held out of that fit, so the filter has never seen them.",
+  "loaded_at_freeze": {
+   "kind": "analytic budget with a measurement-robust margin",
+   "shape_matched": false,
+   "shape_matched_status": "off; this is the registered baseline",
+   "rules": {
+    "C1_clip": {
+     "threshold_m": 0.41364132161414274,
+     "train_balanced_accuracy": 0.7439452628687202,
+     "coverage_sigma": 2.0,
+     "shape_channel": null,
+     "shape_weight_m": null
+    },
+    "C2_bend": {
+     "threshold_m": 0.414370929950032,
+     "train_balanced_accuracy": 0.5442108859078006,
+     "coverage_sigma": 2.0,
+     "shape_channel": null,
+     "shape_weight_m": null
+    },
+    "C3_anchor": {
+     "threshold_m": 0.40756645091981014,
+     "train_balanced_accuracy": 0.7109765119066107,
+     "coverage_sigma": 2.0,
+     "shape_channel": null,
+     "shape_weight_m": null
+    }
+   },
+   "unscored": [],
+   "retract_distance_m": 0.006,
+   "source": {
+    "fit": "D:/6axis-space-robotics/evidence/cable_perception_v4.json",
+    "contract": "D:/6axis-space-robotics/configs/cable_perception_v4.json",
+    "fit_id": "cable_perception_v4_fit",
+    "created_on": "2026-09-11",
+    "arm": "B0plus",
+    "shape_matched": false
+   },
+   "scope": "Fitted on one task, one connector and one cable model, in simulation. The thresholds are properties of that. No hardware, no force-certified safety claim, and no guarantee outside the registered action space."
+  }
  },
  "sequence": {
   "decision_times_s": [
@@ -149,7 +188,7 @@
  },
  "first_calibration_seed": 141000,
  "perception_seed_offset": 700000,
- "expected_requests": "PENDING_FREEZE",
+ "expected_requests": 720,
  "labels": {
   "primary": "Whether each constraint was violated at any point in the sequence, and at which step.",
   "per_step": "Each step records what the supervisor chose, whether it abstained, the filter's per-constraint verdict and headroom, and the state the cable was in before the step ran.",
@@ -184,5 +223,17 @@
   "The candidate action set is the perception study's twelve. A supervisor with a richer action space might spend its budget differently.",
   "The error model is a model of how perception fails, not camera perception."
  ],
- "sizing_check": "Verified before freezing, against a stand-in fit: the contract expands to 720 sequences and 2,160 decisions, 80 sequences per (error level, supervisor) cell, so a per-step rate resolves to 0.0125 against a registered margin of 0.05. The launcher refuses to freeze a size whose resolution the margin cannot beat."
+ "sizing_check": "Verified before freezing, against a stand-in fit: the contract expands to 720 sequences and 2,160 decisions, 80 sequences per (error level, supervisor) cell, so a per-step rate resolves to 0.0125 against a registered margin of 0.05. The launcher refuses to freeze a size whose resolution the margin cannot beat.",
+ "frozen_counts": {
+  "held_out_groups": 10,
+  "port_mounts": 2,
+  "repeats": 4,
+  "error_levels": 3,
+  "supervisors": 3,
+  "steps_per_request": 3,
+  "sequences_per_level_and_supervisor": 80,
+  "per_step_metric_resolution": 0.0125,
+  "requests": 720,
+  "decisions": 2160
+ }
 }
