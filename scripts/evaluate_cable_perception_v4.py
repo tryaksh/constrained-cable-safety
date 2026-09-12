@@ -64,11 +64,11 @@ from assembly_recovery.cable_recovery_control_v2 import (  # noqa: E402
 from scripts.evaluate_cable_recovery_v2 import (  # noqa: E402
     SERVO_CHANNELS,
     clip_margin,
+    render,
     settle,
     wrist_world,
     write,
 )
-from scripts.probe_cable_robot import render  # noqa: E402
 
 
 def effective_level(cfg: dict, case: dict) -> PerceptionLevel:

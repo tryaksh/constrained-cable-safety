@@ -108,7 +108,15 @@ def clip_snapshot(state: dict) -> dict:
             "required_count": state["summary"]["required_count"]}
 
 
-def run_case(cfg, case, directory: Path) -> dict:
+def run_case(cfg, case, directory: Path, observer=None) -> dict:
+    """Run one registered route.
+
+    ``observer``, when given, is called once per servo tick with a read-only view
+    of the tick. It exists so a replay can record dense state from THIS loop
+    rather than from a copy of it: a copy that drew one extra random number would
+    silently be showing a different rollout. It is called after the control step,
+    outside the mutation guard, and it draws nothing from the perception stream.
+    """
     directory.mkdir(parents=True, exist_ok=True)
     started = time.monotonic()
     cfg = {**cfg, "clocks": {**cfg["clocks"], **case.get("clocks_override", {})},
@@ -307,6 +315,13 @@ def run_case(cfg, case, directory: Path) -> dict:
                                  PHASE_CODE.get(phase, len(PHASE_CODE))]
             servo_rows += 1
             servo_tick += 1
+            if observer is not None:
+                observer({"tick": servo_tick-1, "native_step": i, "time_s": job_time,
+                          "scene": scene, "state": state, "centreline": centreline,
+                          "estimate": estimate, "weights": weights, "truth": truth,
+                          "scorer": scorer, "loads": loads, "phase": phase,
+                          "target": target, "step_index": step_index, "issued": issued,
+                          "progress": progress, "job": job})
             if not summary["all_required_retained"] and job.status == "active":
                 job.fail("lost_required_clip")
             elif getattr(controller, "terminal", False) and job.status == "active":
@@ -398,9 +413,9 @@ def run_case(cfg, case, directory: Path) -> dict:
     return outcome
 
 
-def guarded_case(cfg, case, directory: Path) -> dict:
+def guarded_case(cfg, case, directory: Path, observer=None) -> dict:
     try:
-        return run_case(cfg, case, directory)
+        return run_case(cfg, case, directory, observer)
     except (ValueError, KeyError) as exc:
         directory.mkdir(parents=True, exist_ok=True)
         censored = {name: {"state": "censored", "violation_progress_m": None,

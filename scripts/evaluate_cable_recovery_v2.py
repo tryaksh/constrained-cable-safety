@@ -40,9 +40,35 @@ from assembly_recovery.cable_recovery_control_v2 import (  # noqa: E402
     parametric_macro,
     repair_library,
 )
-from scripts.probe_cable_robot import render  # noqa: E402
 
 SERVO_CHANNELS = 28
+
+
+def render(scene, directory: Path, name: str):
+    """One still of a compiled scene, for eyeballing a request that went wrong.
+
+    Best-effort: a machine with no working renderer still has to be able to
+    collect, so a failure here is returned as a string and never raised. Lived in
+    scripts/probe_cable_robot.py until that probe was retired; it is here now
+    because this module is the one both evaluators already share.
+    """
+    try:
+        from PIL import Image
+
+        renderer = mujoco.Renderer(scene.model, width=1000, height=800)
+        camera = mujoco.MjvCamera()
+        camera.lookat[:] = scene.initial_tip
+        camera.distance = 1.4
+        camera.azimuth = 135
+        camera.elevation = -20
+        options = mujoco.MjvOption()
+        options.geomgroup[3] = 1
+        renderer.update_scene(scene.data, camera=camera, scene_option=options)
+        Image.fromarray(renderer.render()).save(directory/f"{name}.png")
+        renderer.close()
+        return None
+    except Exception as exc:  # noqa: BLE001 - a still is never worth failing a request for
+        return f"{type(exc).__name__}: {exc}"
 
 
 def write(path: Path, data) -> None:
