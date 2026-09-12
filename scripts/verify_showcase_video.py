@@ -18,6 +18,7 @@ from pathlib import Path
 
 import imageio_ffmpeg
 import numpy as np
+from PIL import Image
 
 ROOT = Path(__file__).resolve().parents[1]
 
@@ -27,7 +28,7 @@ MIN_STD = 8.0
 MAX_FLAT_FRACTION = 0.97
 
 
-def sample_frames(path: Path, wanted: int = 9) -> dict:
+def sample_frames(path: Path, wanted: int = 9, poster_at: float = 0.6) -> dict:
     """Decode the whole clip, measuring an even spread of frames as it goes.
 
     Every frame is decoded, because a count taken from the writer is not evidence
@@ -39,10 +40,16 @@ def sample_frames(path: Path, wanted: int = 9) -> dict:
     width, height = meta["size"]
     expected = max(1, round(float(meta.get("duration") or 0.0)*float(meta["fps"])))
     stride = max(1, expected//wanted)
+    poster_index = max(0, round(expected*poster_at))
+    poster = path.with_name(path.stem+"_poster.jpg")
     frames = 0
     measured: list[dict] = []
     for index, packet in enumerate(reader):
         frames += 1
+        if index == poster_index:
+            # A still the page can show before anyone presses play, so the clip
+            # is not a black rectangle in the first frame a reader sees.
+            Image.frombytes("RGB", (width, height), packet).save(poster, quality=88)
         if index % stride or len(measured) >= wanted:
             continue
         grey = np.frombuffer(packet, dtype=np.uint8).reshape(height, width, 3).mean(axis=2)
@@ -52,6 +59,9 @@ def sample_frames(path: Path, wanted: int = 9) -> dict:
                          "distinct_bands": int(len(values))})
     return {"resolution": [width, height], "fps": float(meta["fps"]),
             "duration_s": round(float(meta.get("duration") or 0.0), 2),
+            "poster": (poster.resolve().relative_to(ROOT).as_posix() if poster.is_file()
+                       else None),
+            "poster_frame": poster_index if poster.is_file() else None,
             "frames_decoded": frames, "frames_measured": len(measured), "sampled": measured,
             "blank_frames": sum(1 for m in measured
                                 if m["std"] < MIN_STD
@@ -94,6 +104,7 @@ def main() -> int:
                                              and measured["resolution"][1] >= args.min_height),
             "fps_at_least_30": measured["fps"] >= 30.0,
             "no_blank_sampled_frames": measured["blank_frames"] == 0,
+            "poster_written": bool(measured["poster"]),
             "every_capture_reproduces_the_block": all(c["reproduces_block"] for c in captures),
         }
         clips.append({"name": record_path.stem, "layout": summary["layout"],
