@@ -1,0 +1,2907 @@
+{
+  "schema": 1,
+  "id": "cable_routing_v6",
+  "created_on": "2026-09-12",
+  "status": "fitted_routing_study",
+  "complete": true,
+  "scope": "Routing study for the constrained-cable safety layer. One request is one ROUTE through a five-clip CAD-authored cell: the cable is installed through every clip, settled, and a named supervisor is offered a decision at each of five registered decision points. Success is EVERY required clip still retained AND the connector seated for the declared dwell. Endpoint is held, clip-preserving seating before gripper release, extended from one clip to five. Not official AIC scoring, not a released or latched connection, not learned pickup, not camera perception and not a hardware claim.",
+  "question": "A safety check fitted on single motions, and measured to lose calibration over a three-decision chain on the one constraint it reads directly - does it still earn its place over a five-clip route, which is a longer chain in a cell it was never fitted on?",
+  "contract": {
+    "path": "configs/cable_routing_v6.json",
+    "content_sha256": "1d735d5100a3d2b6589df7ca3a4d5a2e3f91aa00a1e9fb56314584abc966ef90"
+  },
+  "cell": {
+    "candidates": "configs/cable_cell_v6_candidates.json",
+    "screen": "evidence/cable_cell_screen_v6.json",
+    "cad": "evidence/cable_cell_cad_v6.json",
+    "registered_cell": "RC1",
+    "why_this_cell": "It is the candidate that survived at the most service loops in the registered screen - 6 of 7, against 2, 1 and 0 for the other three declared candidates - which is the selection rule the candidate file declared before the screen ran.",
+    "collision": "The CAD meshes are VISUAL geoms, contype=0 conaffinity=0 group=2 mass=0. The cable collides with the primitive boxes and cylinders build_fixture writes, which is bit-identical to the scene every published number was measured in. Measured, not asserted: settling with and without the meshes agrees to 0.0 m at three service loops.",
+    "asset_hashes": "Every mesh's SHA-256 on LF-normalised bytes is in evidence/cable_cell_cad_v6.json and is written into every compiled scene report, so a later tool can check it is showing the cell that was measured.",
+    "candidates_content_sha256": "9b51a7d9f9e2ff737dc5ee5272685a8b06e5eeef7dc116ce17839df2ab31f5c1",
+    "screen_content_sha256": "e8b9e92d3cd8950f806d9cd1cb963970dd31fb0b685aa68bb12c643436899051",
+    "cad_content_sha256": "5dfae770e81eab5e94189bb214fb9458b4f3e8b5036330c4b704a7926488f953",
+    "asset_sha256": {
+      "board": "6c1e3c1e771ef7397016d37cc19f8453b8eb4e5a81f3731a4b58e2781f434083",
+      "c1": "6d8626dd59f178bbcec2d06c08da5d7624a3fa45b3920f4718210412c066367e",
+      "c2": "f9afa50155f35ff23fbb568484b26f67ac6be287914ea03d665a04ca69422088",
+      "c3": "9ce92e35644c286059024e37c78549d44ca5bd321f23230531c9ef65713f29bf",
+      "c4": "9fee52459b2c82256278062e7d898d4128c86e14af2d16cee8fb7272c3d14cb0",
+      "c5": "3635f07cbc87fd95335ef94de3ca7d038d503c547081fa5d20e4644bdc8d44a4",
+      "clamp": "d220092fca4a680d7a844d90047241953e4fce373815c13ffb624f4e768197c7",
+      "socket": "38e43b8896617110eed2a3243a4c730a8a5b2fb8169e4f15f4ad7a5d208d9ca5"
+    }
+  },
+  "run_dirs": [
+    "artifacts/cable/routing-v6-s1"
+  ],
+  "denominator": {
+    "registered_routes": 2340,
+    "executed_routes": 2340,
+    "decisions_offered": 11700,
+    "motions_issued": 4414,
+    "motions_completed": 2431,
+    "abstentions": 0,
+    "settling_rejections": 0,
+    "routes_completed": 105,
+    "by_reason": {
+      "completed": 105,
+      "controller_retries_exhausted": 135,
+      "deadline": 268,
+      "force_abort": 683,
+      "lost_required_clip": 1144,
+      "prior_connection_load_abort": 5
+    },
+    "note": "Every registered route counts, including settling rejections, infeasible constructions and aborts. A route cut short is censored on every constraint it had not already violated, never counted as respecting one."
+  },
+  "guards": {
+    "privilege_guard_events": 0,
+    "mutation_guard_events": 0
+  },
+  "cost": {
+    "native_steps": 220005778,
+    "settle_native_steps": 46800000,
+    "summed_worker_wall_seconds": 103485.3
+  },
+  "prediction": {
+    "declared_before_collection": true,
+    "p1_the_filter_still_earns_its_place": "The unfiltered supervisor loses at least one required clip in more routes than the filtered supervisor by MORE than the margin, at every error level. The composition study measured a gap of 0.600, 0.431 and 0.455 over three steps; five steps and five clips should not reverse that.",
+    "p2_c1_keeps_decaying": "For the supervisor that actually reaches step 5 - the conservative one, by the pilot's measurement - the per-step C1 violation rate rises by MORE than the margin between step 1 and step 5 at E2 and E4. This is the continuation prediction: the composition study measured +0.089 over three steps at E4, and the mechanism it identified, each accepted step spending slack the next is judged against, does not stop at step three. Where a supervisor does not reach step 5 the rate is reported as unresolvable, not as a number.",
+    "p3_appetite_beats_representation": "The conservative supervisor completes more routes than the filtered supervisor by more than the margin at E0 and E2, and the advantage collapses to inside the margin at E4. This is the composition study's post-hoc appetite finding, stated as a registered prediction with its collapse included, so that being wrong about the collapse is also a result.",
+    "falsification": "Each prediction is falsifiable on its own and being wrong about any of them is a result. The interesting failure is p2 flattening: it would say the chain decay is bounded rather than compounding, which is the difference between a check a planner can budget for and one it cannot use past a couple of steps.",
+    "what_would_make_this_uninformative": "The pilot already shows that filtered and unfiltered both lose a clip at the first step in most contexts, so their per-step rates at steps 2 to 5 will be computed over very little and are expected to be unresolvable. That is declared here in advance: those cells will be reported as unresolvable rather than as numbers, and the route-level rates will carry the comparison for those two arms. The five-step chain evidence comes from the conservative arm."
+  },
+  "verdicts": {
+    "p1_filter_earns_its_place_over_a_route": {
+      "held": false,
+      "by_level": {
+        "E0": false,
+        "E2": false,
+        "E4": false
+      },
+      "gaps": {
+        "E0": 0.0,
+        "E2": 0.02499999999999991,
+        "E4": -0.00833333333333336
+      }
+    },
+    "p2_clip_budget_keeps_decaying": {
+      "held": false,
+      "read_on": "conservative",
+      "why_that_arm": "The contract named it in advance as the only arm expected to reach step 5. The other two lose a clip at step 1 in every route, so their per-step rates past step 1 are computed over nothing and are reported as unresolvable, exactly as declared.",
+      "rise_first_to_last": {
+        "E0": -0.3333333333333333,
+        "E2": -0.3138888888888889,
+        "E4": -0.09090038314176245
+      }
+    },
+    "p3_appetite_beats_representation": {
+      "held": {
+        "E0": true,
+        "E2": true,
+        "E4": false
+      },
+      "gaps": {
+        "E0": 0.3333333333333333,
+        "E2": 0.2111111111111111,
+        "E4": 0.025
+      },
+      "status": "PRE-REGISTERED here, unlike the composition study where the same comparison was post hoc and carried no verdict."
+    },
+    "correct": 1,
+    "of": 3
+  },
+  "p1_does_the_filter_still_earn_its_place": {
+    "E0": {
+      "filtered_clip_loss_rate": 0.6666666666666666,
+      "unfiltered_clip_loss_rate": 0.6666666666666666,
+      "gap": 0.0,
+      "beats_by_more_than_margin": false,
+      "bootstrap": {
+        "gap": 0.0,
+        "ci95": [
+          0.0,
+          0.0
+        ],
+        "excludes_zero": false,
+        "groups": 6,
+        "draws": 2000,
+        "unit": "whole (cell, service loop) groups, because routes inside one share a cell"
+      }
+    },
+    "E2": {
+      "filtered_clip_loss_rate": 0.6111111111111112,
+      "unfiltered_clip_loss_rate": 0.6361111111111111,
+      "gap": 0.02499999999999991,
+      "beats_by_more_than_margin": false,
+      "bootstrap": {
+        "gap": 0.02499999999999991,
+        "ci95": [
+          0.002777777777777768,
+          0.05277777777777781
+        ],
+        "excludes_zero": true,
+        "groups": 6,
+        "draws": 2000,
+        "unit": "whole (cell, service loop) groups, because routes inside one share a cell"
+      }
+    },
+    "E4": {
+      "filtered_clip_loss_rate": 0.49722222222222223,
+      "unfiltered_clip_loss_rate": 0.4888888888888889,
+      "gap": -0.00833333333333336,
+      "beats_by_more_than_margin": false,
+      "bootstrap": {
+        "gap": -0.00833333333333336,
+        "ci95": [
+          -0.07777777777777783,
+          0.061111111111111116
+        ],
+        "excludes_zero": false,
+        "groups": 6,
+        "draws": 2000,
+        "unit": "whole (cell, service loop) groups, because routes inside one share a cell"
+      }
+    }
+  },
+  "p2_does_the_clip_budget_keep_decaying": {
+    "filtered": {
+      "per_level": {
+        "E0": {
+          "rise_first_to_last": null,
+          "rises_by_more_than_margin": null,
+          "readable": false,
+          "motions_scored_by_step": [
+            40,
+            0,
+            0,
+            0,
+            0
+          ],
+          "rate_by_step": [
+            1.0,
+            null,
+            null,
+            null,
+            null
+          ]
+        },
+        "E2": {
+          "rise_first_to_last": null,
+          "rises_by_more_than_margin": null,
+          "readable": false,
+          "motions_scored_by_step": [
+            220,
+            0,
+            0,
+            0,
+            0
+          ],
+          "rate_by_step": [
+            1.0,
+            null,
+            null,
+            null,
+            null
+          ]
+        },
+        "E4": {
+          "rise_first_to_last": null,
+          "rises_by_more_than_margin": null,
+          "readable": false,
+          "motions_scored_by_step": [
+            179,
+            0,
+            0,
+            0,
+            0
+          ],
+          "rate_by_step": [
+            1.0,
+            null,
+            null,
+            null,
+            null
+          ]
+        }
+      },
+      "keeps_decaying": null,
+      "levels_readable": 0,
+      "levels": 3
+    },
+    "conservative": {
+      "per_level": {
+        "E0": {
+          "rise_first_to_last": -0.3333333333333333,
+          "rises_by_more_than_margin": false,
+          "readable": false,
+          "motions_scored_by_step": [
+            60,
+            40,
+            40,
+            30,
+            20
+          ],
+          "rate_by_step": [
+            0.3333333333333333,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ]
+        },
+        "E2": {
+          "rise_first_to_last": -0.3138888888888889,
+          "rises_by_more_than_margin": false,
+          "readable": true,
+          "motions_scored_by_step": [
+            360,
+            247,
+            247,
+            178,
+            128
+          ],
+          "rate_by_step": [
+            0.3138888888888889,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ]
+        },
+        "E4": {
+          "rise_first_to_last": -0.09090038314176245,
+          "rises_by_more_than_margin": false,
+          "readable": true,
+          "motions_scored_by_step": [
+            360,
+            295,
+            282,
+            182,
+            145
+          ],
+          "rate_by_step": [
+            0.18055555555555555,
+            0.04406779661016949,
+            0.07446808510638298,
+            0.08241758241758242,
+            0.0896551724137931
+          ]
+        }
+      },
+      "keeps_decaying": false,
+      "levels_readable": 2,
+      "levels": 3
+    },
+    "unfiltered": {
+      "per_level": {
+        "E0": {
+          "rise_first_to_last": null,
+          "rises_by_more_than_margin": null,
+          "readable": false,
+          "motions_scored_by_step": [
+            40,
+            0,
+            0,
+            0,
+            0
+          ],
+          "rate_by_step": [
+            1.0,
+            null,
+            null,
+            null,
+            null
+          ]
+        },
+        "E2": {
+          "rise_first_to_last": null,
+          "rises_by_more_than_margin": null,
+          "readable": false,
+          "motions_scored_by_step": [
+            229,
+            0,
+            0,
+            0,
+            0
+          ],
+          "rate_by_step": [
+            1.0,
+            null,
+            null,
+            null,
+            null
+          ]
+        },
+        "E4": {
+          "rise_first_to_last": null,
+          "rises_by_more_than_margin": null,
+          "readable": false,
+          "motions_scored_by_step": [
+            176,
+            0,
+            0,
+            0,
+            0
+          ],
+          "rate_by_step": [
+            1.0,
+            null,
+            null,
+            null,
+            null
+          ]
+        }
+      },
+      "keeps_decaying": null,
+      "levels_readable": 0,
+      "levels": 3
+    }
+  },
+  "p3_appetite_against_representation": {
+    "E0": {
+      "filtered_route_completion": 0.0,
+      "conservative_route_completion": 0.3333333333333333,
+      "gap": 0.3333333333333333,
+      "beats_by_more_than_margin": true,
+      "bootstrap": {
+        "gap": 0.3333333333333333,
+        "ci95": [
+          0.06666666666666667,
+          0.6666666666666666
+        ],
+        "excludes_zero": true,
+        "groups": 6,
+        "draws": 2000,
+        "unit": "whole (cell, service loop) groups, because routes inside one share a cell"
+      },
+      "clip_loss": {
+        "filtered": 0.6666666666666666,
+        "conservative": 0.3333333333333333
+      }
+    },
+    "E2": {
+      "filtered_route_completion": 0.0,
+      "conservative_route_completion": 0.2111111111111111,
+      "gap": 0.2111111111111111,
+      "beats_by_more_than_margin": true,
+      "bootstrap": {
+        "gap": 0.2111111111111111,
+        "ci95": [
+          0.044444444444444446,
+          0.4
+        ],
+        "excludes_zero": true,
+        "groups": 6,
+        "draws": 2000,
+        "unit": "whole (cell, service loop) groups, because routes inside one share a cell"
+      },
+      "clip_loss": {
+        "filtered": 0.6111111111111112,
+        "conservative": 0.3138888888888889
+      }
+    },
+    "E4": {
+      "filtered_route_completion": 0.0,
+      "conservative_route_completion": 0.025,
+      "gap": 0.025,
+      "beats_by_more_than_margin": false,
+      "bootstrap": {
+        "gap": 0.025,
+        "ci95": [
+          0.013888888888888888,
+          0.03333333333333333
+        ],
+        "excludes_zero": true,
+        "groups": 6,
+        "draws": 2000,
+        "unit": "whole (cell, service loop) groups, because routes inside one share a cell"
+      },
+      "clip_loss": {
+        "filtered": 0.49722222222222223,
+        "conservative": 0.3527777777777778
+      }
+    }
+  },
+  "clips": {
+    "routes": 2340,
+    "losses_by_clip": {
+      "c1": 127,
+      "c3": 1017
+    },
+    "mean_step_at_loss": {
+      "c1": 0.2677165354330709,
+      "c3": 0.1160275319567355
+    },
+    "routes_losing_any_required_clip": 1144,
+    "mean_required_clips_kept": 4.512393162393162
+  },
+  "results": {
+    "filtered:E0": {
+      "routes": 60,
+      "motions_issued": 60,
+      "motions_completed": 0,
+      "abstentions": 0,
+      "routes_completed": 0,
+      "route_completion_rate": 0.0,
+      "seated": 0,
+      "settling_rejections": 0,
+      "by_reason": {
+        "force_abort": 20,
+        "lost_required_clip": 40
+      },
+      "clips": {
+        "routes": 60,
+        "losses_by_clip": {
+          "c3": 40
+        },
+        "mean_step_at_loss": {
+          "c3": 0.0
+        },
+        "routes_losing_any_required_clip": 40,
+        "mean_required_clips_kept": 4.333333333333333
+      },
+      "budget": {
+        "per_step": [
+          {
+            "step": 0,
+            "motions": 60,
+            "mean_headroom_at_decision_m": 0.07051562462580797,
+            "mean_spent_m": 0.05755694339702232,
+            "mean_spent_fraction": 0.8162945199012756,
+            "median_spent_fraction": 0.81809233710212
+          }
+        ],
+        "headroom_decay_m": null
+      },
+      "C1_clip": {
+        "per_step": {
+          "steps": [
+            {
+              "step": 0,
+              "reached_intact": 60,
+              "motions_scored": 40,
+              "no_motion_issued": 0,
+              "motion_cut_short": 20,
+              "violations": 40,
+              "rate": 1.0,
+              "resolution": 0.025
+            },
+            {
+              "step": 1,
+              "reached_intact": 20,
+              "motions_scored": 0,
+              "no_motion_issued": 20,
+              "motion_cut_short": 0,
+              "violations": 0,
+              "rate": null,
+              "resolution": null
+            },
+            {
+              "step": 2,
+              "reached_intact": 20,
+              "motions_scored": 0,
+              "no_motion_issued": 20,
+              "motion_cut_short": 0,
+              "violations": 0,
+              "rate": null,
+              "resolution": null
+            },
+            {
+              "step": 3,
+              "reached_intact": 20,
+              "motions_scored": 0,
+              "no_motion_issued": 20,
+              "motion_cut_short": 0,
+              "violations": 0,
+              "rate": null,
+              "resolution": null
+            },
+            {
+              "step": 4,
+              "reached_intact": 20,
+              "motions_scored": 0,
+              "no_motion_issued": 20,
+              "motion_cut_short": 0,
+              "violations": 0,
+              "rate": null,
+              "resolution": null
+            }
+          ],
+          "rise_first_to_last": null,
+          "rises_by_more_than_margin": null,
+          "margin_resolution": {
+            "margin": 0.05,
+            "coarsest_resolution": 0.025,
+            "required_ratio": 2.0,
+            "required_margin": 0.05,
+            "verdict": "usable",
+            "note": "A margin below twice the coarsest metric resolution cannot separate signal from one context changing hands. v3 registered a margin exactly equal to its resolution and returned an unresolvable verdict; this check is why that cannot happen again."
+          },
+          "readable": false
+        },
+        "cumulative": {
+          "routes": 60,
+          "observed": 40,
+          "censored": 20,
+          "violated": 40,
+          "rate": 1.0
+        }
+      },
+      "C2_bend": {
+        "per_step": {
+          "steps": [
+            {
+              "step": 0,
+              "reached_intact": 58,
+              "motions_scored": 28,
+              "no_motion_issued": 0,
+              "motion_cut_short": 30,
+              "violations": 28,
+              "rate": 1.0,
+              "resolution": 0.03571428571428571
+            },
+            {
+              "step": 1,
+              "reached_intact": 30,
+              "motions_scored": 0,
+              "no_motion_issued": 30,
+              "motion_cut_short": 0,
+              "violations": 0,
+              "rate": null,
+              "resolution": null
+            },
+            {
+              "step": 2,
+              "reached_intact": 30,
+              "motions_scored": 0,
+              "no_motion_issued": 30,
+              "motion_cut_short": 0,
+              "violations": 0,
+              "rate": null,
+              "resolution": null
+            },
+            {
+              "step": 3,
+              "reached_intact": 30,
+              "motions_scored": 0,
+              "no_motion_issued": 30,
+              "motion_cut_short": 0,
+              "violations": 0,
+              "rate": null,
+              "resolution": null
+            },
+            {
+              "step": 4,
+              "reached_intact": 30,
+              "motions_scored": 0,
+              "no_motion_issued": 30,
+              "motion_cut_short": 0,
+              "violations": 0,
+              "rate": null,
+              "resolution": null
+            }
+          ],
+          "rise_first_to_last": null,
+          "rises_by_more_than_margin": null,
+          "margin_resolution": {
+            "margin": 0.05,
+            "coarsest_resolution": 0.03571428571428571,
+            "required_ratio": 2.0,
+            "required_margin": 0.07142857142857142,
+            "verdict": "refused_margin_below_resolution",
+            "note": "A margin below twice the coarsest metric resolution cannot separate signal from one context changing hands. v3 registered a margin exactly equal to its resolution and returned an unresolvable verdict; this check is why that cannot happen again."
+          },
+          "readable": false
+        },
+        "cumulative": {
+          "routes": 60,
+          "observed": 40,
+          "censored": 20,
+          "violated": 30,
+          "rate": 0.75
+        }
+      },
+      "C3_anchor": {
+        "per_step": {
+          "steps": [
+            {
+              "step": 0,
+              "reached_intact": 60,
+              "motions_scored": 20,
+              "no_motion_issued": 0,
+              "motion_cut_short": 40,
+              "violations": 20,
+              "rate": 1.0,
+              "resolution": 0.05
+            },
+            {
+              "step": 1,
+              "reached_intact": 40,
+              "motions_scored": 0,
+              "no_motion_issued": 40,
+              "motion_cut_short": 0,
+              "violations": 0,
+              "rate": null,
+              "resolution": null
+            },
+            {
+              "step": 2,
+              "reached_intact": 40,
+              "motions_scored": 0,
+              "no_motion_issued": 40,
+              "motion_cut_short": 0,
+              "violations": 0,
+              "rate": null,
+              "resolution": null
+            },
+            {
+              "step": 3,
+              "reached_intact": 40,
+              "motions_scored": 0,
+              "no_motion_issued": 40,
+              "motion_cut_short": 0,
+              "violations": 0,
+              "rate": null,
+              "resolution": null
+            },
+            {
+              "step": 4,
+              "reached_intact": 40,
+              "motions_scored": 0,
+              "no_motion_issued": 40,
+              "motion_cut_short": 0,
+              "violations": 0,
+              "rate": null,
+              "resolution": null
+            }
+          ],
+          "rise_first_to_last": null,
+          "rises_by_more_than_margin": null,
+          "margin_resolution": {
+            "margin": 0.05,
+            "coarsest_resolution": 0.05,
+            "required_ratio": 2.0,
+            "required_margin": 0.1,
+            "verdict": "refused_margin_below_resolution",
+            "note": "A margin below twice the coarsest metric resolution cannot separate signal from one context changing hands. v3 registered a margin exactly equal to its resolution and returned an unresolvable verdict; this check is why that cannot happen again."
+          },
+          "readable": false
+        },
+        "cumulative": {
+          "routes": 60,
+          "observed": 40,
+          "censored": 20,
+          "violated": 20,
+          "rate": 0.5
+        }
+      }
+    },
+    "filtered:E2": {
+      "routes": 360,
+      "motions_issued": 360,
+      "motions_completed": 0,
+      "abstentions": 0,
+      "routes_completed": 0,
+      "route_completion_rate": 0.0,
+      "seated": 0,
+      "settling_rejections": 0,
+      "by_reason": {
+        "force_abort": 140,
+        "lost_required_clip": 220
+      },
+      "clips": {
+        "routes": 360,
+        "losses_by_clip": {
+          "c1": 19,
+          "c3": 201
+        },
+        "mean_step_at_loss": {
+          "c1": 0.0,
+          "c3": 0.0
+        },
+        "routes_losing_any_required_clip": 220,
+        "mean_required_clips_kept": 4.388888888888889
+      },
+      "budget": {
+        "per_step": [
+          {
+            "step": 0,
+            "motions": 360,
+            "mean_headroom_at_decision_m": 0.06870029427119194,
+            "mean_spent_m": 0.0575700797968636,
+            "mean_spent_fraction": 0.8380852837687858,
+            "median_spent_fraction": 0.8377606128722277
+          }
+        ],
+        "headroom_decay_m": null
+      },
+      "C1_clip": {
+        "per_step": {
+          "steps": [
+            {
+              "step": 0,
+              "reached_intact": 360,
+              "motions_scored": 220,
+              "no_motion_issued": 0,
+              "motion_cut_short": 140,
+              "violations": 220,
+              "rate": 1.0,
+              "resolution": 0.004545454545454545
+            },
+            {
+              "step": 1,
+              "reached_intact": 140,
+              "motions_scored": 0,
+              "no_motion_issued": 140,
+              "motion_cut_short": 0,
+              "violations": 0,
+              "rate": null,
+              "resolution": null
+            },
+            {
+              "step": 2,
+              "reached_intact": 140,
+              "motions_scored": 0,
+              "no_motion_issued": 140,
+              "motion_cut_short": 0,
+              "violations": 0,
+              "rate": null,
+              "resolution": null
+            },
+            {
+              "step": 3,
+              "reached_intact": 140,
+              "motions_scored": 0,
+              "no_motion_issued": 140,
+              "motion_cut_short": 0,
+              "violations": 0,
+              "rate": null,
+              "resolution": null
+            },
+            {
+              "step": 4,
+              "reached_intact": 140,
+              "motions_scored": 0,
+              "no_motion_issued": 140,
+              "motion_cut_short": 0,
+              "violations": 0,
+              "rate": null,
+              "resolution": null
+            }
+          ],
+          "rise_first_to_last": null,
+          "rises_by_more_than_margin": null,
+          "margin_resolution": {
+            "margin": 0.05,
+            "coarsest_resolution": 0.004545454545454545,
+            "required_ratio": 2.0,
+            "required_margin": 0.00909090909090909,
+            "verdict": "usable",
+            "note": "A margin below twice the coarsest metric resolution cannot separate signal from one context changing hands. v3 registered a margin exactly equal to its resolution and returned an unresolvable verdict; this check is why that cannot happen again."
+          },
+          "readable": false
+        },
+        "cumulative": {
+          "routes": 360,
+          "observed": 220,
+          "censored": 140,
+          "violated": 220,
+          "rate": 1.0
+        }
+      },
+      "C2_bend": {
+        "per_step": {
+          "steps": [
+            {
+              "step": 0,
+              "reached_intact": 347,
+              "motions_scored": 131,
+              "no_motion_issued": 0,
+              "motion_cut_short": 216,
+              "violations": 131,
+              "rate": 1.0,
+              "resolution": 0.007633587786259542
+            },
+            {
+              "step": 1,
+              "reached_intact": 216,
+              "motions_scored": 0,
+              "no_motion_issued": 216,
+              "motion_cut_short": 0,
+              "violations": 0,
+              "rate": null,
+              "resolution": null
+            },
+            {
+              "step": 2,
+              "reached_intact": 216,
+              "motions_scored": 0,
+              "no_motion_issued": 216,
+              "motion_cut_short": 0,
+              "violations": 0,
+              "rate": null,
+              "resolution": null
+            },
+            {
+              "step": 3,
+              "reached_intact": 216,
+              "motions_scored": 0,
+              "no_motion_issued": 216,
+              "motion_cut_short": 0,
+              "violations": 0,
+              "rate": null,
+              "resolution": null
+            },
+            {
+              "step": 4,
+              "reached_intact": 216,
+              "motions_scored": 0,
+              "no_motion_issued": 216,
+              "motion_cut_short": 0,
+              "violations": 0,
+              "rate": null,
+              "resolution": null
+            }
+          ],
+          "rise_first_to_last": null,
+          "rises_by_more_than_margin": null,
+          "margin_resolution": {
+            "margin": 0.05,
+            "coarsest_resolution": 0.007633587786259542,
+            "required_ratio": 2.0,
+            "required_margin": 0.015267175572519083,
+            "verdict": "usable",
+            "note": "A margin below twice the coarsest metric resolution cannot separate signal from one context changing hands. v3 registered a margin exactly equal to its resolution and returned an unresolvable verdict; this check is why that cannot happen again."
+          },
+          "readable": false
+        },
+        "cumulative": {
+          "routes": 360,
+          "observed": 220,
+          "censored": 140,
+          "violated": 144,
+          "rate": 0.6545454545454545
+        }
+      },
+      "C3_anchor": {
+        "per_step": {
+          "steps": [
+            {
+              "step": 0,
+              "reached_intact": 360,
+              "motions_scored": 118,
+              "no_motion_issued": 0,
+              "motion_cut_short": 242,
+              "violations": 118,
+              "rate": 1.0,
+              "resolution": 0.00847457627118644
+            },
+            {
+              "step": 1,
+              "reached_intact": 242,
+              "motions_scored": 0,
+              "no_motion_issued": 242,
+              "motion_cut_short": 0,
+              "violations": 0,
+              "rate": null,
+              "resolution": null
+            },
+            {
+              "step": 2,
+              "reached_intact": 242,
+              "motions_scored": 0,
+              "no_motion_issued": 242,
+              "motion_cut_short": 0,
+              "violations": 0,
+              "rate": null,
+              "resolution": null
+            },
+            {
+              "step": 3,
+              "reached_intact": 242,
+              "motions_scored": 0,
+              "no_motion_issued": 242,
+              "motion_cut_short": 0,
+              "violations": 0,
+              "rate": null,
+              "resolution": null
+            },
+            {
+              "step": 4,
+              "reached_intact": 242,
+              "motions_scored": 0,
+              "no_motion_issued": 242,
+              "motion_cut_short": 0,
+              "violations": 0,
+              "rate": null,
+              "resolution": null
+            }
+          ],
+          "rise_first_to_last": null,
+          "rises_by_more_than_margin": null,
+          "margin_resolution": {
+            "margin": 0.05,
+            "coarsest_resolution": 0.00847457627118644,
+            "required_ratio": 2.0,
+            "required_margin": 0.01694915254237288,
+            "verdict": "usable",
+            "note": "A margin below twice the coarsest metric resolution cannot separate signal from one context changing hands. v3 registered a margin exactly equal to its resolution and returned an unresolvable verdict; this check is why that cannot happen again."
+          },
+          "readable": false
+        },
+        "cumulative": {
+          "routes": 360,
+          "observed": 229,
+          "censored": 131,
+          "violated": 118,
+          "rate": 0.5152838427947598
+        }
+      }
+    },
+    "filtered:E4": {
+      "routes": 360,
+      "motions_issued": 360,
+      "motions_completed": 0,
+      "abstentions": 0,
+      "routes_completed": 0,
+      "route_completion_rate": 0.0,
+      "seated": 0,
+      "settling_rejections": 0,
+      "by_reason": {
+        "force_abort": 181,
+        "lost_required_clip": 179
+      },
+      "clips": {
+        "routes": 360,
+        "losses_by_clip": {
+          "c1": 57,
+          "c3": 122
+        },
+        "mean_step_at_loss": {
+          "c1": 0.0,
+          "c3": 0.0
+        },
+        "routes_losing_any_required_clip": 179,
+        "mean_required_clips_kept": 4.502777777777778
+      },
+      "budget": {
+        "per_step": [
+          {
+            "step": 0,
+            "motions": 360,
+            "mean_headroom_at_decision_m": 0.062795258439789,
+            "mean_spent_m": 0.04212772313790616,
+            "mean_spent_fraction": 0.6691112726096929,
+            "median_spent_fraction": 0.5387560819328518
+          }
+        ],
+        "headroom_decay_m": null
+      },
+      "C1_clip": {
+        "per_step": {
+          "steps": [
+            {
+              "step": 0,
+              "reached_intact": 360,
+              "motions_scored": 179,
+              "no_motion_issued": 0,
+              "motion_cut_short": 181,
+              "violations": 179,
+              "rate": 1.0,
+              "resolution": 0.00558659217877095
+            },
+            {
+              "step": 1,
+              "reached_intact": 181,
+              "motions_scored": 0,
+              "no_motion_issued": 181,
+              "motion_cut_short": 0,
+              "violations": 0,
+              "rate": null,
+              "resolution": null
+            },
+            {
+              "step": 2,
+              "reached_intact": 181,
+              "motions_scored": 0,
+              "no_motion_issued": 181,
+              "motion_cut_short": 0,
+              "violations": 0,
+              "rate": null,
+              "resolution": null
+            },
+            {
+              "step": 3,
+              "reached_intact": 181,
+              "motions_scored": 0,
+              "no_motion_issued": 181,
+              "motion_cut_short": 0,
+              "violations": 0,
+              "rate": null,
+              "resolution": null
+            },
+            {
+              "step": 4,
+              "reached_intact": 181,
+              "motions_scored": 0,
+              "no_motion_issued": 181,
+              "motion_cut_short": 0,
+              "violations": 0,
+              "rate": null,
+              "resolution": null
+            }
+          ],
+          "rise_first_to_last": null,
+          "rises_by_more_than_margin": null,
+          "margin_resolution": {
+            "margin": 0.05,
+            "coarsest_resolution": 0.00558659217877095,
+            "required_ratio": 2.0,
+            "required_margin": 0.0111731843575419,
+            "verdict": "usable",
+            "note": "A margin below twice the coarsest metric resolution cannot separate signal from one context changing hands. v3 registered a margin exactly equal to its resolution and returned an unresolvable verdict; this check is why that cannot happen again."
+          },
+          "readable": false
+        },
+        "cumulative": {
+          "routes": 360,
+          "observed": 179,
+          "censored": 181,
+          "violated": 179,
+          "rate": 1.0
+        }
+      },
+      "C2_bend": {
+        "per_step": {
+          "steps": [
+            {
+              "step": 0,
+              "reached_intact": 358,
+              "motions_scored": 70,
+              "no_motion_issued": 0,
+              "motion_cut_short": 288,
+              "violations": 70,
+              "rate": 1.0,
+              "resolution": 0.014285714285714285
+            },
+            {
+              "step": 1,
+              "reached_intact": 288,
+              "motions_scored": 0,
+              "no_motion_issued": 288,
+              "motion_cut_short": 0,
+              "violations": 0,
+              "rate": null,
+              "resolution": null
+            },
+            {
+              "step": 2,
+              "reached_intact": 288,
+              "motions_scored": 0,
+              "no_motion_issued": 288,
+              "motion_cut_short": 0,
+              "violations": 0,
+              "rate": null,
+              "resolution": null
+            },
+            {
+              "step": 3,
+              "reached_intact": 288,
+              "motions_scored": 0,
+              "no_motion_issued": 288,
+              "motion_cut_short": 0,
+              "violations": 0,
+              "rate": null,
+              "resolution": null
+            },
+            {
+              "step": 4,
+              "reached_intact": 288,
+              "motions_scored": 0,
+              "no_motion_issued": 288,
+              "motion_cut_short": 0,
+              "violations": 0,
+              "rate": null,
+              "resolution": null
+            }
+          ],
+          "rise_first_to_last": null,
+          "rises_by_more_than_margin": null,
+          "margin_resolution": {
+            "margin": 0.05,
+            "coarsest_resolution": 0.014285714285714285,
+            "required_ratio": 2.0,
+            "required_margin": 0.02857142857142857,
+            "verdict": "usable",
+            "note": "A margin below twice the coarsest metric resolution cannot separate signal from one context changing hands. v3 registered a margin exactly equal to its resolution and returned an unresolvable verdict; this check is why that cannot happen again."
+          },
+          "readable": false
+        },
+        "cumulative": {
+          "routes": 360,
+          "observed": 185,
+          "censored": 175,
+          "violated": 72,
+          "rate": 0.3891891891891892
+        }
+      },
+      "C3_anchor": {
+        "per_step": {
+          "steps": [
+            {
+              "step": 0,
+              "reached_intact": 360,
+              "motions_scored": 100,
+              "no_motion_issued": 0,
+              "motion_cut_short": 260,
+              "violations": 100,
+              "rate": 1.0,
+              "resolution": 0.01
+            },
+            {
+              "step": 1,
+              "reached_intact": 260,
+              "motions_scored": 0,
+              "no_motion_issued": 260,
+              "motion_cut_short": 0,
+              "violations": 0,
+              "rate": null,
+              "resolution": null
+            },
+            {
+              "step": 2,
+              "reached_intact": 260,
+              "motions_scored": 0,
+              "no_motion_issued": 260,
+              "motion_cut_short": 0,
+              "violations": 0,
+              "rate": null,
+              "resolution": null
+            },
+            {
+              "step": 3,
+              "reached_intact": 260,
+              "motions_scored": 0,
+              "no_motion_issued": 260,
+              "motion_cut_short": 0,
+              "violations": 0,
+              "rate": null,
+              "resolution": null
+            },
+            {
+              "step": 4,
+              "reached_intact": 260,
+              "motions_scored": 0,
+              "no_motion_issued": 260,
+              "motion_cut_short": 0,
+              "violations": 0,
+              "rate": null,
+              "resolution": null
+            }
+          ],
+          "rise_first_to_last": null,
+          "rises_by_more_than_margin": null,
+          "margin_resolution": {
+            "margin": 0.05,
+            "coarsest_resolution": 0.01,
+            "required_ratio": 2.0,
+            "required_margin": 0.02,
+            "verdict": "usable",
+            "note": "A margin below twice the coarsest metric resolution cannot separate signal from one context changing hands. v3 registered a margin exactly equal to its resolution and returned an unresolvable verdict; this check is why that cannot happen again."
+          },
+          "readable": false
+        },
+        "cumulative": {
+          "routes": 360,
+          "observed": 224,
+          "censored": 136,
+          "violated": 100,
+          "rate": 0.44642857142857145
+        }
+      }
+    },
+    "conservative:E0": {
+      "routes": 60,
+      "motions_issued": 210,
+      "motions_completed": 174,
+      "abstentions": 0,
+      "routes_completed": 20,
+      "route_completion_rate": 0.3333333333333333,
+      "seated": 20,
+      "settling_rejections": 0,
+      "by_reason": {
+        "completed": 20,
+        "deadline": 20,
+        "lost_required_clip": 20
+      },
+      "clips": {
+        "routes": 60,
+        "losses_by_clip": {
+          "c3": 20
+        },
+        "mean_step_at_loss": {
+          "c3": 0.0
+        },
+        "routes_losing_any_required_clip": 20,
+        "mean_required_clips_kept": 4.666666666666667
+      },
+      "budget": {
+        "per_step": [
+          {
+            "step": 0,
+            "motions": 60,
+            "mean_headroom_at_decision_m": 0.07051562462580797,
+            "mean_spent_m": 0.004300683919859498,
+            "mean_spent_fraction": 0.060994728102439326,
+            "median_spent_fraction": 0.06112333636362875
+          },
+          {
+            "step": 1,
+            "motions": 40,
+            "mean_headroom_at_decision_m": 0.06734100199708562,
+            "mean_spent_m": 0.004340763347150586,
+            "mean_spent_fraction": 0.06446569862474183,
+            "median_spent_fraction": 0.06451439951614192
+          },
+          {
+            "step": 2,
+            "motions": 40,
+            "mean_headroom_at_decision_m": 0.06397934130434117,
+            "mean_spent_m": 0.004378231638839596,
+            "mean_spent_fraction": 0.06843784083020787,
+            "median_spent_fraction": 0.06849487112723865
+          },
+          {
+            "step": 3,
+            "motions": 40,
+            "mean_headroom_at_decision_m": 0.06066005748406309,
+            "mean_spent_m": 0.004413952685011262,
+            "mean_spent_fraction": 0.07277224686303918,
+            "median_spent_fraction": 0.07284841542436901
+          },
+          {
+            "step": 4,
+            "motions": 30,
+            "mean_headroom_at_decision_m": 0.05705331766445076,
+            "mean_spent_m": 0.004443889489696953,
+            "mean_spent_fraction": 0.07789524939608808,
+            "median_spent_fraction": 0.07800561584104856
+          }
+        ],
+        "headroom_decay_m": 0.013462306961357216
+      },
+      "C1_clip": {
+        "per_step": {
+          "steps": [
+            {
+              "step": 0,
+              "reached_intact": 60,
+              "motions_scored": 60,
+              "no_motion_issued": 0,
+              "motion_cut_short": 0,
+              "violations": 20,
+              "rate": 0.3333333333333333,
+              "resolution": 0.016666666666666666
+            },
+            {
+              "step": 1,
+              "reached_intact": 40,
+              "motions_scored": 40,
+              "no_motion_issued": 0,
+              "motion_cut_short": 0,
+              "violations": 0,
+              "rate": 0.0,
+              "resolution": 0.025
+            },
+            {
+              "step": 2,
+              "reached_intact": 40,
+              "motions_scored": 40,
+              "no_motion_issued": 0,
+              "motion_cut_short": 0,
+              "violations": 0,
+              "rate": 0.0,
+              "resolution": 0.025
+            },
+            {
+              "step": 3,
+              "reached_intact": 40,
+              "motions_scored": 30,
+              "no_motion_issued": 0,
+              "motion_cut_short": 10,
+              "violations": 0,
+              "rate": 0.0,
+              "resolution": 0.03333333333333333
+            },
+            {
+              "step": 4,
+              "reached_intact": 40,
+              "motions_scored": 20,
+              "no_motion_issued": 10,
+              "motion_cut_short": 10,
+              "violations": 0,
+              "rate": 0.0,
+              "resolution": 0.05
+            }
+          ],
+          "rise_first_to_last": -0.3333333333333333,
+          "rises_by_more_than_margin": false,
+          "margin_resolution": {
+            "margin": 0.05,
+            "coarsest_resolution": 0.05,
+            "required_ratio": 2.0,
+            "required_margin": 0.1,
+            "verdict": "refused_margin_below_resolution",
+            "note": "A margin below twice the coarsest metric resolution cannot separate signal from one context changing hands. v3 registered a margin exactly equal to its resolution and returned an unresolvable verdict; this check is why that cannot happen again."
+          },
+          "readable": false
+        },
+        "cumulative": {
+          "routes": 60,
+          "observed": 40,
+          "censored": 20,
+          "violated": 20,
+          "rate": 0.5
+        }
+      },
+      "C2_bend": {
+        "per_step": {
+          "steps": [
+            {
+              "step": 0,
+              "reached_intact": 58,
+              "motions_scored": 52,
+              "no_motion_issued": 0,
+              "motion_cut_short": 6,
+              "violations": 8,
+              "rate": 0.15384615384615385,
+              "resolution": 0.019230769230769232
+            },
+            {
+              "step": 1,
+              "reached_intact": 50,
+              "motions_scored": 40,
+              "no_motion_issued": 10,
+              "motion_cut_short": 0,
+              "violations": 0,
+              "rate": 0.0,
+              "resolution": 0.025
+            },
+            {
+              "step": 2,
+              "reached_intact": 50,
+              "motions_scored": 40,
+              "no_motion_issued": 10,
+              "motion_cut_short": 0,
+              "violations": 0,
+              "rate": 0.0,
+              "resolution": 0.025
+            },
+            {
+              "step": 3,
+              "reached_intact": 50,
+              "motions_scored": 30,
+              "no_motion_issued": 10,
+              "motion_cut_short": 10,
+              "violations": 0,
+              "rate": 0.0,
+              "resolution": 0.03333333333333333
+            },
+            {
+              "step": 4,
+              "reached_intact": 50,
+              "motions_scored": 20,
+              "no_motion_issued": 20,
+              "motion_cut_short": 10,
+              "violations": 0,
+              "rate": 0.0,
+              "resolution": 0.05
+            }
+          ],
+          "rise_first_to_last": -0.15384615384615385,
+          "rises_by_more_than_margin": false,
+          "margin_resolution": {
+            "margin": 0.05,
+            "coarsest_resolution": 0.05,
+            "required_ratio": 2.0,
+            "required_margin": 0.1,
+            "verdict": "refused_margin_below_resolution",
+            "note": "A margin below twice the coarsest metric resolution cannot separate signal from one context changing hands. v3 registered a margin exactly equal to its resolution and returned an unresolvable verdict; this check is why that cannot happen again."
+          },
+          "readable": false
+        },
+        "cumulative": {
+          "routes": 60,
+          "observed": 40,
+          "censored": 20,
+          "violated": 10,
+          "rate": 0.25
+        }
+      },
+      "C3_anchor": {
+        "per_step": {
+          "steps": [
+            {
+              "step": 0,
+              "reached_intact": 60,
+              "motions_scored": 44,
+              "no_motion_issued": 0,
+              "motion_cut_short": 16,
+              "violations": 0,
+              "rate": 0.0,
+              "resolution": 0.022727272727272728
+            },
+            {
+              "step": 1,
+              "reached_intact": 60,
+              "motions_scored": 40,
+              "no_motion_issued": 20,
+              "motion_cut_short": 0,
+              "violations": 0,
+              "rate": 0.0,
+              "resolution": 0.025
+            },
+            {
+              "step": 2,
+              "reached_intact": 60,
+              "motions_scored": 40,
+              "no_motion_issued": 20,
+              "motion_cut_short": 0,
+              "violations": 0,
+              "rate": 0.0,
+              "resolution": 0.025
+            },
+            {
+              "step": 3,
+              "reached_intact": 60,
+              "motions_scored": 30,
+              "no_motion_issued": 20,
+              "motion_cut_short": 10,
+              "violations": 0,
+              "rate": 0.0,
+              "resolution": 0.03333333333333333
+            },
+            {
+              "step": 4,
+              "reached_intact": 60,
+              "motions_scored": 30,
+              "no_motion_issued": 30,
+              "motion_cut_short": 0,
+              "violations": 10,
+              "rate": 0.3333333333333333,
+              "resolution": 0.03333333333333333
+            }
+          ],
+          "rise_first_to_last": 0.3333333333333333,
+          "rises_by_more_than_margin": true,
+          "margin_resolution": {
+            "margin": 0.05,
+            "coarsest_resolution": 0.03333333333333333,
+            "required_ratio": 2.0,
+            "required_margin": 0.06666666666666667,
+            "verdict": "refused_margin_below_resolution",
+            "note": "A margin below twice the coarsest metric resolution cannot separate signal from one context changing hands. v3 registered a margin exactly equal to its resolution and returned an unresolvable verdict; this check is why that cannot happen again."
+          },
+          "readable": false
+        },
+        "cumulative": {
+          "routes": 60,
+          "observed": 50,
+          "censored": 10,
+          "violated": 10,
+          "rate": 0.2
+        }
+      }
+    },
+    "conservative:E2": {
+      "routes": 360,
+      "motions_issued": 1279,
+      "motions_completed": 1075,
+      "abstentions": 0,
+      "routes_completed": 76,
+      "route_completion_rate": 0.2111111111111111,
+      "seated": 76,
+      "settling_rejections": 0,
+      "by_reason": {
+        "completed": 76,
+        "controller_retries_exhausted": 20,
+        "deadline": 145,
+        "force_abort": 6,
+        "lost_required_clip": 113
+      },
+      "clips": {
+        "routes": 360,
+        "losses_by_clip": {
+          "c3": 113
+        },
+        "mean_step_at_loss": {
+          "c3": 0.0
+        },
+        "routes_losing_any_required_clip": 113,
+        "mean_required_clips_kept": 4.686111111111111
+      },
+      "budget": {
+        "per_step": [
+          {
+            "step": 0,
+            "motions": 360,
+            "mean_headroom_at_decision_m": 0.06866555386832039,
+            "mean_spent_m": 0.0043022642505174775,
+            "mean_spent_fraction": 0.06266326170575545,
+            "median_spent_fraction": 0.06271632797349108
+          },
+          {
+            "step": 1,
+            "motions": 247,
+            "mean_headroom_at_decision_m": 0.06542214069738177,
+            "mean_spent_m": 0.00434240855217731,
+            "mean_spent_fraction": 0.0663842875342654,
+            "median_spent_fraction": 0.06643363934581736
+          },
+          {
+            "step": 2,
+            "motions": 247,
+            "mean_headroom_at_decision_m": 0.0620370988884681,
+            "mean_spent_m": 0.004380028823247186,
+            "mean_spent_fraction": 0.07061255907953018,
+            "median_spent_fraction": 0.07069388592702225
+          },
+          {
+            "step": 3,
+            "motions": 247,
+            "mean_headroom_at_decision_m": 0.05869608149064239,
+            "mean_spent_m": 0.004415930626581531,
+            "mean_spent_fraction": 0.07524474239383512,
+            "median_spent_fraction": 0.075308616853441
+          },
+          {
+            "step": 4,
+            "motions": 178,
+            "mean_headroom_at_decision_m": 0.05502386176079714,
+            "mean_spent_m": 0.004446054940893032,
+            "mean_spent_fraction": 0.08081104495047392,
+            "median_spent_fraction": 0.08081892946518429
+          }
+        ],
+        "headroom_decay_m": 0.013641692107523251
+      },
+      "C1_clip": {
+        "per_step": {
+          "steps": [
+            {
+              "step": 0,
+              "reached_intact": 360,
+              "motions_scored": 360,
+              "no_motion_issued": 0,
+              "motion_cut_short": 0,
+              "violations": 113,
+              "rate": 0.3138888888888889,
+              "resolution": 0.002777777777777778
+            },
+            {
+              "step": 1,
+              "reached_intact": 247,
+              "motions_scored": 247,
+              "no_motion_issued": 0,
+              "motion_cut_short": 0,
+              "violations": 0,
+              "rate": 0.0,
+              "resolution": 0.004048582995951417
+            },
+            {
+              "step": 2,
+              "reached_intact": 247,
+              "motions_scored": 247,
+              "no_motion_issued": 0,
+              "motion_cut_short": 0,
+              "violations": 0,
+              "rate": 0.0,
+              "resolution": 0.004048582995951417
+            },
+            {
+              "step": 3,
+              "reached_intact": 247,
+              "motions_scored": 178,
+              "no_motion_issued": 0,
+              "motion_cut_short": 69,
+              "violations": 0,
+              "rate": 0.0,
+              "resolution": 0.0056179775280898875
+            },
+            {
+              "step": 4,
+              "reached_intact": 247,
+              "motions_scored": 128,
+              "no_motion_issued": 69,
+              "motion_cut_short": 50,
+              "violations": 0,
+              "rate": 0.0,
+              "resolution": 0.0078125
+            }
+          ],
+          "rise_first_to_last": -0.3138888888888889,
+          "rises_by_more_than_margin": false,
+          "margin_resolution": {
+            "margin": 0.05,
+            "coarsest_resolution": 0.0078125,
+            "required_ratio": 2.0,
+            "required_margin": 0.015625,
+            "verdict": "usable",
+            "note": "A margin below twice the coarsest metric resolution cannot separate signal from one context changing hands. v3 registered a margin exactly equal to its resolution and returned an unresolvable verdict; this check is why that cannot happen again."
+          },
+          "readable": true
+        },
+        "cumulative": {
+          "routes": 360,
+          "observed": 209,
+          "censored": 151,
+          "violated": 113,
+          "rate": 0.5406698564593302
+        }
+      },
+      "C2_bend": {
+        "per_step": {
+          "steps": [
+            {
+              "step": 0,
+              "reached_intact": 349,
+              "motions_scored": 299,
+              "no_motion_issued": 0,
+              "motion_cut_short": 50,
+              "violations": 26,
+              "rate": 0.08695652173913043,
+              "resolution": 0.0033444816053511705
+            },
+            {
+              "step": 1,
+              "reached_intact": 323,
+              "motions_scored": 245,
+              "no_motion_issued": 78,
+              "motion_cut_short": 0,
+              "violations": 0,
+              "rate": 0.0,
+              "resolution": 0.004081632653061225
+            },
+            {
+              "step": 2,
+              "reached_intact": 323,
+              "motions_scored": 245,
+              "no_motion_issued": 78,
+              "motion_cut_short": 0,
+              "violations": 0,
+              "rate": 0.0,
+              "resolution": 0.004081632653061225
+            },
+            {
+              "step": 3,
+              "reached_intact": 323,
+              "motions_scored": 176,
+              "no_motion_issued": 78,
+              "motion_cut_short": 69,
+              "violations": 0,
+              "rate": 0.0,
+              "resolution": 0.005681818181818182
+            },
+            {
+              "step": 4,
+              "reached_intact": 323,
+              "motions_scored": 126,
+              "no_motion_issued": 147,
+              "motion_cut_short": 50,
+              "violations": 0,
+              "rate": 0.0,
+              "resolution": 0.007936507936507936
+            }
+          ],
+          "rise_first_to_last": -0.08695652173913043,
+          "rises_by_more_than_margin": false,
+          "margin_resolution": {
+            "margin": 0.05,
+            "coarsest_resolution": 0.007936507936507936,
+            "required_ratio": 2.0,
+            "required_margin": 0.015873015873015872,
+            "verdict": "usable",
+            "note": "A margin below twice the coarsest metric resolution cannot separate signal from one context changing hands. v3 registered a margin exactly equal to its resolution and returned an unresolvable verdict; this check is why that cannot happen again."
+          },
+          "readable": true
+        },
+        "cumulative": {
+          "routes": 360,
+          "observed": 210,
+          "censored": 150,
+          "violated": 37,
+          "rate": 0.1761904761904762
+        }
+      },
+      "C3_anchor": {
+        "per_step": {
+          "steps": [
+            {
+              "step": 0,
+              "reached_intact": 360,
+              "motions_scored": 275,
+              "no_motion_issued": 0,
+              "motion_cut_short": 85,
+              "violations": 0,
+              "rate": 0.0,
+              "resolution": 0.0036363636363636364
+            },
+            {
+              "step": 1,
+              "reached_intact": 360,
+              "motions_scored": 247,
+              "no_motion_issued": 113,
+              "motion_cut_short": 0,
+              "violations": 0,
+              "rate": 0.0,
+              "resolution": 0.004048582995951417
+            },
+            {
+              "step": 2,
+              "reached_intact": 360,
+              "motions_scored": 247,
+              "no_motion_issued": 113,
+              "motion_cut_short": 0,
+              "violations": 0,
+              "rate": 0.0,
+              "resolution": 0.004048582995951417
+            },
+            {
+              "step": 3,
+              "reached_intact": 360,
+              "motions_scored": 178,
+              "no_motion_issued": 113,
+              "motion_cut_short": 69,
+              "violations": 0,
+              "rate": 0.0,
+              "resolution": 0.0056179775280898875
+            },
+            {
+              "step": 4,
+              "reached_intact": 360,
+              "motions_scored": 147,
+              "no_motion_issued": 182,
+              "motion_cut_short": 31,
+              "violations": 19,
+              "rate": 0.1292517006802721,
+              "resolution": 0.006802721088435374
+            }
+          ],
+          "rise_first_to_last": 0.1292517006802721,
+          "rises_by_more_than_margin": true,
+          "margin_resolution": {
+            "margin": 0.05,
+            "coarsest_resolution": 0.006802721088435374,
+            "required_ratio": 2.0,
+            "required_margin": 0.013605442176870748,
+            "verdict": "usable",
+            "note": "A margin below twice the coarsest metric resolution cannot separate signal from one context changing hands. v3 registered a margin exactly equal to its resolution and returned an unresolvable verdict; this check is why that cannot happen again."
+          },
+          "readable": true
+        },
+        "cumulative": {
+          "routes": 360,
+          "observed": 228,
+          "censored": 132,
+          "violated": 19,
+          "rate": 0.08333333333333333
+        }
+      }
+    },
+    "conservative:E4": {
+      "routes": 360,
+      "motions_issued": 1365,
+      "motions_completed": 1182,
+      "abstentions": 0,
+      "routes_completed": 9,
+      "route_completion_rate": 0.025,
+      "seated": 9,
+      "settling_rejections": 0,
+      "by_reason": {
+        "completed": 9,
+        "controller_retries_exhausted": 115,
+        "deadline": 103,
+        "force_abort": 1,
+        "lost_required_clip": 127,
+        "prior_connection_load_abort": 5
+      },
+      "clips": {
+        "routes": 360,
+        "losses_by_clip": {
+          "c1": 10,
+          "c3": 117
+        },
+        "mean_step_at_loss": {
+          "c1": 3.4,
+          "c3": 1.0085470085470085
+        },
+        "routes_losing_any_required_clip": 127,
+        "mean_required_clips_kept": 4.647222222222222
+      },
+      "budget": {
+        "per_step": [
+          {
+            "step": 0,
+            "motions": 360,
+            "mean_headroom_at_decision_m": 0.06266458605044065,
+            "mean_spent_m": 0.004313679778774762,
+            "mean_spent_fraction": 0.06886784193215399,
+            "median_spent_fraction": 0.06884002405486991
+          },
+          {
+            "step": 1,
+            "motions": 295,
+            "mean_headroom_at_decision_m": 0.059056973415134405,
+            "mean_spent_m": 0.004358237549740549,
+            "mean_spent_fraction": 0.07383545709858884,
+            "median_spent_fraction": 0.07382427070086134
+          },
+          {
+            "step": 2,
+            "motions": 282,
+            "mean_headroom_at_decision_m": 0.05534662678771634,
+            "mean_spent_m": 0.004399839160771438,
+            "mean_spent_fraction": 0.07954264061354414,
+            "median_spent_fraction": 0.0794873149727806
+          },
+          {
+            "step": 3,
+            "motions": 261,
+            "mean_headroom_at_decision_m": 0.05163479316761874,
+            "mean_spent_m": 0.004437300591354463,
+            "mean_spent_fraction": 0.08599701558810009,
+            "median_spent_fraction": 0.08600766127418029
+          },
+          {
+            "step": 4,
+            "motions": 167,
+            "mean_headroom_at_decision_m": 0.04762049606746085,
+            "mean_spent_m": 0.004469330138271304,
+            "mean_spent_fraction": 0.09392260617550917,
+            "median_spent_fraction": 0.09389833459584887
+          }
+        ],
+        "headroom_decay_m": 0.015044089982979798
+      },
+      "C1_clip": {
+        "per_step": {
+          "steps": [
+            {
+              "step": 0,
+              "reached_intact": 360,
+              "motions_scored": 360,
+              "no_motion_issued": 0,
+              "motion_cut_short": 0,
+              "violations": 65,
+              "rate": 0.18055555555555555,
+              "resolution": 0.002777777777777778
+            },
+            {
+              "step": 1,
+              "reached_intact": 295,
+              "motions_scored": 295,
+              "no_motion_issued": 0,
+              "motion_cut_short": 0,
+              "violations": 13,
+              "rate": 0.04406779661016949,
+              "resolution": 0.003389830508474576
+            },
+            {
+              "step": 2,
+              "reached_intact": 282,
+              "motions_scored": 282,
+              "no_motion_issued": 0,
+              "motion_cut_short": 0,
+              "violations": 21,
+              "rate": 0.07446808510638298,
+              "resolution": 0.0035460992907801418
+            },
+            {
+              "step": 3,
+              "reached_intact": 261,
+              "motions_scored": 182,
+              "no_motion_issued": 0,
+              "motion_cut_short": 79,
+              "violations": 15,
+              "rate": 0.08241758241758242,
+              "resolution": 0.005494505494505495
+            },
+            {
+              "step": 4,
+              "reached_intact": 246,
+              "motions_scored": 145,
+              "no_motion_issued": 79,
+              "motion_cut_short": 22,
+              "violations": 13,
+              "rate": 0.0896551724137931,
+              "resolution": 0.006896551724137931
+            }
+          ],
+          "rise_first_to_last": -0.09090038314176245,
+          "rises_by_more_than_margin": false,
+          "margin_resolution": {
+            "margin": 0.05,
+            "coarsest_resolution": 0.006896551724137931,
+            "required_ratio": 2.0,
+            "required_margin": 0.013793103448275862,
+            "verdict": "usable",
+            "note": "A margin below twice the coarsest metric resolution cannot separate signal from one context changing hands. v3 registered a margin exactly equal to its resolution and returned an unresolvable verdict; this check is why that cannot happen again."
+          },
+          "readable": true
+        },
+        "cumulative": {
+          "routes": 360,
+          "observed": 251,
+          "censored": 109,
+          "violated": 127,
+          "rate": 0.5059760956175299
+        }
+      },
+      "C2_bend": {
+        "per_step": {
+          "steps": [
+            {
+              "step": 0,
+              "reached_intact": 357,
+              "motions_scored": 326,
+              "no_motion_issued": 0,
+              "motion_cut_short": 31,
+              "violations": 2,
+              "rate": 0.006134969325153374,
+              "resolution": 0.003067484662576687
+            },
+            {
+              "step": 1,
+              "reached_intact": 355,
+              "motions_scored": 281,
+              "no_motion_issued": 61,
+              "motion_cut_short": 13,
+              "violations": 0,
+              "rate": 0.0,
+              "resolution": 0.0035587188612099642
+            },
+            {
+              "step": 2,
+              "reached_intact": 355,
+              "motions_scored": 263,
+              "no_motion_issued": 74,
+              "motion_cut_short": 18,
+              "violations": 0,
+              "rate": 0.0,
+              "resolution": 0.0038022813688212928
+            },
+            {
+              "step": 3,
+              "reached_intact": 355,
+              "motions_scored": 169,
+              "no_motion_issued": 95,
+              "motion_cut_short": 91,
+              "violations": 3,
+              "rate": 0.01775147928994083,
+              "resolution": 0.005917159763313609
+            },
+            {
+              "step": 4,
+              "reached_intact": 352,
+              "motions_scored": 143,
+              "no_motion_issued": 186,
+              "motion_cut_short": 23,
+              "violations": 4,
+              "rate": 0.027972027972027972,
+              "resolution": 0.006993006993006993
+            }
+          ],
+          "rise_first_to_last": 0.0218370586468746,
+          "rises_by_more_than_margin": false,
+          "margin_resolution": {
+            "margin": 0.05,
+            "coarsest_resolution": 0.006993006993006993,
+            "required_ratio": 2.0,
+            "required_margin": 0.013986013986013986,
+            "verdict": "usable",
+            "note": "A margin below twice the coarsest metric resolution cannot separate signal from one context changing hands. v3 registered a margin exactly equal to its resolution and returned an unresolvable verdict; this check is why that cannot happen again."
+          },
+          "readable": true
+        },
+        "cumulative": {
+          "routes": 360,
+          "observed": 254,
+          "censored": 106,
+          "violated": 12,
+          "rate": 0.047244094488188976
+        }
+      },
+      "C3_anchor": {
+        "per_step": {
+          "steps": [
+            {
+              "step": 0,
+              "reached_intact": 360,
+              "motions_scored": 327,
+              "no_motion_issued": 0,
+              "motion_cut_short": 33,
+              "violations": 2,
+              "rate": 0.0061162079510703364,
+              "resolution": 0.0030581039755351682
+            },
+            {
+              "step": 1,
+              "reached_intact": 358,
+              "motions_scored": 282,
+              "no_motion_issued": 63,
+              "motion_cut_short": 13,
+              "violations": 0,
+              "rate": 0.0,
+              "resolution": 0.0035460992907801418
+            },
+            {
+              "step": 2,
+              "reached_intact": 358,
+              "motions_scored": 265,
+              "no_motion_issued": 76,
+              "motion_cut_short": 17,
+              "violations": 2,
+              "rate": 0.007547169811320755,
+              "resolution": 0.0037735849056603774
+            },
+            {
+              "step": 3,
+              "reached_intact": 356,
+              "motions_scored": 181,
+              "no_motion_issued": 96,
+              "motion_cut_short": 79,
+              "violations": 16,
+              "rate": 0.08839779005524862,
+              "resolution": 0.0055248618784530384
+            },
+            {
+              "step": 4,
+              "reached_intact": 340,
+              "motions_scored": 144,
+              "no_motion_issued": 175,
+              "motion_cut_short": 21,
+              "violations": 0,
+              "rate": 0.0,
+              "resolution": 0.006944444444444444
+            }
+          ],
+          "rise_first_to_last": -0.0061162079510703364,
+          "rises_by_more_than_margin": false,
+          "margin_resolution": {
+            "margin": 0.05,
+            "coarsest_resolution": 0.006944444444444444,
+            "required_ratio": 2.0,
+            "required_margin": 0.013888888888888888,
+            "verdict": "usable",
+            "note": "A margin below twice the coarsest metric resolution cannot separate signal from one context changing hands. v3 registered a margin exactly equal to its resolution and returned an unresolvable verdict; this check is why that cannot happen again."
+          },
+          "readable": true
+        },
+        "cumulative": {
+          "routes": 360,
+          "observed": 264,
+          "censored": 96,
+          "violated": 20,
+          "rate": 0.07575757575757576
+        }
+      }
+    },
+    "unfiltered:E0": {
+      "routes": 60,
+      "motions_issued": 60,
+      "motions_completed": 0,
+      "abstentions": 0,
+      "routes_completed": 0,
+      "route_completion_rate": 0.0,
+      "seated": 0,
+      "settling_rejections": 0,
+      "by_reason": {
+        "force_abort": 20,
+        "lost_required_clip": 40
+      },
+      "clips": {
+        "routes": 60,
+        "losses_by_clip": {
+          "c3": 40
+        },
+        "mean_step_at_loss": {
+          "c3": 0.0
+        },
+        "routes_losing_any_required_clip": 40,
+        "mean_required_clips_kept": 4.333333333333333
+      },
+      "budget": {
+        "per_step": [
+          {
+            "step": 0,
+            "motions": 60,
+            "mean_headroom_at_decision_m": 0.07051562462580797,
+            "mean_spent_m": 0.08208303906846917,
+            "mean_spent_fraction": 1.1641535230261129,
+            "median_spent_fraction": 1.166500932690651
+          }
+        ],
+        "headroom_decay_m": null
+      },
+      "C1_clip": {
+        "per_step": {
+          "steps": [
+            {
+              "step": 0,
+              "reached_intact": 60,
+              "motions_scored": 40,
+              "no_motion_issued": 0,
+              "motion_cut_short": 20,
+              "violations": 40,
+              "rate": 1.0,
+              "resolution": 0.025
+            },
+            {
+              "step": 1,
+              "reached_intact": 20,
+              "motions_scored": 0,
+              "no_motion_issued": 20,
+              "motion_cut_short": 0,
+              "violations": 0,
+              "rate": null,
+              "resolution": null
+            },
+            {
+              "step": 2,
+              "reached_intact": 20,
+              "motions_scored": 0,
+              "no_motion_issued": 20,
+              "motion_cut_short": 0,
+              "violations": 0,
+              "rate": null,
+              "resolution": null
+            },
+            {
+              "step": 3,
+              "reached_intact": 20,
+              "motions_scored": 0,
+              "no_motion_issued": 20,
+              "motion_cut_short": 0,
+              "violations": 0,
+              "rate": null,
+              "resolution": null
+            },
+            {
+              "step": 4,
+              "reached_intact": 20,
+              "motions_scored": 0,
+              "no_motion_issued": 20,
+              "motion_cut_short": 0,
+              "violations": 0,
+              "rate": null,
+              "resolution": null
+            }
+          ],
+          "rise_first_to_last": null,
+          "rises_by_more_than_margin": null,
+          "margin_resolution": {
+            "margin": 0.05,
+            "coarsest_resolution": 0.025,
+            "required_ratio": 2.0,
+            "required_margin": 0.05,
+            "verdict": "usable",
+            "note": "A margin below twice the coarsest metric resolution cannot separate signal from one context changing hands. v3 registered a margin exactly equal to its resolution and returned an unresolvable verdict; this check is why that cannot happen again."
+          },
+          "readable": false
+        },
+        "cumulative": {
+          "routes": 60,
+          "observed": 40,
+          "censored": 20,
+          "violated": 40,
+          "rate": 1.0
+        }
+      },
+      "C2_bend": {
+        "per_step": {
+          "steps": [
+            {
+              "step": 0,
+              "reached_intact": 58,
+              "motions_scored": 28,
+              "no_motion_issued": 0,
+              "motion_cut_short": 30,
+              "violations": 28,
+              "rate": 1.0,
+              "resolution": 0.03571428571428571
+            },
+            {
+              "step": 1,
+              "reached_intact": 30,
+              "motions_scored": 0,
+              "no_motion_issued": 30,
+              "motion_cut_short": 0,
+              "violations": 0,
+              "rate": null,
+              "resolution": null
+            },
+            {
+              "step": 2,
+              "reached_intact": 30,
+              "motions_scored": 0,
+              "no_motion_issued": 30,
+              "motion_cut_short": 0,
+              "violations": 0,
+              "rate": null,
+              "resolution": null
+            },
+            {
+              "step": 3,
+              "reached_intact": 30,
+              "motions_scored": 0,
+              "no_motion_issued": 30,
+              "motion_cut_short": 0,
+              "violations": 0,
+              "rate": null,
+              "resolution": null
+            },
+            {
+              "step": 4,
+              "reached_intact": 30,
+              "motions_scored": 0,
+              "no_motion_issued": 30,
+              "motion_cut_short": 0,
+              "violations": 0,
+              "rate": null,
+              "resolution": null
+            }
+          ],
+          "rise_first_to_last": null,
+          "rises_by_more_than_margin": null,
+          "margin_resolution": {
+            "margin": 0.05,
+            "coarsest_resolution": 0.03571428571428571,
+            "required_ratio": 2.0,
+            "required_margin": 0.07142857142857142,
+            "verdict": "refused_margin_below_resolution",
+            "note": "A margin below twice the coarsest metric resolution cannot separate signal from one context changing hands. v3 registered a margin exactly equal to its resolution and returned an unresolvable verdict; this check is why that cannot happen again."
+          },
+          "readable": false
+        },
+        "cumulative": {
+          "routes": 60,
+          "observed": 40,
+          "censored": 20,
+          "violated": 30,
+          "rate": 0.75
+        }
+      },
+      "C3_anchor": {
+        "per_step": {
+          "steps": [
+            {
+              "step": 0,
+              "reached_intact": 60,
+              "motions_scored": 20,
+              "no_motion_issued": 0,
+              "motion_cut_short": 40,
+              "violations": 20,
+              "rate": 1.0,
+              "resolution": 0.05
+            },
+            {
+              "step": 1,
+              "reached_intact": 40,
+              "motions_scored": 0,
+              "no_motion_issued": 40,
+              "motion_cut_short": 0,
+              "violations": 0,
+              "rate": null,
+              "resolution": null
+            },
+            {
+              "step": 2,
+              "reached_intact": 40,
+              "motions_scored": 0,
+              "no_motion_issued": 40,
+              "motion_cut_short": 0,
+              "violations": 0,
+              "rate": null,
+              "resolution": null
+            },
+            {
+              "step": 3,
+              "reached_intact": 40,
+              "motions_scored": 0,
+              "no_motion_issued": 40,
+              "motion_cut_short": 0,
+              "violations": 0,
+              "rate": null,
+              "resolution": null
+            },
+            {
+              "step": 4,
+              "reached_intact": 40,
+              "motions_scored": 0,
+              "no_motion_issued": 40,
+              "motion_cut_short": 0,
+              "violations": 0,
+              "rate": null,
+              "resolution": null
+            }
+          ],
+          "rise_first_to_last": null,
+          "rises_by_more_than_margin": null,
+          "margin_resolution": {
+            "margin": 0.05,
+            "coarsest_resolution": 0.05,
+            "required_ratio": 2.0,
+            "required_margin": 0.1,
+            "verdict": "refused_margin_below_resolution",
+            "note": "A margin below twice the coarsest metric resolution cannot separate signal from one context changing hands. v3 registered a margin exactly equal to its resolution and returned an unresolvable verdict; this check is why that cannot happen again."
+          },
+          "readable": false
+        },
+        "cumulative": {
+          "routes": 60,
+          "observed": 40,
+          "censored": 20,
+          "violated": 20,
+          "rate": 0.5
+        }
+      }
+    },
+    "unfiltered:E2": {
+      "routes": 360,
+      "motions_issued": 360,
+      "motions_completed": 0,
+      "abstentions": 0,
+      "routes_completed": 0,
+      "route_completion_rate": 0.0,
+      "seated": 0,
+      "settling_rejections": 0,
+      "by_reason": {
+        "force_abort": 131,
+        "lost_required_clip": 229
+      },
+      "clips": {
+        "routes": 360,
+        "losses_by_clip": {
+          "c1": 4,
+          "c3": 225
+        },
+        "mean_step_at_loss": {
+          "c1": 0.0,
+          "c3": 0.0
+        },
+        "routes_losing_any_required_clip": 229,
+        "mean_required_clips_kept": 4.3694444444444445
+      },
+      "budget": {
+        "per_step": [
+          {
+            "step": 0,
+            "motions": 360,
+            "mean_headroom_at_decision_m": 0.0686902362076404,
+            "mean_spent_m": 0.08211106864809976,
+            "mean_spent_fraction": 1.1955388384597012,
+            "median_spent_fraction": 1.1971042627123205
+          }
+        ],
+        "headroom_decay_m": null
+      },
+      "C1_clip": {
+        "per_step": {
+          "steps": [
+            {
+              "step": 0,
+              "reached_intact": 360,
+              "motions_scored": 229,
+              "no_motion_issued": 0,
+              "motion_cut_short": 131,
+              "violations": 229,
+              "rate": 1.0,
+              "resolution": 0.004366812227074236
+            },
+            {
+              "step": 1,
+              "reached_intact": 131,
+              "motions_scored": 0,
+              "no_motion_issued": 131,
+              "motion_cut_short": 0,
+              "violations": 0,
+              "rate": null,
+              "resolution": null
+            },
+            {
+              "step": 2,
+              "reached_intact": 131,
+              "motions_scored": 0,
+              "no_motion_issued": 131,
+              "motion_cut_short": 0,
+              "violations": 0,
+              "rate": null,
+              "resolution": null
+            },
+            {
+              "step": 3,
+              "reached_intact": 131,
+              "motions_scored": 0,
+              "no_motion_issued": 131,
+              "motion_cut_short": 0,
+              "violations": 0,
+              "rate": null,
+              "resolution": null
+            },
+            {
+              "step": 4,
+              "reached_intact": 131,
+              "motions_scored": 0,
+              "no_motion_issued": 131,
+              "motion_cut_short": 0,
+              "violations": 0,
+              "rate": null,
+              "resolution": null
+            }
+          ],
+          "rise_first_to_last": null,
+          "rises_by_more_than_margin": null,
+          "margin_resolution": {
+            "margin": 0.05,
+            "coarsest_resolution": 0.004366812227074236,
+            "required_ratio": 2.0,
+            "required_margin": 0.008733624454148471,
+            "verdict": "usable",
+            "note": "A margin below twice the coarsest metric resolution cannot separate signal from one context changing hands. v3 registered a margin exactly equal to its resolution and returned an unresolvable verdict; this check is why that cannot happen again."
+          },
+          "readable": false
+        },
+        "cumulative": {
+          "routes": 360,
+          "observed": 229,
+          "censored": 131,
+          "violated": 229,
+          "rate": 1.0
+        }
+      },
+      "C2_bend": {
+        "per_step": {
+          "steps": [
+            {
+              "step": 0,
+              "reached_intact": 342,
+              "motions_scored": 135,
+              "no_motion_issued": 0,
+              "motion_cut_short": 207,
+              "violations": 135,
+              "rate": 1.0,
+              "resolution": 0.007407407407407408
+            },
+            {
+              "step": 1,
+              "reached_intact": 207,
+              "motions_scored": 0,
+              "no_motion_issued": 207,
+              "motion_cut_short": 0,
+              "violations": 0,
+              "rate": null,
+              "resolution": null
+            },
+            {
+              "step": 2,
+              "reached_intact": 207,
+              "motions_scored": 0,
+              "no_motion_issued": 207,
+              "motion_cut_short": 0,
+              "violations": 0,
+              "rate": null,
+              "resolution": null
+            },
+            {
+              "step": 3,
+              "reached_intact": 207,
+              "motions_scored": 0,
+              "no_motion_issued": 207,
+              "motion_cut_short": 0,
+              "violations": 0,
+              "rate": null,
+              "resolution": null
+            },
+            {
+              "step": 4,
+              "reached_intact": 207,
+              "motions_scored": 0,
+              "no_motion_issued": 207,
+              "motion_cut_short": 0,
+              "violations": 0,
+              "rate": null,
+              "resolution": null
+            }
+          ],
+          "rise_first_to_last": null,
+          "rises_by_more_than_margin": null,
+          "margin_resolution": {
+            "margin": 0.05,
+            "coarsest_resolution": 0.007407407407407408,
+            "required_ratio": 2.0,
+            "required_margin": 0.014814814814814815,
+            "verdict": "usable",
+            "note": "A margin below twice the coarsest metric resolution cannot separate signal from one context changing hands. v3 registered a margin exactly equal to its resolution and returned an unresolvable verdict; this check is why that cannot happen again."
+          },
+          "readable": false
+        },
+        "cumulative": {
+          "routes": 360,
+          "observed": 229,
+          "censored": 131,
+          "violated": 153,
+          "rate": 0.6681222707423581
+        }
+      },
+      "C3_anchor": {
+        "per_step": {
+          "steps": [
+            {
+              "step": 0,
+              "reached_intact": 360,
+              "motions_scored": 107,
+              "no_motion_issued": 0,
+              "motion_cut_short": 253,
+              "violations": 107,
+              "rate": 1.0,
+              "resolution": 0.009345794392523364
+            },
+            {
+              "step": 1,
+              "reached_intact": 253,
+              "motions_scored": 0,
+              "no_motion_issued": 253,
+              "motion_cut_short": 0,
+              "violations": 0,
+              "rate": null,
+              "resolution": null
+            },
+            {
+              "step": 2,
+              "reached_intact": 253,
+              "motions_scored": 0,
+              "no_motion_issued": 253,
+              "motion_cut_short": 0,
+              "violations": 0,
+              "rate": null,
+              "resolution": null
+            },
+            {
+              "step": 3,
+              "reached_intact": 253,
+              "motions_scored": 0,
+              "no_motion_issued": 253,
+              "motion_cut_short": 0,
+              "violations": 0,
+              "rate": null,
+              "resolution": null
+            },
+            {
+              "step": 4,
+              "reached_intact": 253,
+              "motions_scored": 0,
+              "no_motion_issued": 253,
+              "motion_cut_short": 0,
+              "violations": 0,
+              "rate": null,
+              "resolution": null
+            }
+          ],
+          "rise_first_to_last": null,
+          "rises_by_more_than_margin": null,
+          "margin_resolution": {
+            "margin": 0.05,
+            "coarsest_resolution": 0.009345794392523364,
+            "required_ratio": 2.0,
+            "required_margin": 0.018691588785046728,
+            "verdict": "usable",
+            "note": "A margin below twice the coarsest metric resolution cannot separate signal from one context changing hands. v3 registered a margin exactly equal to its resolution and returned an unresolvable verdict; this check is why that cannot happen again."
+          },
+          "readable": false
+        },
+        "cumulative": {
+          "routes": 360,
+          "observed": 235,
+          "censored": 125,
+          "violated": 107,
+          "rate": 0.4553191489361702
+        }
+      }
+    },
+    "unfiltered:E4": {
+      "routes": 360,
+      "motions_issued": 360,
+      "motions_completed": 0,
+      "abstentions": 0,
+      "routes_completed": 0,
+      "route_completion_rate": 0.0,
+      "seated": 0,
+      "settling_rejections": 0,
+      "by_reason": {
+        "force_abort": 184,
+        "lost_required_clip": 176
+      },
+      "clips": {
+        "routes": 360,
+        "losses_by_clip": {
+          "c1": 37,
+          "c3": 139
+        },
+        "mean_step_at_loss": {
+          "c1": 0.0,
+          "c3": 0.0
+        },
+        "routes_losing_any_required_clip": 176,
+        "mean_required_clips_kept": 4.513888888888889
+      },
+      "budget": {
+        "per_step": [
+          {
+            "step": 0,
+            "motions": 360,
+            "mean_headroom_at_decision_m": 0.06271389733352659,
+            "mean_spent_m": 0.08227836910900793,
+            "mean_spent_fraction": 1.312609231624637,
+            "median_spent_fraction": 1.3112386081977714
+          }
+        ],
+        "headroom_decay_m": null
+      },
+      "C1_clip": {
+        "per_step": {
+          "steps": [
+            {
+              "step": 0,
+              "reached_intact": 360,
+              "motions_scored": 176,
+              "no_motion_issued": 0,
+              "motion_cut_short": 184,
+              "violations": 176,
+              "rate": 1.0,
+              "resolution": 0.005681818181818182
+            },
+            {
+              "step": 1,
+              "reached_intact": 184,
+              "motions_scored": 0,
+              "no_motion_issued": 184,
+              "motion_cut_short": 0,
+              "violations": 0,
+              "rate": null,
+              "resolution": null
+            },
+            {
+              "step": 2,
+              "reached_intact": 184,
+              "motions_scored": 0,
+              "no_motion_issued": 184,
+              "motion_cut_short": 0,
+              "violations": 0,
+              "rate": null,
+              "resolution": null
+            },
+            {
+              "step": 3,
+              "reached_intact": 184,
+              "motions_scored": 0,
+              "no_motion_issued": 184,
+              "motion_cut_short": 0,
+              "violations": 0,
+              "rate": null,
+              "resolution": null
+            },
+            {
+              "step": 4,
+              "reached_intact": 184,
+              "motions_scored": 0,
+              "no_motion_issued": 184,
+              "motion_cut_short": 0,
+              "violations": 0,
+              "rate": null,
+              "resolution": null
+            }
+          ],
+          "rise_first_to_last": null,
+          "rises_by_more_than_margin": null,
+          "margin_resolution": {
+            "margin": 0.05,
+            "coarsest_resolution": 0.005681818181818182,
+            "required_ratio": 2.0,
+            "required_margin": 0.011363636363636364,
+            "verdict": "usable",
+            "note": "A margin below twice the coarsest metric resolution cannot separate signal from one context changing hands. v3 registered a margin exactly equal to its resolution and returned an unresolvable verdict; this check is why that cannot happen again."
+          },
+          "readable": false
+        },
+        "cumulative": {
+          "routes": 360,
+          "observed": 176,
+          "censored": 184,
+          "violated": 176,
+          "rate": 1.0
+        }
+      },
+      "C2_bend": {
+        "per_step": {
+          "steps": [
+            {
+              "step": 0,
+              "reached_intact": 352,
+              "motions_scored": 71,
+              "no_motion_issued": 0,
+              "motion_cut_short": 281,
+              "violations": 71,
+              "rate": 1.0,
+              "resolution": 0.014084507042253521
+            },
+            {
+              "step": 1,
+              "reached_intact": 281,
+              "motions_scored": 0,
+              "no_motion_issued": 281,
+              "motion_cut_short": 0,
+              "violations": 0,
+              "rate": null,
+              "resolution": null
+            },
+            {
+              "step": 2,
+              "reached_intact": 281,
+              "motions_scored": 0,
+              "no_motion_issued": 281,
+              "motion_cut_short": 0,
+              "violations": 0,
+              "rate": null,
+              "resolution": null
+            },
+            {
+              "step": 3,
+              "reached_intact": 281,
+              "motions_scored": 0,
+              "no_motion_issued": 281,
+              "motion_cut_short": 0,
+              "violations": 0,
+              "rate": null,
+              "resolution": null
+            },
+            {
+              "step": 4,
+              "reached_intact": 281,
+              "motions_scored": 0,
+              "no_motion_issued": 281,
+              "motion_cut_short": 0,
+              "violations": 0,
+              "rate": null,
+              "resolution": null
+            }
+          ],
+          "rise_first_to_last": null,
+          "rises_by_more_than_margin": null,
+          "margin_resolution": {
+            "margin": 0.05,
+            "coarsest_resolution": 0.014084507042253521,
+            "required_ratio": 2.0,
+            "required_margin": 0.028169014084507043,
+            "verdict": "usable",
+            "note": "A margin below twice the coarsest metric resolution cannot separate signal from one context changing hands. v3 registered a margin exactly equal to its resolution and returned an unresolvable verdict; this check is why that cannot happen again."
+          },
+          "readable": false
+        },
+        "cumulative": {
+          "routes": 360,
+          "observed": 176,
+          "censored": 184,
+          "violated": 79,
+          "rate": 0.44886363636363635
+        }
+      },
+      "C3_anchor": {
+        "per_step": {
+          "steps": [
+            {
+              "step": 0,
+              "reached_intact": 360,
+              "motions_scored": 108,
+              "no_motion_issued": 0,
+              "motion_cut_short": 252,
+              "violations": 108,
+              "rate": 1.0,
+              "resolution": 0.009259259259259259
+            },
+            {
+              "step": 1,
+              "reached_intact": 252,
+              "motions_scored": 0,
+              "no_motion_issued": 252,
+              "motion_cut_short": 0,
+              "violations": 0,
+              "rate": null,
+              "resolution": null
+            },
+            {
+              "step": 2,
+              "reached_intact": 252,
+              "motions_scored": 0,
+              "no_motion_issued": 252,
+              "motion_cut_short": 0,
+              "violations": 0,
+              "rate": null,
+              "resolution": null
+            },
+            {
+              "step": 3,
+              "reached_intact": 252,
+              "motions_scored": 0,
+              "no_motion_issued": 252,
+              "motion_cut_short": 0,
+              "violations": 0,
+              "rate": null,
+              "resolution": null
+            },
+            {
+              "step": 4,
+              "reached_intact": 252,
+              "motions_scored": 0,
+              "no_motion_issued": 252,
+              "motion_cut_short": 0,
+              "violations": 0,
+              "rate": null,
+              "resolution": null
+            }
+          ],
+          "rise_first_to_last": null,
+          "rises_by_more_than_margin": null,
+          "margin_resolution": {
+            "margin": 0.05,
+            "coarsest_resolution": 0.009259259259259259,
+            "required_ratio": 2.0,
+            "required_margin": 0.018518518518518517,
+            "verdict": "usable",
+            "note": "A margin below twice the coarsest metric resolution cannot separate signal from one context changing hands. v3 registered a margin exactly equal to its resolution and returned an unresolvable verdict; this check is why that cannot happen again."
+          },
+          "readable": false
+        },
+        "cumulative": {
+          "routes": 360,
+          "observed": 212,
+          "censored": 148,
+          "violated": 108,
+          "rate": 0.5094339622641509
+        }
+      }
+    }
+  },
+  "reading": "Three things are separable here and should not be run together. Whether the check is worth having at all over a route; whether its per-step calibration holds as the chain lengthens; and whether how greedily a supervisor spends what the check permits matters more than what the check is. The first two are properties of the check. The third is not, and the composition study already measured it to be large.",
+  "scope_and_limitations": [
+    "Simulation only. No hardware access, connector transfer, released retention or force-certified safety claim.",
+    "ONE cell. The support is one five-clip geometry at six service loops, not a family of layouts; the screen rejected most of what was drawn. A finding is a statement about this cell.",
+    "Five steps is a longer chain than three, not a long chain. It can show whether a rate is still rising at step five; it cannot establish where it settles.",
+    "One filter is tested, the analytic one, fitted on single-clip layouts. A finding that it fails to compose is a statement about THAT filter.",
+    "The candidate action set is the perception study's twelve. A supervisor with a richer action space might spend its budget differently.",
+    "The error model is a model of how perception fails, not camera perception.",
+    "C2 stays scoped to the 23-segment cable model at 4 kHz: the minimum bend radius does not agree across refinements.",
+    "The five-second settling deadline is part of the task definition, not an approximation to rest, and is unchanged.",
+    "The filter is applied to a cell whose slack geometry differs from the one it was fitted on. That is the deployment situation under test, not a confound that was overlooked, and it was measured in the pilot above before any request was scored."
+  ]
+}

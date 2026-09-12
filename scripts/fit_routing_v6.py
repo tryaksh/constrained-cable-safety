@@ -329,6 +329,42 @@ def main() -> int:
             },
         }
 
+    def certified(block):
+        """A prediction is only carried if the metric could resolve the margin."""
+        values = [v for v in block.values() if v is not None]
+        return [v.get("beats_by_more_than_margin") for v in values]
+
+    verdicts = {
+        "p1_filter_earns_its_place_over_a_route": {
+            "held": all(v is True for v in certified(p1)) if certified(p1) else None,
+            "by_level": {k: v["beats_by_more_than_margin"] for k, v in p1.items()},
+            "gaps": {k: v["gap"] for k, v in p1.items()},
+        },
+        "p2_clip_budget_keeps_decaying": {
+            "held": p2.get("conservative", {}).get("keeps_decaying"),
+            "read_on": "conservative",
+            "why_that_arm": "The contract named it in advance as the only arm expected to reach "
+                            "step 5. The other two lose a clip at step 1 in every route, so their "
+                            "per-step rates past step 1 are computed over nothing and are "
+                            "reported as unresolvable, exactly as declared.",
+            "rise_first_to_last": {k: (v or {}).get("rise_first_to_last")
+                                   for k, v in p2.get("conservative", {})
+                                   .get("per_level", {}).items()},
+        },
+        "p3_appetite_beats_representation": {
+            "held": {k: v["beats_by_more_than_margin"] for k, v in p3.items()},
+            "gaps": {k: v["gap"] for k, v in p3.items()},
+            "status": "PRE-REGISTERED here, unlike the composition study where the same "
+                      "comparison was post hoc and carried no verdict.",
+        },
+    }
+    verdicts["correct"] = sum(1 for key, held in (
+        ("p1", verdicts["p1_filter_earns_its_place_over_a_route"]["held"]),
+        ("p2", verdicts["p2_clip_budget_keeps_decaying"]["held"]),
+        ("p3", verdicts["p3_appetite_beats_representation"]["held"].get("E0")),
+    ) if held is True)
+    verdicts["of"] = 3
+
     report = {
         "schema": 1, "id": "cable_routing_v6",
         "created_on": contract["created_on"],
@@ -360,6 +396,7 @@ def main() -> int:
                  "settle_native_steps": sum(r["settle_steps"] for r in rows),
                  "summed_worker_wall_seconds": round(sum(r["wall_seconds"] for r in rows), 1)},
         "prediction": contract["decision_rule"]["prediction"],
+        "verdicts": verdicts,
         "p1_does_the_filter_still_earn_its_place": p1,
         "p2_does_the_clip_budget_keep_decaying": p2,
         "p3_appetite_against_representation": p3,

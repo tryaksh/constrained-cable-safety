@@ -2,7 +2,7 @@
  "schema": 1,
  "generated_by": "scripts/index_evidence.py",
  "purpose": "Pick the one evidence record a question needs. Entries are derived from each file, so read the file itself before quoting any number, and read its scope before reusing its result.",
- "count": 30,
+ "count": 31,
  "records": [
   {
    "file": "cable_baseline_v2.json",
@@ -593,6 +593,37 @@
    ]
   },
   {
+   "file": "cable_routing_v6.json",
+   "bytes": 98230,
+   "id": "cable_routing_v6",
+   "status": "fitted_routing_study",
+   "scope": "Routing study for the constrained-cable safety layer. One request is one ROUTE through a five-clip CAD-authored cell: the cable is installed through every clip, settled, and a named supervisor is offered a decision at each of five registered decision points. Success is EVERY required clip still retained AND the connec\u2026",
+   "top_level_keys": [
+    "cell",
+    "clips",
+    "complete",
+    "contract",
+    "cost",
+    "created_on",
+    "denominator",
+    "guards",
+    "id",
+    "p1_does_the_filter_still_earn_its_place",
+    "p2_does_the_clip_budget_keep_decaying",
+    "p3_appetite_against_representation",
+    "prediction",
+    "question",
+    "reading",
+    "results",
+    "run_dirs",
+    "schema",
+    "scope",
+    "scope_and_limitations",
+    "status",
+    "verdicts"
+   ]
+  },
+  {
    "file": "cable_sequence_v5.json",
    "bytes": 59759,
    "id": "cable_sequence_v5",
@@ -734,6 +765,12 @@
  "figures": [
   "cable_baseline_v2.pdf",
   "cable_baseline_v2.png",
+  "cable_cell_v6_cell_cad.png",
+  "cable_cell_v6_cell_primitives.png",
+  "cable_cell_v6_clips_cad.png",
+  "cable_cell_v6_clips_primitives.png",
+  "cable_cell_v6_corner_cad.png",
+  "cable_cell_v6_corner_primitives.png",
   "cable_contact_validation_v1.pdf",
   "cable_contact_validation_v1.png",
   "cable_perception_v4.png",
