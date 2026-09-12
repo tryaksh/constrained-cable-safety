@@ -2,7 +2,7 @@
  "schema": 1,
  "generated_by": "scripts/index_evidence.py",
  "purpose": "Pick the one evidence record a question needs. Entries are derived from each file, so read the file itself before quoting any number, and read its scope before reusing its result.",
- "count": 92,
+ "count": 93,
  "records": [
   {
    "file": "approach_slew_design_v1.json",
@@ -596,6 +596,31 @@
     "source",
     "status",
     "verification"
+   ]
+  },
+  {
+   "file": "cable_transfer_protocol_v4.json",
+   "bytes": 10736,
+   "id": "cable_transfer_protocol_v4",
+   "status": "executed_transfer_protocol",
+   "scope": "Sensitivity of the fitted one-number safety threshold to the cable's own physical properties. A PROTOCOL with exposed assumptions, not a transfer claim: there is no hardware, no connector transfer and no force-certified safety claim here.",
+   "top_level_keys": [
+    "cells",
+    "contract",
+    "cost",
+    "created_on",
+    "design",
+    "engineering_statement",
+    "id",
+    "nominal",
+    "one_day_hardware_check_that_would_falsify_this",
+    "schema",
+    "scope",
+    "sensitivity",
+    "status",
+    "unfittable_cells",
+    "unfittable_note",
+    "what_stays_untested"
    ]
   },
   {

@@ -34,6 +34,7 @@ from assembly_recovery.cable_study_v4 import (  # noqa: E402
     content_sha256,
     core_actions,
     feature_row,
+    finite,
     fit_threshold,
     level_by_id,
 )
@@ -125,7 +126,15 @@ def fit_cell(results, contract: dict, layouts, retract: float) -> dict:
     values, labels = np.asarray(values), np.asarray(labels)
     fit = fit_threshold(values, labels) if values.size else {"threshold_m": None,
                                                              "train_balanced_accuracy": None}
+    positives = int(labels.sum()) if labels.size else 0
+    fittable = bool(labels.size and 0 < positives < labels.size)
+    if not fittable:
+        fit = {"threshold_m": None, "train_balanced_accuracy": None}
     return {**fit, "requests": len(results), "observed": int(values.size), "censored": censored,
+            "violations": positives, "fittable": fittable,
+            "unfittable_reason": (None if fittable else
+                                  "every observed request fell on the same side of the label, so "
+                                  "no threshold separates anything in this cell"),
             "violation_rate": float(labels.mean()) if labels.size else None}
 
 
@@ -138,6 +147,9 @@ def main() -> int:
     parser.add_argument("--workers", type=int, default=12)
     parser.add_argument("--max-cells", type=int, default=0,
                         help="Run only the first N sweep cells. A smoke check, not the sweep.")
+    parser.add_argument("--reuse", action="store_true",
+                        help="Read the requests already on disk instead of re-running them. The "
+                             "rollouts are what they are; only the report is recomputed.")
     args = parser.parse_args()
 
     contract = json.loads((ROOT / args.contract).read_text(encoding="utf-8-sig"))
@@ -163,7 +175,16 @@ def main() -> int:
         cases = build_requests(contract, cell, layouts, seed_base=310000+number*10000)
         runtime = {**runtime_base, "id": f"transfer_{cell['id']}", "cases": cases}
         directory = work / cell["id"]
-        if args.workers > 1:
+        if args.reuse:
+            results = []
+            for case in cases:
+                path = directory / case["id"] / "result.json"
+                if path.is_file():
+                    results.append(json.loads(path.read_text(encoding="utf-8")))
+            if not results:
+                print(json.dumps({"cell": cell["id"], "skipped": "no requests on disk"}), flush=True)
+                continue
+        elif args.workers > 1:
             from concurrent.futures import ProcessPoolExecutor
             with ProcessPoolExecutor(max_workers=args.workers) as pool:
                 results = list(pool.map(_run, [(runtime, case, directory / case["id"])
@@ -177,9 +198,11 @@ def main() -> int:
                                                      "violation_rate", "censored")}), flush=True)
 
     nominal = next(r for r in records if r["id"] == "nominal")
+    unfittable = [r["id"] for r in records if not r.get("fittable", True)]
     sensitivity = {}
     for name in SWEEP:
-        cells_for = [r for r in records if r["parameter"] == name and r["threshold_m"] is not None]
+        cells_for = [r for r in records if r["parameter"] == name
+                     and r.get("threshold_m") is not None]
         if not cells_for or nominal["threshold_m"] is None:
             continue
         deltas = [{"factor": r["factor"],
@@ -219,6 +242,8 @@ def main() -> int:
                     "make neither readable.",
         },
         "nominal": nominal, "cells": records, "sensitivity": sensitivity,
+        "unfittable_cells": unfittable,
+        "unfittable_note": "A cell where every observed request fell on the same side of the label has no threshold to fit. It is recorded and excluded from the sensitivity, never imputed.",
         "engineering_statement": {
             "reading": "For a cable whose swept property is known only to plus or minus thirty "
                        "percent, carry at least the margin listed for that property. Carrying the "
@@ -252,7 +277,8 @@ def main() -> int:
     }
     out = ROOT / args.out
     out.parent.mkdir(parents=True, exist_ok=True)
-    out.write_text(json.dumps(report, indent=2, allow_nan=False, default=float), encoding="utf-8")
+    out.write_text(json.dumps(finite(report), indent=2, allow_nan=False, default=float),
+                   encoding="utf-8")
     print(json.dumps({"out": args.out.as_posix(),
                       "nominal_threshold_m": nominal["threshold_m"],
                       "margins": {k: v["margin_for_30_percent_tolerance_m"]

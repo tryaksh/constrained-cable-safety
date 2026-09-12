@@ -1,0 +1,306 @@
+{
+  "schema": 1,
+  "id": "cable_transfer_protocol_v4",
+  "created_on": "2026-09-11",
+  "status": "executed_transfer_protocol",
+  "scope": "Sensitivity of the fitted one-number safety threshold to the cable's own physical properties. A PROTOCOL with exposed assumptions, not a transfer claim: there is no hardware, no connector transfer and no force-certified safety claim here.",
+  "contract": {
+    "path": "configs/cable_perception_v4.json",
+    "content_sha256": "4d508d316ff6ba212667df7dc886437293171c46a2fe49655540dd5c1da2673d"
+  },
+  "design": {
+    "layouts": [
+      "L1",
+      "L2",
+      "L3",
+      "L4"
+    ],
+    "installed_loop_m": 0.004,
+    "port_mount": "compliant4000",
+    "decision_pose": "near_seated",
+    "error_level": "E0",
+    "actions": 12,
+    "requests_per_cell": 48,
+    "cells": 9,
+    "note": "The zero-error level is used on purpose: this control measures the threshold's sensitivity to the CABLE, not to the observation, and mixing the two would make neither readable."
+  },
+  "nominal": {
+    "id": "nominal",
+    "parameter": "none",
+    "factor": 1.0,
+    "overrides": {},
+    "threshold_m": 0.3997161782211205,
+    "train_balanced_accuracy": 0.9166666666666667,
+    "requests": 48,
+    "observed": 37,
+    "censored": 11,
+    "violations": 7,
+    "fittable": true,
+    "unfittable_reason": null,
+    "violation_rate": 0.1891891891891892
+  },
+  "cells": [
+    {
+      "id": "nominal",
+      "parameter": "none",
+      "factor": 1.0,
+      "overrides": {},
+      "threshold_m": 0.3997161782211205,
+      "train_balanced_accuracy": 0.9166666666666667,
+      "requests": 48,
+      "observed": 37,
+      "censored": 11,
+      "violations": 7,
+      "fittable": true,
+      "unfittable_reason": null,
+      "violation_rate": 0.1891891891891892
+    },
+    {
+      "id": "youngs_modulus_pa_x0.7",
+      "parameter": "youngs_modulus_pa",
+      "factor": 0.7,
+      "meaning": "bending stiffness EI, at fixed cross-section",
+      "overrides": {
+        "youngs_modulus_pa": 7000000.0
+      },
+      "threshold_m": 0.4161465678304428,
+      "train_balanced_accuracy": 1.0,
+      "requests": 48,
+      "observed": 19,
+      "censored": 29,
+      "violations": 3,
+      "fittable": true,
+      "unfittable_reason": null,
+      "violation_rate": 0.15789473684210525
+    },
+    {
+      "id": "youngs_modulus_pa_x1.4",
+      "parameter": "youngs_modulus_pa",
+      "factor": 1.4,
+      "meaning": "bending stiffness EI, at fixed cross-section",
+      "overrides": {
+        "youngs_modulus_pa": 14000000.0
+      },
+      "threshold_m": 0.4101558004244227,
+      "train_balanced_accuracy": 1.0,
+      "requests": 48,
+      "observed": 19,
+      "censored": 29,
+      "violations": 4,
+      "fittable": true,
+      "unfittable_reason": null,
+      "violation_rate": 0.21052631578947367
+    },
+    {
+      "id": "friction_x0.6",
+      "parameter": "friction",
+      "factor": 0.6,
+      "meaning": "sliding friction mu against the shelf, clip and post",
+      "overrides": {
+        "friction": [
+          0.3,
+          0.003,
+          6e-05
+        ]
+      },
+      "threshold_m": 0.39971617178772434,
+      "train_balanced_accuracy": 0.9166666666666667,
+      "requests": 48,
+      "observed": 37,
+      "censored": 11,
+      "violations": 7,
+      "fittable": true,
+      "unfittable_reason": null,
+      "violation_rate": 0.1891891891891892
+    },
+    {
+      "id": "friction_x1.6",
+      "parameter": "friction",
+      "factor": 1.6,
+      "meaning": "sliding friction mu against the shelf, clip and post",
+      "overrides": {
+        "friction": [
+          0.8,
+          0.008,
+          0.00016
+        ]
+      },
+      "threshold_m": 0.3498483686079582,
+      "train_balanced_accuracy": 1.0,
+      "requests": 48,
+      "observed": 11,
+      "censored": 37,
+      "violations": 10,
+      "fittable": true,
+      "unfittable_reason": null,
+      "violation_rate": 0.9090909090909091
+    },
+    {
+      "id": "total_mass_kg_x0.75",
+      "parameter": "total_mass_kg",
+      "factor": 0.75,
+      "meaning": "linear density rho at fixed geometry",
+      "overrides": {
+        "total_mass_kg": 0.0375
+      },
+      "threshold_m": 0.4108397699811077,
+      "train_balanced_accuracy": 1.0,
+      "requests": 48,
+      "observed": 19,
+      "censored": 29,
+      "violations": 4,
+      "fittable": true,
+      "unfittable_reason": null,
+      "violation_rate": 0.21052631578947367
+    },
+    {
+      "id": "total_mass_kg_x1.3",
+      "parameter": "total_mass_kg",
+      "factor": 1.3,
+      "meaning": "linear density rho at fixed geometry",
+      "overrides": {
+        "total_mass_kg": 0.065
+      },
+      "threshold_m": null,
+      "train_balanced_accuracy": null,
+      "requests": 48,
+      "observed": 1,
+      "censored": 47,
+      "violations": 0,
+      "fittable": false,
+      "unfittable_reason": "every observed request fell on the same side of the label, so no threshold separates anything in this cell",
+      "violation_rate": 0.0
+    },
+    {
+      "id": "joint_damping_x0.4",
+      "parameter": "joint_damping",
+      "factor": 0.4,
+      "meaning": "material bending damping c",
+      "overrides": {
+        "joint_damping": 8e-05
+      },
+      "threshold_m": null,
+      "train_balanced_accuracy": null,
+      "requests": 48,
+      "observed": 0,
+      "censored": 48,
+      "violations": 0,
+      "fittable": false,
+      "unfittable_reason": "every observed request fell on the same side of the label, so no threshold separates anything in this cell",
+      "violation_rate": null
+    },
+    {
+      "id": "joint_damping_x2.5",
+      "parameter": "joint_damping",
+      "factor": 2.5,
+      "meaning": "material bending damping c",
+      "overrides": {
+        "joint_damping": 0.0005
+      },
+      "threshold_m": 0.40199780871464763,
+      "train_balanced_accuracy": 0.7419786096256684,
+      "requests": 48,
+      "observed": 39,
+      "censored": 9,
+      "violations": 17,
+      "fittable": true,
+      "unfittable_reason": null,
+      "violation_rate": 0.4358974358974359
+    }
+  ],
+  "sensitivity": {
+    "youngs_modulus_pa": {
+      "meaning": "bending stiffness EI, at fixed cross-section",
+      "cells": [
+        {
+          "factor": 0.7,
+          "threshold_m": 0.4161465678304428,
+          "delta_m": 0.016430389609322305,
+          "delta_per_unit_relative_change": -0.05476796536440767
+        },
+        {
+          "factor": 1.4,
+          "threshold_m": 0.4101558004244227,
+          "delta_m": 0.01043962220330219,
+          "delta_per_unit_relative_change": 0.026099055508255482
+        }
+      ],
+      "worst_threshold_shift_m": 0.016430389609322305,
+      "mean_slope_m_per_unit_relative_change": -0.014334454928076095,
+      "margin_for_30_percent_tolerance_m": 0.004300336478422828
+    },
+    "friction": {
+      "meaning": "sliding friction mu against the shelf, clip and post",
+      "cells": [
+        {
+          "factor": 0.6,
+          "threshold_m": 0.39971617178772434,
+          "delta_m": -6.4333961491414016e-09,
+          "delta_per_unit_relative_change": 1.6083490372853504e-08
+        },
+        {
+          "factor": 1.6,
+          "threshold_m": 0.3498483686079582,
+          "delta_m": -0.049867809613162284,
+          "delta_per_unit_relative_change": -0.08311301602193713
+        }
+      ],
+      "worst_threshold_shift_m": 0.049867809613162284,
+      "mean_slope_m_per_unit_relative_change": -0.04155649996922338,
+      "margin_for_30_percent_tolerance_m": 0.012466949990767013
+    },
+    "total_mass_kg": {
+      "meaning": "linear density rho at fixed geometry",
+      "cells": [
+        {
+          "factor": 0.75,
+          "threshold_m": 0.4108397699811077,
+          "delta_m": 0.011123591759987228,
+          "delta_per_unit_relative_change": -0.04449436703994891
+        }
+      ],
+      "worst_threshold_shift_m": 0.011123591759987228,
+      "mean_slope_m_per_unit_relative_change": -0.04449436703994891,
+      "margin_for_30_percent_tolerance_m": 0.013348310111984674
+    },
+    "joint_damping": {
+      "meaning": "material bending damping c",
+      "cells": [
+        {
+          "factor": 2.5,
+          "threshold_m": 0.40199780871464763,
+          "delta_m": 0.0022816304935271425,
+          "delta_per_unit_relative_change": 0.0015210869956847617
+        }
+      ],
+      "worst_threshold_shift_m": 0.0022816304935271425,
+      "mean_slope_m_per_unit_relative_change": 0.0015210869956847617,
+      "margin_for_30_percent_tolerance_m": 0.0004563260987054285
+    }
+  },
+  "unfittable_cells": [
+    "total_mass_kg_x1.3",
+    "joint_damping_x0.4"
+  ],
+  "unfittable_note": "A cell where every observed request fell on the same side of the label has no threshold to fit. It is recorded and excluded from the sensitivity, never imputed.",
+  "engineering_statement": {
+    "reading": "For a cable whose swept property is known only to plus or minus thirty percent, carry at least the margin listed for that property. Carrying the sum treats the tolerances as independent and simultaneous, which is conservative.",
+    "total_margin_all_properties_30_percent_m": 0.030571922679879945
+  },
+  "what_stays_untested": [
+    "Every number here is simulated. No hardware cable was measured, bent or pulled.",
+    "The cable is a capsule chain with an isotropic elastic plugin: it has no jacket anisotropy, no braid, no temperature dependence, no ageing and no plastic set.",
+    "Friction is Coulomb with fixed coefficients; stick-slip against a real jacket is not modelled.",
+    "The connector's strain relief is a point equality constraint, not a moulded boot.",
+    "The settling initialization is the registered five-second deadline, which evidence/cable_discretisation_v4.json shows is not a rest configuration."
+  ],
+  "one_day_hardware_check_that_would_falsify_this": [
+    "Measure the cable's bending stiffness by three-point bend or by hanging a known mass from a cantilevered length, and its jacket-on-steel friction coefficient on an inclined plane. Both are one-hour bench measurements.",
+    "Install the same routed geometry with a real clip and strain relief, command the registered twelve core clearance actions at 20 mm/s, and record which ones release the clip.",
+    "The protocol is falsified if the measured release boundary sits outside the fitted threshold plus the margin this table prescribes for the measured parameter tolerances."
+  ],
+  "cost": {
+    "wall_seconds": 0.1,
+    "requests": 432
+  }
+}
