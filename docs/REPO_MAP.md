@@ -48,7 +48,7 @@ between the two is possible or wanted.
 
 The branch it came from no longer exists. It was tagged
 `archive/assembly-recovery-training` in the orbital repository before it was
-deleted, so its 588 commits and every file on it stay reachable there:
+deleted, so its 623 commits and every file on it stay reachable there:
 
 ```
 git clone https://github.com/tryaksh/orbital-robotic-servicing-lab.git
@@ -80,11 +80,13 @@ are told apart by the `campaign` field that
 assigns it is mechanical and is written out in
 [`scripts/index_evidence.py`](../scripts/index_evidence.py).
 
+What `evidence/INDEX.json` reports today, over all 99 records:
+
 | Campaign | Records | What it is |
 | --- | --- | --- |
-| `cable` | 31 | The four constrained-cable studies. What this repository is about. |
-| `peg` | 65 | The retired peg-insertion campaign. |
-| `shared` | 2 | Documentation archives describing both. |
+| `cable` | 30 | The four constrained-cable studies. What this repository is about. |
+| `peg` | 66 | The retired peg-insertion campaign. |
+| `shared` | 3 | Records describing both campaigns: two documentation archives, and the whole-cycle verification that hashes every file in a tree that held both projects. |
 
 Nothing was deleted from the recovery branch to make this tidy. The branch was
 archived whole, under a tag, before anything moved.

@@ -216,7 +216,7 @@ than an observation.
 ## What you can run
 
 ```powershell
-.venv/Scripts/python.exe -m pytest                          # 440 tests, no GPU, no simulator, ~4 s
+.venv/Scripts/python.exe -m pytest                          # 441 tests, no GPU, no simulator, ~4 s
 .venv/Scripts/python.exe scripts/summarize_perception_v4.py # study 1, in a paragraph
 ```
 

@@ -123,7 +123,7 @@ the task definition. Do not lengthen it and do not change the predicate.
 ## Commands
 
 ```powershell
-.venv/Scripts/python.exe -m pytest                    # 440 tests, CPU-only, ~4 s
+.venv/Scripts/python.exe -m pytest                    # 441 tests, CPU-only, ~4 s
 .venv/Scripts/python.exe -m ruff check src scripts tests
 .venv/Scripts/python.exe scripts/index_evidence.py    # after adding a record
 ```

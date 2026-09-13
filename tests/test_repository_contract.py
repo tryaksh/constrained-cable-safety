@@ -152,3 +152,22 @@ def test_the_shipped_filter_reads_its_thresholds_from_evidence():
     """The published number and the running check must not be able to drift apart."""
     source = (ROOT / "src/assembly_recovery/cable_safety_filter_v4.py").read_text(encoding="utf8")
     assert "from_evidence" in source
+
+
+def test_the_documents_report_the_campaign_counts_the_index_actually_has():
+    """A hand-typed count beside a generated one is a number waiting to go stale.
+
+    README.md and docs/REPO_MAP.md both state how many records belong to each
+    campaign. `evidence/INDEX.json` derives those counts from the files, so the
+    two can disagree the moment a record is added. This makes them agree by test.
+    """
+    index = json.loads((ROOT / "evidence/INDEX.json").read_text(encoding="utf-8-sig"))
+    counts = index["count_by_campaign"]
+    readme = (ROOT / "README.md").read_text(encoding="utf-8-sig")
+    repo_map = (ROOT / "docs/REPO_MAP.md").read_text(encoding="utf-8-sig")
+    for campaign, number in counts.items():
+        assert f"{number}" in readme, f"README.md does not state the {campaign} count of {number}"
+        assert f"| {number} |" in repo_map, (
+            f"docs/REPO_MAP.md's campaign table does not state the {campaign} count of {number}"
+        )
+    assert index["count"] == sum(counts.values())
