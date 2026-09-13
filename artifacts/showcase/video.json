@@ -1,0 +1,416 @@
+{
+  "schema": 1,
+  "id": "showcase_video_v7",
+  "stage": "A",
+  "status": "verified",
+  "created_on": "2026-09-12",
+  "what_this_is": "Offline replay clips of registered requests from the v6 routing block. Not a study result, not a new measurement and not a hardware claim.",
+  "how_they_are_made": [
+    "scripts/render_routing_video_v6.py calls the routing worker's own run_case with a per-tick observer, so the replay shares one control path and one perception stream with the block. A capture that drew a different number of random numbers would show a rollout that never happened.",
+    "Every capture is compared against the request's committed result.json on failure reason, elapsed time, seating, route completion, per-clip retention, clip-loss attribution, every constraint label and every issued action. A clip whose capture does not reproduce the block is refused before it is rendered.",
+    "Rendering replays recorded states; mj_step is never called at render time."
+  ],
+  "checks_run_here": {
+    "decode": "Every frame is decoded from the written file, not counted from the writer.",
+    "resolution": "at least 1280x720, read from the container",
+    "not_blank": "sampled frames must have grey standard deviation >= 8.0 and no single 8-level band covering more than 97% of the frame",
+    "reproduction": "every capture record's reproduces_block is true"
+  },
+  "clips": [
+    {
+      "name": "budget",
+      "layout": "budget",
+      "view": "clips",
+      "video": "artifacts/showcase/video/budget.mp4",
+      "bytes": 665018,
+      "declared_frames": 329,
+      "measured": {
+        "resolution": [
+          1280,
+          720
+        ],
+        "fps": 30.0,
+        "duration_s": 10.97,
+        "poster": "artifacts/showcase/video/budget_poster.jpg",
+        "poster_frame": 197,
+        "frames_decoded": 329,
+        "frames_measured": 9,
+        "sampled": [
+          {
+            "frame": 0,
+            "std": 44.83682853783853,
+            "flattest_fraction": 0.3967947048611111,
+            "distinct_bands": 31
+          },
+          {
+            "frame": 36,
+            "std": 45.29631870381281,
+            "flattest_fraction": 0.3961046006944444,
+            "distinct_bands": 31
+          },
+          {
+            "frame": 72,
+            "std": 45.771167037023226,
+            "flattest_fraction": 0.39541883680555556,
+            "distinct_bands": 31
+          },
+          {
+            "frame": 108,
+            "std": 46.240291262187846,
+            "flattest_fraction": 0.39476671006944447,
+            "distinct_bands": 31
+          },
+          {
+            "frame": 144,
+            "std": 46.71201311343995,
+            "flattest_fraction": 0.39410481770833333,
+            "distinct_bands": 31
+          },
+          {
+            "frame": 180,
+            "std": 47.18412332948107,
+            "flattest_fraction": 0.39343098958333333,
+            "distinct_bands": 31
+          },
+          {
+            "frame": 216,
+            "std": 47.171418020215235,
+            "flattest_fraction": 0.3934299045138889,
+            "distinct_bands": 31
+          },
+          {
+            "frame": 252,
+            "std": 47.16531762168413,
+            "flattest_fraction": 0.3934331597222222,
+            "distinct_bands": 31
+          },
+          {
+            "frame": 288,
+            "std": 47.15618323637813,
+            "flattest_fraction": 0.3934320746527778,
+            "distinct_bands": 31
+          }
+        ],
+        "blank_frames": 0
+      },
+      "captures": [
+        {
+          "case": "RC1_l15_compliant4000_m0_E0_conservative_r0",
+          "supervisor": "conservative",
+          "error_level": "E0",
+          "frames": 329,
+          "capture_hz": 15.0,
+          "outcome": "route completed",
+          "route_completed": true,
+          "terminal_required_clips": {
+            "retained": [
+              "c1",
+              "c2",
+              "c3",
+              "c4",
+              "c5"
+            ],
+            "lost": [],
+            "required_retained": 5,
+            "required_count": 5
+          },
+          "block_result": "artifacts/cable/routing-v6-s1/RC1_l15_compliant4000_m0_E0_conservative_r0/result.json",
+          "reproduces_block": true,
+          "mismatch": null
+        }
+      ],
+      "checks": {
+        "decodes": true,
+        "frame_count_matches_render": true,
+        "resolution_at_least_declared": true,
+        "fps_at_least_30": true,
+        "no_blank_sampled_frames": true,
+        "poster_written": true,
+        "every_capture_reproduces_the_block": true
+      },
+      "passes": true
+    },
+    {
+      "name": "estimate",
+      "layout": "estimate",
+      "view": "wide",
+      "video": "artifacts/showcase/video/estimate.mp4",
+      "bytes": 1566291,
+      "declared_frames": 352,
+      "measured": {
+        "resolution": [
+          1280,
+          720
+        ],
+        "fps": 30.0,
+        "duration_s": 11.73,
+        "poster": "artifacts/showcase/video/estimate_poster.jpg",
+        "poster_frame": 211,
+        "frames_decoded": 352,
+        "frames_measured": 9,
+        "sampled": [
+          {
+            "frame": 0,
+            "std": 43.47590174760491,
+            "flattest_fraction": 0.39529188368055557,
+            "distinct_bands": 31
+          },
+          {
+            "frame": 39,
+            "std": 43.4989218069007,
+            "flattest_fraction": 0.39539279513888886,
+            "distinct_bands": 31
+          },
+          {
+            "frame": 78,
+            "std": 43.51109494488251,
+            "flattest_fraction": 0.39543402777777775,
+            "distinct_bands": 31
+          },
+          {
+            "frame": 117,
+            "std": 43.4190683933315,
+            "flattest_fraction": 0.39548828125,
+            "distinct_bands": 31
+          },
+          {
+            "frame": 156,
+            "std": 43.41761080392267,
+            "flattest_fraction": 0.3953862847222222,
+            "distinct_bands": 31
+          },
+          {
+            "frame": 195,
+            "std": 43.4274031043271,
+            "flattest_fraction": 0.3953439670138889,
+            "distinct_bands": 31
+          },
+          {
+            "frame": 234,
+            "std": 43.43321293553225,
+            "flattest_fraction": 0.3953396267361111,
+            "distinct_bands": 31
+          },
+          {
+            "frame": 273,
+            "std": 43.47835293670751,
+            "flattest_fraction": 0.39533094618055553,
+            "distinct_bands": 31
+          },
+          {
+            "frame": 312,
+            "std": 43.5223791420916,
+            "flattest_fraction": 0.39532009548611113,
+            "distinct_bands": 31
+          }
+        ],
+        "blank_frames": 0
+      },
+      "captures": [
+        {
+          "case": "RC1_l30_compliant4000_m0_E4_conservative_r2",
+          "supervisor": "conservative",
+          "error_level": "E4",
+          "frames": 352,
+          "capture_hz": 15.0,
+          "outcome": "route completed",
+          "route_completed": true,
+          "terminal_required_clips": {
+            "retained": [
+              "c1",
+              "c2",
+              "c3",
+              "c4",
+              "c5"
+            ],
+            "lost": [],
+            "required_retained": 5,
+            "required_count": 5
+          },
+          "block_result": "artifacts/cable/routing-v6-s1/RC1_l30_compliant4000_m0_E4_conservative_r2/result.json",
+          "reproduces_block": true,
+          "mismatch": null
+        }
+      ],
+      "checks": {
+        "decodes": true,
+        "frame_count_matches_render": true,
+        "resolution_at_least_declared": true,
+        "fps_at_least_30": true,
+        "no_blank_sampled_frames": true,
+        "poster_written": true,
+        "every_capture_reproduces_the_block": true
+      },
+      "passes": true
+    },
+    {
+      "name": "triptych",
+      "layout": "triptych",
+      "view": "clips",
+      "video": "artifacts/showcase/video/triptych.mp4",
+      "bytes": 918634,
+      "declared_frames": 329,
+      "measured": {
+        "resolution": [
+          1920,
+          900
+        ],
+        "fps": 30.0,
+        "duration_s": 10.97,
+        "poster": "artifacts/showcase/video/triptych_poster.jpg",
+        "poster_frame": 197,
+        "frames_decoded": 329,
+        "frames_measured": 9,
+        "sampled": [
+          {
+            "frame": 0,
+            "std": 45.7729761181138,
+            "flattest_fraction": 0.4408136574074074,
+            "distinct_bands": 31
+          },
+          {
+            "frame": 36,
+            "std": 47.13232336858487,
+            "flattest_fraction": 0.4252384259259259,
+            "distinct_bands": 31
+          },
+          {
+            "frame": 72,
+            "std": 47.15324458702206,
+            "flattest_fraction": 0.4252349537037037,
+            "distinct_bands": 31
+          },
+          {
+            "frame": 108,
+            "std": 47.361651970414904,
+            "flattest_fraction": 0.4250260416666667,
+            "distinct_bands": 31
+          },
+          {
+            "frame": 144,
+            "std": 47.36766482514856,
+            "flattest_fraction": 0.4249971064814815,
+            "distinct_bands": 31
+          },
+          {
+            "frame": 180,
+            "std": 47.37252738642569,
+            "flattest_fraction": 0.42496875,
+            "distinct_bands": 31
+          },
+          {
+            "frame": 216,
+            "std": 47.36908366415912,
+            "flattest_fraction": 0.4249664351851852,
+            "distinct_bands": 31
+          },
+          {
+            "frame": 252,
+            "std": 47.36600036334991,
+            "flattest_fraction": 0.4249826388888889,
+            "distinct_bands": 31
+          },
+          {
+            "frame": 288,
+            "std": 47.362921052666266,
+            "flattest_fraction": 0.4249907407407407,
+            "distinct_bands": 31
+          }
+        ],
+        "blank_frames": 0
+      },
+      "captures": [
+        {
+          "case": "RC1_l15_compliant4000_m0_E0_unfiltered_r0",
+          "supervisor": "unfiltered",
+          "error_level": "E0",
+          "frames": 89,
+          "capture_hz": 15.0,
+          "outcome": "lost_required_clip",
+          "route_completed": false,
+          "terminal_required_clips": {
+            "retained": [
+              "c1",
+              "c2",
+              "c4",
+              "c5"
+            ],
+            "lost": [
+              "c3"
+            ],
+            "required_retained": 4,
+            "required_count": 5
+          },
+          "block_result": "artifacts/cable/routing-v6-s1/RC1_l15_compliant4000_m0_E0_unfiltered_r0/result.json",
+          "reproduces_block": true,
+          "mismatch": null
+        },
+        {
+          "case": "RC1_l15_compliant4000_m0_E0_filtered_r0",
+          "supervisor": "filtered",
+          "error_level": "E0",
+          "frames": 94,
+          "capture_hz": 15.0,
+          "outcome": "lost_required_clip",
+          "route_completed": false,
+          "terminal_required_clips": {
+            "retained": [
+              "c1",
+              "c2",
+              "c4",
+              "c5"
+            ],
+            "lost": [
+              "c3"
+            ],
+            "required_retained": 4,
+            "required_count": 5
+          },
+          "block_result": "artifacts/cable/routing-v6-s1/RC1_l15_compliant4000_m0_E0_filtered_r0/result.json",
+          "reproduces_block": true,
+          "mismatch": null
+        },
+        {
+          "case": "RC1_l15_compliant4000_m0_E0_conservative_r0",
+          "supervisor": "conservative",
+          "error_level": "E0",
+          "frames": 329,
+          "capture_hz": 15.0,
+          "outcome": "route completed",
+          "route_completed": true,
+          "terminal_required_clips": {
+            "retained": [
+              "c1",
+              "c2",
+              "c3",
+              "c4",
+              "c5"
+            ],
+            "lost": [],
+            "required_retained": 5,
+            "required_count": 5
+          },
+          "block_result": "artifacts/cable/routing-v6-s1/RC1_l15_compliant4000_m0_E0_conservative_r0/result.json",
+          "reproduces_block": true,
+          "mismatch": null
+        }
+      ],
+      "checks": {
+        "decodes": true,
+        "frame_count_matches_render": true,
+        "resolution_at_least_declared": true,
+        "fps_at_least_30": true,
+        "no_blank_sampled_frames": true,
+        "poster_written": true,
+        "every_capture_reproduces_the_block": true
+      },
+      "passes": true
+    }
+  ],
+  "evidence_behind_the_numbers_on_screen": {
+    "route outcomes, per-clip retention, issued actions, budgets": "artifacts/cable/routing-v6-s1/<request>/result.json",
+    "the block's fitted verdicts": "evidence/cable_routing_v6.json",
+    "18 mm admitted against 58 mm permitted": "artifacts/cell/block.json - the_two_numbers_the_block_turns_on",
+    "declared perception error at each level": "configs/cable_routing_v6.json - perception.levels"
+  }
+}

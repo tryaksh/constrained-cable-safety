@@ -11,17 +11,26 @@ htmlcov/
 .idea/
 .vscode/
 
-# Isaac Sim / Isaac Lab runtime output
-artifacts/
-# ...except the stage records, which are small, are linked from the maintained
-# documents, and are what a later session reads before rebuilding anything.
+# Simulator and renderer output. Gigabytes of trajectories, frames and stages.
+#
+# `artifacts/*` and not `artifacts/`, because **git cannot re-include anything
+# inside an excluded directory**. This said `artifacts/` for months, which
+# silently defeated every exception below it: the stage records were never
+# committed, and the README linked to five of them anyway, so a clone got five
+# dead links and the only copy of those records lived on one workstation.
+# Excluding the contents rather than the directory is what makes an exception
+# possible at all, and each level has to be reopened the same way.
+artifacts/*
 !artifacts/cell/
+artifacts/cell/*
 !artifacts/cell/*.json
 !artifacts/cell/*.md
 !artifacts/showcase/
+artifacts/showcase/*
+# The small records only: what was checked, what it produced, what it cost. Not
+# the generated page, the frames, the encoded video or the USD stage.
 !artifacts/showcase/*.json
 !artifacts/showcase/*.md
-!artifacts/showcase/*.html
 benchmarks/*.json
 outputs/
 logs/

@@ -22,6 +22,15 @@ If you want to run something rather than read, skip to
 **use the check's ranking of moves, not its yes/no threshold** — the ranking
 still works on a rig the check was never tuned for, and the threshold does not.
 
+This repository also holds a **retired peg-insertion campaign**, which asked the
+same question on a different robot and closed by deciding its own premise was
+wrong. That is a real result and it is kept as one:
+[docs/PEG_INSERTION.md](docs/PEG_INSERTION.md). Its sibling repository,
+[orbital-robotic-servicing-lab](https://github.com/tryaksh/orbital-robotic-servicing-lab),
+is about servicing spacecraft racks in zero gravity and shares no subject matter
+with this one; [docs/REPO_MAP.md](docs/REPO_MAP.md) explains how the two were
+separated.
+
 ---
 
 ## The problem
@@ -207,7 +216,7 @@ than an observation.
 ## What you can run
 
 ```powershell
-.venv/Scripts/python.exe -m pytest                          # 267 tests, no GPU, no simulator, ~2 s
+.venv/Scripts/python.exe -m pytest                          # 440 tests, no GPU, no simulator, ~4 s
 .venv/Scripts/python.exe scripts/summarize_perception_v4.py # study 1, in a paragraph
 ```
 
@@ -254,9 +263,14 @@ is one call to MuJoCo's `launch_passive`.
 
 ### The page, the clips and the renders
 
+Each of these writes a small record saying what it checked and what it produced,
+and those records are in the repository. **What they produce is not** — the page,
+the frames, the encoded video and the USD stage are generated output, they are
+large, and they are rebuilt by running the script again.
+
 | | |
 | --- | --- |
-| **The page** | `scripts/build_showcase.py` generates `artifacts/showcase/index.html` from ten committed records. Nothing on it is typed by hand: change a number in a record, rebuild, and the page changes. [Record](artifacts/showcase/page.json) |
+| **The page** | `scripts/build_showcase.py` generates `artifacts/showcase/index.html` from ten committed records. Nothing on it is typed by hand: change a number in a record, rebuild, and the page changes. It is a local file and is not published anywhere. [Record](artifacts/showcase/page.json) |
 | **Replay clips** | `scripts/render_routing_video_v6.py` re-runs a registered job through the study's own control loop and refuses to render it unless it reproduces the recorded outcome exactly. Checked by decoding the written files, not by trusting the encoder. [Record](artifacts/showcase/video.json) |
 | **USD export** | `scripts/export_usd_v7.py` writes one job out as a USD stage so it can be re-rendered elsewhere. [Record](artifacts/showcase/usd.json) |
 | **Isaac Sim render** | `scripts/render_isaac_v7.py` re-renders that stage with RTX lighting, because MuJoCo's built-in renderer is for checking a scene is right, not for looking at. Rendering only — the physics and every number are unchanged. [Record](artifacts/showcase/isaac.json) |
@@ -306,10 +320,18 @@ statement about *that rig*.
 | Need | Read |
 | --- | --- |
 | What is open and what is closed | [ROADMAP.md](ROADMAP.md) |
+| Which branches exist, and what came from where | [docs/REPO_MAP.md](docs/REPO_MAP.md) |
+| The retired peg-insertion campaign | [docs/PEG_INSERTION.md](docs/PEG_INSERTION.md) |
 | Which record answers a question | [evidence/INDEX.json](evidence/INDEX.json) |
 | Operating rules and the full command sequence | [AGENTS.md](AGENTS.md) |
 | The rig, in config | [configs/cable_cell_v6_candidates.json](configs/cable_cell_v6_candidates.json) |
 | The decision log for the last session | [artifacts/showcase/PROGRESS.md](artifacts/showcase/PROGRESS.md) |
+| Past session handovers, kept as history | [docs/handover/](docs/handover/) |
 
 Every evidence record carries its own declared scope. Read it before quoting a
 number out of it.
+
+**`evidence/` holds two campaigns.** Every entry in
+[`evidence/INDEX.json`](evidence/INDEX.json) carries a `campaign` field: 30
+records from the cable studies this page is about, 66 from the retired peg
+campaign, and 3 describing both. A peg number is not a cable number.

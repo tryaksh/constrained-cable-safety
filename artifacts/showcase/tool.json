@@ -1,0 +1,99 @@
+{
+  "schema": 1,
+  "id": "showcase_tool_v7",
+  "stage": "C",
+  "created_on": "2026-09-12",
+  "status": "verified",
+  "what_this_is": "scripts/workbench.py plus WorkbenchSession in src/assembly_recovery/cable_workbench_v7.py: a local tool for opening the measured cell, changing it, and running it again. Not a study result and not a hardware claim.",
+  "the_untested_line": "The interactive MuJoCo window. This machine has no display, so launch_passive was never executed in the session that wrote it. Everything it wraps is headless and unit tested.",
+  "checks": [
+    {
+      "check": "the expanded request is the registered one",
+      "request": "RC1_l15_compliant4000_m0_E0_conservative_r0",
+      "expected": "RC1_l15_compliant4000_m0_E0_conservative_r0",
+      "fields_differing": [],
+      "passes": true
+    },
+    {
+      "check": "re-screening the unmutated cell reproduces evidence/cable_cell_screen_v6.json",
+      "passes": true,
+      "fields": {
+        "worst_lateral_wall_gap_m": {
+          "here": 0.00044841915669628293,
+          "record": 0.00044841915669628293,
+          "same": true
+        },
+        "installed_min_bend_radius_m": {
+          "here": 0.05008719991617175,
+          "record": 0.05008719991617175,
+          "same": true
+        },
+        "boot_to_anchor_m": {
+          "here": 0.34928284240380614,
+          "record": 0.34928284240380614,
+          "same": true
+        },
+        "solved_anchor_along_m": {
+          "here": 0.2390652023850907,
+          "record": 0.2390652023850907,
+          "same": true
+        }
+      },
+      "record": "evidence/cable_cell_screen_v6.json"
+    },
+    {
+      "check": "re-running the unmutated route reproduces the committed result",
+      "passes": true,
+      "expected": {
+        "outcome": "completed",
+        "route_completed": true,
+        "seated": true,
+        "steps_issued": 5,
+        "terminal_required_clips": 5,
+        "c1_headroom_series_m": [
+          0.069859494,
+          0.066589254,
+          0.063310336,
+          0.060010847,
+          0.056690161
+        ]
+      },
+      "measured": {
+        "outcome": "completed",
+        "route_completed": true,
+        "seated": true,
+        "steps_issued": 5,
+        "terminal_required_clips": 5,
+        "c1_headroom_series_m": [
+          0.069859494,
+          0.066589254,
+          0.063310336,
+          0.060010847,
+          0.056690161
+        ]
+      },
+      "record": "artifacts/cable/routing-v6-s1/RC1_l15_compliant4000_m0_E0_conservative_r0/result.json"
+    },
+    {
+      "check": "a moved clip is refused until the screen has been re-run",
+      "passes": true,
+      "refusal": "This cell has not passed a screen. A cell that compiles is not a cell that installs - the registered screen rejected 19 of 28 declared cells. Call run_screen() first.",
+      "after_rescreening": {
+        "passes": true,
+        "reason_rejected": null,
+        "required_retained": 5,
+        "installed_min_bend_radius_m": 0.045955245961057385,
+        "worst_lateral_wall_gap_m": 0.0005251159463777119
+      },
+      "note": "Raising the ridge clip 3 mm is a DIFFERENT CELL. Whether it installs is measured here, not assumed."
+    }
+  ],
+  "wall_seconds": 38.6,
+  "commands": {
+    "show": ".deps/cable-venv/Scripts/pythonw.exe scripts/workbench.py",
+    "allowed": ".deps/cable-venv/Scripts/pythonw.exe scripts/workbench.py --level E4 --allowed",
+    "move and run": ".deps/cable-venv/Scripts/pythonw.exe scripts/workbench.py --move c3:up_m=0.009 --run",
+    "watch it": ".deps/cable-venv/Scripts/pythonw.exe scripts/workbench.py --run --view",
+    "self check": ".deps/cable-venv/Scripts/pythonw.exe scripts/workbench.py --self-check"
+  }
+}

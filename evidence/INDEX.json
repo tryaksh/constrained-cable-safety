@@ -9,9 +9,9 @@
   "shared": "Describes both campaigns; usually an archive of retired documentation."
  },
  "count_by_campaign": {
-  "cable": 31,
+  "cable": 30,
   "peg": 66,
-  "shared": 2
+  "shared": 3
  },
  "records": [
   {
@@ -247,7 +247,7 @@
   },
   {
    "file": "cable_cycle_verification_v1.json",
-   "campaign": "cable",
+   "campaign": "shared",
    "bytes": 39661,
    "status": "passed",
    "top_level_keys": [

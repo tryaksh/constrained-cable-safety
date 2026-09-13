@@ -1,6 +1,9 @@
 import json
 import re
+import subprocess
 from pathlib import Path
+
+import pytest
 
 ROOT = Path(__file__).resolve().parents[1]
 
@@ -17,14 +20,53 @@ def maintained_documents():
     return documents
 
 
+def local_links(path: Path):
+    """Every link in one document that should resolve to a file in this repository."""
+    text = path.read_text(encoding="utf-8-sig")
+    for target in re.findall(r"\]\(([^)]+)\)", text):
+        if target.startswith(("http://", "https://", "#", "mailto:")):
+            continue
+        yield target, (path.parent / target.split("#")[0]).resolve()
+
+
 def test_maintained_documents_link_to_real_files():
     for path in maintained_documents():
-        text = path.read_text(encoding="utf-8-sig")
-        for target in re.findall(r"\]\(([^)]+)\)", text):
-            if target.startswith(("http://", "https://", "#", "mailto:")):
-                continue
-            resolved = (path.parent / target.split("#")[0]).resolve()
+        for target, resolved in local_links(path):
             assert resolved.is_file() or resolved.is_dir(), (path.name, target)
+
+
+def test_maintained_documents_link_only_to_files_a_clone_would_have():
+    """Existing on this machine is not the same as being in the repository.
+
+    The README linked to five records under `artifacts/showcase/` for weeks. They
+    were on disk, so a check for existence passed, and they were git-ignored, so
+    anyone who cloned got five dead links and the only copy of those records
+    stayed on one workstation. The root cause was a `.gitignore` line reading
+    `artifacts/` rather than `artifacts/*`: git cannot re-include anything inside
+    an excluded directory, so every exception below it was silently dead.
+
+    This asks git, not the filesystem.
+    """
+    try:
+        tracked = subprocess.run(
+            ["git", "-C", str(ROOT), "ls-files"],
+            capture_output=True, text=True, check=True, timeout=60,
+        ).stdout.split("\n")
+    except (OSError, subprocess.SubprocessError):
+        pytest.skip("git is not available, so tracked-ness cannot be checked here")
+
+    known = {ROOT.joinpath(line).resolve() for line in tracked if line}
+    directories = {parent for path in known for parent in path.parents}
+    untracked = []
+    for path in maintained_documents():
+        for target, resolved in local_links(path):
+            if resolved in known or resolved in directories:
+                continue
+            untracked.append(f"  {path.name} -> {target}")
+    assert not untracked, (
+        "these links point at files that are not in the repository, so they are dead "
+        "in a fresh clone:\n" + "\n".join(untracked)
+    )
 
 
 #: The pre-registered studies. Every one of these must carry its own scope and

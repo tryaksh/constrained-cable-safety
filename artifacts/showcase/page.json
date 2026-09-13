@@ -1,0 +1,1306 @@
+{
+  "schema": 1,
+  "id": "showcase_page_v7",
+  "built_from": {
+    "evidence": [
+      "evidence/cable_perception_v4.json",
+      "evidence/cable_sequence_v5.json",
+      "evidence/cable_routing_v6.json",
+      "evidence/cable_perception_replay_v4.json",
+      "evidence/cable_perception_controls_v4.json",
+      "evidence/cable_cell_screen_v6.json",
+      "evidence/cable_cell_cad_v6.json"
+    ],
+    "stage_records": [
+      "artifacts/cell/block.json",
+      "artifacts/showcase/video.json"
+    ],
+    "contracts": [
+      "configs/cable_routing_v6.json"
+    ]
+  },
+  "levels": {
+    "E0": {
+      "id": "E0",
+      "socket_bias_m": 0.0,
+      "socket_jitter_m": 0.0,
+      "socket_orientation_deg": 0.0,
+      "centreline_visible_m": 0.0,
+      "centreline_occluded_m": 0.0,
+      "centreline_dropout_p": 0.0,
+      "process_force_n": 0.0,
+      "force_noise_fraction": 0.0,
+      "force_noise_floor_n": 0.0
+    },
+    "E1": {
+      "id": "E1",
+      "socket_bias_m": 0.00025,
+      "socket_jitter_m": 5e-05,
+      "socket_orientation_deg": 0.125,
+      "centreline_visible_m": 0.0001,
+      "centreline_occluded_m": 0.0005,
+      "centreline_dropout_p": 0.025,
+      "process_force_n": 0.005,
+      "force_noise_fraction": 0.01,
+      "force_noise_floor_n": 0.002
+    },
+    "E2": {
+      "id": "E2",
+      "socket_bias_m": 0.0005,
+      "socket_jitter_m": 0.0001,
+      "socket_orientation_deg": 0.25,
+      "centreline_visible_m": 0.0002,
+      "centreline_occluded_m": 0.001,
+      "centreline_dropout_p": 0.05,
+      "process_force_n": 0.01,
+      "force_noise_fraction": 0.02,
+      "force_noise_floor_n": 0.004
+    },
+    "E3": {
+      "id": "E3",
+      "socket_bias_m": 0.001,
+      "socket_jitter_m": 0.0002,
+      "socket_orientation_deg": 0.5,
+      "centreline_visible_m": 0.0004,
+      "centreline_occluded_m": 0.002,
+      "centreline_dropout_p": 0.1,
+      "process_force_n": 0.02,
+      "force_noise_fraction": 0.04,
+      "force_noise_floor_n": 0.008
+    },
+    "E4": {
+      "id": "E4",
+      "socket_bias_m": 0.002,
+      "socket_jitter_m": 0.0004,
+      "socket_orientation_deg": 1.0,
+      "centreline_visible_m": 0.0008,
+      "centreline_occluded_m": 0.004,
+      "centreline_dropout_p": 0.2,
+      "process_force_n": 0.04,
+      "force_noise_fraction": 0.08,
+      "force_noise_floor_n": 0.016
+    }
+  },
+  "beat1": {
+    "record": "evidence/cable_perception_v4.json",
+    "contract": "configs/cable_perception_v4.json",
+    "requests": 16080,
+    "metric": "false-safe rate at matched coverage",
+    "metric_explained": "Of the moves a check calls safe, the share that broke the clip constraint anyway - with every check held to the same number of approved moves, so a check cannot look good by simply approving less.",
+    "coverage": {
+      "E0": 767,
+      "E4": 650
+    },
+    "test_requests": {
+      "E0": 960,
+      "E4": 865
+    },
+    "test_contexts": 60,
+    "arms": [
+      {
+        "id": "B0plus",
+        "name": "one distance, plus a margin",
+        "reads": "the straight-line distance from the plug's cable boot to the clamp, for the position the move would end at, plus a margin sized from what the estimator reports about its own error",
+        "parameters": 1,
+        "sensing": "estimated socket pose plus the declared estimator covariance",
+        "rate": {
+          "E0": 0.13312693498452013,
+          "E4": 0.21951219512195122
+        }
+      },
+      {
+        "id": "B2",
+        "name": "force sensing only, no vision",
+        "reads": "anchor reaction, boot load and wrist force - and nothing that looks at the cable",
+        "parameters": 10,
+        "sensing": "force only: anchor reaction, boot load, wrist force. No vision.",
+        "rate": {
+          "E0": 0.11591962905718702,
+          "E4": 0.2032520325203252
+        }
+      },
+      {
+        "id": "B1",
+        "name": "eighteen hand-designed features",
+        "reads": "estimated pose, a summary of the estimated cable shape, and force",
+        "parameters": 19,
+        "sensing": "estimated pose, estimated centreline summary and force",
+        "rate": {
+          "E0": 0.14461538461538462,
+          "E4": 0.1902439024390244
+        }
+      },
+      {
+        "id": "M",
+        "name": "a network over the whole cable shape",
+        "reads": "every one of the 24 estimated centreline points, the pose and the action",
+        "parameters": 28033,
+        "sensing": "the whole estimated centreline, pose and action",
+        "rate": {
+          "E0": 0.20763358778625954,
+          "E4": 0.28802588996763756
+        }
+      },
+      {
+        "id": "Mh",
+        "name": "the same network, plus a short history",
+        "reads": "the same inputs over a four-sample window",
+        "parameters": 34689,
+        "sensing": "the whole estimated centreline over a short history, pose and action",
+        "rate": {
+          "E0": 0.22644376899696048,
+          "E4": 0.30906148867313915
+        }
+      }
+    ],
+    "crossover_found": false,
+    "constraints_tested": [
+      "C1_clip",
+      "C2_bend",
+      "C3_anchor"
+    ],
+    "network_gap": {
+      "level": "E0",
+      "best_rich_arm": "M",
+      "gap": 0.0745066528017394,
+      "bootstrap": {
+        "draws": 4000,
+        "resampled_unit": "context",
+        "mean_difference": -0.07355135041512316,
+        "percentile_95_interval": [
+          -0.15283262057090186,
+          -0.011021264346732878
+        ],
+        "fraction_favouring_b": 0.00525,
+        "status": "exploratory_post_hoc_not_part_of_the_decision_rule"
+      }
+    }
+  },
+  "beat2": {
+    "record": "evidence/cable_sequence_v5.json",
+    "contract": "configs/cable_sequence_v5.json",
+    "sequences": 720,
+    "decisions": 2160,
+    "steps": 3,
+    "arms": [
+      {
+        "id": "unfiltered",
+        "name": "no check",
+        "rule": "issue the largest move, every time",
+        "per_level": {
+          "E0": {
+            "sequences": 80,
+            "observed": 80,
+            "censored": 0,
+            "violated": 80,
+            "rate": 1.0
+          },
+          "E2": {
+            "sequences": 80,
+            "observed": 80,
+            "censored": 0,
+            "violated": 80,
+            "rate": 1.0
+          },
+          "E4": {
+            "sequences": 80,
+            "observed": 80,
+            "censored": 0,
+            "violated": 80,
+            "rate": 1.0
+          }
+        }
+      },
+      {
+        "id": "filtered",
+        "name": "the check",
+        "rule": "issue the largest move the check calls safe",
+        "per_level": {
+          "E0": {
+            "sequences": 80,
+            "observed": 80,
+            "censored": 0,
+            "violated": 32,
+            "rate": 0.4
+          },
+          "E2": {
+            "sequences": 80,
+            "observed": 58,
+            "censored": 22,
+            "violated": 33,
+            "rate": 0.5689655172413793
+          },
+          "E4": {
+            "sequences": 80,
+            "observed": 66,
+            "censored": 14,
+            "violated": 36,
+            "rate": 0.5454545454545454
+          }
+        }
+      },
+      {
+        "id": "conservative",
+        "name": "the check, read for ranking",
+        "rule": "issue the move with the most headroom left",
+        "per_level": {
+          "E0": {
+            "sequences": 80,
+            "observed": 80,
+            "censored": 0,
+            "violated": 8,
+            "rate": 0.1
+          },
+          "E2": {
+            "sequences": 80,
+            "observed": 63,
+            "censored": 17,
+            "violated": 10,
+            "rate": 0.15873015873015872
+          },
+          "E4": {
+            "sequences": 80,
+            "observed": 79,
+            "censored": 1,
+            "violated": 37,
+            "rate": 0.46835443037974683
+          }
+        }
+      }
+    ],
+    "filter_gaps": {
+      "E0": {
+        "filtered_rate": 0.4,
+        "unfiltered_rate": 1.0,
+        "gap": 0.6,
+        "beats_by_more_than_margin": true
+      },
+      "E2": {
+        "filtered_rate": 0.5689655172413793,
+        "unfiltered_rate": 1.0,
+        "gap": 0.43103448275862066,
+        "beats_by_more_than_margin": true
+      },
+      "E4": {
+        "filtered_rate": 0.5454545454545454,
+        "unfiltered_rate": 1.0,
+        "gap": 0.4545454545454546,
+        "beats_by_more_than_margin": true
+      }
+    },
+    "appetite": {
+      "status": "exploratory, post-hoc, not pre-registered and carrying no verdict",
+      "what_differs": "Both supervisors read the same filter and the same estimate. `filtered` issues the largest motion the filter calls safe; `conservative` issues the one with the most headroom.",
+      "per_level": {
+        "E0": {
+          "filtered": {
+            "clip_violation_rate": 0.4,
+            "clip_violated": 32,
+            "sequences": 80,
+            "completed": 48,
+            "completion_rate": 0.6,
+            "motions_issued": 176
+          },
+          "conservative": {
+            "clip_violation_rate": 0.1,
+            "clip_violated": 8,
+            "sequences": 80,
+            "completed": 72,
+            "completion_rate": 0.9,
+            "motions_issued": 232
+          },
+          "conservative_minus_filtered": -0.3
+        },
+        "E2": {
+          "filtered": {
+            "clip_violation_rate": 0.5689655172413793,
+            "clip_violated": 33,
+            "sequences": 80,
+            "completed": 25,
+            "completion_rate": 0.3125,
+            "motions_issued": 168
+          },
+          "conservative": {
+            "clip_violation_rate": 0.15873015873015872,
+            "clip_violated": 10,
+            "sequences": 80,
+            "completed": 41,
+            "completion_rate": 0.5125,
+            "motions_issued": 220
+          },
+          "conservative_minus_filtered": -0.4102
+        },
+        "E4": {
+          "filtered": {
+            "clip_violation_rate": 0.5454545454545454,
+            "clip_violated": 36,
+            "sequences": 80,
+            "completed": 0,
+            "completion_rate": 0.0,
+            "motions_issued": 193
+          },
+          "conservative": {
+            "clip_violation_rate": 0.46835443037974683,
+            "clip_violated": 37,
+            "sequences": 80,
+            "completed": 3,
+            "completion_rate": 0.0375,
+            "motions_issued": 217
+          },
+          "conservative_minus_filtered": -0.0771
+        }
+      },
+      "reading": "The filter says what is permitted. How much of the permitted range a supervisor takes is a separate choice, and this study cannot say which appetite is right - only that the two differ enough to matter and that the difference is not a property of the safety check."
+    }
+  },
+  "beat3": {
+    "record": "evidence/cable_routing_v6.json",
+    "contract": "configs/cable_routing_v6.json",
+    "stage_record": "artifacts/cell/block.json",
+    "routes": 2340,
+    "decisions": 11700,
+    "required_clips": 5,
+    "steps": 5,
+    "physical_contexts": 60,
+    "margin": 0.05,
+    "native_steps": 266805778,
+    "wall_minutes": 87,
+    "guards": {
+      "privilege_guard_events": 0,
+      "mutation_guard_events": 0
+    },
+    "outcomes": [
+      {
+        "id": "unfiltered",
+        "name": "no check",
+        "rule": "issue the largest move, every time",
+        "per_level": {
+          "E0": {
+            "routes": 60,
+            "completed": 0,
+            "lost_a_clip": 40,
+            "ended_another_way": 20,
+            "clip_loss_rate": 0.6666666666666666,
+            "completion_rate": 0.0,
+            "by_reason": {
+              "force_abort": 20,
+              "lost_required_clip": 40
+            }
+          },
+          "E2": {
+            "routes": 360,
+            "completed": 0,
+            "lost_a_clip": 229,
+            "ended_another_way": 131,
+            "clip_loss_rate": 0.6361111111111111,
+            "completion_rate": 0.0,
+            "by_reason": {
+              "force_abort": 131,
+              "lost_required_clip": 229
+            }
+          },
+          "E4": {
+            "routes": 360,
+            "completed": 0,
+            "lost_a_clip": 176,
+            "ended_another_way": 184,
+            "clip_loss_rate": 0.4888888888888889,
+            "completion_rate": 0.0,
+            "by_reason": {
+              "force_abort": 184,
+              "lost_required_clip": 176
+            }
+          }
+        }
+      },
+      {
+        "id": "filtered",
+        "name": "the check",
+        "rule": "issue the largest move the check calls safe",
+        "per_level": {
+          "E0": {
+            "routes": 60,
+            "completed": 0,
+            "lost_a_clip": 40,
+            "ended_another_way": 20,
+            "clip_loss_rate": 0.6666666666666666,
+            "completion_rate": 0.0,
+            "by_reason": {
+              "force_abort": 20,
+              "lost_required_clip": 40
+            }
+          },
+          "E2": {
+            "routes": 360,
+            "completed": 0,
+            "lost_a_clip": 220,
+            "ended_another_way": 140,
+            "clip_loss_rate": 0.6111111111111112,
+            "completion_rate": 0.0,
+            "by_reason": {
+              "force_abort": 140,
+              "lost_required_clip": 220
+            }
+          },
+          "E4": {
+            "routes": 360,
+            "completed": 0,
+            "lost_a_clip": 179,
+            "ended_another_way": 181,
+            "clip_loss_rate": 0.49722222222222223,
+            "completion_rate": 0.0,
+            "by_reason": {
+              "force_abort": 181,
+              "lost_required_clip": 179
+            }
+          }
+        }
+      },
+      {
+        "id": "conservative",
+        "name": "the check, read for ranking",
+        "rule": "issue the move with the most headroom left",
+        "per_level": {
+          "E0": {
+            "routes": 60,
+            "completed": 20,
+            "lost_a_clip": 20,
+            "ended_another_way": 20,
+            "clip_loss_rate": 0.3333333333333333,
+            "completion_rate": 0.3333333333333333,
+            "by_reason": {
+              "completed": 20,
+              "deadline": 20,
+              "lost_required_clip": 20
+            }
+          },
+          "E2": {
+            "routes": 360,
+            "completed": 76,
+            "lost_a_clip": 113,
+            "ended_another_way": 171,
+            "clip_loss_rate": 0.3138888888888889,
+            "completion_rate": 0.2111111111111111,
+            "by_reason": {
+              "completed": 76,
+              "controller_retries_exhausted": 20,
+              "deadline": 145,
+              "force_abort": 6,
+              "lost_required_clip": 113
+            }
+          },
+          "E4": {
+            "routes": 360,
+            "completed": 9,
+            "lost_a_clip": 127,
+            "ended_another_way": 224,
+            "clip_loss_rate": 0.3527777777777778,
+            "completion_rate": 0.025,
+            "by_reason": {
+              "completed": 9,
+              "controller_retries_exhausted": 115,
+              "deadline": 103,
+              "force_abort": 1,
+              "lost_required_clip": 127,
+              "prior_connection_load_abort": 5
+            }
+          }
+        }
+      }
+    ],
+    "p1": {
+      "E0": {
+        "filtered_clip_loss_rate": 0.6666666666666666,
+        "unfiltered_clip_loss_rate": 0.6666666666666666,
+        "gap": 0.0,
+        "beats_by_more_than_margin": false,
+        "bootstrap": {
+          "gap": 0.0,
+          "ci95": [
+            0.0,
+            0.0
+          ],
+          "excludes_zero": false,
+          "groups": 6,
+          "draws": 2000,
+          "unit": "whole (cell, service loop) groups, because routes inside one share a cell"
+        }
+      },
+      "E2": {
+        "filtered_clip_loss_rate": 0.6111111111111112,
+        "unfiltered_clip_loss_rate": 0.6361111111111111,
+        "gap": 0.02499999999999991,
+        "beats_by_more_than_margin": false,
+        "bootstrap": {
+          "gap": 0.02499999999999991,
+          "ci95": [
+            0.002777777777777768,
+            0.05277777777777781
+          ],
+          "excludes_zero": true,
+          "groups": 6,
+          "draws": 2000,
+          "unit": "whole (cell, service loop) groups, because routes inside one share a cell"
+        }
+      },
+      "E4": {
+        "filtered_clip_loss_rate": 0.49722222222222223,
+        "unfiltered_clip_loss_rate": 0.4888888888888889,
+        "gap": -0.00833333333333336,
+        "beats_by_more_than_margin": false,
+        "bootstrap": {
+          "gap": -0.00833333333333336,
+          "ci95": [
+            -0.07777777777777783,
+            0.061111111111111116
+          ],
+          "excludes_zero": false,
+          "groups": 6,
+          "draws": 2000,
+          "unit": "whole (cell, service loop) groups, because routes inside one share a cell"
+        }
+      }
+    },
+    "verdict": {
+      "held": false,
+      "by_level": {
+        "E0": false,
+        "E2": false,
+        "E4": false
+      },
+      "gaps": {
+        "E0": 0.0,
+        "E2": 0.02499999999999991,
+        "E4": -0.00833333333333336
+      }
+    },
+    "two_numbers": {
+      "what_the_cell_admits_m": 0.018,
+      "what_the_filter_permits_m": 0.058,
+      "note": "The cell loses a clip somewhere between 18 and 25 mm of commanded retreat. The shipped filter carries 58 mm of headroom on this cell and approves eleven of the twelve registered candidate motions, then issues one that spends 82 per cent of its own reported headroom. The threshold is a fitted property of the cell it was fitted on, not of the cable, and a five-clip route is a different cell. Whether that gap costs anything an engineer would notice is what the block measures."
+    },
+    "pilot_ladder": [
+      {
+        "retreat_mm": 4,
+        "outcome": "route completed, all five clips kept"
+      },
+      {
+        "retreat_mm": 8,
+        "outcome": "route completed, all five clips kept"
+      },
+      {
+        "retreat_mm": 12,
+        "outcome": "route completed, all five clips kept"
+      },
+      {
+        "retreat_mm": 18,
+        "outcome": "route completed, all five clips kept"
+      },
+      {
+        "retreat_mm": 25,
+        "outcome": "a clip goes at step 5"
+      },
+      {
+        "retreat_mm": 35,
+        "outcome": "a clip goes at step 3"
+      },
+      {
+        "retreat_mm": 50,
+        "outcome": "a clip goes at step 1"
+      }
+    ],
+    "pilot_source": "artifacts/cell/PROGRESS.md, measured in the pilot before any route was scored"
+  },
+  "beat4": {
+    "record": "evidence/cable_routing_v6.json",
+    "p3": {
+      "E0": {
+        "filtered_route_completion": 0.0,
+        "conservative_route_completion": 0.3333333333333333,
+        "gap": 0.3333333333333333,
+        "beats_by_more_than_margin": true,
+        "bootstrap": {
+          "gap": 0.3333333333333333,
+          "ci95": [
+            0.06666666666666667,
+            0.6666666666666666
+          ],
+          "excludes_zero": true,
+          "groups": 6,
+          "draws": 2000,
+          "unit": "whole (cell, service loop) groups, because routes inside one share a cell"
+        },
+        "clip_loss": {
+          "filtered": 0.6666666666666666,
+          "conservative": 0.3333333333333333
+        }
+      },
+      "E2": {
+        "filtered_route_completion": 0.0,
+        "conservative_route_completion": 0.2111111111111111,
+        "gap": 0.2111111111111111,
+        "beats_by_more_than_margin": true,
+        "bootstrap": {
+          "gap": 0.2111111111111111,
+          "ci95": [
+            0.044444444444444446,
+            0.4
+          ],
+          "excludes_zero": true,
+          "groups": 6,
+          "draws": 2000,
+          "unit": "whole (cell, service loop) groups, because routes inside one share a cell"
+        },
+        "clip_loss": {
+          "filtered": 0.6111111111111112,
+          "conservative": 0.3138888888888889
+        }
+      },
+      "E4": {
+        "filtered_route_completion": 0.0,
+        "conservative_route_completion": 0.025,
+        "gap": 0.025,
+        "beats_by_more_than_margin": false,
+        "bootstrap": {
+          "gap": 0.025,
+          "ci95": [
+            0.013888888888888888,
+            0.03333333333333333
+          ],
+          "excludes_zero": true,
+          "groups": 6,
+          "draws": 2000,
+          "unit": "whole (cell, service loop) groups, because routes inside one share a cell"
+        },
+        "clip_loss": {
+          "filtered": 0.49722222222222223,
+          "conservative": 0.3527777777777778
+        }
+      }
+    },
+    "verdict": {
+      "held": {
+        "E0": true,
+        "E2": true,
+        "E4": false
+      },
+      "gaps": {
+        "E0": 0.3333333333333333,
+        "E2": 0.2111111111111111,
+        "E4": 0.025
+      },
+      "status": "PRE-REGISTERED here, unlike the composition study where the same comparison was post hoc and carried no verdict."
+    },
+    "prediction": "The conservative supervisor completes more routes than the filtered supervisor by more than the margin at E0 and E2, and the advantage collapses to inside the margin at E4. This is the composition study's post-hoc appetite finding, stated as a registered prediction with its collapse included, so that being wrong about the collapse is also a result.",
+    "completed": {
+      "E0": {
+        "conservative": 20,
+        "filtered": 0,
+        "unfiltered": 0,
+        "routes": 60
+      },
+      "E2": {
+        "conservative": 76,
+        "filtered": 0,
+        "unfiltered": 0,
+        "routes": 360
+      },
+      "E4": {
+        "conservative": 9,
+        "filtered": 0,
+        "unfiltered": 0,
+        "routes": 360
+      }
+    },
+    "greedy_total": 1560
+  },
+  "where_it_lets_go": {
+    "record": "evidence/cable_routing_v6.json",
+    "routes": 2340,
+    "losses": {
+      "c1": 127,
+      "c3": 1017
+    },
+    "routes_losing_any": 1144,
+    "mean_kept": 4.512393162393162,
+    "clips": [
+      {
+        "id": "c1",
+        "along_mm": 100.0,
+        "across_mm": 0.0,
+        "up_mm": 0.0,
+        "bearing_deg": 0.0,
+        "losses": 127
+      },
+      {
+        "id": "c2",
+        "along_mm": 122.0,
+        "across_mm": 0.0,
+        "up_mm": 3.0,
+        "bearing_deg": 0.0,
+        "losses": 0
+      },
+      {
+        "id": "c3",
+        "along_mm": 144.0,
+        "across_mm": 0.0,
+        "up_mm": 6.0,
+        "bearing_deg": -8.429584265082724,
+        "losses": 1017
+      },
+      {
+        "id": "c4",
+        "along_mm": 166.0,
+        "across_mm": -6.667,
+        "up_mm": 3.0,
+        "bearing_deg": -24.0385015904932,
+        "losses": 0
+      },
+      {
+        "id": "c5",
+        "along_mm": 188.0,
+        "across_mm": -20.0,
+        "up_mm": 0.0,
+        "bearing_deg": -28.89139681947176,
+        "losses": 0
+      }
+    ]
+  },
+  "honesty": {
+    "privilege_guard": {
+      "record": "evidence/cable_perception_controls_v4.json",
+      "positive_control_fires": true,
+      "events_v4": 0,
+      "events_v6": 0
+    },
+    "replay": {
+      "record": "evidence/cable_perception_replay_v4.json",
+      "requests": 16080,
+      "comparisons": 26652,
+      "disagreements": 0
+    },
+    "margin": {
+      "record": "evidence/cable_perception_v4.json",
+      "checks": 15,
+      "refused": 3,
+      "refused_names": [
+        "C1_clip:E2",
+        "C2_bend:E0",
+        "C3_anchor:E2"
+      ],
+      "rule": "A study may not start with a decision margin smaller than twice its own measurement resolution."
+    },
+    "screen": {
+      "record": "evidence/cable_cell_screen_v6.json",
+      "screened": 28,
+      "accepted": 9,
+      "rejected": 19,
+      "declared_candidates": 4
+    },
+    "cad": {
+      "record": "evidence/cable_cell_cad_v6.json",
+      "parts": 8,
+      "hashes": "every mesh carries its SHA-256 into every compiled scene"
+    },
+    "frozen": {
+      "record": "artifacts/cell/block.json",
+      "committed_before_launch": "26596c8",
+      "content_sha256": "1d735d5100a3d2b6589df7ca3a4d5a2e3f91aa00a1e9fb56314584abc966ef90"
+    }
+  },
+  "scope": {
+    "routing": "Routing study for the constrained-cable safety layer. One request is one ROUTE through a five-clip CAD-authored cell: the cable is installed through every clip, settled, and a named supervisor is offered a decision at each of five registered decision points. Success is EVERY required clip still retained AND the connector seated for the declared dwell. Endpoint is held, clip-preserving seating before gripper release, extended from one clip to five. Not official AIC scoring, not a released or latched connection, not learned pickup, not camera perception and not a hardware claim.",
+    "limitations": [
+      "Simulation only. No hardware access, connector transfer, released retention or force-certified safety claim.",
+      "ONE cell. The support is one five-clip geometry at six service loops, not a family of layouts; the screen rejected most of what was drawn. A finding is a statement about this cell.",
+      "Five steps is a longer chain than three, not a long chain. It can show whether a rate is still rising at step five; it cannot establish where it settles.",
+      "One filter is tested, the analytic one, fitted on single-clip layouts. A finding that it fails to compose is a statement about THAT filter.",
+      "The candidate action set is the perception study's twelve. A supervisor with a richer action space might spend its budget differently.",
+      "The error model is a model of how perception fails, not camera perception.",
+      "C2 stays scoped to the 23-segment cable model at 4 kHz: the minimum bend radius does not agree across refinements.",
+      "The five-second settling deadline is part of the task definition, not an approximation to rest, and is unchanged.",
+      "The filter is applied to a cell whose slack geometry differs from the one it was fitted on. That is the deployment situation under test, not a confound that was overlooked, and it was measured in the pilot above before any request was scored."
+    ],
+    "perception_scope": "Perception-degradation study on the constrained-cable connector task. One request is one clearance repair issued from one decision state at one declared perception error level, scored against three safety constraints on the same rollout. Endpoint is held, clip-preserving seating before gripper release. Not official AIC scoring, not a released or latched connection, not learned pickup, not camera perception and not a hardware claim.",
+    "endpoint": "held, clip-preserving seating before the gripper opens"
+  },
+  "video": {
+    "schema": 1,
+    "id": "showcase_video_v7",
+    "stage": "A",
+    "status": "verified",
+    "created_on": "2026-09-12",
+    "what_this_is": "Offline replay clips of registered requests from the v6 routing block. Not a study result, not a new measurement and not a hardware claim.",
+    "how_they_are_made": [
+      "scripts/render_routing_video_v6.py calls the routing worker's own run_case with a per-tick observer, so the replay shares one control path and one perception stream with the block. A capture that drew a different number of random numbers would show a rollout that never happened.",
+      "Every capture is compared against the request's committed result.json on failure reason, elapsed time, seating, route completion, per-clip retention, clip-loss attribution, every constraint label and every issued action. A clip whose capture does not reproduce the block is refused before it is rendered.",
+      "Rendering replays recorded states; mj_step is never called at render time."
+    ],
+    "checks_run_here": {
+      "decode": "Every frame is decoded from the written file, not counted from the writer.",
+      "resolution": "at least 1280x720, read from the container",
+      "not_blank": "sampled frames must have grey standard deviation >= 8.0 and no single 8-level band covering more than 97% of the frame",
+      "reproduction": "every capture record's reproduces_block is true"
+    },
+    "clips": [
+      {
+        "name": "budget",
+        "layout": "budget",
+        "view": "clips",
+        "video": "artifacts/showcase/video/budget.mp4",
+        "bytes": 665018,
+        "declared_frames": 329,
+        "measured": {
+          "resolution": [
+            1280,
+            720
+          ],
+          "fps": 30.0,
+          "duration_s": 10.97,
+          "poster": "artifacts/showcase/video/budget_poster.jpg",
+          "poster_frame": 197,
+          "frames_decoded": 329,
+          "frames_measured": 9,
+          "sampled": [
+            {
+              "frame": 0,
+              "std": 44.83682853783853,
+              "flattest_fraction": 0.3967947048611111,
+              "distinct_bands": 31
+            },
+            {
+              "frame": 36,
+              "std": 45.29631870381281,
+              "flattest_fraction": 0.3961046006944444,
+              "distinct_bands": 31
+            },
+            {
+              "frame": 72,
+              "std": 45.771167037023226,
+              "flattest_fraction": 0.39541883680555556,
+              "distinct_bands": 31
+            },
+            {
+              "frame": 108,
+              "std": 46.240291262187846,
+              "flattest_fraction": 0.39476671006944447,
+              "distinct_bands": 31
+            },
+            {
+              "frame": 144,
+              "std": 46.71201311343995,
+              "flattest_fraction": 0.39410481770833333,
+              "distinct_bands": 31
+            },
+            {
+              "frame": 180,
+              "std": 47.18412332948107,
+              "flattest_fraction": 0.39343098958333333,
+              "distinct_bands": 31
+            },
+            {
+              "frame": 216,
+              "std": 47.171418020215235,
+              "flattest_fraction": 0.3934299045138889,
+              "distinct_bands": 31
+            },
+            {
+              "frame": 252,
+              "std": 47.16531762168413,
+              "flattest_fraction": 0.3934331597222222,
+              "distinct_bands": 31
+            },
+            {
+              "frame": 288,
+              "std": 47.15618323637813,
+              "flattest_fraction": 0.3934320746527778,
+              "distinct_bands": 31
+            }
+          ],
+          "blank_frames": 0
+        },
+        "captures": [
+          {
+            "case": "RC1_l15_compliant4000_m0_E0_conservative_r0",
+            "supervisor": "conservative",
+            "error_level": "E0",
+            "frames": 329,
+            "capture_hz": 15.0,
+            "outcome": "route completed",
+            "route_completed": true,
+            "terminal_required_clips": {
+              "retained": [
+                "c1",
+                "c2",
+                "c3",
+                "c4",
+                "c5"
+              ],
+              "lost": [],
+              "required_retained": 5,
+              "required_count": 5
+            },
+            "block_result": "artifacts/cable/routing-v6-s1/RC1_l15_compliant4000_m0_E0_conservative_r0/result.json",
+            "reproduces_block": true,
+            "mismatch": null
+          }
+        ],
+        "checks": {
+          "decodes": true,
+          "frame_count_matches_render": true,
+          "resolution_at_least_declared": true,
+          "fps_at_least_30": true,
+          "no_blank_sampled_frames": true,
+          "poster_written": true,
+          "every_capture_reproduces_the_block": true
+        },
+        "passes": true
+      },
+      {
+        "name": "estimate",
+        "layout": "estimate",
+        "view": "wide",
+        "video": "artifacts/showcase/video/estimate.mp4",
+        "bytes": 1566291,
+        "declared_frames": 352,
+        "measured": {
+          "resolution": [
+            1280,
+            720
+          ],
+          "fps": 30.0,
+          "duration_s": 11.73,
+          "poster": "artifacts/showcase/video/estimate_poster.jpg",
+          "poster_frame": 211,
+          "frames_decoded": 352,
+          "frames_measured": 9,
+          "sampled": [
+            {
+              "frame": 0,
+              "std": 43.47590174760491,
+              "flattest_fraction": 0.39529188368055557,
+              "distinct_bands": 31
+            },
+            {
+              "frame": 39,
+              "std": 43.4989218069007,
+              "flattest_fraction": 0.39539279513888886,
+              "distinct_bands": 31
+            },
+            {
+              "frame": 78,
+              "std": 43.51109494488251,
+              "flattest_fraction": 0.39543402777777775,
+              "distinct_bands": 31
+            },
+            {
+              "frame": 117,
+              "std": 43.4190683933315,
+              "flattest_fraction": 0.39548828125,
+              "distinct_bands": 31
+            },
+            {
+              "frame": 156,
+              "std": 43.41761080392267,
+              "flattest_fraction": 0.3953862847222222,
+              "distinct_bands": 31
+            },
+            {
+              "frame": 195,
+              "std": 43.4274031043271,
+              "flattest_fraction": 0.3953439670138889,
+              "distinct_bands": 31
+            },
+            {
+              "frame": 234,
+              "std": 43.43321293553225,
+              "flattest_fraction": 0.3953396267361111,
+              "distinct_bands": 31
+            },
+            {
+              "frame": 273,
+              "std": 43.47835293670751,
+              "flattest_fraction": 0.39533094618055553,
+              "distinct_bands": 31
+            },
+            {
+              "frame": 312,
+              "std": 43.5223791420916,
+              "flattest_fraction": 0.39532009548611113,
+              "distinct_bands": 31
+            }
+          ],
+          "blank_frames": 0
+        },
+        "captures": [
+          {
+            "case": "RC1_l30_compliant4000_m0_E4_conservative_r2",
+            "supervisor": "conservative",
+            "error_level": "E4",
+            "frames": 352,
+            "capture_hz": 15.0,
+            "outcome": "route completed",
+            "route_completed": true,
+            "terminal_required_clips": {
+              "retained": [
+                "c1",
+                "c2",
+                "c3",
+                "c4",
+                "c5"
+              ],
+              "lost": [],
+              "required_retained": 5,
+              "required_count": 5
+            },
+            "block_result": "artifacts/cable/routing-v6-s1/RC1_l30_compliant4000_m0_E4_conservative_r2/result.json",
+            "reproduces_block": true,
+            "mismatch": null
+          }
+        ],
+        "checks": {
+          "decodes": true,
+          "frame_count_matches_render": true,
+          "resolution_at_least_declared": true,
+          "fps_at_least_30": true,
+          "no_blank_sampled_frames": true,
+          "poster_written": true,
+          "every_capture_reproduces_the_block": true
+        },
+        "passes": true
+      },
+      {
+        "name": "triptych",
+        "layout": "triptych",
+        "view": "clips",
+        "video": "artifacts/showcase/video/triptych.mp4",
+        "bytes": 918634,
+        "declared_frames": 329,
+        "measured": {
+          "resolution": [
+            1920,
+            900
+          ],
+          "fps": 30.0,
+          "duration_s": 10.97,
+          "poster": "artifacts/showcase/video/triptych_poster.jpg",
+          "poster_frame": 197,
+          "frames_decoded": 329,
+          "frames_measured": 9,
+          "sampled": [
+            {
+              "frame": 0,
+              "std": 45.7729761181138,
+              "flattest_fraction": 0.4408136574074074,
+              "distinct_bands": 31
+            },
+            {
+              "frame": 36,
+              "std": 47.13232336858487,
+              "flattest_fraction": 0.4252384259259259,
+              "distinct_bands": 31
+            },
+            {
+              "frame": 72,
+              "std": 47.15324458702206,
+              "flattest_fraction": 0.4252349537037037,
+              "distinct_bands": 31
+            },
+            {
+              "frame": 108,
+              "std": 47.361651970414904,
+              "flattest_fraction": 0.4250260416666667,
+              "distinct_bands": 31
+            },
+            {
+              "frame": 144,
+              "std": 47.36766482514856,
+              "flattest_fraction": 0.4249971064814815,
+              "distinct_bands": 31
+            },
+            {
+              "frame": 180,
+              "std": 47.37252738642569,
+              "flattest_fraction": 0.42496875,
+              "distinct_bands": 31
+            },
+            {
+              "frame": 216,
+              "std": 47.36908366415912,
+              "flattest_fraction": 0.4249664351851852,
+              "distinct_bands": 31
+            },
+            {
+              "frame": 252,
+              "std": 47.36600036334991,
+              "flattest_fraction": 0.4249826388888889,
+              "distinct_bands": 31
+            },
+            {
+              "frame": 288,
+              "std": 47.362921052666266,
+              "flattest_fraction": 0.4249907407407407,
+              "distinct_bands": 31
+            }
+          ],
+          "blank_frames": 0
+        },
+        "captures": [
+          {
+            "case": "RC1_l15_compliant4000_m0_E0_unfiltered_r0",
+            "supervisor": "unfiltered",
+            "error_level": "E0",
+            "frames": 89,
+            "capture_hz": 15.0,
+            "outcome": "lost_required_clip",
+            "route_completed": false,
+            "terminal_required_clips": {
+              "retained": [
+                "c1",
+                "c2",
+                "c4",
+                "c5"
+              ],
+              "lost": [
+                "c3"
+              ],
+              "required_retained": 4,
+              "required_count": 5
+            },
+            "block_result": "artifacts/cable/routing-v6-s1/RC1_l15_compliant4000_m0_E0_unfiltered_r0/result.json",
+            "reproduces_block": true,
+            "mismatch": null
+          },
+          {
+            "case": "RC1_l15_compliant4000_m0_E0_filtered_r0",
+            "supervisor": "filtered",
+            "error_level": "E0",
+            "frames": 94,
+            "capture_hz": 15.0,
+            "outcome": "lost_required_clip",
+            "route_completed": false,
+            "terminal_required_clips": {
+              "retained": [
+                "c1",
+                "c2",
+                "c4",
+                "c5"
+              ],
+              "lost": [
+                "c3"
+              ],
+              "required_retained": 4,
+              "required_count": 5
+            },
+            "block_result": "artifacts/cable/routing-v6-s1/RC1_l15_compliant4000_m0_E0_filtered_r0/result.json",
+            "reproduces_block": true,
+            "mismatch": null
+          },
+          {
+            "case": "RC1_l15_compliant4000_m0_E0_conservative_r0",
+            "supervisor": "conservative",
+            "error_level": "E0",
+            "frames": 329,
+            "capture_hz": 15.0,
+            "outcome": "route completed",
+            "route_completed": true,
+            "terminal_required_clips": {
+              "retained": [
+                "c1",
+                "c2",
+                "c3",
+                "c4",
+                "c5"
+              ],
+              "lost": [],
+              "required_retained": 5,
+              "required_count": 5
+            },
+            "block_result": "artifacts/cable/routing-v6-s1/RC1_l15_compliant4000_m0_E0_conservative_r0/result.json",
+            "reproduces_block": true,
+            "mismatch": null
+          }
+        ],
+        "checks": {
+          "decodes": true,
+          "frame_count_matches_render": true,
+          "resolution_at_least_declared": true,
+          "fps_at_least_30": true,
+          "no_blank_sampled_frames": true,
+          "poster_written": true,
+          "every_capture_reproduces_the_block": true
+        },
+        "passes": true
+      }
+    ],
+    "evidence_behind_the_numbers_on_screen": {
+      "route outcomes, per-clip retention, issued actions, budgets": "artifacts/cable/routing-v6-s1/<request>/result.json",
+      "the block's fitted verdicts": "evidence/cable_routing_v6.json",
+      "18 mm admitted against 58 mm permitted": "artifacts/cell/block.json - the_two_numbers_the_block_turns_on",
+      "declared perception error at each level": "configs/cable_routing_v6.json - perception.levels"
+    }
+  },
+  "isaac": {
+    "schema": 1,
+    "id": "showcase_isaac_v7",
+    "created_on": "2026-09-12",
+    "what_this_is": "One route from the v6 routing block, re-rendered with Isaac Sim's RTX renderer from the USD stage scripts/export_usd_v7.py wrote. MuJoCo's own renderer exists to check that a scene is built correctly; this one exists to look at.",
+    "what_this_is_not": [
+      "Not a simulation. The states are replayed, not stepped: Isaac Sim computes nothing here.",
+      "Not a validation anywhere but MuJoCo, and not an Isaac Sim project."
+    ],
+    "views": {
+      "wide": {
+        "stage": "artifacts/showcase/usd/cable_cell_v6/frames/frame_200.usd",
+        "view": "wide",
+        "camera": {
+          "eye": [
+            0.1,
+            -0.9,
+            1.75
+          ],
+          "target": [
+            -0.55,
+            0.06,
+            1.29
+          ],
+          "focal_length_mm": 40.0,
+          "f_stop": 0.0
+        },
+        "resolution": [
+          1920,
+          1080
+        ],
+        "frames_requested": 200,
+        "frames_written": 198,
+        "time_codes": [
+          0.0,
+          200.0
+        ],
+        "stride_time_codes": 1,
+        "rt_subframes": 16,
+        "output_dir": "artifacts/showcase/isaac/wide",
+        "wall_seconds": 52.4,
+        "scope": "A RE-RENDER of positions MuJoCo computed and the routing block scored. Isaac Sim is used as a camera. No number in this repository was measured in it, checked against it or validated by it, and this changes nothing about any published result."
+      }
+    },
+    "scope": "A RE-RENDER of positions MuJoCo computed and the routing block scored. Isaac Sim is used as a camera. No number in this repository was measured in it, checked against it or validated by it, and this changes nothing about any published result."
+  },
+  "takeaway": "Use the check's ranking, not its threshold.",
+  "takeaway_because": "The ranking transfers to a jig the check was never fitted on. The threshold does not.",
+  "published": {
+    "url": "https://claude.ai/code/artifact/71352222-82b3-4676-901c-c2c4852eea3c",
+    "files": [
+      "index.html",
+      "cell.png",
+      "video/triptych.mp4",
+      "video/estimate.mp4",
+      "video/budget.mp4",
+      "video/triptych_poster.jpg",
+      "video/estimate_poster.jpg",
+      "video/budget_poster.jpg"
+    ],
+    "read_back": "The published page was read back after publishing and renders; the eight files above are listed by the artifact itself.",
+    "note": "Published as a private Artifact on claude.ai. Nothing was pushed to any git remote."
+  }
+}

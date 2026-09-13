@@ -26,6 +26,10 @@ LIMIT = 320
 SHARED_RECORDS = {
     "claude_handover_v1.json",
     "roadmap_history_v1.json",
+    # Named `cable_*` but it is the whole-cycle verification: it lists and hashes
+    # every file in the tree at the time, which was a tree holding both projects.
+    # That is why it names 178 code paths this repository does not have.
+    "cable_cycle_verification_v1.json",
 }
 
 CAMPAIGNS = {

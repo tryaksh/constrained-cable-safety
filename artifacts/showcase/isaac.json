@@ -1,0 +1,46 @@
+{
+  "schema": 1,
+  "id": "showcase_isaac_v7",
+  "created_on": "2026-09-12",
+  "what_this_is": "One route from the v6 routing block, re-rendered with Isaac Sim's RTX renderer from the USD stage scripts/export_usd_v7.py wrote. MuJoCo's own renderer exists to check that a scene is built correctly; this one exists to look at.",
+  "what_this_is_not": [
+    "Not a simulation. The states are replayed, not stepped: Isaac Sim computes nothing here.",
+    "Not a validation anywhere but MuJoCo, and not an Isaac Sim project."
+  ],
+  "views": {
+    "wide": {
+      "stage": "artifacts/showcase/usd/cable_cell_v6/frames/frame_200.usd",
+      "view": "wide",
+      "camera": {
+        "eye": [
+          0.1,
+          -0.9,
+          1.75
+        ],
+        "target": [
+          -0.55,
+          0.06,
+          1.29
+        ],
+        "focal_length_mm": 40.0,
+        "f_stop": 0.0
+      },
+      "resolution": [
+        1920,
+        1080
+      ],
+      "frames_requested": 200,
+      "frames_written": 198,
+      "time_codes": [
+        0.0,
+        200.0
+      ],
+      "stride_time_codes": 1,
+      "rt_subframes": 16,
+      "output_dir": "artifacts/showcase/isaac/wide",
+      "wall_seconds": 52.4,
+      "scope": "A RE-RENDER of positions MuJoCo computed and the routing block scored. Isaac Sim is used as a camera. No number in this repository was measured in it, checked against it or validated by it, and this changes nothing about any published result."
+    }
+  },
+  "scope": "A RE-RENDER of positions MuJoCo computed and the routing block scored. Isaac Sim is used as a camera. No number in this repository was measured in it, checked against it or validated by it, and this changes nothing about any published result."
+}

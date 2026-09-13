@@ -1,10 +1,23 @@
 # Agent instructions
 
 Read this file at handover. Then [ROADMAP.md](ROADMAP.md) for the verified state
-and what stays open, and [README.md](README.md) for what the project is. These
-three are the only maintained Markdown. The project is closed; there is no next
-action waiting. Use the tools your client actually has;
-tool names from a previous assistant are history, not requirements.
+and what stays open, and [README.md](README.md) for what the project is. The
+project is closed; there is no next action waiting. Use the tools your client
+actually has; tool names from a previous assistant are history, not requirements.
+
+Five documents are maintained, and no others:
+
+| File | What it is for |
+| --- | --- |
+| [README.md](README.md) | What the project is and what it found, for a stranger |
+| [ROADMAP.md](ROADMAP.md) | What is closed, what is open, and what each open item costs |
+| [AGENTS.md](AGENTS.md) | This file: the rules and the command sequence |
+| [docs/REPO_MAP.md](docs/REPO_MAP.md) | Branches, and what arrived here from where |
+| [docs/PEG_INSERTION.md](docs/PEG_INSERTION.md) | The retired peg-insertion campaign |
+
+Everything under [docs/handover/](docs/handover/) is history: each file describes
+the repository as it was on the day it was written and is deliberately not
+updated afterwards. Do not correct one.
 
 ## Mandate
 
@@ -16,11 +29,18 @@ linking from a personal site. Measuring did not stop; submitting did.
 start a fifth study, do not refit the safety layer, and do not re-run a fitted
 block for nicer numbers. The last planned session
 ([docs/handover/v7_final_session.txt](docs/handover/v7_final_session.txt)) ran on
-2026-09-12 and built what it was asked for: three replay clips, the public page,
-the workbench and a USD export. All four are verified and recorded under
-`artifacts/showcase/`. Nothing is queued. [ROADMAP.md](ROADMAP.md) is now a
-record rather than a plan; read it for what stays open and why none of it was
-bought.
+2026-09-12 and built what it was asked for: three replay clips, a generated page,
+the workbench and a USD export. All four are verified and their records are
+committed under `artifacts/showcase/`. **The page is a local file and is not
+published anywhere** — do not publish it, and do not build a new one. Nothing is
+queued. [ROADMAP.md](ROADMAP.md) is now a record rather than a plan; read it for
+what stays open and why none of it was bought.
+
+The 2026-09-13 session ([docs/handover/v8_two_repo_reorganisation.md](docs/handover/v8_two_repo_reorganisation.md))
+brought the retired peg-insertion campaign here from the repository this one was
+cut out of, because peg insertion is recovery work. Its evidence sits in
+`evidence/` beside the cable records and is told apart by the `campaign` field in
+`evidence/INDEX.json`. **A peg number is never a cable number.**
 
 The task is **held, clip-preserving seating before gripper release** — extended in
 the routing study so that *every* required clip of a five-clip route must still be
@@ -89,18 +109,21 @@ the task definition. Do not lengthen it and do not change the predicate.
 | v6 stage records and decision log | artifacts/cell/ |
 | **The workbench** | scripts/workbench.py over src/assembly_recovery/cable_workbench_v7.py |
 | **The replay clips** | scripts/render_routing_video_v6.py; scripts/verify_showcase_video.py |
-| **The public page** | scripts/build_showcase.py; artifacts/showcase/page.json |
+| **The generated page** | scripts/build_showcase.py; artifacts/showcase/page.json |
 | **The USD export** | scripts/export_usd_v7.py |
 | **The Isaac Sim re-render** | scripts/render_isaac_v7.py; scripts/encode_isaac_v7.py |
 | v7 stage records and decision log | artifacts/showcase/ |
 | v3 boundary study, closed inconclusive | configs/cable_repair_boundary_v3.json; evidence/cable_repair_boundary_v3.json |
 | v2 task and gate block | configs/cable_recovery_task_v2.json; evidence/cable_recovery_block_v2.json |
+| v1 and v2 probes and reviews, restored 2026-09-13 so the early records have a reproduction path | scripts/{probe,review}_cable_{retention,robot,task,baseline,contact}.py; scripts/evaluate_cable_insertion.py |
+| The retired peg-insertion campaign | docs/PEG_INSERTION.md; the `campaign: peg` entries in evidence/INDEX.json |
+| Branches, and what came here from where | docs/REPO_MAP.md |
 | Machine versions | environment-lock.example.json; local environment-lock.local.json |
 
 ## Commands
 
 ```powershell
-.venv/Scripts/python.exe -m pytest                    # 267 tests, CPU-only, ~2 s
+.venv/Scripts/python.exe -m pytest                    # 440 tests, CPU-only, ~4 s
 .venv/Scripts/python.exe -m ruff check src scripts tests
 .venv/Scripts/python.exe scripts/index_evidence.py    # after adding a record
 ```

@@ -1,0 +1,76 @@
+{
+  "schema": 1,
+  "id": "showcase_usd_v7",
+  "stage": "D",
+  "created_on": "2026-09-12",
+  "status": "verified",
+  "what_this_is": "A RENDERING EXPORT of an already-compiled MuJoCo scene to a USD stage, so the work can be re-rendered elsewhere later without moving the physics.",
+  "what_this_is_not": [
+    "Not an Isaac Sim project, and not a validation anywhere but MuJoCo.",
+    "No number in this repository was measured in, or checked against, anything that reads this stage.",
+    "The cable is a MuJoCo cable plugin; a renderer reading this stage gets the geometry it was in at each captured frame, not the model that produced it.",
+    "The states are replayed from a recorded rollout, not re-stepped. Stepping a compiled scene here with no controller collapses the arm in five milliseconds, and the first attempt in this session wrote 200 frames of exactly that before the check caught it."
+  ],
+  "environment": {
+    "why_separate": "usd-core and pillow are not in the cable environment and must not be. That environment's exact package set is recorded in every run manifest and the provenance depends on it not drifting.",
+    "interpreter": ".deps/usd-venv/Scripts/python.exe",
+    "created_with": ".venv/Scripts/python.exe -m venv .deps/usd-venv, then pip install usd-core pillow mujoco==3.3.7 \"numpy<2\"",
+    "python": "3.11.15",
+    "packages": {
+      "usd-core": "26.8",
+      "pillow": "12.3.0",
+      "mujoco": "3.3.7",
+      "numpy": "1.26.4"
+    }
+  },
+  "the_gotcha": "output_directory must be RELATIVE and output_directory_root its absolute parent. An absolute output_directory is joined into an invalid path and throws from inside OpenUSD.",
+  "export": {
+    "scene_xml": "artifacts/showcase/video/RC1_l15_compliant4000_m0_E0_conservative_r0/scene.xml",
+    "scene_xml_exported": "artifacts/showcase/video/RC1_l15_compliant4000_m0_E0_conservative_r0/scene__usd.xml",
+    "names_made_usd_legal": 36,
+    "names_made_usd_legal_examples": {
+      "wrist_3_link_fixed_joint_lump__cam_mount_collider_cylinder.001_collision_2": "wrist_3_link_fixed_joint_lump__cam_mount_collider_cylinder_001_collision_2",
+      "wrist_3_link_fixed_joint_lump__cam_mount003_collider_box.001_collision_4": "wrist_3_link_fixed_joint_lump__cam_mount003_collider_box_001_collision_4",
+      "wrist_3_link_fixed_joint_lump__cam_mount003_collider_box.002_collision_5": "wrist_3_link_fixed_joint_lump__cam_mount003_collider_box_002_collision_5",
+      "wrist_3_link_fixed_joint_lump__cam_mount003_collider_box.003_collision_6": "wrist_3_link_fixed_joint_lump__cam_mount003_collider_box_003_collision_6"
+    },
+    "stage_directory": "artifacts/showcase/usd/cable_cell_v6",
+    "stages": [
+      {
+        "file": "artifacts/showcase/usd/cable_cell_v6/frames/frame_200.usd",
+        "bytes": 5559403
+      }
+    ],
+    "assets": [
+      ".usd"
+    ],
+    "capture": "artifacts/showcase/video/RC1_l15_compliant4000_m0_E0_conservative_r0/capture.npz",
+    "source_frames_available": 329,
+    "frames_written": 200,
+    "capture_stride_frames": 1,
+    "stepped_at_export_time": false,
+    "model": {
+      "nbody": 51,
+      "ngeom": 130,
+      "nmesh": 15,
+      "timestep_s": 0.00025
+    },
+    "wall_seconds": 2.2
+  },
+  "read_back": {
+    "opens": true,
+    "prims": 286,
+    "meshes": 70,
+    "xforms": 73,
+    "xforms_animated_over_time": 72,
+    "time_codes": [
+      0.0,
+      200.0
+    ],
+    "frames_per_second": 24.0,
+    "default_prim": "/World",
+    "up_axis": "Z",
+    "meters_per_unit": 0.01
+  },
+  "command": ".deps/usd-venv/Scripts/python.exe scripts/export_usd_v7.py"
+}
