@@ -1,8 +1,29 @@
 # V8 — Reorganise two repositories into two clear projects
 
-**This session does not measure anything new.** It reorganises, refactors,
-finishes what is already finishable, and rewrites the documentation. If you find
-yourself designing a study, you have gone off task.
+**This session does not measure anything new and does not build anything for an
+audience.** It reorganises, refactors, finishes what is already finishable,
+commits what is uncommitted, and rewrites the documentation. If you find yourself
+designing a study or making a web page, you have gone off task.
+
+### What this session must NOT produce
+
+- **No artifacts, no published page, no website, no demo site.** Not as a draft,
+  not as a nice-to-have.
+- **No new study, no refit, no re-run of a block that is already fitted.**
+- **No new figures or videos**, beyond regenerating one that already exists and
+  is broken or out of date.
+
+### The end goal this serves, which is somebody else's job
+
+The owner will later write **one page on their portfolio site, a Robotics Lab
+page, listing these experiments with their results and demos, concisely, each
+with a GitHub link.** They will write it themselves.
+
+Your job is to leave each repository in a state where writing that page is
+trivial: one clear objective per repository, branches whose names mean something,
+results that are either finished or honestly marked unfinished, and a README
+whose first few sentences can be read by someone who has never seen the project.
+Nothing that goes on the portfolio page is built here.
 
 Prepared 2026-09-13 from a direct reading of both remotes. Every branch fact
 below was measured with `git ls-remote`, `git merge-base` and `git rev-list`, not
@@ -52,21 +73,12 @@ whose names mean something.**
 Local-only branch `research/assembly-recovery` at `5f551d1` is an ancestor of the
 training branch (0 ahead, 19 behind). It is a stale pointer.
 
-### `D:/orbital-servicing-paper` — a finished draft with nowhere to live
+### `D:/orbital-servicing-paper` - out of scope
 
-- **No git remote at all.**
-- `MANUSCRIPT.md`, 1,669 lines: *"Servicing-rack requirements derived from
-  measured manipulator performance, and which of them transfer."* Draft 1
-  (2026-09-04), reviewed and corrected 2026-09-05, with three over-claims already
-  retracted in place.
-- Five figures, each with the script that generates it. `numbers.json` holds 84
-  quotable figures and the rule that a number not in that file does not go in the
-  paper.
-- **`numbers.json` says `generated_from: D:\6axis-space-robotics` at
-  `f10a98b`** — and that commit is on `research/assembly-recovery-training`
-  (2026-09-05, 69 commits back from its tip), **not** on
-  `paper/serviceability-qualification`. The paper and the branch named after the
-  paper have drifted apart. Work out which is right before you move anything.
+A 1,669-line manuscript draft with no git remote. **Leave it alone this
+session.** Do not move it, publish it, or regenerate its numbers. Give it one
+sentence in the orbital repository's `docs/REPO_MAP.md` as a related document
+that lives elsewhere, and go no further.
 
 ---
 
@@ -79,8 +91,8 @@ want.
 **Repository A — space robotics.** Keep the name
 `orbital-robotic-servicing-lab`. Its goal: *can a robot service a modular
 spacecraft rack in zero gravity, which constraint stops it, and do isolated
-skills survive being chained together?* It keeps `main` and the serviceability
-qualification work, and it absorbs the manuscript.
+skills survive being chained together?* It keeps `main` and the
+serviceability qualification work.
 
 **Repository B — recovery.** The `constrained-cable-safety` repository, possibly
 renamed, or a new repository if a rename loses too much. Its goal: *when an
@@ -156,21 +168,7 @@ are the cable studies v2–v5 — the same work that was later cut into
 `constrained-cable-safety`. Push them so the remote stops lying about what was
 done, **before** any reorganisation moves them.
 
-### Stage 3 — settle where the manuscript lives
-
-The manuscript in `D:/orbital-servicing-paper` is a finished draft with no
-remote. Decide and record:
-
-- whether it becomes `paper/` inside the orbital repository, or its own
-  repository with a link from both;
-- which commit its `numbers.json` should be regenerated from, given that the
-  recorded `f10a98b` is on the recovery branch rather than the paper branch;
-- whether `make_numbers.py` still runs against whichever branch you choose.
-
-Do not move it until you can regenerate its numbers. A paper whose figures
-cannot be rebuilt is a document, not a result.
-
-### Stage 4 — separate the two projects
+### Stage 3 — separate the two projects
 
 Move the recovery work out of the orbital repository, or confirm that
 `constrained-cable-safety` already carries everything worth keeping and retire
@@ -183,7 +181,7 @@ may be orbital records that were never pruned.
 Done when: no branch in the orbital repository contains cable or peg work, and
 nothing worth keeping was dropped on the floor.
 
-### Stage 5 — finish what is already finishable
+### Stage 4 — finish what is already finishable
 
 The owner asked for incomplete results to be completed. Sort every open item
 into one of three buckets and act accordingly:
@@ -210,7 +208,7 @@ Known open items to triage:
 - `docs/NEXT_WORK.md` on the paper branch lists what a final claim still needs.
 - The robot-side latch geometry is visual only, with an idealised load path.
 
-### Stage 6 — refactor and reorganise
+### Stage 5 — refactor and reorganise
 
 Standard layout, the same in both repositories, because it is the one this work
 already half-uses and the one an agent will expect:
@@ -241,7 +239,7 @@ While you are in there:
 - Make sure the test suite runs in seconds on CPU with no simulator, and says how
   many tests there are in the README.
 
-### Stage 7 — rewrite the documentation
+### Stage 6 — rewrite the documentation
 
 For each repository, in this order: what the problem is, why it matters, what was
 tried, one comparison table, what was found, what to do about it, how to run it,
@@ -287,12 +285,13 @@ README.
 2. The orbital repository has three branches, each with a clear purpose, and no
    deleted branch lost anything.
 3. Neither repository contains the other's subject matter.
-4. The manuscript has a home and its numbers can be regenerated there.
-5. Every open item is either closed, or written down with what it would cost.
+4. Every open item is either closed, or written down with what it would cost.
+5. Nothing is left uncommitted in either working tree, and nothing is left
+   unpushed on any branch.
 6. No script is imported that does not exist, and a test enforces it.
 7. Both READMEs open with a two-to-three sentence description a stranger
    understands, and neither uses an unexplained abbreviation.
-8. Both repositories push cleanly, branch by branch, with nothing left local.
+8. No artifact, page or website was produced.
 
 Finish by telling the owner, in plain English: what each repository is now for,
 which branches exist and why, what was deleted and where it went, what was
