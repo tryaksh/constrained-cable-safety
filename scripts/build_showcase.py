@@ -47,10 +47,12 @@ SUPERVISORS = [
     ("conservative", "the check, read for ranking", "issue the move with the most headroom left"),
 ]
 
+#: The study labels its vision settings E0 to E4. Nobody outside the study knows
+#: what those mean, so the page says what they are and keeps the label beside it.
 LEVEL_WORDS = {
     "E0": "perfect information",
-    "E2": "moderate error",
-    "E4": "worst declared error",
+    "E2": "small error",
+    "E4": "large error",
 }
 
 
@@ -69,7 +71,10 @@ def collect(root: Path) -> dict:
     cad = read(root / "evidence/cable_cell_cad_v6.json")
     block = read(root / "artifacts/cell/block.json")
     contract = read(root / "configs/cable_routing_v6.json")
+    perception_contract = read(root / "configs/cable_perception_v4.json")
     video = read(root / "artifacts/showcase/video.json")
+    isaac_path = root / "artifacts/showcase/isaac.json"
+    isaac = read(isaac_path) if isaac_path.is_file() else None
 
     clip_levels = perception["results"]["C1_clip"]["per_level"]
     refusals = [name for name, check in perception["margin_resolution_checks"].items()
@@ -276,11 +281,16 @@ def collect(root: Path) -> dict:
             "stage_records": ["artifacts/cell/block.json", "artifacts/showcase/video.json"],
             "contracts": ["configs/cable_routing_v6.json"],
         },
+        # What the study's own E0..E4 labels mean in millimetres, so the page can
+        # say it rather than making a reader look it up.
+        "levels": {entry["id"]: entry
+                   for entry in perception_contract["error_model"]["levels"]},
         "beat1": beat1, "beat2": beat2, "beat3": beat3, "beat4": beat4,
         "where_it_lets_go": where,
         "honesty": honesty,
         "scope": scope,
         "video": video,
+        "isaac": isaac,
         "takeaway": "Use the check's ranking, not its threshold.",
         "takeaway_because":
             "The ranking transfers to a jig the check was never fitted on. The threshold "
@@ -329,8 +339,8 @@ def svg_dimension(beat3: dict) -> str:
                  'commanded pull-back, millimetres</text>')
 
     for row, (value, label, css) in enumerate((
-            (admits, "what this route admits", "admits"),
-            (permits, "what the check permits", "permits"))):
+            (admits, "what this rig will take", "admits"),
+            (permits, "what the check allows", "permits"))):
         y = 64+row*62
         parts.append(f'<line class="dim-ext {css}" x1="{left}" y1="{y-16}" x2="{left}"'
                      f' y2="{y+16}"/>')
@@ -344,7 +354,7 @@ def svg_dimension(beat3: dict) -> str:
 
     parts.append('<g class="ladder">')
     parts.append(f'<text class="dim-label" x="{left}" y="176">'
-                 'pilot ladder, measured before anything was scored</text>')
+                 'tried first, before any of this was scored</text>')
     parts.append(f'<circle class="kept" cx="{left+300}" cy="172" r="5"/>')
     parts.append(f'<text class="fig-tick" x="{left+312}" y="176">route completed</text>')
     parts.append(f'<circle class="gone" cx="{left+430}" cy="172" r="5"/>')
@@ -665,36 +675,59 @@ footer code { font-family:var(--mono); font-size:.86rem; color:var(--ink-2); }
 """
 
 
-def arm_table(beat1: dict) -> str:
+def check_table(beat1: dict) -> str:
+    """The one comparison table: five ways to build the check, side by side."""
     rows = []
     for arm in beat1["arms"]:
         pick = ' class="pick"' if arm["id"] == "B0plus" else ""
+        size = ("1 number" if arm["parameters"] == 1
+                else f"{thousands(arm['parameters'])} numbers")
         rows.append(
             f"<tr{pick}><td><b>{escape(arm['name'])}</b>"
             f"<span class='sub'>{escape(arm['reads'])}</span></td>"
-            f"<td class='n'>{thousands(arm['parameters'])}</td>"
-            f"<td class='n'>{arm['rate']['E0']:.3f}</td>"
-            f"<td class='n'>{arm['rate']['E4']:.3f}</td></tr>")
+            f"<td class='n'>{size}</td>"
+            f"<td class='n'>{100*arm['rate']['E0']:.0f}%</td>"
+            f"<td class='n'>{100*arm['rate']['E4']:.0f}%</td></tr>")
     return (
         "<div class='scroll'><table><thead><tr>"
-        "<th>what the check reads</th><th class='n'>parameters</th>"
-        f"<th class='n'>E0<br>perfect info<br>n = {beat1['coverage']['E0']}</th>"
-        f"<th class='n'>E4<br>worst error<br>n = {beat1['coverage']['E4']}</th>"
+        "<th>the check</th><th class='n'>how big it is</th>"
+        "<th class='n'>wrong with<br>perfect information</th>"
+        "<th class='n'>wrong with<br>large error</th>"
         "</tr></thead><tbody>"+"".join(rows)+"</tbody></table></div>")
 
 
-def sequence_table(beat2: dict) -> str:
+def level_table(data: dict) -> str:
+    """What 'perfect information' and 'large error' actually mean, in millimetres."""
+    rows = []
+    for level in ("E0", "E2", "E4"):
+        entry = data["levels"][level]
+        if level == "E0":
+            detail = "the check is handed the simulator's exact truth"
+        else:
+            detail = (f"socket off by {1000*entry['socket_bias_m']:.1f} mm, "
+                      f"hidden cable points off by {1000*entry['centreline_occluded_m']:.0f} mm, "
+                      f"about 1 point in {round(1/entry['centreline_dropout_p'])} missing "
+                      f"altogether")
+        rows.append(f"<tr><td><b>{escape(LEVEL_WORDS[level])}</b></td>"
+                    f"<td>{escape(detail)}</td>"
+                    f"<td class='n'>{level}</td></tr>")
+    return ("<div class='scroll'><table><thead><tr><th>how good the seeing is</th>"
+            "<th>what that means</th><th class='n'>label in the records</th></tr></thead>"
+            "<tbody>"+"".join(rows)+"</tbody></table></div>")
+
+
+def chain_table(beat2: dict) -> str:
     rows = []
     for arm in beat2["arms"]:
         cells = []
         for level in ("E0", "E2", "E4"):
             entry = arm["per_level"][level]
-            cells.append(f"<td class='n'>{entry['violated']} / {entry['observed']}"
-                         f"<span class='sub'>{entry['rate']:.3f}</span></td>")
+            cells.append(f"<td class='n'>{entry['violated']} of {entry['observed']}</td>")
         rows.append(f"<tr><td><b>{escape(arm['name'])}</b>"
                     f"<span class='sub'>{escape(arm['rule'])}</span></td>"+"".join(cells)+"</tr>")
-    return ("<div class='scroll'><table><thead><tr><th>supervisor</th>"
-            "<th class='n'>E0</th><th class='n'>E2</th><th class='n'>E4</th></tr></thead>"
+    return ("<div class='scroll'><table><thead><tr><th>what the robot does</th>"
+            "<th class='n'>perfect<br>information</th><th class='n'>small<br>error</th>"
+            "<th class='n'>large<br>error</th></tr></thead>"
             "<tbody>"+"".join(rows)+"</tbody></table></div>")
 
 
@@ -704,26 +737,21 @@ def outcome_table(beat3: dict) -> str:
         for level in ("E0", "E2", "E4"):
             cell = arm["per_level"][level]
             rows.append(
-                f"<tr><td>{escape(arm['name'])}</td><td class='num'>{level}</td>"
+                f"<tr><td>{escape(arm['name'])}</td><td>{escape(LEVEL_WORDS[level])}</td>"
                 f"<td class='n'>{cell['routes']}</td>"
                 f"<td class='n'>{cell['completed']}</td>"
                 f"<td class='n'>{cell['ended_another_way']}</td>"
-                f"<td class='n'>{cell['lost_a_clip']}</td>"
-                f"<td class='n'>{cell['clip_loss_rate']:.3f}</td></tr>")
-    return ("<details><summary>the same figure as numbers</summary><div class='scroll'>"
-            "<table><thead><tr><th>supervisor</th><th>error</th><th class='n'>routes</th>"
-            "<th class='n'>completed</th><th class='n'>ended another way</th>"
-            "<th class='n'>lost a clip</th><th class='n'>clip-loss rate</th></tr></thead>"
+                f"<td class='n'>{cell['lost_a_clip']}</td></tr>")
+    return ("<details><summary>the same picture as numbers</summary><div class='scroll'>"
+            "<table><thead><tr><th>what the robot does</th><th>seeing</th>"
+            "<th class='n'>tries</th><th class='n'>finished the job</th>"
+            "<th class='n'>stopped for another reason</th>"
+            "<th class='n'>pulled the cable out</th></tr></thead>"
             "<tbody>"+"".join(rows)+"</tbody></table></div></details>")
 
 
-def video_figure(clip: dict, title: str, body: str, sources: dict) -> str:
-    name = clip["name"]
-    source = sources[name]
-    cases = "<br>".join(escape(c["case"]) for c in clip["captures"])
+def video_figure(clip: dict, title: str, body: str) -> str:
     poster = clip["measured"].get("poster")
-    # Published beside the page under video/, which is also where they sit on
-    # disk, so the local file and the published artifact render identically.
     poster_attr = f' poster="video/{Path(poster).name}"' if poster else ""
     return (
         "<figure>"
@@ -731,12 +759,29 @@ def video_figure(clip: dict, title: str, body: str, sources: dict) -> str:
         f'<source src="video/{Path(clip["video"]).name}" type="video/mp4">'
         "Your browser cannot play this clip."
         "</video>"
-        f"<figcaption><b>{escape(title)}</b> {escape(body)}"
-        f"<br><span class='num' style='font-size:.82em'>{cases}</span>"
-        f"<br><span class='num' style='font-size:.82em'>"
-        f"{clip['measured']['frames_decoded']} frames, "
-        f"{clip['measured']['resolution'][0]}&times;{clip['measured']['resolution'][1]}, "
-        f"replayed offline at {source}</span></figcaption></figure>")
+        f"<figcaption><b>{escape(title)}</b> {escape(body)}</figcaption></figure>")
+
+
+def isaac_figure(data: dict) -> str:
+    """The same run again, rendered properly. Nothing about it is a measurement."""
+    isaac = data.get("isaac")
+    if not isaac:
+        return ""
+    view = next(iter(isaac["views"].values()))
+    return (
+        "<figure>"
+        '<video controls preload="metadata" poster="video/isaac_wide_poster.jpg" playsinline>'
+        '<source src="video/isaac_wide.mp4" type="video/mp4">'
+        "Your browser cannot play this clip."
+        "</video>"
+        "<figcaption><b>The rig, rendered properly.</b> The pictures in the other two clips come "
+        "from the physics engine's own built-in renderer, which exists to check that a scene is "
+        "built correctly rather than to look good. This is the same run again, with the recorded "
+        "positions played into a real renderer: proper lights, shadows and materials. "
+        f"{view['frames_written']} frames at "
+        f"{view['resolution'][0]}&times;{view['resolution'][1]}. "
+        "The physics, and every number on this page, are unchanged &mdash; this is a camera, "
+        "nothing more.</figcaption></figure>")
 
 
 def render(data: dict) -> str:
@@ -745,14 +790,15 @@ def render(data: dict) -> str:
     clips = {c["name"]: c for c in data["video"]["clips"]}
     gap = b1["network_gap"]
     interval = gap["bootstrap"]["percentile_95_interval"]
-
-    def beat(number: str, label: str, heading: str, body: str) -> str:
-        return (f"<section class='beat'><div class='beat-rail'><span>{number}</span></div>"
-                f"<div class='beat-body'><p class='eyebrow'>{escape(label)}</p>"
-                f"<h2>{escape(heading)}</h2>{body}</div></section>")
-
-    e0, e2, e4 = (b3["p1"][level] for level in ("E0", "E2", "E4"))
     completed = b4["completed"]
+    unfiltered_total = sum(b2["arms"][0]["per_level"][level]["violated"]
+                           for level in ("E0", "E2", "E4"))
+    unfiltered_of = b2["arms"][0]["per_level"]["E0"]["sequences"]*3
+    e0, e2, e4 = (b3["p1"][level] for level in ("E0", "E2", "E4"))
+
+    def section(eyebrow: str, heading: str, body: str, klass: str = "") -> str:
+        return (f"<section class='{klass}'><p class='eyebrow'>{escape(eyebrow)}</p>"
+                f"<h2>{escape(heading)}</h2>{body}</section>")
 
     head = f"""<title>Five Clips, One Check</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -761,256 +807,260 @@ def render(data: dict) -> str:
 family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&display=swap">
 <style>{STYLE}</style>"""
 
-    masthead = f"""
+    masthead = """
 <header class="masthead">
-  <p class="eyebrow">Simulation study &middot; MuJoCo &middot; UR5e &middot; four registered blocks</p>
+  <p class="eyebrow">A simulation study, in plain terms</p>
   <h1>Five clips,<br>one check</h1>
-  <p class="deck">A robot pushes a connector into a socket. The cable behind it is clipped into
-  brackets along the way. When the insertion fails and the robot backs off to retry, it can pull
-  the cable out of a clip &mdash; undoing work that was already done. Something should check each
-  move before it happens. These four studies measure what that check has to see, and where it
-  stops working.</p>
-  <dl class="titleblock">
-    <div><dt>single moves</dt><dd>{thousands(b1['requests'])}</dd></div>
-    <div><dt>three-move sequences</dt><dd>{thousands(b2['sequences'])}</dd></div>
-    <div><dt>five-clip routes</dt><dd>{thousands(b3['routes'])}</dd></div>
-    <div><dt>predictions registered first</dt><dd>9, 3 correct</dd></div>
-    <div><dt>guard events</dt><dd>0</dd></div>
-  </dl>
+  <p class="deck">A robot pushes a plug into a socket. The plug's cable is clipped to a board on
+  the way in, the way wiring is dressed inside a machine. When the plug does not go in and the
+  robot pulls back to try again, it can drag the cable out of one of those clips &mdash; undoing
+  work it had already done.</p>
+  <p class="deck">This is about the small piece of software that is supposed to stop that: what it
+  has to know, how simple it can be, and the point at which it quietly stops being worth
+  anything.</p>
 </header>
-<figure style="margin-top:32px">
-  <img src="cell.png" alt="The five-clip routing jig: a machined board carrying five cable clips
-  at three heights, a shallow post, and a strain-relief clamp, with the cable installed through
-  every clip." width="1280" height="860">
-  <figcaption><b>The jig the third study is about.</b> Five clips at three heights and four
-  bearings, a ridge the cable climbs over, a corner it turns, and a clamp at the far end. It is
-  drawn in CAD from a config file, and it was chosen by a screen that rejected
-  {honest['screen']['rejected']} of the {honest['screen']['screened']} candidate cells it was
-  given. Every mesh carries its own SHA-256 into every compiled scene, so a tool can prove which
-  jig it is showing.</figcaption>
+<figure style="margin-top:34px">
+  <img src="cell.png" alt="A machined board carrying five cable clips at three heights, a short
+  post, and a clamp at the far end, with a cable installed through every clip." width="1280"
+  height="860">
+  <figcaption><b>The test rig.</b> Five clips, a small ridge the cable climbs over, a corner it
+  turns, and a clamp holding the far end. The robot and the plug are up and to the left, out of
+  frame. Everything here is simulated.</figcaption>
 </figure>
 """
 
-    beat1 = beat("01", f"{thousands(b1['requests'])} single moves · three constraints",
-                 "One number is enough, for a single move", f"""
-<p class="col">Five candidate checks were compared, from a single scalar to a
-{thousands(b1['arms'][3]['parameters'])}-parameter network reading the cable's full estimated
-shape. Each one looks at a candidate move and says whether it would pull the cable out of a clip.
-The table is the share of approved moves that broke the constraint anyway.</p>
-{arm_table(b1)}
-<p class="col" style="color:var(--ink-2);font-size:.95rem">{escape(b1['metric_explained'])}
-Held-out layouts only: {b1['test_contexts']} contexts, {thousands(b1['test_requests']['E0'])}
-requests per error level.</p>
-<p class="col"><strong>Nothing beat the scalar by more than the margin declared in advance</strong>,
-at any of the five error levels, on any of the three constraints. The scalar is one number: how far
-the cable's boot would end up from the clamp, plus a margin sized from what the estimator reports
-about its own error.</p>
-<p class="col"><span class="tag posthoc">post hoc</span> Read the other way, the network is
-<strong>worse</strong> on clip retention &mdash; by {gap['gap']:.3f}, with a bootstrap interval over
-held-out contexts of [{interval[0]:.3f}, {interval[1]:.3f}], which excludes zero. That comparison
-was not one of the registered decision rules and carries no verdict.</p>
-<p class="cite"><b>Evidence</b> {escape(b1['record'])} &middot; contract
-{escape(b1['contract'])}</p>""")
-
-    filter_gaps = b2["filter_gaps"]
-    appetite = b2["appetite"]["per_level"]
-    beat2 = beat("02", f"{thousands(b2['sequences'])} three-move sequences · "
-                       f"{thousands(b2['decisions'])} decisions",
-                 "It matters once you chain moves", f"""
-<p class="col">A check that judges one move is not much use; real work is a sequence. Three
-decisions per run, on cable layouts the check had never been fitted on. The figures are the runs
-that lost the clip, over the runs that were not cut short before they could.</p>
-{sequence_table(b2)}
-<p class="col">Without the check the cable came out <strong>every single time</strong> &mdash;
-{b2['arms'][0]['per_level']['E0']['violated'] + b2['arms'][0]['per_level']['E2']['violated']
- + b2['arms'][0]['per_level']['E4']['violated']} of
-{b2['arms'][0]['per_level']['E0']['sequences']*3} sequences, at every error level. That is what
-the safety layer was worth on this layout, and the gap over the reference
-({filter_gaps['E0']['gap']:.3f}, {filter_gaps['E2']['gap']:.3f}, {filter_gaps['E4']['gap']:.3f})
-clears the registered margin at all three.</p>
-<p class="col">It did not chain for free. The clip budget &mdash; the one quantity the check
-measures directly &mdash; is the one that degraded, its per-step failure rate rising as the
-sequence went on. Each accepted step spends slack that the next step is then judged against.</p>
-<p class="col"><span class="tag posthoc">post hoc</span> Something else showed up here that
-nobody had registered: the same check, read for <em>which move has the most room left</em> rather
-than which is the largest one allowed, completed
-{appetite['E0']['conservative']['completed']} sequences against
-{appetite['E0']['filtered']['completed']} at perfect information. That observation is what the
-third study went and registered.</p>
-<p class="cite"><b>Evidence</b> {escape(b2['record'])} &middot; contract
-{escape(b2['contract'])}</p>""")
-
-    two = b3["two_numbers"]
-    beat3 = beat("03", f"{thousands(b3['routes'])} five-clip routes · "
-                       f"{thousands(b3['decisions'])} decisions",
-                 "And then it stops working", f"""
-<p class="col">The first two studies used one clip. Real harness work is a route. So: a CAD-authored
-jig with {b3['required_clips']} clips, {b3['steps']} decisions instead of three, and success now
-means <strong>every clip still held and the connector seated</strong>. The check is the same one,
-unchanged and not refitted &mdash; this jig is new geometry to it, which is the deployment
-situation under test.</p>
-<p class="col">Two numbers, both measured in the pilot before anything was scored, explain what
-happened.</p>
-<figure><div class="pad">{svg_dimension(b3)}</div>
-<figcaption><b>What the route admits, against what the check permits.</b>
-{escape(two['note'])}</figcaption></figure>
-<p class="col">The check's threshold is a fitted property of <em>the jig it was fitted on</em>
-&mdash; how much cable lies between the plug and the clamp, and how much of that can straighten
-out. It is not a property of the cable. Five clips pin the cable down, so almost none of it can
-straighten, and the check does not know that.</p>
-<figure><div class="pad">{svg_outcomes(b3)}</div>
-<figcaption><b>Every route the block ran.</b> The bar is the whole denominator, so a run that was
-cut short is visible rather than quietly dropped. With the check and without it are the same
-supervisor here: both issue exactly one move and lose a clip on it. The clip-loss gaps between
-them are {e0['gap']:+.3f}, {e2['gap']:+.3f} and {e4['gap']:+.3f}, all inside the registered
-{b3['margin']} margin, so the registered prediction that the check would still earn its place
-is <b>false</b>.</figcaption></figure>
-{outcome_table(b3)}
-<p class="cite"><b>Evidence</b> {escape(b3['record'])} &middot; contract
-{escape(b3['contract'])} &middot; the two numbers {escape(b3['stage_record'])} &middot;
-{thousands(b3['native_steps'])} integration steps in {b3['wall_minutes']} minutes,
-{b3['guards']['privilege_guard_events']} privilege-guard and
-{b3['guards']['mutation_guard_events']} mutation-guard events</p>""")
-
-    beat4 = beat("04", "the one prediction that landed",
-                 "What carries is how much you take", f"""
-<p class="col">Same check. Same estimate. Same twelve candidate moves. The only difference is
-which one the supervisor picks: the largest the check allows, or the one with the most headroom
-left over.</p>
+    problem = section("The problem", "Backing off is the dangerous part", """
+<p class="col">Pushing a connector home is fiddly, and it often fails on the first try. The
+standard recovery is to pull back a few centimetres and come at it again. That retreat is where
+the damage happens: the cable behind the plug is already clipped down, and pulling the plug away
+drags on it.</p>
+<p class="col">So before each retreat the robot should ask a question: <strong>would this
+particular move break something?</strong> The whole study is about that question &mdash; what
+information you need to answer it, and how far the answer travels.</p>
+<h3 style="margin-top:6px">Three things can break</h3>
 <div class="keys">
-  <div><span class="big" style="color:var(--good)">{completed['E0']['conservative']} / \
-{completed['E0']['routes']}</span><span class="cap">routes completed at E0 by reading the check
-for ranking</span></div>
-  <div><span class="big" style="color:var(--good)">{completed['E2']['conservative']} / \
-{completed['E2']['routes']}</span><span class="cap">at E2</span></div>
-  <div><span class="big" style="color:var(--good)">{completed['E4']['conservative']} / \
-{completed['E4']['routes']}</span><span class="cap">at E4, where the advantage collapses</span></div>
-  <div><span class="big" style="color:var(--bad)">0 / {thousands(b4['greedy_total'])}</span>
-  <span class="cap">completed by either greedy supervisor, at any error level</span></div>
+  <div><span class="cap"><b>The cable comes out of a clip.</b> There is only so much slack. Pull
+  harder than that and the cable lifts out of the channel. This is the one everything turns
+  on.</span></div>
+  <div><span class="cap"><b>The cable is bent too tightly.</b> The limit here is a bend radius of
+  40&nbsp;mm on a 4&nbsp;mm cable &mdash; the usual industrial rule for a cable that is being
+  moved, not one sitting still.</span></div>
+  <div><span class="cap"><b>The clamp takes too much pull.</b> The limit is 0.30&nbsp;newtons,
+  which is less than the cable's own weight of 0.49&nbsp;N. Above that, the robot is hauling on
+  the far end.</span></div>
 </div>
-<p class="col"><span class="tag">pre-registered</span> This one was written down before
-collection, collapse included: the advantage would hold at E0 and E2 and fall inside the margin at
-E4. It did &mdash; {b4['p3']['E0']['gap']:+.3f}, {b4['p3']['E2']['gap']:+.3f} and
-{b4['p3']['E4']['gap']:+.3f} against a {b3['margin']} margin. It is the one finding here that may
-be stated as a certified claim about appetite.</p>
-<figure><div class="pad">{svg_ridge(where)}</div>
-<figcaption><b>Where the cable lets go.</b> Of {thousands(where['routes_losing_any'])} routes that
-lost a clip, {thousands(where['losses'].get('c3', 0))} lost the one at the top of the ridge and
-{thousands(where['losses'].get('c1', 0))} the one nearest the plug. The other three never let go
-in {thousands(where['routes'])} routes.</figcaption></figure>
-<p class="cite"><b>Evidence</b> {escape(b4['record'])}</p>""")
+<p class="col" style="color:var(--ink-2);font-size:.95rem">Every run is scored against all three.
+In the records these are C1, C2 and C3, in that order.</p>""")
 
-    speed = {name: (f"{clip['measured']['fps']:.0f} fps"
-                    f", {clip['captures'][0]['capture_hz']:.0f} Hz capture, "
-                    f"{clip['measured']['fps']/clip['captures'][0]['capture_hz']:g}"
-                    "&times; real time")
-             for name, clip in clips.items()}
+    options = section("Finding 1", "For a single move, the simplest check wins", f"""
+<p class="col">The check reads the robot's <em>estimate</em> of where things are &mdash; not the
+truth, because a real robot does not have the truth &mdash; and it says yes or no to a proposed
+move. Here are five ways to build it, cheapest first.</p>
+<p class="col">The cheapest is almost embarrassingly simple: measure the straight-line distance
+from where the cable leaves the plug to where it is clamped, work out what that distance
+<em>would be</em> if the move happened, and refuse the move if it goes past a threshold. One
+number. The most expensive is a neural network that reads all 24 estimated points of the cable's
+shape.</p>
+{check_table(b1)}
+<p class="col" style="color:var(--ink-2);font-size:.95rem"><b>"Wrong" means the check approved a
+move and the cable came out anyway.</b> Every check is held to the same number of approved
+moves, so none of them can look good by simply refusing more. Measured on rig layouts none of
+them was tuned on: {thousands(b1['test_requests']['E0'])} moves per column.</p>
+<p class="col">The simple one wins &mdash; or rather, nothing beats it by enough to call it a
+win. That was the question the study registered in advance, and the answer was no at every level
+of seeing and for all three failure modes.</p>
+<p class="col"><span class="tag posthoc">side finding</span> Looked at the other way, the network
+is measurably <strong>worse</strong> at protecting the clips, by about
+{100*gap['gap']:.0f} percentage points
+(the range it could plausibly be is {100*abs(interval[1]):.0f} to
+{100*abs(interval[0]):.0f} points, and it does not include zero). That
+comparison was not part of the registered question, so it is reported and not claimed.</p>
+<p class="cite"><b>Where these numbers live</b> {escape(b1['record'])} &middot; contract
+{escape(b1['contract'])} &middot; {thousands(b1['requests'])} runs</p>""")
+
+    seeing = section("A necessary aside", "How hard the seeing was made", f"""
+<p class="col">A check is only as good as what it is looking at. Rather than build a camera, the
+study declares how wrong the robot's estimate is and makes it that wrong &mdash; with the error
+concentrated exactly where a real fixture would hide the cable from a real camera. Three settings
+appear on this page.</p>
+{level_table(data)}
+<p class="col" style="color:var(--ink-2);font-size:.95rem">This is a model of <em>how perception
+fails</em>, not a camera. No image is ever rendered and no pose estimator is built or tested
+here.</p>""")
+
+    chain = section("Finding 2", "Over several moves, the check earns its keep", f"""
+<p class="col">One move is not a job. A real recovery is a few moves in a row, and each one
+spends slack the next one is judged against. Three moves per run, on rig layouts the check had
+never been tuned on. The numbers are how many runs lost the cable out of a clip.</p>
+{chain_table(b2)}
+<p class="col">Without the check the cable came out <strong>every single time</strong> &mdash;
+{unfiltered_total} runs out of {unfiltered_of}, at every level of seeing. This is the part where
+the simple check is clearly worth having.</p>
+<p class="cite"><b>Where these numbers live</b> {escape(b2['record'])} &middot; contract
+{escape(b2['contract'])} &middot; {thousands(b2['sequences'])} runs</p>""")
+
+    breaks = section("Finding 3", "On a different rig, it stops working", f"""
+<p class="col">The first two findings came from a rig with <em>one</em> clip. Real wiring runs
+through several. So the same check, unchanged and not re-tuned, was put on the five-clip rig at
+the top of this page, where finishing the job now means all five clips still held and the plug
+seated.</p>
+<p class="col">It stopped helping. Not "helped less" &mdash; stopped. With the check and without
+it, the robot does the same thing: one big move, and the cable comes out on it.</p>
+<p class="col">Two measurements, both taken before anything was scored, say why.</p>
+<figure><div class="pad">{svg_dimension(b3)}</div>
+<figcaption><b>What the rig will take, against what the check allows.</b> The rig loses a clip
+somewhere between 18 and 25&nbsp;mm of pull-back. The check allows 58&nbsp;mm. Its threshold was
+fitted on the one-clip rig, where a lot of cable could straighten out and absorb the pull. Five
+clips pin the cable down so almost none of it can, and the check has no way to know that.
+</figcaption></figure>
+<figure><div class="pad">{svg_outcomes(b3)}</div>
+<figcaption><b>Every attempt on the five-clip rig.</b> Full bars, so runs that were cut short
+stay visible instead of quietly vanishing from a percentage. The top two rows of each group are
+the same: the difference between having the check and not having it is
+{100*e0['gap']:+.0f}, {100*e2['gap']:+.0f} and {100*e4['gap']:+.0f} percentage points, all
+smaller than the margin the study committed to in advance.</figcaption></figure>
+{outcome_table(b3)}
+<figure><div class="pad">{svg_ridge(where)}</div>
+<figcaption><b>And it is always the same clip.</b> Of
+{thousands(where['routes_losing_any'])} runs that lost a clip,
+{thousands(where['losses'].get('c3', 0))} lost the one at the top of the little ridge. The three
+flat ones never let go, in {thousands(where['routes'])} runs.</figcaption></figure>
+<p class="cite"><b>Where these numbers live</b> {escape(b3['record'])} &middot; contract
+{escape(b3['contract'])} &middot; the two measurements {escape(b3['stage_record'])} &middot;
+{thousands(b3['routes'])} runs</p>""")
+
+    proposal = section("What to do instead", "Use the ranking, not the threshold", f"""
+<p class="col">A check like this is really two things wearing one coat. It is a
+<strong>rule</strong> &mdash; yes or no, is this move under the threshold. And it is an
+<strong>ordering</strong> &mdash; of the moves available, which one leaves the most room to
+spare.</p>
+<p class="col">The rule did not survive the move to a new rig, because the threshold was measured
+on different geometry. The ordering did. Same check, same information, one line of difference in
+how it is read:</p>
+<div class="keys">
+  <div><span class="big" style="color:var(--good)">{completed['E0']['conservative']} of \
+{completed['E0']['routes']}</span><span class="cap">jobs finished when the robot takes the move
+with the most room to spare &mdash; with perfect information</span></div>
+  <div><span class="big" style="color:var(--good)">{completed['E2']['conservative']} of \
+{completed['E2']['routes']}</span><span class="cap">with small error</span></div>
+  <div><span class="big" style="color:var(--good)">{completed['E4']['conservative']} of \
+{completed['E4']['routes']}</span><span class="cap">with large error, where the advantage mostly
+disappears</span></div>
+  <div><span class="big" style="color:var(--bad)">0 of {thousands(b4['greedy_total'])}</span>
+  <span class="cap">jobs finished when it takes the biggest move allowed, with or without the
+  check</span></div>
+</div>
+<p class="col"><span class="tag">predicted in advance</span> This was written down before the
+runs, including the part about it fading at large error. It is the one claim here that survived
+as a formal result rather than an observation.</p>
+<div class="pull" style="margin:26px 0 6px">How much you take matters more than what you check
+with.</div>""")
 
     watch = f"""
 <section>
-  <p class="eyebrow">Replays</p>
+  <p class="eyebrow">Three short clips</p>
   <h2>What it looks like</h2>
-  <p class="col" style="margin:18px 0 22px">Each clip is a registered request re-run with its
-  registered seeds, through the block's own control loop, and checked against the result the block
-  recorded before it was allowed to be rendered &mdash; same failure reason, same clips lost, same
-  moves issued. Nothing is stepped at render time.</p>
+  <p class="col" style="margin:18px 0 22px">Each clip is a real run from the study, played back
+  frame by frame. Nothing is re-simulated to make a nicer picture: before a clip is allowed to be
+  rendered it has to reproduce the recorded outcome exactly &mdash; same failure, same clip lost,
+  same moves.</p>
   <div class="stack">
-    {video_figure(clips['triptych'], 'One jig, one estimate, three supervisors.',
-                  'The two greedy supervisors issue a move of about 100 mm and lose the clip at '
-                  'the top of the ridge on it. The third, reading the same check for which move '
-                  'has the most headroom left, issues 6 mm five times and seats the connector '
-                  'with all five clips still held.', speed)}
-    {video_figure(clips['estimate'], 'What the supervisor reads, against what is true.',
-                  'The beads are the estimated cable centreline. The red ones are the nodes the '
-                  'fixture hides from the declared camera position, and they carry four times '
-                  'the error of the ones it can see. The constraints on the right are scored '
-                  'against the truth, which no supervisor can read.', speed)}
-    {video_figure(clips['budget'], 'The budget draining.',
-                  'What the check says is left before its fitted threshold, at each of the five '
-                  'decisions, and what the move issued there spends of it. Each 6 mm move costs '
-                  'about 4.3 mm of budget, and the headroom falls from 69.9 to 56.7 mm across '
-                  'the route.', speed)}
+    {isaac_figure(data)}
+    {video_figure(clips['triptych'], 'The same rig, three robots.',
+                  'Left and middle take the biggest move available - about 100 mm - and lose the '
+                  'clip at the top of the ridge on the very first one. Right takes the move with '
+                  'the most room to spare, 6 mm, five times, and finishes the job with all five '
+                  'clips still held.')}
+    {video_figure(clips['estimate'], 'What the robot sees, against what is true.',
+                  'The beads are where the robot thinks the cable is. The red ones '
+                  'are the parts the fixture hides from the camera position, and they are four '
+                  'times further off than the rest. The scoreboard on the right is the truth, '
+                  'which no robot in this study is allowed to read.')}
+    {video_figure(clips['budget'], 'Watching the slack run out.',
+                  'How much room the check thinks is left before its threshold, at each of the '
+                  'five decisions, and how much the move just taken spent of it. Each careful '
+                  '6 mm move costs about 4.3 mm of room.')}
   </div>
 </section>"""
 
-    takeaway = f"""
+    method = f"""
 <section>
-  <p class="eyebrow">The one line worth carrying away</p>
-  <div class="pull" style="margin:20px 0 18px">{escape(data['takeaway'])}</div>
-  <p class="col">{escape(data['takeaway_because'])} A check like this one is two things at once:
-  a rule that says yes or no, and an ordering over the moves you could make. The ordering survived
-  a jig it had never seen. The yes-or-no did not, because the number it compares against was
-  measured on different geometry.</p>
-</section>"""
-
-    honesty = f"""
-<section>
-  <p class="eyebrow">How the numbers were kept honest</p>
-  <h2>Why you can believe the table</h2>
-  <div class="two" style="margin-top:22px">
+  <p class="eyebrow">For the sceptical</p>
+  <h2>How this was kept honest</h2>
+  <p class="col" style="margin:18px 0 20px">Simulation studies are easy to fool yourself with.
+  These are the things that were put in place first, before any of the numbers above existed.</p>
+  <div class="two">
     <ul class="plain">
-      <li><strong>The answer key is unreadable by the code being tested.</strong> A guard fails any
-      run whose control code touches a scoring-only channel. It fired
-      {1 if honest['privilege_guard']['positive_control_fires'] else 0} time on the deliberate
-      positive control and {honest['privilege_guard']['events_v4']} times across every real
-      request.</li>
-      <li><strong>Labels were re-derived independently.</strong> All
-      {thousands(honest['replay']['requests'])} runs of the first study re-scored from the raw
-      per-tick logs alone: {thousands(honest['replay']['comparisons'])} comparisons,
+      <li><strong>The question was written down and committed before the runs started.</strong>
+      Nine predictions across the four studies. Three were right. The six that were wrong are
+      still in the record, with what they taught.</li>
+      <li><strong>The code being tested cannot read the answer key.</strong> A guard fails any run
+      whose control code touches the truth. A deliberate cheating run was included to confirm the
+      guard actually fires; it did, and it never fired on a real run.</li>
+      <li><strong>Nothing was graded twice.</strong> All
+      {thousands(honest['replay']['requests'])} runs of the first study were re-scored from the
+      raw logs alone by separate code: {thousands(honest['replay']['comparisons'])} comparisons,
       {honest['replay']['disagreements']} disagreements.</li>
-      <li><strong>The margin can resolve what it claims to measure.</strong> A study cannot start
-      with a decision margin smaller than twice its own measurement resolution. The check refused
-      {honest['margin']['refused']} of {honest['margin']['checks']} comparisons, and those are
-      reported as refused rather than quietly answered.</li>
     </ul>
     <ul class="plain">
-      <li><strong>Runs cut short are excluded, never counted as successes.</strong> A move that
-      aborted never got the chance to break the constraints it had not already broken.</li>
-      <li><strong>Frozen, committed, then launched.</strong> The routing contract was committed at
-      <span class="num">{escape(honest['frozen']['committed_before_launch'])}</span> before a
-      single route ran, and its hash is in the run manifest.</li>
-      <li><strong>Rejections are kept.</strong> The screen that chose this jig rejected
-      {honest['screen']['rejected']} of {honest['screen']['screened']} candidates, and all of them
-      are in the record with reasons.</li>
-      <li><strong>Wrong predictions are kept too.</strong> Nine predictions were registered across
-      the studies and three were right. The six that were wrong are in the records with what they
-      taught.</li>
+      <li><strong>A study cannot ask a question it is too coarse to answer.</strong> The margin a
+      difference has to beat must be at least twice the measurement's own resolution, checked in
+      code. It refused {honest['margin']['refused']} of {honest['margin']['checks']} comparisons
+      outright rather than answer them badly.</li>
+      <li><strong>Runs cut short do not count as successes.</strong> A move that aborted never got
+      the chance to break the things it had not broken yet, so it is excluded rather than scored
+      as safe.</li>
+      <li><strong>The rig was chosen by a screen, not by taste.</strong> 28 candidate rigs were
+      drawn; {honest['screen']['rejected']} were rejected because a cable could not actually be
+      installed in them. All the rejections are in the record.</li>
     </ul>
   </div>
-  <p class="cite" style="margin-top:22px"><b>Evidence</b>
+  <details style="margin-top:20px"><summary>the exact counts</summary>
+    <div style="padding:16px 18px; color:var(--ink-2); font-size:.93rem; line-height:1.7">
+      Study 1: {thousands(b1['requests'])} single moves. Study 2:
+      {thousands(b2['sequences'])} three-move runs, {thousands(b2['decisions'])} decisions.
+      Study 3: {thousands(b3['routes'])} five-clip jobs, {thousands(b3['decisions'])} decisions,
+      {thousands(b3['native_steps'])} simulation steps in {b3['wall_minutes']} minutes, with
+      {b3['guards']['privilege_guard_events']} guard violations of either kind. The study 3
+      contract was committed to git at
+      <span class="num">{escape(honest['frozen']['committed_before_launch'])}</span> before a
+      single run started.
+    </div>
+  </details>
+  <p class="cite" style="margin-top:18px"><b>Records</b>
   {escape(honest['privilege_guard']['record'])} &middot; {escape(honest['replay']['record'])}
   &middot; {escape(honest['margin']['record'])} &middot; {escape(honest['screen']['record'])}
   &middot; {escape(honest['frozen']['record'])}</p>
 </section>"""
 
-    limits = "".join(f"<li>{escape(item)}</li>" for item in scope["limitations"])
+    limits = "".join(f"<li>{escape(item)}</li>" for item in scope["limitations"][:6])
     scope_html = f"""
 <section>
   <p class="eyebrow">Scope</p>
   <h2>What this is not</h2>
-  <p class="col" style="margin-top:18px">Everything here is <strong>simulation</strong>. There is
-  no hardware, no released or latched connection, no electrical function, no learned grasping and
-  no force-certified safety claim. The endpoint being measured is {escape(scope['endpoint'])}.
-  The degraded-perception model is a model of <strong>how perception fails</strong>, built from
-  geometry and declared error magnitudes &mdash; it renders nothing, and no camera or pose
-  estimator is built or evaluated here.</p>
+  <p class="col" style="margin-top:18px">All of it is <strong>simulation</strong>. No hardware, no
+  real connector, no electrical test, no claim that any of this is safe on a real machine. What is
+  being measured is one narrow thing: whether the plug reaches the socket and stays there for half
+  a second while every required clip still holds the cable, with the robot still gripping the
+  plug.</p>
+  <p class="col" style="margin-top:14px">The degraded vision is a <strong>model of how perception
+  fails</strong>, built from geometry and declared error sizes. Nothing is rendered and no camera
+  is evaluated.</p>
   <ul class="plain" style="margin-top:18px">{limits}</ul>
 </section>"""
 
     footer = """
 <footer>
-  <p>Four pre-registered studies on a constrained-cable connector task, in MuJoCo, with an
-  Intrinsic Assembly Industrial Benchmark connector. Every contract was committed to git before
-  the block it governs was launched, and every record on this page is in the repository beside
-  the code that produced it.</p>
-  <p><code>evidence/INDEX.json</code> lists every record with its own declared scope.
-  <code>scripts/build_showcase.py</code> generates this page from those records: change a number
-  in one of them, rebuild, and the page changes.</p>
+  <p>Four studies on a simulated cable-handling task, in MuJoCo, using a UR5e arm and connector
+  models from the Intrinsic Assembly Industrial Benchmark. Every contract was committed to git
+  before the runs it governs started.</p>
+  <p>This page is generated from the study records by <code>scripts/build_showcase.py</code>:
+  change a number in a record, rebuild, and the page changes. Nothing on it is typed by hand.</p>
 </footer>"""
 
-    return (head+'\n<div class="wrap">'+masthead+beat1+"<hr class='rule'>"+beat2
-            + "<hr class='rule'>"+beat3+"<hr class='rule'>"+beat4+watch+takeaway+honesty
-            + scope_html+footer+"</div>\n")
+    return (head+'\n<div class="wrap">'+masthead+problem+"<hr class='rule'>"+options
+            + seeing+"<hr class='rule'>"+chain+"<hr class='rule'>"+breaks+proposal
+            + watch+method+scope_html+footer+"</div>\n")
 
 
 def main() -> int:

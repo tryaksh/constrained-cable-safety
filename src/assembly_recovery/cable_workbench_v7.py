@@ -179,12 +179,70 @@ class WorkbenchSession:
         before = {key: clip[key] for key in deltas}
         for key, value in deltas.items():
             clip[key] = float(value)
+        self.layout["clips"].sort(key=lambda c: c["along_m"])
+        self._rebuild_waypoints()
         self._sync_candidates()
         self.screen_result = None
         change = {"what": "clip", "clip": clip_id, "from": before,
                   "to": {key: clip[key] for key in deltas}}
         self.mutations.append(change)
         return change
+
+    def add_clip(self, clip_id: str, along_m: float, across_m: float = 0.0,
+                 up_m: float = 0.0, bearing_rad: float = 0.0, **shape) -> dict:
+        """Put another clip in the route, with the waypoint that threads it.
+
+        A clip with no waypoint is a clip the cable never goes through, so the
+        install waypoint is added with it, at the clearance the registered route
+        uses above every clip floor. Clips and waypoints are kept in order along
+        the board, because that order is the order the cable is threaded in.
+        """
+        if any(c["id"] == clip_id for c in self.layout["clips"]):
+            raise ValueError(f"{clip_id!r} is already a clip of {self.cell_id}")
+        template = {k: v for k, v in self.layout["clips"][0].items()
+                    if k not in ("id", *MOVABLE)}
+        unknown = sorted(set(shape)-set(template))
+        if unknown:
+            raise ValueError(f"A clip has no {unknown}; its shape fields are "
+                             f"{sorted(template)}")
+        clip = {"id": clip_id, "along_m": float(along_m), "across_m": float(across_m),
+                "up_m": float(up_m), "bearing_rad": float(bearing_rad),
+                **template, **{k: float(v) for k, v in shape.items()}}
+        self.layout["clips"].append(clip)
+        self.layout["clips"].sort(key=lambda c: c["along_m"])
+        self._rebuild_waypoints()
+        self._sync_candidates()
+        self.screen_result = None
+        change = {"what": "clip added", "clip": clip_id,
+                  "at": {key: clip[key] for key in MOVABLE}}
+        self.mutations.append(change)
+        return change
+
+    def remove_clip(self, clip_id: str) -> dict:
+        """Take a clip out of the route, and its waypoint with it."""
+        clips = self.layout["clips"]
+        if len(clips) <= 1:
+            raise ValueError("A route needs at least one clip")
+        clip = next((c for c in clips if c["id"] == clip_id), None)
+        if clip is None:
+            raise ValueError(f"{clip_id!r} is not a clip of {self.cell_id}; this cell has "
+                             f"{[c['id'] for c in clips]}")
+        clips.remove(clip)
+        self._rebuild_waypoints()
+        self._sync_candidates()
+        self.screen_result = None
+        change = {"what": "clip removed", "clip": clip_id,
+                  "was_at": {key: clip[key] for key in MOVABLE}}
+        self.mutations.append(change)
+        return change
+
+    def _rebuild_waypoints(self) -> None:
+        """One install waypoint per clip, at the registered clearance above its floor."""
+        from assembly_recovery.cable_cell_v6 import ROUTE_CLEARANCE_M
+
+        self.layout["route_waypoints_along_across_m"] = [
+            [clip["along_m"], clip["across_m"], clip["up_m"]+ROUTE_CLEARANCE_M]
+            for clip in sorted(self.layout["clips"], key=lambda c: c["along_m"])]
 
     def _sync_candidates(self) -> None:
         """Keep the candidate file this session expands from in step with the layout."""

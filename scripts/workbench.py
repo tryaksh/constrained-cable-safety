@@ -9,6 +9,9 @@ whole action space, and route through the cell once with the block's own worker.
     # what is loaded, and what can be changed
     .deps/cable-venv/Scripts/pythonw.exe scripts/workbench.py
 
+    # a six-clip route: add one past the ridge, then run it
+    .deps/cable-venv/Scripts/pythonw.exe scripts/workbench.py --add-clip c6:along_m=0.21 --run
+
     # what the safety layer permits on the registered cell at 2 mm error
     .deps/cable-venv/Scripts/pythonw.exe scripts/workbench.py --level E4 --allowed
 
@@ -219,6 +222,12 @@ def main() -> int:
     parser.add_argument("--move", action="append", type=parse_move, default=[],
                         metavar="CLIP:FIELD=VALUE",
                         help="Move a clip, for example c3:up_m=0.009. Repeatable.")
+    parser.add_argument("--add-clip", action="append", type=parse_move, default=[],
+                        metavar="CLIP:along_m=...,across_m=...,up_m=...",
+                        help="Add a clip to the route, and the waypoint that threads it. "
+                             "Repeatable.")
+    parser.add_argument("--remove-clip", action="append", default=[], metavar="CLIP",
+                        help="Take a clip out of the route. Repeatable.")
     parser.add_argument("--screen", action="store_true",
                         help="Settle a cable into the cell and say whether it installs.")
     parser.add_argument("--allowed", action="store_true",
@@ -242,6 +251,12 @@ def main() -> int:
 
     session = WorkbenchSession.open(args.root, cell=args.cell, loop_m=args.loop,
                                     error_level=args.level, supervisor=args.supervisor)
+    for clip in args.remove_clip:
+        emit("removed", session.remove_clip(clip))
+    for clip, fields in args.add_clip:
+        if "along_m" not in fields:
+            parser.error(f"--add-clip {clip} needs at least along_m")
+        emit("added", session.add_clip(clip, **fields))
     for clip, fields in args.move:
         emit("moved", session.move_clip(clip, **fields))
 

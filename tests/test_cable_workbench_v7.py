@@ -186,3 +186,47 @@ def _stub_outcome():
                         for name in ("C1_clip", "C2_bend", "C3_anchor")},
         "privilege_guard": {"events": 0}, "mutation_guard": {"forbidden_events": 0},
     }
+
+
+def test_rebuilt_waypoints_match_the_registered_route(session):
+    """The rule the tool threads a new clip with is the rule the registered route used."""
+    def flat(points):
+        return [value for point in points for value in point]
+
+    registered = flat(session.layout["route_waypoints_along_across_m"])
+    session._rebuild_waypoints()
+    assert flat(session.layout["route_waypoints_along_across_m"]) == pytest.approx(registered)
+
+
+def test_adding_a_clip_adds_its_waypoint_and_keeps_the_route_in_order(session):
+    change = session.add_clip("c6", along_m=0.21, across_m=-0.03, up_m=0.002)
+    assert change["what"] == "clip added"
+    ids = [c["id"] for c in session.layout["clips"]]
+    assert ids == ["c1", "c2", "c3", "c4", "c5", "c6"]
+    points = session.layout["route_waypoints_along_across_m"]
+    assert len(points) == 6
+    assert points[-1] == pytest.approx([0.21, -0.03, 0.002+0.0025])
+    # The new clip inherits the shape of the registered ones, not a guess.
+    added = session.layout["clips"][-1]
+    first = session.layout["clips"][0]
+    assert added["half_width_m"] == first["half_width_m"]
+    assert added["lip_gap_m"] == first["lip_gap_m"]
+    assert session.needs_screening is True
+
+
+def test_adding_a_clip_refuses_a_duplicate_or_an_unknown_shape_field(session):
+    with pytest.raises(ValueError, match="already a clip"):
+        session.add_clip("c3", along_m=0.2)
+    with pytest.raises(ValueError, match="shape fields are"):
+        session.add_clip("c7", along_m=0.2, colour=1.0)
+    assert len(session.layout["clips"]) == 5
+
+
+def test_removing_a_clip_removes_its_waypoint(session):
+    change = session.remove_clip("c3")
+    assert change["clip"] == "c3"
+    assert [c["id"] for c in session.layout["clips"]] == ["c1", "c2", "c4", "c5"]
+    assert len(session.layout["route_waypoints_along_across_m"]) == 4
+    assert session.needs_screening is True
+    with pytest.raises(ValueError, match="not a clip"):
+        session.remove_clip("c3")
