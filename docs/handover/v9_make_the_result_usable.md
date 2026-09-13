@@ -104,6 +104,9 @@ Read `README.md`, `ROADMAP.md`, `AGENTS.md`, `docs/REPO_MAP.md` and
 - Every abbreviation explained where it first appears.
 - Every claim linked to the record behind it.
 - No number that a test does not defend, unless it is obviously illustrative.
+- **No trace of how the work was done.** Rule 2 below: no "session", no "a
+  previous session", no addressing an agent, no naming the writing standard, and
+  nothing explained twice. This is the pass where you hunt those down.
 - The **first 150 words of the README stand completely alone** — someone should be
   able to lift them verbatim as a summary of the project without adding anything
   or checking anything.
@@ -124,14 +127,35 @@ would cost. Do not buy any of it.
    explain unfamiliar terms where they first appear, concrete over abstract,
    focused but not cryptic. The current `README.md` is the standard being asked
    for — read it before writing anything.
-2. **Never delete a result.** Failed runs, rejected candidates and losing arms
+2. **Write for the reader, not about the work.** These documents still read in
+   places as though they were produced by and for a working session, and a reader
+   has no idea what a session is: *"Done in this session"*, *"a previous session
+   deleted a helper"*, *"an unmodified session now hands over the whole record"*,
+   *"past session handovers"*, and a repository map that opens by addressing an
+   agent. Delete that frame. State what is true now and what was found; git
+   history already records who changed what and when. Three more, while you are
+   there:
+   - **Do not name the writing standard inside the document.** "Plain English" is
+     an instruction to whoever is writing, not content for whoever is reading.
+   - **Say each thing once, in the document that owns it.** The README owns what
+     the project is, `ROADMAP.md` owns what is open, `docs/REPO_MAP.md` owns where
+     things went, `docs/PEG_INSERTION.md` owns the peg campaign. Every one of them
+     currently re-explains the project from scratch. Cross-link instead.
+   - **Cut the paragraph that restates the paragraph above it.** If a passage
+     survives being deleted, it was not carrying anything.
+
+   Two exemptions, and they are real: `AGENTS.md` and everything under
+   `docs/handover/` are addressed to whoever picks the work up next, so process
+   words belong there. And keep genuine domain vocabulary — do not sweep a word
+   away because it looks like jargon without checking what it means.
+3. **Never delete a result.** Failed runs, rejected candidates and losing arms
    stay with their scope. Stale code, dead scripts and superseded prose are what
    get deleted. If you are unsure which a file is, it is a result.
-3. **Every claim keeps its evidence link.** A number that loses its record is a
+4. **Every claim keeps its evidence link.** A number that loses its record is a
    number you have to delete.
-4. **A peg number is never a cable number.** Both campaigns live in `evidence/`
+5. **A peg number is never a cable number.** Both campaigns live in `evidence/`
    and are told apart by the `campaign` field in `evidence/INDEX.json`.
-5. Run `scripts/index_evidence.py` after adding any record, and the full test
+6. Run `scripts/index_evidence.py` after adding any record, and the full test
    suite before every commit.
 
 ## Traps already paid for
@@ -156,8 +180,11 @@ would cost. Do not buy any of it.
 3. Every headline number in the maintained documents is defended by a test against
    the record it came from.
 4. Each finding carries a figure that was already committed.
-5. Nothing is uncommitted and nothing is unpushed.
-6. No website material of any kind was produced.
+5. **No maintained document mentions a session, addresses an agent, names the
+   writing standard, or explains the project a second time.** `AGENTS.md` and
+   `docs/handover/` are exempt.
+6. Nothing is uncommitted and nothing is unpushed.
+7. No website material of any kind was produced.
 
 Finish by telling the owner, in plain English: what a newcomer can now do in five
 minutes that they could not before, what you changed, what you found wrong, and
