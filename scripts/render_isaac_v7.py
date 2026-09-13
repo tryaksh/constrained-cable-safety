@@ -57,6 +57,37 @@ PROBE = {
 }
 
 
+def compose(record: dict, args) -> dict:
+    """Wrap one render in the scope it has to carry, and save it.
+
+    Written BEFORE the simulation app is closed. Isaac's shutdown can take the
+    process with it, and the first full render here finished, exited zero and
+    left no record at all because this ran after ``app.close()``.
+    """
+    record["scope"] = (
+        "A RE-RENDER of positions MuJoCo computed and the routing block scored. Isaac Sim is "
+        "used as a camera. No number in this repository was measured in it, checked against it "
+        "or validated by it, and this changes nothing about any published result.")
+    path = ROOT / args.out
+    existing = json.loads(path.read_text(encoding="utf-8")) if path.is_file() else {}
+    existing.setdefault("schema", 1)
+    existing["id"] = "showcase_isaac_v7"
+    existing["created_on"] = "2026-09-12"
+    existing["what_this_is"] = (
+        "One route from the v6 routing block, re-rendered with Isaac Sim's RTX renderer from "
+        "the USD stage scripts/export_usd_v7.py wrote. MuJoCo's own renderer exists to check "
+        "that a scene is built correctly; this one exists to look at.")
+    existing["what_this_is_not"] = [
+        "Not a simulation. The states are replayed, not stepped: Isaac Sim computes nothing here.",
+        "Not a validation anywhere but MuJoCo, and not an Isaac Sim project.",
+    ]
+    existing.setdefault("views", {})[args.view] = record
+    existing["scope"] = record["scope"]
+    path.parent.mkdir(parents=True, exist_ok=True)
+    path.write_text(json.dumps(existing, indent=2), encoding="utf-8")
+    return record
+
+
 def build(args) -> dict:
     from isaacsim import SimulationApp
 
@@ -125,9 +156,9 @@ def build(args) -> dict:
                             "images": [p.relative_to(ROOT).as_posix()
                                        for p in sorted(out_dir.rglob("rgb_*.png"))]})
         app.close()
-        return {"probe": records, "stage": args.stage,
-                "wall_seconds": round(time.monotonic()-started, 1),
-                "frames_written": sum(len(r["images"]) for r in records)}
+        return {"frames_written": sum(len(r["images"]) for r in records),
+                "probe": records, "stage": args.stage,
+                "wall_seconds": round(time.monotonic()-started, 1)}
 
     spec = dict(VIEWS[args.view])
     if args.eye:
@@ -194,6 +225,7 @@ def build(args) -> dict:
         "output_dir": out_dir.relative_to(ROOT).as_posix(),
         "wall_seconds": round(time.monotonic()-started, 1),
     }
+    compose(record, args)
     app.close()
     return record
 
@@ -223,21 +255,6 @@ def main() -> int:
     args = parser.parse_args()
 
     record = build(args)
-    if args.probe:
-        print(json.dumps(record, indent=1), flush=True)
-        return 0 if record["frames_written"] else 1
-    record["scope"] = (
-        "A RE-RENDER of positions MuJoCo computed and the routing block scored. Isaac Sim is "
-        "used as a camera. No number in this repository was measured in it, checked against it "
-        "or validated by it, and this changes nothing about any published result.")
-    path = ROOT / args.out
-    existing = json.loads(path.read_text(encoding="utf-8")) if path.is_file() else {}
-    existing.setdefault("schema", 1)
-    existing["id"] = "showcase_isaac_v7"
-    existing["created_on"] = "2026-09-12"
-    existing.setdefault("views", {})[args.view] = record
-    existing["scope"] = record["scope"]
-    path.write_text(json.dumps(existing, indent=2), encoding="utf-8")
     print(json.dumps(record, indent=1), flush=True)
     return 0 if record["frames_written"] > 0 else 1
 

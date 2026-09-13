@@ -91,6 +91,7 @@ the task definition. Do not lengthen it and do not change the predicate.
 | **The replay clips** | scripts/render_routing_video_v6.py; scripts/verify_showcase_video.py |
 | **The public page** | scripts/build_showcase.py; artifacts/showcase/page.json |
 | **The USD export** | scripts/export_usd_v7.py |
+| **The Isaac Sim re-render** | scripts/render_isaac_v7.py; scripts/encode_isaac_v7.py |
 | v7 stage records and decision log | artifacts/showcase/ |
 | v3 boundary study, closed inconclusive | configs/cable_repair_boundary_v3.json; evidence/cable_repair_boundary_v3.json |
 | v2 task and gate block | configs/cable_recovery_task_v2.json; evidence/cable_recovery_block_v2.json |
@@ -99,7 +100,7 @@ the task definition. Do not lengthen it and do not change the predicate.
 ## Commands
 
 ```powershell
-.venv/Scripts/python.exe -m pytest                    # 263 tests, CPU-only, ~2 s
+.venv/Scripts/python.exe -m pytest                    # 267 tests, CPU-only, ~2 s
 .venv/Scripts/python.exe -m ruff check src scripts tests
 .venv/Scripts/python.exe scripts/index_evidence.py    # after adding a record
 ```
@@ -121,6 +122,8 @@ their verification record.
 .venv/Scripts/python.exe scripts/build_showcase.py --published-at <artifact url>
 .deps/cable-venv/Scripts/pythonw.exe scripts/workbench.py --self-check  # writes artifacts/showcase/tool.json
 .deps/usd-venv/Scripts/python.exe scripts/export_usd_v7.py              # writes artifacts/showcase/usd.json
+C:/isaac-sim/python.bat scripts/render_isaac_v7.py --view wide --frames 200 --width 1920 --height 1080
+.deps/cable-venv/Scripts/pythonw.exe scripts/encode_isaac_v7.py --scale 1.0 --quality 8
 ```
 
 The page is published with the Artifact tool, with `index.html` plus `cell.png`
@@ -162,19 +165,26 @@ sharded on whole contexts and the fitter reads every shard together.
   `--python .deps/cable-venv/Scripts/pythonw.exe` to any launcher. Never copy or
   rename the blocked binary. App Control also blocks `pytest.exe`; use
   `python -m pytest`.
-- **Three interpreters.** Torch lives in `.venv` and MuJoCo, SciPy and Matplotlib
+- **Four interpreters.** Torch lives in `.venv` and MuJoCo, SciPy and Matplotlib
   in `.deps/cable-venv`. Fitting runs in the former, physics and figures in the
   latter. `TORCHDYNAMO_DISABLE=1` is the verified workaround for the optional
   compiler import failure. `.deps/usd-venv` is a third, holding `usd-core` and
   `pillow` for the USD export **and nothing else** — the cable environment's
   exact package set is recorded in every run manifest and the provenance depends
-  on it not drifting.
+  on it not drifting. Isaac Sim 5.1 at `C:/isaac-sim` brings its own interpreter
+  (`python.bat`) and is used for rendering only; nothing measured runs in it.
 - **The offscreen framebuffer is 1280x960.** A render wider or taller than that
   raises from `mujoco.Renderer`. The 1920-wide replay clip is three separate
   renders composited, not one.
 - **There is no display.** Anything that opens a window cannot be run here. Build
   it so that everything except the window is headless and tested, render to a
   file and inspect the file, and say in the handover what was never executed.
+- **Isaac Sim renders need the timeline to drive the stage.** Setting the stage
+  time by hand with the timeline paused looks correct and silently drops the
+  scene out of frame partway through. Let `rep.orchestrator.step` advance the
+  timeline. Sphere lights render as visible balls; use distant lights. Geom names
+  containing dots, slashes or minus signs are not legal USD paths, so the export
+  runs off a sanitised copy of the scene written beside the original.
 - **Hash text provenance with `cable_study_v3.content_sha256`, never raw bytes.**
   A CRLF working tree and the LF blob git stores hash differently, which is how the
   v2 block came to record a config hash no committed file reproduces.
