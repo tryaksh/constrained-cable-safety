@@ -25,6 +25,13 @@ results that are either finished or honestly marked unfinished, and a README
 whose first few sentences can be read by someone who has never seen the project.
 Nothing that goes on the portfolio page is built here.
 
+**EXECUTED 2026-09-13.** Both repositories now have one branch each, every
+retired branch is reachable from a tag or from `main`, the peg-insertion
+campaign lives in `constrained-cable-safety`, and both READMEs were rewritten.
+No study was run, no block refitted, and no page or artifact produced. The
+repository maps are `docs/REPO_MAP.md` in each repository and they record what
+moved and why. **This file is now history. Do not run it again.**
+
 Prepared 2026-09-13 from a direct reading of both remotes. Every branch fact
 below was measured with `git ls-remote`, `git merge-base` and `git rev-list`, not
 assumed.
