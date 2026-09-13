@@ -1,0 +1,147 @@
+{
+  "schema": 1,
+  "status": "verified_coordinate_naming_limitation",
+  "research_result": false,
+  "recorded_at_utc": "2026-09-10T16:11:05.175725+00:00",
+  "question": "Does the force-sensor incoming joint frame establish a doubled actor rotation or explain native wrist-norm timestep sensitivity?",
+  "asset": {
+    "resolved_url": "https://omniverse-content-production.s3-us-west-2.amazonaws.com/Assets/Isaac/5.1/Isaac/IsaacLab/Factory/franka_mimic.usd",
+    "cached_path": "C:/Users/tryak/AppData/Local/ov/cache/client/https/d7cd22de37fe637cf5695031585f35d47b31bae796f0fd7abe7048635811d689.usd",
+    "bytes": 7075031,
+    "cached_sha256": "86d0017a093669b222a8c640bf581cc3e3715035aa7c596600f478da011f6c8e",
+    "read_only_url_download_bytes": 7075031,
+    "read_only_url_download_sha256": "86d0017a093669b222a8c640bf581cc3e3715035aa7c596600f478da011f6c8e",
+    "cached_and_resolved_url_bytes_match": true
+  },
+  "incoming_sensor_joint": {
+    "usd_path": "/panda/panda_link7/panda_hand_joint",
+    "type": "PhysicsFixedJoint",
+    "body0": "/panda/panda_link7",
+    "body1": "/panda/force_sensor",
+    "localPos0_m": [
+      0,
+      0,
+      0.107
+    ],
+    "localPos1_m": [
+      0,
+      0,
+      0
+    ],
+    "localRot0_wxyz": [
+      0.9238795,
+      0,
+      0,
+      -0.38268346
+    ],
+    "localRot1_wxyz": [
+      1,
+      0,
+      0,
+      0
+    ]
+  },
+  "outgoing_sensor_joint": {
+    "usd_path": "/panda/force_sensor/force_sensor_joint",
+    "type": "PhysicsFixedJoint",
+    "body0": "/panda/force_sensor",
+    "body1": "/panda/panda_hand",
+    "localPos0_m": [
+      0,
+      0,
+      0
+    ],
+    "localPos1_m": [
+      0,
+      0,
+      0
+    ],
+    "localRot0_wxyz": [
+      1,
+      0,
+      0,
+      0
+    ],
+    "localRot1_wxyz": [
+      1,
+      0,
+      0,
+      0
+    ]
+  },
+  "source_sha256": {
+    ".deps/IsaacLab/source/isaaclab_tasks/isaaclab_tasks/direct/forge/forge_env.py": "492d52568719a35cd434fe4269b2cd5cb9b69c6750bc049f255130e47d38fe1c",
+    ".deps/IsaacLab/source/isaaclab_tasks/isaaclab_tasks/direct/forge/forge_utils.py": "0536a62624764d73a3a519ab4b52a784bc56d50b9b5d90747cba911d2b9f14b9",
+    ".deps/IsaacLab/source/isaaclab_tasks/isaaclab_tasks/direct/factory/factory_env_cfg.py": "ddab7d5b3095b777a5c221c42fc400b4ca2bebea394790e80582349a457c1403",
+    "C:/isaac-sim/extscache/omni.physics.tensors-107.3.26+107.3.3.wx64.r.cp311.u353/omni/physics/tensors/impl/api.py": "34eb58535fe8df7cad2c20fbadf4ecbf22055481194a8a91dd8e737fefab04f7",
+    "src/assembly_recovery/contact_impact_env_v1.py": "1ccc992b5021716a79c73c5e03d4f4422441c8523fb9fd9dbf74d4775134f341",
+    "src/assembly_recovery/training_env.py": "d404c10c4379b474384ac52a44ec2c276de13d29bf5aef46497ae9c3e08fade9"
+  },
+  "source_findings": {
+    "api": "Installed ArticulationView.get_link_incoming_joint_force at api.py:2376 documents the total6D incoming-joint wrench in the child joint frame. Identity localRot1 means this frame coincides with force_sensor body frame.",
+    "forge": "ForgeEnv._compute_intermediate_values at forge_env.py:95 stores this as force_sensor_world. Both source and target rotations passed to change_FT_frame are identity, so force direction is unchanged; only the unused torque expression includes an origin shift.",
+    "actor": "ForgeEnv._get_observations exposes noisy_force in ft_force. The policy receives approximately the tool/EE-frame force, not a doubly rotated vector. The original FORGEpaper IV-A also describes EE-frame force observations.",
+    "abort": "PegTrainingEnv._sample_jobs computes the Euclidean norm of raw first3 components. Rotating an otherwise identical force vector cannot change that norm or explain a different20N crossing."
+  },
+  "captured_orientation": {
+    "trajectory_path": "artifacts/assembly/contact_impact_v1_r01/120/validation/trajectory.pt",
+    "trajectory_sha256": "0114f80d05343b12d7f86ad41e390e0248dc95466c05b41cffa87453328a9925",
+    "scope": "All480 native samples and28 cases in the already-charged120Hz four-second prefix, including explicitly absorbing holds. Both quaternion streams normalized in float64 before angle calculations.",
+    "sensor_body_world_rotation_from_identity_deg_min_median_max": [
+      177.67812968445935,
+      179.57281872461968,
+      179.99999693832547
+    ],
+    "sensor_body_to_tool_orientation_difference_deg_min_median_max": [
+      0.0,
+      0.0,
+      8.706816964856284e-06
+    ],
+    "first_native_first_four_sensor_body_world_quaternions_wxyz": [
+      [
+        -1.2116375401526924e-05,
+        0.9934167593846102,
+        0.11455624241429208,
+        9.67000061161142e-05
+      ],
+      [
+        7.054069838480139e-05,
+        0.9609746497367342,
+        -0.2766364136548773,
+        0.00011057820081160207
+      ],
+      [
+        -8.843294031887841e-07,
+        0.9995665201836227,
+        0.0294408898644251,
+        7.570476924438116e-05
+      ],
+      [
+        0.00012405850768479454,
+        0.9619697626867214,
+        0.2731558892927783,
+        0.0001429356880847208
+      ]
+    ]
+  },
+  "literature": {
+    "url": "https://arxiv.org/html/2408.04587v2",
+    "section": "IV-A Robot System",
+    "relevant_facts": "FORGEpaper describes EE-frame force observations, policy targets at15Hz and real robot impedance control at1000Hz. This does not establish that the current simulator has calibrated hardware dynamics."
+  },
+  "method": "CPU-only USD0.24.5 Sdf layer inspection using installed bindings; cached asset/URL byte-hash match; CPU Torch reading existing trajectory. No AppLauncher, simulator step, GPU job, controller change or actor-interface correction.",
+  "decision": {
+    "double_rotation_established": false,
+    "world_coordinate_name_is_misleading": true,
+    "invalid_actor_observation_contract_established": false,
+    "explains_raw_norm_abort_sensitivity": false,
+    "actor_interface_change_recommended": false
+  },
+  "scope_and_limitations": [
+    "The declared raw-wrist variable name is inaccurate; the policy force vector remains approximately EE-frame and no actor rotation bug has been established.",
+    "The asset hash was checked during this CPU audit against the existing cache and resolved URL; the simulator's original manifest did not hash USD asset bytes before launch.",
+    "A force-coordinate naming limitation cannot explain rotation-invariant raw-norm abort changes. Dynamic joint reactions and integration still need investigation.",
+    "This audit checks rotation only. It does not validate the unused torque-origin transform, force calibration, incoming-joint reaction equivalence to contact-only wrench, or hardware transfer.",
+    "The earlier unnormalized-tool comparison suggested up to0.0587degrees; normalizing both captured quaternion streams reduces the maximum to8.71e-6degrees. This evidence uses the corrected normalized calculation."
+  ]
+}

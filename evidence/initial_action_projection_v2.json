@@ -1,0 +1,118 @@
+{
+  "schema": 1,
+  "status": "verified",
+  "checks": {
+    "diagnostic_processes_completed": true,
+    "same_rng_checkpoint": true,
+    "same_physical_state_and_noise": true,
+    "exact_legal_projection": true,
+    "all_1024_corrected_initializations_valid": true,
+    "reproduced_same_failed_case": true,
+    "failed_pilot_preserved_as_incomplete": true,
+    "partial_cohort_1_partial_and_finite": true,
+    "partial_cohort_2_partial_and_finite": true,
+    "corrected_pair_exact": true,
+    "training_path_reference_r01_physical_paths_unchanged": true,
+    "training_path_tensor_r01_physical_paths_unchanged": true,
+    "corrected_ppo_contract": true,
+    "corrected_actor_audit": true
+  },
+  "research_result": false,
+  "failed_pilot": {
+    "run_id": "uniform_pilot_170_v1",
+    "manifest_sha256": "01e02d6a5c15e4fa52e8d9ccb1023009ffeb3360dd80ce627200bb402994ed5a",
+    "status": "artifact_check_failed",
+    "error": "RuntimeError: A sampled pilot initialization is invalid; retain the failure and stop training",
+    "cost": {
+      "rollout_control_transitions": 921600,
+      "active_control_transitions": 269257,
+      "absorbing_control_transitions": 652343,
+      "rollout_physics_env_steps": 7372800,
+      "active_physics_env_steps": 2147481,
+      "initialization_physics_env_steps": 205824,
+      "charged_control_equivalent_transitions": 947328.0,
+      "scope": "All rollout slots, including holds, plus initialization physics divided by decimation. Probes/mining charged by their own manifests."
+    },
+    "declared_charged_target": 2346880.0,
+    "requested_jobs": 5120,
+    "completed_training_jobs": 2048,
+    "invalid_initializations": 1,
+    "valid_but_canceled_with_failed_cohort": 1023,
+    "later_unattempted_jobs": 2048,
+    "training_completions_not_evaluation": 456,
+    "witnessed_training_recoveries": 0,
+    "partial_checkpoints": [
+      {
+        "path": "artifacts/assembly/uniform_pilot_170_v1/pilot/partial_cohort_1.pt",
+        "sha256": "bbf93d5796e7ad48d1a26d97d89af858fc7bfb5ecb45b65dfaf73c5e6b632a20",
+        "status": "partial",
+        "cost": {
+          "rollout_control_transitions": 460800,
+          "active_control_transitions": 142338,
+          "absorbing_control_transitions": 318462,
+          "rollout_physics_env_steps": 3686400,
+          "active_physics_env_steps": 1135444,
+          "initialization_physics_env_steps": 68608,
+          "charged_control_equivalent_transitions": 469376.0,
+          "scope": "All rollout slots, including holds, plus initialization physics divided by decimation. Probes/mining charged by their own manifests."
+        },
+        "finite": true
+      },
+      {
+        "path": "artifacts/assembly/uniform_pilot_170_v1/pilot/partial_cohort_2.pt",
+        "sha256": "fc937488987c828434dcff7c9ff7c6133988ec61357d05970a83bdd61d80e30c",
+        "status": "partial",
+        "cost": {
+          "rollout_control_transitions": 921600,
+          "active_control_transitions": 269257,
+          "absorbing_control_transitions": 652343,
+          "rollout_physics_env_steps": 7372800,
+          "active_physics_env_steps": 2147481,
+          "initialization_physics_env_steps": 137216,
+          "charged_control_equivalent_transitions": 938752.0,
+          "scope": "All rollout slots, including holds, plus initialization physics divided by decimation. Probes/mining charged by their own manifests."
+        },
+        "finite": true
+      }
+    ],
+    "evaluated": false
+  },
+  "diagnosis": {
+    "case_id": "train-170-2-516",
+    "fresh_diagnostic_unbounded_z_action": 1.011110544204712,
+    "projected_z_action": 1.0,
+    "z_target_estimate_noise_m": -0.0034696015063673258,
+    "projected_slots": 1,
+    "explanation": "An unbounded Gaussian initial target-height error made the no-motion EMA history exceed the legal action box. Project finite initial action/previous-action history into that box after physical initialization. No pose, noise, geometry, force or reward change."
+  },
+  "runs": [
+    {
+      "run_id": "initialization_failure_diagnostic_v1",
+      "manifest_sha256": "23e173bd70760e79f7c47ecf91764e8a68e13b15c3f656aba6edfdd19f652afa"
+    },
+    {
+      "run_id": "initialization_projection_diagnostic_v2",
+      "manifest_sha256": "d421a3aa75df36a871c8716cfdd230251ba480e07a380cc3bae59531d6a939b5"
+    },
+    {
+      "run_id": "training_path_reference_r02",
+      "manifest_sha256": "a5948efd780e7934cd2092bc2b6d6e210b31f56cf4cb8ea04cafc89f89671457"
+    },
+    {
+      "run_id": "training_path_tensor_r02",
+      "manifest_sha256": "6b8c1ebcdc03d826a794ba88c7656f53fa4b5f091fba40b1dccecb835b8f87c0"
+    },
+    {
+      "run_id": "tensor_contract_projection_32_r01",
+      "manifest_sha256": "4f782e6301772e1a700af7cc444281194f08fa5c3e8db2d37c8274c13eb1648a"
+    }
+  ],
+  "scope_and_limitations": [
+    "The failed pilot remains failed; its partial weights are not used to initialize the replacement pilot or called evaluated policies.",
+    "The RNG diagnostic uses a fresh simulator, not an exact restore of the failed pilot's physical trajectory. The before/after diagnostic pair itself has bitwise equal physical states/noise.",
+    "Projection is identity for already legal initial actions. The rerun reference/tensor paths verify the earlier representative paired physical paths are unchanged.",
+    "The correction applies to the shared project fault adapter and every future study arm. Upstream source remains untouched.",
+    "NaN/Inf history remains invalid and is rejected; the correction does not hide invalid physical/grasp/contact initialization.",
+    "Protocol v1 and its configuration remain preserved. A fresh v2 pilot must reach its own predeclared budget before evaluation."
+  ]
+}

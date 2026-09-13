@@ -1,0 +1,19 @@
+{
+  "schema": 1,
+  "status": "passed_after_prelaunch_import_correction",
+  "research_result": false,
+  "recorded_at_utc": "2026-09-10T08:14:38.937187+00:00",
+  "cpu_tests_passed": 206,
+  "ruff_passed": true,
+  "simulator_transitions": 0,
+  "preserved_failure": {
+    "command": ".venv/Scripts/python.exe -m pytest",
+    "stage": "collection",
+    "error": "ModuleNotFoundError: verify_training_contract, inherited through verify_failure_prefix_v2_export_v1 -> verify_uniform_pilot",
+    "resolution": "New verifier owns its finite_tree helper, eliminating this unused historical import chain. Historical sources unchanged."
+  },
+  "additional_prelaunch_review": "Corrected new CPU action replay to retain finite absorbing requests in EMA, matching frozen prepare_actions; dedicated negative-control test passes.",
+  "scope_and_limitations": [
+    "CPU verification and source inspection only. Simulator compatibility and physics validation are pending."
+  ]
+}

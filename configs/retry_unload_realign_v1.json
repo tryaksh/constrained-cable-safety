@@ -1,0 +1,7 @@
+{
+  "realignment_min_s": 2.0,
+  "realignment_max_s": 4.0,
+  "realignment_tolerance_m": 0.001,
+  "insertion_load_n": 4.0,
+  "initial_pressure_offset_m": 0.006
+}

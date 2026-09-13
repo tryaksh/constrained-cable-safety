@@ -1,0 +1,175 @@
+{
+  "schema": 1,
+  "status": "failed_incomplete",
+  "research_result": false,
+  "recorded_at_utc": "2026-09-09T16:15:31.625354+00:00",
+  "run_id": "uniform_unclipped_170_v4_r01",
+  "original_manifest_sha256": "1fb523522a9c17aa6c029fc729047f56d7ac24acb296f2e6cd110fa4808c0b0f",
+  "original_manifest_status": "starting",
+  "source_commit_at_start": "a9d1c169c44cf728c6041a7c026dd2a0133de7d0",
+  "source_snapshot_verified": true,
+  "observed_failure": "Observation host closed stdout; its session subsequently disappeared. Authoritative OS process query and nvidia-smi confirmed no training or supervisor process remained. No final report or budget checkpoint exists. Exact termination cause is not established.",
+  "completed_cohorts": 7,
+  "requested_cohorts": 22,
+  "durable_cost": {
+    "rollout_control_transitions": 3225600,
+    "active_control_transitions": 725507,
+    "absorbing_control_transitions": 2500093,
+    "rollout_physics_env_steps": 25804800,
+    "active_physics_env_steps": 5779473,
+    "initialization_physics_env_steps": 480256,
+    "charged_control_equivalent_transitions": 3285632.0,
+    "scope": "All rollout slots, including holds, plus initialization physics divided by decimation. Probes/mining charged by their own manifests."
+  },
+  "last_logged_control": {
+    "cohort_zero_based": 7,
+    "end_control_step": 256
+  },
+  "charged_transitions_lower_bound": 3556352,
+  "charged_transitions_upper_bound": 3755008,
+  "checkpoints": [
+    {
+      "path": "artifacts/assembly/uniform_unclipped_170_v4_r01/pilot/partial_cohort_1.pt",
+      "sha256": "e2032b7786c8a5d7531878a06a2b925f02aee3ba52a167b85af5e549fdeae04f",
+      "completed_cohorts": 1,
+      "cost": {
+        "rollout_control_transitions": 460800,
+        "active_control_transitions": 145237,
+        "absorbing_control_transitions": 315563,
+        "rollout_physics_env_steps": 3686400,
+        "active_physics_env_steps": 1158606,
+        "initialization_physics_env_steps": 68608,
+        "charged_control_equivalent_transitions": 469376.0,
+        "scope": "All rollout slots, including holds, plus initialization physics divided by decimation. Probes/mining charged by their own manifests."
+      },
+      "finite_model_and_optimizer": true
+    },
+    {
+      "path": "artifacts/assembly/uniform_unclipped_170_v4_r01/pilot/partial_cohort_2.pt",
+      "sha256": "2b358534c3c0f0a255d372a839ff50d9401293df5df0850183561db318154525",
+      "completed_cohorts": 2,
+      "cost": {
+        "rollout_control_transitions": 921600,
+        "active_control_transitions": 260063,
+        "absorbing_control_transitions": 661537,
+        "rollout_physics_env_steps": 7372800,
+        "active_physics_env_steps": 2073738,
+        "initialization_physics_env_steps": 137216,
+        "charged_control_equivalent_transitions": 938752.0,
+        "scope": "All rollout slots, including holds, plus initialization physics divided by decimation. Probes/mining charged by their own manifests."
+      },
+      "finite_model_and_optimizer": true
+    },
+    {
+      "path": "artifacts/assembly/uniform_unclipped_170_v4_r01/pilot/partial_cohort_3.pt",
+      "sha256": "306e64c354c72f483faebc9248a6faba61fd09d6a09ae731a2e43cfd240d556c",
+      "completed_cohorts": 3,
+      "cost": {
+        "rollout_control_transitions": 1382400,
+        "active_control_transitions": 367392,
+        "absorbing_control_transitions": 1015008,
+        "rollout_physics_env_steps": 11059200,
+        "active_physics_env_steps": 2928898,
+        "initialization_physics_env_steps": 205824,
+        "charged_control_equivalent_transitions": 1408128.0,
+        "scope": "All rollout slots, including holds, plus initialization physics divided by decimation. Probes/mining charged by their own manifests."
+      },
+      "finite_model_and_optimizer": true
+    },
+    {
+      "path": "artifacts/assembly/uniform_unclipped_170_v4_r01/pilot/partial_cohort_4.pt",
+      "sha256": "541f730e0cac860f4a8edabc518a5d4f23b7000a3765d38a94efbddc0d85faa9",
+      "completed_cohorts": 4,
+      "cost": {
+        "rollout_control_transitions": 1843200,
+        "active_control_transitions": 462647,
+        "absorbing_control_transitions": 1380553,
+        "rollout_physics_env_steps": 14745600,
+        "active_physics_env_steps": 3687423,
+        "initialization_physics_env_steps": 274432,
+        "charged_control_equivalent_transitions": 1877504.0,
+        "scope": "All rollout slots, including holds, plus initialization physics divided by decimation. Probes/mining charged by their own manifests."
+      },
+      "finite_model_and_optimizer": true
+    },
+    {
+      "path": "artifacts/assembly/uniform_unclipped_170_v4_r01/pilot/partial_cohort_5.pt",
+      "sha256": "1fb6117b0704cbecffb2eb578373fc7e76851b94667a5365b6a22dfa22c2c655",
+      "completed_cohorts": 5,
+      "cost": {
+        "rollout_control_transitions": 2304000,
+        "active_control_transitions": 554366,
+        "absorbing_control_transitions": 1749634,
+        "rollout_physics_env_steps": 18432000,
+        "active_physics_env_steps": 4417652,
+        "initialization_physics_env_steps": 343040,
+        "charged_control_equivalent_transitions": 2346880.0,
+        "scope": "All rollout slots, including holds, plus initialization physics divided by decimation. Probes/mining charged by their own manifests."
+      },
+      "finite_model_and_optimizer": true
+    },
+    {
+      "path": "artifacts/assembly/uniform_unclipped_170_v4_r01/pilot/partial_cohort_6.pt",
+      "sha256": "0d316cdbc418927b889ffc389ee19e7114e458c54d1ed0a24498b50bf0617256",
+      "completed_cohorts": 6,
+      "cost": {
+        "rollout_control_transitions": 2764800,
+        "active_control_transitions": 640832,
+        "absorbing_control_transitions": 2123968,
+        "rollout_physics_env_steps": 22118400,
+        "active_physics_env_steps": 5105792,
+        "initialization_physics_env_steps": 411648,
+        "charged_control_equivalent_transitions": 2816256.0,
+        "scope": "All rollout slots, including holds, plus initialization physics divided by decimation. Probes/mining charged by their own manifests."
+      },
+      "finite_model_and_optimizer": true
+    },
+    {
+      "path": "artifacts/assembly/uniform_unclipped_170_v4_r01/pilot/partial_cohort_7.pt",
+      "sha256": "e9cbb6d8f88b81b50cccf08bcf80c4a5d531e496444488c199b01f4238702d01",
+      "completed_cohorts": 7,
+      "cost": {
+        "rollout_control_transitions": 3225600,
+        "active_control_transitions": 725507,
+        "absorbing_control_transitions": 2500093,
+        "rollout_physics_env_steps": 25804800,
+        "active_physics_env_steps": 5779473,
+        "initialization_physics_env_steps": 480256,
+        "charged_control_equivalent_transitions": 3285632.0,
+        "scope": "All rollout slots, including holds, plus initialization physics divided by decimation. Probes/mining charged by their own manifests."
+      },
+      "finite_model_and_optimizer": true
+    }
+  ],
+  "all_completed_initializations_valid": true,
+  "artifact_sha256": {
+    "artifacts/assembly/uniform_unclipped_170_v4_r01/initial_path_comparison.json": "015e10bd9e8d764523b99ab48692c7a5028482eb13f3214a230717f81a909100",
+    "artifacts/assembly/uniform_unclipped_170_v4_r01/inspection_cohort_01.json": "41a5ea6d8c30e4491650b206f1bc0d90b6c099cc2b389c46bb13fa1a55ad4d90",
+    "artifacts/assembly/uniform_unclipped_170_v4_r01/inspection_cohort_05.json": "8cf19a094f5edd325a1f0833aa6c3bed92d2c7cb4b223e102cbdcc1432401948",
+    "artifacts/assembly/uniform_unclipped_170_v4_r01/manifest.json": "1fb523522a9c17aa6c029fc729047f56d7ac24acb296f2e6cd110fa4808c0b0f",
+    "artifacts/assembly/uniform_unclipped_170_v4_r01/process.log": "81062dd3646224084fb20badb7ba840a5b0b49585b8d6e6ddc4b3d23b5f4de21",
+    "artifacts/assembly/uniform_unclipped_170_v4_r01/source.zip": "c78230df31662c68e4a1bcfd9247951d8b2b2e3b0ee59e74de542d405dac4ab6",
+    "artifacts/assembly/uniform_unclipped_170_v4_r01/pilot/diagnostics_0.pt": "7b186304eaecfa5cb2571688d5cf0e55529778bac2e189642ee18dedbf2022ec",
+    "artifacts/assembly/uniform_unclipped_170_v4_r01/pilot/diagnostics_1.pt": "84f9b9eb613cad437ade20c134ceba15dc71897e3c411b5381cbe9926ccd51b6",
+    "artifacts/assembly/uniform_unclipped_170_v4_r01/pilot/diagnostics_2.pt": "a2df8a32ffbd336efcd1d69e2c7231c570b88f278c0f3a298fbc34d230d6c3b5",
+    "artifacts/assembly/uniform_unclipped_170_v4_r01/pilot/diagnostics_3.pt": "c0913efaf38ff5b03db50c4e976ae86e2403ce22114c55560c1da1a824198608",
+    "artifacts/assembly/uniform_unclipped_170_v4_r01/pilot/diagnostics_4.pt": "76ba628edf19a510a41f58780ee48fc04df70ca735eb3570f10d02561cfd7e99",
+    "artifacts/assembly/uniform_unclipped_170_v4_r01/pilot/diagnostics_5.pt": "43eda85511457d760406f087e9b6eac89e4b3222449fd52e8d72af5865c9aa77",
+    "artifacts/assembly/uniform_unclipped_170_v4_r01/pilot/diagnostics_6.pt": "bd31ab0faf09d1bd410a2f51e5d221d6bfd4146e64d8f0014eb9bf4020d5ddd5",
+    "artifacts/assembly/uniform_unclipped_170_v4_r01/pilot/environment.yaml": "a32695e98c162bdf98bcfb3046cac5c616ae9ddc6fd4bd645df9c3be96ffd963",
+    "artifacts/assembly/uniform_unclipped_170_v4_r01/pilot/partial_cohort_1.pt": "e2032b7786c8a5d7531878a06a2b925f02aee3ba52a167b85af5e549fdeae04f",
+    "artifacts/assembly/uniform_unclipped_170_v4_r01/pilot/partial_cohort_2.pt": "2b358534c3c0f0a255d372a839ff50d9401293df5df0850183561db318154525",
+    "artifacts/assembly/uniform_unclipped_170_v4_r01/pilot/partial_cohort_3.pt": "306e64c354c72f483faebc9248a6faba61fd09d6a09ae731a2e43cfd240d556c",
+    "artifacts/assembly/uniform_unclipped_170_v4_r01/pilot/partial_cohort_4.pt": "541f730e0cac860f4a8edabc518a5d4f23b7000a3765d38a94efbddc0d85faa9",
+    "artifacts/assembly/uniform_unclipped_170_v4_r01/pilot/partial_cohort_5.pt": "1fb6117b0704cbecffb2eb578373fc7e76851b94667a5365b6a22dfa22c2c655",
+    "artifacts/assembly/uniform_unclipped_170_v4_r01/pilot/partial_cohort_6.pt": "0d316cdbc418927b889ffc389ee19e7114e458c54d1ed0a24498b50bf0617256",
+    "artifacts/assembly/uniform_unclipped_170_v4_r01/pilot/partial_cohort_7.pt": "e9cbb6d8f88b81b50cccf08bcf80c4a5d531e496444488c199b01f4238702d01",
+    "artifacts/assembly/uniform_unclipped_170_v4_r01/pilot/progress.json": "30390e9e08d4981f91657a8951d608375606a30b11c36e124f56c9a27df2b236"
+  },
+  "scope_and_limitations": [
+    "Seven partial checkpoints are training artifacts, not completed-budget competence evidence.",
+    "Runtime resource samples were lost with the supervisor; the prior observed sample was 5433 MiB GPU and about 10.7 GiB available RAM. Do not infer a resource failure.",
+    "No original source, artifact or starting manifest was overwritten.",
+    "Fresh repeat uses the same frozen v4 behavior and exact budget. Failed-run cost is separate development cost, and no partial weights are reused."
+  ]
+}

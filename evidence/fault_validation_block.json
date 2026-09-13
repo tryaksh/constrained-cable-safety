@@ -1,0 +1,362 @@
+{
+  "schema": 1,
+  "created_at_utc": "2026-09-08T04:52:42.575086+00:00",
+  "status": "verified_development_block",
+  "research_result": false,
+  "run_count": 10,
+  "requested_jobs": 184,
+  "rollout_control_transitions": 82800,
+  "cost_scope": "Includes both targeted variants, both arms and post-terminal holds. Excludes reset IK/grasp physics stepping; full process wall time is recorded. No learned training or final test ran.",
+  "source_provenance": "Exact dirty source bytes archived before every launch at original commit 2080d93. Upstream pin, config, seed, command, environment and no checkpoint recorded. All source/archive/artifact hashes and physics/actor/reward replays verified.",
+  "runs": [
+    {
+      "run_id": "peg_realign_v1_10070_retry",
+      "manifest": "artifacts/assembly/peg_realign_v1_10070_retry/manifest.json",
+      "manifest_sha256": "653cc968935c4c84cf69fff9154e70eb48785280cb6684e8405ce7615fc356b8",
+      "status": "completed",
+      "jobs": 4,
+      "outcomes": {
+        "success": 2,
+        "deadline": 1,
+        "force_abort": 1
+      },
+      "resources": {
+        "rollout_wall_s": 124.64100000000326,
+        "control_transitions": 1800,
+        "control_transitions_per_wall_s": 14.441475918838528,
+        "peak_torch_allocated_bytes": 8671744,
+        "peak_torch_reserved_bytes": 23068672,
+        "scope": "Instrumented scripted rollout including recording; Torch memory excludes PhysX and renderer. Not training capacity."
+      }
+    },
+    {
+      "run_id": "peg_realign_v1_10070_continue",
+      "manifest": "artifacts/assembly/peg_realign_v1_10070_continue/manifest.json",
+      "manifest_sha256": "2641af85593d6478d39a4db0ea13e540954c3a47c55371c7b6ba2b31c579d970",
+      "status": "completed",
+      "jobs": 4,
+      "outcomes": {
+        "success": 1,
+        "deadline": 2,
+        "force_abort": 1
+      },
+      "resources": {
+        "rollout_wall_s": 124.5,
+        "control_transitions": 1800,
+        "control_transitions_per_wall_s": 14.457831325301205,
+        "peak_torch_allocated_bytes": 8671744,
+        "peak_torch_reserved_bytes": 23068672,
+        "scope": "Instrumented scripted rollout including recording; Torch memory excludes PhysX and renderer. Not training capacity."
+      }
+    },
+    {
+      "run_id": "peg_realign_v2_10070_retry",
+      "manifest": "artifacts/assembly/peg_realign_v2_10070_retry/manifest.json",
+      "manifest_sha256": "66e225b5f01d23b34bfad0c70b31f2e77aaa7397da848c42ea47f4c7310be3bf",
+      "status": "completed",
+      "jobs": 4,
+      "outcomes": {
+        "success": 2,
+        "deadline": 1,
+        "force_abort": 1
+      },
+      "resources": {
+        "rollout_wall_s": 124.15600000001723,
+        "control_transitions": 1800,
+        "control_transitions_per_wall_s": 14.49788975160081,
+        "peak_torch_allocated_bytes": 8671744,
+        "peak_torch_reserved_bytes": 23068672,
+        "scope": "Instrumented scripted rollout including recording; Torch memory excludes PhysX and renderer. Not training capacity."
+      }
+    },
+    {
+      "run_id": "peg_realign_v2_10070_continue",
+      "manifest": "artifacts/assembly/peg_realign_v2_10070_continue/manifest.json",
+      "manifest_sha256": "e98ca6dffab3245dcfeaf78ec42a1897800d4509ab4aede3d5f55e626e45054d",
+      "status": "completed",
+      "jobs": 4,
+      "outcomes": {
+        "success": 1,
+        "deadline": 2,
+        "force_abort": 1
+      },
+      "resources": {
+        "rollout_wall_s": 127.28100000001723,
+        "control_transitions": 1800,
+        "control_transitions_per_wall_s": 14.14193791689063,
+        "peak_torch_allocated_bytes": 8671744,
+        "peak_torch_reserved_bytes": 23068672,
+        "scope": "Instrumented scripted rollout including recording; Torch memory excludes PhysX and renderer. Not training capacity."
+      }
+    },
+    {
+      "run_id": "peg_matrix_v1_10070_retry",
+      "manifest": "artifacts/assembly/peg_matrix_v1_10070_retry/manifest.json",
+      "manifest_sha256": "ef94527386ec593e072afe63b67d325d405170f01edf1b7b8852a8241751c307",
+      "status": "completed",
+      "jobs": 28,
+      "outcomes": {
+        "deadline": 7,
+        "success": 17,
+        "force_abort": 4
+      },
+      "resources": {
+        "rollout_wall_s": 131.04699999999139,
+        "control_transitions": 12600,
+        "control_transitions_per_wall_s": 96.14871000481375,
+        "peak_torch_allocated_bytes": 8852992,
+        "peak_torch_reserved_bytes": 23068672,
+        "scope": "Instrumented scripted rollout including recording; Torch memory excludes PhysX and renderer. Not training capacity."
+      }
+    },
+    {
+      "run_id": "peg_matrix_v1_10070_continue",
+      "manifest": "artifacts/assembly/peg_matrix_v1_10070_continue/manifest.json",
+      "manifest_sha256": "993493deafbfd38bd8382f111949b163b11d55f3c40b28eb4216083a033f9147",
+      "status": "completed",
+      "jobs": 28,
+      "outcomes": {
+        "deadline": 19,
+        "force_abort": 6,
+        "success": 3
+      },
+      "resources": {
+        "rollout_wall_s": 132.71900000001187,
+        "control_transitions": 12600,
+        "control_transitions_per_wall_s": 94.93742418190969,
+        "peak_torch_allocated_bytes": 8852992,
+        "peak_torch_reserved_bytes": 23068672,
+        "scope": "Instrumented scripted rollout including recording; Torch memory excludes PhysX and renderer. Not training capacity."
+      }
+    },
+    {
+      "run_id": "peg_matrix_v1_10071_retry",
+      "manifest": "artifacts/assembly/peg_matrix_v1_10071_retry/manifest.json",
+      "manifest_sha256": "821c08f5bfc96bc5a530b2d65a56e068bc47896ef5bf76a8d54f507b30c55d34",
+      "status": "completed",
+      "jobs": 28,
+      "outcomes": {
+        "deadline": 5,
+        "success": 22,
+        "force_abort": 1
+      },
+      "resources": {
+        "rollout_wall_s": 132.375,
+        "control_transitions": 12600,
+        "control_transitions_per_wall_s": 95.1841359773371,
+        "peak_torch_allocated_bytes": 8852992,
+        "peak_torch_reserved_bytes": 23068672,
+        "scope": "Instrumented scripted rollout including recording; Torch memory excludes PhysX and renderer. Not training capacity."
+      }
+    },
+    {
+      "run_id": "peg_matrix_v1_10071_continue",
+      "manifest": "artifacts/assembly/peg_matrix_v1_10071_continue/manifest.json",
+      "manifest_sha256": "60a8fd182911a01c1a7b77f1417d20263c73319f17fdd2e27892814f648ae7c3",
+      "status": "completed",
+      "jobs": 28,
+      "outcomes": {
+        "deadline": 19,
+        "success": 6,
+        "force_abort": 3
+      },
+      "resources": {
+        "rollout_wall_s": 134.25,
+        "control_transitions": 12600,
+        "control_transitions_per_wall_s": 93.85474860335195,
+        "peak_torch_allocated_bytes": 8852992,
+        "peak_torch_reserved_bytes": 23068672,
+        "scope": "Instrumented scripted rollout including recording; Torch memory excludes PhysX and renderer. Not training capacity."
+      }
+    },
+    {
+      "run_id": "peg_matrix_v1_10072_retry",
+      "manifest": "artifacts/assembly/peg_matrix_v1_10072_retry/manifest.json",
+      "manifest_sha256": "88545ed71727988d18720a68de973314a8567e0e40625c8ff8a4ccccefa4cba1",
+      "status": "completed",
+      "jobs": 28,
+      "outcomes": {
+        "success": 21,
+        "deadline": 7
+      },
+      "resources": {
+        "rollout_wall_s": 133.57800000000861,
+        "control_transitions": 12600,
+        "control_transitions_per_wall_s": 94.32691011992385,
+        "peak_torch_allocated_bytes": 8852992,
+        "peak_torch_reserved_bytes": 23068672,
+        "scope": "Instrumented scripted rollout including recording; Torch memory excludes PhysX and renderer. Not training capacity."
+      }
+    },
+    {
+      "run_id": "peg_matrix_v1_10072_continue",
+      "manifest": "artifacts/assembly/peg_matrix_v1_10072_continue/manifest.json",
+      "manifest_sha256": "5e54aad55a10776afc603882a407f9633055b400c30655a547481a5fcfaebf82",
+      "status": "completed",
+      "jobs": 28,
+      "outcomes": {
+        "deadline": 21,
+        "force_abort": 2,
+        "success": 5
+      },
+      "resources": {
+        "rollout_wall_s": 138.67199999999139,
+        "control_transitions": 12600,
+        "control_transitions_per_wall_s": 90.86188992731613,
+        "peak_torch_allocated_bytes": 8852992,
+        "peak_torch_reserved_bytes": 23068672,
+        "scope": "Instrumented scripted rollout including recording; Torch memory excludes PhysX and renderer. Not training capacity."
+      }
+    }
+  ],
+  "targeted_variant_limit": {
+    "maximum": 2,
+    "tested": 2,
+    "further_tuning": "capped"
+  },
+  "case1_diagnosis": {
+    "original_search_closest_xy_mm": 3.252937751652251,
+    "v1_search_closest_xy_mm": 2.3482259079780445,
+    "v1_outcome": "deadline",
+    "v2_outcome": "success",
+    "v2_completion_s": 25.075,
+    "v2_paired_return_advantage": 11.84197066568008,
+    "v2_evidence": "evidence/recovery_realign_v2_10070.json",
+    "interpretation": "Targets span the hole while measured search motion is restricted under load. No saved endpoint exceeds the XY error clip. Slower rotation and faster radial coverage after unloaded realignment succeeds, but individual causal factors are not isolated.",
+    "v1_realign": {
+      "control_steps": 49,
+      "time_range_s": [
+        7.066666666666666,
+        10.266666666666667
+      ],
+      "closest_part_base_xy_m": 0.0020751543099337836,
+      "part_xy_range_m": [
+        [
+          -0.0033960342407226562,
+          0.001059412956237793
+        ],
+        [
+          0.0016997456550598145,
+          0.0022860169410705566
+        ]
+      ],
+      "desired_target_xy_range_m": [
+        [
+          -0.0009681424489826895,
+          0.001393781379738357
+        ],
+        [
+          0.0008133352850563825,
+          0.0011404698598198593
+        ]
+      ],
+      "ema_applied_target_xy_range_m": [
+        [
+          -0.0001042593168676831,
+          0.0010567242847173476
+        ],
+        [
+          0.0008479043754050508,
+          0.00105564019177109
+        ]
+      ],
+      "median_applied_target_tip_error_m": 0.001304213489816963,
+      "max_applied_target_tip_error_m": 0.00223124806258148,
+      "endpoint_xy_threshold_exceedances": 0,
+      "median_noisy_wrist_load_n": 1.6086517646843683,
+      "last_integral_xy_m": [
+        -0.0010825475056966145,
+        0.0002691027522087097
+      ]
+    },
+    "v2_realign": {
+      "control_steps": 49,
+      "time_range_s": [
+        7.066666666666666,
+        10.266666666666667
+      ],
+      "closest_part_base_xy_m": 0.0020751543099337836,
+      "part_xy_range_m": [
+        [
+          -0.0033960342407226562,
+          0.001059412956237793
+        ],
+        [
+          0.0016997456550598145,
+          0.0022860169410705566
+        ]
+      ],
+      "desired_target_xy_range_m": [
+        [
+          -0.0009681424489826895,
+          0.001393781379738357
+        ],
+        [
+          0.0008133352850563825,
+          0.0011404698598198593
+        ]
+      ],
+      "ema_applied_target_xy_range_m": [
+        [
+          -0.0001042593168676831,
+          0.0010567242847173476
+        ],
+        [
+          0.0008479043754050508,
+          0.00105564019177109
+        ]
+      ],
+      "median_applied_target_tip_error_m": 0.001304213489816963,
+      "max_applied_target_tip_error_m": 0.00223124806258148,
+      "endpoint_xy_threshold_exceedances": 0,
+      "median_noisy_wrist_load_n": 1.6086517646843683,
+      "last_integral_xy_m": [
+        -0.0010825475056966145,
+        0.0002691027522087097
+      ]
+    },
+    "tradeoff": "V2 loses case 2, recovered by the original and V1. All four targeted initial states match the original; all losing arms remain."
+  },
+  "matrix": {
+    "evidence": "evidence/peg_fault_matrix_v1.json",
+    "sha256": "ce9a410bc36b7cc3f9af90bcda4950e62f4628f98c4ea6f591c94c64d6d022dc",
+    "retry_completions": 60,
+    "continued_completions": 14,
+    "jobs_per_arm": 84,
+    "witnessed_retry_recoveries": 39,
+    "retry_force_aborts": 5,
+    "continued_force_aborts": 11,
+    "initializations_valid": 168,
+    "scope": "Representative development points only; full intervals and reserved combinations remain unvalidated."
+  },
+  "final_matrix_verification": {
+    "artifact": "artifacts/assembly/peg_fault_matrix_v1_final_verification.json",
+    "sha256": "0a797c29439ea80d598e1e2316f433f67a23d034c49ba2d2f173e580e221bc81",
+    "results_identical_to_preserved_matrix": true
+  },
+  "cpu_checks": {
+    "ruff": "passed",
+    "pytest_passed": 103,
+    "planning": "passed in tracked-source-only export",
+    "tracked_source_export": "passed",
+    "verification_artifact": "artifacts/assembly/fault_block_cpu_verification.json",
+    "verification_sha256": "a0d94ee4798bb5ae3a6d4c3c785f47b3783ed2859ac5345965ef46c7eceb8bb9",
+    "tested_source_files": 34,
+    "ignored_local_artifacts_required": false
+  },
+  "feedback_design": {
+    "path": "evidence/physics_and_throughput_design.json",
+    "sha256": "534a063034a98f3ab42f8b007ea2c740ffa173fbfe985a43be20873a789edc85",
+    "gpu_fast_path_implemented": false,
+    "force_diagnostic_cpu_tested": true,
+    "primary_raw_force_abort_changed": false,
+    "final_physics_refinement_test_registered": true,
+    "final_tests_opened": false
+  },
+  "next_action": "Implement and verify the tensorized finite-job training adapter against the CPU evaluator: instantiated actor/critic leak checks, partial terminal rewards, zero terminal bootstrap and initialization/absorbing transition costs. Profile memory and sustained throughput, finish development support/physics checks, then freeze before long training. No further scripted-controller tuning.",
+  "scope_and_limitations": [
+    "Scripted simulation development; no learned-policy training comparison or hardware result.",
+    "No force spike is proved artificial. The diagnostic changes no job outcome.",
+    "No optimization speedup is measured; tensorized training and protocol freeze remain unfinished."
+  ]
+}

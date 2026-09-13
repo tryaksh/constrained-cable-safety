@@ -1,0 +1,349 @@
+{
+  "schema": 1,
+  "status": "verified_offline_descriptive_audit",
+  "research_result": false,
+  "scope_and_limitations": [
+    "Already-charged120/240Hz v3 prefixes on all28 development cases. No new simulator work or new independent trials.",
+    "Matched15Hz endpoints strictly before the earliest >0.1N measured resultant fixture normal force. The cutoff conservatively drops one additional endpoint.",
+    "Below0.1N resultant does not prove no point contact or constraint force. Held-minus-tool differences are world-coordinate translation, not inverse-tool-frame grasp drift.",
+    "This establishes approach trajectory sensitivity; it does not uniquely identify solver, gripper or feedback timing as its cause."
+  ],
+  "source_artifact_sha256": {
+    "artifacts/assembly/learned_physics_v3_r01/120_prefix_learned/validation/trajectory.pt": "044dafd3b575fbde1a156eecc165af5af4aa27b86fe21163552584e7cb4095be",
+    "artifacts/assembly/learned_physics_v3_r01/240_prefix_learned/validation/trajectory.pt": "2ab7930a0f665c12b695665c97bead2ab41b5a6579c474f0b24a3d2f11e8a9b0"
+  },
+  "analysis_source": {
+    "path": "artifacts/assembly/research_cycle_20260910_r01/old_precontact_divergence.py",
+    "sha256": "777282f2353012376db69a36ed6af73cc9c5d5a359604eedbba5e2f226d27993"
+  },
+  "summary": {
+    "max_tool_difference_mm": {
+      "minimum": 0.32205730676651,
+      "median": 1.452014148235321,
+      "maximum": 3.923280715942383
+    },
+    "max_part_difference_mm": {
+      "minimum": 0.3333789110183716,
+      "median": 1.501802384853363,
+      "maximum": 4.5499444007873535
+    },
+    "max_grasp_translation_difference_mm": {
+      "minimum": 0.025067094713449478,
+      "median": 0.07054148241877556,
+      "maximum": 0.6462878584861755
+    }
+  },
+  "max_contact_onset_difference_s": 0.1333333333333333,
+  "all_cases": [
+    {
+      "case": 0,
+      "onsets_s": [
+        1.525,
+        1.525
+      ],
+      "through_s": 1.4,
+      "max_tool_difference_mm": 0.9478848576545715,
+      "max_part_difference_mm": 0.9902414083480835,
+      "max_grasp_translation_difference_mm": 0.06722482293844223
+    },
+    {
+      "case": 1,
+      "onsets_s": [
+        1.775,
+        1.6833333333333333
+      ],
+      "through_s": 1.6,
+      "max_tool_difference_mm": 1.818699598312378,
+      "max_part_difference_mm": 1.8257564306259155,
+      "max_grasp_translation_difference_mm": 0.20433880388736725
+    },
+    {
+      "case": 2,
+      "onsets_s": [
+        1.4833333333333334,
+        1.4958333333333333
+      ],
+      "through_s": 1.4,
+      "max_tool_difference_mm": 1.7086970806121826,
+      "max_part_difference_mm": 1.7255618572235107,
+      "max_grasp_translation_difference_mm": 0.0651874765753746
+    },
+    {
+      "case": 3,
+      "onsets_s": [
+        1.6083333333333334,
+        1.6208333333333333
+      ],
+      "through_s": 1.5333333333333334,
+      "max_tool_difference_mm": 1.1634373664855957,
+      "max_part_difference_mm": 1.1908555030822754,
+      "max_grasp_translation_difference_mm": 0.23532316088676453
+    },
+    {
+      "case": 4,
+      "onsets_s": [
+        1.775,
+        1.7041666666666666
+      ],
+      "through_s": 1.6,
+      "max_tool_difference_mm": 1.2379412651062012,
+      "max_part_difference_mm": 1.223889946937561,
+      "max_grasp_translation_difference_mm": 0.04076792299747467
+    },
+    {
+      "case": 5,
+      "onsets_s": [
+        1.7166666666666666,
+        1.8291666666666666
+      ],
+      "through_s": 1.6,
+      "max_tool_difference_mm": 2.0657405853271484,
+      "max_part_difference_mm": 2.074842691421509,
+      "max_grasp_translation_difference_mm": 0.04777044802904129
+    },
+    {
+      "case": 6,
+      "onsets_s": [
+        1.5166666666666666,
+        1.4958333333333333
+      ],
+      "through_s": 1.4,
+      "max_tool_difference_mm": 1.8861589431762695,
+      "max_part_difference_mm": 1.8847301006317139,
+      "max_grasp_translation_difference_mm": 0.2191304862499237
+    },
+    {
+      "case": 7,
+      "onsets_s": [
+        1.7083333333333333,
+        1.675
+      ],
+      "through_s": 1.6,
+      "max_tool_difference_mm": 1.1019251346588135,
+      "max_part_difference_mm": 1.1832237243652344,
+      "max_grasp_translation_difference_mm": 0.08889196813106537
+    },
+    {
+      "case": 8,
+      "onsets_s": [
+        1.7833333333333334,
+        1.7708333333333333
+      ],
+      "through_s": 1.6666666666666667,
+      "max_tool_difference_mm": 1.2786438465118408,
+      "max_part_difference_mm": 1.4332224130630493,
+      "max_grasp_translation_difference_mm": 0.15705473721027374
+    },
+    {
+      "case": 9,
+      "onsets_s": [
+        1.1916666666666667,
+        1.2708333333333333
+      ],
+      "through_s": 1.0666666666666667,
+      "max_tool_difference_mm": 1.6544361114501953,
+      "max_part_difference_mm": 1.659319519996643,
+      "max_grasp_translation_difference_mm": 0.02748699299991131
+    },
+    {
+      "case": 10,
+      "onsets_s": [
+        1.5,
+        1.4916666666666667
+      ],
+      "through_s": 1.4,
+      "max_tool_difference_mm": 1.2350032329559326,
+      "max_part_difference_mm": 1.3578929901123047,
+      "max_grasp_translation_difference_mm": 0.14168138802051544
+    },
+    {
+      "case": 11,
+      "onsets_s": [
+        1.4416666666666667,
+        1.4416666666666667
+      ],
+      "through_s": 1.3333333333333333,
+      "max_tool_difference_mm": 0.3768157958984375,
+      "max_part_difference_mm": 0.35220155119895935,
+      "max_grasp_translation_difference_mm": 0.06443876773118973
+    },
+    {
+      "case": 12,
+      "onsets_s": [
+        1.6416666666666666,
+        1.6375
+      ],
+      "through_s": 1.5333333333333334,
+      "max_tool_difference_mm": 1.8760117292404175,
+      "max_part_difference_mm": 2.1526854038238525,
+      "max_grasp_translation_difference_mm": 0.2829919457435608
+    },
+    {
+      "case": 13,
+      "onsets_s": [
+        1.4166666666666667,
+        1.5041666666666667
+      ],
+      "through_s": 1.3333333333333333,
+      "max_tool_difference_mm": 1.55886971950531,
+      "max_part_difference_mm": 1.5703823566436768,
+      "max_grasp_translation_difference_mm": 0.1354968398809433
+    },
+    {
+      "case": 14,
+      "onsets_s": [
+        1.6,
+        1.6875
+      ],
+      "through_s": 1.5333333333333334,
+      "max_tool_difference_mm": 2.584299325942993,
+      "max_part_difference_mm": 2.5774612426757812,
+      "max_grasp_translation_difference_mm": 0.04823830723762512
+    },
+    {
+      "case": 15,
+      "onsets_s": [
+        1.6583333333333334,
+        1.6083333333333334
+      ],
+      "through_s": 1.5333333333333334,
+      "max_tool_difference_mm": 3.923280715942383,
+      "max_part_difference_mm": 4.5499444007873535,
+      "max_grasp_translation_difference_mm": 0.6462878584861755
+    },
+    {
+      "case": 16,
+      "onsets_s": [
+        1.4083333333333334,
+        1.4041666666666666
+      ],
+      "through_s": 1.3333333333333333,
+      "max_tool_difference_mm": 0.32205730676651,
+      "max_part_difference_mm": 0.3333789110183716,
+      "max_grasp_translation_difference_mm": 0.04110707342624664
+    },
+    {
+      "case": 17,
+      "onsets_s": [
+        1.4666666666666666,
+        1.4833333333333334
+      ],
+      "through_s": 1.4,
+      "max_tool_difference_mm": 0.8689295649528503,
+      "max_part_difference_mm": 0.8855494856834412,
+      "max_grasp_translation_difference_mm": 0.06963197886943817
+    },
+    {
+      "case": 18,
+      "onsets_s": [
+        1.7333333333333334,
+        1.7375
+      ],
+      "through_s": 1.6666666666666667,
+      "max_tool_difference_mm": 2.2086052894592285,
+      "max_part_difference_mm": 2.227139949798584,
+      "max_grasp_translation_difference_mm": 0.06744202971458435
+    },
+    {
+      "case": 19,
+      "onsets_s": [
+        1.4583333333333333,
+        1.4166666666666667
+      ],
+      "through_s": 1.3333333333333333,
+      "max_tool_difference_mm": 1.0992789268493652,
+      "max_part_difference_mm": 1.0962409973144531,
+      "max_grasp_translation_difference_mm": 0.025067094713449478
+    },
+    {
+      "case": 20,
+      "onsets_s": [
+        1.6416666666666666,
+        1.7375
+      ],
+      "through_s": 1.5333333333333334,
+      "max_tool_difference_mm": 2.3420374393463135,
+      "max_part_difference_mm": 2.4160172939300537,
+      "max_grasp_translation_difference_mm": 0.20136573910713196
+    },
+    {
+      "case": 21,
+      "onsets_s": [
+        1.7833333333333334,
+        1.8625
+      ],
+      "through_s": 1.6666666666666667,
+      "max_tool_difference_mm": 1.8904469013214111,
+      "max_part_difference_mm": 1.9052687883377075,
+      "max_grasp_translation_difference_mm": 0.051279086619615555
+    },
+    {
+      "case": 22,
+      "onsets_s": [
+        1.4916666666666667,
+        1.5875
+      ],
+      "through_s": 1.4,
+      "max_tool_difference_mm": 1.9594656229019165,
+      "max_part_difference_mm": 1.9597173929214478,
+      "max_grasp_translation_difference_mm": 0.036971669644117355
+    },
+    {
+      "case": 23,
+      "onsets_s": [
+        1.4166666666666667,
+        1.4125
+      ],
+      "through_s": 1.3333333333333333,
+      "max_tool_difference_mm": 0.8838649988174438,
+      "max_part_difference_mm": 0.8908397555351257,
+      "max_grasp_translation_difference_mm": 0.0762581154704094
+    },
+    {
+      "case": 24,
+      "onsets_s": [
+        1.4083333333333334,
+        1.5416666666666667
+      ],
+      "through_s": 1.3333333333333333,
+      "max_tool_difference_mm": 2.4156386852264404,
+      "max_part_difference_mm": 2.545966148376465,
+      "max_grasp_translation_difference_mm": 0.20298370718955994
+    },
+    {
+      "case": 25,
+      "onsets_s": [
+        1.425,
+        1.4583333333333333
+      ],
+      "through_s": 1.3333333333333333,
+      "max_tool_difference_mm": 1.345158576965332,
+      "max_part_difference_mm": 1.3511055707931519,
+      "max_grasp_translation_difference_mm": 0.026268156245350838
+    },
+    {
+      "case": 26,
+      "onsets_s": [
+        1.6416666666666666,
+        1.6416666666666666
+      ],
+      "through_s": 1.5333333333333334,
+      "max_tool_difference_mm": 0.3382459282875061,
+      "max_part_difference_mm": 0.34049880504608154,
+      "max_grasp_translation_difference_mm": 0.07145098596811295
+    },
+    {
+      "case": 27,
+      "onsets_s": [
+        1.5166666666666666,
+        1.4583333333333333
+      ],
+      "through_s": 1.3333333333333333,
+      "max_tool_difference_mm": 1.1251918077468872,
+      "max_part_difference_mm": 1.1196707487106323,
+      "max_grasp_translation_difference_mm": 0.10774113982915878
+    }
+  ],
+  "interpretation": "The tool and held part show millimetre-scale approach differences before substantial measured fixture contact, usually with much smaller change in their relative translation. Contact impulse scaling alone cannot explain the full discrepancy.",
+  "next_causal_test": "If the original finest pair remains sensitive, run the same480/960Hz native pair with fixed480Hz external impedance feedback; retain120Hz sensors,15Hz script actions, gains, clamps and gripper. Compare the2x2 interaction without calling it pure solver convergence."
+}

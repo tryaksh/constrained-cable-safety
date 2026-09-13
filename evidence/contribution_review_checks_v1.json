@@ -1,0 +1,53 @@
+{
+  "schema": 1,
+  "status": "verified",
+  "recorded_at_utc": "2026-09-10T00:12:21.508441+00:00",
+  "checks": {
+    "source_training_report_matches_completed_manifest": true,
+    "audit_contains_all_training_requests": true,
+    "audit_has_all_22_cohort_boundaries": true,
+    "new_simulator_cost_zero": true,
+    "all_audit_outcomes_in_denominators": true,
+    "hypothetical_shares_normalized": true,
+    "screen_is_not_launch_permission": true,
+    "review_hash_bound_to_design": true,
+    "all_three_learning_arms": true,
+    "three_declared_training_seeds": true,
+    "nominal_share_exact": true,
+    "cohort_budget_exact": true,
+    "screen_training_budget_exact": true,
+    "screen_eval_budget_exact": true,
+    "screen_total_exact": true,
+    "prior_registered_evidence_unchanged": true,
+    "original_competence_gate_stays_failed": true,
+    "upstream_tree_unchanged": true,
+    "exactly_three_maintained_markdown": true
+  },
+  "new_simulator_transitions": 0,
+  "charged_training_development_lower_bound_unchanged": 24841670.25,
+  "cpu_tests_passed": 187,
+  "ruff_passed": true,
+  "review_sha256": "21aaccd2ac41b29e5fcf22b9493ead4081c8d0b4e4a347e7745ffd173fe3f92e",
+  "design_sha256": "0d1f5a579067e7a4b4c64e749de5f3ea23c552508d55bb9e02c6df8987ca8651",
+  "physics_preflight_sha256": "0293ffd080ccce18b1a6c4d02e331f563b836da4180311d9f6f1814a661506a6",
+  "github_push": {
+    "remote": "https://github.com/tryaksh/orbital-robotic-servicing-lab.git",
+    "branch": "research/assembly-recovery-training",
+    "initial_pushed_commit": "4e61ee518ad8f043f544d7ba50be0b099e6b4e21",
+    "main_before_and_after_initial_push": "bccce6d40019bbc3f034da5a54b53a47af423a4b",
+    "force": false,
+    "new_repository_created": false
+  },
+  "scope_and_limitations": [
+    "Checks validate the review artifacts, preserved evidence and planning arithmetic. They do not validate a not-yet-implemented sampler or authorize training.",
+    "Primary source access was through a targeted web review; the direct 2026 predecessor is abstract-only.",
+    "The existing-log audit is exploratory and supplies no counterfactual policy-performance estimate."
+  ],
+  "source_only_export": {
+    "path": "artifacts/assembly/contribution_review_v1/source_check/result.json",
+    "sha256": "0e14e30968153933da3426c891d785bd052f8979b8ffbc2ea26bbaba2517fd0d",
+    "tests_passed": 187,
+    "ruff_passed": true,
+    "scope": "Only verification metadata is appended after this source export."
+  }
+}

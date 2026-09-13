@@ -1,0 +1,34 @@
+{
+  "schema": 1,
+  "status": "preserved_cpu_verification_failure",
+  "research_result": false,
+  "run": "artifacts/assembly/contact_impact_v1_r01/120",
+  "original_run_status": "verification_failed",
+  "failed_checks": [
+    "frozen_script_settings"
+  ],
+  "cause": "The v1 checker compared five sparse RetrySettings JSON overrides directly against all21 resolved dataclass fields. The worker correctly used RetrySettings(**overrides). The independent scripted-action replay and every saved120Hz trajectory comparison passed.",
+  "physical_worker_changed": false,
+  "simulator_process_completed": true,
+  "native_job_physics_env_steps": 13440,
+  "initialization_physics_env_steps": 1876,
+  "charged_reference_transitions": 1914.5,
+  "corrective_cpu_checks_extra_simulator_cost": 0,
+  "original_artifact_sha256": {
+    "artifacts/assembly/contact_impact_v1_r01/120/manifest.json": "6654326a36beebdada760381566ec5e05e725b9f944c705a27629e0acb587ca0",
+    "artifacts/assembly/contact_impact_v1_r01/120/verification.json": "b5ed0a3192d4a489f859bdde311d988edab98d95030d08dc091f603699ea7a7d",
+    "artifacts/assembly/contact_impact_v1_r01/120/validation/report.json": "6b0897fbaa6f1f2fe5da5907edd4e0bb2ef671250db8d609df45c470b2c1d859",
+    "artifacts/assembly/contact_impact_v1_r01/120/validation/trajectory.pt": "0114f80d05343b12d7f86ad41e390e0248dc95466c05b41cffa87453328a9925"
+  },
+  "preserved_checker": {
+    "path": "scripts/review_contact_impact_v1.py",
+    "sha256": "21f9d69b6d11270d91142c158384a473dfcb1e5cd40c57806e8864ec17076fe1"
+  },
+  "resolution": "Expand archived overrides through the frozen dataclass in a new v2 verifier. Reuse existing120Hz data only after that corrected check passes; continue240/480 under a separate source-captured registration. Original manifest, verdict, worker and reviewer stay unchanged.",
+  "continuation_registration": "configs/contact_impact_continuation_v2.json",
+  "scope_and_limitations": [
+    "CPU verification failure, not a measured physics regression. Exact120Hz action/observation/RNG/force replay passed, but the original queue is still recorded failed_or_incomplete.",
+    "All28 prefix requests and full simulator cost retained. Four-second active cases are censored, not30-second job failures.",
+    "No candidate training, task correction or final-test use."
+  ]
+}

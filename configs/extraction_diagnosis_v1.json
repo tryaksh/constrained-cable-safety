@@ -1,0 +1,56 @@
+{
+  "schema": 1,
+  "version": "extraction_diagnosis_v1",
+  "status": "frozen_conditional_before_final_v3_evaluation",
+  "created_at_utc": "2026-09-09T07:37:31.971868+00:00",
+  "trigger": "Run only if the completed 22-cohort v3 budget checkpoint fails its already-declared deterministic development competence gate. Never evaluate interim checkpoints for this decision.",
+  "checkpoint_rule": "The final budget_checkpoint.pt from uniform_completion_170_v3_r01, with hash matched to verified evidence/uniform_completion_v3.json before launch.",
+  "seed": 10070,
+  "policy_rng_seed": 310070,
+  "cases": 28,
+  "controllers": [
+    "frozen Gaussian mean",
+    "independent stochastic Gaussian",
+    "analytic expected clipped Gaussian action",
+    "unchanged retry_unload_realign_v1"
+  ],
+  "expected_charged_transitions": 51338,
+  "wall_limit_minutes": 40,
+  "motivation": {
+    "source": "artifacts/assembly/policy_diagnosis_v2_r01/deterministic/diagnosis/trajectory.pt",
+    "source_sha256": "0ec58f7fa5a6b38d0170d40e664f68ecccac4858abd04ee5a3dd757a2f55295c",
+    "active_control_rows": 11714,
+    "mean_clipped_mean_minus_expected_clipped_xyz_mm": [
+      3.7879536151885986,
+      -2.987013339996338,
+      9.772178649902344
+    ],
+    "scope": "CPU analytic readout on all active saved v2 deterministic observations; no new controller or motion outcome was evaluated."
+  },
+  "formula": "E[clip(X,-1,1)] = mu*(Phi(b)-Phi(a)) + sigma*(phi(a)-phi(b)) - Phi(a) + 1 - Phi(b); a=(-1-mu)/sigma, b=(1-mu)/sigma.",
+  "analytic_verification": "Independent numerical integration at 100001 points agrees within 7.3e-10 on declared CPU cases; symmetry, bounds and no RNG consumption tested.",
+  "invariants": [
+    "Same final checkpoint and actor/critic instantiation in every path",
+    "Same v3 reward, geometry, raw 20 N abort, physical gravity, 30 s deadline and 0.5 s dwell",
+    "Exact initialization tensors, sensor draws and nuisance streams compared",
+    "Separate stochastic-policy generator; no policy or reward tuning during diagnosis"
+  ],
+  "readouts": [
+    "All complete jobs, nominal/fault bins, force aborts and other failures",
+    "Full upstream and corrected returns with completion-credit ledger",
+    "Action targets, requested/applied actions, physical motion, contacts and witnessed recoveries",
+    "Bitwise reproduction of the original final-budget deterministic evaluation"
+  ],
+  "decision_rule": "Report every arm and uncertainty. Any later adoption of a different extraction requires a new shared comparison protocol and predeclared all-development-seed confirmation; this diagnostic cannot replace the original v3 gate result.",
+  "diagnostic_source_sha256": {
+    "src/assembly_recovery/saturated_gaussian.py": "56891656dca2efb72a54fe86600115b6190c249350d2366d8c7550b90ffc2b6b",
+    "scripts/diagnose_extraction_v1.py": "c8ba8642210d0c3f2b1b99b6d342e19bf4988c5bed642759473e551a06581376",
+    "scripts/run_extraction_diagnosis_v1.py": "1b75c3a9d482d9c2d274507f73a66622be0419499e3d35bfde88eece1480e9b8"
+  },
+  "scope_and_limitations": [
+    "Conditional development diagnosis, not a training arm, final-test result, or adaptive comparison.",
+    "Mean action after clipping differs from clipping the Gaussian mean; neither guarantees best physical control.",
+    "No new GPU job runs concurrently with the registered training or its required evaluations.",
+    "If the original competence gate passes, skip this diagnostic and follow the authorized adaptive-sampler next step."
+  ]
+}

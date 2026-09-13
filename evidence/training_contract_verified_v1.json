@@ -1,0 +1,277 @@
+{
+  "schema": 1,
+  "status": "verified",
+  "research_result": false,
+  "capacity_runs": [
+    {
+      "run_id": "tensor_contract_32_r02",
+      "manifest_sha256": "22fd23ae4a40f7ee32b97fbe21ed5c7f80ce0c24b22219732beec6c1ad2297e7",
+      "checks": {
+        "process_complete": true,
+        "report_complete": true,
+        "actor_transform_audit": true,
+        "privileged_critic_does_not_change_actor": true,
+        "checkpoint_reloaded": true,
+        "one_done_per_job": true,
+        "frozen_terminal_observations": true,
+        "upstream_reward_terms": true,
+        "valid_initializations": true,
+        "cpu_native_trace_parity": true,
+        "checkpoint_currently_finite": true
+      },
+      "num_envs": 32,
+      "cost": {
+        "rollout_control_transitions": 14400,
+        "active_control_transitions": 3652,
+        "absorbing_control_transitions": 10748,
+        "rollout_physics_env_steps": 115200,
+        "active_physics_env_steps": 29118,
+        "initialization_physics_env_steps": 2144,
+        "charged_control_equivalent_transitions": 14668.0,
+        "scope": "All rollout slots, including holds, plus initialization physics divided by decimation. Probes/mining charged by their own manifests."
+      },
+      "rollout_transitions_per_s_min_max": [
+        92.95781040783646,
+        100.12325779836974
+      ],
+      "process_wall_s": 166.40599999998813,
+      "peak_gpu_mib": 4381,
+      "minimum_free_ram_mib": null,
+      "initialization_wall_s": 3.312000000005355,
+      "export_wall_s": 0.7809999999881256,
+      "optimizer_wall_s": 0.48399999999674037
+    },
+    {
+      "run_id": "tensor_contract_64_r01",
+      "manifest_sha256": "78a44b30c266813687e466bbf031b8c52aa481f76d4558e089db0c557bdf31d0",
+      "checks": {
+        "process_complete": true,
+        "report_complete": true,
+        "actor_transform_audit": true,
+        "privileged_critic_does_not_change_actor": true,
+        "checkpoint_reloaded": true,
+        "one_done_per_job": true,
+        "frozen_terminal_observations": true,
+        "upstream_reward_terms": true,
+        "valid_initializations": true,
+        "cpu_native_trace_parity": true,
+        "checkpoint_currently_finite": true
+      },
+      "num_envs": 64,
+      "cost": {
+        "rollout_control_transitions": 28800,
+        "active_control_transitions": 7037,
+        "absorbing_control_transitions": 21763,
+        "rollout_physics_env_steps": 230400,
+        "active_physics_env_steps": 56073,
+        "initialization_physics_env_steps": 4288,
+        "charged_control_equivalent_transitions": 29336.0,
+        "scope": "All rollout slots, including holds, plus initialization physics divided by decimation. Probes/mining charged by their own manifests."
+      },
+      "rollout_transitions_per_s_min_max": [
+        180.91473244853577,
+        191.86046511625065
+      ],
+      "process_wall_s": 170.90700000000652,
+      "peak_gpu_mib": 4409,
+      "minimum_free_ram_mib": null,
+      "initialization_wall_s": 3.26500000001397,
+      "export_wall_s": 1.5460000000020955,
+      "optimizer_wall_s": 0.5620000000053551
+    },
+    {
+      "run_id": "tensor_contract_128_r01",
+      "manifest_sha256": "7410f1f4a8ef5a76291356b9e7db1d010cabbfab7c0810ce6006f68ce756e06f",
+      "checks": {
+        "process_complete": true,
+        "report_complete": true,
+        "actor_transform_audit": true,
+        "privileged_critic_does_not_change_actor": true,
+        "checkpoint_reloaded": true,
+        "one_done_per_job": true,
+        "frozen_terminal_observations": true,
+        "upstream_reward_terms": true,
+        "valid_initializations": true,
+        "cpu_native_trace_parity": true,
+        "checkpoint_currently_finite": true
+      },
+      "num_envs": 128,
+      "cost": {
+        "rollout_control_transitions": 57600,
+        "active_control_transitions": 17092,
+        "absorbing_control_transitions": 40508,
+        "rollout_physics_env_steps": 460800,
+        "active_physics_env_steps": 136320,
+        "initialization_physics_env_steps": 8576,
+        "charged_control_equivalent_transitions": 58672.0,
+        "scope": "All rollout slots, including holds, plus initialization physics divided by decimation. Probes/mining charged by their own manifests."
+      },
+      "rollout_transitions_per_s_min_max": [
+        371.4434695867331,
+        391.5098711649192
+      ],
+      "process_wall_s": 170.39100000000326,
+      "peak_gpu_mib": 4503,
+      "minimum_free_ram_mib": null,
+      "initialization_wall_s": 3.2179999999934807,
+      "export_wall_s": 3.312999999994645,
+      "optimizer_wall_s": 0.9369999999762513
+    },
+    {
+      "run_id": "tensor_capacity_256_r01",
+      "manifest_sha256": "4736dbf1395cebd0cb905d90e9ce0ffc98a25ebfccfa0abfc1b5bc3b11ebc033",
+      "checks": {
+        "process_complete": true,
+        "report_complete": true,
+        "actor_transform_audit": true,
+        "privileged_critic_does_not_change_actor": true,
+        "checkpoint_reloaded": true,
+        "one_done_per_job": true,
+        "frozen_terminal_observations": true,
+        "upstream_reward_terms": true,
+        "valid_initializations": true,
+        "terminal_bootstrap_masks": true,
+        "checkpoint_currently_finite": true
+      },
+      "num_envs": 256,
+      "cost": {
+        "rollout_control_transitions": 115200,
+        "active_control_transitions": 31772,
+        "absorbing_control_transitions": 83428,
+        "rollout_physics_env_steps": 921600,
+        "active_physics_env_steps": 253344,
+        "initialization_physics_env_steps": 17152,
+        "charged_control_equivalent_transitions": 117344.0,
+        "scope": "All rollout slots, including holds, plus initialization physics divided by decimation. Probes/mining charged by their own manifests."
+      },
+      "rollout_transitions_per_s_min_max": [
+        700.6799811828619,
+        730.132664966839
+      ],
+      "process_wall_s": 174.76500000001397,
+      "peak_gpu_mib": 4577,
+      "minimum_free_ram_mib": 7450.296875,
+      "initialization_wall_s": 3.187999999994645,
+      "export_wall_s": 0.0,
+      "optimizer_wall_s": 1.4050000000279397
+    },
+    {
+      "run_id": "tensor_capacity_512_r01",
+      "manifest_sha256": "f75c4f0bd8a982f34f46c3afa9494bc357d51179e68fee27788fba078a2a8aa7",
+      "checks": {
+        "process_complete": true,
+        "report_complete": true,
+        "actor_transform_audit": true,
+        "privileged_critic_does_not_change_actor": true,
+        "checkpoint_reloaded": true,
+        "one_done_per_job": true,
+        "frozen_terminal_observations": true,
+        "upstream_reward_terms": true,
+        "valid_initializations": true,
+        "terminal_bootstrap_masks": true,
+        "checkpoint_currently_finite": true
+      },
+      "num_envs": 512,
+      "cost": {
+        "rollout_control_transitions": 230400,
+        "active_control_transitions": 51455,
+        "absorbing_control_transitions": 178945,
+        "rollout_physics_env_steps": 1843200,
+        "active_physics_env_steps": 409953,
+        "initialization_physics_env_steps": 34304,
+        "charged_control_equivalent_transitions": 234688.0,
+        "scope": "All rollout slots, including holds, plus initialization physics divided by decimation. Probes/mining charged by their own manifests."
+      },
+      "rollout_transitions_per_s_min_max": [
+        1174.8803355983928,
+        1233.6188235294117
+      ],
+      "process_wall_s": 208.0460000000021,
+      "peak_gpu_mib": 4899,
+      "minimum_free_ram_mib": 7296.00390625,
+      "initialization_wall_s": 3.2030000000086147,
+      "export_wall_s": 0.0,
+      "optimizer_wall_s": 2.2189999999827705
+    },
+    {
+      "run_id": "tensor_capacity_1024_r01",
+      "manifest_sha256": "4993c1559a3de495c0fe6571700d2822310f6a088b5cfa12758c5604c9e7ecad",
+      "checks": {
+        "process_complete": true,
+        "report_complete": true,
+        "actor_transform_audit": true,
+        "privileged_critic_does_not_change_actor": true,
+        "checkpoint_reloaded": true,
+        "one_done_per_job": true,
+        "frozen_terminal_observations": true,
+        "upstream_reward_terms": true,
+        "valid_initializations": true,
+        "terminal_bootstrap_masks": true,
+        "checkpoint_currently_finite": true
+      },
+      "num_envs": 1024,
+      "cost": {
+        "rollout_control_transitions": 460800,
+        "active_control_transitions": 133016,
+        "absorbing_control_transitions": 327784,
+        "rollout_physics_env_steps": 3686400,
+        "active_physics_env_steps": 1060721,
+        "initialization_physics_env_steps": 68608,
+        "charged_control_equivalent_transitions": 469376.0,
+        "scope": "All rollout slots, including holds, plus initialization physics divided by decimation. Probes/mining charged by their own manifests."
+      },
+      "rollout_transitions_per_s_min_max": [
+        1647.144841705529,
+        1790.919152308339
+      ],
+      "process_wall_s": 284.7820000000065,
+      "peak_gpu_mib": 5463,
+      "minimum_free_ram_mib": 7121.61328125,
+      "initialization_wall_s": 3.5469999999913853,
+      "export_wall_s": 0.0,
+      "optimizer_wall_s": 4.859000000025844
+    }
+  ],
+  "runtime_guards": {
+    "run_id": "training_guards_r01",
+    "manifest_sha256": "ba79834119933111d9764890887bccf9caa76e50a519f08a49240515f082e79f",
+    "checks": {
+      "pose_write": true,
+      "pose_write_requires_fresh_initialization": true,
+      "reset": true,
+      "reset_requires_fresh_initialization": true,
+      "initialization_ik": true,
+      "initialization_ik_requires_fresh_initialization": true,
+      "initialization_physics": true,
+      "initialization_physics_requires_fresh_initialization": true,
+      "live_nonfinite_action_terminates_once": true,
+      "nonfinite_absorbing_output_cannot_pollute_rewards": true,
+      "nonfinite_action_outcome": true,
+      "all_initializations_valid": true
+    },
+    "cost": {
+      "rollout_control_transitions": 8,
+      "active_control_transitions": 7,
+      "absorbing_control_transitions": 1,
+      "rollout_physics_env_steps": 64,
+      "active_physics_env_steps": 49,
+      "initialization_physics_env_steps": 1340,
+      "charged_control_equivalent_transitions": 175.5,
+      "scope": "All rollout slots, including holds, plus initialization physics divided by decimation. Probes/mining charged by their own manifests."
+    }
+  },
+  "preserved_failed_probe": {
+    "run_id": "tensor_contract_32_r01",
+    "status": "process_failed",
+    "manifest_sha256": "8d3f07ee6d64781fe3eb1db5b9ae59476ad70910fcc153873fa35903f2360189",
+    "reason": "Overbroad interval-event guard rejected the pinned dead-zone event before rollout. Failed process retained; zero measured rollout."
+  },
+  "scope_and_limitations": [
+    "Six single-cohort capacities, four PPO update boundaries each; longer thermal/cross-cohort stability awaits the bounded pilot.",
+    "32/64/128 audit probes and later 256/512/1024 probes have distinct exact source snapshots. They are not a controlled algorithm speed comparison.",
+    "All development weights are discarded for pilot initialization. No learned recovery performance claim.",
+    "Partial terminal reward interval is deliberately omitted; no terminal bootstrap, absorbing losses or automatic reset.",
+    "All probe/initialization/absorbing transitions are development costs, separate from the predeclared pilot budget.",
+    "API guards do not sandbox arbitrary low-level simulator access. Actor audit covers tested observation and transform routes."
+  ]
+}

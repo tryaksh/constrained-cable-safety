@@ -1,0 +1,66 @@
+{
+  "schema": 1,
+  "status": "development_assessment_before_final_evaluation",
+  "created_at_utc": "2026-09-09T17:34:01.824808+00:00",
+  "scope": "Bounded primary-source check and practical research assessment during registered v4 training. Not an exhaustive novelty review, venue assessment, or proof of learned competence.",
+  "sources": [
+    {
+      "title": "FORGE: Force-Guided Exploration for Robust Contact-Rich Manipulation under Uncertainty",
+      "url": "https://arxiv.org/abs/2408.04587",
+      "version": "v2, 2025-01-02",
+      "verified_scope": "Force-aware learned manipulation, dynamics randomization, success prediction and multiple assembly tasks with real-robot experiments."
+    },
+    {
+      "title": "ARCH: Hierarchical Hybrid Learning for Long-Horizon Contact-Rich Robotic Assembly",
+      "url": "https://long-horizon-assembly.github.io/",
+      "version": "CoRL 2025 project page",
+      "verified_scope": "Hybrid learned and planned primitives, demonstrations, simulation and real manipulation; insertion and grasp recovery examples."
+    },
+    {
+      "title": "FORGE-plus: Force-Budgeted Recovery for Contact-Rich Assembly with a Frozen LLM Supervisor",
+      "url": "https://arxiv.org/abs/2607.21227",
+      "version": "v1, 2026-07-23 preprint",
+      "verified_scope": "Frozen text supervisor selects a fixed recovery menu in simulation; reports recovery outcomes and unsuccessful PPO under strict force constraints. Different task and scope; its rates are not comparisons with this project."
+    },
+    {
+      "title": "Reverse Curriculum Generation for Reinforcement Learning",
+      "url": "https://arxiv.org/abs/1707.05300",
+      "version": "v3, 2018-07-23; CoRL 2017",
+      "verified_scope": "Performance-adaptive start-state curricula for simulated goal-directed manipulation."
+    }
+  ],
+  "inferences_and_decision_criteria": [
+    "Assembly, recovery, force-aware learning and adaptive curricula already have substantial prior art. The proposed difficulty score alone is not a defensible novelty claim.",
+    "The practical contribution must be an empirically supported answer about complete-job reliability per charged training cost, with witnessed recovery separated from prevention.",
+    "First establish a competent learned baseline under the frozen job criteria. Debugging rewards and critic fitting is enabling engineering, not the final research contribution.",
+    "After competence, compare uniform, adaptive and fixed curriculum with shared architecture, reward, nominal allocation, support, seeds and budget; retain the upstream reference and fixed retry baseline.",
+    "A substantial research claim requires multiple training seeds, a second contact task, held-out combinations, physics sensitivity checks and a failure-mechanism ablation. Simulation-only evidence limits deployment claims.",
+    "Do not replace missing comparative evidence with an LLM supervisor, a new robot, a polished website or a larger network."
+  ],
+  "conditional_postbudget_diagnosis": [
+    "If the fixed competence gate fails, first classify all 84 primary requests by nominal/fault outcome, force abort, witnessed failure, withdrawal and completed recovery. Do not change the gate.",
+    "Compare full discounted returns and job completion on existing matched development controls. Removing individual stall counterexamples does not mathematically guarantee alignment of expected reward with completion probability: early risky success may still outreturn slower reliable recovery. Treat this as a hypothesis until measured.",
+    "Use actor action targets, motion and force traces to separate extraction errors, inadequate recovery behavior and remaining reward conflicts. Additional stochastic/critic rollouts require a specific unresolved question and an explicit small budget.",
+    "Stop repeated reward or optimizer tuning if the evidence does not isolate a blocker; finish the defensible benchmark and report the baseline limitation rather than start an adaptive campaign without competence."
+  ],
+  "future_capacity_permission": {
+    "user_authorized": "2048 or 4096 environments may be used in future if previous work is preserved. No change to the executing registered 1024-environment run.",
+    "measured_evidence": "evidence/training_contract_verified_v1.json",
+    "observations": {
+      "512_env_rollout_transitions_per_s": [
+        1174.8803355983928,
+        1233.6188235294117
+      ],
+      "1024_env_rollout_transitions_per_s": [
+        1647.144841705529,
+        1790.919152308339
+      ],
+      "1024_env_peak_gpu_mib": 5463
+    },
+    "limitations": "Short earlier development probes; larger batches are unmeasured. They do not establish long-run throughput, RAM capacity or policy learning speed at 2048/4096.",
+    "practical_next_test": "After the current learning milestone, benchmark 2048 first in a new bounded development run with the same physics and representative workload; consider 4096 only if measured RAM, GPU headroom and throughput justify it. Include startup, optimizer and export overhead; measure active samples per second as well as total slots per second.",
+    "acceptance": "Adopt a larger batch only after artifact validity and sustained wall-time improvement. Preserve all older runs, charge probes, and preregister the same new configuration for every future comparison arm.",
+    "optimization_caution": "Doubling environments changes samples per PPO batch and, at fixed cohort-based budget, the number of policy updates and sampler feedback rounds. It is not automatically a pure speed optimization. High absorbing fractions are not cured by more environments; do not change terminal/reset semantics merely to fill the GPU.",
+    "token_efficiency": "Use the existing bounded launcher with persistent redirected logs and inspect meaningful saved checkpoints; no sleep-guard work or additional housekeeping framework."
+  }
+}

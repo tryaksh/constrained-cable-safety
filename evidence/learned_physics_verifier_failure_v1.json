@@ -1,0 +1,35 @@
+{
+  "schema": 1,
+  "status": "preserved_cpu_verifier_failure_resolved_in_v2",
+  "research_result": false,
+  "failed_queue": {
+    "path": "artifacts/assembly/learned_physics_v1_r01/queue.json",
+    "sha256": "a6cb0ab2f32f741a843b99e4e37452331a43c22a12f28cdea9f7df5f0b3ffee3"
+  },
+  "simulator_run": {
+    "path": "artifacts/assembly/learned_physics_v1_r01/120_prefix_learned",
+    "manifest_sha256": "ae99d422baaf3bd4457de96fbe45f367de963f9f721e3292962eacde8beb5546",
+    "verification_sha256": "307cd4bc78d3f9e541aaa2f5d01be6b0166e34908a10cd86273b373f1a82eb6c",
+    "charged_reference_transitions": 12834.5
+  },
+  "error": "KeyError: tests/test_learned_physics_v1.py in manifest source_hashes",
+  "resolution": "First simulator run completed but v1 CPU verifier raised KeyError for a test absent from source.zip. The archive intentionally contains runtime source/configs, not tests. V2 separately verifies the registered test bytes from the clean prelaunch commit. No changes to simulator behavior, cases, timing, reward, metrics or tolerances.",
+  "first_run_corrected_verification": {
+    "all_checks_passed": true,
+    "checks": 68,
+    "confirmed_trajectory_bitwise_parity": true
+  },
+  "source_only_export_failure": {
+    "path": "artifacts/assembly/learned_physics_source_export_v1.pytest.log",
+    "sha256": "5b3834a3305f2630f70bc5866343f16b66de0d5a86ba57284ce346b144aef2f7",
+    "passed": 205,
+    "failed": 1,
+    "reason": "Only verify_training_contract.py changed bytes in checkout due CRLF without explicit attributes. Add a CRLF checkout rule, preserving frozen working bytes."
+  },
+  "charged_reference_transitions": 12834.5,
+  "additional_simulator_work_for_cpu_correction": 0,
+  "scope_and_limitations": [
+    "The simulator run completed and its full actions, physics, reward, sensor draws and RNG reproduce the confirmed learned reference exactly. The original queue remains failed; only CPU provenance checking was corrected.",
+    "The remaining five runs have not launched at recording."
+  ]
+}

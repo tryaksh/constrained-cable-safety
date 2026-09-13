@@ -1,0 +1,24 @@
+{
+  "schema": 1,
+  "version": "training_capacity_review_v1",
+  "research_result": false,
+  "input_manifests": [
+    "D:\\6axis-space-robotics\\artifacts\\assembly\\capacity1024_v1_r01\\manifest.json",
+    "D:\\6axis-space-robotics\\artifacts\\assembly\\capacity2048_v1_r01\\manifest.json"
+  ],
+  "scope_and_limitations": [
+    "Bounded representative resource measurement with real optimization, not a curriculum or policy score comparison.",
+    "2048 performs twice the initialized jobs and planned charged work. Active samples and optimizer steps are measured, not matched.",
+    "Fresh-policy early cohorts do not establish mature-policy utilization or long-run stability.",
+    "Task timestep sensitivity remains open. This capacity choice does not pass physics, recovery or research-training gates.",
+    "Simulator observations have synthetic noise; no camera perception, pickup, hardware transfer or force-certified safety claim."
+  ],
+  "status": "failed_verification",
+  "error": "ValueError: Behavior sources changed between the capacity runs",
+  "superseded": {
+    "by": "evidence/training_capacity_v2.json",
+    "scope": "CPU source-comparison implementation only; neither GPU run failed.",
+    "reason": "The original reviewer compared an unimported teaching utility alongside the actual runtime. The frozen capacity worker, launcher, protocol dependencies and package initialization are unchanged. Retain this failed verification record; the corrected version checks the exact runtime dependency set.",
+    "additional_simulator_transitions": 0
+  }
+}

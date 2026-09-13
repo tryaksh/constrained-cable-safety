@@ -1,0 +1,271 @@
+{
+  "schema": 1,
+  "status": "conditional_final_cause_test_design_before_servo_results",
+  "research_result": false,
+  "recorded_at_utc": "2026-09-10T16:34:00.496397+00:00",
+  "question": "If a fixed480Hz servo still leaves480/960Hz native sensitivity, can a common Cartesian reference slew bound remove abrupt approach commands while retaining an interpretable force-limited task?",
+  "source_sha256": {
+    "src/assembly_recovery/geometry.py": "4438eb81ea3f58dff9330d6669f1ab7db6175e202782768ff76368ace1dfdc86",
+    "src/assembly_recovery/retry_controller.py": "cf899ca4cd16151da407d3fea5e02b25e0d830feb6177a69ace1fc52cbcabdcf",
+    "configs/retry_unload_realign_v1.json": "3b0c6fa3b5e7c10b545efbdbb380e58f7ac485cf80bed000d580ac780dd6a299",
+    "scripts/probe_contact_impact_v1.py": "38b713f7c18b8212e842367f60ad4ba961d88e8e688f2d57bc40f8f0a9547958",
+    "src/assembly_recovery/contact_impact_env_v1.py": "1ccc992b5021716a79c73c5e03d4f4422441c8523fb9fd9dbf74d4775134f341",
+    "src/assembly_recovery/servo_impact_env_v1.py": "1bc08db2a2cb6f46e5689c88d8f672ae2fb173da7d75bc4484903b615a968ef4",
+    "src/assembly_recovery/servo_impact_timing_v1.py": "51e5020d3d355b3354b6b2a1ba1990114d3c41dab2380bf04e4254756a865cfd",
+    ".deps/IsaacLab/source/isaaclab_tasks/isaaclab_tasks/direct/forge/forge_env.py": "492d52568719a35cd434fe4269b2cd5cb9b69c6750bc049f255130e47d38fe1c",
+    ".deps/IsaacLab/source/isaaclab_tasks/isaaclab_tasks/direct/factory/factory_control.py": "837f31fa35f9595a482b96204a14055ddd345d3090b3e31ff3a89061ad8ff33f",
+    ".deps/IsaacLab/source/isaaclab_tasks/isaaclab_tasks/direct/factory/factory_utils.py": "d65da4571a0c53451914109f8699b2587d97b5e1e92093b155ca72e385596095"
+  },
+  "geometry": {
+    "radial_clearance_m": 5.699999999999976e-05,
+    "peg_height_m": 0.05,
+    "hole_height_m": 0.025,
+    "seated_fingertip_above_hole_top_m": 0.007392000000000003,
+    "position_action_bound_m": 0.05
+  },
+  "measured_initial_controller_parameters": {
+    "kp_xyz_n_m": [
+      {
+        "min": 401.3772277832031,
+        "median": 602.5673217773438,
+        "max": 757.44921875
+      },
+      {
+        "min": 403.582763671875,
+        "median": 571.3344116210938,
+        "max": 796.2925415039062
+      },
+      {
+        "min": 401.00970458984375,
+        "median": 532.6452026367188,
+        "max": 772.3995361328125
+      }
+    ],
+    "kd_z_n_s_m": {
+      "min": 40.050453410159726,
+      "median": 46.15821498440852,
+      "max": 55.58415371786504
+    },
+    "position_error_clamp_z_m": {
+      "min": 0.01607544533908367,
+      "median": 0.017531266435980797,
+      "max": 0.02498314343392849
+    },
+    "axial_static_task_spring_cap_before_deadzone_n": {
+      "min": 6.73730937648827,
+      "median": 9.920573875970149,
+      "max": 14.110892678175333
+    },
+    "axial_static_task_spring_cap_after_initial_deadzone_n": {
+      "min": 2.461051266011964,
+      "median": 7.694958136147761,
+      "max": 11.701732306090435
+    },
+    "initial_ema_factor": {
+      "min": 0.02964417263865471,
+      "median": 0.06517741084098816,
+      "max": 0.09743126481771469
+    },
+    "first_insert_requested_xyz_jump_m": {
+      "min": 0.0347229679433737,
+      "median": 0.038369471283989404,
+      "max": 0.04096596614897928
+    },
+    "first_insert_after_ema_xyz_jump_m": {
+      "min": 0.0010430640904386306,
+      "median": 0.002350095908447235,
+      "max": 0.003942048423926549
+    },
+    "first_insert_after_ema_reference_speed_equivalent_m_s": {
+      "min": 0.015645961356579457,
+      "median": 0.03525143862670852,
+      "max": 0.05913072635889824
+    },
+    "initial_peg_base_gap_above_fixture_top_m": {
+      "min": 0.008790726214647292,
+      "median": 0.013723185658454894,
+      "max": 0.016947443038225173
+    },
+    "initial_lateral_peg_to_hole_offset_m": {
+      "min": 0.000179138236315806,
+      "median": 0.002225436590804005,
+      "max": 0.009437137821433465
+    }
+  },
+  "charged_native_approach_measurements": {
+    "120": {
+      "run_path": "artifacts/assembly/contact_impact_v1_r01/120",
+      "trajectory_sha256": "0114f80d05343b12d7f86ad41e390e0248dc95466c05b41cffa87453328a9925",
+      "report_sha256": "6b0897fbaa6f1f2fe5da5907edd4e0bb2ef671250db8d609df45c470b2c1d859",
+      "contact_observed_cases": 28,
+      "summary": {
+        "first_measured_fixture_contact_s": {
+          "min": 1.1916666666666667,
+          "median": 1.5166666666666666,
+          "max": 1.7833333333333334
+        },
+        "peak_precontact_tool_speed_m_s": {
+          "min": 0.019554070598186302,
+          "median": 0.026372392676154363,
+          "max": 0.053092332458100924
+        },
+        "tool_downspeed_last_sample_before_contact_m_s": {
+          "min": 0.018581029027700424,
+          "median": 0.024410167708992958,
+          "max": 0.05292874574661255
+        },
+        "raw_wrist_last_sample_before_contact_n": {
+          "min": 0.0748005089802094,
+          "median": 0.1528080492183627,
+          "max": 0.20344900231173177
+        },
+        "raw_wrist_first_contact_n": {
+          "min": 0.09927390135002677,
+          "median": 10.58769352310813,
+          "max": 19.587241598777553
+        }
+      }
+    },
+    "480": {
+      "run_path": "artifacts/assembly/contact_impact_v2_r01/480",
+      "trajectory_sha256": "09b52b4face4fb10d84050063b61d24f6395bbf57700ae15b9b06419c38da2ab",
+      "report_sha256": "e8ee3527849576feb475c75ccd450a2a944822a7023a6e75748b48707cfc5bb0",
+      "contact_observed_cases": 28,
+      "summary": {
+        "first_measured_fixture_contact_s": {
+          "min": 1.3229166666666667,
+          "median": 1.5708333333333333,
+          "max": 2.0791666666666666
+        },
+        "peak_precontact_tool_speed_m_s": {
+          "min": 0.020706704411313802,
+          "median": 0.029162800194503253,
+          "max": 0.05696723878039893
+        },
+        "tool_downspeed_last_sample_before_contact_m_s": {
+          "min": 0.005157657898962498,
+          "median": 0.028342491015791893,
+          "max": 0.056754883378744125
+        },
+        "raw_wrist_last_sample_before_contact_n": {
+          "min": 0.11895811148828767,
+          "median": 0.1752587559190139,
+          "max": 0.25466793333761445
+        },
+        "raw_wrist_first_contact_n": {
+          "min": 0.23952435989073054,
+          "median": 19.63560053830666,
+          "max": 20.988309122040242
+        }
+      }
+    },
+    "960": {
+      "run_path": "artifacts/assembly/contact_impact_960_v2_r01/960",
+      "trajectory_sha256": "39ae7d0a16f20563c166387dd5e2f00fe8a4fb536a365090c7858c1bc32a8624",
+      "report_sha256": "e8682daaf9997b8168de2da7443b2ff25a7cfb27f7a8daadddf0440f727e3bad",
+      "contact_observed_cases": 28,
+      "summary": {
+        "first_measured_fixture_contact_s": {
+          "min": 1.3927083333333334,
+          "median": 1.6125,
+          "max": 1.8416666666666666
+        },
+        "peak_precontact_tool_speed_m_s": {
+          "min": 0.021573977333343708,
+          "median": 0.03230497085906432,
+          "max": 0.05758897425550536
+        },
+        "tool_downspeed_last_sample_before_contact_m_s": {
+          "min": 0.01926104538142681,
+          "median": 0.031259920448064804,
+          "max": 0.05722541734576225
+        },
+        "raw_wrist_last_sample_before_contact_n": {
+          "min": 0.13946923609263973,
+          "median": 0.17931157160579078,
+          "max": 0.33166992341395796
+        },
+        "raw_wrist_first_contact_n": {
+          "min": 0.18520716895946265,
+          "median": 19.63079444192792,
+          "max": 20.54908299714587
+        }
+      }
+    }
+  },
+  "native960_startup_gripper_observation": {
+    "first_native_finger_force_n": {
+      "min": 364.55889220999086,
+      "median": 478.0710624265333,
+      "max": 626.1912813230182
+    },
+    "all_recorded_finger_force_n_max": 626.1912813230182,
+    "scope": "Normal per-pair finger resultant; balanced finger forces can cancel in the wrist resultant. Startup spike retained, not removed or redefined. Does not establish a limit on all contact loads."
+  },
+  "interpretation": [
+    "The largest paired initial axial static task-space spring cap is14.11N before deadzone, below the unchanged20N raw wrist abort. This is an axial controller calculation, not a bound on the norm of the complete dynamic wrist reaction. It does not explain away force aborts.",
+    "The first insert command requests a34.7?41.0mm position change. After existing EMA, the first step still advances the reference1.04?3.94mm; measured fine-resolution approach speeds reach57.2mm/s before contact.",
+    "Finite reference jumps, arm/hand inertia, implicit gripper coupling and native contact resolution can produce reactions above the static axial spring term. Existing evidence does not uniquely identify their individual contributions.",
+    "The initial960Hz finger spike remains an observed modeled transient. It may involve coarse-initialization warm start or gripper constraints; no signal correction or causal attribution is established."
+  ],
+  "prospective_final_variant": {
+    "launch_condition": "Only if the registered fixed480Hz-servo480/960Hz pair fails; no GPU launch authorized by this evidence file itself.",
+    "native_physics_hz": [
+      480,
+      960
+    ],
+    "external_servo_hz": 480,
+    "external_sensor_hz": 120,
+    "policy_hz": 15,
+    "cartesian_reference_speed_m_s": 0.02,
+    "norm": "Euclidean XYZ reference increment per external servo interval",
+    "initial_reference": "Actual robot tool pose captured between jobs. This initializes controller reference state, not simulator state, and adds no actor observation.",
+    "reference_step_m": 4.1666666666666665e-05,
+    "geometric_resolution_upper_speed_m_s": 0.027359999999999884,
+    "kinematic_lower_speed_to_cover_max_initial_gap_in_two_seconds_m_s": 0.008473721519112586,
+    "seated_reference_travel_time_at_20mm_s": {
+      "min": 1.7361483971686849,
+      "median": 1.9184735641994701,
+      "max": 2.048298307448964
+    },
+    "seated_reference_travel_time_at_10mm_s": {
+      "min": 3.4722967943373697,
+      "median": 3.8369471283989403,
+      "max": 4.096596614897928
+    },
+    "rationale": "20mm/s gives41.7micrometre increments at480Hz, below configured57micrometre radial clearance, while a34.7?41.0mm reference move takes1.74?2.05s after the1s hold. The8.47mm/s gap-based lower bound and27.36mm/s geometric-resolution guideline bracket20mm/s. These are reference-resolution and exposure calculations, not physical speed/force guarantees.",
+    "comparison": "Reuse both no-slew fixed480Hz-servo reference runs; rerun the same28 cases at native480/960 with the common XYZ limiter. Do not adjust the rate based on those outcomes.",
+    "shared_across_controllers": true,
+    "rotation_unchanged": true,
+    "unchanged": [
+      "Native raw20N wrist abort",
+      "all28 development cases",
+      "geometry and gravity",
+      "retained grasp",
+      "existing stiffness/damping and position-error clamps",
+      "implicit gripper",
+      "sensor noise and filtering",
+      "15Hz high-level actor actions",
+      "30s full-job deadline and0.5s dwell"
+    ],
+    "implementation_contract": "Record requested world reference, interpolated reference and final clamped impedance target separately. Prefer limiting the requested reference before the unchanged position-error clamp; verify actual final-target behavior rather than assuming it inherits the reference slew bound. Keep terminal-hold behavior explicitly recorded.",
+    "scope": "This is a shared task/controller correction. All historical comparisons remain separate; any later learning or stronger retry comparison must use this same declared transformation."
+  },
+  "alternatives": {
+    "force_regulated_first_attempt": "Do not add a new regulator in this last variant. Frozen retry overrides insertion_load_n to4N, not its8N dataclass default; its first insert phase does not use the regulator. Applying regulation there would add a new controller, feedback lag and tuning/anti-windup questions and could remove the witnessed-failure assay. It is less isolated than common reference slew.",
+    "unmeasured_soft_contact_stiffness": "Do not invent stiffness/damping to suppress peaks without independent physical calibration. It changes the mechanical model and introduces additional free parameters.",
+    "retry_strength": "Apply the reference bound to every controller. Do not weaken retry alone or remove difficult cases; later strong-retry controls may be improved only prospectively under the same corrected task."
+  },
+  "verification_and_stop": [
+    "Require native timing, source snapshots, action/sensor/RNG contracts, raw-abort replay and positive controls to pass for both resolutions.",
+    "Report actual contact-onset speed, native force, resultant normal impulse, startup finger load, preterminal and absorbing exposures, and each case. Preserve every force abort and failed launch.",
+    "A prefix gate pass is insufficient if it merely delays contact beyond4s. Report actual witnessed contact stalls and perform the already-required common full-job controls before substantial training.",
+    "This is the final declared explanation-driven variant if reached. If it fails to establish an interpretable retained-grasp task, retain the numerical/control sensitivity result and stop adding knobs in this cycle."
+  ],
+  "scope_and_limitations": [
+    "All calculations use already-charged development trajectories and source inspection; no new simulator work or optimization.",
+    "The target slew bound is not a hardware safety claim, actual tool-speed guarantee, force ceiling, convergence proof or success promise.",
+    "Geometry uses configured dimensions; radial clearance as a reference-step guideline does not calibrate collision meshes or contact compliance.",
+    "Initial parameter ranges are paired28-case realized draws. They do not replace full declared randomized support or justify outcome-conditioned case selection."
+  ]
+}

@@ -1,0 +1,46 @@
+{
+  "schema": 1,
+  "status": "verified",
+  "research_result": false,
+  "checks": {
+    "correct_backends": true,
+    "same_task_and_cases": true,
+    "same_source": true,
+    "identical_initial_state": true,
+    "identical_job_outcomes_and_timing": true,
+    "identical_general_witness": true,
+    "identical_witnessed_recovery": true,
+    "identical_actor_script_state": true,
+    "identical_part_pos": true,
+    "identical_part_quat": true,
+    "identical_commanded_action": true,
+    "reward_within_1e_minus_5": true
+  },
+  "maximum_absolute_differences": {
+    "part_pos": 0.0,
+    "part_quat": 0.0,
+    "commanded_action": 0.0,
+    "job_reward": 0.0
+  },
+  "runs": [
+    {
+      "run_id": "training_path_reference_r01",
+      "manifest_sha256": "1c32a4da9e75adc1874c85fb3c37294eea1c0ce77a8e749c7edcaf87b4cb0ebd"
+    },
+    {
+      "run_id": "training_path_tensor_r01",
+      "manifest_sha256": "acad5e07130234df019338318aec312bf54af8672f1e11cc19e432ded68d8fbf"
+    }
+  ],
+  "jobs_per_path": 28,
+  "completed_jobs": 19,
+  "witnessed_recoveries": 12,
+  "reference_rollout_wall_s": 146.2029999999795,
+  "tensor_rollout_wall_s": 153.5,
+  "scope_and_limitations": [
+    "One unchanged scripted development cohort; no learned result or continuous-range proof.",
+    "Both paths run actor-only CPU scripts and export traces; this does not measure optimized PPO speedup.",
+    "Reward convention remains endpoint-only with omitted terminal partial intervals.",
+    "The reference and tensor drivers have different internal horizon metadata; both run the same external 30-second finite jobs without auto-reset."
+  ]
+}

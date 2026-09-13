@@ -1,0 +1,24 @@
+{
+  "schema": 1,
+  "status": "registered_cpu_verifier_correction_before_reexport",
+  "recorded_at_utc": "2026-09-09T23:28:28.809075+00:00",
+  "scope": "Offline verifier/export correction only. All six simulator runs remain completed and unmodified; no additional simulator transitions.",
+  "failed_evidence_sha256_before_annotation": "f8c57b9ad04d01d4bfea8662de57ae644c2830e490df330f3d2a92195a565fc8",
+  "original_verifier_sha256": "aa563c59a1976f599f595444be0f1167b4be45412af160a02c608bf107553d57",
+  "corrected_verifier": {
+    "path": "scripts/verify_failure_prefix_v2_export_v1.py",
+    "sha256": "e4b84b906a5d972272b32cc985aeaabdb93598a79a3e26b56b7eee702aa0d6cc"
+  },
+  "corrections": [
+    "Compare the saved 21 resolved RetrySettings fields with asdict(RetrySettings(**the frozen five-field override JSON)), instead of incorrectly comparing resolved settings with the sparse overrides alone. No setting values change.",
+    "Resolve input/output paths and use a fresh verification_resolved_settings_v1 directory; preserve the failed export and its raw check/case records."
+  ],
+  "unchanged": [
+    "Frozen scripts, controllers and registration hashes",
+    "All thresholds, cohort selection, denominators and metrics",
+    "Native replay, exact scripted action/phase replay, checkpoint extraction, paired prefixes and full RNG checks",
+    "Original failed competence gate and all pre-block evidence"
+  ],
+  "additional_simulator_transitions": 0,
+  "corrected_output": "evidence/post_stall_confirmation_v2_verified.json"
+}

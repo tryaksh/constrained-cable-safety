@@ -1,0 +1,20 @@
+{
+  "schema": 1,
+  "status": "preserved_source_checkout_verification_failure",
+  "research_result": false,
+  "failed_check": "test_continuation_preserves_protocol_and_charges_reused_run_once",
+  "cause": "Adding new checkout rules changed the root.gitattributes hash, which a historical registration freezes. The runtime/evidence byte-identity checks passed, but this historical-source test correctly failed.",
+  "failed_suite": {
+    "passed": 298,
+    "failed": 1
+  },
+  "additional_simulator_cost": 0,
+  "preserved_attempt": {
+    "path": "artifacts/assembly/research_cycle_20260910_r01/gitattributes_attempt_v1",
+    "sha256": "1d1a71ceeb9e63d90ab38503ad1dd205889d591db0bb11744f5d469b20cf9b4a"
+  },
+  "resolution": "Restore the unchanged historical root.gitattributes; scope new byte-preservation rules in directory-local.gitattributes files affecting only the newly registered paths. Recheck source-only tests and bytes.",
+  "scope_and_limitations": [
+    "Handoff metadata-layout correction only. No simulator, policy, controller, physical results, configuration or failed run was changed."
+  ]
+}

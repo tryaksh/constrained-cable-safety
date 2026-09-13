@@ -1,0 +1,973 @@
+{
+  "schema": 1,
+  "status": "verified",
+  "research_result": false,
+  "registration_sha256": "98fbbc43821024b97bd831c25fbe3e6e13ede0306e5a32121c855cba2cae9d74",
+  "checkpoint_sha256": "cee349b1b9283a66924294323f5c7bd8f5de98434be70ed19d8a07986f9eb532",
+  "verification": {
+    "checks": 158,
+    "failed_checks": [],
+    "artifacts": [
+      {
+        "path": "artifacts/assembly/failure_prefix_confirmation_v2_r01/verification_resolved_settings_v1/cases.json",
+        "sha256": "456827d84e6b2a6fb3ceca9ac55273b72fe7bdee004581b94ac06fbb2ea21a77"
+      },
+      {
+        "path": "artifacts/assembly/failure_prefix_confirmation_v2_r01/verification_resolved_settings_v1/checks.json",
+        "sha256": "f2d4ce0f488725a1e5b97329681f54244cb58ee8ce3f9525b8ae794354039578"
+      }
+    ]
+  },
+  "confirmation_seeds": [
+    10071,
+    10072
+  ],
+  "by_seed": {
+    "10071": {
+      "arms": {
+        "learned": {
+          "whole_job": {
+            "requests": 28,
+            "completions": 25,
+            "outcomes": {
+              "success": 25,
+              "force_abort": 2,
+              "deadline": 1
+            },
+            "upstream_success_seen": 26,
+            "witnessed_contact_failures": 17,
+            "witnessed_recoveries": 0,
+            "mean_time_per_request_s": 10.18125,
+            "peak_raw_wrist_force_n": 20.158672332763672,
+            "mean_discounted_return": 264.89469662989677,
+            "forbidden_events": 0,
+            "active_control_transitions": 4288,
+            "return_by_outcome": {
+              "deadline": {
+                "requests": 1,
+                "mean": 48.94032553091576
+              },
+              "force_abort": {
+                "requests": 2,
+                "mean": 18.78310484683167
+              },
+              "success": {
+                "requests": 25,
+                "mean": 293.22179881650123
+              }
+            }
+          },
+          "post_stall": {
+            "all_requested_jobs": 28,
+            "whole_job_completions": 25,
+            "prefix_script_completions": 3,
+            "prefix_failed_jobs": 1,
+            "active_at_handoff": 24,
+            "witnessed_stalls_active_at_handoff": 17,
+            "post_stall_completions": 16,
+            "post_stall_failures": 1,
+            "original_withdrawal_recoveries": 0,
+            "withdrawal_recoveries_after_handoff": 0,
+            "post_stall_outcomes": {
+              "deadline": 1,
+              "success": 16
+            }
+          },
+          "post_stall_by_bin": {
+            "approach_high": {
+              "eligible": 4,
+              "completed": 4
+            },
+            "approach_low": {
+              "eligible": 3,
+              "completed": 2
+            },
+            "bias_low": {
+              "eligible": 2,
+              "completed": 2
+            },
+            "bias_medium": {
+              "eligible": 3,
+              "completed": 3
+            },
+            "friction_high": {
+              "eligible": 1,
+              "completed": 1
+            },
+            "friction_low": {
+              "eligible": 1,
+              "completed": 1
+            },
+            "nominal": {
+              "eligible": 3,
+              "completed": 3
+            }
+          },
+          "manifest_sha256": "38537e7113e4c1d270ad4d9633878844b1b7e79b860e4aa55a7ecbcf157228a7",
+          "cpu_mean_max_absolute_error": 1.6689300537109375e-06
+        },
+        "retry": {
+          "whole_job": {
+            "requests": 28,
+            "completions": 24,
+            "outcomes": {
+              "deadline": 3,
+              "success": 24,
+              "force_abort": 1
+            },
+            "upstream_success_seen": 24,
+            "witnessed_contact_failures": 22,
+            "witnessed_recoveries": 19,
+            "mean_time_per_request_s": 17.606547619047618,
+            "peak_raw_wrist_force_n": 20.158672332763672,
+            "mean_discounted_return": 188.24685586913324,
+            "forbidden_events": 0,
+            "active_control_transitions": 7408,
+            "return_by_outcome": {
+              "deadline": {
+                "requests": 3,
+                "mean": 105.2607993622753
+              },
+              "force_abort": {
+                "requests": 1,
+                "mean": 6.287626466769431
+              },
+              "success": {
+                "requests": 24,
+                "mean": 206.20174749092232
+              }
+            }
+          },
+          "post_stall": {
+            "all_requested_jobs": 28,
+            "whole_job_completions": 24,
+            "prefix_script_completions": 3,
+            "prefix_failed_jobs": 1,
+            "active_at_handoff": 24,
+            "witnessed_stalls_active_at_handoff": 17,
+            "post_stall_completions": 16,
+            "post_stall_failures": 1,
+            "original_withdrawal_recoveries": 19,
+            "withdrawal_recoveries_after_handoff": 16,
+            "post_stall_outcomes": {
+              "deadline": 1,
+              "success": 16
+            }
+          },
+          "post_stall_by_bin": {
+            "approach_high": {
+              "eligible": 4,
+              "completed": 4
+            },
+            "approach_low": {
+              "eligible": 3,
+              "completed": 3
+            },
+            "bias_low": {
+              "eligible": 2,
+              "completed": 2
+            },
+            "bias_medium": {
+              "eligible": 3,
+              "completed": 3
+            },
+            "friction_high": {
+              "eligible": 1,
+              "completed": 1
+            },
+            "friction_low": {
+              "eligible": 1,
+              "completed": 1
+            },
+            "nominal": {
+              "eligible": 3,
+              "completed": 2
+            }
+          },
+          "manifest_sha256": "c21caf618bd3fdadfd5fa9f88b86aee94f692be23f99ec7033b561dff9ddc0c4",
+          "cpu_mean_max_absolute_error": 1.6689300537109375e-06
+        },
+        "continue": {
+          "whole_job": {
+            "requests": 28,
+            "completions": 6,
+            "outcomes": {
+              "deadline": 19,
+              "success": 6,
+              "force_abort": 3
+            },
+            "upstream_success_seen": 7,
+            "witnessed_contact_failures": 22,
+            "witnessed_recoveries": 0,
+            "mean_time_per_request_s": 22.243154761904762,
+            "peak_raw_wrist_force_n": 20.545005798339844,
+            "mean_discounted_return": 105.75094616969542,
+            "forbidden_events": 0,
+            "active_control_transitions": 9347,
+            "return_by_outcome": {
+              "deadline": {
+                "requests": 19,
+                "mean": 32.725517996315105
+              },
+              "force_abort": {
+                "requests": 3,
+                "mean": 2.1307185292508772
+              },
+              "success": {
+                "requests": 6,
+                "mean": 388.808249205622
+              }
+            }
+          },
+          "post_stall": {
+            "all_requested_jobs": 28,
+            "whole_job_completions": 6,
+            "prefix_script_completions": 3,
+            "prefix_failed_jobs": 1,
+            "active_at_handoff": 24,
+            "witnessed_stalls_active_at_handoff": 17,
+            "post_stall_completions": 1,
+            "post_stall_failures": 16,
+            "original_withdrawal_recoveries": 0,
+            "withdrawal_recoveries_after_handoff": 0,
+            "post_stall_outcomes": {
+              "deadline": 15,
+              "force_abort": 1,
+              "success": 1
+            }
+          },
+          "post_stall_by_bin": {
+            "approach_high": {
+              "eligible": 4,
+              "completed": 0
+            },
+            "approach_low": {
+              "eligible": 3,
+              "completed": 0
+            },
+            "bias_low": {
+              "eligible": 2,
+              "completed": 0
+            },
+            "bias_medium": {
+              "eligible": 3,
+              "completed": 0
+            },
+            "friction_high": {
+              "eligible": 1,
+              "completed": 0
+            },
+            "friction_low": {
+              "eligible": 1,
+              "completed": 0
+            },
+            "nominal": {
+              "eligible": 3,
+              "completed": 1
+            }
+          },
+          "manifest_sha256": "f2f6b5ed64741229ae5370ee47d9d86e8604f01787cd15dde405a27afcbbe72f",
+          "cpu_mean_max_absolute_error": 1.9073486328125e-06
+        }
+      },
+      "paired": {
+        "retry": {
+          "whole_job": {
+            "requests": 28,
+            "both_complete": 22,
+            "learned_only": 3,
+            "control_only": 2,
+            "neither_complete": 1
+          },
+          "post_stall": {
+            "requests": 17,
+            "both_complete": 15,
+            "learned_only": 1,
+            "control_only": 1,
+            "neither_complete": 0
+          }
+        },
+        "continue": {
+          "whole_job": {
+            "requests": 28,
+            "both_complete": 6,
+            "learned_only": 19,
+            "control_only": 0,
+            "neither_complete": 3
+          },
+          "post_stall": {
+            "requests": 17,
+            "both_complete": 1,
+            "learned_only": 15,
+            "control_only": 0,
+            "neither_complete": 1
+          }
+        }
+      }
+    },
+    "10072": {
+      "arms": {
+        "learned": {
+          "whole_job": {
+            "requests": 28,
+            "completions": 22,
+            "outcomes": {
+              "success": 22,
+              "deadline": 6
+            },
+            "upstream_success_seen": 22,
+            "witnessed_contact_failures": 20,
+            "witnessed_recoveries": 0,
+            "mean_time_per_request_s": 12.733333333333333,
+            "peak_raw_wrist_force_n": 19.788116455078125,
+            "mean_discounted_return": 265.18534432565485,
+            "forbidden_events": 0,
+            "active_control_transitions": 5358,
+            "return_by_outcome": {
+              "deadline": {
+                "requests": 6,
+                "mean": 56.169275971011785
+              },
+              "success": {
+                "requests": 22,
+                "mean": 322.1897266041939
+              }
+            }
+          },
+          "post_stall": {
+            "all_requested_jobs": 28,
+            "whole_job_completions": 22,
+            "prefix_script_completions": 3,
+            "prefix_failed_jobs": 0,
+            "active_at_handoff": 25,
+            "witnessed_stalls_active_at_handoff": 20,
+            "post_stall_completions": 14,
+            "post_stall_failures": 6,
+            "original_withdrawal_recoveries": 0,
+            "withdrawal_recoveries_after_handoff": 0,
+            "post_stall_outcomes": {
+              "deadline": 6,
+              "success": 14
+            }
+          },
+          "post_stall_by_bin": {
+            "approach_high": {
+              "eligible": 3,
+              "completed": 1
+            },
+            "approach_low": {
+              "eligible": 4,
+              "completed": 4
+            },
+            "bias_low": {
+              "eligible": 3,
+              "completed": 3
+            },
+            "bias_medium": {
+              "eligible": 2,
+              "completed": 0
+            },
+            "friction_high": {
+              "eligible": 3,
+              "completed": 1
+            },
+            "friction_low": {
+              "eligible": 3,
+              "completed": 3
+            },
+            "nominal": {
+              "eligible": 2,
+              "completed": 2
+            }
+          },
+          "manifest_sha256": "7c4aea1fd6a226720b11dcc8ad2e0d28bac4c18de86bdc3dae89f7a7af028710",
+          "cpu_mean_max_absolute_error": 1.1920928955078125e-06
+        },
+        "retry": {
+          "whole_job": {
+            "requests": 28,
+            "completions": 23,
+            "outcomes": {
+              "success": 23,
+              "deadline": 3,
+              "force_abort": 2
+            },
+            "upstream_success_seen": 25,
+            "witnessed_contact_failures": 23,
+            "witnessed_recoveries": 18,
+            "mean_time_per_request_s": 18.407738095238095,
+            "peak_raw_wrist_force_n": 20.288354873657227,
+            "mean_discounted_return": 182.55737431947512,
+            "forbidden_events": 0,
+            "active_control_transitions": 7741,
+            "return_by_outcome": {
+              "deadline": {
+                "requests": 3,
+                "mean": 70.01635696864638
+              },
+              "force_abort": {
+                "requests": 2,
+                "mean": 81.20934798728831
+              },
+              "success": {
+                "requests": 23,
+                "mean": 206.04950930716467
+              }
+            }
+          },
+          "post_stall": {
+            "all_requested_jobs": 28,
+            "whole_job_completions": 23,
+            "prefix_script_completions": 3,
+            "prefix_failed_jobs": 0,
+            "active_at_handoff": 25,
+            "witnessed_stalls_active_at_handoff": 20,
+            "post_stall_completions": 15,
+            "post_stall_failures": 5,
+            "original_withdrawal_recoveries": 18,
+            "withdrawal_recoveries_after_handoff": 15,
+            "post_stall_outcomes": {
+              "deadline": 3,
+              "force_abort": 2,
+              "success": 15
+            }
+          },
+          "post_stall_by_bin": {
+            "approach_high": {
+              "eligible": 3,
+              "completed": 2
+            },
+            "approach_low": {
+              "eligible": 4,
+              "completed": 3
+            },
+            "bias_low": {
+              "eligible": 3,
+              "completed": 3
+            },
+            "bias_medium": {
+              "eligible": 2,
+              "completed": 1
+            },
+            "friction_high": {
+              "eligible": 3,
+              "completed": 2
+            },
+            "friction_low": {
+              "eligible": 3,
+              "completed": 2
+            },
+            "nominal": {
+              "eligible": 2,
+              "completed": 2
+            }
+          },
+          "manifest_sha256": "afeb2f9b9730e2a22cd5519104decd34b1f23663f06767130612a600d20b1661",
+          "cpu_mean_max_absolute_error": 1.1920928955078125e-06
+        },
+        "continue": {
+          "whole_job": {
+            "requests": 28,
+            "completions": 5,
+            "outcomes": {
+              "deadline": 21,
+              "force_abort": 2,
+              "success": 5
+            },
+            "upstream_success_seen": 5,
+            "witnessed_contact_failures": 23,
+            "witnessed_recoveries": 0,
+            "mean_time_per_request_s": 24.383035714285715,
+            "peak_raw_wrist_force_n": 20.746824264526367,
+            "mean_discounted_return": 96.92869412218113,
+            "forbidden_events": 0,
+            "active_control_transitions": 10244,
+            "return_by_outcome": {
+              "deadline": {
+                "requests": 21,
+                "mean": 33.4177908304388
+              },
+              "force_abort": {
+                "requests": 2,
+                "mean": -9.420122959150246
+              },
+              "success": {
+                "requests": 5,
+                "mean": 406.2140147800315
+              }
+            }
+          },
+          "post_stall": {
+            "all_requested_jobs": 28,
+            "whole_job_completions": 5,
+            "prefix_script_completions": 3,
+            "prefix_failed_jobs": 0,
+            "active_at_handoff": 25,
+            "witnessed_stalls_active_at_handoff": 20,
+            "post_stall_completions": 0,
+            "post_stall_failures": 20,
+            "original_withdrawal_recoveries": 0,
+            "withdrawal_recoveries_after_handoff": 0,
+            "post_stall_outcomes": {
+              "deadline": 18,
+              "force_abort": 2
+            }
+          },
+          "post_stall_by_bin": {
+            "approach_high": {
+              "eligible": 3,
+              "completed": 0
+            },
+            "approach_low": {
+              "eligible": 4,
+              "completed": 0
+            },
+            "bias_low": {
+              "eligible": 3,
+              "completed": 0
+            },
+            "bias_medium": {
+              "eligible": 2,
+              "completed": 0
+            },
+            "friction_high": {
+              "eligible": 3,
+              "completed": 0
+            },
+            "friction_low": {
+              "eligible": 3,
+              "completed": 0
+            },
+            "nominal": {
+              "eligible": 2,
+              "completed": 0
+            }
+          },
+          "manifest_sha256": "76450c885b5ea5dd97cc4f6b62caa644a5a56ba5209da8b986986337fa4dd785",
+          "cpu_mean_max_absolute_error": 1.9073486328125e-06
+        }
+      },
+      "paired": {
+        "retry": {
+          "whole_job": {
+            "requests": 28,
+            "both_complete": 19,
+            "learned_only": 3,
+            "control_only": 4,
+            "neither_complete": 2
+          },
+          "post_stall": {
+            "requests": 20,
+            "both_complete": 11,
+            "learned_only": 3,
+            "control_only": 4,
+            "neither_complete": 2
+          }
+        },
+        "continue": {
+          "whole_job": {
+            "requests": 28,
+            "both_complete": 5,
+            "learned_only": 17,
+            "control_only": 0,
+            "neither_complete": 6
+          },
+          "post_stall": {
+            "requests": 20,
+            "both_complete": 0,
+            "learned_only": 14,
+            "control_only": 0,
+            "neither_complete": 6
+          }
+        }
+      }
+    }
+  },
+  "aggregate_confirmation_only": {
+    "learned": {
+      "whole_job": {
+        "requests": 56,
+        "completions": 47,
+        "outcomes": {
+          "success": 47,
+          "force_abort": 2,
+          "deadline": 7
+        },
+        "upstream_success_seen": 48,
+        "witnessed_contact_failures": 37,
+        "witnessed_recoveries": 0,
+        "mean_time_per_request_s": 11.457291666666666,
+        "peak_raw_wrist_force_n": 20.158672332763672,
+        "mean_discounted_return": 265.04002047777584,
+        "forbidden_events": 0,
+        "active_control_transitions": 9646,
+        "return_by_outcome": {
+          "deadline": {
+            "requests": 7,
+            "mean": 55.13656876528378
+          },
+          "force_abort": {
+            "requests": 2,
+            "mean": 18.78310484683167
+          },
+          "success": {
+            "requests": 47,
+            "mean": 306.7812543766978
+          }
+        }
+      },
+      "nominal": {
+        "requests": 8,
+        "completions": 8,
+        "outcomes": {
+          "success": 8
+        },
+        "upstream_success_seen": 8,
+        "witnessed_contact_failures": 5,
+        "witnessed_recoveries": 0,
+        "mean_time_per_request_s": 11.980208333333334,
+        "peak_raw_wrist_force_n": 19.823678970336914,
+        "mean_discounted_return": 267.9198380738227,
+        "forbidden_events": 0,
+        "active_control_transitions": 1440,
+        "return_by_outcome": {
+          "success": {
+            "requests": 8,
+            "mean": 267.9198380738227
+          }
+        }
+      },
+      "post_stall": {
+        "all_requested_jobs": 56,
+        "whole_job_completions": 47,
+        "prefix_script_completions": 6,
+        "prefix_failed_jobs": 1,
+        "active_at_handoff": 49,
+        "witnessed_stalls_active_at_handoff": 37,
+        "post_stall_completions": 30,
+        "post_stall_failures": 7,
+        "original_withdrawal_recoveries": 0,
+        "withdrawal_recoveries_after_handoff": 0,
+        "post_stall_outcomes": {
+          "deadline": 7,
+          "success": 30
+        }
+      }
+    },
+    "retry": {
+      "whole_job": {
+        "requests": 56,
+        "completions": 47,
+        "outcomes": {
+          "deadline": 6,
+          "success": 47,
+          "force_abort": 3
+        },
+        "upstream_success_seen": 49,
+        "witnessed_contact_failures": 45,
+        "witnessed_recoveries": 37,
+        "mean_time_per_request_s": 18.007142857142856,
+        "peak_raw_wrist_force_n": 20.288354873657227,
+        "mean_discounted_return": 185.40211509430418,
+        "forbidden_events": 0,
+        "active_control_transitions": 15149,
+        "return_by_outcome": {
+          "deadline": {
+            "requests": 6,
+            "mean": 87.63857816546084
+          },
+          "force_abort": {
+            "requests": 3,
+            "mean": 56.23544081378202
+          },
+          "success": {
+            "requests": 47,
+            "mean": 206.12724795418987
+          }
+        }
+      },
+      "nominal": {
+        "requests": 8,
+        "completions": 6,
+        "outcomes": {
+          "deadline": 2,
+          "success": 6
+        },
+        "upstream_success_seen": 6,
+        "witnessed_contact_failures": 7,
+        "witnessed_recoveries": 5,
+        "mean_time_per_request_s": 19.510416666666668,
+        "peak_raw_wrist_force_n": 19.772491455078125,
+        "mean_discounted_return": 181.92845180024284,
+        "forbidden_events": 0,
+        "active_control_transitions": 2344,
+        "return_by_outcome": {
+          "deadline": {
+            "requests": 2,
+            "mean": 102.30841496673673
+          },
+          "success": {
+            "requests": 6,
+            "mean": 208.4684640780782
+          }
+        }
+      },
+      "post_stall": {
+        "all_requested_jobs": 56,
+        "whole_job_completions": 47,
+        "prefix_script_completions": 6,
+        "prefix_failed_jobs": 1,
+        "active_at_handoff": 49,
+        "witnessed_stalls_active_at_handoff": 37,
+        "post_stall_completions": 31,
+        "post_stall_failures": 6,
+        "original_withdrawal_recoveries": 37,
+        "withdrawal_recoveries_after_handoff": 31,
+        "post_stall_outcomes": {
+          "deadline": 4,
+          "force_abort": 2,
+          "success": 31
+        }
+      }
+    },
+    "continue": {
+      "whole_job": {
+        "requests": 56,
+        "completions": 11,
+        "outcomes": {
+          "deadline": 40,
+          "success": 11,
+          "force_abort": 5
+        },
+        "upstream_success_seen": 12,
+        "witnessed_contact_failures": 45,
+        "witnessed_recoveries": 0,
+        "mean_time_per_request_s": 23.313095238095237,
+        "peak_raw_wrist_force_n": 20.746824264526367,
+        "mean_discounted_return": 101.33982014593828,
+        "forbidden_events": 0,
+        "active_control_transitions": 19591,
+        "return_by_outcome": {
+          "deadline": {
+            "requests": 40,
+            "mean": 33.08896123423005
+          },
+          "force_abort": {
+            "requests": 5,
+            "mean": -2.489618066109572
+          },
+          "success": {
+            "requests": 11,
+            "mean": 396.7199608303536
+          }
+        }
+      },
+      "nominal": {
+        "requests": 8,
+        "completions": 2,
+        "outcomes": {
+          "deadline": 5,
+          "success": 2,
+          "force_abort": 1
+        },
+        "upstream_success_seen": 2,
+        "witnessed_contact_failures": 7,
+        "witnessed_recoveries": 0,
+        "mean_time_per_request_s": 21.715625,
+        "peak_raw_wrist_force_n": 20.166797637939453,
+        "mean_discounted_return": 116.3783565118749,
+        "forbidden_events": 0,
+        "active_control_transitions": 2608,
+        "return_by_outcome": {
+          "deadline": {
+            "requests": 5,
+            "mean": 61.695167767540774
+          },
+          "force_abort": {
+            "requests": 1,
+            "mean": -4.694916128856408
+          },
+          "success": {
+            "requests": 2,
+            "mean": 313.6229646930759
+          }
+        }
+      },
+      "post_stall": {
+        "all_requested_jobs": 56,
+        "whole_job_completions": 11,
+        "prefix_script_completions": 6,
+        "prefix_failed_jobs": 1,
+        "active_at_handoff": 49,
+        "witnessed_stalls_active_at_handoff": 37,
+        "post_stall_completions": 1,
+        "post_stall_failures": 36,
+        "original_withdrawal_recoveries": 0,
+        "withdrawal_recoveries_after_handoff": 0,
+        "post_stall_outcomes": {
+          "deadline": 33,
+          "force_abort": 3,
+          "success": 1
+        }
+      }
+    }
+  },
+  "paired_confirmation_only": {
+    "retry": {
+      "whole_job": {
+        "requests": 56,
+        "both_complete": 41,
+        "learned_only": 6,
+        "control_only": 6,
+        "neither_complete": 3
+      },
+      "post_stall": {
+        "requests": 37,
+        "both_complete": 26,
+        "learned_only": 4,
+        "control_only": 5,
+        "neither_complete": 2
+      }
+    },
+    "continue": {
+      "whole_job": {
+        "requests": 56,
+        "both_complete": 11,
+        "learned_only": 36,
+        "control_only": 0,
+        "neither_complete": 9
+      },
+      "post_stall": {
+        "requests": 37,
+        "both_complete": 1,
+        "learned_only": 29,
+        "control_only": 0,
+        "neither_complete": 7
+      }
+    }
+  },
+  "charged_transitions": 77007.0,
+  "resources": [
+    {
+      "seed": 10071,
+      "controller": "learned",
+      "wall_s": 164.15599999999904,
+      "cost": {
+        "rollout_control_transitions": 12600,
+        "active_control_transitions": 4288,
+        "absorbing_control_transitions": 8312,
+        "rollout_physics_env_steps": 100800,
+        "active_physics_env_steps": 34209,
+        "initialization_physics_env_steps": 1876,
+        "charged_control_equivalent_transitions": 12834.5,
+        "scope": "All rollout slots, including holds, plus initialization physics divided by decimation. Probes/mining charged by their own manifests."
+      },
+      "peak_gpu_mib": 4377,
+      "minimum_free_ram_mib": 14338.421875
+    },
+    {
+      "seed": 10071,
+      "controller": "retry",
+      "wall_s": 165.76499999999942,
+      "cost": {
+        "rollout_control_transitions": 12600,
+        "active_control_transitions": 7408,
+        "absorbing_control_transitions": 5192,
+        "rollout_physics_env_steps": 100800,
+        "active_physics_env_steps": 59158,
+        "initialization_physics_env_steps": 1876,
+        "charged_control_equivalent_transitions": 12834.5,
+        "scope": "All rollout slots, including holds, plus initialization physics divided by decimation. Probes/mining charged by their own manifests."
+      },
+      "peak_gpu_mib": 4357,
+      "minimum_free_ram_mib": 14826.85546875
+    },
+    {
+      "seed": 10071,
+      "controller": "continue",
+      "wall_s": 165.70300000000134,
+      "cost": {
+        "rollout_control_transitions": 12600,
+        "active_control_transitions": 9347,
+        "absorbing_control_transitions": 3253,
+        "rollout_physics_env_steps": 100800,
+        "active_physics_env_steps": 74737,
+        "initialization_physics_env_steps": 1876,
+        "charged_control_equivalent_transitions": 12834.5,
+        "scope": "All rollout slots, including holds, plus initialization physics divided by decimation. Probes/mining charged by their own manifests."
+      },
+      "peak_gpu_mib": 4377,
+      "minimum_free_ram_mib": 14965.0390625
+    },
+    {
+      "seed": 10072,
+      "controller": "learned",
+      "wall_s": 168.2029999999977,
+      "cost": {
+        "rollout_control_transitions": 12600,
+        "active_control_transitions": 5358,
+        "absorbing_control_transitions": 7242,
+        "rollout_physics_env_steps": 100800,
+        "active_physics_env_steps": 42784,
+        "initialization_physics_env_steps": 1876,
+        "charged_control_equivalent_transitions": 12834.5,
+        "scope": "All rollout slots, including holds, plus initialization physics divided by decimation. Probes/mining charged by their own manifests."
+      },
+      "peak_gpu_mib": 4377,
+      "minimum_free_ram_mib": 14765.875
+    },
+    {
+      "seed": 10072,
+      "controller": "retry",
+      "wall_s": 165.79599999999846,
+      "cost": {
+        "rollout_control_transitions": 12600,
+        "active_control_transitions": 7741,
+        "absorbing_control_transitions": 4859,
+        "rollout_physics_env_steps": 100800,
+        "active_physics_env_steps": 61850,
+        "initialization_physics_env_steps": 1876,
+        "charged_control_equivalent_transitions": 12834.5,
+        "scope": "All rollout slots, including holds, plus initialization physics divided by decimation. Probes/mining charged by their own manifests."
+      },
+      "peak_gpu_mib": 4377,
+      "minimum_free_ram_mib": 14768.25390625
+    },
+    {
+      "seed": 10072,
+      "controller": "continue",
+      "wall_s": 163.2970000000023,
+      "cost": {
+        "rollout_control_transitions": 12600,
+        "active_control_transitions": 10244,
+        "absorbing_control_transitions": 2356,
+        "rollout_physics_env_steps": 100800,
+        "active_physics_env_steps": 81927,
+        "initialization_physics_env_steps": 1876,
+        "charged_control_equivalent_transitions": 12834.5,
+        "scope": "All rollout slots, including holds, plus initialization physics divided by decimation. Probes/mining charged by their own manifests."
+      },
+      "peak_gpu_mib": 4377,
+      "minimum_free_ram_mib": 15045.00390625
+    }
+  ],
+  "decision": {
+    "eligible_for_bounded_learned_physics_refinement": true,
+    "per_seed_behavior_confirmation": {
+      "10071": true,
+      "10072": true
+    },
+    "original_competence_gate_passed": false,
+    "adaptive_campaign_ready": false,
+    "reason": "Physics refinement is a separate validation step. Learned physics robustness and a registered shared uniform/adaptive/fixed-curriculum configuration remain required before a campaign."
+  },
+  "scope_and_limitations": [
+    "Prospective supplemental development confirmation on seeds 10071 and 10072, with one frozen model from one training seed. Seed 10070 informed the endpoint and is reported separately.",
+    "A fixed scripted failure-induction prefix is part of every controller. Prefix-script completions are never attributed to learned actions.",
+    "Whole-job reliability and conditional post-stall completion have different denominators. Actual contact stalls are required; prevention and wrist-load proxies do not qualify.",
+    "The original five-millimetre withdrawal metric, prior results and failed competence gate remain unchanged.",
+    "This is not a matched training-cost curriculum comparison, independent-training-seed estimate, final-test result or physics-convergence demonstration.",
+    "Geometry, gravity, 20 N native abort, 30-second jobs, 0.5-second dwell, observations, reward and trained parameters remain fixed. No within-job reset, pose write or attachment change.",
+    "No gear, pickup, dropped-part recovery, camera perception, hardware transfer, force certification, publication or hiring claim."
+  ]
+}

@@ -1,0 +1,169 @@
+{
+  "schema": 1,
+  "status": "verified",
+  "research_result": false,
+  "checks": {
+    "resolutions": true,
+    "same_cases": true,
+    "same_behavior_source": true,
+    "same_driver_source": true,
+    "same_upstream_source": true,
+    "native_timing_checks": true,
+    "identical_commands": true,
+    "identical_sensor_noise_draws": true,
+    "identical_nuisance_and_materials": true,
+    "all_requested_initializations_valid": true,
+    "native_cpu_replay": true,
+    "raw_abort_unchanged": true
+  },
+  "initial_maximum_absolute_differences": {
+    "held_pos": 0.0003571435809135437,
+    "held_quat": 0.0004774380358867347,
+    "fixed_pos": 0.0,
+    "fixed_quat": 0.0,
+    "init_fixed_pos_obs_noise": 0.0,
+    "ema_factor": 0.0,
+    "task_prop_gains": 0.0,
+    "pos_threshold": 0.0,
+    "rot_threshold": 0.0,
+    "dead_zone_thresholds": 0.0,
+    "contact_penalty_thresholds": 0.0,
+    "robot_mass": 0.0,
+    "robot_material": 0.0,
+    "held_mass": 0.0,
+    "held_material": 0.0,
+    "fixed_mass": 0.0,
+    "fixed_material": 0.0
+  },
+  "completion_coarse": 2,
+  "completion_fine": 1,
+  "joint_completion": 1,
+  "paired_requests": 4,
+  "force_diagnostics_until_terminal": [
+    {
+      "refinement": 1,
+      "case_id": "dev-10070-nominal-0",
+      "outcome": "force_abort",
+      "elapsed_s": 2.4416666666666664,
+      "filtered_force_n": 13.786483039831781,
+      "sustained_overload_seen": false,
+      "raw_violation_seen": true,
+      "peak_raw_force_n": 20.8636417388916,
+      "excess_impulse_n_s": 0.0071970144907633465
+    },
+    {
+      "refinement": 1,
+      "case_id": "dev-10070-nominal-1",
+      "outcome": "deadline",
+      "elapsed_s": 30.0,
+      "filtered_force_n": 13.716125138665333,
+      "sustained_overload_seen": false,
+      "raw_violation_seen": false,
+      "peak_raw_force_n": 19.210708618164062,
+      "excess_impulse_n_s": 0.0
+    },
+    {
+      "refinement": 1,
+      "case_id": "dev-10070-nominal-2",
+      "outcome": "success",
+      "elapsed_s": 9.225,
+      "filtered_force_n": 0.2143249782998531,
+      "sustained_overload_seen": false,
+      "raw_violation_seen": false,
+      "peak_raw_force_n": 14.749095916748047,
+      "excess_impulse_n_s": 0.0
+    },
+    {
+      "refinement": 1,
+      "case_id": "dev-10070-nominal-3",
+      "outcome": "success",
+      "elapsed_s": 3.9166666666666665,
+      "filtered_force_n": 0.596534231064415,
+      "sustained_overload_seen": false,
+      "raw_violation_seen": false,
+      "peak_raw_force_n": 14.073219299316406,
+      "excess_impulse_n_s": 0.0
+    },
+    {
+      "refinement": 2,
+      "case_id": "dev-10070-nominal-0",
+      "outcome": "force_abort",
+      "elapsed_s": 0.9625,
+      "filtered_force_n": 6.849688113562886,
+      "sustained_overload_seen": false,
+      "raw_violation_seen": true,
+      "peak_raw_force_n": 20.151906967163086,
+      "excess_impulse_n_s": 0.000632945696512858
+    },
+    {
+      "refinement": 2,
+      "case_id": "dev-10070-nominal-1",
+      "outcome": "force_abort",
+      "elapsed_s": 0.4791666666666667,
+      "filtered_force_n": 5.612072646683039,
+      "sustained_overload_seen": false,
+      "raw_violation_seen": true,
+      "peak_raw_force_n": 20.635345458984375,
+      "excess_impulse_n_s": 0.0026472727457682293
+    },
+    {
+      "refinement": 2,
+      "case_id": "dev-10070-nominal-2",
+      "outcome": "force_abort",
+      "elapsed_s": 1.4541666666666666,
+      "filtered_force_n": 9.231274701012548,
+      "sustained_overload_seen": false,
+      "raw_violation_seen": true,
+      "peak_raw_force_n": 20.143463134765625,
+      "excess_impulse_n_s": 0.0005977630615234375
+    },
+    {
+      "refinement": 2,
+      "case_id": "dev-10070-nominal-3",
+      "outcome": "success",
+      "elapsed_s": 3.9541666666666666,
+      "filtered_force_n": 0.2847546003826718,
+      "sustained_overload_seen": false,
+      "raw_violation_seen": false,
+      "peak_raw_force_n": 19.200557708740234,
+      "excess_impulse_n_s": 0.0
+    }
+  ],
+  "runs": [
+    {
+      "run_id": "physics_refinement_120_r01",
+      "manifest_sha256": "05afc515c09dd45d01216eb190e8a6b03a3ea1dfc1b008c16fe5abe5c543c0e4",
+      "cost": {
+        "rollout_control_transitions": 1800,
+        "active_control_transitions": 685,
+        "absorbing_control_transitions": 1115,
+        "rollout_physics_env_steps": 14400,
+        "active_physics_env_steps": 5470,
+        "initialization_physics_env_steps": 268,
+        "charged_control_equivalent_transitions": 1833.5,
+        "scope": "All rollout slots, including holds, plus initialization physics divided by decimation. Probes/mining charged by their own manifests."
+      }
+    },
+    {
+      "run_id": "physics_refinement_240_r01",
+      "manifest_sha256": "c8db750dd0e7b4bef593bc06dfda3d40c85ef374b4394b5a9bf660e3cc8e1347",
+      "cost": {
+        "rollout_control_transitions": 1800,
+        "active_control_transitions": 105,
+        "absorbing_control_transitions": 1695,
+        "rollout_physics_env_steps": 28800,
+        "active_physics_env_steps": 1644,
+        "initialization_physics_env_steps": 500,
+        "charged_control_equivalent_transitions": 1831.25,
+        "scope": "All rollout slots, including holds, plus initialization physics divided by decimation. Probes/mining charged by their own manifests."
+      }
+    }
+  ],
+  "scope_and_limitations": [
+    "Four scripted nominal development pairs. Final policy robustness tests remain unopened.",
+    "Identical external timing and nuisance draws do not imply identical physical initialization or trajectory.",
+    "Pinned implicit gripper targets/gains match; its native solver integration changes with timestep.",
+    "Native raw 20 N abort remains decisive; temporal filtering is diagnostic only.",
+    "This verifies the comparison machinery and exposes sensitivity, not convergence or hardware realism."
+  ]
+}

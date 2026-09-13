@@ -1,0 +1,147 @@
+{
+  "schema": 1,
+  "status": "verified_derived_figure",
+  "source_provenance": {
+    "path": "artifacts/assembly/research_cycle_20260910_r01/figures/research_cycle_v3.json",
+    "sha256": "0d9267045c39c70add4412ce44eceb48e706da4c97b4022487662ba95cacfac2"
+  },
+  "plot_source": {
+    "path": "scripts/plot_research_cycle_v1.py",
+    "sha256": "62a6e16e4c078bc52fed40f42cf3b4a18f6ec96114ad2464c41144e781bb4d5d"
+  },
+  "published_files": {
+    "evidence/research_cycle_v1.png": "d6e5ed912e144da75a530a2729bd3e2f805145a6501b874db81dfc07cb07a48d",
+    "evidence/research_cycle_v1.pdf": "b58c6c1ffbe15d077031f4b2d2375d625e727910482539c0ccb7011481d69552"
+  },
+  "source_aggregates": {
+    "original_servo120": {
+      "path": "artifacts/assembly/research_cycle_20260910_r01/contact_120_240_480_960_corrected_v3.json",
+      "sha256": "ad8dd42c7edb3a7d1c50bf2b06f051ccb6931ce413085d58d081b0ea95cd1ca7",
+      "decision": {
+        "requires_960": false,
+        "finest_prefix_pair_pass": false,
+        "finest_pair_hz": [
+          480,
+          960
+        ],
+        "training_authorized_by_prefix": false
+      },
+      "pairs": [
+        {
+          "physics_hz": [
+            120,
+            240
+          ],
+          "margins": {
+            "abort_count_difference_at_most_one": false,
+            "individual_outcome_changes_at_most_two": false,
+            "median_peak_wrist_relative_difference_at_most_20pct": true,
+            "median_fixture_impulse_relative_difference_at_most_20pct": false
+          },
+          "abort_count_difference": 12,
+          "individual_outcome_changes": 14,
+          "median_peak_wrist_relative_difference": 0.040304928226011096,
+          "median_fixture_impulse_relative_difference": 0.5193643202988119
+        },
+        {
+          "physics_hz": [
+            240,
+            480
+          ],
+          "margins": {
+            "abort_count_difference_at_most_one": false,
+            "individual_outcome_changes_at_most_two": false,
+            "median_peak_wrist_relative_difference_at_most_20pct": true,
+            "median_fixture_impulse_relative_difference_at_most_20pct": false
+          },
+          "abort_count_difference": 13,
+          "individual_outcome_changes": 14,
+          "median_peak_wrist_relative_difference": 0.03206768140939306,
+          "median_fixture_impulse_relative_difference": 0.7588514616672148
+        },
+        {
+          "physics_hz": [
+            480,
+            960
+          ],
+          "margins": {
+            "abort_count_difference_at_most_one": true,
+            "individual_outcome_changes_at_most_two": false,
+            "median_peak_wrist_relative_difference_at_most_20pct": true,
+            "median_fixture_impulse_relative_difference_at_most_20pct": false
+          },
+          "abort_count_difference": 1,
+          "individual_outcome_changes": 3,
+          "median_peak_wrist_relative_difference": 0.009688680351543924,
+          "median_fixture_impulse_relative_difference": 0.532596276606892
+        }
+      ]
+    },
+    "servo480": {
+      "path": "artifacts/assembly/research_cycle_20260910_r01/servo_impact_comparison_v1.json",
+      "sha256": "5b809174062c29401d78f19c35d6c8097e62304da3ca77137d7c04a352ac1a32",
+      "decision": {
+        "finest_prefix_pair_pass": false,
+        "finest_pair_hz": [
+          480,
+          960
+        ],
+        "servo_effect_comparisons_performed": true,
+        "original_pair_material_margins_pass": false,
+        "training_authorized_by_prefix": false
+      },
+      "pairs": [
+        {
+          "physics_hz": [
+            480,
+            960
+          ],
+          "margins": {
+            "abort_count_difference_at_most_one": true,
+            "individual_outcome_changes_at_most_two": true,
+            "median_peak_wrist_relative_difference_at_most_20pct": true,
+            "median_fixture_impulse_relative_difference_at_most_20pct": false
+          },
+          "abort_count_difference": 0,
+          "individual_outcome_changes": 2,
+          "median_peak_wrist_relative_difference": 0.016216948804090317,
+          "median_fixture_impulse_relative_difference": 0.5040334423549138
+        }
+      ]
+    },
+    "servo480_reference20mm_s": {
+      "path": "artifacts/assembly/research_cycle_20260910_r01/approach_slew_comparison_v1.json",
+      "sha256": "24058f1e3586d73cbcd3566732a53964da01cf3c0a34f198140162312c042640",
+      "decision": {
+        "finest_prefix_pair_pass": false,
+        "active_prefix_support_floor_pass": false,
+        "earns_full_job_validation": false,
+        "training_authorized_by_prefix": false,
+        "reference_effect_comparisons_performed": true
+      },
+      "pairs": [
+        {
+          "physics_hz": [
+            480,
+            960
+          ],
+          "margins": {
+            "abort_count_difference_at_most_one": true,
+            "individual_outcome_changes_at_most_two": true,
+            "median_peak_wrist_relative_difference_at_most_20pct": true,
+            "median_fixture_impulse_relative_difference_at_most_20pct": false
+          },
+          "abort_count_difference": 1,
+          "individual_outcome_changes": 1,
+          "median_peak_wrist_relative_difference": 0.014491485019306917,
+          "median_fixture_impulse_relative_difference": 0.5801260397460511
+        }
+      ]
+    }
+  },
+  "capacity_evidence": {
+    "path": "evidence/training_capacity_v2.json",
+    "sha256": "32cfee50c75694861ac704885590129e022bfe0eb80c9ca9ff4c1d31d95cc39f"
+  },
+  "scope": "Derived four-second scripted-prefix and unequal-work capacity figure. No applied candidate-policy actions, complete-job success comparison, hardware claim or force-ceiling guarantee."
+}

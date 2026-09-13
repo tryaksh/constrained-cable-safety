@@ -1,0 +1,75 @@
+{
+  "schema": 1,
+  "version": "failure_prefix_recovery_v1",
+  "status": "registered_before_launch",
+  "created_at_utc": "2026-09-09T18:21:36.248765+00:00",
+  "checkpoint_path": "artifacts/assembly/uniform_unclipped_170_v4_r02/pilot/budget_checkpoint.pt",
+  "checkpoint_sha256": "cee349b1b9283a66924294323f5c7bd8f5de98434be70ed19d8a07986f9eb532",
+  "physical_protocol": {
+    "path": "configs/protocol_v4.json",
+    "sha256": "2b42e1961eb463cad2545a1d006ae01400d40e58d222d3861ab009915d35ea2d"
+  },
+  "primary_evaluation": {
+    "path": "evidence/uniform_unclipped_v4.json",
+    "sha256": "ef7019ca4520c66eef7281a13f27ef399f921e65a05252a915a5e37ec1419ba6",
+    "outcome": "81/84 completions, 12/12 nominal, zero witnessed failures and recoveries; original recovery competence gate remains failed."
+  },
+  "question": "Can the frozen learned policy recover after a physically witnessed failed insertion, rather than only prevent the initial failure?",
+  "seed": 10070,
+  "requests_per_arm": 28,
+  "controllers": [
+    "learned",
+    "retry",
+    "continue"
+  ],
+  "prefix": {
+    "control_steps": 60,
+    "physics_steps": 480,
+    "seconds": 4.0,
+    "source": "The unchanged RetrySettings.first_attempt_s=4.0; before this time retry and continued insertion have identical actions.",
+    "selection_reason": "Existing frozen retry traces already show 17 witnessed contact failures by four seconds. No new prefix duration or controller tuning was selected from learned-policy recovery outcomes.",
+    "handoff": "Fixed time only, independent of evaluator contact, hidden state and learned outcomes.",
+    "learned_arm": "Unchanged scripted insertion for the first 60 controls, then the frozen Gaussian mean for the remainder.",
+    "retry_arm": "Unchanged retry controller for the entire job; its first possible retry starts after the shared prefix.",
+    "continue_arm": "Unchanged continued-insertion controller for the entire job."
+  },
+  "invariants": {
+    "job_deadline_s": 30.0,
+    "remaining_time_after_prefix_s": 26.0,
+    "dwell_s": 0.5,
+    "raw_force_abort_n": 20.0,
+    "held_part_gravity": true,
+    "within_job_resets_pose_writes_attachment_changes": false,
+    "reward_version": "completion_credit_v3",
+    "trained_parameters_changed": false,
+    "final_test_cases_used": false
+  },
+  "metrics": [
+    "All-request completion, upstream predicate, force abort, deadline, lost grasp, time and full returns",
+    "Prefix scripted completions and prefix failed jobs separately",
+    "Witnessed failures active at handoff, post-handoff completions and post-handoff witnessed withdrawals followed by completed dwell",
+    "All shared-prefix physical/action arrays and sensor randomness bitwise matched",
+    "Retry full trajectory identical to existing frozen positive control"
+  ],
+  "expected_charged_transitions_per_arm": 12834.5,
+  "expected_charged_transitions": 38503.5,
+  "wall_limit_s": 1260,
+  "per_arm_wall_limit_s": 420,
+  "diagnostic_source_sha256": {
+    "scripts/diagnose_failure_prefix.py": "35d09f7eec8e879a0b80bfd374d22e2da01abb09b8406690ae0a792761a9bf1c",
+    "scripts/run_failure_prefix.py": "59ef713532d7543f8ffd7960fa4f9895a48c3807b8c36b239e424911ca624838",
+    "scripts/verify_failure_prefix.py": "7c945b3676e1a398581ad3a30797b464cabdb10b361e31d9d6cf1052e65f481a",
+    "src/assembly_recovery/retry_controller.py": "cf899ca4cd16151da407d3fea5e02b25e0d830feb6177a69ace1fc52cbcabdcf",
+    "configs/retry_unload_realign_v1.json": "3b0c6fa3b5e7c10b545efbdbb380e58f7ac485cf80bed000d580ac780dd6a299"
+  },
+  "positive_control": {
+    "path": "artifacts/assembly/partial_checkpoint_diagnosis_v3_r02/retry/diagnosis/trajectory.pt",
+    "sha256": "78f11f48cd5d1d9285074385759a91a6426e51885883bf203b86cdc47971f03f"
+  },
+  "scope_and_limitations": [
+    "This is a separate development assay, not a replacement for the completed primary evaluation or its gate.",
+    "Prefix completions belong to the scripted prefix, not the learned controller. All prefix failures remain in the full-job denominator.",
+    "One development seed cannot establish robust recovery, a curriculum advantage, hardware transfer or publication novelty.",
+    "No adaptive training will be launched based solely on this supplemental assay."
+  ]
+}

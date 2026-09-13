@@ -1,0 +1,512 @@
+{
+  "schema": 1,
+  "status": "artifacts_verified",
+  "research_result": false,
+  "gpu_process_launches": 28,
+  "runs": [
+    {
+      "run_id": "tensor_contract_32_r01",
+      "status": "process_failed",
+      "manifest_sha256": "8d3f07ee6d64781fe3eb1db5b9ae59476ad70910fcc153873fa35903f2360189",
+      "process_wall_s": 84.0460000000021,
+      "cost": {},
+      "known_charged_lower_bound": 0,
+      "initialization_cost_measured": false
+    },
+    {
+      "run_id": "tensor_contract_32_r02",
+      "status": "completed",
+      "manifest_sha256": "22fd23ae4a40f7ee32b97fbe21ed5c7f80ce0c24b22219732beec6c1ad2297e7",
+      "process_wall_s": 166.40599999998813,
+      "cost": {
+        "rollout_control_transitions": 14400,
+        "active_control_transitions": 3652,
+        "absorbing_control_transitions": 10748,
+        "rollout_physics_env_steps": 115200,
+        "active_physics_env_steps": 29118,
+        "initialization_physics_env_steps": 2144,
+        "charged_control_equivalent_transitions": 14668.0,
+        "scope": "All rollout slots, including holds, plus initialization physics divided by decimation. Probes/mining charged by their own manifests."
+      },
+      "known_charged_lower_bound": 14668.0,
+      "initialization_cost_measured": true
+    },
+    {
+      "run_id": "tensor_contract_64_r01",
+      "status": "completed",
+      "manifest_sha256": "78a44b30c266813687e466bbf031b8c52aa481f76d4558e089db0c557bdf31d0",
+      "process_wall_s": 170.90700000000652,
+      "cost": {
+        "rollout_control_transitions": 28800,
+        "active_control_transitions": 7037,
+        "absorbing_control_transitions": 21763,
+        "rollout_physics_env_steps": 230400,
+        "active_physics_env_steps": 56073,
+        "initialization_physics_env_steps": 4288,
+        "charged_control_equivalent_transitions": 29336.0,
+        "scope": "All rollout slots, including holds, plus initialization physics divided by decimation. Probes/mining charged by their own manifests."
+      },
+      "known_charged_lower_bound": 29336.0,
+      "initialization_cost_measured": true
+    },
+    {
+      "run_id": "tensor_contract_128_r01",
+      "status": "completed",
+      "manifest_sha256": "7410f1f4a8ef5a76291356b9e7db1d010cabbfab7c0810ce6006f68ce756e06f",
+      "process_wall_s": 170.39100000000326,
+      "cost": {
+        "rollout_control_transitions": 57600,
+        "active_control_transitions": 17092,
+        "absorbing_control_transitions": 40508,
+        "rollout_physics_env_steps": 460800,
+        "active_physics_env_steps": 136320,
+        "initialization_physics_env_steps": 8576,
+        "charged_control_equivalent_transitions": 58672.0,
+        "scope": "All rollout slots, including holds, plus initialization physics divided by decimation. Probes/mining charged by their own manifests."
+      },
+      "known_charged_lower_bound": 58672.0,
+      "initialization_cost_measured": true
+    },
+    {
+      "run_id": "training_path_reference_r01",
+      "status": "completed",
+      "manifest_sha256": "1c32a4da9e75adc1874c85fb3c37294eea1c0ce77a8e749c7edcaf87b4cb0ebd",
+      "process_wall_s": 157.17199999999139,
+      "cost": {
+        "rollout_control_transitions": 12600,
+        "initialization_physics_env_steps": null,
+        "limitation": "Reference initialization physics not instrumented; full wall time is recorded."
+      },
+      "known_charged_lower_bound": 12600,
+      "initialization_cost_measured": false
+    },
+    {
+      "run_id": "training_path_tensor_r01",
+      "status": "completed",
+      "manifest_sha256": "acad5e07130234df019338318aec312bf54af8672f1e11cc19e432ded68d8fbf",
+      "process_wall_s": 166.42199999999139,
+      "cost": {
+        "rollout_control_transitions": 12600,
+        "active_control_transitions": 7714,
+        "absorbing_control_transitions": 4886,
+        "rollout_physics_env_steps": 100800,
+        "active_physics_env_steps": 61632,
+        "initialization_physics_env_steps": 1876,
+        "charged_control_equivalent_transitions": 12834.5,
+        "scope": "All rollout slots, including holds, plus initialization physics divided by decimation. Probes/mining charged by their own manifests."
+      },
+      "known_charged_lower_bound": 12834.5,
+      "initialization_cost_measured": true
+    },
+    {
+      "run_id": "tensor_capacity_256_r01",
+      "status": "completed",
+      "manifest_sha256": "4736dbf1395cebd0cb905d90e9ce0ffc98a25ebfccfa0abfc1b5bc3b11ebc033",
+      "process_wall_s": 174.76500000001397,
+      "cost": {
+        "rollout_control_transitions": 115200,
+        "active_control_transitions": 31772,
+        "absorbing_control_transitions": 83428,
+        "rollout_physics_env_steps": 921600,
+        "active_physics_env_steps": 253344,
+        "initialization_physics_env_steps": 17152,
+        "charged_control_equivalent_transitions": 117344.0,
+        "scope": "All rollout slots, including holds, plus initialization physics divided by decimation. Probes/mining charged by their own manifests."
+      },
+      "known_charged_lower_bound": 117344.0,
+      "initialization_cost_measured": true
+    },
+    {
+      "run_id": "tensor_capacity_512_r01",
+      "status": "completed",
+      "manifest_sha256": "f75c4f0bd8a982f34f46c3afa9494bc357d51179e68fee27788fba078a2a8aa7",
+      "process_wall_s": 208.0460000000021,
+      "cost": {
+        "rollout_control_transitions": 230400,
+        "active_control_transitions": 51455,
+        "absorbing_control_transitions": 178945,
+        "rollout_physics_env_steps": 1843200,
+        "active_physics_env_steps": 409953,
+        "initialization_physics_env_steps": 34304,
+        "charged_control_equivalent_transitions": 234688.0,
+        "scope": "All rollout slots, including holds, plus initialization physics divided by decimation. Probes/mining charged by their own manifests."
+      },
+      "known_charged_lower_bound": 234688.0,
+      "initialization_cost_measured": true
+    },
+    {
+      "run_id": "tensor_capacity_1024_r01",
+      "status": "completed",
+      "manifest_sha256": "4993c1559a3de495c0fe6571700d2822310f6a088b5cfa12758c5604c9e7ecad",
+      "process_wall_s": 284.7820000000065,
+      "cost": {
+        "rollout_control_transitions": 460800,
+        "active_control_transitions": 133016,
+        "absorbing_control_transitions": 327784,
+        "rollout_physics_env_steps": 3686400,
+        "active_physics_env_steps": 1060721,
+        "initialization_physics_env_steps": 68608,
+        "charged_control_equivalent_transitions": 469376.0,
+        "scope": "All rollout slots, including holds, plus initialization physics divided by decimation. Probes/mining charged by their own manifests."
+      },
+      "known_charged_lower_bound": 469376.0,
+      "initialization_cost_measured": true
+    },
+    {
+      "run_id": "training_support_low_retry_r01",
+      "status": "completed",
+      "manifest_sha256": "4651cc11cb6a255ba1df6eda84e2dcf87a398ca39f9f2bf27554a1cf092663b8",
+      "process_wall_s": 165.82800000000861,
+      "cost": {
+        "rollout_control_transitions": 14400,
+        "active_control_transitions": 9080,
+        "absorbing_control_transitions": 5320,
+        "rollout_physics_env_steps": 115200,
+        "active_physics_env_steps": 72568,
+        "initialization_physics_env_steps": 2144,
+        "charged_control_equivalent_transitions": 14668.0,
+        "scope": "All rollout slots, including holds, plus initialization physics divided by decimation. Probes/mining charged by their own manifests."
+      },
+      "known_charged_lower_bound": 14668.0,
+      "initialization_cost_measured": true
+    },
+    {
+      "run_id": "training_support_low_continue_r01",
+      "status": "completed",
+      "manifest_sha256": "37ab24b5f9581aed5ba3ad42eee4928e0a195c860473b59e388a6d243aecbd99",
+      "process_wall_s": 167.42199999999139,
+      "cost": {
+        "rollout_control_transitions": 14400,
+        "active_control_transitions": 10709,
+        "absorbing_control_transitions": 3691,
+        "rollout_physics_env_steps": 115200,
+        "active_physics_env_steps": 85646,
+        "initialization_physics_env_steps": 2144,
+        "charged_control_equivalent_transitions": 14668.0,
+        "scope": "All rollout slots, including holds, plus initialization physics divided by decimation. Probes/mining charged by their own manifests."
+      },
+      "known_charged_lower_bound": 14668.0,
+      "initialization_cost_measured": true
+    },
+    {
+      "run_id": "training_support_interior_retry_r01",
+      "status": "completed",
+      "manifest_sha256": "b49d7917e16aad415bed6de41a87bd828a5e63471ce192d1bc4c8011e0ed241d",
+      "process_wall_s": 166.7029999999795,
+      "cost": {
+        "rollout_control_transitions": 14400,
+        "active_control_transitions": 8527,
+        "absorbing_control_transitions": 5873,
+        "rollout_physics_env_steps": 115200,
+        "active_physics_env_steps": 68102,
+        "initialization_physics_env_steps": 2144,
+        "charged_control_equivalent_transitions": 14668.0,
+        "scope": "All rollout slots, including holds, plus initialization physics divided by decimation. Probes/mining charged by their own manifests."
+      },
+      "known_charged_lower_bound": 14668.0,
+      "initialization_cost_measured": true
+    },
+    {
+      "run_id": "training_support_interior_continue_r01",
+      "status": "completed",
+      "manifest_sha256": "744b4b932596a3d59366b2c4f71a4a4302edbf9f65e82d6dfce18fd79b9f952b",
+      "process_wall_s": 166.01500000001397,
+      "cost": {
+        "rollout_control_transitions": 14400,
+        "active_control_transitions": 11211,
+        "absorbing_control_transitions": 3189,
+        "rollout_physics_env_steps": 115200,
+        "active_physics_env_steps": 89657,
+        "initialization_physics_env_steps": 2144,
+        "charged_control_equivalent_transitions": 14668.0,
+        "scope": "All rollout slots, including holds, plus initialization physics divided by decimation. Probes/mining charged by their own manifests."
+      },
+      "known_charged_lower_bound": 14668.0,
+      "initialization_cost_measured": true
+    },
+    {
+      "run_id": "training_support_high_retry_r01",
+      "status": "completed",
+      "manifest_sha256": "b89aaf5e51b03a6f1964c615805c6e3536758b6c0495f24bced784b22d15f57a",
+      "process_wall_s": 167.28100000001723,
+      "cost": {
+        "rollout_control_transitions": 14400,
+        "active_control_transitions": 9361,
+        "absorbing_control_transitions": 5039,
+        "rollout_physics_env_steps": 115200,
+        "active_physics_env_steps": 74822,
+        "initialization_physics_env_steps": 2144,
+        "charged_control_equivalent_transitions": 14668.0,
+        "scope": "All rollout slots, including holds, plus initialization physics divided by decimation. Probes/mining charged by their own manifests."
+      },
+      "known_charged_lower_bound": 14668.0,
+      "initialization_cost_measured": true
+    },
+    {
+      "run_id": "training_support_high_continue_r01",
+      "status": "completed",
+      "manifest_sha256": "220445809c6bb6c1d26929481f4a1df094cade9543161b43af89737cebcefc2d",
+      "process_wall_s": 167.59400000001187,
+      "cost": {
+        "rollout_control_transitions": 14400,
+        "active_control_transitions": 10957,
+        "absorbing_control_transitions": 3443,
+        "rollout_physics_env_steps": 115200,
+        "active_physics_env_steps": 87605,
+        "initialization_physics_env_steps": 2144,
+        "charged_control_equivalent_transitions": 14668.0,
+        "scope": "All rollout slots, including holds, plus initialization physics divided by decimation. Probes/mining charged by their own manifests."
+      },
+      "known_charged_lower_bound": 14668.0,
+      "initialization_cost_measured": true
+    },
+    {
+      "run_id": "physics_refinement_120_r01",
+      "status": "completed",
+      "manifest_sha256": "05afc515c09dd45d01216eb190e8a6b03a3ea1dfc1b008c16fe5abe5c543c0e4",
+      "process_wall_s": 157.67199999999139,
+      "cost": {
+        "rollout_control_transitions": 1800,
+        "active_control_transitions": 685,
+        "absorbing_control_transitions": 1115,
+        "rollout_physics_env_steps": 14400,
+        "active_physics_env_steps": 5470,
+        "initialization_physics_env_steps": 268,
+        "charged_control_equivalent_transitions": 1833.5,
+        "scope": "All rollout slots, including holds, plus initialization physics divided by decimation. Probes/mining charged by their own manifests."
+      },
+      "known_charged_lower_bound": 1833.5,
+      "initialization_cost_measured": true
+    },
+    {
+      "run_id": "physics_refinement_240_r01",
+      "status": "completed",
+      "manifest_sha256": "c8db750dd0e7b4bef593bc06dfda3d40c85ef374b4394b5a9bf660e3cc8e1347",
+      "process_wall_s": 279.98500000001513,
+      "cost": {
+        "rollout_control_transitions": 1800,
+        "active_control_transitions": 105,
+        "absorbing_control_transitions": 1695,
+        "rollout_physics_env_steps": 28800,
+        "active_physics_env_steps": 1644,
+        "initialization_physics_env_steps": 500,
+        "charged_control_equivalent_transitions": 1831.25,
+        "scope": "All rollout slots, including holds, plus initialization physics divided by decimation. Probes/mining charged by their own manifests."
+      },
+      "known_charged_lower_bound": 1831.25,
+      "initialization_cost_measured": true
+    },
+    {
+      "run_id": "training_guards_r01",
+      "status": "completed",
+      "manifest_sha256": "ba79834119933111d9764890887bccf9caa76e50a519f08a49240515f082e79f",
+      "process_wall_s": 19.53100000001723,
+      "cost": {
+        "rollout_control_transitions": 8,
+        "active_control_transitions": 7,
+        "absorbing_control_transitions": 1,
+        "rollout_physics_env_steps": 64,
+        "active_physics_env_steps": 49,
+        "initialization_physics_env_steps": 1340,
+        "charged_control_equivalent_transitions": 175.5,
+        "scope": "All rollout slots, including holds, plus initialization physics divided by decimation. Probes/mining charged by their own manifests."
+      },
+      "known_charged_lower_bound": 175.5,
+      "initialization_cost_measured": true
+    },
+    {
+      "run_id": "uniform_pilot_170_v1",
+      "status": "artifact_check_failed",
+      "manifest_sha256": "01e02d6a5c15e4fa52e8d9ccb1023009ffeb3360dd80ce627200bb402994ed5a",
+      "process_wall_s": 571.3280000000086,
+      "cost": {
+        "rollout_control_transitions": 921600,
+        "active_control_transitions": 269257,
+        "absorbing_control_transitions": 652343,
+        "rollout_physics_env_steps": 7372800,
+        "active_physics_env_steps": 2147481,
+        "initialization_physics_env_steps": 205824,
+        "charged_control_equivalent_transitions": 947328.0,
+        "scope": "All rollout slots, including holds, plus initialization physics divided by decimation. Probes/mining charged by their own manifests."
+      },
+      "known_charged_lower_bound": 947328.0,
+      "initialization_cost_measured": true
+    },
+    {
+      "run_id": "initialization_failure_diagnostic_v1",
+      "status": "completed",
+      "manifest_sha256": "23e173bd70760e79f7c47ecf91764e8a68e13b15c3f656aba6edfdd19f652afa",
+      "process_wall_s": 14.562999999994645,
+      "cost": {
+        "rollout_control_transitions": 0,
+        "active_control_transitions": 0,
+        "absorbing_control_transitions": 0,
+        "rollout_physics_env_steps": 0,
+        "active_physics_env_steps": 0,
+        "initialization_physics_env_steps": 68608,
+        "charged_control_equivalent_transitions": 8576.0,
+        "scope": "All rollout slots, including holds, plus initialization physics divided by decimation. Probes/mining charged by their own manifests."
+      },
+      "known_charged_lower_bound": 8576.0,
+      "initialization_cost_measured": true
+    },
+    {
+      "run_id": "initialization_projection_diagnostic_v2",
+      "status": "completed",
+      "manifest_sha256": "d421a3aa75df36a871c8716cfdd230251ba480e07a380cc3bae59531d6a939b5",
+      "process_wall_s": 14.562000000005355,
+      "cost": {
+        "rollout_control_transitions": 0,
+        "active_control_transitions": 0,
+        "absorbing_control_transitions": 0,
+        "rollout_physics_env_steps": 0,
+        "active_physics_env_steps": 0,
+        "initialization_physics_env_steps": 68608,
+        "charged_control_equivalent_transitions": 8576.0,
+        "scope": "All rollout slots, including holds, plus initialization physics divided by decimation. Probes/mining charged by their own manifests."
+      },
+      "known_charged_lower_bound": 8576.0,
+      "initialization_cost_measured": true
+    },
+    {
+      "run_id": "training_path_reference_r02",
+      "status": "completed",
+      "manifest_sha256": "a5948efd780e7934cd2092bc2b6d6e210b31f56cf4cb8ea04cafc89f89671457",
+      "process_wall_s": 151.59400000001187,
+      "cost": {
+        "rollout_control_transitions": 12600,
+        "initialization_physics_env_steps": null,
+        "limitation": "Reference initialization physics not instrumented; full wall time is recorded."
+      },
+      "known_charged_lower_bound": 12600,
+      "initialization_cost_measured": false
+    },
+    {
+      "run_id": "training_path_tensor_r02",
+      "status": "completed",
+      "manifest_sha256": "6b8c1ebcdc03d826a794ba88c7656f53fa4b5f091fba40b1dccecb835b8f87c0",
+      "process_wall_s": 151.78100000001723,
+      "cost": {
+        "rollout_control_transitions": 12600,
+        "active_control_transitions": 7714,
+        "absorbing_control_transitions": 4886,
+        "rollout_physics_env_steps": 100800,
+        "active_physics_env_steps": 61632,
+        "initialization_physics_env_steps": 1876,
+        "charged_control_equivalent_transitions": 12834.5,
+        "scope": "All rollout slots, including holds, plus initialization physics divided by decimation. Probes/mining charged by their own manifests."
+      },
+      "known_charged_lower_bound": 12834.5,
+      "initialization_cost_measured": true
+    },
+    {
+      "run_id": "tensor_contract_projection_32_r01",
+      "status": "completed",
+      "manifest_sha256": "4f782e6301772e1a700af7cc444281194f08fa5c3e8db2d37c8274c13eb1648a",
+      "process_wall_s": 168.93700000000536,
+      "cost": {
+        "rollout_control_transitions": 14400,
+        "active_control_transitions": 3652,
+        "absorbing_control_transitions": 10748,
+        "rollout_physics_env_steps": 115200,
+        "active_physics_env_steps": 29118,
+        "initialization_physics_env_steps": 2144,
+        "charged_control_equivalent_transitions": 14668.0,
+        "scope": "All rollout slots, including holds, plus initialization physics divided by decimation. Probes/mining charged by their own manifests."
+      },
+      "known_charged_lower_bound": 14668.0,
+      "initialization_cost_measured": true
+    },
+    {
+      "run_id": "uniform_pilot_170_v2",
+      "status": "completed",
+      "manifest_sha256": "39715bf4a1b3a6a7a454f1636e7fffe90fdfa622437c20676060bd91ac172c3b",
+      "process_wall_s": 1406.2970000000205,
+      "cost": {
+        "rollout_control_transitions": 2304000,
+        "active_control_transitions": 851578,
+        "absorbing_control_transitions": 1452422,
+        "rollout_physics_env_steps": 18432000,
+        "active_physics_env_steps": 6797036,
+        "initialization_physics_env_steps": 343040,
+        "charged_control_equivalent_transitions": 2346880.0,
+        "scope": "All rollout slots, including holds, plus initialization physics divided by decimation. Probes/mining charged by their own manifests."
+      },
+      "known_charged_lower_bound": 2346880.0,
+      "initialization_cost_measured": true
+    },
+    {
+      "run_id": "uniform_dev_10070_v2",
+      "status": "completed",
+      "manifest_sha256": "5888238ce5a2c00ddc1906519885f002fc4f167e1af5672962ae42856fc42502",
+      "process_wall_s": 150.9220000000205,
+      "cost": {
+        "rollout_control_transitions": 12600,
+        "active_control_transitions": 11714,
+        "absorbing_control_transitions": 886,
+        "rollout_physics_env_steps": 100800,
+        "active_physics_env_steps": 93709,
+        "initialization_physics_env_steps": 1876,
+        "charged_control_equivalent_transitions": 12834.5,
+        "scope": "All rollout slots, including holds, plus initialization physics divided by decimation. Probes/mining charged by their own manifests."
+      },
+      "known_charged_lower_bound": 12834.5,
+      "initialization_cost_measured": true
+    },
+    {
+      "run_id": "uniform_dev_10071_v2",
+      "status": "completed",
+      "manifest_sha256": "434ef0e5f0c837017584afe624f1f3765ff2e57e3b45010fa1f4ebe29f2778cf",
+      "process_wall_s": 147.89100000000326,
+      "cost": {
+        "rollout_control_transitions": 12600,
+        "active_control_transitions": 11722,
+        "absorbing_control_transitions": 878,
+        "rollout_physics_env_steps": 100800,
+        "active_physics_env_steps": 93768,
+        "initialization_physics_env_steps": 1876,
+        "charged_control_equivalent_transitions": 12834.5,
+        "scope": "All rollout slots, including holds, plus initialization physics divided by decimation. Probes/mining charged by their own manifests."
+      },
+      "known_charged_lower_bound": 12834.5,
+      "initialization_cost_measured": true
+    },
+    {
+      "run_id": "uniform_dev_10072_v2",
+      "status": "completed",
+      "manifest_sha256": "4619a9654510ea97865654a678209417c816612c017435591436a00fe134ecd5",
+      "process_wall_s": 149.15600000001723,
+      "cost": {
+        "rollout_control_transitions": 12600,
+        "active_control_transitions": 12600,
+        "absorbing_control_transitions": 0,
+        "rollout_physics_env_steps": 100800,
+        "active_physics_env_steps": 100800,
+        "initialization_physics_env_steps": 1876,
+        "charged_control_equivalent_transitions": 12834.5,
+        "scope": "All rollout slots, including holds, plus initialization physics divided by decimation. Probes/mining charged by their own manifests."
+      },
+      "known_charged_lower_bound": 12834.5,
+      "initialization_cost_measured": true
+    }
+  ],
+  "completed_processes": 26,
+  "failed_or_incomplete_processes": 2,
+  "known_rollout_control_transitions": 4325408,
+  "known_charged_control_equivalent_lower_bound": 4431332.75,
+  "serial_process_wall_hours": 1.6577775000000434,
+  "cpu_verification": {
+    "path": "artifacts/verification/tensorized_finite_jobs_r02_checks.json",
+    "sha256": "64cebbae4965a035bbe58177d694442cf23d0a506eb012f14a798f10911c87fa",
+    "status": "passed",
+    "tests_passed": 144,
+    "source_only_export": true,
+    "import_isolation_asserted": true
+  },
+  "scope_and_limitations": [
+    "All listed run artifacts and prelaunch source snapshots were rehashed; failure status is retained even when checkpoints exist or the process returned zero.",
+    "Known compute is a lower bound: both CPU-reference initializations and the earliest failed constructor lack complete initialization-step instrumentation.",
+    "The failed v1 pilot, correction probes and initial capacity weights are development/tuning costs; only v2 reaches the declared fresh pilot target.",
+    "No adaptive/fixed curriculum comparison, final-test opening, gear policy, hardware result or public checkpoint release."
+  ]
+}

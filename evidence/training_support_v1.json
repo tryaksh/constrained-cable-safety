@@ -1,0 +1,268 @@
+{
+  "schema": 1,
+  "status": "verified",
+  "research_result": false,
+  "jobs_per_arm": 96,
+  "all_initializations": 192,
+  "groups": [
+    {
+      "grid": "low",
+      "seed": 10070,
+      "checks": {
+        "all_initializations_valid": true,
+        "same_criteria_geometry_cases": true,
+        "identical_initial_state": true,
+        "same_behavior_source": true,
+        "pretrigger_trajectories_match": true,
+        "saved_hashes_and_cpu_replay_verified": true,
+        "at_least_one_completion_per_bin_value": true
+      },
+      "bins": {
+        "nominal": {
+          "jobs": 8,
+          "retry_completions": 5,
+          "continued_completions": 0,
+          "scripted_witnesses": 4,
+          "general_witnesses": 4
+        },
+        "bias_low": {
+          "jobs": 4,
+          "retry_completions": 4,
+          "continued_completions": 1,
+          "scripted_witnesses": 3,
+          "general_witnesses": 3
+        },
+        "bias_medium": {
+          "jobs": 4,
+          "retry_completions": 2,
+          "continued_completions": 2,
+          "scripted_witnesses": 0,
+          "general_witnesses": 0
+        },
+        "approach_low": {
+          "jobs": 4,
+          "retry_completions": 2,
+          "continued_completions": 0,
+          "scripted_witnesses": 1,
+          "general_witnesses": 2
+        },
+        "approach_high": {
+          "jobs": 4,
+          "retry_completions": 4,
+          "continued_completions": 0,
+          "scripted_witnesses": 4,
+          "general_witnesses": 4
+        },
+        "friction_low": {
+          "jobs": 4,
+          "retry_completions": 1,
+          "continued_completions": 0,
+          "scripted_witnesses": 1,
+          "general_witnesses": 1
+        },
+        "friction_high": {
+          "jobs": 4,
+          "retry_completions": 3,
+          "continued_completions": 1,
+          "scripted_witnesses": 2,
+          "general_witnesses": 2
+        }
+      },
+      "run_ids": [
+        "training_support_low_retry_r01",
+        "training_support_low_continue_r01"
+      ],
+      "outcomes": {
+        "retry": {
+          "success": 21,
+          "force_abort": 3,
+          "deadline": 8
+        },
+        "continue": {
+          "deadline": 22,
+          "force_abort": 6,
+          "success": 4
+        }
+      }
+    },
+    {
+      "grid": "interior",
+      "seed": 10071,
+      "checks": {
+        "all_initializations_valid": true,
+        "same_criteria_geometry_cases": true,
+        "identical_initial_state": true,
+        "same_behavior_source": true,
+        "pretrigger_trajectories_match": true,
+        "saved_hashes_and_cpu_replay_verified": true,
+        "at_least_one_completion_per_bin_value": true
+      },
+      "bins": {
+        "nominal": {
+          "jobs": 8,
+          "retry_completions": 5,
+          "continued_completions": 1,
+          "scripted_witnesses": 4,
+          "general_witnesses": 4
+        },
+        "bias_low": {
+          "jobs": 4,
+          "retry_completions": 4,
+          "continued_completions": 0,
+          "scripted_witnesses": 4,
+          "general_witnesses": 4
+        },
+        "bias_medium": {
+          "jobs": 4,
+          "retry_completions": 4,
+          "continued_completions": 0,
+          "scripted_witnesses": 4,
+          "general_witnesses": 4
+        },
+        "approach_low": {
+          "jobs": 4,
+          "retry_completions": 4,
+          "continued_completions": 0,
+          "scripted_witnesses": 3,
+          "general_witnesses": 4
+        },
+        "approach_high": {
+          "jobs": 4,
+          "retry_completions": 3,
+          "continued_completions": 1,
+          "scripted_witnesses": 1,
+          "general_witnesses": 2
+        },
+        "friction_low": {
+          "jobs": 4,
+          "retry_completions": 3,
+          "continued_completions": 2,
+          "scripted_witnesses": 1,
+          "general_witnesses": 1
+        },
+        "friction_high": {
+          "jobs": 4,
+          "retry_completions": 4,
+          "continued_completions": 3,
+          "scripted_witnesses": 1,
+          "general_witnesses": 1
+        }
+      },
+      "run_ids": [
+        "training_support_interior_retry_r01",
+        "training_support_interior_continue_r01"
+      ],
+      "outcomes": {
+        "retry": {
+          "deadline": 3,
+          "success": 27,
+          "force_abort": 2
+        },
+        "continue": {
+          "deadline": 22,
+          "force_abort": 3,
+          "success": 7
+        }
+      }
+    },
+    {
+      "grid": "high",
+      "seed": 10072,
+      "checks": {
+        "all_initializations_valid": true,
+        "same_criteria_geometry_cases": true,
+        "identical_initial_state": true,
+        "same_behavior_source": true,
+        "pretrigger_trajectories_match": true,
+        "saved_hashes_and_cpu_replay_verified": true,
+        "at_least_one_completion_per_bin_value": true
+      },
+      "bins": {
+        "nominal": {
+          "jobs": 8,
+          "retry_completions": 8,
+          "continued_completions": 3,
+          "scripted_witnesses": 6,
+          "general_witnesses": 7
+        },
+        "bias_low": {
+          "jobs": 4,
+          "retry_completions": 2,
+          "continued_completions": 1,
+          "scripted_witnesses": 1,
+          "general_witnesses": 1
+        },
+        "bias_medium": {
+          "jobs": 4,
+          "retry_completions": 4,
+          "continued_completions": 0,
+          "scripted_witnesses": 4,
+          "general_witnesses": 4
+        },
+        "approach_low": {
+          "jobs": 4,
+          "retry_completions": 2,
+          "continued_completions": 1,
+          "scripted_witnesses": 1,
+          "general_witnesses": 1
+        },
+        "approach_high": {
+          "jobs": 4,
+          "retry_completions": 3,
+          "continued_completions": 0,
+          "scripted_witnesses": 3,
+          "general_witnesses": 3
+        },
+        "friction_low": {
+          "jobs": 4,
+          "retry_completions": 2,
+          "continued_completions": 1,
+          "scripted_witnesses": 2,
+          "general_witnesses": 2
+        },
+        "friction_high": {
+          "jobs": 4,
+          "retry_completions": 4,
+          "continued_completions": 1,
+          "scripted_witnesses": 3,
+          "general_witnesses": 3
+        }
+      },
+      "run_ids": [
+        "training_support_high_retry_r01",
+        "training_support_high_continue_r01"
+      ],
+      "outcomes": {
+        "retry": {
+          "success": 25,
+          "deadline": 5,
+          "force_abort": 2
+        },
+        "continue": {
+          "deadline": 20,
+          "force_abort": 5,
+          "success": 7
+        }
+      }
+    }
+  ],
+  "total_outcomes": {
+    "retry": {
+      "success": 73,
+      "force_abort": 7,
+      "deadline": 16
+    },
+    "continue": {
+      "deadline": 64,
+      "force_abort": 14,
+      "success": 18
+    }
+  },
+  "scope_and_limitations": [
+    "Unchanged scripted development controllers at sampled lower/interior/upper values; no learned recovery result.",
+    "Every requested failure and force abort remains in the denominator.",
+    "Sampled coverage and geometry feasibility do not prove every continuous point or Gaussian nuisance tail.",
+    "Historical scripted-phase and new controller-independent recovery witnesses remain separate metrics.",
+    "Final-test seeds and combined faults remain unopened."
+  ]
+}

@@ -1,0 +1,56 @@
+{
+  "schema": 1,
+  "id": "claude_handover_v1",
+  "created_at_utc": "2026-09-11T02:28:48.528429+00:00",
+  "status": "documentation_handover_prepared",
+  "base_commit": "1bcdcfc9715d29a3f905f872ac1300894b99ceb7",
+  "requested_working_assistant": "Claude Opus 5",
+  "model_note": "Owner-provided model name; no model installation, API identifier or availability claim.",
+  "changes": [
+    "Replaced prior model/reasoning preference in the canonical local prompt.",
+    "Added explicit instruction-file loading and client-independent Windows startup guidance.",
+    "Kept full campaign, scientific scope, workload targets, research evidence and runtime code unchanged.",
+    "Recorded the prior publication rejection so a client switch cannot bypass it."
+  ],
+  "handover": {
+    "path": "artifacts/prompts/cable_recovery_audited_handover_20260910.txt",
+    "sha256": "83a0bbf746c42a1caeab295bd2de4d1f795794c63550e08b21859bbef6f19f36",
+    "words": 2774
+  },
+  "predecessor_handover": {
+    "archive_path": "artifacts/audits/cable_direction_v2/handover_before_claude_20260910.txt",
+    "sha256": "cb4d6ff1091bedbdbb4d528163b2b43b2c55bc4b36045156148408c0d914ccda",
+    "matches_prior_audit_verification": true
+  },
+  "predecessor_verification": {
+    "path": "evidence/cable_direction_audit_verification_v2.json",
+    "sha256": "9f9969f61336d1b23ac0ab6ced3b645da285dc66606d3ac49cab284c9ea78f6e",
+    "unchanged": true,
+    "scope": "Its hashes describe the preceding audit revision; use this record for the current prompt and documentation hashes."
+  },
+  "documentation_sha256": {
+    "AGENTS.md": "edcd41eac6bb03f34b330a85a1b98cc1aa9002e960225968e9f21f9a1f90e1bd",
+    "README.md": "93ec340ed9e2bf4f6b0c1aee56dcd47bae233f60630375f95bd942be18558601",
+    "ROADMAP.md": "96d72b3e2dafdac7a4d012511f0b585e4aeceb83474dfca3d28705d31f3bbef3"
+  },
+  "checks": {
+    "core_research_handover_text_unchanged": true,
+    "runtime_and_study_contract_unchanged": true,
+    "previous_evidence_preserved": true,
+    "maintained_markdown_count": 3,
+    "local_document_links_exist": true
+  },
+  "execution": {
+    "simulator_steps": 0,
+    "training_jobs": 0,
+    "runtime_tests_rerun": false,
+    "reason": "Only documentation and prompt changed; checked exact preservation and links. Prior 375 tests and Ruff passed at the preceding audit."
+  },
+  "publication": {
+    "remote": "https://github.com/tryaksh/orbital-robotic-servicing-lab.git",
+    "branch": "research/assembly-recovery-training",
+    "status": "pending_explicit_destination_approval_after_prior_auto_review_rejection",
+    "attempted_this_update": false
+  },
+  "next_action": "Use Claude Opus 5 in the existing local workspace to read and execute the canonical handover and continue the full registered campaign."
+}

@@ -1,0 +1,156 @@
+{
+  "schema": 1,
+  "status": "verified_failed_incomplete",
+  "research_result": false,
+  "run_id": "uniform_completion_170_v3_r01",
+  "manifest_sha256": "4a988587a7329fac2e1c020d3ec8f3d9b2cc43d9ca164d272c3fdc6299c95754",
+  "controller": "project_uniform_fault_ppo_completion_credit_v3",
+  "termination": "Existing minimum-RAM guard stopped the owned process tree after Windows resumed from a lid/button sleep. No complete report or budget checkpoint exists.",
+  "returncode": 1,
+  "timed_out": false,
+  "resource_guard_stop": {
+    "time": 1788943390.3949153,
+    "used_mib": 5385,
+    "utilization_percent": 65,
+    "free_ram_mib": 3517.32421875
+  },
+  "process_wall_s_including_sleep": 7453.0,
+  "sleep_event": {
+    "sleep_utc": "2026-09-09T07:42:31.616388400Z",
+    "wake_utc": "2026-09-09T08:43:08.255428800Z",
+    "reason": "Button or Lid",
+    "events_path": "artifacts/assembly/interruption_audit_v3_r01/power_events.json",
+    "events_sha256": "3816b538ade5174773707310224d505a74bcf2a0790d94c7c0b32808b3d752fc"
+  },
+  "completed_cohorts": 13,
+  "completed_requested_jobs": 13312,
+  "last_saved_checkpoint_cost": {
+    "rollout_control_transitions": 5990400,
+    "active_control_transitions": 1127031,
+    "absorbing_control_transitions": 4863369,
+    "rollout_physics_env_steps": 47923200,
+    "active_physics_env_steps": 8971157,
+    "initialization_physics_env_steps": 891904,
+    "charged_control_equivalent_transitions": 6101888.0,
+    "scope": "All rollout slots, including holds, plus initialization physics divided by decimation. Probes/mining charged by their own manifests."
+  },
+  "partial_next_cohort": {
+    "index": 13,
+    "last_logged_control_step": 128,
+    "requested_jobs": 1024,
+    "outcomes": "Incomplete/unavailable; cannot infer final counts from earlier checkpoint."
+  },
+  "cost_lower_bound": {
+    "rollout_control_transitions": 6121472,
+    "initialization_physics_env_steps": 960512,
+    "charged_control_equivalent_transitions": 6241536.0
+  },
+  "cost_upper_bound_if_partial_cohort_reached_deadline": 6571264.0,
+  "checkpoints": [
+    {
+      "cohort": 1,
+      "sha256": "e31f564e442022f091cd27a0a9c80307783488a5350df490e38c1275f526a768",
+      "status": "partial",
+      "finite_model_and_optimizer": true,
+      "charged_transitions": 469376.0
+    },
+    {
+      "cohort": 2,
+      "sha256": "15ee175d28af83d03cbb1279d3a9d127f5225e0ae97d3f710f5bcf9702a0b01d",
+      "status": "partial",
+      "finite_model_and_optimizer": true,
+      "charged_transitions": 938752.0
+    },
+    {
+      "cohort": 3,
+      "sha256": "e0f7b09493cdb4d4c1283050575c462ea6d3e0f937f7b29c22cba6bba9c3189a",
+      "status": "partial",
+      "finite_model_and_optimizer": true,
+      "charged_transitions": 1408128.0
+    },
+    {
+      "cohort": 4,
+      "sha256": "5c9cb2cf6b8377e229945e7daef5e2279b50a8b41e79db3cdaeef3beffb695fd",
+      "status": "partial",
+      "finite_model_and_optimizer": true,
+      "charged_transitions": 1877504.0
+    },
+    {
+      "cohort": 5,
+      "sha256": "28b84bec23c510fd9fc1f4df43008fd90c7ece963b075baf683fd479e7b19e28",
+      "status": "partial",
+      "finite_model_and_optimizer": true,
+      "charged_transitions": 2346880.0
+    },
+    {
+      "cohort": 6,
+      "sha256": "f965b212b80d10bc2c8f09558323fcecbd61b36a4ea762d8ac55ab45dbb414ec",
+      "status": "partial",
+      "finite_model_and_optimizer": true,
+      "charged_transitions": 2816256.0
+    },
+    {
+      "cohort": 7,
+      "sha256": "d33a178eb24d75ba98aae9e4190728241e28e92d800a656a3b9b9020614a44bf",
+      "status": "partial",
+      "finite_model_and_optimizer": true,
+      "charged_transitions": 3285632.0
+    },
+    {
+      "cohort": 8,
+      "sha256": "71320938bfd43646303d717e89c3f338ecb778680e57057925dd7accfd03686c",
+      "status": "partial",
+      "finite_model_and_optimizer": true,
+      "charged_transitions": 3755008.0
+    },
+    {
+      "cohort": 9,
+      "sha256": "35cbe041e544fc353cca321124901c3234d011dfeb53b85aa02b47d31f756b22",
+      "status": "partial",
+      "finite_model_and_optimizer": true,
+      "charged_transitions": 4224384.0
+    },
+    {
+      "cohort": 10,
+      "sha256": "f548eeda5d91095afb214036361b98be255c4ad38006cee3fab1ac204ad1c7fb",
+      "status": "partial",
+      "finite_model_and_optimizer": true,
+      "charged_transitions": 4693760.0
+    },
+    {
+      "cohort": 11,
+      "sha256": "09a79eefce06eeb76092615fd120f371388314d40b64e097159b503aec54a506",
+      "status": "partial",
+      "finite_model_and_optimizer": true,
+      "charged_transitions": 5163136.0
+    },
+    {
+      "cohort": 12,
+      "sha256": "d2dcdb9c33adcccb0d401ccfdcccff413b874535b7ca4908b154a269b541a529",
+      "status": "partial",
+      "finite_model_and_optimizer": true,
+      "charged_transitions": 5632512.0
+    },
+    {
+      "cohort": 13,
+      "sha256": "0e1b6145838e67567a858ea65a09236215be918d6899b4fe4f48c41f298a4ad3",
+      "status": "partial",
+      "finite_model_and_optimizer": true,
+      "charged_transitions": 6101888.0
+    }
+  ],
+  "checks": {
+    "source_and_artifacts_rehashed": true,
+    "all_partial_weights_and_optimizer_finite": true,
+    "all_completed_initializations_valid": true,
+    "no_budget_checkpoint": true,
+    "no_complete_report": true
+  },
+  "restart_decision": "Fresh replacement at the same 22-cohort budget; do not reuse partial weights or claim resume equivalence. Require AC power and scoped idle-sleep prevention; lid/button sleep remains under user control.",
+  "scope_and_limitations": [
+    "This is a failed training run, not a complete policy result. No primary development evaluation is permitted for these partial weights.",
+    "Additional transitions beyond the last logged interval cannot be recovered after forced process termination; report the lower bound and preserve uncertainty.",
+    "Training stochastic successes remain training observations, not a competence score.",
+    "The frozen v3 task/reward/architecture/PPO remain unchanged; failed cost is retained separately from replacement training."
+  ]
+}

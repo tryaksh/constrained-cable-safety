@@ -1,0 +1,73 @@
+{
+  "schema": 1,
+  "version": "partial_checkpoint_diagnosis_v1",
+  "status": "frozen_before_partial_diagnosis",
+  "created_at_utc": "2026-09-09T12:05:11.514829+00:00",
+  "trigger": "The substantial v3 run was interrupted by suspension and the RAM guard; no complete-budget checkpoint exists. Diagnose the last durable checkpoint without claiming a completed training run.",
+  "checkpoint_rule": "partial_cohort_13.pt from uniform_completion_170_v3_r01 only; exact hash verified against the immutable failure record.",
+  "seed": 10070,
+  "policy_rng_seed": 310070,
+  "cases": 28,
+  "controllers": [
+    "frozen Gaussian mean",
+    "independent stochastic Gaussian",
+    "analytic expected clipped Gaussian action",
+    "unchanged retry_unload_realign_v1"
+  ],
+  "expected_charged_transitions": 51338,
+  "wall_limit_minutes": 28,
+  "motivation": {
+    "source": "artifacts/assembly/policy_diagnosis_v2_r01/deterministic/diagnosis/trajectory.pt",
+    "source_sha256": "0ec58f7fa5a6b38d0170d40e664f68ecccac4858abd04ee5a3dd757a2f55295c",
+    "active_control_rows": 11714,
+    "mean_clipped_mean_minus_expected_clipped_xyz_mm": [
+      3.7879536151885986,
+      -2.987013339996338,
+      9.772178649902344
+    ],
+    "scope": "CPU analytic readout on all active saved v2 deterministic observations; no new controller or motion outcome was evaluated."
+  },
+  "formula": "E[clip(X,-1,1)] = mu*(Phi(b)-Phi(a)) + sigma*(phi(a)-phi(b)) - Phi(a) + 1 - Phi(b); a=(-1-mu)/sigma, b=(1-mu)/sigma.",
+  "analytic_verification": "Independent numerical integration at 100001 points agrees within 7.3e-10 on declared CPU cases; symmetry, bounds and no RNG consumption tested.",
+  "invariants": [
+    "Same final checkpoint and actor/critic instantiation in every path",
+    "Same v3 reward, geometry, raw 20 N abort, physical gravity, 30 s deadline and 0.5 s dwell",
+    "Exact initialization tensors, sensor draws and nuisance streams compared",
+    "Separate stochastic-policy generator; no policy or reward tuning during diagnosis"
+  ],
+  "readouts": [
+    "All complete jobs, nominal/fault bins, force aborts and other failures",
+    "Full upstream and corrected returns with completion-credit ledger",
+    "Action targets, requested/applied actions, physical motion, contacts and witnessed recoveries",
+    "On the stochastic arm only: saved privileged critic inputs, frozen normalized critic inputs and value predictions versus Monte Carlo finite-job return-to-go. Other arms are off-policy for the trained critic."
+  ],
+  "decision_rule": "Retain every arm. This partial-checkpoint diagnostic cannot pass or replace the original final-budget competence gate; no adaptive campaign follows it.",
+  "diagnostic_source_sha256": {
+    "src/assembly_recovery/saturated_gaussian.py": "56891656dca2efb72a54fe86600115b6190c249350d2366d8c7550b90ffc2b6b",
+    "src/assembly_recovery/power_guard.py": "7e434205189857514485434b90d799bdae36db3833e88097bddf5978313542f5",
+    "scripts/diagnose_partial_checkpoint.py": "a0da4e13a278cf34309b3604e10a473c31ba1515c6e392a41ea7098ec1c12555",
+    "scripts/run_partial_checkpoint_diagnosis.py": "889a20b805e2dfb26ed6630cf59bc4abee8cf1c12010885c236e413779e55af0"
+  },
+  "scope_and_limitations": [
+    "Diagnostic of a partial checkpoint from a failed run, not a final-budget score or independent training replication.",
+    "The last durable checkpoint was selected by the external interruption, not development or final-test performance.",
+    "All 28 cases and all four controllers retained with exact initialization and sensor-RNG checks.",
+    "No training, reward change, task correction, checkpoint optimization, or final-test access.",
+    "The prepared complete-budget restart still requires AC power and sufficient remaining wall time."
+  ],
+  "additional_motivation": {
+    "source": "CPU read-only checkpoint scale checks during r01; not an on-policy value-error estimate",
+    "critic_value_at_normalization_center_by_cohort": {
+      "1": 0.10769996047019958,
+      "5": 2.2518608570098877,
+      "11": 8.991044998168945
+    },
+    "scope": "Motivates recording actual critic predictions; cannot establish a value-learning defect without on-policy evidence."
+  },
+  "checkpoint_sha256": "0e1b6145838e67567a858ea65a09236215be918d6899b4fe4f48c41f298a4ad3",
+  "wall_limit_minutes_per_arm": 7,
+  "training_run_status": "failed_incomplete",
+  "last_saved_checkpoint_charged_cost": 6101888,
+  "total_failed_run_charged_cost_lower_bound": 6241536,
+  "power_scope": "Short diagnostic only: battery must start at or above 50 percent if AC is absent, scoped idle-sleep request active, unchanged RAM/GPU guards. No battery-powered long training restart."
+}

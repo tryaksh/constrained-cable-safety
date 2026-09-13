@@ -1,0 +1,117 @@
+{
+  "schema": 1,
+  "version": "failure_prefix_confirmation_v2",
+  "status": "registered_before_launch",
+  "created_at_utc": "2026-09-09T23:07:18.675268+00:00",
+  "starting_commit": "b1deb14ce96f4e5730f9797fa6fc0248d399b521",
+  "checkpoint_path": "artifacts/assembly/uniform_unclipped_170_v4_r02/pilot/budget_checkpoint.pt",
+  "checkpoint_sha256": "cee349b1b9283a66924294323f5c7bd8f5de98434be70ed19d8a07986f9eb532",
+  "physical_protocol": {
+    "path": "configs/protocol_v4.json",
+    "sha256": "2b42e1961eb463cad2545a1d006ae01400d40e58d222d3861ab009915d35ea2d"
+  },
+  "prior_evidence_sha256": {
+    "evidence/continued_block_v4.json": "39e94c75315239968fcd454d4ab1940c9149ebaf4e7750e62d1d411ed0fab7fd",
+    "evidence/uniform_unclipped_v4.json": "ef7019ca4520c66eef7281a13f27ef399f921e65a05252a915a5e37ec1419ba6",
+    "evidence/failure_prefix_v4_r01.json": "06b554db49d0816009c2fa2b3049295aed3b251cf5e78e1d40a1a82790a5673d",
+    "evidence/failure_prefix_motion_v1.json": "e6c0b9ea6fde9bbed3b5b00ca816e63b8347bbfb1867c34e80617098a6dfc1dd",
+    "evidence/research_assessment_20260909.json": "05bb21b82f626ad1400ca35fd9142bd4ec7f90df2453d235c19651fbfe316898",
+    "configs/failure_prefix_recovery_v1.json": "53c06fbf978202c86ef672c8e8110dd04ed8233e2027349c1f2530468bff729b"
+  },
+  "original_competence_gate_passed": false,
+  "question": "Does the frozen v4 policy complete jobs after a physically witnessed contact stall on both remaining development seeds under the unchanged four-second prefix?",
+  "definition_development": "Seed 10070 was already observed and informed this supplemental endpoint. It is excluded from the prospective two-seed confirmation. These seeds were used for primary insertion evaluation, not this fixed-prefix assay.",
+  "seeds": [
+    10071,
+    10072
+  ],
+  "requests_per_arm_per_seed": 28,
+  "controllers": [
+    "learned",
+    "retry",
+    "continue"
+  ],
+  "prefix": {
+    "control_steps": 60,
+    "physics_steps": 480,
+    "seconds": 4.0,
+    "source": "The unchanged RetrySettings.first_attempt_s=4.0; before this time retry and continued insertion have identical actions.",
+    "selection_reason": "Existing frozen retry traces already show 17 witnessed contact failures by four seconds. No new prefix duration or controller tuning was selected from learned-policy recovery outcomes.",
+    "handoff": "Fixed time only, independent of evaluator contact, hidden state and learned outcomes.",
+    "learned_arm": "Unchanged scripted insertion for the first 60 controls, then the frozen Gaussian mean for the remainder.",
+    "retry_arm": "Unchanged retry controller for the entire job; its first possible retry starts after the shared prefix.",
+    "continue_arm": "Unchanged continued-insertion controller for the entire job."
+  },
+  "invariants": {
+    "job_deadline_s": 30.0,
+    "remaining_time_after_prefix_s": 26.0,
+    "dwell_s": 0.5,
+    "raw_force_abort_n": 20.0,
+    "held_part_gravity": true,
+    "within_job_resets_pose_writes_attachment_changes": false,
+    "reward_version": "completion_credit_v3",
+    "trained_parameters_changed": false,
+    "final_test_cases_used": false
+  },
+  "endpoint": {
+    "version": "post_stall_completion_v1",
+    "primary_whole_job": "Frozen complete-job outcome for all 28 requested jobs per seed and controller, including every prefix completion, abort, lost grasp, forbidden event and deadline.",
+    "conditional_cohort": "Actual frozen contact witness at native step 1..480 inclusive and job still active after step 480. Membership must match exactly across controllers. Handoff remains fixed at four seconds and never uses the witness.",
+    "contact_witness": "Unchanged evaluator v2 first contact/progress/command stall plus actual part-to-fixture force >0.1 N in at least 80 percent of the preceding one-second native window. Wrist-load proxy alone is insufficient.",
+    "completion": "Frozen success after handoff: 0.5-second continuous seated dwell ending after step 480, with the final dwell beginning after the contact stall. Retained grasp throughout the active job according to frozen separation/bilateral-contact grace checks, no forbidden events, no raw-force abort and no deadline overrun.",
+    "mechanism": "No required vertical rise, withdrawal, path shape or amount of lateral correction. No new threshold is sent to the controller.",
+    "original_metric": "Retain the unchanged five-millimetre rise/clearance/fixture-clear witness and its completed-withdrawal counts independently. The original failed competence gate and all prior evidence stay frozen.",
+    "prefix_attribution": "Completed dwell at or before step 480 is a scripted-prefix completion and cannot be attributed to the learned policy. Prefix failures remain in whole-job denominators.",
+    "failures": "Any eligible force abort, lost grasp, forbidden event, timeout or incomplete job remains a conditional failure. Missing or invalid artifacts block interpretation; they never remove a requested job."
+  },
+  "verification": {
+    "native_physics_replay": "Exact CPU evaluator and contact witness parity for all 168 jobs at 120 Hz; native terminal force and dwell priority retained.",
+    "prefix_parity": "Exact initial state, prefix requested/applied actions, actor/critic observations, rewards and native physics across each seed/controller trio.",
+    "randomness": "Exact full sensor draws, CUDA RNG states and dead-zone draws across each trio. All arms instantiate and load the same policy after environment reset.",
+    "unchanged_controls": "CPU replay of the original ActorRetryController from saved actor observations must reproduce every scripted requested action and phase exactly. The v1 worker, launcher, verifier, retry source and settings stay byte-identical.",
+    "frozen_learned_policy": "Requested actions after control 59 equal stored frozen means exactly. Reload the registered checkpoint on CPU and compare means for every saved actor observation.",
+    "cpu_mean_absolute_tolerance": 2e-05,
+    "provenance": "Before each simulator launch capture commit, dirty state, exact source.zip and hashes, upstream sources, full checkpoint and config hashes, seeds, command and environment. Verify archive/artifact bytes after exit.",
+    "accounting": "Verify 12834.5 charged transitions per run including initialization, 12600 rollout slots and absorbing cost; reward/credit/return replay uses existing v3 tolerances."
+  },
+  "readiness_for_physics_refinement": {
+    "minimum_completions_per_seed": 3,
+    "minimum_fault_bins_per_seed": 2,
+    "other_requirements": [
+      "All verification checks pass and both seed cohorts match across controllers.",
+      "On each confirmation seed, learned conditional completions exceed continued insertion.",
+      "No forbidden events; force failures remain failures."
+    ],
+    "scope": "This is readiness for a bounded physics validation, not a revised competence gate or a statistical advantage claim. No requirement of beating retry is inferred from this two-seed assay."
+  },
+  "adaptive_campaign_ready": false,
+  "adaptive_campaign_requirements": [
+    "Bounded learned-policy physics refinement with matched external timings and noise; prior scripted 120/240 Hz sensitivity does not establish convergence.",
+    "Register shared uniform/adaptive/fixed-curriculum architecture, reward, nominal allocation, fault support, optimizer/sampler schedules, training/development/test splits and total charged budget.",
+    "Keep competent upstream and retry references; multiple independent training seeds, second task and closed held-out tests remain necessary for a substantial research claim."
+  ],
+  "expected_charged_transitions_per_run": 12834.5,
+  "expected_charged_transitions": 77007.0,
+  "wall_limit_s": 2520,
+  "per_run_wall_limit_s": 420,
+  "diagnostic_source_sha256": {
+    "scripts/diagnose_failure_prefix.py": "35d09f7eec8e879a0b80bfd374d22e2da01abb09b8406690ae0a792761a9bf1c",
+    "scripts/run_failure_prefix.py": "59ef713532d7543f8ffd7960fa4f9895a48c3807b8c36b239e424911ca624838",
+    "scripts/verify_failure_prefix.py": "7c945b3676e1a398581ad3a30797b464cabdb10b361e31d9d6cf1052e65f481a",
+    "src/assembly_recovery/retry_controller.py": "cf899ca4cd16151da407d3fea5e02b25e0d830feb6177a69ace1fc52cbcabdcf",
+    "configs/retry_unload_realign_v1.json": "3b0c6fa3b5e7c10b545efbdbb380e58f7ac485cf80bed000d580ac780dd6a299",
+    "scripts/diagnose_failure_prefix_v2.py": "c6449b129213ce3997edb008856b07b39d11a4a7581be02c0b80254500ac15e1",
+    "scripts/run_failure_prefix_v2.py": "3b19940e9510d248fb616a97f3750d492261134217e321fb134f9f2167ae6bd3",
+    "scripts/verify_failure_prefix_v2.py": "aa563c59a1976f599f595444be0f1167b4be45412af160a02c608bf107553d57",
+    "src/assembly_recovery/post_stall.py": "43b061f5fbc3dbe47e47c90066b85a3248d05a355f9f3804a35f16ba6bddb826"
+  },
+  "scope_and_limitations": [
+    "Prospective supplemental development confirmation on seeds 10071 and 10072, with one frozen model from one training seed. Seed 10070 informed the endpoint and is reported separately.",
+    "A fixed scripted failure-induction prefix is part of every controller. Prefix-script completions are never attributed to learned actions.",
+    "Whole-job reliability and conditional post-stall completion have different denominators. Actual contact stalls are required; prevention and wrist-load proxies do not qualify.",
+    "The original five-millimetre withdrawal metric, prior results and failed competence gate remain unchanged.",
+    "This is not a matched training-cost curriculum comparison, independent-training-seed estimate, final-test result or physics-convergence demonstration.",
+    "Geometry, gravity, 20 N native abort, 30-second jobs, 0.5-second dwell, observations, reward and trained parameters remain fixed. No within-job reset, pose write or attachment change.",
+    "No gear, pickup, dropped-part recovery, camera perception, hardware transfer, force certification, publication or hiring claim."
+  ]
+}

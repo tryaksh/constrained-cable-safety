@@ -1,0 +1,45 @@
+{
+  "schema": 1,
+  "version": "completion_credit_v3",
+  "status": "registered_before_control_reruns",
+  "created_at_utc": "2026-09-09T06:26:03.538608+00:00",
+  "diagnosis_evidence": "evidence/policy_diagnosis_v2_r01.json",
+  "measured_blocker": "Failed deterministic jobs outreturn successful paired fixed retries in 10/19 solvable requests. Ending the job removes positive future reward.",
+  "change": "Add ideal remaining-horizon reward credit once upon completed dwell. No credit for merely seeing the upstream success predicate or any failed outcome.",
+  "gamma": 0.995,
+  "max_controls": 450,
+  "decimation": 8,
+  "ideal_step_reward": 2.9166666666666665,
+  "upper_bound_derivation": "Proximity maxima 1/6 + 1/4 + 1/2, plus engagement 1 and upstream success 1. Every other resolved reward term is nonpositive.",
+  "discounted_credit_at_job_start": "(35/12) * sum(gamma**k for k in range(floor(native_terminal_step/8),450))",
+  "notification": "Deliver the equivalent credit at ceil(native_terminal_step/8); align discount for exact versus partial control termination.",
+  "physical_changes": false,
+  "upstream_reward_changed": false,
+  "training_reward_changed": true,
+  "controller_changes": false,
+  "reset_or_absorbing_semantics_changed": false,
+  "control_rerun": {
+    "cases": 28,
+    "seed": 10070,
+    "policy_rng_seed": 310070,
+    "arms": [
+      "deterministic",
+      "stochastic",
+      "retry"
+    ],
+    "expected_charged_transitions": 38503.5,
+    "acceptance": [
+      "Exact v2 physical, action, sensor and terminal-outcome trace parity in every arm",
+      "Preserve original upstream reward ledger",
+      "Only completed dwell receives credit; zero credit in all absorbing slots",
+      "All 19 matched scripted completions outreturn their deterministic failures after correction"
+    ]
+  },
+  "scope_and_limitations": [
+    "This is a reward correction, not a new task or a claim of observed post-completion force-safe behavior.",
+    "Credit is an algebraic ideal absorbing-success value; no extra simulated success, dwell, or recovery is counted.",
+    "The correction removes the observed early-completion penalty; it does not prove all successful trajectories outrank all failures.",
+    "All future learning comparisons must share this correction, architecture, fault support, force criteria, and charged cost.",
+    "No reuse of old pilot weights for the planned longer training; controls alone use the frozen old checkpoint."
+  ]
+}

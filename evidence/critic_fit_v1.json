@@ -1,0 +1,61 @@
+{
+  "schema": 1,
+  "status": "verified",
+  "research_result": false,
+  "checks": {
+    "process_complete": true,
+    "source_snapshot_exact": true,
+    "finite_predictions": true,
+    "matched_steps": true,
+    "actor_and_normalizers_unchanged": true,
+    "replay_close": true,
+    "metrics_reproduced": true,
+    "checkpoint_matches": true,
+    "trajectory_matches": true
+  },
+  "specification": {
+    "rounds": 100,
+    "mini_epochs": 4,
+    "minibatch": 512,
+    "learning_rate": 0.0001,
+    "gradient_norm": 1.0,
+    "seed": 410070,
+    "gamma": 0.995,
+    "arms": {
+      "clipped_0_2": 0.2,
+      "unclipped": null
+    },
+    "wall_limit_s": 180,
+    "target": "Monte Carlo finite-job return-to-go on every active stochastic diagnostic row.",
+    "comparison": "Same starting critic, frozen normalized inputs, targets, minibatch orders, fresh Adam and update budget; only value clipping differs.",
+    "scope": "CPU regression diagnostic, not PPO training or an estimate of generalization; fitted models cannot initialize a policy run."
+  },
+  "active_rows": 1383,
+  "metrics": {
+    "before": {
+      "rmse": 327.4153747558594,
+      "mean_prediction": 10.55100154876709
+    },
+    "clipped_0_2": {
+      "rmse": 222.57847595214844,
+      "mean_prediction": 113.49614715576172
+    },
+    "unclipped": {
+      "rmse": 10.42855167388916,
+      "mean_prediction": 286.7622375488281
+    }
+  },
+  "simulator_transitions": 0,
+  "artifact_sha256": {
+    "artifacts/assembly/critic_fit_v1_r01/predictions.pt": "f43a7607cda7828e7e388e49dc6c88502be473723565c1db36f67ccb5c7409e0",
+    "artifacts/assembly/critic_fit_v1_r01/registration.json": "ec94b85677428edee8cae357ac39a820aee9f06aa45b252daf59ac011a260abc",
+    "artifacts/assembly/critic_fit_v1_r01/report.json": "89e1993a6b896318591783de0fa6eb990953f4384828236ba95d7ee57ce53698",
+    "artifacts/assembly/critic_fit_v1_r01/source.zip": "ca27765382164320e0fdf24424daa603d82c64d104d1ce785baa658ec731a194"
+  },
+  "decision": "Remove absolute value clipping only in a fresh registered PPO run. Retain actor clipping, architecture, reward, physical task, samples and optimizer budget. No fitted or partial weights reused.",
+  "scope_and_limitations": [
+    "Fixed-data critic regression on 1383 correlated development states at equal 1200 updates per arm, not new PPO performance.",
+    "Removing clipping resolves the observed train-set fit bottleneck; generalization and policy competence remain unproven.",
+    "No extra simulator transitions. The source trajectories are fully charged in the four-arm partial diagnosis."
+  ]
+}

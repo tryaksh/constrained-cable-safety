@@ -1,0 +1,147 @@
+{
+  "schema": 1,
+  "created_at_utc": "2026-09-08T04:47:21.412632+00:00",
+  "status": "source_audited_design_registered_gpu_fast_path_not_implemented",
+  "research_result": false,
+  "source_sha256": {
+    "src/assembly_recovery/peg_env.py": "0fe0db0879ff86631c4bd2a0593c3475c71b37a28e5a9f571d87b16e55acc5f1",
+    "src/assembly_recovery/evaluation.py": "42d8a41b9ede199c3435717870d1d127ca95564b714a6d2904d9c22ff5836c0a",
+    "scripts/validate_peg.py": "0d44b5bd7dad9faa7d7931967e11d268d01a1ff115e47dff964bbde4da6066a8",
+    ".deps/IsaacLab/source/isaaclab_tasks/isaaclab_tasks/direct/forge/forge_env.py": "492d52568719a35cd434fe4269b2cd5cb9b69c6750bc049f255130e47d38fe1c",
+    ".deps/IsaacLab/source/isaaclab/isaaclab/sensors/contact_sensor/contact_sensor.py": "79daa7117f6a162e59b771794f56ca5f527e0cf1fe76cbcebae4514ba21c7074"
+  },
+  "feedback_assessment": {
+    "synchronization": "Relevant: explicit device-to-host copies, tensor-to-Python scalar conversions, and tensor-dependent Python branches occur in the hot loop. Their share of runtime has not been profiled.",
+    "force_spikes": "Plausible numerical sensitivity, not established artificiality. The budget uses incoming wrist-joint load; fixture contact tensors are a different measurement. High load can include gravity, inertia and real collision impulses. Raw-aborted traces are censored and cannot prove a filtered controller would safely continue.",
+    "narrative": "Accepted: empirical recovery reliability, costs and limitations. Adaptive allocation is a tested hypothesis, not an algorithmic novelty claim."
+  },
+  "observed_performance": {
+    "recorded_4_env_video_transitions_per_s": [
+      12.94,
+      13.03
+    ],
+    "matrix_28_env_traced_transitions_per_s": [
+      96.14871000481375,
+      94.93742418190969,
+      95.1841359773371,
+      93.85474860335195,
+      94.32691011992385,
+      90.86188992731613
+    ],
+    "matrix_observed_gpu_memory_mib": 4337,
+    "upstream_2_epoch_pilot_transitions_per_s": [
+      205,
+      192
+    ],
+    "caveat": "Different workloads and cohort sizes. These are not a measured optimization comparison or sustained PPO capacity. Matrix counts exclude initialization stepping."
+  },
+  "hotspots": [
+    {
+      "location": "peg_env.py:_compute_intermediate_values/_sample_jobs",
+      "finding": "Every physics sample converts velocity error and tensor finite checks to host scalars, transfers fixture/finger/state tensors to lists, then runs per-job Python median/history logic and per-job GPU hold assignments."
+    },
+    {
+      "location": "validate_peg.py:control loop",
+      "finding": "Actor observations, actions, pose traces and every reward term move to CPU each control step; actor retries run per environment in Python."
+    },
+    {
+      "location": "peg_env.py:_get_rewards and ForgeEnv._get_rewards/_log_forge_metrics",
+      "finding": "Reward reconstruction float(max) and tensor-dependent success-latch/logging branches synchronize at control endpoints."
+    }
+  ],
+  "tensorized_training_design": {
+    "ownership": "Add a separate project-owned fast training adapter; keep PegStudyEnv and saved JSON replay as the reference evaluator. Do not modify .deps/IsaacLab.",
+    "physics_kernel": "Store outcome, terminal step, dwell, contact/grasp grace, progress state, force peaks, contact witnesses and active masks as fixed-size CUDA tensors. Apply failure precedence and hold-target latches with tensor masks/where; no item(), cpu(), tolist(), nonzero-dependent host control or per-env Python loop in steady state.",
+    "exact_progress_semantics": "Use ring buffers for 1 s load/down occupancies and 0.1 s height filter. For even windows reproduce statistics.median by averaging both middle sorted values; torch.median alone chooses the lower middle. Preserve anti-oscillation best-depth logic and consecutive-physics-step accounting.",
+    "actor_path": "Keep policy observations and actions on CUDA; implement the bounded retry with tensor phase/state buffers if used as a training comparator. Preserve noisy target frame, clamps, synthetic-noise timing and current actor-only information limits.",
+    "reward_path": "Cache invariant device constants, use a device boolean for the existing cohort success latch, and tensorize all reward terms without changing their formula or resolved zero action-change coefficient. Disable per-term CPU trace/log work in training; compare every term against reference on a small dev cohort.",
+    "terminal_path": "Finite 30 s full-cohort jobs with absorbing hold slots after early termination. Emit terminal done once; zero post-terminal reward/bootstrap, mask absorbing entries in PPO/RNN/normalization updates, count their transitions. Active jobs may bootstrap across PPO rollout chunks, never across job terminals. Full-cohort resets only between jobs.",
+    "partial_reward_candidate": "Before freeze, implement and test a pure reward sample at the terminal physics state, weighted by elapsed fraction k/decimation of the final control interval; retain zero bootstrap. Treat this as a shared reward-accounting correction and rerun both matched arms, preserving the current endpoint-omission ledger. Cohort latch update ordering must be explicit.",
+    "logging": "Keep aggregated counters on device; bounded audit buffers for a small fixed dev subset. Export at cohort/rollout boundaries through pinned buffers, not per physics step. PhysX still has a CPU driver; fully tensorized here means batched project bookkeeping, not a promise of zero engine synchronization.",
+    "memory": "Preallocate ring buffers and rollout storage; no cameras/video/full JSON histories in training. Start 32/64 environments, then test 128 only with measured total GPU use below 10 GiB on the 12 GiB device, leaving roughly 2 GiB headroom. Include renderer/PhysX and recurrent actor+critic memory, not just torch allocator counters.",
+    "benchmark": "Same seeds, random/policy actions, precision, geometry, solver and force criteria. Profile warmup then steady-state CUDA kernels, host gaps, device copies and Isaac/PhysX steps; compare traced reference, trace-disabled reference and tensorized adapter. One serial queue. Once gates pass, measure at least 20 PPO epochs and optimizer peak memory before campaign sizing.",
+    "acceptance": "Replay identical saved traces through CPU and GPU evaluator; match outcomes, terminal steps, force/grasp precedence, stalls and dwell exactly and reward terms within declared FP tolerance. Run bounded online dev pairing and instantiated actor/critic leak tests before accepting any throughput claim. Count all probe/mining/initialization costs."
+  },
+  "force_diagnostic_design": {
+    "implementation": "src/assembly_recovery/force_diagnostics.py:TemporalLoadMonitor",
+    "status": "CPU reference and synthetic controls; no job-abort behavior change",
+    "signal": "Nonnegative magnitude of raw incoming wrist-joint force, separate from fixture normal contact.",
+    "formula": "fbar_t = exp(-dt/0.020)*fbar_previous + (1-exp(-dt/0.020))*norm(F_t); initialize from the first real sample. Label sustained overload when fbar >20 N continuously for >=0.025 s.",
+    "raw_accounting": "Always retain raw >20 N violation, native-step peak, and integral max(norm(F)-20,0)*dt. Filtered overload is not a contact-jam witness; require separate contact and lack-of-progress evidence.",
+    "abort_policy": "Keep current raw 20 N job abort. Replacing it by the filtered trigger allows transient loads above 20 N and changes the task; do not relabel existing aborts or adopt that rule without measured development controls and a shared protocol correction.",
+    "required_controls": [
+      "Synthetic pulse versus sustained plateau and timestep-invariant time constants (CPU tests).",
+      "Development timestep refinement and solver/contact-convergence probes under identical commands, with raw wrist/fixture traces and positive contact controls.",
+      "Determine whether suspected impulses converge in integrated load and physical motion. Do not infer post-abort recovery from counterfactual actions or hold-period samples.",
+      "If a filtered-abort criterion is later justified, declare any separate peak guard from measured development support and rerun both arms before freezing; no arbitrary larger ceiling or hardware-safety claim."
+    ]
+  },
+  "selected_final_test": {
+    "id": "physics_timestep_refinement_v1",
+    "status": "registered_before_learning_and_final_test_not_executed",
+    "question": "Does complete-job reliability and witnessed recovery survive physics timestep refinement without policy retraining?",
+    "design": "Evaluate the same frozen checkpoints and preselected case parameters at physics dt 1/120 and 1/240 s; retain 15 Hz policy actions, the same geometry, observation interface, reward, force criteria and 30 s deadline.",
+    "tasks": [
+      "peg",
+      "gear"
+    ],
+    "arms": [
+      "uniform_faults",
+      "adaptive_faults",
+      "fixed_difficulty_curriculum"
+    ],
+    "training_seeds": [
+      170,
+      271,
+      372
+    ],
+    "checkpoint_selection": "Final predeclared training-transition target common to all arms; never final-test performance.",
+    "cases_per_task_per_training_seed_per_arm": {
+      "fault": 48,
+      "nominal": 16
+    },
+    "selection_rule": "Before opening final results, choose the first 48 fault and 16 nominal case IDs in a deterministic seed-balanced, bin-balanced round-robin from the frozen main final-test manifest. Use identical IDs for every arm/checkpoint. No selection based on stalls, successful recovery, forces, or method scores.",
+    "test_cases_generated_or_opened": false,
+    "control_and_sensor_invariants": [
+      "Preserve 15 Hz action timing and 120 Hz servo/observation-noise update timing; hold torques and noise between the two finer physics substeps. Increasing servo update rate would confound numerical refinement with a controller change.",
+      "Preserve physical-time force-filter constants, dwell, stall windows and abort latency. Record raw forces at both native 120/240 Hz and a common 120 Hz comparison grid; never hide native peak violations.",
+      "Use separate deterministic RNG streams for fault/nuisance settings and sensor noise so extra physics steps do not consume different random draws.",
+      "Use the same declared valid initialization procedure and sampled parameters, not an incomplete restored PhysX snapshot. Report realized pose/grasp differences caused by refinement; include invalid initializations as failed requests."
+    ],
+    "primary_addition_endpoint": "Joint completion across resolutions: mean(S_120 * S_240) over every preselected request. Both successes must satisfy dwell, retained grasp, time and force criteria.",
+    "supporting_readouts": [
+      "Completion difference between resolutions by arm and training seed; paired uncertainty over case IDs and between-seed variation.",
+      "Witnessed contact-failure/recovery/prevention labels separately at each resolution, without selecting a method-specific denominator.",
+      "Raw peak load, excess-force impulse, sustained-load diagnostic and failure/abort counts; raw spikes are not assumed to be numerical artifacts."
+    ],
+    "primary_study_endpoint_unchanged": "Main held-out unfinished jobs per 100 requests at equal training cost.",
+    "incremental_fine_resolution_jobs": 1152,
+    "incremental_control_transitions_at_full_deadline": 518400,
+    "incremental_physics_env_steps_at_full_deadline": 8294400,
+    "cost_note": "Coarse cases are reused from main final evaluation; finer runs add 64 cases x 3 training seeds x 3 arms x 2 tasks. Count initialization, probes, failures and all extra evaluation costs; one GPU job. No additional policy training.",
+    "required_development_gate": "Verify timestep conversion, force units, control/noise timing, initial validity and synthetic/refined contact controls before opening final tests. No backend upgrade, geometry change or sensor-history assumption from newer Isaac Lab versions.",
+    "novelty_scope": "A distinctive empirical stress test for this study; no claim that timestep refinement or this endpoint is new to the literature."
+  },
+  "sources": [
+    {
+      "title": "PyTorch performance tuning: avoid unnecessary CPU-GPU synchronization",
+      "url": "https://docs.pytorch.org/tutorials/recipes/recipes/tuning_guide.html",
+      "use": "General performance guidance; pinned local code establishes actual calls."
+    },
+    {
+      "title": "PhysX simulation timestep and substepping guidance",
+      "url": "https://nvidia-omniverse.github.io/PhysX/physx/5.7.0/docs/Simulation.html",
+      "use": "General numerical guidance, not a claim this workstation uses PhysX 5.7."
+    },
+    {
+      "title": "Isaac Lab 2.3 contact sensor scope",
+      "url": "https://isaac-sim.github.io/IsaacLab/v2.3.0/source/overview/core-concepts/sensors/contact_sensor.html",
+      "use": "Contact-force scope; pinned v2.3.2 source was audited rather than assuming current/develop APIs."
+    }
+  ],
+  "scope_and_limitations": [
+    "Design and CPU diagnostic validation, not an implemented fast GPU trainer or measured speedup.",
+    "No physics timestep, primary abort, geometry, reward or recorded experiment has been changed by this feedback review.",
+    "The final-test addition is registered only; no final-test seeds/cases/results were opened."
+  ]
+}

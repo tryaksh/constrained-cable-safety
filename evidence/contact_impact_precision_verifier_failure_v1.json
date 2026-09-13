@@ -1,0 +1,240 @@
+{
+  "schema": 1,
+  "version": "contact_impact_precision_verifier_failure_v1",
+  "status": "verified_cpu_precision_correction_original_failure_preserved",
+  "research_result": false,
+  "created_at_utc": "2026-09-10T16:34:36.554656+00:00",
+  "scope": "CPU arithmetic-agreement checker correction for one completed960Hz native prefix; no simulator rerun, controller, physical task, force threshold or learned-method change.",
+  "original_run": "artifacts/assembly/contact_impact_960_v2_r01/960",
+  "original_process_status": "completed_returncode_zero_no_timeout_or_resource_stop",
+  "original_manifest_status": "verification_failed",
+  "original_failed_checks": [
+    "native_impulse_to_force",
+    "contact_evaluator_input"
+  ],
+  "preserved_artifact_sha256": {
+    "artifacts/assembly/contact_impact_960_v2_r01/960/manifest.json": "e687295ab905aaaba73d1ab9c89cea6bbc77efc11605e4ca72b43be70a3afe38",
+    "artifacts/assembly/contact_impact_960_v2_r01/960/verification.json": "fd38d0e05784cff2daac8c493abc57297f20eb6e6ffbc69927cbcf96c157d4b2",
+    "artifacts/assembly/contact_impact_960_v2_r01/960/validation/report.json": "e8682daaf9997b8168de2da7443b2ff25a7cfb27f7a8daadddf0440f727e3bad",
+    "artifacts/assembly/contact_impact_960_v2_r01/960/validation/trajectory.pt": "39ae7d0a16f20563c166387dd5e2f00fe8a4fb536a365090c7858c1bc32a8624",
+    "artifacts/assembly/contact_impact_960_v2_r01/960/source.zip": "c49bffbba5c047a4089a9808d249944f595ccd42ea7cab19a7f794752e3b9529"
+  },
+  "finding": "Both failed arithmetic checks differ by at most onefloat32 ULP. Their6.103515625e-5N maximum errors are in active first-native-step finger contacts, not absorbing samples. The roughly574N/537N finger values remain real recorded physical evidence.",
+  "precision_measurements": {
+    "force_conversion": {
+      "absolute_floor_n": 3e-05,
+      "rounding_operations": 4,
+      "unit_roundoff": 5.960464477539063e-08,
+      "relative_bound_gamma_n": 2.384186359449949e-07,
+      "all": {
+        "samples": 967680,
+        "max_absolute_error_n": 6.103515625e-05,
+        "max_float32_ulp_error": 1.0,
+        "entries_exceeding_old_absolute_bound": 16,
+        "max_local_magnitude_n": 575.2373046875,
+        "worst_index": [
+          0,
+          2,
+          0,
+          2,
+          1
+        ],
+        "left_at_worst_n": -574.2781372070312,
+        "right_at_worst_n": -574.2781982421875,
+        "ulp_at_worst_n": 6.103515625e-05,
+        "bound_at_worst_n": 0.00013691862467785172
+      },
+      "active": {
+        "samples": 421533,
+        "max_absolute_error_n": 6.103515625e-05,
+        "max_float32_ulp_error": 1.0,
+        "entries_exceeding_old_absolute_bound": 16,
+        "max_local_magnitude_n": 575.2373046875,
+        "worst_index": [
+          0,
+          2,
+          0,
+          2,
+          1
+        ],
+        "left_at_worst_n": -574.2781372070312,
+        "right_at_worst_n": -574.2781982421875,
+        "ulp_at_worst_n": 6.103515625e-05,
+        "bound_at_worst_n": 0.00013691862467785172
+      },
+      "absorbing": {
+        "samples": 546147,
+        "max_absolute_error_n": 1.9073486328125e-06,
+        "max_float32_ulp_error": 1.0,
+        "entries_exceeding_old_absolute_bound": 0,
+        "max_local_magnitude_n": 25.139766693115234,
+        "worst_index": [
+          1340,
+          9,
+          0,
+          0,
+          2
+        ],
+        "left_at_worst_n": 23.19112777709961,
+        "right_at_worst_n": 23.191129684448242,
+        "ulp_at_worst_n": 1.9073486328125e-06,
+        "bound_at_worst_n": 3e-05
+      }
+    },
+    "contact_norm": {
+      "absolute_floor_n": 1e-05,
+      "rounding_operations": 12,
+      "unit_roundoff": 5.960464477539063e-08,
+      "relative_bound_gamma_n": 7.152562488958232e-07,
+      "all": {
+        "samples": 322560,
+        "max_absolute_error_n": 6.103515625e-05,
+        "max_float32_ulp_error": 1.0,
+        "entries_exceeding_old_absolute_bound": 10,
+        "max_local_magnitude_n": 626.1912841796875,
+        "worst_index": [
+          0,
+          15,
+          2
+        ],
+        "left_at_worst_n": 537.1077270507812,
+        "right_at_worst_n": 537.1077880859375,
+        "ulp_at_worst_n": 6.103515625e-05,
+        "bound_at_worst_n": 0.00038416970175908033
+      },
+      "active": {
+        "samples": 140511,
+        "max_absolute_error_n": 6.103515625e-05,
+        "max_float32_ulp_error": 1.0,
+        "entries_exceeding_old_absolute_bound": 10,
+        "max_local_magnitude_n": 626.1912841796875,
+        "worst_index": [
+          0,
+          15,
+          2
+        ],
+        "left_at_worst_n": 537.1077270507812,
+        "right_at_worst_n": 537.1077880859375,
+        "ulp_at_worst_n": 6.103515625e-05,
+        "bound_at_worst_n": 0.00038416970175908033
+      },
+      "absorbing": {
+        "samples": 182049,
+        "max_absolute_error_n": 1.9073486328125e-06,
+        "max_float32_ulp_error": 1.0,
+        "entries_exceeding_old_absolute_bound": 0,
+        "max_local_magnitude_n": 25.140195846557617,
+        "worst_index": [
+          1340,
+          9,
+          1
+        ],
+        "left_at_worst_n": 17.966751098632812,
+        "right_at_worst_n": 17.966753005981445,
+        "ulp_at_worst_n": 1.9073486328125e-06,
+        "bound_at_worst_n": 1.2850832359896044e-05
+      }
+    },
+    "active_physics_environment_samples": 46837,
+    "absorbing_physics_environment_samples": 60683,
+    "contact_threshold_checks": {
+      "0.01": true,
+      "0.1": true,
+      "5.0": true
+    },
+    "contact_threshold_margins": {
+      "0.01": {
+        "computed_minimum_active_distance_n": 0.01,
+        "recorded_minimum_active_distance_n": 0.01,
+        "active_predicate_differences": 0
+      },
+      "0.1": {
+        "computed_minimum_active_distance_n": 0.008005490899086004,
+        "recorded_minimum_active_distance_n": 0.008005490899086004,
+        "active_predicate_differences": 0
+      },
+      "5.0": {
+        "computed_minimum_active_distance_n": 0.0002827644348144531,
+        "recorded_minimum_active_distance_n": 0.0002827644348144531,
+        "active_predicate_differences": 0
+      }
+    },
+    "rule": "abs(a-b)<=max(original_absolute_floor,gamma_n*max(abs(a),abs(b))); original absolute bounds additionally retained for active local magnitudes<=20N.",
+    "interpretation": "Measured high finger-contact loads remain physical evidence; this corrects only arithmetic agreement checks. Native raw wrist20N aborts and CPU replay are unchanged."
+  },
+  "rounding_model": {
+    "unit_roundoff": 5.960464477539063e-08,
+    "gamma_n": "n*u/(1-n*u)",
+    "force_conversion_operations": 4,
+    "force_conversion_rationale": "Conservative allowance for the two returnedfloat32 force-query scaling paths, including scalar representation, reciprocal/multiplication and CPU division rounding.",
+    "contact_norm_operations": 12,
+    "contact_norm_rationale": "Two3D norm evaluations with three squared terms,two positive additions and one square root each. The pinned contact matrix has exactlyone contributing body; checker rejects other reduction shapes.",
+    "bound": "abs(a-b)<=max(original absolute floor,gamma_n*max(abs(a),abs(b)))",
+    "absolute_floors_n": {
+      "force_conversion": 3e-05,
+      "contact_norm": 1e-05
+    },
+    "additional_active_protection": "Original absolute bounds retained at active local magnitudes<=20N; contact predicates at0.01,0.1,5N must be identical. Recorded evaluator contact values must be exactly representablefloat32.",
+    "physical_force_rule_unchanged": "Native raw wrist20N first-crossing abort, incoming-force norm and independent job/witness replay remain the original required checks."
+  },
+  "correction_acceptance": {
+    "only_exact_prior_failure_set": [
+      "contact_evaluator_input",
+      "native_impulse_to_force"
+    ],
+    "successful_process_required": true,
+    "all_other_current_physical_and_provenance_checks_required": true,
+    "saved_verification_and_trajectory_hashes_verified": true,
+    "original_failure_recognized": true,
+    "failed_current_checks": []
+  },
+  "source_sha256": {
+    "scripts/review_contact_impact_v1.py": "21f9d69b6d11270d91142c158384a473dfcb1e5cd40c57806e8864ec17076fe1",
+    "scripts/review_contact_impact_v2.py": "b0cdae46152ce7e18a2f9f13266665c1fa549ff1d4a98cde7c700a31bac14cb2",
+    "scripts/review_contact_impact_v3.py": "c0ad432c71cc29afc4218e3d88c0a5745adc46a3d73a1b5cf3d11bf903ecf0a1",
+    "scripts/review_servo_impact_v1.py": "287d38b94d585c8b3d930a53cfc4e6d07c2e524f98dbd5ec02d217d72a9550ca",
+    "tests/test_contact_impact_review_v3.py": "eef02ae197bd845c8e6b6a77f1bca333d07d28bfc1450b52d6d82f3bfdc62125"
+  },
+  "corrected_verification": {
+    "path": "artifacts/assembly/research_cycle_20260910_r01/contact_960_verification_corrected_v3.json",
+    "sha256": "c900b2056dc9d1244e3bd0764078424af7734019c569badf4e74e54372650445"
+  },
+  "all_resolution_summary": {
+    "path": "artifacts/assembly/research_cycle_20260910_r01/contact_120_240_480_960_corrected_v3.json",
+    "sha256": "ad8dd42c7edb3a7d1c50bf2b06f051ccb6931ce413085d58d081b0ea95cd1ca7",
+    "status": "verified_diagnostic",
+    "decision": {
+      "requires_960": false,
+      "finest_prefix_pair_pass": false,
+      "finest_pair_hz": [
+        480,
+        960
+      ],
+      "training_authorized_by_prefix": false
+    }
+  },
+  "unchanged960prefix_outcomes": {
+    "requests": 28,
+    "completions_before_prefix_end": 1,
+    "active_at_prefix_end": 0,
+    "terminal_outcomes_and_probe_end": {
+      "force_abort": 27,
+      "success": 1
+    },
+    "force_aborts": 27,
+    "forbidden_events": 0
+  },
+  "cost": {
+    "original_charged_reference_transitions": 13674.5,
+    "original_native_environment_steps": 109396,
+    "additional_simulator_transitions": 0,
+    "accounting": "Reuse the original run once; do not count CPU re-verification as new simulator evidence or erase its failed verifier verdict."
+  },
+  "verification": "23 targeted CPU tests passed; Ruff passed. Four original resolutions now pass every corrected verifier check.",
+  "scope_and_limitations": [
+    "Raw native loads and every abort remain unchanged. Better verifier arithmetic agreement does not imply improved physical stability.",
+    "The original480/960 prefix pair still fails registered material margins; substantial training remains gated.",
+    "Historical workers, v1/v2 verifier sources, failed verification, manifest and trajectory are preserved byte-for-byte.",
+    "The next registered servo-bandwidth cause test changes a common controller condition; it is not candidate-policy training evidence."
+  ]
+}

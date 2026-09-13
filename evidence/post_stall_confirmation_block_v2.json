@@ -1,0 +1,259 @@
+{
+  "schema": 1,
+  "status": "verified",
+  "research_result": false,
+  "block_started_at_utc": "2026-09-09T22:57:13+00:00",
+  "recorded_at_utc": "2026-09-09T23:33:33.297070+00:00",
+  "starting_branch": "research/assembly-recovery-training",
+  "starting_commit": "b1deb14ce96f4e5730f9797fa6fc0248d399b521",
+  "prelaunch_commit": "5054bfadff7bea42edaae1bb84c4cc8e566804be",
+  "registration": {
+    "path": "configs/failure_prefix_confirmation_v2.json",
+    "sha256": "98fbbc43821024b97bd831c25fbe3e6e13ede0306e5a32121c855cba2cae9d74"
+  },
+  "verified_result": {
+    "path": "evidence/post_stall_confirmation_v2_verified.json",
+    "sha256": "f8ccc622db5bd9ebf8e71a7e811d0c2a115ebef75289aad214bde32b56ded744"
+  },
+  "simulator_launches": 6,
+  "completed_launches": 6,
+  "failed_or_incomplete_simulator_launches": 0,
+  "training_launches": 0,
+  "confirmation_seeds": [
+    10071,
+    10072
+  ],
+  "all_controller_requests": 168,
+  "summary": {
+    "learned": {
+      "whole_job_requests": 56,
+      "whole_job_completions": 47,
+      "whole_job_outcomes": {
+        "success": 47,
+        "force_abort": 2,
+        "deadline": 7
+      },
+      "mean_seconds_per_request": 11.457291666666666,
+      "upstream_success_seen": 48,
+      "conditional_stalled_jobs": 37,
+      "post_stall_completions": 30,
+      "conditional_outcomes": {
+        "deadline": 7,
+        "success": 30
+      },
+      "original_withdrawal_recoveries_all_jobs": 0,
+      "withdrawal_recoveries_after_handoff": 0,
+      "prefix_script_completions": 6,
+      "prefix_failed_jobs": 1,
+      "forbidden_events": 0
+    },
+    "retry": {
+      "whole_job_requests": 56,
+      "whole_job_completions": 47,
+      "whole_job_outcomes": {
+        "deadline": 6,
+        "success": 47,
+        "force_abort": 3
+      },
+      "mean_seconds_per_request": 18.007142857142856,
+      "upstream_success_seen": 49,
+      "conditional_stalled_jobs": 37,
+      "post_stall_completions": 31,
+      "conditional_outcomes": {
+        "deadline": 4,
+        "force_abort": 2,
+        "success": 31
+      },
+      "original_withdrawal_recoveries_all_jobs": 37,
+      "withdrawal_recoveries_after_handoff": 31,
+      "prefix_script_completions": 6,
+      "prefix_failed_jobs": 1,
+      "forbidden_events": 0
+    },
+    "continue": {
+      "whole_job_requests": 56,
+      "whole_job_completions": 11,
+      "whole_job_outcomes": {
+        "deadline": 40,
+        "success": 11,
+        "force_abort": 5
+      },
+      "mean_seconds_per_request": 23.313095238095237,
+      "upstream_success_seen": 12,
+      "conditional_stalled_jobs": 37,
+      "post_stall_completions": 1,
+      "conditional_outcomes": {
+        "deadline": 33,
+        "force_abort": 3,
+        "success": 1
+      },
+      "original_withdrawal_recoveries_all_jobs": 0,
+      "withdrawal_recoveries_after_handoff": 0,
+      "prefix_script_completions": 6,
+      "prefix_failed_jobs": 1,
+      "forbidden_events": 0
+    }
+  },
+  "per_seed": {
+    "10071": {
+      "learned": {
+        "whole_job_completions": 25,
+        "post_stall_completions": 16,
+        "conditional_denominator": 17
+      },
+      "retry": {
+        "whole_job_completions": 24,
+        "post_stall_completions": 16,
+        "conditional_denominator": 17
+      },
+      "continue": {
+        "whole_job_completions": 6,
+        "post_stall_completions": 1,
+        "conditional_denominator": 17
+      }
+    },
+    "10072": {
+      "learned": {
+        "whole_job_completions": 22,
+        "post_stall_completions": 14,
+        "conditional_denominator": 20
+      },
+      "retry": {
+        "whole_job_completions": 23,
+        "post_stall_completions": 15,
+        "conditional_denominator": 20
+      },
+      "continue": {
+        "whole_job_completions": 5,
+        "post_stall_completions": 0,
+        "conditional_denominator": 20
+      }
+    }
+  },
+  "decision": {
+    "eligible_for_bounded_learned_physics_refinement": true,
+    "per_seed_behavior_confirmation": {
+      "10071": true,
+      "10072": true
+    },
+    "original_competence_gate_passed": false,
+    "adaptive_campaign_ready": false,
+    "reason": "Physics refinement is a separate validation step. Learned physics robustness and a registered shared uniform/adaptive/fixed-curriculum configuration remain required before a campaign."
+  },
+  "interpretation": [
+    "Frozen learned actions complete jobs after a real contact stall on both additional development seeds. The effect is not merely prevention, and it does not require the original five-millimetre withdrawal.",
+    "Learned and retry complete the same 47/56 whole jobs in aggregate but differ case by case; conditional counts favor retry 31/37 versus learned 30/37. This does not show a learned reliability advantage over retry.",
+    "Learned mean job time is 11.46 seconds versus retry 18.01 seconds, including failed requests; this is descriptive performance on two development seeds with one trained model, not a training-cost curriculum comparison.",
+    "The endpoint was informed by prior seed 10070 and preregistered before the new fixed-prefix runs. Prior seed 10070 remains separate from the confirmation denominators.",
+    "Both confirmation seeds meet the registered readiness criterion for bounded learned-policy physics refinement. The original failed competence gate is retained and the adaptive campaign is not ready."
+  ],
+  "motion": {
+    "raw_artifact": "artifacts/assembly/post_stall_confirmation_v2_source_check/confirmation_motion.json",
+    "sha256": "9b020951ae02c3af37a96ac6492127da626e58d23dcf7689c58e575bbb090356",
+    "by_seed": {
+      "10071": {
+        "completed_stalled_jobs": 16,
+        "maximum_rise_range_mm": [
+          0.0009387731552124023,
+          0.3628283739089966
+        ],
+        "lateral_shift_range_mm": [
+          2.1580224856734276,
+          9.25943348556757
+        ],
+        "original_withdrawal_recoveries": 0
+      },
+      "10072": {
+        "completed_stalled_jobs": 14,
+        "maximum_rise_range_mm": [
+          0.007770955562591553,
+          0.9066462516784668
+        ],
+        "lateral_shift_range_mm": [
+          1.9741947762668133,
+          11.5836625918746
+        ],
+        "original_withdrawal_recoveries": 0
+      }
+    },
+    "definition_source": {
+      "path": "scripts/review_failure_prefix.py",
+      "sha256": "41eaddf66f8ae4077eb0e4d312b68277b54fc3b02340d948f8327e14d85ae603"
+    },
+    "scope": "Descriptive established measurements on all stalled learned jobs; successful conditional jobs rise at most 0.907 mm. Raw failed cases remain present. Lateral displacement uses the control sample containing native termination and is not an endpoint threshold."
+  },
+  "cost": {
+    "charged_transitions": 77007.0,
+    "rollout_control_transitions": 75600,
+    "active_control_transitions": 44386,
+    "absorbing_control_transitions": 31214,
+    "initialization_physics_env_steps": 11256,
+    "summed_worker_wall_s_including_initialization_and_export": 992.9199999999983,
+    "active_controls_per_worker_wall_s": 44.70249365507803,
+    "charged_transitions_per_worker_wall_s": 77.55609716794922,
+    "previous_tracked_project_lower_bound": 24764663.25,
+    "cumulative_tracked_project_lower_bound": 24841670.25,
+    "offline_checks_additional_simulator_transitions": 0,
+    "peak_gpu_mib": 4377,
+    "minimum_free_ram_mib": 14338.421875,
+    "scope": "All six initialization/rollout/absorbing costs charged. Worker wall includes simulator initialization and native audit export; no optimizer ran. This 28-environment evaluation is not a capacity benchmark for 2048/4096 training."
+  },
+  "verification": {
+    "registered_checks_passed": 158,
+    "provenance_checks": {
+      "six_completed_runs": true,
+      "same_clean_prelaunch_commit": true,
+      "all_source_maps_identical": true,
+      "all_prelaunch_source_bytes_still_match": true,
+      "all_upstream_maps_identical": true,
+      "upstream_bytes_still_match": true,
+      "upstream_revision_still_pinned": true,
+      "upstream_tracked_tree_clean": true,
+      "environment_lock_exact": true,
+      "queue_manifest_hashes": true,
+      "prior_evidence_unchanged": true,
+      "checkpoint_unchanged": true,
+      "all_registered_checks_pass": true,
+      "failed_and_corrected_case_bytes_identical": true,
+      "failed_and_corrected_metrics_identical": true
+    },
+    "provenance_artifact": {
+      "path": "artifacts/assembly/post_stall_confirmation_v2_source_check/pre_handoff_provenance.json",
+      "sha256": "efa9f5fe9a5173bec567fa2952cc9a9ed9401b4c2e3ec093160d4b8c47f6470d"
+    },
+    "prelaunch_source_only_tests": {
+      "tests_passed": 187,
+      "ruff_passed": true,
+      "path": "artifacts/assembly/post_stall_confirmation_v2_source_check/result.json",
+      "sha256": "5ccae7e2e1a0486402c6e0cbb94698945b77051ad226ebb04bef70c0962848d4"
+    },
+    "plan_command_passed": true,
+    "final_source_only_tests": {
+      "tests_passed": 187,
+      "ruff_passed": true,
+      "path": "artifacts/assembly/post_stall_confirmation_v2_final_source_check/result.json",
+      "sha256": "965d8b32bf7aae5b1493b59ebffb8d71951d90840ca371b409e48f02f72cd641",
+      "staged_tree_before_this_verification_metadata": "2c795094b6c8e8ec6b36c530ee3174782dc0615e",
+      "scope": "Final source-only code and evidence export; subsequent edits only clarify handoff wording and append verification metadata."
+    }
+  },
+  "preserved_cpu_verifier_failures": {
+    "correction": "evidence/post_stall_verifier_correction_v1.json",
+    "superseded_result": "evidence/post_stall_confirmation_v2.json",
+    "relative_path_export_failure": "artifacts/assembly/failure_prefix_confirmation_v2_r01/verification_relative_path_export_failed_v1/failure.json",
+    "additional_simulator_transitions": 0,
+    "resolution": "Versioned export verifier resolves local paths and compares fully resolved frozen RetrySettings. All case bytes, metrics and scientific thresholds are identical to the original failed-check export."
+  },
+  "tooling_fallback": "The sandbox helper failed during shell setup and one file-write attempt; authorized commands used the working escalated shell fallback. No simulator restart or unplanned rollout occurred.",
+  "owned_simulator_processes_at_handoff": [],
+  "scope_and_limitations": [
+    "Prospective supplemental development confirmation on seeds 10071 and 10072, with one frozen model from one training seed. Seed 10070 informed the endpoint and is reported separately.",
+    "A fixed scripted failure-induction prefix is part of every controller. Prefix-script completions are never attributed to learned actions.",
+    "Whole-job reliability and conditional post-stall completion have different denominators. Actual contact stalls are required; prevention and wrist-load proxies do not qualify.",
+    "The original five-millimetre withdrawal metric, prior results and failed competence gate remain unchanged.",
+    "This is not a matched training-cost curriculum comparison, independent-training-seed estimate, final-test result or physics-convergence demonstration.",
+    "Geometry, gravity, 20 N native abort, 30-second jobs, 0.5-second dwell, observations, reward and trained parameters remain fixed. No within-job reset, pose write or attachment change.",
+    "No gear, pickup, dropped-part recovery, camera perception, hardware transfer, force certification, publication or hiring claim."
+  ],
+  "next_action": "Preregister a bounded learned-policy physics-refinement comparison at 120/240 Hz with the frozen v4 mean and unchanged retry, preserving 15 Hz policy, 120 Hz servo/sensor timing, native 20 N abort, 30-second jobs and 0.5-second dwell. First verify the 120 Hz evaluation adapter against the frozen behavior and explicitly pair noise, nuisance parameters and initializations; report initialization differences and contact sensitivity rather than claiming convergence. Retain both recovery metrics and keep final tests closed. No adaptive campaign before learned-physics validation and a newly registered shared uniform/adaptive/fixed-curriculum configuration."
+}

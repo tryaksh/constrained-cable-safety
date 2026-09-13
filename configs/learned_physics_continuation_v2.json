@@ -1,0 +1,41 @@
+{
+  "schema": 1,
+  "version": "learned_physics_continuation_v2",
+  "status": "registered_before_continuation",
+  "created_at_utc": "2026-09-10T08:23:04.077005+00:00",
+  "physics_registration_sha256": "d0e6b2c3f7f06e4eca14b3916bf48aa107398ecb59b1c40ca6177fe31d454baa",
+  "reason": "First simulator run completed but v1 CPU verifier raised KeyError for a test absent from source.zip. The archive intentionally contains runtime source/configs, not tests. V2 separately verifies the registered test bytes from the clean prelaunch commit. No changes to simulator behavior, cases, timing, reward, metrics or tolerances.",
+  "reused_first_run": {
+    "path": "artifacts/assembly/learned_physics_v1_r01/120_prefix_learned",
+    "manifest_sha256": "ae99d422baaf3bd4457de96fbe45f367de963f9f721e3292962eacde8beb5546",
+    "verification_sha256": "307cd4bc78d3f9e541aaa2f5d01be6b0166e34908a10cd86273b373f1a82eb6c",
+    "charged_reference_transitions": 12834.5
+  },
+  "preserved_failed_queue": {
+    "path": "artifacts/assembly/learned_physics_v1_r01/queue.json",
+    "sha256": "a6cb0ab2f32f741a843b99e4e37452331a43c22a12f28cdea9f7df5f0b3ffee3"
+  },
+  "remaining_run_labels": [
+    "120_retry",
+    "120_direct_learned",
+    "240_prefix_learned",
+    "240_retry",
+    "240_direct_learned"
+  ],
+  "additional_charged_reference_transitions": 101972.5,
+  "combined_unique_charged_reference_transitions": 114807.0,
+  "wall_limit_s": 3600,
+  "simulator_worker_changed": false,
+  "source_sha256": {
+    "scripts/run_learned_physics_v2.py": "f7a34a70582d01f5cef484564d3b496b7479fa346d3cba156a7cd4e3669b97d7",
+    "scripts/verify_learned_physics_v2.py": "fd199ef1e69064c488a2c44c033d663fed92be5678ea3c7fae962c42f3f05541",
+    "tests/test_learned_physics_continuation_v2.py": "f1bb97fb1bd229c7a461533fad855aaee6d4830389917beab1a4a4ac10e25ae2",
+    ".gitattributes": "cddd4202887ba096fdc1ba55ac1b9253348ee07f310f855d44e54b07d73b92c2"
+  },
+  "scope_and_limitations": [
+    "Continuation executes only the five not-yet-run preregistered cases/controllers. The first completed trajectory is reused and charged once.",
+    "The original failed queue and verifier remain immutable. The corrected CPU checker gates continuation; the unchanged 120 Hz retry must still pass original-assay compatibility before fine physics.",
+    "Checkout metadata now preserves the pre-existing CRLF bytes of scripts/verify_training_contract.py; neither its working bytes nor frozen source hashes change.",
+    "Zero training or final-test use."
+  ]
+}

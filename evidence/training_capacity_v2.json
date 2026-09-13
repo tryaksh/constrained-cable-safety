@@ -1,0 +1,413 @@
+{
+  "schema": 1,
+  "version": "training_capacity_review_v2",
+  "research_result": false,
+  "input_manifests": [
+    "D:\\6axis-space-robotics\\artifacts\\assembly\\capacity1024_v1_r01\\manifest.json",
+    "D:\\6axis-space-robotics\\artifacts\\assembly\\capacity2048_v1_r01\\manifest.json"
+  ],
+  "corrected_cpu_verifier_failure": {
+    "path": "evidence/training_capacity_v1.json",
+    "sha256": "936fb234a5f4166c1022e229dca7aba642e6a2547a4de2b390bd368587e13314",
+    "reason": "Reviewer v1 compared every archived assembly_recovery module; unrelated recovery_teaching_v1.py changed during independent development. Reviewer v2 compares the predeclared protocol's exact runtime dependencies, including package __init__, plus the new capacity worker/launcher/config. Both source archives and all original artifacts remain independently verified.",
+    "additional_simulator_transitions": 0
+  },
+  "verifier_source_sha256": {
+    "scripts/review_training_capacity_v1.py": "f0d118df11f69b62df704f9bd34e7bd49870145b50675e2f483bd16e76f1c89b",
+    "scripts/review_training_capacity_v2.py": "ab255a250558772d1f39083248583239c05f9804a4de4f485309ecf267224d4c",
+    "scripts/profile_training_capacity_v1.py": "b0e65fd89bba8fa34fbcd3f8c70f194442afbec2bbaf12fe860a79b9601c2fd6",
+    "scripts/run_training_capacity_v1.py": "5d5eb6734747078f53f0ee740739cf9a54be6bb0a45916d68c8bdab1d465c8c6"
+  },
+  "scope_and_limitations": [
+    "Representative engineering capacity measurement with genuine PPO; no policy-score or equal-cost curriculum comparison.",
+    "2048 performs twice the requested jobs and charged work. Active samples and optimizer steps are measured, not matched.",
+    "Two fresh-policy cohorts do not establish mature-policy utilization or multi-hour stability.",
+    "Physics sensitivity remains unresolved; adopting an environment count does not pass a physics or recovery gate.",
+    "Remeasure representative capacity if the physical/contact implementation changes. No 4096 probe is required before the main experiment.",
+    "No final tests, camera perception, hardware transfer or force-certified safety claim."
+  ],
+  "runs": [
+    {
+      "status": "verified",
+      "checks": {
+        "report_complete": true,
+        "scope_is_capacity_only": true,
+        "all_cohorts": true,
+        "all_requested_jobs": true,
+        "valid_initializations": true,
+        "one_terminal_per_job": true,
+        "jobs_finished_without_mutation": true,
+        "rollout_budget": true,
+        "initialization_budget": true,
+        "charged_budget": true,
+        "active_absorbing_accounting": true,
+        "optimizer_uses_all_and_only_active_samples": true,
+        "genuine_optimizer_work": true,
+        "interval_samples_accounted": true,
+        "full_control_accounting": true,
+        "checkpoint_reload_verified": true,
+        "diagnostic_horizon": true,
+        "all_exports_present_and_hashed": true,
+        "launcher_completed_without_failure": true,
+        "all_launcher_checks_passed": true,
+        "prelaunch_hash_matches": true,
+        "exact_archived_source_matches_prelaunch": true,
+        "required_snapshot_files_present": true,
+        "registration_matches_capture": true,
+        "protocol_matches_capture": true,
+        "study_matches_capture": true,
+        "no_input_checkpoint": true,
+        "specification_matches_registration": true,
+        "all_manifest_artifact_hashes_match": true,
+        "report_source_and_inputs_in_manifest": true,
+        "independent_checkpoint_validation": true,
+        "resource_telemetry_measured": true,
+        "resource_summary_matches_samples": true,
+        "positive_finite_timing": true,
+        "resources_within_guards": true,
+        "per_control_active_counts_equal_cost": true
+      },
+      "manifest": {
+        "path": "D:\\6axis-space-robotics\\artifacts\\assembly\\capacity1024_v1_r01\\manifest.json",
+        "sha256": "3a73b2df0d9107dcad830afb7cdb4e55c481aecc40ead8df5727cf747c96a390"
+      },
+      "source_commit_at_start": "5d5c319ee3f99efddc5e34728f24c293d9fffb27",
+      "source_dirty_at_start": true,
+      "source_snapshot_sha256": "744aad2ba653ce81a9c67c8fc07d608614d7cfea2fc63fd59cd2a76809793fcb",
+      "registration_sha256": "607d00d8d90d34103d085a41245120c88b174a8619c554849aad9ea4af8dfa3a",
+      "specification": {
+        "seed": 170,
+        "num_envs": 1024,
+        "cohorts": 2,
+        "controls_per_cohort": 450,
+        "requested_jobs": 2048,
+        "rollout_control_transitions": 921600,
+        "expected_initialization_physics_env_steps": 137216,
+        "expected_charged_transitions": 938752.0,
+        "work_comparison": "Two full cohorts per size: 2048 has twice the rollout slots, initialization work and requested jobs. Actual active samples, optimizer steps, wall time and export bytes are measured; no equal-sample or learning-quality comparison is claimed."
+      },
+      "measured_cost": {
+        "rollout_control_transitions": 921600,
+        "active_control_transitions": 260063,
+        "absorbing_control_transitions": 661537,
+        "rollout_physics_env_steps": 7372800,
+        "active_physics_env_steps": 2073738,
+        "initialization_physics_env_steps": 137216,
+        "charged_control_equivalent_transitions": 938752.0,
+        "scope": "All rollout slots, including holds, plus initialization physics divided by decimation. Probes/mining charged by their own manifests."
+      },
+      "throughput": {
+        "startup_inclusive": {
+          "wall_s": 564.0630000000092,
+          "active_samples_per_s": 461.05310931579584,
+          "charged_transitions_per_s": 1664.267998432772
+        },
+        "all_cohorts_including_initialization_and_export": {
+          "wall_s": 555.125,
+          "active_samples_per_s": 468.47646926367935,
+          "charged_transitions_per_s": 1691.06417473542
+        },
+        "sustained_second_cohort_including_initialization_and_export": {
+          "wall_s": 279.875,
+          "active_samples_per_s": 410.2760160786065,
+          "charged_transitions_per_s": 1677.0915587315767
+        },
+        "rollout_and_optimizer_only": {
+          "wall_s": 545.5770000000193,
+          "active_samples_per_s": 476.67515309478,
+          "allocated_rollout_transitions_per_s": 1689.2207699370892
+        }
+      },
+      "time_components_s": {
+        "launcher_total": 564.0630000000092,
+        "app_and_environment_startup": 6.796999999991385,
+        "initialization": 6.204000000012456,
+        "rollout": 536.5749999999825,
+        "optimizer": 9.002000000036787,
+        "export_and_reload": 0.09399999998277053,
+        "cohort_other": 3.249999999985448
+      },
+      "resources": {
+        "peak_used_mib": 5369,
+        "minimum_free_ram_mib": 10616.25390625,
+        "mean_gpu_utilization_percent": 70.72161172161172,
+        "sample_count": 273
+      },
+      "torch_peak_allocated_bytes": 331035648,
+      "torch_peak_reserved_bytes": 360710144,
+      "optimizer_steps": 2048,
+      "optimizer_active_samples": 260063,
+      "active_rollout_fraction": 0.2821864149305556,
+      "absorbing_rollout_fraction": 0.7178135850694445,
+      "scheduling": {
+        "all_terminal_trailing_slots": 0,
+        "all_terminal_trailing_rollout_fraction": 0.0,
+        "measured_trailing_wall_lower_bound_s": 0.0,
+        "measured_trailing_wall_lower_bound_fraction": 0.0,
+        "scope": "Only entire intervals after an all-terminal PPO boundary have a measured avoidable wall-time bound. Partial-slot reuse was not enabled or validated."
+      },
+      "invalid_initializations": 0,
+      "invalid_jobs": 0,
+      "resource_guard_stop": null,
+      "checkpoint_validation": [
+        {
+          "cohort": 0,
+          "checkpoint_sha256": "5b4af07911ac08242f3307e2ab0ea38b0cf1070983241773a1e0cd950b4cd8ba",
+          "optimizer_steps": 1140,
+          "checks": {
+            "finite_model_and_optimizer": true,
+            "capacity_scope": true,
+            "input_manifest_hash": true,
+            "cohort_count": true,
+            "genuine_optimizer_step_count": true,
+            "architecture_unchanged": true,
+            "reloaded_actions_equal": true,
+            "cohort_charged_cost": true,
+            "diagnostics_reloaded_and_finite": true,
+            "diagnostic_shape_matches_report": true
+          }
+        },
+        {
+          "cohort": 1,
+          "checkpoint_sha256": "630aa60ff6fb7a0213c39902f90cde661c043e23692255c124ac630a6a5fb1d1",
+          "optimizer_steps": 2048,
+          "checks": {
+            "finite_model_and_optimizer": true,
+            "capacity_scope": true,
+            "input_manifest_hash": true,
+            "cohort_count": true,
+            "genuine_optimizer_step_count": true,
+            "architecture_unchanged": true,
+            "reloaded_actions_equal": true,
+            "cohort_charged_cost": true,
+            "diagnostics_reloaded_and_finite": true,
+            "diagnostic_shape_matches_report": true
+          }
+        }
+      ]
+    },
+    {
+      "status": "verified",
+      "checks": {
+        "report_complete": true,
+        "scope_is_capacity_only": true,
+        "all_cohorts": true,
+        "all_requested_jobs": true,
+        "valid_initializations": true,
+        "one_terminal_per_job": true,
+        "jobs_finished_without_mutation": true,
+        "rollout_budget": true,
+        "initialization_budget": true,
+        "charged_budget": true,
+        "active_absorbing_accounting": true,
+        "optimizer_uses_all_and_only_active_samples": true,
+        "genuine_optimizer_work": true,
+        "interval_samples_accounted": true,
+        "full_control_accounting": true,
+        "checkpoint_reload_verified": true,
+        "diagnostic_horizon": true,
+        "all_exports_present_and_hashed": true,
+        "launcher_completed_without_failure": true,
+        "all_launcher_checks_passed": true,
+        "prelaunch_hash_matches": true,
+        "exact_archived_source_matches_prelaunch": true,
+        "required_snapshot_files_present": true,
+        "registration_matches_capture": true,
+        "protocol_matches_capture": true,
+        "study_matches_capture": true,
+        "no_input_checkpoint": true,
+        "specification_matches_registration": true,
+        "all_manifest_artifact_hashes_match": true,
+        "report_source_and_inputs_in_manifest": true,
+        "independent_checkpoint_validation": true,
+        "resource_telemetry_measured": true,
+        "resource_summary_matches_samples": true,
+        "positive_finite_timing": true,
+        "resources_within_guards": true,
+        "per_control_active_counts_equal_cost": true
+      },
+      "manifest": {
+        "path": "D:\\6axis-space-robotics\\artifacts\\assembly\\capacity2048_v1_r01\\manifest.json",
+        "sha256": "a86c3836a21b58d209f9e06e04b4e5162df3421f388f8feaaada9e0cdfc080b3"
+      },
+      "source_commit_at_start": "c02b8c874cb78192ab1098229d66a0fd8c3e9414",
+      "source_dirty_at_start": false,
+      "source_snapshot_sha256": "be7461fbc89e014b6fb091c1ab2cf010618afd5bc5171b0c9f8c3d1093e36b37",
+      "registration_sha256": "607d00d8d90d34103d085a41245120c88b174a8619c554849aad9ea4af8dfa3a",
+      "specification": {
+        "seed": 170,
+        "num_envs": 2048,
+        "cohorts": 2,
+        "controls_per_cohort": 450,
+        "requested_jobs": 4096,
+        "rollout_control_transitions": 1843200,
+        "expected_initialization_physics_env_steps": 274432,
+        "expected_charged_transitions": 1877504.0,
+        "work_comparison": "Two full cohorts per size: 2048 has twice the rollout slots, initialization work and requested jobs. Actual active samples, optimizer steps, wall time and export bytes are measured; no equal-sample or learning-quality comparison is claimed."
+      },
+      "measured_cost": {
+        "rollout_control_transitions": 1843200,
+        "active_control_transitions": 484711,
+        "absorbing_control_transitions": 1358489,
+        "rollout_physics_env_steps": 14745600,
+        "active_physics_env_steps": 3864080,
+        "initialization_physics_env_steps": 274432,
+        "charged_control_equivalent_transitions": 1877504.0,
+        "scope": "All rollout slots, including holds, plus initialization physics divided by decimation. Probes/mining charged by their own manifests."
+      },
+      "throughput": {
+        "startup_inclusive": {
+          "wall_s": 814.0620000000054,
+          "active_samples_per_s": 595.4227073613519,
+          "charged_transitions_per_s": 2306.3403033184054
+        },
+        "all_cohorts_including_initialization_and_export": {
+          "wall_s": 803.6260000000038,
+          "active_samples_per_s": 603.1549501882688,
+          "charged_transitions_per_s": 2336.290762120677
+        },
+        "sustained_second_cohort_including_initialization_and_export": {
+          "wall_s": 394.31299999999464,
+          "active_samples_per_s": 587.756427000893,
+          "charged_transitions_per_s": 2380.728000344936
+        },
+        "rollout_and_optimizer_only": {
+          "wall_s": 788.7510000000184,
+          "active_samples_per_s": 614.5298072522111,
+          "allocated_rollout_transitions_per_s": 2336.859160875811
+        }
+      },
+      "time_components_s": {
+        "launcher_total": 814.0620000000054,
+        "app_and_environment_startup": 7.546999999991385,
+        "initialization": 8.593000000008033,
+        "rollout": 772.6550000000134,
+        "optimizer": 16.096000000005006,
+        "export_and_reload": 0.06300000000919681,
+        "cohort_other": 6.218999999968219
+      },
+      "resources": {
+        "peak_used_mib": 6499,
+        "minimum_free_ram_mib": 10825.3203125,
+        "mean_gpu_utilization_percent": 78.1243654822335,
+        "sample_count": 394
+      },
+      "torch_peak_allocated_bytes": 628486656,
+      "torch_peak_reserved_bytes": 723517440,
+      "optimizer_steps": 3800,
+      "optimizer_active_samples": 484711,
+      "active_rollout_fraction": 0.26297254774305556,
+      "absorbing_rollout_fraction": 0.7370274522569444,
+      "scheduling": {
+        "all_terminal_trailing_slots": 0,
+        "all_terminal_trailing_rollout_fraction": 0.0,
+        "measured_trailing_wall_lower_bound_s": 0.0,
+        "measured_trailing_wall_lower_bound_fraction": 0.0,
+        "scope": "Only entire intervals after an all-terminal PPO boundary have a measured avoidable wall-time bound. Partial-slot reuse was not enabled or validated."
+      },
+      "invalid_initializations": 0,
+      "invalid_jobs": 0,
+      "resource_guard_stop": null,
+      "checkpoint_validation": [
+        {
+          "cohort": 0,
+          "checkpoint_sha256": "52fd7cae203e1bbb97540c08cd32a0d5a7470efb51be614e32d9f74945bf3f14",
+          "optimizer_steps": 1984,
+          "checks": {
+            "finite_model_and_optimizer": true,
+            "capacity_scope": true,
+            "input_manifest_hash": true,
+            "cohort_count": true,
+            "genuine_optimizer_step_count": true,
+            "architecture_unchanged": true,
+            "reloaded_actions_equal": true,
+            "cohort_charged_cost": true,
+            "diagnostics_reloaded_and_finite": true,
+            "diagnostic_shape_matches_report": true
+          }
+        },
+        {
+          "cohort": 1,
+          "checkpoint_sha256": "9e6200b5916081be686c22019ea59d9959cc0f4c51cabf4ba43fc7e56bc37cb5",
+          "optimizer_steps": 3800,
+          "checks": {
+            "finite_model_and_optimizer": true,
+            "capacity_scope": true,
+            "input_manifest_hash": true,
+            "cohort_count": true,
+            "genuine_optimizer_step_count": true,
+            "architecture_unchanged": true,
+            "reloaded_actions_equal": true,
+            "cohort_charged_cost": true,
+            "diagnostics_reloaded_and_finite": true,
+            "diagnostic_shape_matches_report": true
+          }
+        }
+      ]
+    }
+  ],
+  "verified_runtime_source_sha256": {
+    "configs/completion_credit_v3.json": "731c15115a2b46b8b37ab115255d782c6fc8a4936618ab20cf20128a28a46669",
+    "configs/protocol_v4.json": "2b42e1961eb463cad2545a1d006ae01400d40e58d222d3861ab009915d35ea2d",
+    "configs/study.json": "af0521a5f703016c414134e6ea1bfdcc1e2ff90df226f307ad7cedd141930b57",
+    "configs/training_capacity_v1.json": "607d00d8d90d34103d085a41245120c88b174a8619c554849aad9ea4af8dfa3a",
+    "scripts/probe_training.py": "b2d6fa4d1db5ff1c018dee25abb459c8b878dc15046fab3267ee925cc850df0f",
+    "scripts/profile_training_capacity_v1.py": "b0e65fd89bba8fa34fbcd3f8c70f194442afbec2bbaf12fe860a79b9601c2fd6",
+    "scripts/run_completion.py": "19d67fdfdd14d0cfda387bd4a9d711f10cf2a00bf04668dd19d8c20c2663bcac",
+    "scripts/run_experiment.py": "f78526878acccc4c4e3cff07730bb03fc51a80c5b27eeb17fd305b17f8bf2e72",
+    "scripts/run_training_capacity_v1.py": "5d5eb6734747078f53f0ee740739cf9a54be6bb0a45916d68c8bdab1d465c8c6",
+    "scripts/run_training_probe.py": "4cc8c987b705f85eae5f559b7e32304ca90da165336ef00fd71932a0b7f1537b",
+    "scripts/run_unclipped.py": "7b2d89b59cc0051c0a5a2338b1a1f4abc1ab5aa0faa8aba56be435402e3c2976",
+    "scripts/run_uniform.py": "2e3b6dbd9c7b85fbdaacda1a05100102f827d8495b5d827f0476be5357a9a8a6",
+    "scripts/train_completion.py": "9da34a43f7bea163b9388c9126193a73e7da30589c000ad3d1830d2d1bfca79b",
+    "scripts/train_unclipped.py": "a6d98344eec5278d6807b5fdcddfe17927245508fd53969f1359b292fc6a262d",
+    "scripts/train_uniform.py": "68951f8a7cd6c6c134c17ab90ba9c937c148c60662ff6f76b3347b049f6a4d39",
+    "src/assembly_recovery/__init__.py": "c245621cf4ce1260e99af39b4dfff6286b9d1f741c7f06c2157e2306b1e54b71",
+    "src/assembly_recovery/completion_credit.py": "d338b50e519fc08066bb1b0506e16ae2fde845ebb3e8a83bf4aceeda8b7b1033",
+    "src/assembly_recovery/completion_env.py": "8cc403c547c8bedaaf15d6dee60a23e44d1f513a3c507b15ecfb89b90c6123e3",
+    "src/assembly_recovery/contact_witness.py": "3d4ef4111494738ebe5056e0c1d936d8e308b6db9438f1c4f6de4a6218b9c4ba",
+    "src/assembly_recovery/evaluation.py": "42d8a41b9ede199c3435717870d1d127ca95564b714a6d2904d9c22ff5836c0a",
+    "src/assembly_recovery/fault_env.py": "9fa5e7cd544f40bba2015a404d367700a902de96e998e302389025ec0c108306",
+    "src/assembly_recovery/faults.py": "86e3812e1e97335d844c325d32cffa4b2cafe306bc0ca9327e4b5f97a1119e5b",
+    "src/assembly_recovery/force_diagnostics.py": "c64c6b8de97555dbc8b39e8be8a3b11fc50d9a19803cf29972d585cd47954bc0",
+    "src/assembly_recovery/geometry.py": "4438eb81ea3f58dff9330d6669f1ab7db6175e202782768ff76368ace1dfdc86",
+    "src/assembly_recovery/peg_env.py": "0fe0db0879ff86631c4bd2a0593c3475c71b37a28e5a9f571d87b16e55acc5f1",
+    "src/assembly_recovery/protocol.py": "473d7a8a4002ec2781a53a51bcff81c5b91df69e895c0b19afdb7b8398215545",
+    "src/assembly_recovery/refinement_env.py": "7ad6bb5a3c8984a511087ce83654204613f1576256e1eb968d7e406967878cd0",
+    "src/assembly_recovery/retry_controller.py": "cf899ca4cd16151da407d3fea5e02b25e0d830feb6177a69ace1fc52cbcabdcf",
+    "src/assembly_recovery/reward_ledger.py": "2813b287ad2b3286af8a498695023c706a73a99a21685d5416ea37f56c4f3a8c",
+    "src/assembly_recovery/study_ppo.py": "25e45cde7e4ba63620683f72516fd03c7909fedf4dded964d4c3df05aecda6e3",
+    "src/assembly_recovery/tensor_jobs.py": "ed4a558bc196ba21f63dbdf27b5f1581236393b527ce377316932e25f48ce1db",
+    "src/assembly_recovery/training_cases.py": "b1ffe2c359f63cb1bcfe80807cb8cc0404bcc1abcfa7b9f1431e5ea9caa007ad",
+    "src/assembly_recovery/training_env.py": "d404c10c4379b474384ac52a44ec2c276de13d29bf5aef46497ae9c3e08fade9",
+    "src/assembly_recovery/training_inputs.py": "ea0dc86aa073c452a5dfe87fe03f7df3f8967e68edb87a98baa57ab4e5e84d28",
+    "src/assembly_recovery/unclipped_ppo.py": "4bfa322bf0f5d37001f2fc70635206201caa77703430ff74ca9810f0acc41dfa"
+  },
+  "unrelated_archived_source_changes": [
+    {
+      "path": "src/assembly_recovery/recovery_teaching_v1.py",
+      "baseline_sha256": "f884ac3f86941513db3a54c6ac73ea8a61cb02dc53c27cd52492d84572290335",
+      "candidate_sha256": "99d6896653ee29b2a6997dba963d581f16d709af7745a0787e408a349063ec40"
+    }
+  ],
+  "decision": {
+    "selected_num_envs": 2048,
+    "status": "2048_earns_bounded_capacity_adoption",
+    "active_throughput_ratio_2048_over_1024": 1.2914406070158835,
+    "charged_throughput_ratio_2048_over_1024": 1.3857986246747926,
+    "checks": {
+      "both_runs_independently_verified": true,
+      "active_throughput_gain_at_least_10_percent": true,
+      "charged_throughput_gain_at_least_10_percent": true,
+      "candidate_no_resource_stop": true,
+      "candidate_gpu_below_guard": true,
+      "candidate_ram_above_reserve": true,
+      "candidate_no_invalid_jobs": true
+    },
+    "primary_timing_denominator": "Measured launcher wall time, including startup, initialization, rollout, PPO and checkpoint/diagnostic export and reload; final launcher artifact hashing is outside its recorded timer.",
+    "scope": "Provisional early-training engineering capacity choice. Two unequal, unpaired work budgets do not compare learned policy quality or establish sustained multi-hour stability."
+  },
+  "total_charged_development_transitions": 2816256.0,
+  "status": "verified",
+  "next_action": "Use the verified 2048 capacity for the next bounded experiment under the same runtime if the adoption checks pass. Prioritize the physics-valid research experiment over a 4096 probe; reprofile after any material physics change."
+}

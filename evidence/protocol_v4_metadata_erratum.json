@@ -1,0 +1,35 @@
+{
+  "schema": 1,
+  "status": "recorded_before_evaluation",
+  "created_at_utc": "2026-09-09T15:09:38.376173+00:00",
+  "protocol_path": "configs/protocol_v4.json",
+  "protocol_sha256": "2b42e1961eb463cad2545a1d006ae01400d40e58d222d3861ab009915d35ea2d",
+  "reason": "The frozen v4 structured PPO settings and executable source correctly implement value-unclipped v4, but copied v3 narrative fields retained obsolete descriptions. Preserve that protocol and explicitly correct only these descriptions.",
+  "superseded_fields": {
+    "development_evaluation.checkpoint": {
+      "previous": "Only final 22-cohort budget_checkpoint.pt from uniform_completion_170_v3_r01",
+      "corrected": "Only the final predeclared 22-cohort budget_checkpoint.pt from uniform_unclipped_170_v4_r01; no selection by evaluation performance."
+    },
+    "change": {
+      "previous": "Reward-only completion credit after measured paired incentive counterexamples. Physical task, script, observations, architecture, PPO and fault support remain v2; fresh training starts at seed 170.",
+      "corrected": "Remove value clipping only, following controlled critic fitting evidence. Physical task, reward-v3, actor clipping, architecture, fault support and training budget remain unchanged. Fresh seed 170."
+    },
+    "scope_and_limitations[1]": {
+      "previous": "Frozen physical study configuration is inherited byte-for-byte from v2; the explicit v3 launcher adds only the registered reward correction.",
+      "corrected": "Frozen physical study inherited from v2, reward from v3, optimizer value clipping removed in v4."
+    }
+  },
+  "execution_change": false,
+  "budget_or_checkpoint_selection_change": false,
+  "original_protocol_preserved": true,
+  "scope": "Descriptive erratum only, recorded before any final checkpoint exists or is evaluated; executable settings and source hashes remain unchanged.",
+  "superseded": {
+    "recorded_at_utc": "2026-09-09T16:15:31.658346+00:00",
+    "field": "superseded_fields.development_evaluation.checkpoint.corrected",
+    "previous_value": "Only the final predeclared 22-cohort budget_checkpoint.pt from uniform_unclipped_170_v4_r01; no selection by evaluation performance.",
+    "replacement": "Only the final 22-cohort checkpoint of the fresh repeat uniform_unclipped_170_v4_r02; r01 ended before completion. This replacement was selected before r02 launch, not from performance.",
+    "behavior_or_budget_change": false,
+    "failed_attempt_evidence": "evidence/uniform_unclipped_v4_r01_failure.json",
+    "fresh_repeat_previous_project_cost_lower_bound": 14361384.25
+  }
+}

@@ -1,0 +1,11 @@
+# Store and check out every file exactly as it is on disk, byte for byte.
+#
+# Evidence records carry sha256 hashes of each other and of the configs and
+# source files they were produced from, and those hashes were computed over the
+# bytes on disk. If git rewrote line endings on checkout — which is what it does
+# by default on Windows — a fresh clone would hold files whose hashes no longer
+# match what the records say, and every provenance check in the repository would
+# fail for a reason that has nothing to do with the research.
+#
+# So: no end-of-line conversion, anywhere, for anything.
+* -text

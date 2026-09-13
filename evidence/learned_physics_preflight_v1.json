@@ -1,0 +1,35 @@
+{
+  "schema": 1,
+  "status": "source_review_requires_versioned_learned_adapter",
+  "research_result": false,
+  "created_at_utc": "2026-09-10T00:08:54.797676+00:00",
+  "source_sha256": {
+    "src/assembly_recovery/refinement_env.py": "7ad6bb5a3c8984a511087ce83654204613f1576256e1eb968d7e406967878cd0",
+    "src/assembly_recovery/completion_env.py": "8cc403c547c8bedaaf15d6dee60a23e44d1f513a3c507b15ecfb89b90c6123e3",
+    "scripts/probe_physics_refinement.py": "14e4c7b22fb6005058815e00e2bda2307f0c15aa57f04f6e4da53a339e460d49",
+    "scripts/diagnose_failure_prefix_v2.py": "c6449b129213ce3997edb008856b07b39d11a4a7581be02c0b80254500ac15e1"
+  },
+  "observations": [
+    {
+      "source": "src/assembly_recovery/refinement_env.py",
+      "finding": "PegRefinementEnv inherits PegTrainingEnv, whereas the confirmed policy assay uses PegCompletionEnv with v3 completion credit. Compose an equivalent reward path before using refinement for the new learned comparison."
+    },
+    {
+      "source": "src/assembly_recovery/refinement_env.py",
+      "finding": "The existing scripted-control adapter has its own sensor generator and refreshes/zeros smoothing at begin_jobs. This is not automatic 120 Hz parity with the confirmed learned worker. Check initialization, initial actor observation, force-filter state, derivative timing and nuisance RNG explicitly."
+    },
+    {
+      "source": "scripts/probe_physics_refinement.py",
+      "finding": "The worker uses four nominal scripted requests and scripted actions. It does not evaluate the frozen learned mean or unchanged ActorRetryController on the fixed-prefix fault cohort."
+    }
+  ],
+  "required_acceptance": [
+    "A new versioned factor-one adapter must preserve the confirmed actor/action/reward path or explicitly quantify any necessary observation/RNG change before interpreting refinement.",
+    "Match 15 Hz policy timing and 120 Hz external servo/sensor updates at 120/240 Hz physics; hold commands between fine steps, preserve native force/grasp/dwell checks and inspect actual contact-force conversion.",
+    "Predeclare development cases and both controllers before any new run. Include direct-job and common-prefix outcomes; report initialization differences and changed stall eligibility across physics resolutions.",
+    "A two-timestep difference is sensitivity evidence, not convergence. If behavior/ranking is materially unstable, resolve the physics limitation before a comparative training screen."
+  ],
+  "additional_simulator_transitions": 0,
+  "original_competence_gate_passed": false,
+  "next_action": "Implement and preregister the bounded learned/retry refinement adapter and compatibility check; do not launch the training screen yet."
+}

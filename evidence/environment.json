@@ -1,0 +1,40 @@
+{
+  "generated_at_utc": "2026-09-07T02:56:04.341936+00:00",
+  "platform": "Windows-10-10.0.26200-SP0",
+  "python": "3.11.13 (tags/v3.11.13-dirty:498b971, Jun  9 2025, 09:38:51) [MSC v.1912 64 bit (AMD64)]",
+  "python_executable": "C:\\isaac-sim\\kit\\python\\kit.exe",
+  "isaac_sim": {
+    "root": "C:\\isaac-sim",
+    "build": "5.1.0-rc.19+release.26219.9c81211b.gl"
+  },
+  "isaac_lab": {
+    "requested_tag": "v2.3.2",
+    "expected_commit": "37ddf626871758333d6ed89cf64ad702aef127d0",
+    "resolved_commit": "37ddf626871758333d6ed89cf64ad702aef127d0"
+  },
+  "torch": "2.7.0+cu128",
+  "numpy": "1.26.0",
+  "h5py": "3.13.0",
+  "hdf5": "1.14.6",
+  "torch_cuda": "12.8",
+  "cuda_available": true,
+  "gpu": "NVIDIA GeForce RTX 5070 Ti Laptop GPU",
+  "driver": "592.01",
+  "rl_games": {
+    "version": "1.6.1",
+    "direct_url": {
+      "url": "https://github.com/isaac-sim/rl_games.git",
+      "vcs_info": {
+        "commit_id": "6b3534f29568158e9e29ec8bf83cc88fce5f0cae",
+        "requested_revision": "python3.11",
+        "vcs": "git"
+      }
+    }
+  },
+  "packages": {
+    "isaaclab": "0.54.2",
+    "isaaclab_assets": "0.2.4",
+    "isaaclab_tasks": "0.11.12",
+    "isaaclab_rl": "0.4.7"
+  }
+}

@@ -1,0 +1,65 @@
+{
+  "schema": 1,
+  "version": "approach_slew_registration_v1",
+  "status": "registered_before_slew_outcomes",
+  "question": "Can a Cartesian reference that advances in increments smaller than the peg clearance reduce timestep sensitivity while retaining useful stalled assembly cases?",
+  "conditional_launch_rule": "Run this final cause test if the fixed 480 Hz servo comparison at 480/960 Hz physics fails the existing stability gate, or either run has fewer than eight requests still active at four seconds. Eight requests allow two four-direction groups in principle; actual fault-bin coverage and witnessed contact stalls must be reported. This spending rule never removes failures from denominators or changes job success.",
+  "design_evidence": {
+    "path": "evidence/approach_slew_design_v1.json",
+    "sha256": "a5073fb5260df4c3d5293bdd106f6d8e570740ceaab353aa0dd8eb31a75f5d0b"
+  },
+  "native_physics_hz": [
+    480,
+    960
+  ],
+  "external_servo_hz": 480,
+  "external_sensor_hz": 120,
+  "policy_hz": 15,
+  "cartesian_reference_slew_m_s": 0.02,
+  "reference_increment_m_per_servo": 4.1666666666666665e-05,
+  "scope_of_limit": "Euclidean XYZ reference interpolation before the unchanged per-axis position-error clamps. This is neither a bound on actual tool speed nor a force ceiling.",
+  "reference_initialization": "Initialize controller reference state from the measured tool pose before jobs_live. No physical pose write or new actor observation.",
+  "reward_bookkeeping": "Preserve original FORGE delta_pos for reward, action EMA, reward coefficients and completion credit. Record requested, interpolated and final impedance targets plus reward_delta_pos for replay.",
+  "unchanged": [
+    "All 28 development cases on seed 10071",
+    "Franka/FORGE geometry and materials",
+    "Physical held-part gravity",
+    "Kp/Kd, dead zones and position-error clamps",
+    "Implicit gripper and quaternion targets",
+    "120 Hz sensor noise/filter and 15 Hz script",
+    "Native raw 20 N wrist abort",
+    "Retained grasp, 30 s deadline and 0.5 s dwell",
+    "No within-job reset, pose write or attachment change"
+  ],
+  "high_level_controller": "The same frozen scripted first attempt. Apply this shared actuator interface to every controller in any adopted comparison; retain previous results separately.",
+  "run_order": [
+    {
+      "refinement": 4
+    },
+    {
+      "refinement": 8
+    }
+  ],
+  "requests_per_run": 28,
+  "seed": 10071,
+  "prefix_controls": 60,
+  "expected_charged_reference_transitions": 20629.0,
+  "acceptance": {
+    "prefix_gate": "For adjacent finest resolutions: at most one difference in prefix abort count, at most two individual outcome changes among 28; median paired peak wrist and contact-impulse relative differences <=20%, with every outlier and exposure difference reported. Positive fixture/finger controls, native CPU replay and unchanged coarse reference must pass.",
+    "extension": "Run 960 Hz once if 240/480 fails any material outcome or load-stability margin. This is a diagnostic extension, not a claim that three timesteps prove convergence.",
+    "training_gate": "A prefix pass alone does not enable substantial training. At the selected finest stable pair rerun frozen learned direct, learned continuation and unchanged retry for complete30s jobs; no more than one completion-count difference and two individual outcome differences per arm, no forbidden events, retained force/dwell/observation contracts. Alternatively identify and independently justify a physical-model or API correction, register it, and rerun affected common controls.",
+    "stop": "Spend at most three distinct explanation-driven probe variants or two hours of simulator diagnosis after this prefix series. If no interpretable force-limited task is established, reject the current comparative-training premise for this cycle and retain a concrete numerical-sensitivity result; do not spend large training merely to produce candidate scores."
+  },
+  "support_requirement": {
+    "minimum_active_prefix_requests_per_run": 8,
+    "interpretation": "Development feasibility floor only. Report actual contact-stalled eligibility, bin coverage, prefix completions and every abort. Eight active requests alone do not establish recoverability."
+  },
+  "stop_rule": "This is the final registered cause-test variant in the current diagnosis budget. If stability or useful fault support remains absent, reject the present training-comparison premise and report the measured limitation. Do not fund a substantial method campaign on known unstable physics.",
+  "adoption_rule": "A pass earns full-job validation of the frozen ordinary policy in direct and continuation assays, and unchanged scripted retry, at both native resolutions under the same actuation definition. Substantial fresh training requires that full gate. The preserved model supplies no evidence for recovery teaching.",
+  "scope_and_limitations": [
+    "Prospective change to a shared controller condition; previous aborts retain their original outcomes.",
+    "Requests still active at four seconds are censored. Retain all 28 requests, forbidden events, aborts and native simulation cost.",
+    "The interpolated reference introduces hidden actuator state shared by learning arms. Observations and architecture stay fixed.",
+    "No assumed compliance calibration, force-filter substitution, removal of difficult cases, hardware transfer or force-certified safety claim."
+  ]
+}

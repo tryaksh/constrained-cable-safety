@@ -1,0 +1,93 @@
+{
+  "schema": 1,
+  "version": "contact_impact_continuation_v2",
+  "status": "registered_before_continuation",
+  "starting_commit": "5d5c319ee3f99efddc5e34728f24c293d9fffb27",
+  "question": "Does the timestep-sensitive native 20 N abort arise from changed contact impulses/duration, gripper dynamics or a joint-reaction measurement error?",
+  "source_policy": "Every launch captures commit, dirty state, exact source.zip bytes/hashes, pinned upstream/installed sources, configuration, environment, commands and complete ordinary checkpoint before launch. Frozen workers and evidence stay unchanged.",
+  "seed": 10071,
+  "cases": "All 28 previously used development cases in unchanged order; no final-test access.",
+  "controller": "Unchanged scripted initial insertion for exactly 60 controls/4 seconds. Instantiated frozen ordinary model preserves the reference RNG path but produces no diagnostic actions.",
+  "physics_hz": [
+    120,
+    240,
+    480
+  ],
+  "conditional_extension_hz": 960,
+  "external_servo_hz": 120,
+  "external_sensor_hz": 120,
+  "policy_hz": 15,
+  "prefix_controls": 60,
+  "initialization_hz": 120,
+  "expected_initialization_native_steps": 67,
+  "hard_initialization_native_steps": 256,
+  "native_raw_wrist_abort_n": 20,
+  "full_job_deadline_s": 30,
+  "dwell_s": 0.5,
+  "queue_wall_limit_s": 2400,
+  "per_run_wall_limit_s": 600,
+  "expected_initial_reference_transitions": 12463.5,
+  "expected_extension_reference_transitions": 13674.5,
+  "diagnostics": [
+    "Native incoming joint reaction in documented child joint frame; raw norm unchanged.",
+    "Peg-fixture and bilateral finger vectors and native impulses.",
+    "Active-window and absorbing-window separation; contact onset, durations and integrated force magnitudes.",
+    "Gripper targets, positions, velocities, tool/held pose/velocity and sensor-body orientation.",
+    "120/240 parity against saved v3 prefixes, initialization/RNG equality, native dt and contact impulse conversion."
+  ],
+  "acceptance": {
+    "prefix_gate": "For adjacent finest resolutions: at most one difference in prefix abort count, at most two individual outcome changes among 28; median paired peak wrist and contact-impulse relative differences <=20%, with every outlier and exposure difference reported. Positive fixture/finger controls, native CPU replay and unchanged coarse reference must pass.",
+    "extension": "Run 960 Hz once if 240/480 fails any material outcome or load-stability margin. This is a diagnostic extension, not a claim that three timesteps prove convergence.",
+    "training_gate": "A prefix pass alone does not enable substantial training. At the selected finest stable pair rerun frozen learned direct, learned continuation and unchanged retry for complete30s jobs; no more than one completion-count difference and two individual outcome differences per arm, no forbidden events, retained force/dwell/observation contracts. Alternatively identify and independently justify a physical-model or API correction, register it, and rerun affected common controls.",
+    "stop": "Spend at most three distinct explanation-driven probe variants or two hours of simulator diagnosis after this prefix series. If no interpretable force-limited task is established, reject the current comparative-training premise for this cycle and retain a concrete numerical-sensitivity result; do not spend large training merely to produce candidate scores."
+  },
+  "scope_and_limitations": [
+    "4-second contact diagnostic; still-active cases end probe_end and are not reported as complete30-second-job failures.",
+    "No optimizer, learned recovery actions, final tests, threshold relaxation, contact filtering substitute, within-job reset/pose write/attachment change, or convergence assertion.",
+    "Coarse initialization remains a controlled condition, not validated fully-refined initialization.",
+    "Native raw20N abort remains a simulated experiment rule, not a hardware force ceiling. Integrated loads are explanatory diagnostics only.",
+    "All native steps including absorbing and failed work are charged at eight physics-environment steps per reference transition."
+  ],
+  "prior_cost_lower_bound": 24995215.25,
+  "recorded_at_utc": "2026-09-10T16:03:28.112471+00:00",
+  "original_registration": {
+    "path": "configs/contact_impact_registration_v1.json",
+    "sha256": "78c3ac9df1f075a6e38727d5ea7148c3ee3f6379c8bb4ac8757f272e14c69732"
+  },
+  "remaining_refinements": [
+    2,
+    4
+  ],
+  "expected_remaining_reference_transitions": 10549.0,
+  "prior_completed_native_reference_transitions": 1914.5,
+  "verified_prior_run": {
+    "path": "artifacts/assembly/contact_impact_v1_r01/120",
+    "artifact_sha256": {
+      "artifacts/assembly/contact_impact_v1_r01/120/manifest.json": "6654326a36beebdada760381566ec5e05e725b9f944c705a27629e0acb587ca0",
+      "artifacts/assembly/contact_impact_v1_r01/120/validation/report.json": "6b0897fbaa6f1f2fe5da5907edd4e0bb2ef671250db8d609df45c470b2c1d859",
+      "artifacts/assembly/contact_impact_v1_r01/120/validation/trajectory.pt": "0114f80d05343b12d7f86ad41e390e0248dc95466c05b41cffa87453328a9925",
+      "artifacts/assembly/contact_impact_v1_r01/120/source.zip": "1fe8ab499c8ec23c901012fc03d5cd7823a76aed02822ed8e6efc28869e8881c",
+      "artifacts/assembly/contact_impact_v1_r01/120/verification.json": "b5ed0a3192d4a489f859bdde311d988edab98d95030d08dc091f603699ea7a7d"
+    },
+    "corrected_verification": {
+      "path": "artifacts/assembly/contact_impact_cpu_correction_v2_r01/verification.json",
+      "sha256": "9d3f96f24e87d96ff0e6b53eb952231052f1e7a907cee3f2759031ef96438347"
+    },
+    "original_status": "verification_failed",
+    "correction_status": "verified",
+    "scope": "Complete120Hz native prefix retained once, all104 corrected CPU checks pass. Original sole sparse-defaults comparison failure remains immutable; no simulator rerun or duplicate cost."
+  },
+  "preserved_source_sha256": {
+    "src/assembly_recovery/contact_impact_env_v1.py": "1ccc992b5021716a79c73c5e03d4f4422441c8523fb9fd9dbf74d4775134f341",
+    "scripts/probe_contact_impact_v1.py": "38b713f7c18b8212e842367f60ad4ba961d88e8e688f2d57bc40f8f0a9547958",
+    "scripts/review_contact_impact_v1.py": "21f9d69b6d11270d91142c158384a473dfcb1e5cd40c57806e8864ec17076fe1",
+    "scripts/run_contact_impact_v1.py": "571bf5b8caa79a63b5a051131946ed19553c1f0d75e326b157321c144d0ea430",
+    "configs/contact_impact_registration_v1.json": "78c3ac9df1f075a6e38727d5ea7148c3ee3f6379c8bb4ac8757f272e14c69732"
+  },
+  "corrected_verifier_source_sha256": {
+    "scripts/review_contact_impact_v2.py": "b0cdae46152ce7e18a2f9f13266665c1fa549ff1d4a98cde7c700a31bac14cb2"
+  },
+  "continuation_manifest_contract": "Keep original registration and registration_sha256 fields. Record this continuation separately as continuation_registration and continuation_registration_sha256; archive both registrations before launch.",
+  "cpu_correction": "Sparse JSON stores five overrides; compare the21 fields of asdict(RetrySettings(**archived_overrides)) with resolved worker settings. Only the known settings-only verifier failure can be accepted as a completed prior simulator process after independent replay, source, native-timing and exact-prefix checks pass.",
+  "no_controller_or_physical_change": true
+}

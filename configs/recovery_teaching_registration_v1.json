@@ -1,0 +1,91 @@
+{
+  "schema": 1,
+  "version": "recovery_teaching_registration_v1",
+  "status": "research_decision_registered_physics_and_capacity_pending",
+  "starting_commit": "5d5c319ee3f99efddc5e34728f24c293d9fffb27",
+  "question": "At equal total charged simulator cost, does explicit exposure to physically generated failed insertion attempts improve a continuous policy's witnessed post-stall and complete-job reliability over ordinary uniform-fault training?",
+  "value": "Distinguish spending experience on preventing failures from teaching continuation after actual difficulty; determine whether this practical training choice earns its cost against ordinary learning and strong scripted retry.",
+  "chosen_contribution": "Controlled empirical comparison of physical failure exposure, with paired whole-job/recovery endpoints, all-cost accounting and a physics-stability gate. No new-algorithm or first-recovery-learning claim.",
+  "candidate": {
+    "name": "physical_failure_exposure_v1",
+    "nominal_fraction": 0.25,
+    "fault_prefix_fraction": 0.5,
+    "prefix_s": 4,
+    "prefix": "Unchanged initial ActorRetryController insertion commands; no contact-truth-triggered handoff.",
+    "training_actions": "Policy controls remaining jobs from start and exposed jobs after fixed prefix. Scripted steps excluded from PPO ratios, value loss and normalization; prefix successes never receive learned credit.",
+    "nominal_practice": "Same nominal job distribution and cohort share in both arms. Active nominal transitions are outcomes, reported rather than manufactured equal.",
+    "actor": "Same existing feedforward StudyPolicy and noisy actor interface; no phase/contact-truth indicator added.",
+    "critic": "Same existing privileged critic inputs.",
+    "reward": "Shared completion_credit_v3 with unchanged force/deadline/dwell rules; no reward tuning for exposure."
+  },
+  "comparison": {
+    "ordinary": "Fresh uniform-fault PPO with policy control from job start; preserved10M model is diagnostic-only and cannot initialize either arm.",
+    "candidate": "Fresh same-architecture PPO with registered physical-prefix exposure.",
+    "practical": "Unchanged scripted retry; zero fictitious training cost, measured development/evaluation cost.",
+    "diagnostic": "Unchanged scripted continued insertion.",
+    "optimizer": "Same value-unclipped PPO,1e-4 Adam,4 mini-epochs/minibatch512 and rollout update boundaries. Actual optimizer steps/active samples reported; equal simulator cost is not a claim of identical FLOPs."
+  },
+  "training_seeds": [
+    170,
+    271,
+    372
+  ],
+  "development_seeds": [
+    10070,
+    10071,
+    10072
+  ],
+  "final_tests_closed": true,
+  "budget_rule": {
+    "provisional_screen": "Six1024-equivalent cohorts per arm/start, or three2048 cohorts if capacity supports; exact native cost and any resolution-dependent adjustment frozen in launch registration before training.",
+    "extension": "If all ordinary and candidate arms remain below50% direct development completion, permit one matched extension to22 1024-equivalent cohorts at the same physical definition, subject to measured overnight budget. If models are competent, extend only for an average >=3/56 paired post-stall-completion gain without >=2/12 nominal loss; no repeat sampler/reward tuning.",
+    "overnight_cap_s": 36000,
+    "physical_validity": "No substantial training until contact_impact_registration_v1 acceptance passes. Capacity profiling is separately authorized diagnostic optimization."
+  },
+  "endpoints": {
+    "primary": "All-request complete-job reliability, with a separate witnessed-contact-stall continuation assay and paired cases; report each training start.",
+    "witness": "Mechanism-neutral post_stall_completion_v1 and frozen withdrawal metric separately.",
+    "time": "Time per request including aborts/deadlines; mean successful-job time separately.",
+    "force": "Native raw20N aborts and full force distribution; no smoothed-force substitution.",
+    "generalization": "If same-prefix development gain earns extension, preregister an unused3s/5s prefix assay on development seeds before opening final tests; gains confined to trained4s prefix do not establish general recovery teaching."
+  },
+  "decision_rule": {
+    "continue": "Cross-start post-stall gain with maintained nominal/direct competence and stable physical interpretation earns larger comparison and later gear test; this screen alone is preliminary.",
+    "reject_method": "Competent matched arms show no consistent recovery gain, prefix transfer fails, or direct/nominal losses offset recovery; reject this exposure package, not recovery learning generally.",
+    "reject_premise": "No stable, interpretable force-limited task within registered diagnosis budget: reject current training-comparison premise for this cycle and report the causal numerical limitation.",
+    "insufficient": "All models weak at the single matched extended budget means insufficient learned competence, not candidate superiority or inferiority."
+  },
+  "closest_primary_sources": [
+    {
+      "title": "FORGE",
+      "url": "https://arxiv.org/html/2408.04587v2",
+      "establishes": "Force-aware learned assembly/search, recurrent PPO and domain randomization; not incapable of recovery by design."
+    },
+    {
+      "title": "Accelerating Robot Learning of Contact-Rich Manipulations: A Curriculum Learning Study",
+      "url": "https://arxiv.org/html/2204.12844v2",
+      "establishes": "Industrial-insertion fixed/adaptive curricula and force-aware termination already studied."
+    },
+    {
+      "title": "Yu and Lee recovery-oriented adaptive curriculum",
+      "url": "https://scholarx.skku.edu/item/822cdd01-3c7c-4237-afdd-43cc4e05bbb6",
+      "establishes": "Institutional abstract describes misalignment-based recovery starts/adaptive TD3; full evaluation details unavailable."
+    },
+    {
+      "title": "REBOOT author project",
+      "url": "https://nanayawoa.github.io/REBOOT/",
+      "establishes": "Authors describe systematic failure induction and expert recovery demonstrations in real bimanual tasks. Project page scope only; no claim absent details."
+    },
+    {
+      "title": "Leveraging contact-based learned information from failed insertion",
+      "url": "https://arxiv.org/html/2101.02725v2",
+      "establishes": "Prior learning from failed tactile traces to update part pose/type beliefs."
+    }
+  ],
+  "scope_and_limitations": [
+    "Research decision only until launchable source/common task and actual runs exist.",
+    "Historical ordinary policy is not candidate evidence. Existing equal47/56 learned/retry completion and lateral correction motivate an open question.",
+    "Adaptive sampler and fixed curriculum remain preserved unexecuted designs; this chosen claim concerns physical failure exposure, so a fixed curriculum is not its necessary causal control.",
+    "No hardware, pickup, camera perception, force-certified safety, algorithmic novelty or publication-success claim."
+  ]
+}

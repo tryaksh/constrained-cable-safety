@@ -1,0 +1,487 @@
+{
+  "schema": 1,
+  "status": "verified",
+  "research_result": false,
+  "scope_and_limitations": [
+    "Development scripted feasibility and reward comparison; no learned policy, training advantage, or held-out result.",
+    "Synthetic noisy simulator measurements are not camera perception; preset grasp is not learned pickup.",
+    "Official FORGE reward is unchanged, including cohort-dependent success-prediction activation.",
+    "Thirty-second common deadline; stop job returns at evaluator termination with later absorbing-zero rewards. Partial terminal control interval has no sampled reward and is omitted.",
+    "Raw wrist force budget is an experimental abort threshold, not a hard physical force ceiling."
+  ],
+  "checks": {
+    "identical_initial_state": true,
+    "same_conditions": true,
+    "same_behavior_source": true,
+    "same_controller_settings": true,
+    "same_upstream": true,
+    "saved_source_and_artifact_hashes_verified": true,
+    "physics_and_actor_controller_replayed": true
+  },
+  "runs": [
+    {
+      "run_id": "peg_realign_v2_10070_retry",
+      "manifest": "artifacts\\assembly\\peg_realign_v2_10070_retry\\manifest.json",
+      "manifest_sha256": "66e225b5f01d23b34bfad0c70b31f2e77aaa7397da848c42ea47f4c7310be3bf",
+      "source_commit_at_start": "2080d93bf17b046e6f7e8aba2a4791aa136cdbc9",
+      "source_dirty_at_start": true,
+      "artifacts": [
+        {
+          "path": "artifacts/assembly/peg_realign_v2_10070_retry/source.zip",
+          "bytes": 64137,
+          "sha256": "07aad0e7c237ed2cb7895790b4ef8a166b60b973d7eed83a75fb4d5726de9af2"
+        },
+        {
+          "path": "artifacts/assembly/peg_realign_v2_10070_retry/probe/report.json",
+          "bytes": 45912,
+          "sha256": "32a89cd3c1e6796a4d2e35410b503ea7e8fa879eaad4a6d93b679445883cebea"
+        },
+        {
+          "path": "artifacts/assembly/peg_realign_v2_10070_retry/probe/physics_samples.jsonl",
+          "bytes": 3131177,
+          "sha256": "b2129ddfd5017b832f36ab84f9f6ef89606c386c55519b7d7701090ca94d47fa"
+        },
+        {
+          "path": "artifacts/assembly/peg_realign_v2_10070_retry/probe/control_samples.jsonl",
+          "bytes": 2478399,
+          "sha256": "1ed57552e619afa2d64c8c87de4b10f3ac9d5480b2d9c27d0586f48589ae7034"
+        },
+        {
+          "path": "artifacts/assembly/peg_realign_v2_10070_retry/probe/environment.yaml",
+          "bytes": 18356,
+          "sha256": "4950e53af7c14e1e59af3b57e19fdf021a20ec352dd8e4d2fdc6db9e13af1dce"
+        },
+        {
+          "path": "artifacts/assembly/peg_realign_v2_10070_retry/retry_settings.json",
+          "bytes": 234,
+          "sha256": "edbfecf369079c61bffe9ba8c994dd534797893f635c008845e31812e0a2f7e8"
+        }
+      ]
+    },
+    {
+      "run_id": "peg_realign_v2_10070_continue",
+      "manifest": "artifacts\\assembly\\peg_realign_v2_10070_continue\\manifest.json",
+      "manifest_sha256": "e98ca6dffab3245dcfeaf78ec42a1897800d4509ab4aede3d5f55e626e45054d",
+      "source_commit_at_start": "2080d93bf17b046e6f7e8aba2a4791aa136cdbc9",
+      "source_dirty_at_start": true,
+      "artifacts": [
+        {
+          "path": "artifacts/assembly/peg_realign_v2_10070_continue/source.zip",
+          "bytes": 67019,
+          "sha256": "249de711e901334547b342a88bc5a5b7f4debb65db6924ab87239a16939d9617"
+        },
+        {
+          "path": "artifacts/assembly/peg_realign_v2_10070_continue/probe/report.json",
+          "bytes": 44595,
+          "sha256": "c02f2682e78dd5406199d46364a63f6d6a139b9e1a8e8983c4b2671ad557b7de"
+        },
+        {
+          "path": "artifacts/assembly/peg_realign_v2_10070_continue/probe/physics_samples.jsonl",
+          "bytes": 3428651,
+          "sha256": "b00acb7eddc162cc8b33218b3d926b1ceb66f3d46c0dfb4f71153e1702f799cb"
+        },
+        {
+          "path": "artifacts/assembly/peg_realign_v2_10070_continue/probe/control_samples.jsonl",
+          "bytes": 2429589,
+          "sha256": "b0761732c1b6f00962c0921978edc28efed1a3ba97fa557b8f979063ba722173"
+        },
+        {
+          "path": "artifacts/assembly/peg_realign_v2_10070_continue/probe/environment.yaml",
+          "bytes": 18356,
+          "sha256": "4950e53af7c14e1e59af3b57e19fdf021a20ec352dd8e4d2fdc6db9e13af1dce"
+        },
+        {
+          "path": "artifacts/assembly/peg_realign_v2_10070_continue/retry_settings.json",
+          "bytes": 234,
+          "sha256": "edbfecf369079c61bffe9ba8c994dd534797893f635c008845e31812e0a2f7e8"
+        }
+      ]
+    }
+  ],
+  "pairs": [
+    {
+      "job_index": 0,
+      "recovery": {
+        "job_id": "peg_realign_v2_10070_retry-0",
+        "evaluator_version": 2,
+        "grasp_contact_observed": true,
+        "outcome": "success",
+        "finished": true,
+        "success": true,
+        "recovered_after_stall": false,
+        "stall_seen": false,
+        "first_stall_step": null,
+        "stall_detector_version": 2,
+        "stall_scope": "Wrist-load and observed-progress proxy; not a part-to-fixture contact witness.",
+        "upstream_success_seen": true,
+        "elapsed_s": 3.033333333333333,
+        "peak_raw_wrist_force_n": 19.91175079345703,
+        "peak_filtered_wrist_force_n": 7.099017143249512,
+        "max_tool_to_part_translation_drift_m": 0.00026715610874816775,
+        "forbidden_events": []
+      },
+      "continued": {
+        "job_id": "peg_realign_v2_10070_continue-0",
+        "evaluator_version": 2,
+        "grasp_contact_observed": true,
+        "outcome": "success",
+        "finished": true,
+        "success": true,
+        "recovered_after_stall": false,
+        "stall_seen": false,
+        "first_stall_step": null,
+        "stall_detector_version": 2,
+        "stall_scope": "Wrist-load and observed-progress proxy; not a part-to-fixture contact witness.",
+        "upstream_success_seen": true,
+        "elapsed_s": 3.033333333333333,
+        "peak_raw_wrist_force_n": 19.91175079345703,
+        "peak_filtered_wrist_force_n": 7.099017143249512,
+        "max_tool_to_part_translation_drift_m": 0.00026715610874816775,
+        "forbidden_events": []
+      },
+      "initial_and_pretrigger_trajectory_identical": true,
+      "identical_prefix_control_steps": 0,
+      "recovery_witness": {
+        "witnessed_complete_recovery": false,
+        "trigger": null
+      },
+      "recovery_return": {
+        "gamma": 0.995,
+        "discounted_return": 36.788110210235345,
+        "discounted_terms": {
+          "kp_baseline": 6.712439176771562,
+          "kp_coarse": 7.181907177032304,
+          "kp_fine": 6.954676727762429,
+          "action_penalty_ee": 0.0,
+          "action_grad_penalty": 0.0,
+          "curr_engaged": 15.948692810430458,
+          "curr_success": 5.699886058563438,
+          "action_penalty_asset": -0.009605462730717853,
+          "contact_penalty": 0.0,
+          "success_pred_error": -5.699886058563438
+        },
+        "included_control_endpoints": 45,
+        "terminal_partial_physics_steps_without_endpoint_reward": 4,
+        "excluded_control_endpoints": 405,
+        "max_reward_reconstruction_error": 2.742744982242584e-07,
+        "terminal_handling": "Only control reward endpoints at/before evaluator termination; later rewards zero, no bootstrap. Partial terminal interval omitted. Training integration is not implemented."
+      },
+      "continued_return": {
+        "gamma": 0.995,
+        "discounted_return": 36.788110210235345,
+        "discounted_terms": {
+          "kp_baseline": 6.712439176771562,
+          "kp_coarse": 7.181907177032304,
+          "kp_fine": 6.954676727762429,
+          "action_penalty_ee": 0.0,
+          "action_grad_penalty": 0.0,
+          "curr_engaged": 15.948692810430458,
+          "curr_success": 5.699886058563438,
+          "action_penalty_asset": -0.009605462730717853,
+          "contact_penalty": 0.0,
+          "success_pred_error": -5.699886058563438
+        },
+        "included_control_endpoints": 45,
+        "terminal_partial_physics_steps_without_endpoint_reward": 4,
+        "excluded_control_endpoints": 405,
+        "max_reward_reconstruction_error": 2.742744982242584e-07,
+        "terminal_handling": "Only control reward endpoints at/before evaluator termination; later rewards zero, no bootstrap. Partial terminal interval omitted. Training integration is not implemented."
+      },
+      "discounted_return_difference_recovery_minus_continued": 0.0
+    },
+    {
+      "job_index": 1,
+      "recovery": {
+        "job_id": "peg_realign_v2_10070_retry-1",
+        "evaluator_version": 2,
+        "grasp_contact_observed": true,
+        "outcome": "success",
+        "finished": true,
+        "success": true,
+        "recovered_after_stall": true,
+        "stall_seen": true,
+        "first_stall_step": 330,
+        "stall_detector_version": 2,
+        "stall_scope": "Wrist-load and observed-progress proxy; not a part-to-fixture contact witness.",
+        "upstream_success_seen": true,
+        "elapsed_s": 25.075,
+        "peak_raw_wrist_force_n": 19.903230667114258,
+        "peak_filtered_wrist_force_n": 9.21099853515625,
+        "max_tool_to_part_translation_drift_m": 0.0012482148595154285,
+        "forbidden_events": []
+      },
+      "continued": {
+        "job_id": "peg_realign_v2_10070_continue-1",
+        "evaluator_version": 2,
+        "grasp_contact_observed": true,
+        "outcome": "deadline",
+        "finished": true,
+        "success": false,
+        "recovered_after_stall": false,
+        "stall_seen": true,
+        "first_stall_step": 330,
+        "stall_detector_version": 2,
+        "stall_scope": "Wrist-load and observed-progress proxy; not a part-to-fixture contact witness.",
+        "upstream_success_seen": false,
+        "elapsed_s": 30.0,
+        "peak_raw_wrist_force_n": 17.016244888305664,
+        "peak_filtered_wrist_force_n": 10.110580444335938,
+        "max_tool_to_part_translation_drift_m": 0.0019217226654291153,
+        "forbidden_events": []
+      },
+      "initial_and_pretrigger_trajectory_identical": true,
+      "identical_prefix_control_steps": 60,
+      "recovery_witness": {
+        "witnessed_complete_recovery": true,
+        "trigger": {
+          "time_s": 4.0,
+          "observed_height_m": 0.0352754145860672,
+          "noisy_load_mean_n": 8.882051659708415,
+          "load_occupancy": 1.0
+        },
+        "evaluator_first_stall_s": 2.75,
+        "fixture_contact_fraction_in_stall_window": 1.0,
+        "withdrawn_part_rise_m": 0.007392212748527527,
+        "withdrawal_final_base_clearance_m": 0.007573502510786055,
+        "withdrawal_longest_fixture_clear_s": 2.025,
+        "outcome": "success",
+        "retained_grasp_to_termination": true
+      },
+      "recovery_return": {
+        "gamma": 0.995,
+        "discounted_return": 76.52518769360493,
+        "discounted_terms": {
+          "kp_baseline": 28.17305746014139,
+          "kp_coarse": 26.732578724985963,
+          "kp_fine": 12.567967942866995,
+          "action_penalty_ee": 0.0,
+          "action_grad_penalty": 0.0,
+          "curr_engaged": 9.242873127161193,
+          "curr_success": 1.2427767715823388,
+          "action_penalty_asset": -0.10538832889406215,
+          "contact_penalty": -0.08590118461614833,
+          "success_pred_error": -1.2427767715823388
+        },
+        "included_control_endpoints": 376,
+        "terminal_partial_physics_steps_without_endpoint_reward": 1,
+        "excluded_control_endpoints": 74,
+        "max_reward_reconstruction_error": 2.4295877665281296e-07,
+        "terminal_handling": "Only control reward endpoints at/before evaluator termination; later rewards zero, no bootstrap. Partial terminal interval omitted. Training integration is not implemented."
+      },
+      "continued_return": {
+        "gamma": 0.995,
+        "discounted_return": 64.68321702792485,
+        "discounted_terms": {
+          "kp_baseline": 29.736554692538355,
+          "kp_coarse": 27.92155733387002,
+          "kp_fine": 10.62172890422259,
+          "action_penalty_ee": 0.0,
+          "action_grad_penalty": 0.0,
+          "curr_engaged": 0.0,
+          "curr_success": 0.0,
+          "action_penalty_asset": -0.2541474035385803,
+          "contact_penalty": -3.34247637624571,
+          "success_pred_error": 0.0
+        },
+        "included_control_endpoints": 450,
+        "terminal_partial_physics_steps_without_endpoint_reward": 0,
+        "excluded_control_endpoints": 0,
+        "max_reward_reconstruction_error": 5.0873495638370514e-08,
+        "terminal_handling": "Only control reward endpoints at/before evaluator termination; later rewards zero, no bootstrap. Partial terminal interval omitted. Training integration is not implemented."
+      },
+      "discounted_return_difference_recovery_minus_continued": 11.84197066568008
+    },
+    {
+      "job_index": 2,
+      "recovery": {
+        "job_id": "peg_realign_v2_10070_retry-2",
+        "evaluator_version": 2,
+        "grasp_contact_observed": true,
+        "outcome": "deadline",
+        "finished": true,
+        "success": false,
+        "recovered_after_stall": false,
+        "stall_seen": true,
+        "first_stall_step": 352,
+        "stall_detector_version": 2,
+        "stall_scope": "Wrist-load and observed-progress proxy; not a part-to-fixture contact witness.",
+        "upstream_success_seen": false,
+        "elapsed_s": 30.0,
+        "peak_raw_wrist_force_n": 18.63152313232422,
+        "peak_filtered_wrist_force_n": 8.973918914794922,
+        "max_tool_to_part_translation_drift_m": 0.0016123242676258087,
+        "forbidden_events": []
+      },
+      "continued": {
+        "job_id": "peg_realign_v2_10070_continue-2",
+        "evaluator_version": 2,
+        "grasp_contact_observed": true,
+        "outcome": "deadline",
+        "finished": true,
+        "success": false,
+        "recovered_after_stall": false,
+        "stall_seen": true,
+        "first_stall_step": 352,
+        "stall_detector_version": 2,
+        "stall_scope": "Wrist-load and observed-progress proxy; not a part-to-fixture contact witness.",
+        "upstream_success_seen": false,
+        "elapsed_s": 30.0,
+        "peak_raw_wrist_force_n": 18.63152313232422,
+        "peak_filtered_wrist_force_n": 11.5814790725708,
+        "max_tool_to_part_translation_drift_m": 0.0021651077549904585,
+        "forbidden_events": []
+      },
+      "initial_and_pretrigger_trajectory_identical": true,
+      "identical_prefix_control_steps": 60,
+      "recovery_witness": {
+        "witnessed_complete_recovery": false,
+        "trigger": {
+          "time_s": 4.0,
+          "observed_height_m": 0.03227968141436577,
+          "noisy_load_mean_n": 9.31917552414687,
+          "load_occupancy": 1.0
+        },
+        "evaluator_first_stall_s": 2.933333333333333,
+        "fixture_contact_fraction_in_stall_window": 1.0,
+        "withdrawn_part_rise_m": 0.01236792653799057,
+        "withdrawal_final_base_clearance_m": 0.012516306154429911,
+        "withdrawal_longest_fixture_clear_s": 1.3333333333333333,
+        "outcome": "deadline",
+        "retained_grasp_to_termination": true
+      },
+      "recovery_return": {
+        "gamma": 0.995,
+        "discounted_return": 64.57608965536424,
+        "discounted_terms": {
+          "kp_baseline": 29.729514175791298,
+          "kp_coarse": 27.596690227425775,
+          "kp_fine": 11.000830944052732,
+          "action_penalty_ee": 0.0,
+          "action_grad_penalty": 0.0,
+          "curr_engaged": 0.0,
+          "curr_success": 0.0,
+          "action_penalty_asset": -0.10570963437761853,
+          "contact_penalty": -3.6452359299943264,
+          "success_pred_error": 0.0
+        },
+        "included_control_endpoints": 450,
+        "terminal_partial_physics_steps_without_endpoint_reward": 0,
+        "excluded_control_endpoints": 0,
+        "max_reward_reconstruction_error": 4.423782229423523e-08,
+        "terminal_handling": "Only control reward endpoints at/before evaluator termination; later rewards zero, no bootstrap. Partial terminal interval omitted. Training integration is not implemented."
+      },
+      "continued_return": {
+        "gamma": 0.995,
+        "discounted_return": 37.54266591923983,
+        "discounted_terms": {
+          "kp_baseline": 29.74193962764274,
+          "kp_coarse": 29.048862103505762,
+          "kp_fine": 12.714613956622804,
+          "action_penalty_ee": 0.0,
+          "action_grad_penalty": 0.0,
+          "curr_engaged": 0.0,
+          "curr_success": 0.0,
+          "action_penalty_asset": -0.21302831240920997,
+          "contact_penalty": -33.749721509500624,
+          "success_pred_error": 0.0
+        },
+        "included_control_endpoints": 450,
+        "terminal_partial_physics_steps_without_endpoint_reward": 0,
+        "excluded_control_endpoints": 0,
+        "max_reward_reconstruction_error": 5.9371814131736755e-08,
+        "terminal_handling": "Only control reward endpoints at/before evaluator termination; later rewards zero, no bootstrap. Partial terminal interval omitted. Training integration is not implemented."
+      },
+      "discounted_return_difference_recovery_minus_continued": 27.033423736124412
+    },
+    {
+      "job_index": 3,
+      "recovery": {
+        "job_id": "peg_realign_v2_10070_retry-3",
+        "evaluator_version": 2,
+        "grasp_contact_observed": true,
+        "outcome": "force_abort",
+        "finished": true,
+        "success": false,
+        "recovered_after_stall": false,
+        "stall_seen": false,
+        "first_stall_step": null,
+        "stall_detector_version": 2,
+        "stall_scope": "Wrist-load and observed-progress proxy; not a part-to-fixture contact witness.",
+        "upstream_success_seen": false,
+        "elapsed_s": 1.4416666666666667,
+        "peak_raw_wrist_force_n": 20.533388137817383,
+        "peak_filtered_wrist_force_n": 5.2394208908081055,
+        "max_tool_to_part_translation_drift_m": 0.0005448755109682679,
+        "forbidden_events": []
+      },
+      "continued": {
+        "job_id": "peg_realign_v2_10070_continue-3",
+        "evaluator_version": 2,
+        "grasp_contact_observed": true,
+        "outcome": "force_abort",
+        "finished": true,
+        "success": false,
+        "recovered_after_stall": false,
+        "stall_seen": false,
+        "first_stall_step": null,
+        "stall_detector_version": 2,
+        "stall_scope": "Wrist-load and observed-progress proxy; not a part-to-fixture contact witness.",
+        "upstream_success_seen": false,
+        "elapsed_s": 1.4416666666666667,
+        "peak_raw_wrist_force_n": 20.533388137817383,
+        "peak_filtered_wrist_force_n": 5.2394208908081055,
+        "max_tool_to_part_translation_drift_m": 0.0005448755109682679,
+        "forbidden_events": []
+      },
+      "initial_and_pretrigger_trajectory_identical": true,
+      "identical_prefix_control_steps": 0,
+      "recovery_witness": {
+        "witnessed_complete_recovery": false,
+        "trigger": null
+      },
+      "recovery_return": {
+        "gamma": 0.995,
+        "discounted_return": 5.234245023827315,
+        "discounted_terms": {
+          "kp_baseline": 3.3010413713500943,
+          "kp_coarse": 1.6949959004491775,
+          "kp_fine": 0.24425533747299857,
+          "action_penalty_ee": 0.0,
+          "action_grad_penalty": 0.0,
+          "curr_engaged": 0.0,
+          "curr_success": 0.0,
+          "action_penalty_asset": -0.006047623124793977,
+          "contact_penalty": 0.0,
+          "success_pred_error": 0.0
+        },
+        "included_control_endpoints": 21,
+        "terminal_partial_physics_steps_without_endpoint_reward": 5,
+        "excluded_control_endpoints": 429,
+        "max_reward_reconstruction_error": 4.249159246683121e-08,
+        "terminal_handling": "Only control reward endpoints at/before evaluator termination; later rewards zero, no bootstrap. Partial terminal interval omitted. Training integration is not implemented."
+      },
+      "continued_return": {
+        "gamma": 0.995,
+        "discounted_return": 5.234245023827315,
+        "discounted_terms": {
+          "kp_baseline": 3.3010413713500943,
+          "kp_coarse": 1.6949959004491775,
+          "kp_fine": 0.24425533747299857,
+          "action_penalty_ee": 0.0,
+          "action_grad_penalty": 0.0,
+          "curr_engaged": 0.0,
+          "curr_success": 0.0,
+          "action_penalty_asset": -0.006047623124793977,
+          "contact_penalty": 0.0,
+          "success_pred_error": 0.0
+        },
+        "included_control_endpoints": 21,
+        "terminal_partial_physics_steps_without_endpoint_reward": 5,
+        "excluded_control_endpoints": 429,
+        "max_reward_reconstruction_error": 4.249159246683121e-08,
+        "terminal_handling": "Only control reward endpoints at/before evaluator termination; later rewards zero, no bootstrap. Partial terminal interval omitted. Training integration is not implemented."
+      },
+      "discounted_return_difference_recovery_minus_continued": 0.0
+    }
+  ]
+}

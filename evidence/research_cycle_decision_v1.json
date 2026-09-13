@@ -1,0 +1,699 @@
+{
+  "schema": 1,
+  "status": "executed_cycle_closed_reject_premise",
+  "recorded_at_utc": "2026-09-10T17:10:16.126546+00:00",
+  "research_question": "At equal total charged simulator cost, does explicit exposure to physically generated failed insertion attempts improve a continuous policy's witnessed post-stall and complete-job reliability over ordinary uniform-fault training?",
+  "scope_and_limitations": [
+    "One previously used development seed, eight scripted four-second prefix conditions; repeated cases are not independent deployment trials. No final-test use.",
+    "Requests active at four seconds are censored, not failed complete30-second jobs. The scripted prefix, old ordinary learned model and untrained candidate have distinct labels.",
+    "The active-window contact-impulse gate is terminal-censored and cannot alone establish physical nonconvergence. In the final pair, outcome-count and wrist-peak margins pass; contact-impulse and failure-support margins fail.",
+    "No active witnessed contact stalls survive at480/960Hz in any tested controller condition. This specifically defeats the proposed handoff assay, not all learned recovery or FORGE.",
+    "Coarse initialization is shared at every resolution. Native integration, initial gripper reactions and sampled control remain coupled; finest timestep is not assumed ground truth and no unique mechanism is claimed.",
+    "No controller reset, part-pose write, attachment change, threshold relaxation, filtered-force substitution, difficult-case removal or learned-method superiority claim."
+  ],
+  "decision": {
+    "type": "reject_premise",
+    "simulation_issue_resolved": false,
+    "advance_fixed_prefix_teaching_campaign": false,
+    "extend_to_gear": false,
+    "candidate_method_effect": "Untested; zero candidate GPU training or policy evaluation",
+    "reason": "The registered final correction failed stability and failure exposure. More decisively, all fine-resolution conditions leave zero active witnessed contact stalls for the learned handoff. Full-job validation and substantial method training were conditional on a passing gate.",
+    "chosen_contribution": "Bounded empirical engineering result: the fixed-prefix recovery assay loses its target failure cohort under native refinement, and these two common control corrections do not restore it. A measured2048-environment capacity improvement is separately verified.",
+    "not_rejected": "Recovery teaching in general, all Franka/FORGE tasks, or the preserved ordinary model's explicitly scoped120Hz development measurements"
+  },
+  "registration_sha256": {
+    "configs/recovery_teaching_registration_v1.json": "99cbf12a22d5571324d834f779714f2d189fffaca871f3a8fc4eb22c45f75f15",
+    "configs/contact_impact_registration_v1.json": "78c3ac9df1f075a6e38727d5ea7148c3ee3f6379c8bb4ac8757f272e14c69732",
+    "configs/contact_impact_continuation_v2.json": "37dbd127e7675d32fa2a8ef245c66655865b6d39400e7910c9ee74bc737581f4",
+    "configs/servo_impact_registration_v1.json": "2d0317c6ffce9c6d8dbc1ac78bbcede9a7fcc868ca5f4382c7dc7437ddbc07a3",
+    "configs/approach_slew_registration_v1.json": "bbfd194f6e86f647d71d10df5edff29d74041f178c9fa2058ecf076f31cf613b",
+    "configs/training_capacity_v1.json": "607d00d8d90d34103d085a41245120c88b174a8619c554849aad9ea4af8dfa3a"
+  },
+  "physics_runs": [
+    {
+      "condition": "original_servo120",
+      "native_physics_hz": 120,
+      "external_servo_hz": 120,
+      "external_sensor_hz": 120,
+      "policy_hz": 15,
+      "applied_controller": "Unchanged scripted first attempt; no applied learned-policy actions",
+      "prefix_summary": {
+        "requests": 28,
+        "completions_before_prefix_end": 3,
+        "active_at_prefix_end": 24,
+        "terminal_outcomes_and_probe_end": {
+          "probe_end": 24,
+          "force_abort": 1,
+          "success": 3
+        },
+        "force_aborts": 1,
+        "forbidden_events": 0
+      },
+      "active_contact_stalls": 17,
+      "active_contact_stall_case_ids": [
+        "dev-10071-nominal-1",
+        "dev-10071-nominal-2",
+        "dev-10071-nominal-3",
+        "dev-10071-bias_low-1",
+        "dev-10071-bias_low-2",
+        "dev-10071-bias_medium-0",
+        "dev-10071-bias_medium-1",
+        "dev-10071-bias_medium-3",
+        "dev-10071-approach_low-0",
+        "dev-10071-approach_low-1",
+        "dev-10071-approach_low-3",
+        "dev-10071-approach_high-0",
+        "dev-10071-approach_high-1",
+        "dev-10071-approach_high-2",
+        "dev-10071-approach_high-3",
+        "dev-10071-friction_low-2",
+        "dev-10071-friction_high-3"
+      ],
+      "original_launcher_status": "verification_failed",
+      "simulator_process_completed": true,
+      "corrected_cpu_verification_passed": true,
+      "corrected_verification_checks": 108,
+      "cost": {
+        "initialization_physics_hz": 120,
+        "job_physics_hz": 120,
+        "initialization_physics_env_steps": 1876,
+        "rollout_physics_env_steps": 13440,
+        "active_physics_env_steps": 13065,
+        "absorbing_physics_env_steps": 375,
+        "rollout_control_transitions": 1680,
+        "active_control_transitions": 1635,
+        "absorbing_control_transitions": 45,
+        "partial_control_physics_env_steps": 0,
+        "charged_control_equivalent_transitions": 1914.5,
+        "charged_reference_transitions": 1914.5,
+        "scope": "All native physics environment steps, including initialization and absorbing slots, charged at eight steps per reference transition. Four-second prefix diagnostic only."
+      },
+      "wall_s_including_export_and_verification": 32.155999999988126,
+      "source_commit_at_start": "c02b8c874cb78192ab1098229d66a0fd8c3e9414",
+      "source_dirty_at_start": false,
+      "path": "artifacts/assembly/contact_impact_v1_r01/120",
+      "artifact_sha256": {
+        "artifacts/assembly/contact_impact_v1_r01/120/manifest.json": "6654326a36beebdada760381566ec5e05e725b9f944c705a27629e0acb587ca0",
+        "artifacts/assembly/contact_impact_v1_r01/120/source.zip": "1fe8ab499c8ec23c901012fc03d5cd7823a76aed02822ed8e6efc28869e8881c",
+        "artifacts/assembly/contact_impact_v1_r01/120/validation/report.json": "6b0897fbaa6f1f2fe5da5907edd4e0bb2ef671250db8d609df45c470b2c1d859",
+        "artifacts/assembly/contact_impact_v1_r01/120/validation/trajectory.pt": "0114f80d05343b12d7f86ad41e390e0248dc95466c05b41cffa87453328a9925"
+      }
+    },
+    {
+      "condition": "original_servo120",
+      "native_physics_hz": 240,
+      "external_servo_hz": 120,
+      "external_sensor_hz": 120,
+      "policy_hz": 15,
+      "applied_controller": "Unchanged scripted first attempt; no applied learned-policy actions",
+      "prefix_summary": {
+        "requests": 28,
+        "completions_before_prefix_end": 3,
+        "active_at_prefix_end": 12,
+        "terminal_outcomes_and_probe_end": {
+          "probe_end": 12,
+          "force_abort": 13,
+          "success": 3
+        },
+        "force_aborts": 13,
+        "forbidden_events": 0
+      },
+      "active_contact_stalls": 5,
+      "active_contact_stall_case_ids": [
+        "dev-10071-nominal-2",
+        "dev-10071-bias_medium-1",
+        "dev-10071-approach_high-0",
+        "dev-10071-approach_high-2",
+        "dev-10071-friction_high-3"
+      ],
+      "original_launcher_status": "completed",
+      "simulator_process_completed": true,
+      "corrected_cpu_verification_passed": true,
+      "corrected_verification_checks": 109,
+      "cost": {
+        "initialization_physics_hz": 120,
+        "job_physics_hz": 240,
+        "initialization_physics_env_steps": 1876,
+        "rollout_physics_env_steps": 26880,
+        "active_physics_env_steps": 20376,
+        "absorbing_physics_env_steps": 6504,
+        "rollout_control_transitions": 1680,
+        "active_control_transitions": 1282,
+        "absorbing_control_transitions": 398,
+        "partial_control_physics_env_steps": 0,
+        "charged_control_equivalent_transitions": 1914.5,
+        "charged_reference_transitions": 3594.5,
+        "scope": "All native physics environment steps, including initialization and absorbing slots, charged at eight steps per reference transition. Four-second prefix diagnostic only."
+      },
+      "wall_s_including_export_and_verification": 45.578999999997905,
+      "source_commit_at_start": "c02b8c874cb78192ab1098229d66a0fd8c3e9414",
+      "source_dirty_at_start": true,
+      "path": "artifacts/assembly/contact_impact_v2_r01/240",
+      "artifact_sha256": {
+        "artifacts/assembly/contact_impact_v2_r01/240/manifest.json": "9642b7e537d7d7e3b0a865e71b37fe2ff832d093f54950799e82e08d1d3f6c6b",
+        "artifacts/assembly/contact_impact_v2_r01/240/source.zip": "fef5aafbbe989c7dd95a0f9ded2b593f80e7cf771055a942de72446da95f3fc4",
+        "artifacts/assembly/contact_impact_v2_r01/240/validation/report.json": "e0272039e9dbe7eb4f4385148e9aab3361706b25a8072c74dd8720b97509154b",
+        "artifacts/assembly/contact_impact_v2_r01/240/validation/trajectory.pt": "b873a4ad2b1ab3982e35b90205f835b7a48fc466aca80a147303db998f54bd24"
+      }
+    },
+    {
+      "condition": "original_servo120",
+      "native_physics_hz": 480,
+      "external_servo_hz": 120,
+      "external_sensor_hz": 120,
+      "policy_hz": 15,
+      "applied_controller": "Unchanged scripted first attempt; no applied learned-policy actions",
+      "prefix_summary": {
+        "requests": 28,
+        "completions_before_prefix_end": 0,
+        "active_at_prefix_end": 2,
+        "terminal_outcomes_and_probe_end": {
+          "force_abort": 26,
+          "probe_end": 2
+        },
+        "force_aborts": 26,
+        "forbidden_events": 0
+      },
+      "active_contact_stalls": 0,
+      "active_contact_stall_case_ids": [],
+      "original_launcher_status": "completed",
+      "simulator_process_completed": true,
+      "corrected_cpu_verification_passed": true,
+      "corrected_verification_checks": 56,
+      "cost": {
+        "initialization_physics_hz": 120,
+        "job_physics_hz": 480,
+        "initialization_physics_env_steps": 1876,
+        "rollout_physics_env_steps": 53760,
+        "active_physics_env_steps": 25215,
+        "absorbing_physics_env_steps": 28545,
+        "rollout_control_transitions": 1680,
+        "active_control_transitions": 800,
+        "absorbing_control_transitions": 880,
+        "partial_control_physics_env_steps": 0,
+        "charged_control_equivalent_transitions": 1914.5,
+        "charged_reference_transitions": 6954.5,
+        "scope": "All native physics environment steps, including initialization and absorbing slots, charged at eight steps per reference transition. Four-second prefix diagnostic only."
+      },
+      "wall_s_including_export_and_verification": 77.54700000000594,
+      "source_commit_at_start": "c02b8c874cb78192ab1098229d66a0fd8c3e9414",
+      "source_dirty_at_start": true,
+      "path": "artifacts/assembly/contact_impact_v2_r01/480",
+      "artifact_sha256": {
+        "artifacts/assembly/contact_impact_v2_r01/480/manifest.json": "4bc34c8e111e231e0f6de63a2d95a2f51b9bc1c780509ab2427a27b718ef4ad6",
+        "artifacts/assembly/contact_impact_v2_r01/480/source.zip": "554339c173b92410c71c34ab509c04b0db3c228f5b9942da3833dafe605d3ab1",
+        "artifacts/assembly/contact_impact_v2_r01/480/validation/report.json": "e8ee3527849576feb475c75ccd450a2a944822a7023a6e75748b48707cfc5bb0",
+        "artifacts/assembly/contact_impact_v2_r01/480/validation/trajectory.pt": "09b52b4face4fb10d84050063b61d24f6395bbf57700ae15b9b06419c38da2ab"
+      }
+    },
+    {
+      "condition": "original_servo120",
+      "native_physics_hz": 960,
+      "external_servo_hz": 120,
+      "external_sensor_hz": 120,
+      "policy_hz": 15,
+      "applied_controller": "Unchanged scripted first attempt; no applied learned-policy actions",
+      "prefix_summary": {
+        "requests": 28,
+        "completions_before_prefix_end": 1,
+        "active_at_prefix_end": 0,
+        "terminal_outcomes_and_probe_end": {
+          "force_abort": 27,
+          "success": 1
+        },
+        "force_aborts": 27,
+        "forbidden_events": 0
+      },
+      "active_contact_stalls": 0,
+      "active_contact_stall_case_ids": [],
+      "original_launcher_status": "verification_failed",
+      "simulator_process_completed": true,
+      "corrected_cpu_verification_passed": true,
+      "corrected_verification_checks": 58,
+      "cost": {
+        "initialization_physics_hz": 120,
+        "job_physics_hz": 960,
+        "initialization_physics_env_steps": 1876,
+        "rollout_physics_env_steps": 107520,
+        "active_physics_env_steps": 46837,
+        "absorbing_physics_env_steps": 60683,
+        "rollout_control_transitions": 1680,
+        "active_control_transitions": 746,
+        "absorbing_control_transitions": 934,
+        "partial_control_physics_env_steps": 0,
+        "charged_control_equivalent_transitions": 1914.5,
+        "charged_reference_transitions": 13674.5,
+        "scope": "All native physics environment steps, including initialization and absorbing slots, charged at eight steps per reference transition. Four-second prefix diagnostic only."
+      },
+      "wall_s_including_export_and_verification": 141.57799999999406,
+      "source_commit_at_start": "c02b8c874cb78192ab1098229d66a0fd8c3e9414",
+      "source_dirty_at_start": true,
+      "path": "artifacts/assembly/contact_impact_960_v2_r01/960",
+      "artifact_sha256": {
+        "artifacts/assembly/contact_impact_960_v2_r01/960/manifest.json": "e687295ab905aaaba73d1ab9c89cea6bbc77efc11605e4ca72b43be70a3afe38",
+        "artifacts/assembly/contact_impact_960_v2_r01/960/source.zip": "c49bffbba5c047a4089a9808d249944f595ccd42ea7cab19a7f794752e3b9529",
+        "artifacts/assembly/contact_impact_960_v2_r01/960/validation/report.json": "e8682daaf9997b8168de2da7443b2ff25a7cfb27f7a8daadddf0440f727e3bad",
+        "artifacts/assembly/contact_impact_960_v2_r01/960/validation/trajectory.pt": "39ae7d0a16f20563c166387dd5e2f00fe8a4fb536a365090c7858c1bc32a8624"
+      }
+    },
+    {
+      "condition": "servo480",
+      "native_physics_hz": 480,
+      "external_servo_hz": 480,
+      "external_sensor_hz": 120,
+      "policy_hz": 15,
+      "applied_controller": "Unchanged scripted first attempt; no applied learned-policy actions",
+      "prefix_summary": {
+        "requests": 28,
+        "completions_before_prefix_end": 0,
+        "active_at_prefix_end": 1,
+        "terminal_outcomes_and_probe_end": {
+          "force_abort": 27,
+          "probe_end": 1
+        },
+        "force_aborts": 27,
+        "forbidden_events": 0
+      },
+      "active_contact_stalls": 0,
+      "active_contact_stall_case_ids": [],
+      "original_launcher_status": "completed",
+      "simulator_process_completed": true,
+      "corrected_cpu_verification_passed": true,
+      "corrected_verification_checks": 67,
+      "cost": {
+        "initialization_physics_hz": 120,
+        "job_physics_hz": 480,
+        "initialization_physics_env_steps": 1876,
+        "rollout_physics_env_steps": 53760,
+        "active_physics_env_steps": 24260,
+        "absorbing_physics_env_steps": 29500,
+        "rollout_control_transitions": 1680,
+        "active_control_transitions": 771,
+        "absorbing_control_transitions": 909,
+        "partial_control_physics_env_steps": 0,
+        "charged_control_equivalent_transitions": 1914.5,
+        "charged_reference_transitions": 6954.5,
+        "scope": "All native physics environment steps, including initialization and absorbing slots, charged at eight steps per reference transition. Four-second prefix diagnostic only."
+      },
+      "wall_s_including_export_and_verification": 82.90700000000652,
+      "source_commit_at_start": "c02b8c874cb78192ab1098229d66a0fd8c3e9414",
+      "source_dirty_at_start": true,
+      "path": "artifacts/assembly/servo_impact_v1_r01/480",
+      "artifact_sha256": {
+        "artifacts/assembly/servo_impact_v1_r01/480/manifest.json": "343aeeee20fa6ec1166d40a1fd64ea531e37365c9e244e0aea920c918dffed85",
+        "artifacts/assembly/servo_impact_v1_r01/480/source.zip": "1e07ca5b406ac799fa3468abd4e83b335a125be3aaa988036bfceecf24f98251",
+        "artifacts/assembly/servo_impact_v1_r01/480/validation/report.json": "a4073897757911d3c19505b764f91cc27d1c00774fa51a64731165fe7abcaf71",
+        "artifacts/assembly/servo_impact_v1_r01/480/validation/trajectory.pt": "db0e1fb49f8dfc45fc01a98981a9c12864f28d0226c05b6b4b0a000a948ab481"
+      }
+    },
+    {
+      "condition": "servo480",
+      "native_physics_hz": 960,
+      "external_servo_hz": 480,
+      "external_sensor_hz": 120,
+      "policy_hz": 15,
+      "applied_controller": "Unchanged scripted first attempt; no applied learned-policy actions",
+      "prefix_summary": {
+        "requests": 28,
+        "completions_before_prefix_end": 0,
+        "active_at_prefix_end": 1,
+        "terminal_outcomes_and_probe_end": {
+          "force_abort": 27,
+          "probe_end": 1
+        },
+        "force_aborts": 27,
+        "forbidden_events": 0
+      },
+      "active_contact_stalls": 0,
+      "active_contact_stall_case_ids": [],
+      "original_launcher_status": "completed",
+      "simulator_process_completed": true,
+      "corrected_cpu_verification_passed": true,
+      "corrected_verification_checks": 67,
+      "cost": {
+        "initialization_physics_hz": 120,
+        "job_physics_hz": 960,
+        "initialization_physics_env_steps": 1876,
+        "rollout_physics_env_steps": 107520,
+        "active_physics_env_steps": 48091,
+        "absorbing_physics_env_steps": 59429,
+        "rollout_control_transitions": 1680,
+        "active_control_transitions": 766,
+        "absorbing_control_transitions": 914,
+        "partial_control_physics_env_steps": 0,
+        "charged_control_equivalent_transitions": 1914.5,
+        "charged_reference_transitions": 13674.5,
+        "scope": "All native physics environment steps, including initialization and absorbing slots, charged at eight steps per reference transition. Four-second prefix diagnostic only."
+      },
+      "wall_s_including_export_and_verification": 145.40699999999197,
+      "source_commit_at_start": "c02b8c874cb78192ab1098229d66a0fd8c3e9414",
+      "source_dirty_at_start": true,
+      "path": "artifacts/assembly/servo_impact_v1_r01/960",
+      "artifact_sha256": {
+        "artifacts/assembly/servo_impact_v1_r01/960/manifest.json": "ef636d490f6578c1468f0e47eb3d9113cda45846493eb3ea820ff7d25bb2a958",
+        "artifacts/assembly/servo_impact_v1_r01/960/source.zip": "495d335b56fe9ccc12e56c03a42c63af76ddd803b70d964590e862007ce80ca5",
+        "artifacts/assembly/servo_impact_v1_r01/960/validation/report.json": "6a77148a2db4f2afb8ce625fd64eaf28233af7bec56105e692da612a94348452",
+        "artifacts/assembly/servo_impact_v1_r01/960/validation/trajectory.pt": "8448bb1ed03cf59c08c3fbffb8a70e7e5ca8de4e81d68ca1fc60709faabb4d16"
+      }
+    },
+    {
+      "condition": "servo480_reference20mm_s",
+      "native_physics_hz": 480,
+      "external_servo_hz": 480,
+      "external_sensor_hz": 120,
+      "policy_hz": 15,
+      "applied_controller": "Unchanged scripted first attempt; no applied learned-policy actions",
+      "prefix_summary": {
+        "requests": 28,
+        "completions_before_prefix_end": 1,
+        "active_at_prefix_end": 2,
+        "terminal_outcomes_and_probe_end": {
+          "force_abort": 25,
+          "probe_end": 2,
+          "success": 1
+        },
+        "force_aborts": 25,
+        "forbidden_events": 0
+      },
+      "active_contact_stalls": 0,
+      "active_contact_stall_case_ids": [],
+      "original_launcher_status": "completed",
+      "simulator_process_completed": true,
+      "corrected_cpu_verification_passed": true,
+      "corrected_verification_checks": 84,
+      "cost": {
+        "initialization_physics_hz": 120,
+        "job_physics_hz": 480,
+        "initialization_physics_env_steps": 1876,
+        "rollout_physics_env_steps": 53760,
+        "active_physics_env_steps": 28843,
+        "absorbing_physics_env_steps": 24917,
+        "rollout_control_transitions": 1680,
+        "active_control_transitions": 912,
+        "absorbing_control_transitions": 768,
+        "partial_control_physics_env_steps": 0,
+        "charged_control_equivalent_transitions": 1914.5,
+        "charged_reference_transitions": 6954.5,
+        "scope": "All native physics environment steps, including initialization and absorbing slots, charged at eight steps per reference transition. Four-second prefix diagnostic only."
+      },
+      "wall_s_including_export_and_verification": 85.84399999999732,
+      "source_commit_at_start": "c02b8c874cb78192ab1098229d66a0fd8c3e9414",
+      "source_dirty_at_start": true,
+      "path": "artifacts/assembly/approach_slew_v1_r01/480",
+      "artifact_sha256": {
+        "artifacts/assembly/approach_slew_v1_r01/480/manifest.json": "9d92dffa9a3628bc6d17a78e77b4c01cad05f48700418405ae536222c3bd66b8",
+        "artifacts/assembly/approach_slew_v1_r01/480/source.zip": "c0381cbe752df568d05a073461293b8677446381512d377a03d6c02003ae2d3a",
+        "artifacts/assembly/approach_slew_v1_r01/480/validation/report.json": "bee13241c586ecfc7abcba1b29ae9571087cdc194589338e1b4ba709f7bbe3f9",
+        "artifacts/assembly/approach_slew_v1_r01/480/validation/trajectory.pt": "624f27f4276226ef0aa964e801d94f23ec98e2d4b954810b2c7741941bf36f19"
+      }
+    },
+    {
+      "condition": "servo480_reference20mm_s",
+      "native_physics_hz": 960,
+      "external_servo_hz": 480,
+      "external_sensor_hz": 120,
+      "policy_hz": 15,
+      "applied_controller": "Unchanged scripted first attempt; no applied learned-policy actions",
+      "prefix_summary": {
+        "requests": 28,
+        "completions_before_prefix_end": 1,
+        "active_at_prefix_end": 1,
+        "terminal_outcomes_and_probe_end": {
+          "force_abort": 26,
+          "probe_end": 1,
+          "success": 1
+        },
+        "force_aborts": 26,
+        "forbidden_events": 0
+      },
+      "active_contact_stalls": 0,
+      "active_contact_stall_case_ids": [],
+      "original_launcher_status": "completed",
+      "simulator_process_completed": true,
+      "corrected_cpu_verification_passed": true,
+      "corrected_verification_checks": 84,
+      "cost": {
+        "initialization_physics_hz": 120,
+        "job_physics_hz": 960,
+        "initialization_physics_env_steps": 1876,
+        "rollout_physics_env_steps": 107520,
+        "active_physics_env_steps": 54512,
+        "absorbing_physics_env_steps": 53008,
+        "rollout_control_transitions": 1680,
+        "active_control_transitions": 868,
+        "absorbing_control_transitions": 812,
+        "partial_control_physics_env_steps": 0,
+        "charged_control_equivalent_transitions": 1914.5,
+        "charged_reference_transitions": 13674.5,
+        "scope": "All native physics environment steps, including initialization and absorbing slots, charged at eight steps per reference transition. Four-second prefix diagnostic only."
+      },
+      "wall_s_including_export_and_verification": 157.375,
+      "source_commit_at_start": "c02b8c874cb78192ab1098229d66a0fd8c3e9414",
+      "source_dirty_at_start": true,
+      "path": "artifacts/assembly/approach_slew_v1_r01/960",
+      "artifact_sha256": {
+        "artifacts/assembly/approach_slew_v1_r01/960/manifest.json": "8cc66103ff3bd643f650dbb588fc52ddddf9b4938e36c7c698684c5fd734f45b",
+        "artifacts/assembly/approach_slew_v1_r01/960/source.zip": "8ac1cb92af1f5fa9a803b6e2aa414cddcac80e8ee9abc2df95047723ed86a876",
+        "artifacts/assembly/approach_slew_v1_r01/960/validation/report.json": "5ae6a2d610d1c6df5a601b793b1fac03a44370501cc096df71d59433ac5f56d4",
+        "artifacts/assembly/approach_slew_v1_r01/960/validation/trajectory.pt": "e06b1738323d3dde1ad60d06840f0ff52d2ae6d6c46fa99f18dab87bfdcc5d70"
+      }
+    }
+  ],
+  "verified_aggregates": {
+    "original_servo120": {
+      "path": "artifacts/assembly/research_cycle_20260910_r01/contact_120_240_480_960_corrected_v3.json",
+      "sha256": "ad8dd42c7edb3a7d1c50bf2b06f051ccb6931ce413085d58d081b0ea95cd1ca7",
+      "decision": {
+        "requires_960": false,
+        "finest_prefix_pair_pass": false,
+        "finest_pair_hz": [
+          480,
+          960
+        ],
+        "training_authorized_by_prefix": false
+      },
+      "pairs": [
+        {
+          "physics_hz": [
+            120,
+            240
+          ],
+          "margins": {
+            "abort_count_difference_at_most_one": false,
+            "individual_outcome_changes_at_most_two": false,
+            "median_peak_wrist_relative_difference_at_most_20pct": true,
+            "median_fixture_impulse_relative_difference_at_most_20pct": false
+          },
+          "abort_count_difference": 12,
+          "individual_outcome_changes": 14,
+          "median_peak_wrist_relative_difference": 0.040304928226011096,
+          "median_fixture_impulse_relative_difference": 0.5193643202988119
+        },
+        {
+          "physics_hz": [
+            240,
+            480
+          ],
+          "margins": {
+            "abort_count_difference_at_most_one": false,
+            "individual_outcome_changes_at_most_two": false,
+            "median_peak_wrist_relative_difference_at_most_20pct": true,
+            "median_fixture_impulse_relative_difference_at_most_20pct": false
+          },
+          "abort_count_difference": 13,
+          "individual_outcome_changes": 14,
+          "median_peak_wrist_relative_difference": 0.03206768140939306,
+          "median_fixture_impulse_relative_difference": 0.7588514616672148
+        },
+        {
+          "physics_hz": [
+            480,
+            960
+          ],
+          "margins": {
+            "abort_count_difference_at_most_one": true,
+            "individual_outcome_changes_at_most_two": false,
+            "median_peak_wrist_relative_difference_at_most_20pct": true,
+            "median_fixture_impulse_relative_difference_at_most_20pct": false
+          },
+          "abort_count_difference": 1,
+          "individual_outcome_changes": 3,
+          "median_peak_wrist_relative_difference": 0.009688680351543924,
+          "median_fixture_impulse_relative_difference": 0.532596276606892
+        }
+      ]
+    },
+    "servo480": {
+      "path": "artifacts/assembly/research_cycle_20260910_r01/servo_impact_comparison_v1.json",
+      "sha256": "5b809174062c29401d78f19c35d6c8097e62304da3ca77137d7c04a352ac1a32",
+      "decision": {
+        "finest_prefix_pair_pass": false,
+        "finest_pair_hz": [
+          480,
+          960
+        ],
+        "servo_effect_comparisons_performed": true,
+        "original_pair_material_margins_pass": false,
+        "training_authorized_by_prefix": false
+      },
+      "pairs": [
+        {
+          "physics_hz": [
+            480,
+            960
+          ],
+          "margins": {
+            "abort_count_difference_at_most_one": true,
+            "individual_outcome_changes_at_most_two": true,
+            "median_peak_wrist_relative_difference_at_most_20pct": true,
+            "median_fixture_impulse_relative_difference_at_most_20pct": false
+          },
+          "abort_count_difference": 0,
+          "individual_outcome_changes": 2,
+          "median_peak_wrist_relative_difference": 0.016216948804090317,
+          "median_fixture_impulse_relative_difference": 0.5040334423549138
+        }
+      ]
+    },
+    "servo480_reference20mm_s": {
+      "path": "artifacts/assembly/research_cycle_20260910_r01/approach_slew_comparison_v1.json",
+      "sha256": "24058f1e3586d73cbcd3566732a53964da01cf3c0a34f198140162312c042640",
+      "decision": {
+        "finest_prefix_pair_pass": false,
+        "active_prefix_support_floor_pass": false,
+        "earns_full_job_validation": false,
+        "training_authorized_by_prefix": false,
+        "reference_effect_comparisons_performed": true
+      },
+      "pairs": [
+        {
+          "physics_hz": [
+            480,
+            960
+          ],
+          "margins": {
+            "abort_count_difference_at_most_one": true,
+            "individual_outcome_changes_at_most_two": true,
+            "median_peak_wrist_relative_difference_at_most_20pct": true,
+            "median_fixture_impulse_relative_difference_at_most_20pct": false
+          },
+          "abort_count_difference": 1,
+          "individual_outcome_changes": 1,
+          "median_peak_wrist_relative_difference": 0.014491485019306917,
+          "median_fixture_impulse_relative_difference": 0.5801260397460511
+        }
+      ]
+    }
+  },
+  "ordinary_training": {
+    "historical_complete_run": {
+      "charged_transitions": 10326272,
+      "training_seed": 170,
+      "development_completions": "81/84 at original120Hz",
+      "checkpoint_path": "artifacts/assembly/uniform_unclipped_170_v4_r02/pilot/budget_checkpoint.pt",
+      "checkpoint_sha256": "cee349b1b9283a66924294323f5c7bd8f5de98434be70ed19d8a07986f9eb532"
+    },
+    "new_work": "Two fresh engineering-only PPO profiles, two cohorts each at1024 and2048, both seed170. Real optimization, initialization, diagnostics and checkpoint export/reload ran.",
+    "new_profile_charged_transitions": 2816256.0,
+    "new_profile_optimizer_steps": 5848,
+    "new_recovery_reliability_evaluation": false
+  },
+  "candidate_training": {
+    "gpu_runs": 0,
+    "charged_training_transitions": 0,
+    "implementation": [
+      "src/assembly_recovery/recovery_teaching_v1.py",
+      "scripts/train_recovery_teaching_v1.py"
+    ],
+    "verified_scope": "CPU masks and vectorized-prefix tests, including exclusion of off-policy actions and rewards. The original120Hz prototype was not launched or adopted as a corrected physical task."
+  },
+  "historical_controller_comparison": {
+    "scope": "Two previously confirmed development seeds under original120Hz; not rerun as full jobs in this cycle.",
+    "whole_job_completions_of_56": {
+      "ordinary_learned": 47,
+      "scripted_retry": 47,
+      "scripted_continued_insertion": 11
+    },
+    "same_active_witnessed_stall_completions_of_37": {
+      "ordinary_learned": 30,
+      "scripted_retry": 31,
+      "scripted_continued_insertion": 1
+    },
+    "source": "evidence/post_stall_confirmation_v2_verified.json",
+    "adaptive_training_benefit_established": false,
+    "learned_reliability_advantage_established": false,
+    "original_withdrawal_competence_gate_passed": false
+  },
+  "capacity": {
+    "evidence": "evidence/training_capacity_v2.json",
+    "sha256": "32cfee50c75694861ac704885590129e022bfe0eb80c9ca9ff4c1d31d95cc39f",
+    "verified_status": "verified",
+    "adopt_2048_for_same_runtime": true,
+    "4096_tested": false,
+    "active_samples_per_s": [
+      461.05310931579584,
+      595.4227073613519
+    ],
+    "charged_references_per_s": [
+      1664.267998432772,
+      2306.3403033184054
+    ],
+    "scope": "Startup-inclusive engineering throughput at unequal work. Reprofile after any material physical/task change; no learning-quality comparison."
+  },
+  "cost": {
+    "prior_tracked_reference_lower_bound": 24995215.25,
+    "capacity_optimization_reference_transitions": 2816256.0,
+    "physics_diagnostic_reference_transitions": 67396.0,
+    "cycle_charged_reference_transitions": 2883652.0,
+    "cumulative_tracked_reference_lower_bound": 27878867.25,
+    "completed_simulator_processes": 10,
+    "simulator_process_failures": 0,
+    "original_queue_cpu_verification_failures": 2,
+    "separate_capacity_pair_cpu_check_failure": 1,
+    "diagnostic_requests": 224,
+    "capacity_training_requests": 6144,
+    "candidate_training_transitions": 0,
+    "final_test_transitions": 0,
+    "summed_launcher_wall_s": 2146.5179999999964,
+    "peak_gpu_mib": 6499,
+    "minimum_free_ram_mib": 10616.25390625,
+    "unit": "One reference transition equals eight executed native physics environment steps, including initialization, active/absorbing slots and all preserved failures. Corrected CPU reviews add zero simulator work."
+  },
+  "preserved_failures": [
+    {
+      "path": "evidence/contact_impact_verifier_failure_v1.json",
+      "sha256": "1fdc3b3e209a209a41501addd6c715b286644a799605e3a866a0b025a7ad408f"
+    },
+    {
+      "path": "evidence/contact_impact_precision_verifier_failure_v1.json",
+      "sha256": "c889871b857873d8d26b838a8cb7c24a20c1bdcb1082318a374a654df6a1c6f3"
+    },
+    {
+      "path": "evidence/training_capacity_v1.json",
+      "sha256": "936fb234a5f4166c1022e229dca7aba642e6a2547a4de2b390bd368587e13314"
+    }
+  ],
+  "saved_benchmark_models": [
+    {
+      "path": "artifacts/assembly/capacity1024_v1_r01/profile/benchmark_cohort_1.pt",
+      "sha256": "5b4af07911ac08242f3307e2ab0ea38b0cf1070983241773a1e0cd950b4cd8ba",
+      "status": "engineering_benchmark_only; not a research initializer"
+    },
+    {
+      "path": "artifacts/assembly/capacity1024_v1_r01/profile/benchmark_cohort_2.pt",
+      "sha256": "630aa60ff6fb7a0213c39902f90cde661c043e23692255c124ac630a6a5fb1d1",
+      "status": "engineering_benchmark_only; not a research initializer"
+    },
+    {
+      "path": "artifacts/assembly/capacity2048_v1_r01/profile/benchmark_cohort_1.pt",
+      "sha256": "52fd7cae203e1bbb97540c08cd32a0d5a7470efb51be614e32d9f74945bf3f14",
+      "status": "engineering_benchmark_only; not a research initializer"
+    },
+    {
+      "path": "artifacts/assembly/capacity2048_v1_r01/profile/benchmark_cohort_2.pt",
+      "sha256": "9e6200b5916081be686c22019ea59d9959cc0f4c51cabf4ba43fc7e56bc37cb5",
+      "status": "engineering_benchmark_only; not a research initializer"
+    }
+  ],
+  "next_action": "Release the bounded technical result in the existing README/ROADMAP with the figure and verified evidence. Close this fixed-prefix campaign. Any future learned comparison requires a new, independently justified physical/load definition and a failure generator that actually leaves retained-grasp contact stalls; do not keep tuning this assay or open final tests."
+}

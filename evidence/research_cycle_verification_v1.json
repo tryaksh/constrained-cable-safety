@@ -1,0 +1,90 @@
+{
+  "schema": 1,
+  "status": "passed",
+  "recorded_at_utc": "2026-09-10T17:28:50.769242+00:00",
+  "research_decision": {
+    "path": "evidence/research_cycle_decision_v1.json",
+    "sha256": "82de7d2b5c05f0a111b2000d20dc61c8fe4584ea3b05b51314a510b28f1965b6"
+  },
+  "ruff": {
+    "command": ".venv/Scripts/python.exe -m ruff check src scripts tests",
+    "passed": true
+  },
+  "local_cpu_tests": {
+    "command": ".venv/Scripts/python.exe -m pytest -q",
+    "passed": 299,
+    "failed": 0
+  },
+  "source_only_cpu_tests": {
+    "checkout": "artifacts/assembly/research_cycle_20260910_r01/source_only_v3",
+    "passed": 299,
+    "failed": 0,
+    "ignored_artifacts_and_isaaclab_absent": true,
+    "tested_index_tree": "d5698ab1b6e240c9491eaf37d1fdb838a6fe77e5"
+  },
+  "checkout_byte_verification": {
+    "status": "passed",
+    "new_runtime_evidence_files_byte_identical": 42,
+    "paths": [
+      "configs/approach_slew_registration_v1.json",
+      "configs/contact_impact_continuation_v2.json",
+      "configs/contact_impact_registration_v1.json",
+      "configs/recovery_teaching_registration_v1.json",
+      "configs/servo_impact_registration_v1.json",
+      "configs/training_capacity_v1.json",
+      "evidence/approach_slew_design_v1.json",
+      "evidence/contact_impact_precision_verifier_failure_v1.json",
+      "evidence/contact_impact_verifier_failure_v1.json",
+      "evidence/force_frame_audit_v1.json",
+      "evidence/precontact_dynamics_audit_v1.json",
+      "evidence/research_cycle_checkout_failure_v1.json",
+      "evidence/research_cycle_decision_v1.json",
+      "evidence/research_cycle_v1.pdf",
+      "evidence/research_cycle_v1.png",
+      "evidence/training_capacity_v1.json",
+      "evidence/training_capacity_v2.json",
+      "scripts/plot_research_cycle_v1.py",
+      "scripts/probe_approach_slew_v1.py",
+      "scripts/probe_contact_impact_v1.py",
+      "scripts/probe_servo_impact_v1.py",
+      "scripts/profile_training_capacity_v1.py",
+      "scripts/review_approach_slew_v1.py",
+      "scripts/review_contact_impact_v1.py",
+      "scripts/review_contact_impact_v2.py",
+      "scripts/review_contact_impact_v3.py",
+      "scripts/review_servo_impact_v1.py",
+      "scripts/review_training_capacity_v1.py",
+      "scripts/review_training_capacity_v2.py",
+      "scripts/run_approach_slew_v1.py",
+      "scripts/run_contact_impact_v1.py",
+      "scripts/run_contact_impact_v2.py",
+      "scripts/run_servo_impact_v1.py",
+      "scripts/run_training_capacity_v1.py",
+      "scripts/summarize_research_cycle_v1.py",
+      "scripts/train_recovery_teaching_v1.py",
+      "src/assembly_recovery/approach_slew_env_v1.py",
+      "src/assembly_recovery/approach_slew_v1.py",
+      "src/assembly_recovery/contact_impact_env_v1.py",
+      "src/assembly_recovery/recovery_teaching_v1.py",
+      "src/assembly_recovery/servo_impact_env_v1.py",
+      "src/assembly_recovery/servo_impact_timing_v1.py"
+    ],
+    "frozen_continuation_sources_match": true,
+    "ignored_artifacts_absent": true,
+    "isaaclab_checkout_absent": true,
+    "tested_index_tree": "d5698ab1b6e240c9491eaf37d1fdb838a6fe77e5"
+  },
+  "all_owned_run_artifact_hashes_rechecked": 84,
+  "historical_protected_sources_evidence_checkpoint_and_upstream_preflight": true,
+  "source_checkout_failure_preserved": "evidence/research_cycle_checkout_failure_v1.json",
+  "checkout_resolution": "The root.gitattributes remains byte-identical to its historical registration. Directory-scoped attributes preserve newly captured CRLF runtime/evidence bytes. Test-only line ending normalization does not change simulator inputs.",
+  "owned_simulator_processes_at_verification": [],
+  "gpu_memory_and_utilization_at_stop": {
+    "used_mib": 0,
+    "utilization_percent": 0
+  },
+  "scope_and_limitations": [
+    "CPU and artifact verification, not a passing physical or recovery-method gate.",
+    "All failed scientific and CPU-verification records remain available. The rejected fixed-prefix campaign is closed; no candidate training or final tests ran."
+  ]
+}

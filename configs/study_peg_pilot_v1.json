@@ -1,0 +1,384 @@
+{
+  "schema_version": 1,
+  "name": "assembly_recovery",
+  "status": "peg_pilot_frozen_v1",
+  "question": "At equal training cost, does adaptive practice on recoverable failures reduce unfinished assembly jobs more than uniform practice and simple retract/retry?",
+  "upstream": {
+    "isaac_sim": "5.1.0",
+    "isaac_lab_tag": "v2.3.2",
+    "isaac_lab_commit": "37ddf626871758333d6ed89cf64ad702aef127d0",
+    "rl_games_commit": "6b3534f29568158e9e29ec8bf83cc88fce5f0cae"
+  },
+  "tasks": {
+    "peg": "Isaac-Forge-PegInsert-Direct-v0",
+    "gear": "Isaac-Forge-GearMesh-Direct-v0"
+  },
+  "gates": {
+    "held_part_gravity_resolved": true,
+    "actor_information_audited": true,
+    "fault_support_validated": true,
+    "within_job_reset_accounting_verified": true,
+    "success_and_force_evaluator_verified": true,
+    "protocol_frozen": true,
+    "recovery_reward_compatibility_verified": true,
+    "training_terminal_handling_verified": true
+  },
+  "training": {
+    "primary_arms": [
+      "uniform_faults",
+      "adaptive_faults"
+    ],
+    "comparators": [
+      "standard_forge",
+      "standard_forge_retract_retry",
+      "fixed_difficulty_curriculum"
+    ],
+    "seeds": [
+      170,
+      271,
+      372
+    ],
+    "nominal_fraction": 0.25,
+    "transition_targets": [
+      1000000,
+      3000000,
+      10000000
+    ],
+    "optional_extension_transitions": 30000000,
+    "initial_num_envs": 1024,
+    "initial_horizon": 128,
+    "bootstrap_cost": "Count in each arm or explicitly report identical shared initialization cost",
+    "probe_and_mining_cost": "Included in total transitions",
+    "adaptive_priority_initial": "p * (1 - p) with nonzero bin sampling floor; learning progress is a separate ablation",
+    "pilot_protocol": "configs/protocol_v1.json"
+  },
+  "splits": {
+    "development_seeds": [
+      10070,
+      10071,
+      10072
+    ],
+    "test_seeds": [
+      20070,
+      20071,
+      20072
+    ],
+    "test_fault_jobs_per_training_seed": 200,
+    "test_nominal_jobs_per_training_seed": 100,
+    "fault_support_status": "96 paired development cases at lower/interior/upper grid values; 192 valid initializations and fixed-script completion support at every bin/value. Continuous intervals are sampled, not proven. Final combinations/seeds stay closed."
+  },
+  "job_protocol": {
+    "status": "frozen_peg_pilot_v1",
+    "deadline_seconds": 30,
+    "seated_dwell_seconds": 0.5,
+    "force_budget_n": 20,
+    "force_budget_meaning": "Experimental limit on raw incoming wrist-joint load; not fixture normal force, hardware damage, or a safety rating",
+    "force_sampling_and_abort_latency": "Raw wrist load sampled at every 1/120 s physics step; evaluator latches hold for the next control application. No measured guarantee of a hard force ceiling or stopping distance.",
+    "allowed_fault_families": [
+      "lateral_pose_bias",
+      "approach_offset",
+      "friction"
+    ],
+    "gear_extension": "yaw_error_after_action_range_check",
+    "failure_events": [
+      "deadline",
+      "force_abort",
+      "lost_grasp",
+      "within_job_simulator_reset",
+      "within_job_state_write",
+      "nonfinite_state"
+    ],
+    "recovery_definition": "Controller-independent contact witness v1: at first evaluator stall, fixture contact above 0.1 N occupies at least 0.8 of prior 1 s; later rise at least 5 mm and base clearance above 1 mm with 0.2 s contact-free dwell; retained grasp and completed seating in the same job. Historical scripted-phase witness remains separately labeled.",
+    "primary_held_part_gravity": "enabled",
+    "evaluator_defaults_source": "src/assembly_recovery/evaluation.py:JobCriteria; actual resolved values are recorded in every validation report",
+    "evaluator_version": 2,
+    "development_reward_terminal_handling": "Implemented and verified: only control endpoints at/before evaluator termination; later rewards zero and no terminal bootstrap. Partial terminal interval omitted. Absorbing slots excluded from PPO and normalization.",
+    "force_filter_status": "Raw 20 N abort unchanged. A 20 ms EWMA plus 25 ms sustained-load diagnostic is CPU-tested, not wired into job outcomes. Any future filtered-abort protocol needs development evidence and shared reruns."
+  },
+  "success_target": {
+    "relative_unfinished_job_reduction": 0.5,
+    "max_nominal_success_loss_absolute": 0.02,
+    "interpretation": "Engineering ambition, not a promised result or publication gate"
+  },
+  "compute": {
+    "concurrent_gpu_jobs": 1,
+    "max_block_minutes": 300,
+    "reserve_fraction_for_evaluation_and_reporting": 0.25,
+    "maximum_upstream_smoke_epochs_before_study_adapter": 20
+  },
+  "gate_evidence": {
+    "held_part_gravity_resolved": "evidence/peg_validation.json: select physical held-part gravity; three development seeds retain bilateral contact. Robot gravity compensation is idealized.",
+    "within_job_reset_accounting_verified": "evidence/training_contract_verified_v1.json: 20 deliberate API/nonfinite requests; reset, pose write, initialization IK/physics blocked before state/time change, fresh initialization required before restarting jobs.",
+    "success_and_force_evaluator_verified": "evidence/peg_validation.json and CPU tests: dwell, raw wrist-load abort, bilateral grasp loss, failure precedence, trace continuity. Development criteria, not hardware force certification.",
+    "actor_information_audited": "evidence/training_contract_verified_v1.json: instantiated separate feedforward actor/critic, hidden-pose and same-estimate action-frame perturbations; privileged critic perturbation has zero actor output effect. CPU actor-gradient independence test passes.",
+    "fault_support_validated": "evidence/training_support_v1.json: 96 matched cases, retry 73/96 versus continued insertion 18/96, all 192 initializations valid. Every low/interior/high bin/value has fixed-script completion support. This is sampled development coverage, not every continuous point.",
+    "recovery_reward_compatibility_verified": "evidence/recovery_pair_10070_r02.json and evidence/reward_audit.json: one witnessed scripted recovery returns 75.797 vs 37.543 for a bitwise-matched persistent stall at gamma 0.995. Narrow development trajectory gate only; training terminal integration and wider fault support remain open.",
+    "training_terminal_handling_verified": "evidence/training_contract_verified_v1.json and evidence/training_path_parity_r01.json: CPU/native/reward parity, one done, frozen terminal observations, zero bootstrap, masked PPO/normalization, explicit initialization and absorbing cost; runtime API guards and nonfinite controls pass.",
+    "protocol_frozen": "configs/protocol_v1.json: exact peg pilot source/config hashes; final evaluation and gear remain closed. evidence/physics_refinement_development_v1.json verifies timing/sensor mechanics, not convergence."
+  },
+  "fault_support": {
+    "version": "peg-development-v1",
+    "status": "sampled_boundaries_and_interiors_verified_for_peg_pilot",
+    "nominal": {
+      "fixture_bias_xy_m": [
+        0,
+        0
+      ],
+      "approach_xy_m": [
+        0,
+        0
+      ],
+      "fixed_static_friction": 0.75,
+      "fixed_dynamic_friction": 0.25,
+      "hand_height_above_fixture_m": 0.045,
+      "hand_height_noise_m": 0.002
+    },
+    "bins": [
+      {
+        "id": "nominal",
+        "family": "nominal",
+        "units": "none",
+        "range": [
+          0,
+          0
+        ],
+        "development_value": 0
+      },
+      {
+        "id": "bias_low",
+        "family": "lateral_pose_bias",
+        "units": "m_radial",
+        "range": [
+          0.00025,
+          0.001
+        ],
+        "development_value": 0.00075
+      },
+      {
+        "id": "bias_medium",
+        "family": "lateral_pose_bias",
+        "units": "m_radial",
+        "range": [
+          0.001,
+          0.002
+        ],
+        "development_value": 0.0015
+      },
+      {
+        "id": "approach_low",
+        "family": "approach_offset",
+        "units": "m_radial",
+        "range": [
+          0.002,
+          0.006
+        ],
+        "development_value": 0.004
+      },
+      {
+        "id": "approach_high",
+        "family": "approach_offset",
+        "units": "m_radial",
+        "range": [
+          0.006,
+          0.01
+        ],
+        "development_value": 0.008
+      },
+      {
+        "id": "friction_low",
+        "family": "friction",
+        "units": "static_coefficient",
+        "range": [
+          0.25,
+          0.5
+        ],
+        "development_value": 0.25
+      },
+      {
+        "id": "friction_high",
+        "family": "friction",
+        "units": "static_coefficient",
+        "range": [
+          1.0,
+          1.25
+        ],
+        "development_value": 1.25
+      }
+    ],
+    "implementation": {
+      "lateral_pose_bias": "Fixed XY estimate error, shared by actor observations and action target frame; no true fixture displacement.",
+      "approach_offset": "Physical hand/held-part initial XY approach offset via upstream reset IK, before job begins.",
+      "friction": "Fixture static coefficient set before job; dynamic coefficient held at 0.25. Actual material tensors recorded; held part and robot unchanged."
+    },
+    "geometry_derivation": {
+      "peg_diameter_m": 0.007986,
+      "hole_diameter_m": 0.0081,
+      "radial_clearance_m": 5.7e-05,
+      "position_action_bounds_m": [
+        0.05,
+        0.05,
+        0.05
+      ],
+      "minimum_position_error_clip_m": 0.016,
+      "maximum_withdrawn_base_clearance_m": 0.017608,
+      "initial_minimum_nominal_base_clearance_m": 0.010608,
+      "reason": "Bias 0.25..2 mm is larger than clearance but far inside XY action reach. Approach up to 10 mm is below the minimum randomized 16 mm positional error clip. Initial hand height 45 +/- 2 mm gives at least 10.608 mm nominal peg-base clearance before grasp offsets; actual tilted-cylinder clearance, contact and action validity are checked per case. Geometry feasibility alone does not establish recovery.",
+      "friction_reason": "0.25..1.25 is the pinned upstream fixture startup static-friction range. These are numerical simulation probes, not calibrated material coefficients."
+    },
+    "shared_randomization": {
+      "fixture_world_position_uniform_half_width_m": [
+        0.05,
+        0.05,
+        0.05
+      ],
+      "fixture_yaw_deg": [
+        0,
+        360
+      ],
+      "grasp_offset_in_part_frame_uniform_half_width_m": [
+        0.003,
+        0,
+        0.003
+      ],
+      "hand_yaw_noise_rad": [
+        -0.785,
+        0.785
+      ],
+      "fixture_z_estimate_gaussian_sigma_m": 0.001,
+      "fingertip_position_gaussian_sigma_m": 0.00025,
+      "fingertip_rotation_gaussian_sigma_deg": 0.1,
+      "force_gaussian_sigma_n": 1.0,
+      "held_mass_additive_uniform_kg": [
+        -0.005,
+        0.005
+      ],
+      "ema_range": [
+        0.025,
+        0.1
+      ],
+      "task_prop_gains": [
+        565,
+        565,
+        565,
+        28,
+        28,
+        28
+      ],
+      "task_prop_gain_multiplier_range": [
+        0.7092198581560284,
+        1.41
+      ],
+      "position_error_clip_multiplier_range": [
+        0.8,
+        1.25
+      ],
+      "rotation_error_clip_multiplier_range": [
+        0.7751937984496123,
+        1.29
+      ],
+      "dead_zone_force_uniform_n": [
+        0,
+        5
+      ],
+      "dead_zone_torque_uniform_nm": [
+        0,
+        1
+      ],
+      "dead_zone_resample_s": 2,
+      "contact_reward_threshold_uniform_n": [
+        5,
+        10
+      ],
+      "note": "Identical paired initialization and RNG stream; actual values, materials and trajectories recorded. No claim of identical nuisance values across different bins/env indices. Noise is unbounded Gaussian; realized validity is checked."
+    },
+    "development_matrix": {
+      "seeds": [
+        10070,
+        10071,
+        10072
+      ],
+      "directions_xy": [
+        [
+          1,
+          0
+        ],
+        [
+          -1,
+          0
+        ],
+        [
+          0,
+          1
+        ],
+        [
+          0,
+          -1
+        ]
+      ],
+      "cases_per_bin_per_seed": 4,
+      "jobs_per_arm": 84,
+      "severity_coverage": "One representative value per bin, not full interval validation. Nominal/friction directions label four nuisance replicates."
+    },
+    "reserved_unopened": {
+      "multi_fault_combinations": "Any two or more controlled fault families active simultaneously",
+      "bias_radial_range_m": [
+        0.002,
+        0.003
+      ],
+      "approach_radial_range_m": [
+        0.01,
+        0.012
+      ],
+      "test_case_generation": "Not implemented or opened; reserve definitions only."
+    },
+    "interval_convention": "Training candidate ranges include endpoints; reserved severity ranges exclude their lower bound and include their upper bound. A future sampler must give shared training-bin boundaries one deterministic label."
+  },
+  "final_evaluation_addition": {
+    "id": "physics_timestep_refinement_v1",
+    "status": "registered_before_learning_and_final_test_not_executed",
+    "question": "Does complete-job reliability and witnessed recovery survive physics timestep refinement without policy retraining?",
+    "design": "Evaluate the same frozen checkpoints and preselected case parameters at physics dt 1/120 and 1/240 s; retain 15 Hz policy actions, the same geometry, observation interface, reward, force criteria and 30 s deadline.",
+    "tasks": [
+      "peg",
+      "gear"
+    ],
+    "arms": [
+      "uniform_faults",
+      "adaptive_faults",
+      "fixed_difficulty_curriculum"
+    ],
+    "training_seeds": [
+      170,
+      271,
+      372
+    ],
+    "checkpoint_selection": "Final predeclared training-transition target common to all arms; never final-test performance.",
+    "cases_per_task_per_training_seed_per_arm": {
+      "fault": 48,
+      "nominal": 16
+    },
+    "selection_rule": "Before opening final results, choose the first 48 fault and 16 nominal case IDs in a deterministic seed-balanced, bin-balanced round-robin from the frozen main final-test manifest. Use identical IDs for every arm/checkpoint. No selection based on stalls, successful recovery, forces, or method scores.",
+    "test_cases_generated_or_opened": false,
+    "control_and_sensor_invariants": [
+      "Preserve 15 Hz action timing and 120 Hz servo/observation-noise update timing; hold torques and noise between the two finer physics substeps. Increasing servo update rate would confound numerical refinement with a controller change.",
+      "Preserve physical-time force-filter constants, dwell, stall windows and abort latency. Record raw forces at both native 120/240 Hz and a common 120 Hz comparison grid; never hide native peak violations.",
+      "Use separate deterministic RNG streams for fault/nuisance settings and sensor noise so extra physics steps do not consume different random draws.",
+      "Use the same declared valid initialization procedure and sampled parameters, not an incomplete restored PhysX snapshot. Report realized pose/grasp differences caused by refinement; include invalid initializations as failed requests."
+    ],
+    "primary_addition_endpoint": "Joint completion across resolutions: mean(S_120 * S_240) over every preselected request. Both successes must satisfy dwell, retained grasp, time and force criteria.",
+    "supporting_readouts": [
+      "Completion difference between resolutions by arm and training seed; paired uncertainty over case IDs and between-seed variation.",
+      "Witnessed contact-failure/recovery/prevention labels separately at each resolution, without selecting a method-specific denominator.",
+      "Raw peak load, excess-force impulse, sustained-load diagnostic and failure/abort counts; raw spikes are not assumed to be numerical artifacts."
+    ],
+    "primary_study_endpoint_unchanged": "Main held-out unfinished jobs per 100 requests at equal training cost.",
+    "incremental_fine_resolution_jobs": 1152,
+    "incremental_control_transitions_at_full_deadline": 518400,
+    "incremental_physics_env_steps_at_full_deadline": 8294400,
+    "cost_note": "Coarse cases are reused from main final evaluation; finer runs add 64 cases x 3 training seeds x 3 arms x 2 tasks. Count initialization, probes, failures and all extra evaluation costs; one GPU job. No additional policy training.",
+    "required_development_gate": "Verify timestep conversion, force units, control/noise timing, initial validity and synthetic/refined contact controls before opening final tests. No backend upgrade, geometry change or sensor-history assumption from newer Isaac Lab versions.",
+    "novelty_scope": "A distinctive empirical stress test for this study; no claim that timestep refinement or this endpoint is new to the literature.",
+    "development_gate_evidence": "evidence/physics_refinement_development_v1.json: four nominal pairs, exact controls/noise/nuisance, native force conversion and CPU replay pass. Completion 2/4 coarse, 1/4 fine, 1/4 joint. Final learned-policy test not executed."
+  },
+  "manuscript_positioning": "Empirical autonomous recovery and complete-job reliability at equal training cost, with preserved failures and physics-refinement robustness; no algorithmic novelty or hardware-transfer claim."
+}

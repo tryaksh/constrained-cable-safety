@@ -1,0 +1,73 @@
+{
+  "schema": 1,
+  "version": "uniform_value_unclipped_training_v4",
+  "status": "registered_before_training",
+  "created_at_utc": "2026-09-09T15:05:11.445912+00:00",
+  "controller": "project_uniform_fault_ppo_value_unclipped_v4",
+  "seed": 170,
+  "num_envs": 1024,
+  "cohorts": 22,
+  "initialization": "Fresh randomly initialized policy and optimizer. No pilot or diagnostic weights reused; resume equivalence is not assumed.",
+  "rollout_control_transitions": 10137600,
+  "expected_initialization_physics_env_steps": 1509376,
+  "charged_control_equivalent_transitions": 10326272.0,
+  "wall_time_limit_minutes": 150,
+  "stop_conditions": [
+    "Any invalid initialization stops the run and remains a failed request",
+    "Any nonfinite gradient/state or resource guard stops the run",
+    "Wall limit: 150 minutes; any partial checkpoints remain incomplete"
+  ],
+  "checkpoint_rule": "Save every completed cohort. Only the final predeclared 22-cohort checkpoint is the competence evaluation checkpoint. No choice based on development outcomes.",
+  "evaluation_schedule": {
+    "during_training": "CPU inspect periodic checkpoints and active/absorbing costs without additional simulator jobs or checkpoint selection",
+    "after_budget": "All 28 cases at each development seed 10070,10071,10072, deterministic actions; 84 total requests. Stop on invalid process/artifact and preserve failure.",
+    "expected_charged_transitions": 38503.5
+  },
+  "competence_gate": {
+    "nominal_completions_minimum": 10,
+    "nominal_requests": 12,
+    "fault_completions_minimum": 36,
+    "fault_requests": 72,
+    "witnessed_recoveries_minimum": 3,
+    "distinct_fault_bins_with_witnessed_recovery_minimum": 2,
+    "required": "All 84 requests retained, all initializations valid, no forbidden events, finite checkpoint, exact budget. Force aborts, lost grasp, deadlines remain failures.",
+    "meaning": "Development engineering gate for proceeding to sampler implementation, not industrial reliability, final-test performance, or a publication criterion."
+  },
+  "training_prerequisites": [
+    "Existing verified v3 physical and reward controls",
+    "Verified four-arm partial policy diagnosis and controlled CPU critic fit",
+    "CPU gradient and absorbing-mask regression checks pass",
+    "Frozen protocol_v4.json captures settings and sources before launch"
+  ],
+  "comparison_status": "No adaptive run until competence gate passes. Future arms share architecture, reward, support, 25 percent nominal share, and charged training cost.",
+  "previous_cost_accounting": {
+    "v2_pilot_training": 2346880,
+    "v1_failed_pilot": 947328,
+    "v2_diagnosis": 38503.5,
+    "v3_reward_controls": 38503.5,
+    "weights_reused": false,
+    "scope": "Separate prior development/tuning costs, not hidden in the fresh v3 budget. Older shared development costs remain in their preserved evidence.",
+    "v3_interrupted_training_lower_bound": 6241536,
+    "v3_interrupted_training_upper_bound": 6571264,
+    "aborted_partial_diagnosis_lower_bound": 3818.5,
+    "aborted_partial_diagnosis_upper_bound": 12834.5,
+    "completed_partial_four_arm_diagnosis": 51338,
+    "cpu_critic_fit_simulator_transitions": 0,
+    "cumulative_prior_project_lower_bound": 10805032.25
+  },
+  "scope_and_limitations": [
+    "One uniform training seed, development only; no equal-cost method comparison or final-test result.",
+    "The reward correction needs fresh learning evidence and cannot retrospectively improve v2 outcomes.",
+    "Final-test seeds, combinations, gear and physics refinement remain unopened."
+  ],
+  "optimizer_change": {
+    "previous_value_clip": 0.2,
+    "value_clip": null,
+    "actor_clip_ratio": 0.2,
+    "only_behavior_change": "Unclipped mean squared value regression; all other PPO and task settings unchanged.",
+    "justification": "evidence/critic_fit_v1.json",
+    "weights_reused": false
+  },
+  "runtime": "One serial GPU process under existing wall and resource limits. No sleep guard.",
+  "integration_validation": "Only the value-loss formula changes; CPU regression verifies its gradient and absorbing mask. The same environment/worker loop already passed v3 GPU validation. No additional geometry or reward probe is needed."
+}

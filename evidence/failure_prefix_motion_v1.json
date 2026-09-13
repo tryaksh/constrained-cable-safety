@@ -1,0 +1,577 @@
+{
+  "schema": 1,
+  "status": "verified",
+  "research_result": false,
+  "all_prefix_failure_cases": [
+    {
+      "case_id": "dev-10070-nominal-1",
+      "case_index": 1,
+      "bin_id": "nominal",
+      "witnessed_failure_s": 2.7583333333333333,
+      "arms": {
+        "learned": {
+          "outcome": "success",
+          "completion": true,
+          "elapsed_s": 9.733333333333333,
+          "strict_withdrawal_recovery": false,
+          "maximum_rise_after_failure_mm": 0.05027651786804199,
+          "lateral_part_shift_after_handoff_mm": 4.850978031754494
+        },
+        "retry": {
+          "outcome": "success",
+          "completion": true,
+          "elapsed_s": 14.416666666666666,
+          "strict_withdrawal_recovery": true,
+          "maximum_rise_after_failure_mm": 7.797561585903168,
+          "lateral_part_shift_after_handoff_mm": 4.950140602886677
+        },
+        "continue": {
+          "outcome": "deadline",
+          "completion": false,
+          "elapsed_s": 30.0,
+          "strict_withdrawal_recovery": false,
+          "maximum_rise_after_failure_mm": 0.08115917444229126,
+          "lateral_part_shift_after_handoff_mm": 0.16645646246615797
+        }
+      }
+    },
+    {
+      "case_id": "dev-10070-nominal-2",
+      "case_index": 2,
+      "bin_id": "nominal",
+      "witnessed_failure_s": 2.75,
+      "arms": {
+        "learned": {
+          "outcome": "success",
+          "completion": true,
+          "elapsed_s": 12.608333333333333,
+          "strict_withdrawal_recovery": false,
+          "maximum_rise_after_failure_mm": 1.0691098868846893,
+          "lateral_part_shift_after_handoff_mm": 4.895088262856007
+        },
+        "retry": {
+          "outcome": "success",
+          "completion": true,
+          "elapsed_s": 20.825,
+          "strict_withdrawal_recovery": true,
+          "maximum_rise_after_failure_mm": 12.853618711233139,
+          "lateral_part_shift_after_handoff_mm": 4.3830545619130135
+        },
+        "continue": {
+          "outcome": "deadline",
+          "completion": false,
+          "elapsed_s": 30.0,
+          "strict_withdrawal_recovery": false,
+          "maximum_rise_after_failure_mm": 0.03717094659805298,
+          "lateral_part_shift_after_handoff_mm": 0.18610633560456336
+        }
+      }
+    },
+    {
+      "case_id": "dev-10070-bias_low-0",
+      "case_index": 4,
+      "bin_id": "bias_low",
+      "witnessed_failure_s": 3.325,
+      "arms": {
+        "learned": {
+          "outcome": "success",
+          "completion": true,
+          "elapsed_s": 7.483333333333333,
+          "strict_withdrawal_recovery": false,
+          "maximum_rise_after_failure_mm": 0.0812336802482605,
+          "lateral_part_shift_after_handoff_mm": 9.06610582023859
+        },
+        "retry": {
+          "outcome": "success",
+          "completion": true,
+          "elapsed_s": 21.091666666666665,
+          "strict_withdrawal_recovery": true,
+          "maximum_rise_after_failure_mm": 9.087912738323212,
+          "lateral_part_shift_after_handoff_mm": 9.386508725583553
+        },
+        "continue": {
+          "outcome": "deadline",
+          "completion": false,
+          "elapsed_s": 30.0,
+          "strict_withdrawal_recovery": false,
+          "maximum_rise_after_failure_mm": 0.597141683101654,
+          "lateral_part_shift_after_handoff_mm": 0.2173636166844517
+        }
+      }
+    },
+    {
+      "case_id": "dev-10070-bias_low-2",
+      "case_index": 6,
+      "bin_id": "bias_low",
+      "witnessed_failure_s": 3.5416666666666665,
+      "arms": {
+        "learned": {
+          "outcome": "success",
+          "completion": true,
+          "elapsed_s": 6.733333333333333,
+          "strict_withdrawal_recovery": false,
+          "maximum_rise_after_failure_mm": 0.013738870620727539,
+          "lateral_part_shift_after_handoff_mm": 3.2514980994164944
+        },
+        "retry": {
+          "outcome": "deadline",
+          "completion": false,
+          "elapsed_s": 30.0,
+          "strict_withdrawal_recovery": false,
+          "maximum_rise_after_failure_mm": 11.358454823493958,
+          "lateral_part_shift_after_handoff_mm": 2.8112621512264013
+        },
+        "continue": {
+          "outcome": "deadline",
+          "completion": false,
+          "elapsed_s": 30.0,
+          "strict_withdrawal_recovery": false,
+          "maximum_rise_after_failure_mm": 0.0742301344871521,
+          "lateral_part_shift_after_handoff_mm": 0.03589921834645793
+        }
+      }
+    },
+    {
+      "case_id": "dev-10070-bias_low-3",
+      "case_index": 7,
+      "bin_id": "bias_low",
+      "witnessed_failure_s": 3.216666666666667,
+      "arms": {
+        "learned": {
+          "outcome": "success",
+          "completion": true,
+          "elapsed_s": 6.666666666666667,
+          "strict_withdrawal_recovery": false,
+          "maximum_rise_after_failure_mm": 0.03154575824737549,
+          "lateral_part_shift_after_handoff_mm": 3.7502283230423927
+        },
+        "retry": {
+          "outcome": "success",
+          "completion": true,
+          "elapsed_s": 14.933333333333334,
+          "strict_withdrawal_recovery": true,
+          "maximum_rise_after_failure_mm": 7.3081329464912415,
+          "lateral_part_shift_after_handoff_mm": 3.464645938947797
+        },
+        "continue": {
+          "outcome": "deadline",
+          "completion": false,
+          "elapsed_s": 30.0,
+          "strict_withdrawal_recovery": false,
+          "maximum_rise_after_failure_mm": 0.16190111637115479,
+          "lateral_part_shift_after_handoff_mm": 0.18689162970986217
+        }
+      }
+    },
+    {
+      "case_id": "dev-10070-bias_medium-0",
+      "case_index": 8,
+      "bin_id": "bias_medium",
+      "witnessed_failure_s": 3.308333333333333,
+      "arms": {
+        "learned": {
+          "outcome": "success",
+          "completion": true,
+          "elapsed_s": 6.991666666666666,
+          "strict_withdrawal_recovery": false,
+          "maximum_rise_after_failure_mm": 0.000521540641784668,
+          "lateral_part_shift_after_handoff_mm": 2.8326264582574368
+        },
+        "retry": {
+          "outcome": "success",
+          "completion": true,
+          "elapsed_s": 24.575,
+          "strict_withdrawal_recovery": true,
+          "maximum_rise_after_failure_mm": 6.771020591259003,
+          "lateral_part_shift_after_handoff_mm": 2.2764024324715137
+        },
+        "continue": {
+          "outcome": "force_abort",
+          "completion": false,
+          "elapsed_s": 14.108333333333333,
+          "strict_withdrawal_recovery": false,
+          "maximum_rise_after_failure_mm": 0.000521540641784668,
+          "lateral_part_shift_after_handoff_mm": 1.5636520693078637
+        }
+      }
+    },
+    {
+      "case_id": "dev-10070-bias_medium-1",
+      "case_index": 9,
+      "bin_id": "bias_medium",
+      "witnessed_failure_s": 3.2583333333333333,
+      "arms": {
+        "learned": {
+          "outcome": "deadline",
+          "completion": false,
+          "elapsed_s": 30.0,
+          "strict_withdrawal_recovery": false,
+          "maximum_rise_after_failure_mm": 1.0365284979343414,
+          "lateral_part_shift_after_handoff_mm": 7.1919807232916355
+        },
+        "retry": {
+          "outcome": "success",
+          "completion": true,
+          "elapsed_s": 29.433333333333334,
+          "strict_withdrawal_recovery": true,
+          "maximum_rise_after_failure_mm": 13.03943619132042,
+          "lateral_part_shift_after_handoff_mm": 7.1211326867341995
+        },
+        "continue": {
+          "outcome": "deadline",
+          "completion": false,
+          "elapsed_s": 30.0,
+          "strict_withdrawal_recovery": false,
+          "maximum_rise_after_failure_mm": 0.08103996515274048,
+          "lateral_part_shift_after_handoff_mm": 0.5940494011156261
+        }
+      }
+    },
+    {
+      "case_id": "dev-10070-bias_medium-2",
+      "case_index": 10,
+      "bin_id": "bias_medium",
+      "witnessed_failure_s": 2.683333333333333,
+      "arms": {
+        "learned": {
+          "outcome": "success",
+          "completion": true,
+          "elapsed_s": 8.891666666666666,
+          "strict_withdrawal_recovery": false,
+          "maximum_rise_after_failure_mm": 0.013962388038635254,
+          "lateral_part_shift_after_handoff_mm": 7.042321842163801
+        },
+        "retry": {
+          "outcome": "success",
+          "completion": true,
+          "elapsed_s": 15.741666666666667,
+          "strict_withdrawal_recovery": true,
+          "maximum_rise_after_failure_mm": 11.633321642875671,
+          "lateral_part_shift_after_handoff_mm": 7.3947482742369175
+        },
+        "continue": {
+          "outcome": "deadline",
+          "completion": false,
+          "elapsed_s": 30.0,
+          "strict_withdrawal_recovery": false,
+          "maximum_rise_after_failure_mm": 0.036969780921936035,
+          "lateral_part_shift_after_handoff_mm": 0.07454118167515844
+        }
+      }
+    },
+    {
+      "case_id": "dev-10070-approach_low-0",
+      "case_index": 12,
+      "bin_id": "approach_low",
+      "witnessed_failure_s": 3.3333333333333335,
+      "arms": {
+        "learned": {
+          "outcome": "deadline",
+          "completion": false,
+          "elapsed_s": 30.0,
+          "strict_withdrawal_recovery": false,
+          "maximum_rise_after_failure_mm": 0.09245425462722778,
+          "lateral_part_shift_after_handoff_mm": 3.571977838873863
+        },
+        "retry": {
+          "outcome": "deadline",
+          "completion": false,
+          "elapsed_s": 30.0,
+          "strict_withdrawal_recovery": false,
+          "maximum_rise_after_failure_mm": 15.377812087535858,
+          "lateral_part_shift_after_handoff_mm": 7.87753239274025
+        },
+        "continue": {
+          "outcome": "force_abort",
+          "completion": false,
+          "elapsed_s": 7.175,
+          "strict_withdrawal_recovery": false,
+          "maximum_rise_after_failure_mm": 0.02966076135635376,
+          "lateral_part_shift_after_handoff_mm": 0.611248251516372
+        }
+      }
+    },
+    {
+      "case_id": "dev-10070-approach_low-1",
+      "case_index": 13,
+      "bin_id": "approach_low",
+      "witnessed_failure_s": 2.8916666666666666,
+      "arms": {
+        "learned": {
+          "outcome": "force_abort",
+          "completion": false,
+          "elapsed_s": 8.25,
+          "strict_withdrawal_recovery": false,
+          "maximum_rise_after_failure_mm": 0.03810226917266846,
+          "lateral_part_shift_after_handoff_mm": 2.4593390990048647
+        },
+        "retry": {
+          "outcome": "success",
+          "completion": true,
+          "elapsed_s": 15.608333333333333,
+          "strict_withdrawal_recovery": true,
+          "maximum_rise_after_failure_mm": 16.78009331226349,
+          "lateral_part_shift_after_handoff_mm": 2.4608299136161804
+        },
+        "continue": {
+          "outcome": "force_abort",
+          "completion": false,
+          "elapsed_s": 12.508333333333333,
+          "strict_withdrawal_recovery": false,
+          "maximum_rise_after_failure_mm": 0.0338628888130188,
+          "lateral_part_shift_after_handoff_mm": 2.581399865448475
+        }
+      }
+    },
+    {
+      "case_id": "dev-10070-approach_low-3",
+      "case_index": 15,
+      "bin_id": "approach_low",
+      "witnessed_failure_s": 3.1416666666666666,
+      "arms": {
+        "learned": {
+          "outcome": "success",
+          "completion": true,
+          "elapsed_s": 8.233333333333333,
+          "strict_withdrawal_recovery": false,
+          "maximum_rise_after_failure_mm": 0.06398558616638184,
+          "lateral_part_shift_after_handoff_mm": 3.4746683668345213
+        },
+        "retry": {
+          "outcome": "success",
+          "completion": true,
+          "elapsed_s": 16.583333333333332,
+          "strict_withdrawal_recovery": true,
+          "maximum_rise_after_failure_mm": 11.017635464668274,
+          "lateral_part_shift_after_handoff_mm": 3.1285318545997143
+        },
+        "continue": {
+          "outcome": "deadline",
+          "completion": false,
+          "elapsed_s": 30.0,
+          "strict_withdrawal_recovery": false,
+          "maximum_rise_after_failure_mm": 0.11181831359863281,
+          "lateral_part_shift_after_handoff_mm": 0.06074809789424762
+        }
+      }
+    },
+    {
+      "case_id": "dev-10070-approach_high-0",
+      "case_index": 16,
+      "bin_id": "approach_high",
+      "witnessed_failure_s": 3.9916666666666667,
+      "arms": {
+        "learned": {
+          "outcome": "success",
+          "completion": true,
+          "elapsed_s": 7.725,
+          "strict_withdrawal_recovery": false,
+          "maximum_rise_after_failure_mm": 0.003129243850708008,
+          "lateral_part_shift_after_handoff_mm": 5.070352461189032
+        },
+        "retry": {
+          "outcome": "success",
+          "completion": true,
+          "elapsed_s": 17.516666666666666,
+          "strict_withdrawal_recovery": true,
+          "maximum_rise_after_failure_mm": 10.390259325504303,
+          "lateral_part_shift_after_handoff_mm": 5.387774668633938
+        },
+        "continue": {
+          "outcome": "deadline",
+          "completion": false,
+          "elapsed_s": 30.0,
+          "strict_withdrawal_recovery": false,
+          "maximum_rise_after_failure_mm": 0.07765740156173706,
+          "lateral_part_shift_after_handoff_mm": 0.38701615994796157
+        }
+      }
+    },
+    {
+      "case_id": "dev-10070-approach_high-2",
+      "case_index": 18,
+      "bin_id": "approach_high",
+      "witnessed_failure_s": 3.058333333333333,
+      "arms": {
+        "learned": {
+          "outcome": "deadline",
+          "completion": false,
+          "elapsed_s": 30.0,
+          "strict_withdrawal_recovery": false,
+          "maximum_rise_after_failure_mm": 0.5828514695167542,
+          "lateral_part_shift_after_handoff_mm": 2.0030054729431868
+        },
+        "retry": {
+          "outcome": "deadline",
+          "completion": false,
+          "elapsed_s": 30.0,
+          "strict_withdrawal_recovery": false,
+          "maximum_rise_after_failure_mm": 6.303269416093826,
+          "lateral_part_shift_after_handoff_mm": 5.344805307686329
+        },
+        "continue": {
+          "outcome": "deadline",
+          "completion": false,
+          "elapsed_s": 30.0,
+          "strict_withdrawal_recovery": false,
+          "maximum_rise_after_failure_mm": 0.3215782344341278,
+          "lateral_part_shift_after_handoff_mm": 0.057343415392097086
+        }
+      }
+    },
+    {
+      "case_id": "dev-10070-friction_low-0",
+      "case_index": 20,
+      "bin_id": "friction_low",
+      "witnessed_failure_s": 2.9,
+      "arms": {
+        "learned": {
+          "outcome": "success",
+          "completion": true,
+          "elapsed_s": 10.183333333333334,
+          "strict_withdrawal_recovery": false,
+          "maximum_rise_after_failure_mm": 0.3443025052547455,
+          "lateral_part_shift_after_handoff_mm": 6.953363306820393
+        },
+        "retry": {
+          "outcome": "success",
+          "completion": true,
+          "elapsed_s": 17.6,
+          "strict_withdrawal_recovery": true,
+          "maximum_rise_after_failure_mm": 6.703492254018784,
+          "lateral_part_shift_after_handoff_mm": 7.281315512955189
+        },
+        "continue": {
+          "outcome": "deadline",
+          "completion": false,
+          "elapsed_s": 30.0,
+          "strict_withdrawal_recovery": false,
+          "maximum_rise_after_failure_mm": 0.1202411949634552,
+          "lateral_part_shift_after_handoff_mm": 0.20368288096506149
+        }
+      }
+    },
+    {
+      "case_id": "dev-10070-friction_low-3",
+      "case_index": 23,
+      "bin_id": "friction_low",
+      "witnessed_failure_s": 2.533333333333333,
+      "arms": {
+        "learned": {
+          "outcome": "success",
+          "completion": true,
+          "elapsed_s": 8.65,
+          "strict_withdrawal_recovery": false,
+          "maximum_rise_after_failure_mm": 0.14732778072357178,
+          "lateral_part_shift_after_handoff_mm": 3.9746356196701527
+        },
+        "retry": {
+          "outcome": "deadline",
+          "completion": false,
+          "elapsed_s": 30.0,
+          "strict_withdrawal_recovery": false,
+          "maximum_rise_after_failure_mm": 12.766286730766296,
+          "lateral_part_shift_after_handoff_mm": 4.146686755120754
+        },
+        "continue": {
+          "outcome": "deadline",
+          "completion": false,
+          "elapsed_s": 30.0,
+          "strict_withdrawal_recovery": false,
+          "maximum_rise_after_failure_mm": 0.10982900857925415,
+          "lateral_part_shift_after_handoff_mm": 0.19012592383660376
+        }
+      }
+    },
+    {
+      "case_id": "dev-10070-friction_high-0",
+      "case_index": 24,
+      "bin_id": "friction_high",
+      "witnessed_failure_s": 3.5416666666666665,
+      "arms": {
+        "learned": {
+          "outcome": "success",
+          "completion": true,
+          "elapsed_s": 6.966666666666667,
+          "strict_withdrawal_recovery": false,
+          "maximum_rise_after_failure_mm": 0.00022351741790771484,
+          "lateral_part_shift_after_handoff_mm": 5.107260774821043
+        },
+        "retry": {
+          "outcome": "success",
+          "completion": true,
+          "elapsed_s": 18.03333333333333,
+          "strict_withdrawal_recovery": true,
+          "maximum_rise_after_failure_mm": 9.421393275260925,
+          "lateral_part_shift_after_handoff_mm": 5.5824280716478825
+        },
+        "continue": {
+          "outcome": "deadline",
+          "completion": false,
+          "elapsed_s": 30.0,
+          "strict_withdrawal_recovery": false,
+          "maximum_rise_after_failure_mm": 0.07706880569458008,
+          "lateral_part_shift_after_handoff_mm": 0.11141675349790603
+        }
+      }
+    },
+    {
+      "case_id": "dev-10070-friction_high-2",
+      "case_index": 26,
+      "bin_id": "friction_high",
+      "witnessed_failure_s": 2.4916666666666667,
+      "arms": {
+        "learned": {
+          "outcome": "success",
+          "completion": true,
+          "elapsed_s": 14.816666666666666,
+          "strict_withdrawal_recovery": false,
+          "maximum_rise_after_failure_mm": 0.03653019666671753,
+          "lateral_part_shift_after_handoff_mm": 4.07439423725009
+        },
+        "retry": {
+          "outcome": "success",
+          "completion": true,
+          "elapsed_s": 15.049999999999999,
+          "strict_withdrawal_recovery": true,
+          "maximum_rise_after_failure_mm": 14.96506854891777,
+          "lateral_part_shift_after_handoff_mm": 4.821856040507555
+        },
+        "continue": {
+          "outcome": "deadline",
+          "completion": false,
+          "elapsed_s": 30.0,
+          "strict_withdrawal_recovery": false,
+          "maximum_rise_after_failure_mm": 0.07202848792076111,
+          "lateral_part_shift_after_handoff_mm": 0.9417679975740612
+        }
+      }
+    }
+  ],
+  "successful_learned_cases": 13,
+  "maximum_rise_range_mm": [
+    0.00022351741790771484,
+    1.0691098868846893
+  ],
+  "lateral_shift_range_mm": [
+    2.8326264582574368,
+    9.06610582023859
+  ],
+  "existing_withdrawal_requirement_mm": 5.0,
+  "input_evidence_sha256": "06b554db49d0816009c2fa2b3049295aed3b251cf5e78e1d40a1a82790a5673d",
+  "interpretation": "Post-stall completion and the existing five-millimetre withdrawal witness are different measured endpoints. Preserve both; the original competence gate remains unchanged.",
+  "scope": "All shared prefix failures retained. One descriptive example is selected by the recorded rule; it is not an independent trial or proof of a curriculum advantage.",
+  "example": "dev-10070-approach_high-0",
+  "artifacts": {
+    "artifacts/assembly/failure_prefix_v4_r01_review/analysis_manifest.json": "d17d4f062c220c4d6875f82b6a0bb6accf24f75b26ff19d370b405287f8976b5",
+    "artifacts/assembly/failure_prefix_v4_r01_review/matched_prefix_motion.pdf": "ec907463516a3b6ebac45c536c918c23537ff4c3297c682037f8530bb2c05ab6",
+    "artifacts/assembly/failure_prefix_v4_r01_review/matched_prefix_motion.png": "1f8b298b1b2713c81b83dc784c8f850e1d83d00f79de814c57df27bbf4cfead9",
+    "artifacts/assembly/failure_prefix_v4_r01_review/review.json": "48df760223004aadd70c44eec77734a5ec07acbcecb489333702dec2079bd53b",
+    "artifacts/assembly/failure_prefix_v4_r01_review/source.zip": "c24d9b9ea7acee0e9dd5558baa1a5fafde8805c5782741e7f1daeff3c26a5542"
+  },
+  "measurement_definition_source": {
+    "path": "src/assembly_recovery/contact_witness.py",
+    "sha256": "3d4ef4111494738ebe5056e0c1d936d8e308b6db9438f1c4f6de4a6218b9c4ba"
+  },
+  "decision": "Preserve the original withdrawal-based metric and failed gate. Preregister a separate mechanism-neutral post-stall completion endpoint and confirm it on the remaining development seeds before adaptive training."
+}

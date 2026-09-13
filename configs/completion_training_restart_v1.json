@@ -1,0 +1,70 @@
+{
+  "schema": 1,
+  "version": "uniform_completion_training_restart_v1",
+  "status": "registered_before_training",
+  "created_at_utc": "2026-09-09T11:58:58.145549+00:00",
+  "controller": "project_uniform_fault_ppo_completion_credit_v3",
+  "seed": 170,
+  "num_envs": 1024,
+  "cohorts": 22,
+  "initialization": "Fresh randomly initialized policy and optimizer. No partial v3-r01, pilot, or diagnostic weights reused. This avoids unverified resume equivalence and unknown discarded-transition costs entering a primary resumed budget.",
+  "rollout_control_transitions": 10137600,
+  "expected_initialization_physics_env_steps": 1509376,
+  "charged_control_equivalent_transitions": 10326272.0,
+  "wall_time_limit_minutes": 150,
+  "stop_conditions": [
+    "Any invalid initialization stops the run and remains a failed request",
+    "Any nonfinite gradient/state or resource guard stops the run",
+    "Wall limit: 150 minutes; any partial checkpoints remain incomplete"
+  ],
+  "checkpoint_rule": "Save every completed cohort. Only the final predeclared 22-cohort checkpoint is the competence evaluation checkpoint. No choice based on development outcomes.",
+  "evaluation_schedule": {
+    "during_training": "CPU inspect periodic checkpoints and active/absorbing costs without additional simulator jobs or checkpoint selection",
+    "after_budget": "All 28 cases at development seeds 10070,10071,10072 using only r02 final budget weights; run IDs uniform_dev_<seed>_v3_r02. Original competence thresholds unchanged.",
+    "expected_charged_transitions": 38503.5
+  },
+  "competence_gate": {
+    "nominal_completions_minimum": 10,
+    "nominal_requests": 12,
+    "fault_completions_minimum": 36,
+    "fault_requests": 72,
+    "witnessed_recoveries_minimum": 3,
+    "distinct_fault_bins_with_witnessed_recovery_minimum": 2,
+    "required": "All 84 requests retained, all initializations valid, no forbidden events, finite checkpoint, exact budget. Force aborts, lost grasp, deadlines remain failures.",
+    "meaning": "Development engineering gate for proceeding to sampler implementation, not industrial reliability, final-test performance, or a publication criterion."
+  },
+  "training_prerequisites": [
+    "Verified v3 control reruns with exact v2 physical parity and reward accounting",
+    "CPU checks pass",
+    "Frozen protocol_v3.json captures behavior hashes and verified gate evidence before launch"
+  ],
+  "comparison_status": "No adaptive run until competence gate passes. Future arms share architecture, reward, support, 25 percent nominal share, and charged training cost.",
+  "previous_cost_accounting": {
+    "v2_pilot_training": 2346880,
+    "v1_failed_pilot": 947328,
+    "v2_diagnosis": 38503.5,
+    "v3_reward_controls": 38503.5,
+    "weights_reused": false,
+    "scope": "Separate prior development/tuning costs, not hidden in the fresh v3 budget. Older shared development costs remain in their preserved evidence.",
+    "interrupted_v3_r01": {
+      "evidence": "evidence/uniform_completion_v3_r01_failure.json",
+      "charged_transitions_lower_bound": 6241536,
+      "charged_transitions_upper_bound": 6571264,
+      "last_saved_checkpoint_cost": 6101888,
+      "weights_reused": false,
+      "reason": "Lid/button sleep followed by the existing RAM resource guard."
+    }
+  },
+  "scope_and_limitations": [
+    "One uniform training seed, development only; no equal-cost method comparison or final-test result.",
+    "The reward correction needs fresh learning evidence and cannot retrospectively improve v2 outcomes.",
+    "Final-test seeds, combinations, gear and physics refinement remain unopened."
+  ],
+  "run_id": "uniform_completion_170_v3_r02",
+  "runtime_requirements": {
+    "ac_power_required": true,
+    "scoped_idle_sleep_request": true,
+    "lid_or_button_sleep_override": false,
+    "resource_limits_unchanged": true
+  }
+}

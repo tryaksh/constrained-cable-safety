@@ -1,0 +1,386 @@
+{
+  "schema": 1,
+  "status": "verified",
+  "research_result": false,
+  "recorded_at_utc": "2026-09-09T18:48:12.342133+00:00",
+  "block_started_at_utc": "2026-09-09T14:43:00Z",
+  "completed_simulator_runs": [
+    {
+      "run_id": "partial_checkpoint_diagnosis_v3_r02/deterministic",
+      "status": "completed",
+      "manifest_sha256": "2332b803562f05ef327317a22d45e740294a05a5477587de0b6330ddb1551c9b",
+      "cost": 12834.5,
+      "source_commit_at_start": "f103611a9e06f6c771bcb057b5ad67d2d7ad4fc3",
+      "source_dirty_at_start": false,
+      "exact_source_snapshot_verified": true,
+      "process_wall_s": 170.954000000027
+    },
+    {
+      "run_id": "partial_checkpoint_diagnosis_v3_r02/stochastic",
+      "status": "completed",
+      "manifest_sha256": "43ebed4691627f02deaf1198434965d4e02258974ffa43d260540ab3057143ea",
+      "cost": 12834.5,
+      "source_commit_at_start": "f103611a9e06f6c771bcb057b5ad67d2d7ad4fc3",
+      "source_dirty_at_start": false,
+      "exact_source_snapshot_verified": true,
+      "process_wall_s": 167.09399999998277
+    },
+    {
+      "run_id": "partial_checkpoint_diagnosis_v3_r02/clipped_mean",
+      "status": "completed",
+      "manifest_sha256": "cb8452af765c333d48e9012c4e4b2904ae6a87a58c5296ca2c4e88095a959f23",
+      "cost": 12834.5,
+      "source_commit_at_start": "f103611a9e06f6c771bcb057b5ad67d2d7ad4fc3",
+      "source_dirty_at_start": false,
+      "exact_source_snapshot_verified": true,
+      "process_wall_s": 168.3279999999795
+    },
+    {
+      "run_id": "partial_checkpoint_diagnosis_v3_r02/retry",
+      "status": "completed",
+      "manifest_sha256": "f36eda933fc08d0ef658739982519f97f01e9a015f203b938de9934de3437d2c",
+      "cost": 12834.5,
+      "source_commit_at_start": "f103611a9e06f6c771bcb057b5ad67d2d7ad4fc3",
+      "source_dirty_at_start": false,
+      "exact_source_snapshot_verified": true,
+      "process_wall_s": 167.40600000001723
+    },
+    {
+      "run_id": "uniform_unclipped_170_v4_r02",
+      "status": "completed",
+      "manifest_sha256": "f164dce1bc8b1146559ab5b4d431525a3907a2fd2f527d5a4bb6c18d9e64ab44",
+      "cost": 10326272.0,
+      "source_commit_at_start": "ae62c4c0ab3693f37d77fa016a6a28d0943147e2",
+      "source_dirty_at_start": false,
+      "exact_source_snapshot_verified": true,
+      "process_wall_s": 6690.016
+    },
+    {
+      "run_id": "uniform_dev_10070_v4",
+      "status": "completed",
+      "manifest_sha256": "ea2e61e7a2ad844ea9e47cf27410aae38712a6c2e28cda2f286df3ef6fa2c794",
+      "cost": 12834.5,
+      "source_commit_at_start": "c9cb566a78c2b43780c6a1cbbdb3fa87230b3238",
+      "source_dirty_at_start": false,
+      "exact_source_snapshot_verified": true,
+      "process_wall_s": 167.01599999999962
+    },
+    {
+      "run_id": "uniform_dev_10071_v4",
+      "status": "completed",
+      "manifest_sha256": "13a4aa758bb97bbf0e2ef607cb7b69d7b05b64fdf35e4b5ed3170a7fedf763fc",
+      "cost": 12834.5,
+      "source_commit_at_start": "c9cb566a78c2b43780c6a1cbbdb3fa87230b3238",
+      "source_dirty_at_start": false,
+      "exact_source_snapshot_verified": true,
+      "process_wall_s": 165.65699999999924
+    },
+    {
+      "run_id": "uniform_dev_10072_v4",
+      "status": "completed",
+      "manifest_sha256": "c8ae543e4825db5c39e88fd1a1502674205622d44451ccd3426678ad6d229179",
+      "cost": 12834.5,
+      "source_commit_at_start": "c9cb566a78c2b43780c6a1cbbdb3fa87230b3238",
+      "source_dirty_at_start": false,
+      "exact_source_snapshot_verified": true,
+      "process_wall_s": 165.53100000000086
+    },
+    {
+      "run_id": "failure_prefix_v4_r01/learned",
+      "status": "completed",
+      "manifest_sha256": "099124d7a3d4208f1a1ca57ff3a1a5505b8d2a4ba06cd13e5bf5087b8da8f5f9",
+      "cost": 12834.5,
+      "source_commit_at_start": "41f4c7655d00574eca0bc0d244b215b173440335",
+      "source_dirty_at_start": false,
+      "exact_source_snapshot_verified": true,
+      "process_wall_s": 165.26599999999962
+    },
+    {
+      "run_id": "failure_prefix_v4_r01/retry",
+      "status": "completed",
+      "manifest_sha256": "729cfbc4c97c8f2a31835f018ceab91b14185b0f960e1d91d6b960c5639c6234",
+      "cost": 12834.5,
+      "source_commit_at_start": "41f4c7655d00574eca0bc0d244b215b173440335",
+      "source_dirty_at_start": false,
+      "exact_source_snapshot_verified": true,
+      "process_wall_s": 164.46800000000076
+    },
+    {
+      "run_id": "failure_prefix_v4_r01/continue",
+      "status": "completed",
+      "manifest_sha256": "52748622ca12c50b7d35ccbefc6d1fa893fec23f31575dfc19b1c7fed63a7889",
+      "cost": 12834.5,
+      "source_commit_at_start": "41f4c7655d00574eca0bc0d244b215b173440335",
+      "source_dirty_at_start": false,
+      "exact_source_snapshot_verified": true,
+      "process_wall_s": 163.07799999999952
+    }
+  ],
+  "interrupted_run": {
+    "evidence": "evidence/uniform_unclipped_v4_r01_failure.json",
+    "sha256": "e030ba111fd9b8526afb9ff41b03c61cf15c5596f5213b0955ebc8ea0ccc6b02",
+    "status": "failed_incomplete",
+    "charged_transitions_lower_bound": 3556352,
+    "charged_transitions_upper_bound": 3755008
+  },
+  "simulator_launches": 12,
+  "completed_launches": 11,
+  "failed_or_incomplete_launches": 1,
+  "charged_transition_accounting": {
+    "completed_runs": 10454617.0,
+    "renewed_block_lower_bound": 14010969.0,
+    "renewed_block_upper_bound": 14209625.0,
+    "previous_tracked_project_lower_bound": 10753694.25,
+    "cumulative_tracked_project_lower_bound": 24764663.25,
+    "scope": "Includes every simulator rollout slot and measured initialization for these runs; absorbing slots and the failed repeat are charged. Older costs and uncertainties remain in their existing evidence. CPU fitting and offline review add zero simulator transitions."
+  },
+  "training": {
+    "controller": "project_uniform_fault_ppo_value_unclipped_v4",
+    "checkpoint_path": "artifacts/assembly/uniform_unclipped_170_v4_r02/pilot/budget_checkpoint.pt",
+    "checkpoint_sha256": "cee349b1b9283a66924294323f5c7bd8f5de98434be70ed19d8a07986f9eb532",
+    "cost": {
+      "rollout_control_transitions": 10137600,
+      "active_control_transitions": 1764072,
+      "absorbing_control_transitions": 8373528,
+      "rollout_physics_env_steps": 81100800,
+      "active_physics_env_steps": 14034623,
+      "initialization_physics_env_steps": 1509376,
+      "charged_control_equivalent_transitions": 10326272.0,
+      "scope": "All rollout slots, including holds, plus initialization physics divided by decimation. Probes/mining charged by their own manifests."
+    },
+    "wall_s": 6690.016,
+    "checkpoint_audit_path": "artifacts/assembly/uniform_unclipped_170_v4_r02/checkpoint_audit.json",
+    "checkpoint_audit_sha256": "5d9bd72889a00d9f3ea35e0f2c1d964f16b986532f3d831bd3a7315f9b24044b",
+    "fresh_repeat_reproducibility_sha256": "117503a11d77242914901de15d0af4c954294d25264982195102d9fe16d179e9"
+  },
+  "primary_development": {
+    "all": {
+      "requests": 84,
+      "completions": 81,
+      "outcomes": {
+        "success": 81,
+        "force_abort": 2,
+        "deadline": 1
+      },
+      "upstream_success_seen": 82,
+      "witnessed_contact_failures": 0,
+      "witnessed_recoveries": 0,
+      "mean_time_per_request_s": 5.4348214285714285,
+      "peak_raw_wrist_force_n": 20.05147933959961,
+      "mean_discounted_return": 382.87123138884436,
+      "forbidden_events": 0,
+      "active_control_transitions": 6882,
+      "return_by_outcome": {
+        "deadline": {
+          "requests": 1,
+          "mean": 43.83697182251153
+        },
+        "force_abort": {
+          "requests": 2,
+          "mean": 18.98996229321173
+        },
+        "success": {
+          "requests": 81,
+          "mean": 396.04156222535795
+        }
+      }
+    },
+    "nominal": {
+      "requests": 12,
+      "completions": 12,
+      "outcomes": {
+        "success": 12
+      },
+      "upstream_success_seen": 12,
+      "witnessed_contact_failures": 0,
+      "witnessed_recoveries": 0,
+      "mean_time_per_request_s": 3.979861111111111,
+      "peak_raw_wrist_force_n": 19.65433120727539,
+      "mean_discounted_return": 427.528652527765,
+      "forbidden_events": 0,
+      "active_control_transitions": 723,
+      "return_by_outcome": {
+        "success": {
+          "requests": 12,
+          "mean": 427.528652527765
+        }
+      }
+    },
+    "original_competence_gate": {
+      "nominal_at_least_10_of_12": true,
+      "fault_at_least_36_of_72": true,
+      "at_least_three_witnessed_recoveries": false,
+      "at_least_two_fault_bins_with_recovery": false,
+      "all_requests_and_artifacts_valid": true
+    },
+    "original_competence_gate_passed": false
+  },
+  "separate_recovery_assay": {
+    "learned": {
+      "all_jobs": {
+        "requests": 28,
+        "completions": 22,
+        "outcomes": {
+          "success": 22,
+          "force_abort": 3,
+          "deadline": 3
+        },
+        "upstream_success_seen": 24,
+        "witnessed_contact_failures": 17,
+        "witnessed_recoveries": 0,
+        "mean_time_per_request_s": 10.26577380952381,
+        "peak_raw_wrist_force_n": 20.185998916625977,
+        "mean_discounted_return": 253.37473604823236,
+        "forbidden_events": 0,
+        "active_control_transitions": 4322,
+        "return_by_outcome": {
+          "deadline": {
+            "requests": 3,
+            "mean": 49.36646279403531
+          },
+          "force_abort": {
+            "requests": 3,
+            "mean": 32.86864674525429
+          },
+          "success": {
+            "requests": 22,
+            "mean": 311.2630582151199
+          }
+        }
+      },
+      "failure_exposure": {
+        "all_requested_jobs": 28,
+        "prefix_completions": 3,
+        "prefix_failed_jobs": 2,
+        "active_at_handoff": 23,
+        "witnessed_prefix_failures_active_at_handoff": 17,
+        "completed_after_witnessed_prefix_failure": 13,
+        "witnessed_recoveries_after_prefix_failure": 0,
+        "scope": "Conditional recovery counts accompany all-request outcomes; prefix failures and prefix scripted completions remain in the full-job denominator."
+      }
+    },
+    "retry": {
+      "all_jobs": {
+        "requests": 28,
+        "completions": 19,
+        "outcomes": {
+          "success": 19,
+          "force_abort": 3,
+          "deadline": 6
+        },
+        "upstream_success_seen": 21,
+        "witnessed_contact_failures": 21,
+        "witnessed_recoveries": 15,
+        "mean_time_per_request_s": 18.34285714285714,
+        "peak_raw_wrist_force_n": 20.185998916625977,
+        "mean_discounted_return": 153.06268566587144,
+        "forbidden_events": 0,
+        "active_control_transitions": 7714,
+        "return_by_outcome": {
+          "deadline": {
+            "requests": 6,
+            "mean": 85.62175463987342
+          },
+          "force_abort": {
+            "requests": 3,
+            "mean": 18.22214934826118
+          },
+          "success": {
+            "requests": 19,
+            "mean": 195.6504327768619
+          }
+        }
+      },
+      "failure_exposure": {
+        "all_requested_jobs": 28,
+        "prefix_completions": 3,
+        "prefix_failed_jobs": 2,
+        "active_at_handoff": 23,
+        "witnessed_prefix_failures_active_at_handoff": 17,
+        "completed_after_witnessed_prefix_failure": 13,
+        "witnessed_recoveries_after_prefix_failure": 13,
+        "scope": "Conditional recovery counts accompany all-request outcomes; prefix failures and prefix scripted completions remain in the full-job denominator."
+      }
+    },
+    "continue": {
+      "all_jobs": {
+        "requests": 28,
+        "completions": 3,
+        "outcomes": {
+          "deadline": 19,
+          "force_abort": 6,
+          "success": 3
+        },
+        "upstream_success_seen": 6,
+        "witnessed_contact_failures": 22,
+        "witnessed_recoveries": 0,
+        "mean_time_per_request_s": 22.208333333333332,
+        "peak_raw_wrist_force_n": 20.5838680267334,
+        "mean_discounted_return": 58.354830240609516,
+        "forbidden_events": 0,
+        "active_control_transitions": 9331,
+        "return_by_outcome": {
+          "deadline": {
+            "requests": 19,
+            "mean": 11.241198729358484
+          },
+          "force_abort": {
+            "requests": 6,
+            "mean": 13.29263227906122
+          },
+          "success": {
+            "requests": 3,
+            "mean": 446.86555906829597
+          }
+        }
+      },
+      "failure_exposure": {
+        "all_requested_jobs": 28,
+        "prefix_completions": 3,
+        "prefix_failed_jobs": 2,
+        "active_at_handoff": 23,
+        "witnessed_prefix_failures_active_at_handoff": 17,
+        "completed_after_witnessed_prefix_failure": 0,
+        "witnessed_recoveries_after_prefix_failure": 0,
+        "scope": "Conditional recovery counts accompany all-request outcomes; prefix failures and prefix scripted completions remain in the full-job denominator."
+      }
+    }
+  },
+  "interpretation": [
+    "The final learned policy is effective at development insertion: 81/84 jobs, including all 12 nominal requests. Those trials have no witnessed contact failures and establish prevention rather than measured recovery.",
+    "The common action-only prefix exposes 17 witnessed stalled jobs. Learned actions and unchanged retry each complete 13; continued insertion completes none. Full-job outcomes remain 22/28, 19/28 and 3/28, including three scripted-prefix completions and two prefix force aborts per arm.",
+    "Learned post-stall correction has at most 1.07 mm upward movement in the successful cases, below the existing five-millimetre withdrawal requirement. Retain the old zero-withdrawal count and failed gate alongside the measured post-stall completions.",
+    "No adaptive campaign ran. A separately registered mechanism-neutral endpoint and confirmation on the other development seeds are the next step."
+  ],
+  "verification": {
+    "schema": 1,
+    "status": "verified",
+    "staged_tree": "48b4e4c7b2fa1cea98f583b0226e0c3dd317764b",
+    "root_tests_passed": 175,
+    "source_only_export_tests_passed": 175,
+    "root_ruff": "passed",
+    "pytest_entrypoint": "Windows Application Control blocks .venv/Scripts/pytest.exe; the same pytest package via .venv/Scripts/python.exe -m pytest passed in the worktree and source-only export.",
+    "export_without_ignored_artifacts_or_isaac_sim": true,
+    "new_prefix_registration_source_hashes_verified": true,
+    "referenced_evidence_bytes_preserved": true,
+    "verification_files_sha256": {
+      "artifacts/verification_final_v4_r02/source.zip": "e640270a3fbb9a814eb22dfc7cfce917864ef384a574ccfef3210e4f673e6241",
+      "artifacts/verification_final_v4_r02/root_pytest.txt": "edbd5b5e002aa7a80c96a8c9ccd1e788d2655b50596c22d902dac6c4bee75e14",
+      "artifacts/verification_final_v4_r02/export_pytest.txt": "212609f341018a093b37e02ef20649cd7891bffb442fbc6cf45579bd3798dbab"
+    }
+  },
+  "motion_review": {
+    "evidence": "evidence/failure_prefix_motion_v1.json",
+    "sha256": "e6c0b9ea6fde9bbed3b5b00ca816e63b8347bbfb1867c34e80617098a6dfc1dd",
+    "source_snapshot_and_outputs_verified": true,
+    "png_visually_inspected": true
+  },
+  "owned_simulator_processes_at_handoff": 0,
+  "publication_status": "Local commits only; no GitHub push, repository creation or rename.",
+  "scope_and_limitations": [
+    "One training seed, development evaluations only; no independent training-seed estimate, final test, adaptive-versus-uniform effect or journal-level contribution established.",
+    "Fixed scripted failure-induction prefix is explicitly part of the supplemental controller; its successes are not attributed to learned actions.",
+    "Physics-timestep sensitivity remains unresolved for the learned policy; gear and hardware are unverified.",
+    "The source-only export used equivalent python -m pytest because Windows Application Control blocks the pytest executable. The initial export byte mismatch was retained and corrected with explicit checkout attributes; no frozen config values or recorded hashes changed."
+  ]
+}

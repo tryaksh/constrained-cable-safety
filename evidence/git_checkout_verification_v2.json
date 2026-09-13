@@ -1,0 +1,65 @@
+{
+  "schema_version": 1,
+  "verified_at_utc": "2026-09-09T06:01:48.360017+00:00",
+  "status": "passed",
+  "scope": "Exact staged Git checkout verified on Windows with CPU Torch; no Isaac Sim, local environment lock, run artifacts or weights in the exported tree. This is not a Linux CI execution.",
+  "checkout": "artifacts/verification/git_checkout_final",
+  "protocol_v2_sha256": "db1b5a41222ea178e0fc84eabd0afe3bbac3a8ddac399f705ad3b7caa1d22c1f",
+  "checks": [
+    {
+      "command": [
+        "D:\\6axis-space-robotics\\.venv\\Scripts\\ruff.exe",
+        "check",
+        "src",
+        "scripts",
+        "tests"
+      ],
+      "returncode": 0,
+      "stdout": "All checks passed!\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "D:\\6axis-space-robotics\\.venv\\Scripts\\python.exe",
+        "-m",
+        "pytest"
+      ],
+      "returncode": 0,
+      "stdout": "============================= test session starts =============================\nplatform win32 -- Python 3.11.15, pytest-8.4.2, pluggy-1.6.0\nrootdir: D:\\6axis-space-robotics\\artifacts\\verification\\git_checkout_final\nconfigfile: pyproject.toml\ntestpaths: tests\nplugins: anyio-4.14.2\ncollected 144 items\n\ntests\\test_contact_witness.py .......                                    [  4%]\ntests\\test_faults.py ...........................                         [ 23%]\ntests\\test_force_diagnostics.py ......                                   [ 27%]\ntests\\test_geometry.py .....                                             [ 31%]\ntests\\test_job_evaluation.py ......................                      [ 46%]\ntests\\test_launcher.py .....                                             [ 50%]\ntests\\test_protocol.py .........................                         [ 67%]\ntests\\test_recovery.py ...........                                       [ 75%]\ntests\\test_repository_contract.py ...                                    [ 77%]\ntests\\test_study_ppo.py ....                                             [ 79%]\ntests\\test_tensor_jobs.py .............                                  [ 88%]\ntests\\test_training_cases.py .......                                     [ 93%]\ntests\\test_training_inputs.py ...                                        [ 95%]\ntests\\test_uniform_launcher.py ......                                    [100%]\n\n============================= 144 passed in 3.34s =============================\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "D:\\6axis-space-robotics\\.venv\\Scripts\\python.exe",
+        "scripts/run_experiment.py",
+        "plan",
+        "--task",
+        "peg",
+        "--epochs",
+        "2",
+        "--num-envs",
+        "64"
+      ],
+      "returncode": 0,
+      "stdout": "{\n  \"task\": \"peg\",\n  \"seed\": 170,\n  \"num_envs\": 64,\n  \"epochs\": 2,\n  \"max_minutes\": 15,\n  \"task_id\": \"Isaac-Forge-PegInsert-Direct-v0\",\n  \"requested_transitions\": 16384,\n  \"scope\": \"Upstream infrastructure check; no recovery study implementation or performance claim\",\n  \"command\": [\n    \"C:\\\\isaac-sim\\\\python.bat\",\n    \"D:\\\\6axis-space-robotics\\\\artifacts\\\\verification\\\\git_checkout_final\\\\.deps\\\\IsaacLab\\\\scripts\\\\reinforcement_learning\\\\rl_games\\\\train.py\",\n    \"--task\",\n    \"Isaac-Forge-PegInsert-Direct-v0\",\n    \"--headless\",\n    \"--num_envs\",\n    \"64\",\n    \"--seed\",\n    \"170\",\n    \"--max_iterations\",\n    \"2\",\n    \"agent.params.config.full_experiment_name=preview\",\n    \"agent.params.config.save_frequency=2\",\n    \"agent.params.config.save_best_after=0\"\n  ],\n  \"environment\": {\n    \"TORCHDYNAMO_DISABLE\": \"1\"\n  },\n  \"unmet_study_gates\": []\n}\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "D:\\6axis-space-robotics\\.venv\\Scripts\\python.exe",
+        "scripts/run_uniform.py",
+        "plan",
+        "--run-id",
+        "git-checkout-verification-v2"
+      ],
+      "returncode": 0,
+      "stdout": "{\n  \"specification\": {\n    \"mode\": \"plan\",\n    \"seed\": 170,\n    \"num_envs\": 1024,\n    \"cohorts\": 5,\n    \"rollout_control_transitions\": 2304000,\n    \"expected_initialization_physics_env_steps\": 343040,\n    \"expected_charged_control_equivalent_transitions\": 2346880.0,\n    \"budget_rule\": \"Fixed full-cohort rollout budget; all measured initialization physics charged in addition. Report deviations, never hide them.\",\n    \"checkpoint_selection\": \"Last predeclared cohort; intermediate weights remain partial.\",\n    \"reserved_evaluation_and_reporting_fraction\": 0.25\n  },\n  \"unmet_gates\": []\n}\n",
+      "stderr": ""
+    }
+  ],
+  "test_launcher_note": "Bare pytest passed on the earlier source-only and staged exports. During final verification Windows Application Control blocked pytest.exe (WinError 4551). The supported python -m pytest entry point using the explicit project virtual-environment interpreter passed with identical configured test discovery; no application-control settings were changed.",
+  "locked_roadmap_body_unchanged": true,
+  "maintained_markdown_documents": 3,
+  "raw_artifacts_and_weights_excluded_from_git": true,
+  "limitation": "Raw run snapshots and weights remain local ignored artifacts; a code commit alone is not their off-machine backup."
+}

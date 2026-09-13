@@ -1,0 +1,5051 @@
+{
+  "schema": 1,
+  "research_result": false,
+  "status": "verified_development_matrix",
+  "plan": "peg_fault_matrix_v1",
+  "study_sha256_at_predeclaration": "b39141a2bda031414d41e5b0c529f996e1813f99aeb24b63f410e1b6da589fd7",
+  "bins": [
+    {
+      "bin": {
+        "id": "nominal",
+        "family": "nominal",
+        "units": "none",
+        "range": [
+          0,
+          0
+        ],
+        "development_value": 0
+      },
+      "requested_cases_per_arm": 12,
+      "retry": {
+        "outcomes": {
+          "deadline": 4,
+          "success": 7,
+          "force_abort": 1
+        },
+        "classifications": {
+          "contact_without_stall_deadline": 1,
+          "witnessed_recovery": 6,
+          "contact_stall_deadline": 3,
+          "force_abort": 1,
+          "completion_without_witnessed_contact_failure": 1
+        },
+        "initialization_valid": 12,
+        "retained_grasp": 12,
+        "contact_failure_witnessed": 9,
+        "withdrawal_verified": 9,
+        "witnessed_complete_recovery": 6,
+        "force_violation": 1,
+        "upstream_success_seen": 7,
+        "mean_discounted_job_return": 76.5725236834818
+      },
+      "continue": {
+        "outcomes": {
+          "deadline": 8,
+          "force_abort": 2,
+          "success": 2
+        },
+        "classifications": {
+          "contact_stall_deadline": 8,
+          "force_abort": 2,
+          "completion_without_full_recovery_witness": 1,
+          "completion_without_witnessed_contact_failure": 1
+        },
+        "initialization_valid": 12,
+        "retained_grasp": 12,
+        "contact_failure_witnessed": 10,
+        "withdrawal_verified": 0,
+        "witnessed_complete_recovery": 0,
+        "force_violation": 2,
+        "upstream_success_seen": 2,
+        "mean_discounted_job_return": 49.72183356752344
+      },
+      "feasibility_status": "sampled_recovery_support_demonstrated",
+      "entire_numeric_range_validated": false
+    },
+    {
+      "bin": {
+        "id": "bias_low",
+        "family": "lateral_pose_bias",
+        "units": "m_radial",
+        "range": [
+          0.00025,
+          0.001
+        ],
+        "development_value": 0.00075
+      },
+      "requested_cases_per_arm": 12,
+      "retry": {
+        "outcomes": {
+          "success": 11,
+          "deadline": 1
+        },
+        "classifications": {
+          "witnessed_recovery": 8,
+          "contact_stall_deadline": 1,
+          "completion_without_witnessed_contact_failure": 2,
+          "completion_without_full_recovery_witness": 1
+        },
+        "initialization_valid": 12,
+        "retained_grasp": 12,
+        "contact_failure_witnessed": 10,
+        "withdrawal_verified": 10,
+        "witnessed_complete_recovery": 8,
+        "force_violation": 0,
+        "upstream_success_seen": 11,
+        "mean_discounted_job_return": 77.99102350199426
+      },
+      "continue": {
+        "outcomes": {
+          "deadline": 9,
+          "success": 2,
+          "force_abort": 1
+        },
+        "classifications": {
+          "contact_stall_deadline": 9,
+          "completion_without_witnessed_contact_failure": 2,
+          "force_abort": 1
+        },
+        "initialization_valid": 12,
+        "retained_grasp": 12,
+        "contact_failure_witnessed": 10,
+        "withdrawal_verified": 0,
+        "witnessed_complete_recovery": 0,
+        "force_violation": 1,
+        "upstream_success_seen": 2,
+        "mean_discounted_job_return": 21.775792903614676
+      },
+      "feasibility_status": "sampled_recovery_support_demonstrated",
+      "entire_numeric_range_validated": false
+    },
+    {
+      "bin": {
+        "id": "bias_medium",
+        "family": "lateral_pose_bias",
+        "units": "m_radial",
+        "range": [
+          0.001,
+          0.002
+        ],
+        "development_value": 0.0015
+      },
+      "requested_cases_per_arm": 12,
+      "retry": {
+        "outcomes": {
+          "force_abort": 2,
+          "success": 6,
+          "deadline": 4
+        },
+        "classifications": {
+          "force_abort": 2,
+          "witnessed_recovery": 4,
+          "completion_without_witnessed_contact_failure": 2,
+          "contact_stall_deadline": 4
+        },
+        "initialization_valid": 12,
+        "retained_grasp": 12,
+        "contact_failure_witnessed": 9,
+        "withdrawal_verified": 9,
+        "witnessed_complete_recovery": 4,
+        "force_violation": 2,
+        "upstream_success_seen": 7,
+        "mean_discounted_job_return": 60.789012953987765
+      },
+      "continue": {
+        "outcomes": {
+          "force_abort": 3,
+          "deadline": 7,
+          "success": 2
+        },
+        "classifications": {
+          "force_abort": 3,
+          "contact_stall_deadline": 7,
+          "completion_without_witnessed_contact_failure": 2
+        },
+        "initialization_valid": 12,
+        "retained_grasp": 12,
+        "contact_failure_witnessed": 9,
+        "withdrawal_verified": 0,
+        "witnessed_complete_recovery": 0,
+        "force_violation": 3,
+        "upstream_success_seen": 2,
+        "mean_discounted_job_return": 14.528443569931838
+      },
+      "feasibility_status": "sampled_recovery_support_demonstrated",
+      "entire_numeric_range_validated": false
+    },
+    {
+      "bin": {
+        "id": "approach_low",
+        "family": "approach_offset",
+        "units": "m_radial",
+        "range": [
+          0.002,
+          0.006
+        ],
+        "development_value": 0.004
+      },
+      "requested_cases_per_arm": 12,
+      "retry": {
+        "outcomes": {
+          "deadline": 4,
+          "success": 8
+        },
+        "classifications": {
+          "contact_stall_deadline": 4,
+          "witnessed_recovery": 7,
+          "completion_without_full_recovery_witness": 1
+        },
+        "initialization_valid": 12,
+        "retained_grasp": 12,
+        "contact_failure_witnessed": 12,
+        "withdrawal_verified": 11,
+        "witnessed_complete_recovery": 7,
+        "force_violation": 0,
+        "upstream_success_seen": 8,
+        "mean_discounted_job_return": 71.23341639622102
+      },
+      "continue": {
+        "outcomes": {
+          "force_abort": 3,
+          "deadline": 9
+        },
+        "classifications": {
+          "force_abort": 3,
+          "contact_stall_deadline": 9
+        },
+        "initialization_valid": 12,
+        "retained_grasp": 12,
+        "contact_failure_witnessed": 12,
+        "withdrawal_verified": 0,
+        "witnessed_complete_recovery": 0,
+        "force_violation": 3,
+        "upstream_success_seen": 2,
+        "mean_discounted_job_return": 12.668171091888347
+      },
+      "feasibility_status": "sampled_recovery_support_demonstrated",
+      "entire_numeric_range_validated": false
+    },
+    {
+      "bin": {
+        "id": "approach_high",
+        "family": "approach_offset",
+        "units": "m_radial",
+        "range": [
+          0.006,
+          0.01
+        ],
+        "development_value": 0.008
+      },
+      "requested_cases_per_arm": 12,
+      "retry": {
+        "outcomes": {
+          "success": 10,
+          "deadline": 2
+        },
+        "classifications": {
+          "witnessed_recovery": 6,
+          "completion_without_full_recovery_witness": 3,
+          "contact_stall_deadline": 2,
+          "completion_without_witnessed_contact_failure": 1
+        },
+        "initialization_valid": 12,
+        "retained_grasp": 12,
+        "contact_failure_witnessed": 11,
+        "withdrawal_verified": 8,
+        "witnessed_complete_recovery": 6,
+        "force_violation": 0,
+        "upstream_success_seen": 10,
+        "mean_discounted_job_return": 67.9085167633847
+      },
+      "continue": {
+        "outcomes": {
+          "deadline": 11,
+          "success": 1
+        },
+        "classifications": {
+          "contact_stall_deadline": 11,
+          "completion_without_witnessed_contact_failure": 1
+        },
+        "initialization_valid": 12,
+        "retained_grasp": 12,
+        "contact_failure_witnessed": 11,
+        "withdrawal_verified": 0,
+        "witnessed_complete_recovery": 0,
+        "force_violation": 0,
+        "upstream_success_seen": 1,
+        "mean_discounted_job_return": 30.126631470289016
+      },
+      "feasibility_status": "sampled_recovery_support_demonstrated",
+      "entire_numeric_range_validated": false
+    },
+    {
+      "bin": {
+        "id": "friction_low",
+        "family": "friction",
+        "units": "static_coefficient",
+        "range": [
+          0.25,
+          0.5
+        ],
+        "development_value": 0.25
+      },
+      "requested_cases_per_arm": 12,
+      "retry": {
+        "outcomes": {
+          "success": 9,
+          "force_abort": 2,
+          "deadline": 1
+        },
+        "classifications": {
+          "completion_without_full_recovery_witness": 2,
+          "force_abort": 2,
+          "witnessed_recovery": 5,
+          "completion_without_witnessed_contact_failure": 2,
+          "contact_stall_deadline": 1
+        },
+        "initialization_valid": 12,
+        "retained_grasp": 12,
+        "contact_failure_witnessed": 8,
+        "withdrawal_verified": 7,
+        "witnessed_complete_recovery": 5,
+        "force_violation": 2,
+        "upstream_success_seen": 11,
+        "mean_discounted_job_return": 63.8694934590224
+      },
+      "continue": {
+        "outcomes": {
+          "deadline": 8,
+          "force_abort": 2,
+          "success": 2
+        },
+        "classifications": {
+          "contact_stall_deadline": 8,
+          "force_abort": 2,
+          "completion_without_witnessed_contact_failure": 2
+        },
+        "initialization_valid": 12,
+        "retained_grasp": 12,
+        "contact_failure_witnessed": 8,
+        "withdrawal_verified": 0,
+        "witnessed_complete_recovery": 0,
+        "force_violation": 2,
+        "upstream_success_seen": 4,
+        "mean_discounted_job_return": 37.92779232161764
+      },
+      "feasibility_status": "sampled_recovery_support_demonstrated",
+      "entire_numeric_range_validated": false
+    },
+    {
+      "bin": {
+        "id": "friction_high",
+        "family": "friction",
+        "units": "static_coefficient",
+        "range": [
+          1.0,
+          1.25
+        ],
+        "development_value": 1.25
+      },
+      "requested_cases_per_arm": 12,
+      "retry": {
+        "outcomes": {
+          "deadline": 3,
+          "success": 9
+        },
+        "classifications": {
+          "contact_stall_deadline": 3,
+          "completion_without_witnessed_contact_failure": 5,
+          "witnessed_recovery": 3,
+          "completion_without_full_recovery_witness": 1
+        },
+        "initialization_valid": 12,
+        "retained_grasp": 12,
+        "contact_failure_witnessed": 7,
+        "withdrawal_verified": 7,
+        "witnessed_complete_recovery": 3,
+        "force_violation": 0,
+        "upstream_success_seen": 9,
+        "mean_discounted_job_return": 64.50540393330981
+      },
+      "continue": {
+        "outcomes": {
+          "deadline": 7,
+          "success": 5
+        },
+        "classifications": {
+          "contact_stall_deadline": 7,
+          "completion_without_witnessed_contact_failure": 5
+        },
+        "initialization_valid": 12,
+        "retained_grasp": 12,
+        "contact_failure_witnessed": 7,
+        "withdrawal_verified": 0,
+        "witnessed_complete_recovery": 0,
+        "force_violation": 0,
+        "upstream_success_seen": 5,
+        "mean_discounted_job_return": 40.21831867264649
+      },
+      "feasibility_status": "sampled_recovery_support_demonstrated",
+      "entire_numeric_range_validated": false
+    }
+  ],
+  "runs": [
+    {
+      "run_id": "peg_matrix_v1_10070_retry",
+      "arm": "retry",
+      "seed": 10070,
+      "manifest": "artifacts\\assembly\\peg_matrix_v1_10070_retry\\manifest.json",
+      "manifest_sha256": "ef94527386ec593e072afe63b67d325d405170f01edf1b7b8852a8241751c307",
+      "resources": {
+        "rollout_wall_s": 131.04699999999139,
+        "control_transitions": 12600,
+        "control_transitions_per_wall_s": 96.14871000481375,
+        "peak_torch_allocated_bytes": 8852992,
+        "peak_torch_reserved_bytes": 23068672,
+        "scope": "Instrumented scripted rollout including recording; Torch memory excludes PhysX and renderer. Not training capacity."
+      }
+    },
+    {
+      "run_id": "peg_matrix_v1_10070_continue",
+      "arm": "continue",
+      "seed": 10070,
+      "manifest": "artifacts\\assembly\\peg_matrix_v1_10070_continue\\manifest.json",
+      "manifest_sha256": "993493deafbfd38bd8382f111949b163b11d55f3c40b28eb4216083a033f9147",
+      "resources": {
+        "rollout_wall_s": 132.71900000001187,
+        "control_transitions": 12600,
+        "control_transitions_per_wall_s": 94.93742418190969,
+        "peak_torch_allocated_bytes": 8852992,
+        "peak_torch_reserved_bytes": 23068672,
+        "scope": "Instrumented scripted rollout including recording; Torch memory excludes PhysX and renderer. Not training capacity."
+      }
+    },
+    {
+      "run_id": "peg_matrix_v1_10071_retry",
+      "arm": "retry",
+      "seed": 10071,
+      "manifest": "artifacts\\assembly\\peg_matrix_v1_10071_retry\\manifest.json",
+      "manifest_sha256": "821c08f5bfc96bc5a530b2d65a56e068bc47896ef5bf76a8d54f507b30c55d34",
+      "resources": {
+        "rollout_wall_s": 132.375,
+        "control_transitions": 12600,
+        "control_transitions_per_wall_s": 95.1841359773371,
+        "peak_torch_allocated_bytes": 8852992,
+        "peak_torch_reserved_bytes": 23068672,
+        "scope": "Instrumented scripted rollout including recording; Torch memory excludes PhysX and renderer. Not training capacity."
+      }
+    },
+    {
+      "run_id": "peg_matrix_v1_10071_continue",
+      "arm": "continue",
+      "seed": 10071,
+      "manifest": "artifacts\\assembly\\peg_matrix_v1_10071_continue\\manifest.json",
+      "manifest_sha256": "60a8fd182911a01c1a7b77f1417d20263c73319f17fdd2e27892814f648ae7c3",
+      "resources": {
+        "rollout_wall_s": 134.25,
+        "control_transitions": 12600,
+        "control_transitions_per_wall_s": 93.85474860335195,
+        "peak_torch_allocated_bytes": 8852992,
+        "peak_torch_reserved_bytes": 23068672,
+        "scope": "Instrumented scripted rollout including recording; Torch memory excludes PhysX and renderer. Not training capacity."
+      }
+    },
+    {
+      "run_id": "peg_matrix_v1_10072_retry",
+      "arm": "retry",
+      "seed": 10072,
+      "manifest": "artifacts\\assembly\\peg_matrix_v1_10072_retry\\manifest.json",
+      "manifest_sha256": "88545ed71727988d18720a68de973314a8567e0e40625c8ff8a4ccccefa4cba1",
+      "resources": {
+        "rollout_wall_s": 133.57800000000861,
+        "control_transitions": 12600,
+        "control_transitions_per_wall_s": 94.32691011992385,
+        "peak_torch_allocated_bytes": 8852992,
+        "peak_torch_reserved_bytes": 23068672,
+        "scope": "Instrumented scripted rollout including recording; Torch memory excludes PhysX and renderer. Not training capacity."
+      }
+    },
+    {
+      "run_id": "peg_matrix_v1_10072_continue",
+      "arm": "continue",
+      "seed": 10072,
+      "manifest": "artifacts\\assembly\\peg_matrix_v1_10072_continue\\manifest.json",
+      "manifest_sha256": "5e54aad55a10776afc603882a407f9633055b400c30655a547481a5fcfaebf82",
+      "resources": {
+        "rollout_wall_s": 138.67199999999139,
+        "control_transitions": 12600,
+        "control_transitions_per_wall_s": 90.86188992731613,
+        "peak_torch_allocated_bytes": 8852992,
+        "peak_torch_reserved_bytes": 23068672,
+        "scope": "Instrumented scripted rollout including recording; Torch memory excludes PhysX and renderer. Not training capacity."
+      }
+    }
+  ],
+  "cases": [
+    {
+      "case": {
+        "case_id": "dev-10070-nominal-0",
+        "split": "development",
+        "seed": 10070,
+        "bin_id": "nominal",
+        "family": "nominal",
+        "direction_index": 0,
+        "fixture_bias_xy_m": [
+          0.0,
+          0.0
+        ],
+        "approach_xy_m": [
+          0.0,
+          0.0
+        ],
+        "fixed_static_friction": 0.75,
+        "fixed_dynamic_friction": 0.25
+      },
+      "retry": {
+        "job_index": 0,
+        "initialization_valid": true,
+        "outcome": "deadline",
+        "classification": "contact_without_stall_deadline",
+        "upstream_success_seen": false,
+        "retained_grasp": true,
+        "fixture_contact_observed": true,
+        "contact_failure_witnessed": false,
+        "withdrawal_verified": false,
+        "witnessed_complete_recovery": false,
+        "elapsed_s": 30.0,
+        "peak_raw_wrist_force_n": 17.489770889282227,
+        "force_violation": false,
+        "discounted_job_return": 91.70572185779693,
+        "terminal_partial_physics_steps_omitted": 0
+      },
+      "continue": {
+        "job_index": 0,
+        "initialization_valid": true,
+        "outcome": "deadline",
+        "classification": "contact_stall_deadline",
+        "upstream_success_seen": false,
+        "retained_grasp": true,
+        "fixture_contact_observed": true,
+        "contact_failure_witnessed": true,
+        "withdrawal_verified": false,
+        "witnessed_complete_recovery": false,
+        "elapsed_s": 30.0,
+        "peak_raw_wrist_force_n": 17.489770889282227,
+        "force_violation": false,
+        "discounted_job_return": 72.36739290056342,
+        "terminal_partial_physics_steps_omitted": 0
+      }
+    },
+    {
+      "case": {
+        "case_id": "dev-10070-nominal-1",
+        "split": "development",
+        "seed": 10070,
+        "bin_id": "nominal",
+        "family": "nominal",
+        "direction_index": 1,
+        "fixture_bias_xy_m": [
+          0.0,
+          0.0
+        ],
+        "approach_xy_m": [
+          0.0,
+          0.0
+        ],
+        "fixed_static_friction": 0.75,
+        "fixed_dynamic_friction": 0.25
+      },
+      "retry": {
+        "job_index": 1,
+        "initialization_valid": true,
+        "outcome": "success",
+        "classification": "witnessed_recovery",
+        "upstream_success_seen": true,
+        "retained_grasp": true,
+        "fixture_contact_observed": true,
+        "contact_failure_witnessed": true,
+        "withdrawal_verified": true,
+        "witnessed_complete_recovery": true,
+        "elapsed_s": 13.716666666666667,
+        "peak_raw_wrist_force_n": 13.548151969909668,
+        "force_violation": false,
+        "discounted_job_return": 68.29264289944281,
+        "terminal_partial_physics_steps_omitted": 6
+      },
+      "continue": {
+        "job_index": 1,
+        "initialization_valid": true,
+        "outcome": "deadline",
+        "classification": "contact_stall_deadline",
+        "upstream_success_seen": false,
+        "retained_grasp": true,
+        "fixture_contact_observed": true,
+        "contact_failure_witnessed": true,
+        "withdrawal_verified": false,
+        "witnessed_complete_recovery": false,
+        "elapsed_s": 30.0,
+        "peak_raw_wrist_force_n": 13.548151969909668,
+        "force_violation": false,
+        "discounted_job_return": 72.07579516199885,
+        "terminal_partial_physics_steps_omitted": 0
+      }
+    },
+    {
+      "case": {
+        "case_id": "dev-10070-nominal-2",
+        "split": "development",
+        "seed": 10070,
+        "bin_id": "nominal",
+        "family": "nominal",
+        "direction_index": 2,
+        "fixture_bias_xy_m": [
+          0.0,
+          0.0
+        ],
+        "approach_xy_m": [
+          0.0,
+          0.0
+        ],
+        "fixed_static_friction": 0.75,
+        "fixed_dynamic_friction": 0.25
+      },
+      "retry": {
+        "job_index": 2,
+        "initialization_valid": true,
+        "outcome": "deadline",
+        "classification": "contact_stall_deadline",
+        "upstream_success_seen": false,
+        "retained_grasp": true,
+        "fixture_contact_observed": true,
+        "contact_failure_witnessed": true,
+        "withdrawal_verified": true,
+        "witnessed_complete_recovery": false,
+        "elapsed_s": 30.0,
+        "peak_raw_wrist_force_n": 19.270719528198242,
+        "force_violation": false,
+        "discounted_job_return": 84.78902523330689,
+        "terminal_partial_physics_steps_omitted": 0
+      },
+      "continue": {
+        "job_index": 2,
+        "initialization_valid": true,
+        "outcome": "deadline",
+        "classification": "contact_stall_deadline",
+        "upstream_success_seen": false,
+        "retained_grasp": true,
+        "fixture_contact_observed": true,
+        "contact_failure_witnessed": true,
+        "withdrawal_verified": false,
+        "witnessed_complete_recovery": false,
+        "elapsed_s": 30.0,
+        "peak_raw_wrist_force_n": 19.270719528198242,
+        "force_violation": false,
+        "discounted_job_return": 39.96077971740063,
+        "terminal_partial_physics_steps_omitted": 0
+      }
+    },
+    {
+      "case": {
+        "case_id": "dev-10070-nominal-3",
+        "split": "development",
+        "seed": 10070,
+        "bin_id": "nominal",
+        "family": "nominal",
+        "direction_index": 3,
+        "fixture_bias_xy_m": [
+          0.0,
+          0.0
+        ],
+        "approach_xy_m": [
+          0.0,
+          0.0
+        ],
+        "fixed_static_friction": 0.75,
+        "fixed_dynamic_friction": 0.25
+      },
+      "retry": {
+        "job_index": 3,
+        "initialization_valid": true,
+        "outcome": "force_abort",
+        "classification": "force_abort",
+        "upstream_success_seen": false,
+        "retained_grasp": true,
+        "fixture_contact_observed": true,
+        "contact_failure_witnessed": false,
+        "withdrawal_verified": false,
+        "witnessed_complete_recovery": false,
+        "elapsed_s": 1.3916666666666666,
+        "peak_raw_wrist_force_n": 20.185998916625977,
+        "force_violation": true,
+        "discounted_job_return": 5.990864023358306,
+        "terminal_partial_physics_steps_omitted": 7
+      },
+      "continue": {
+        "job_index": 3,
+        "initialization_valid": true,
+        "outcome": "force_abort",
+        "classification": "force_abort",
+        "upstream_success_seen": false,
+        "retained_grasp": true,
+        "fixture_contact_observed": true,
+        "contact_failure_witnessed": false,
+        "withdrawal_verified": false,
+        "witnessed_complete_recovery": false,
+        "elapsed_s": 1.3916666666666666,
+        "peak_raw_wrist_force_n": 20.185998916625977,
+        "force_violation": true,
+        "discounted_job_return": 5.990864023358306,
+        "terminal_partial_physics_steps_omitted": 7
+      }
+    },
+    {
+      "case": {
+        "case_id": "dev-10070-bias_low-0",
+        "split": "development",
+        "seed": 10070,
+        "bin_id": "bias_low",
+        "family": "lateral_pose_bias",
+        "direction_index": 0,
+        "fixture_bias_xy_m": [
+          0.00075,
+          0.0
+        ],
+        "approach_xy_m": [
+          0.0,
+          0.0
+        ],
+        "fixed_static_friction": 0.75,
+        "fixed_dynamic_friction": 0.25
+      },
+      "retry": {
+        "job_index": 4,
+        "initialization_valid": true,
+        "outcome": "success",
+        "classification": "witnessed_recovery",
+        "upstream_success_seen": true,
+        "retained_grasp": true,
+        "fixture_contact_observed": true,
+        "contact_failure_witnessed": true,
+        "withdrawal_verified": true,
+        "witnessed_complete_recovery": true,
+        "elapsed_s": 25.591666666666665,
+        "peak_raw_wrist_force_n": 19.31596565246582,
+        "force_violation": false,
+        "discounted_job_return": 67.3697194805288,
+        "terminal_partial_physics_steps_omitted": 7
+      },
+      "continue": {
+        "job_index": 4,
+        "initialization_valid": true,
+        "outcome": "deadline",
+        "classification": "contact_stall_deadline",
+        "upstream_success_seen": false,
+        "retained_grasp": true,
+        "fixture_contact_observed": true,
+        "contact_failure_witnessed": true,
+        "withdrawal_verified": false,
+        "witnessed_complete_recovery": false,
+        "elapsed_s": 30.0,
+        "peak_raw_wrist_force_n": 19.31596565246582,
+        "force_violation": false,
+        "discounted_job_return": 35.78786536582878,
+        "terminal_partial_physics_steps_omitted": 0
+      }
+    },
+    {
+      "case": {
+        "case_id": "dev-10070-bias_low-1",
+        "split": "development",
+        "seed": 10070,
+        "bin_id": "bias_low",
+        "family": "lateral_pose_bias",
+        "direction_index": 1,
+        "fixture_bias_xy_m": [
+          -0.00075,
+          0.0
+        ],
+        "approach_xy_m": [
+          0.0,
+          0.0
+        ],
+        "fixed_static_friction": 0.75,
+        "fixed_dynamic_friction": 0.25
+      },
+      "retry": {
+        "job_index": 5,
+        "initialization_valid": true,
+        "outcome": "success",
+        "classification": "witnessed_recovery",
+        "upstream_success_seen": true,
+        "retained_grasp": true,
+        "fixture_contact_observed": true,
+        "contact_failure_witnessed": true,
+        "withdrawal_verified": true,
+        "witnessed_complete_recovery": true,
+        "elapsed_s": 22.041666666666668,
+        "peak_raw_wrist_force_n": 16.233619689941406,
+        "force_violation": false,
+        "discounted_job_return": 68.17448683316528,
+        "terminal_partial_physics_steps_omitted": 5
+      },
+      "continue": {
+        "job_index": 5,
+        "initialization_valid": true,
+        "outcome": "deadline",
+        "classification": "contact_stall_deadline",
+        "upstream_success_seen": false,
+        "retained_grasp": true,
+        "fixture_contact_observed": true,
+        "contact_failure_witnessed": true,
+        "withdrawal_verified": false,
+        "witnessed_complete_recovery": false,
+        "elapsed_s": 30.0,
+        "peak_raw_wrist_force_n": 10.576680183410645,
+        "force_violation": false,
+        "discounted_job_return": 62.50074635573842,
+        "terminal_partial_physics_steps_omitted": 0
+      }
+    },
+    {
+      "case": {
+        "case_id": "dev-10070-bias_low-2",
+        "split": "development",
+        "seed": 10070,
+        "bin_id": "bias_low",
+        "family": "lateral_pose_bias",
+        "direction_index": 2,
+        "fixture_bias_xy_m": [
+          0.0,
+          0.00075
+        ],
+        "approach_xy_m": [
+          0.0,
+          0.0
+        ],
+        "fixed_static_friction": 0.75,
+        "fixed_dynamic_friction": 0.25
+      },
+      "retry": {
+        "job_index": 6,
+        "initialization_valid": true,
+        "outcome": "deadline",
+        "classification": "contact_stall_deadline",
+        "upstream_success_seen": false,
+        "retained_grasp": true,
+        "fixture_contact_observed": true,
+        "contact_failure_witnessed": true,
+        "withdrawal_verified": true,
+        "witnessed_complete_recovery": false,
+        "elapsed_s": 30.0,
+        "peak_raw_wrist_force_n": 18.354537963867188,
+        "force_violation": false,
+        "discounted_job_return": 100.38132607429982,
+        "terminal_partial_physics_steps_omitted": 0
+      },
+      "continue": {
+        "job_index": 6,
+        "initialization_valid": true,
+        "outcome": "deadline",
+        "classification": "contact_stall_deadline",
+        "upstream_success_seen": false,
+        "retained_grasp": true,
+        "fixture_contact_observed": true,
+        "contact_failure_witnessed": true,
+        "withdrawal_verified": false,
+        "witnessed_complete_recovery": false,
+        "elapsed_s": 30.0,
+        "peak_raw_wrist_force_n": 18.354537963867188,
+        "force_violation": false,
+        "discounted_job_return": 3.5771948341885613,
+        "terminal_partial_physics_steps_omitted": 0
+      }
+    },
+    {
+      "case": {
+        "case_id": "dev-10070-bias_low-3",
+        "split": "development",
+        "seed": 10070,
+        "bin_id": "bias_low",
+        "family": "lateral_pose_bias",
+        "direction_index": 3,
+        "fixture_bias_xy_m": [
+          0.0,
+          -0.00075
+        ],
+        "approach_xy_m": [
+          0.0,
+          0.0
+        ],
+        "fixed_static_friction": 0.75,
+        "fixed_dynamic_friction": 0.25
+      },
+      "retry": {
+        "job_index": 7,
+        "initialization_valid": true,
+        "outcome": "success",
+        "classification": "witnessed_recovery",
+        "upstream_success_seen": true,
+        "retained_grasp": true,
+        "fixture_contact_observed": true,
+        "contact_failure_witnessed": true,
+        "withdrawal_verified": true,
+        "witnessed_complete_recovery": true,
+        "elapsed_s": 14.975,
+        "peak_raw_wrist_force_n": 19.393247604370117,
+        "force_violation": false,
+        "discounted_job_return": 63.25184998454974,
+        "terminal_partial_physics_steps_omitted": 5
+      },
+      "continue": {
+        "job_index": 7,
+        "initialization_valid": true,
+        "outcome": "deadline",
+        "classification": "contact_stall_deadline",
+        "upstream_success_seen": false,
+        "retained_grasp": true,
+        "fixture_contact_observed": true,
+        "contact_failure_witnessed": true,
+        "withdrawal_verified": false,
+        "witnessed_complete_recovery": false,
+        "elapsed_s": 30.0,
+        "peak_raw_wrist_force_n": 19.393247604370117,
+        "force_violation": false,
+        "discounted_job_return": -112.53864976054486,
+        "terminal_partial_physics_steps_omitted": 0
+      }
+    },
+    {
+      "case": {
+        "case_id": "dev-10070-bias_medium-0",
+        "split": "development",
+        "seed": 10070,
+        "bin_id": "bias_medium",
+        "family": "lateral_pose_bias",
+        "direction_index": 0,
+        "fixture_bias_xy_m": [
+          0.0015,
+          0.0
+        ],
+        "approach_xy_m": [
+          0.0,
+          0.0
+        ],
+        "fixed_static_friction": 0.75,
+        "fixed_dynamic_friction": 0.25
+      },
+      "retry": {
+        "job_index": 8,
+        "initialization_valid": true,
+        "outcome": "force_abort",
+        "classification": "force_abort",
+        "upstream_success_seen": true,
+        "retained_grasp": true,
+        "fixture_contact_observed": true,
+        "contact_failure_witnessed": true,
+        "withdrawal_verified": true,
+        "witnessed_complete_recovery": false,
+        "elapsed_s": 24.175,
+        "peak_raw_wrist_force_n": 20.114608764648438,
+        "force_violation": true,
+        "discounted_job_return": 88.50516399249508,
+        "terminal_partial_physics_steps_omitted": 5
+      },
+      "continue": {
+        "job_index": 8,
+        "initialization_valid": true,
+        "outcome": "force_abort",
+        "classification": "force_abort",
+        "upstream_success_seen": false,
+        "retained_grasp": true,
+        "fixture_contact_observed": true,
+        "contact_failure_witnessed": true,
+        "withdrawal_verified": false,
+        "witnessed_complete_recovery": false,
+        "elapsed_s": 14.108333333333333,
+        "peak_raw_wrist_force_n": 20.5838680267334,
+        "force_violation": true,
+        "discounted_job_return": -7.854801216677545,
+        "terminal_partial_physics_steps_omitted": 5
+      }
+    },
+    {
+      "case": {
+        "case_id": "dev-10070-bias_medium-1",
+        "split": "development",
+        "seed": 10070,
+        "bin_id": "bias_medium",
+        "family": "lateral_pose_bias",
+        "direction_index": 1,
+        "fixture_bias_xy_m": [
+          -0.0015,
+          0.0
+        ],
+        "approach_xy_m": [
+          0.0,
+          0.0
+        ],
+        "fixed_static_friction": 0.75,
+        "fixed_dynamic_friction": 0.25
+      },
+      "retry": {
+        "job_index": 9,
+        "initialization_valid": true,
+        "outcome": "success",
+        "classification": "witnessed_recovery",
+        "upstream_success_seen": true,
+        "retained_grasp": true,
+        "fixture_contact_observed": true,
+        "contact_failure_witnessed": true,
+        "withdrawal_verified": true,
+        "witnessed_complete_recovery": true,
+        "elapsed_s": 29.116666666666667,
+        "peak_raw_wrist_force_n": 19.24302101135254,
+        "force_violation": false,
+        "discounted_job_return": 74.01171126338492,
+        "terminal_partial_physics_steps_omitted": 6
+      },
+      "continue": {
+        "job_index": 9,
+        "initialization_valid": true,
+        "outcome": "deadline",
+        "classification": "contact_stall_deadline",
+        "upstream_success_seen": false,
+        "retained_grasp": true,
+        "fixture_contact_observed": true,
+        "contact_failure_witnessed": true,
+        "withdrawal_verified": false,
+        "witnessed_complete_recovery": false,
+        "elapsed_s": 30.0,
+        "peak_raw_wrist_force_n": 19.24302101135254,
+        "force_violation": false,
+        "discounted_job_return": 69.07841132611603,
+        "terminal_partial_physics_steps_omitted": 0
+      }
+    },
+    {
+      "case": {
+        "case_id": "dev-10070-bias_medium-2",
+        "split": "development",
+        "seed": 10070,
+        "bin_id": "bias_medium",
+        "family": "lateral_pose_bias",
+        "direction_index": 2,
+        "fixture_bias_xy_m": [
+          0.0,
+          0.0015
+        ],
+        "approach_xy_m": [
+          0.0,
+          0.0
+        ],
+        "fixed_static_friction": 0.75,
+        "fixed_dynamic_friction": 0.25
+      },
+      "retry": {
+        "job_index": 10,
+        "initialization_valid": true,
+        "outcome": "success",
+        "classification": "witnessed_recovery",
+        "upstream_success_seen": true,
+        "retained_grasp": true,
+        "fixture_contact_observed": true,
+        "contact_failure_witnessed": true,
+        "withdrawal_verified": true,
+        "witnessed_complete_recovery": true,
+        "elapsed_s": 16.808333333333334,
+        "peak_raw_wrist_force_n": 19.107236862182617,
+        "force_violation": false,
+        "discounted_job_return": 53.699366305441885,
+        "terminal_partial_physics_steps_omitted": 1
+      },
+      "continue": {
+        "job_index": 10,
+        "initialization_valid": true,
+        "outcome": "deadline",
+        "classification": "contact_stall_deadline",
+        "upstream_success_seen": false,
+        "retained_grasp": true,
+        "fixture_contact_observed": true,
+        "contact_failure_witnessed": true,
+        "withdrawal_verified": false,
+        "witnessed_complete_recovery": false,
+        "elapsed_s": 30.0,
+        "peak_raw_wrist_force_n": 19.107236862182617,
+        "force_violation": false,
+        "discounted_job_return": -79.79663311794283,
+        "terminal_partial_physics_steps_omitted": 0
+      }
+    },
+    {
+      "case": {
+        "case_id": "dev-10070-bias_medium-3",
+        "split": "development",
+        "seed": 10070,
+        "bin_id": "bias_medium",
+        "family": "lateral_pose_bias",
+        "direction_index": 3,
+        "fixture_bias_xy_m": [
+          0.0,
+          -0.0015
+        ],
+        "approach_xy_m": [
+          0.0,
+          0.0
+        ],
+        "fixed_static_friction": 0.75,
+        "fixed_dynamic_friction": 0.25
+      },
+      "retry": {
+        "job_index": 11,
+        "initialization_valid": true,
+        "outcome": "success",
+        "classification": "completion_without_witnessed_contact_failure",
+        "upstream_success_seen": true,
+        "retained_grasp": true,
+        "fixture_contact_observed": true,
+        "contact_failure_witnessed": false,
+        "withdrawal_verified": false,
+        "witnessed_complete_recovery": false,
+        "elapsed_s": 3.225,
+        "peak_raw_wrist_force_n": 19.967851638793945,
+        "force_violation": false,
+        "discounted_job_return": 50.108777761810465,
+        "terminal_partial_physics_steps_omitted": 3
+      },
+      "continue": {
+        "job_index": 11,
+        "initialization_valid": true,
+        "outcome": "success",
+        "classification": "completion_without_witnessed_contact_failure",
+        "upstream_success_seen": true,
+        "retained_grasp": true,
+        "fixture_contact_observed": true,
+        "contact_failure_witnessed": false,
+        "withdrawal_verified": false,
+        "witnessed_complete_recovery": false,
+        "elapsed_s": 3.225,
+        "peak_raw_wrist_force_n": 19.967851638793945,
+        "force_violation": false,
+        "discounted_job_return": 50.108777761810465,
+        "terminal_partial_physics_steps_omitted": 3
+      }
+    },
+    {
+      "case": {
+        "case_id": "dev-10070-approach_low-0",
+        "split": "development",
+        "seed": 10070,
+        "bin_id": "approach_low",
+        "family": "approach_offset",
+        "direction_index": 0,
+        "fixture_bias_xy_m": [
+          0.0,
+          0.0
+        ],
+        "approach_xy_m": [
+          0.004,
+          0.0
+        ],
+        "fixed_static_friction": 0.75,
+        "fixed_dynamic_friction": 0.25
+      },
+      "retry": {
+        "job_index": 12,
+        "initialization_valid": true,
+        "outcome": "deadline",
+        "classification": "contact_stall_deadline",
+        "upstream_success_seen": false,
+        "retained_grasp": true,
+        "fixture_contact_observed": true,
+        "contact_failure_witnessed": true,
+        "withdrawal_verified": true,
+        "witnessed_complete_recovery": false,
+        "elapsed_s": 30.0,
+        "peak_raw_wrist_force_n": 18.960798263549805,
+        "force_violation": false,
+        "discounted_job_return": 73.85632795544835,
+        "terminal_partial_physics_steps_omitted": 0
+      },
+      "continue": {
+        "job_index": 12,
+        "initialization_valid": true,
+        "outcome": "force_abort",
+        "classification": "force_abort",
+        "upstream_success_seen": false,
+        "retained_grasp": true,
+        "fixture_contact_observed": true,
+        "contact_failure_witnessed": true,
+        "withdrawal_verified": false,
+        "witnessed_complete_recovery": false,
+        "elapsed_s": 7.175,
+        "peak_raw_wrist_force_n": 20.322959899902344,
+        "force_violation": true,
+        "discounted_job_return": -11.575147420175425,
+        "terminal_partial_physics_steps_omitted": 5
+      }
+    },
+    {
+      "case": {
+        "case_id": "dev-10070-approach_low-1",
+        "split": "development",
+        "seed": 10070,
+        "bin_id": "approach_low",
+        "family": "approach_offset",
+        "direction_index": 1,
+        "fixture_bias_xy_m": [
+          0.0,
+          0.0
+        ],
+        "approach_xy_m": [
+          -0.004,
+          0.0
+        ],
+        "fixed_static_friction": 0.75,
+        "fixed_dynamic_friction": 0.25
+      },
+      "retry": {
+        "job_index": 13,
+        "initialization_valid": true,
+        "outcome": "success",
+        "classification": "witnessed_recovery",
+        "upstream_success_seen": true,
+        "retained_grasp": true,
+        "fixture_contact_observed": true,
+        "contact_failure_witnessed": true,
+        "withdrawal_verified": true,
+        "witnessed_complete_recovery": true,
+        "elapsed_s": 15.65,
+        "peak_raw_wrist_force_n": 19.83917808532715,
+        "force_violation": false,
+        "discounted_job_return": 75.9008012255222,
+        "terminal_partial_physics_steps_omitted": 6
+      },
+      "continue": {
+        "job_index": 13,
+        "initialization_valid": true,
+        "outcome": "force_abort",
+        "classification": "force_abort",
+        "upstream_success_seen": true,
+        "retained_grasp": true,
+        "fixture_contact_observed": true,
+        "contact_failure_witnessed": true,
+        "withdrawal_verified": false,
+        "witnessed_complete_recovery": false,
+        "elapsed_s": 12.508333333333333,
+        "peak_raw_wrist_force_n": 20.25464630126953,
+        "force_violation": true,
+        "discounted_job_return": 44.519294266436745,
+        "terminal_partial_physics_steps_omitted": 5
+      }
+    },
+    {
+      "case": {
+        "case_id": "dev-10070-approach_low-2",
+        "split": "development",
+        "seed": 10070,
+        "bin_id": "approach_low",
+        "family": "approach_offset",
+        "direction_index": 2,
+        "fixture_bias_xy_m": [
+          0.0,
+          0.0
+        ],
+        "approach_xy_m": [
+          0.0,
+          0.004
+        ],
+        "fixed_static_friction": 0.75,
+        "fixed_dynamic_friction": 0.25
+      },
+      "retry": {
+        "job_index": 14,
+        "initialization_valid": true,
+        "outcome": "deadline",
+        "classification": "contact_stall_deadline",
+        "upstream_success_seen": false,
+        "retained_grasp": true,
+        "fixture_contact_observed": true,
+        "contact_failure_witnessed": true,
+        "withdrawal_verified": true,
+        "witnessed_complete_recovery": false,
+        "elapsed_s": 30.0,
+        "peak_raw_wrist_force_n": 13.325179100036621,
+        "force_violation": false,
+        "discounted_job_return": 74.75786389204688,
+        "terminal_partial_physics_steps_omitted": 0
+      },
+      "continue": {
+        "job_index": 14,
+        "initialization_valid": true,
+        "outcome": "deadline",
+        "classification": "contact_stall_deadline",
+        "upstream_success_seen": false,
+        "retained_grasp": true,
+        "fixture_contact_observed": true,
+        "contact_failure_witnessed": true,
+        "withdrawal_verified": false,
+        "witnessed_complete_recovery": false,
+        "elapsed_s": 30.0,
+        "peak_raw_wrist_force_n": 16.719144821166992,
+        "force_violation": false,
+        "discounted_job_return": -42.58522588082157,
+        "terminal_partial_physics_steps_omitted": 0
+      }
+    },
+    {
+      "case": {
+        "case_id": "dev-10070-approach_low-3",
+        "split": "development",
+        "seed": 10070,
+        "bin_id": "approach_low",
+        "family": "approach_offset",
+        "direction_index": 3,
+        "fixture_bias_xy_m": [
+          0.0,
+          0.0
+        ],
+        "approach_xy_m": [
+          0.0,
+          -0.004
+        ],
+        "fixed_static_friction": 0.75,
+        "fixed_dynamic_friction": 0.25
+      },
+      "retry": {
+        "job_index": 15,
+        "initialization_valid": true,
+        "outcome": "success",
+        "classification": "completion_without_full_recovery_witness",
+        "upstream_success_seen": true,
+        "retained_grasp": true,
+        "fixture_contact_observed": true,
+        "contact_failure_witnessed": true,
+        "withdrawal_verified": false,
+        "witnessed_complete_recovery": false,
+        "elapsed_s": 16.6,
+        "peak_raw_wrist_force_n": 16.93754768371582,
+        "force_violation": false,
+        "discounted_job_return": 66.87442507778022,
+        "terminal_partial_physics_steps_omitted": 0
+      },
+      "continue": {
+        "job_index": 15,
+        "initialization_valid": true,
+        "outcome": "deadline",
+        "classification": "contact_stall_deadline",
+        "upstream_success_seen": false,
+        "retained_grasp": true,
+        "fixture_contact_observed": true,
+        "contact_failure_witnessed": true,
+        "withdrawal_verified": false,
+        "witnessed_complete_recovery": false,
+        "elapsed_s": 30.0,
+        "peak_raw_wrist_force_n": 16.93754768371582,
+        "force_violation": false,
+        "discounted_job_return": 6.858875477180515,
+        "terminal_partial_physics_steps_omitted": 0
+      }
+    },
+    {
+      "case": {
+        "case_id": "dev-10070-approach_high-0",
+        "split": "development",
+        "seed": 10070,
+        "bin_id": "approach_high",
+        "family": "approach_offset",
+        "direction_index": 0,
+        "fixture_bias_xy_m": [
+          0.0,
+          0.0
+        ],
+        "approach_xy_m": [
+          0.008,
+          0.0
+        ],
+        "fixed_static_friction": 0.75,
+        "fixed_dynamic_friction": 0.25
+      },
+      "retry": {
+        "job_index": 16,
+        "initialization_valid": true,
+        "outcome": "success",
+        "classification": "witnessed_recovery",
+        "upstream_success_seen": true,
+        "retained_grasp": true,
+        "fixture_contact_observed": true,
+        "contact_failure_witnessed": true,
+        "withdrawal_verified": true,
+        "witnessed_complete_recovery": true,
+        "elapsed_s": 17.516666666666666,
+        "peak_raw_wrist_force_n": 19.43140411376953,
+        "force_violation": false,
+        "discounted_job_return": 70.46703854075676,
+        "terminal_partial_physics_steps_omitted": 6
+      },
+      "continue": {
+        "job_index": 16,
+        "initialization_valid": true,
+        "outcome": "deadline",
+        "classification": "contact_stall_deadline",
+        "upstream_success_seen": false,
+        "retained_grasp": true,
+        "fixture_contact_observed": true,
+        "contact_failure_witnessed": true,
+        "withdrawal_verified": false,
+        "witnessed_complete_recovery": false,
+        "elapsed_s": 30.0,
+        "peak_raw_wrist_force_n": 19.43140411376953,
+        "force_violation": false,
+        "discounted_job_return": -5.357657587650778,
+        "terminal_partial_physics_steps_omitted": 0
+      }
+    },
+    {
+      "case": {
+        "case_id": "dev-10070-approach_high-1",
+        "split": "development",
+        "seed": 10070,
+        "bin_id": "approach_high",
+        "family": "approach_offset",
+        "direction_index": 1,
+        "fixture_bias_xy_m": [
+          0.0,
+          0.0
+        ],
+        "approach_xy_m": [
+          -0.008,
+          0.0
+        ],
+        "fixed_static_friction": 0.75,
+        "fixed_dynamic_friction": 0.25
+      },
+      "retry": {
+        "job_index": 17,
+        "initialization_valid": true,
+        "outcome": "success",
+        "classification": "completion_without_full_recovery_witness",
+        "upstream_success_seen": true,
+        "retained_grasp": true,
+        "fixture_contact_observed": true,
+        "contact_failure_witnessed": true,
+        "withdrawal_verified": false,
+        "witnessed_complete_recovery": false,
+        "elapsed_s": 24.208333333333332,
+        "peak_raw_wrist_force_n": 18.65590476989746,
+        "force_violation": false,
+        "discounted_job_return": 70.77448430201167,
+        "terminal_partial_physics_steps_omitted": 1
+      },
+      "continue": {
+        "job_index": 17,
+        "initialization_valid": true,
+        "outcome": "deadline",
+        "classification": "contact_stall_deadline",
+        "upstream_success_seen": false,
+        "retained_grasp": true,
+        "fixture_contact_observed": true,
+        "contact_failure_witnessed": true,
+        "withdrawal_verified": false,
+        "witnessed_complete_recovery": false,
+        "elapsed_s": 30.0,
+        "peak_raw_wrist_force_n": 18.65590476989746,
+        "force_violation": false,
+        "discounted_job_return": 5.422734124551935,
+        "terminal_partial_physics_steps_omitted": 0
+      }
+    },
+    {
+      "case": {
+        "case_id": "dev-10070-approach_high-2",
+        "split": "development",
+        "seed": 10070,
+        "bin_id": "approach_high",
+        "family": "approach_offset",
+        "direction_index": 2,
+        "fixture_bias_xy_m": [
+          0.0,
+          0.0
+        ],
+        "approach_xy_m": [
+          0.0,
+          0.008
+        ],
+        "fixed_static_friction": 0.75,
+        "fixed_dynamic_friction": 0.25
+      },
+      "retry": {
+        "job_index": 18,
+        "initialization_valid": true,
+        "outcome": "deadline",
+        "classification": "contact_stall_deadline",
+        "upstream_success_seen": false,
+        "retained_grasp": true,
+        "fixture_contact_observed": true,
+        "contact_failure_witnessed": true,
+        "withdrawal_verified": true,
+        "witnessed_complete_recovery": false,
+        "elapsed_s": 30.0,
+        "peak_raw_wrist_force_n": 18.839927673339844,
+        "force_violation": false,
+        "discounted_job_return": 68.9012369474064,
+        "terminal_partial_physics_steps_omitted": 0
+      },
+      "continue": {
+        "job_index": 18,
+        "initialization_valid": true,
+        "outcome": "deadline",
+        "classification": "contact_stall_deadline",
+        "upstream_success_seen": false,
+        "retained_grasp": true,
+        "fixture_contact_observed": true,
+        "contact_failure_witnessed": true,
+        "withdrawal_verified": false,
+        "witnessed_complete_recovery": false,
+        "elapsed_s": 30.0,
+        "peak_raw_wrist_force_n": 18.839927673339844,
+        "force_violation": false,
+        "discounted_job_return": 62.25834244192322,
+        "terminal_partial_physics_steps_omitted": 0
+      }
+    },
+    {
+      "case": {
+        "case_id": "dev-10070-approach_high-3",
+        "split": "development",
+        "seed": 10070,
+        "bin_id": "approach_high",
+        "family": "approach_offset",
+        "direction_index": 3,
+        "fixture_bias_xy_m": [
+          0.0,
+          0.0
+        ],
+        "approach_xy_m": [
+          0.0,
+          -0.008
+        ],
+        "fixed_static_friction": 0.75,
+        "fixed_dynamic_friction": 0.25
+      },
+      "retry": {
+        "job_index": 19,
+        "initialization_valid": true,
+        "outcome": "success",
+        "classification": "completion_without_full_recovery_witness",
+        "upstream_success_seen": true,
+        "retained_grasp": true,
+        "fixture_contact_observed": true,
+        "contact_failure_witnessed": true,
+        "withdrawal_verified": true,
+        "witnessed_complete_recovery": false,
+        "elapsed_s": 20.458333333333332,
+        "peak_raw_wrist_force_n": 18.272382736206055,
+        "force_violation": false,
+        "discounted_job_return": 71.25246855075143,
+        "terminal_partial_physics_steps_omitted": 7
+      },
+      "continue": {
+        "job_index": 19,
+        "initialization_valid": true,
+        "outcome": "deadline",
+        "classification": "contact_stall_deadline",
+        "upstream_success_seen": false,
+        "retained_grasp": true,
+        "fixture_contact_observed": true,
+        "contact_failure_witnessed": true,
+        "withdrawal_verified": false,
+        "witnessed_complete_recovery": false,
+        "elapsed_s": 30.0,
+        "peak_raw_wrist_force_n": 18.272382736206055,
+        "force_violation": false,
+        "discounted_job_return": 27.96401510239028,
+        "terminal_partial_physics_steps_omitted": 0
+      }
+    },
+    {
+      "case": {
+        "case_id": "dev-10070-friction_low-0",
+        "split": "development",
+        "seed": 10070,
+        "bin_id": "friction_low",
+        "family": "friction",
+        "direction_index": 0,
+        "fixture_bias_xy_m": [
+          0.0,
+          0.0
+        ],
+        "approach_xy_m": [
+          0.0,
+          0.0
+        ],
+        "fixed_static_friction": 0.25,
+        "fixed_dynamic_friction": 0.25
+      },
+      "retry": {
+        "job_index": 20,
+        "initialization_valid": true,
+        "outcome": "success",
+        "classification": "completion_without_full_recovery_witness",
+        "upstream_success_seen": true,
+        "retained_grasp": true,
+        "fixture_contact_observed": true,
+        "contact_failure_witnessed": true,
+        "withdrawal_verified": false,
+        "witnessed_complete_recovery": false,
+        "elapsed_s": 18.391666666666666,
+        "peak_raw_wrist_force_n": 19.22676658630371,
+        "force_violation": false,
+        "discounted_job_return": 52.39265883902779,
+        "terminal_partial_physics_steps_omitted": 7
+      },
+      "continue": {
+        "job_index": 20,
+        "initialization_valid": true,
+        "outcome": "deadline",
+        "classification": "contact_stall_deadline",
+        "upstream_success_seen": false,
+        "retained_grasp": true,
+        "fixture_contact_observed": true,
+        "contact_failure_witnessed": true,
+        "withdrawal_verified": false,
+        "witnessed_complete_recovery": false,
+        "elapsed_s": 30.0,
+        "peak_raw_wrist_force_n": 19.22676658630371,
+        "force_violation": false,
+        "discounted_job_return": -16.096603164709148,
+        "terminal_partial_physics_steps_omitted": 0
+      }
+    },
+    {
+      "case": {
+        "case_id": "dev-10070-friction_low-1",
+        "split": "development",
+        "seed": 10070,
+        "bin_id": "friction_low",
+        "family": "friction",
+        "direction_index": 1,
+        "fixture_bias_xy_m": [
+          0.0,
+          0.0
+        ],
+        "approach_xy_m": [
+          0.0,
+          0.0
+        ],
+        "fixed_static_friction": 0.25,
+        "fixed_dynamic_friction": 0.25
+      },
+      "retry": {
+        "job_index": 21,
+        "initialization_valid": true,
+        "outcome": "force_abort",
+        "classification": "force_abort",
+        "upstream_success_seen": true,
+        "retained_grasp": true,
+        "fixture_contact_observed": true,
+        "contact_failure_witnessed": false,
+        "withdrawal_verified": false,
+        "witnessed_complete_recovery": false,
+        "elapsed_s": 2.325,
+        "peak_raw_wrist_force_n": 20.08344078063965,
+        "force_violation": true,
+        "discounted_job_return": 20.605139970171603,
+        "terminal_partial_physics_steps_omitted": 7
+      },
+      "continue": {
+        "job_index": 21,
+        "initialization_valid": true,
+        "outcome": "force_abort",
+        "classification": "force_abort",
+        "upstream_success_seen": true,
+        "retained_grasp": true,
+        "fixture_contact_observed": true,
+        "contact_failure_witnessed": false,
+        "withdrawal_verified": false,
+        "witnessed_complete_recovery": false,
+        "elapsed_s": 2.325,
+        "peak_raw_wrist_force_n": 20.08344078063965,
+        "force_violation": true,
+        "discounted_job_return": 20.605139970171603,
+        "terminal_partial_physics_steps_omitted": 7
+      }
+    },
+    {
+      "case": {
+        "case_id": "dev-10070-friction_low-2",
+        "split": "development",
+        "seed": 10070,
+        "bin_id": "friction_low",
+        "family": "friction",
+        "direction_index": 2,
+        "fixture_bias_xy_m": [
+          0.0,
+          0.0
+        ],
+        "approach_xy_m": [
+          0.0,
+          0.0
+        ],
+        "fixed_static_friction": 0.25,
+        "fixed_dynamic_friction": 0.25
+      },
+      "retry": {
+        "job_index": 22,
+        "initialization_valid": true,
+        "outcome": "force_abort",
+        "classification": "force_abort",
+        "upstream_success_seen": true,
+        "retained_grasp": true,
+        "fixture_contact_observed": true,
+        "contact_failure_witnessed": false,
+        "withdrawal_verified": false,
+        "witnessed_complete_recovery": false,
+        "elapsed_s": 5.0,
+        "peak_raw_wrist_force_n": 20.035541534423828,
+        "force_violation": true,
+        "discounted_job_return": 28.07044405125363,
+        "terminal_partial_physics_steps_omitted": 0
+      },
+      "continue": {
+        "job_index": 22,
+        "initialization_valid": true,
+        "outcome": "force_abort",
+        "classification": "force_abort",
+        "upstream_success_seen": true,
+        "retained_grasp": true,
+        "fixture_contact_observed": true,
+        "contact_failure_witnessed": false,
+        "withdrawal_verified": false,
+        "witnessed_complete_recovery": false,
+        "elapsed_s": 5.0,
+        "peak_raw_wrist_force_n": 20.035541534423828,
+        "force_violation": true,
+        "discounted_job_return": 28.07044405125363,
+        "terminal_partial_physics_steps_omitted": 0
+      }
+    },
+    {
+      "case": {
+        "case_id": "dev-10070-friction_low-3",
+        "split": "development",
+        "seed": 10070,
+        "bin_id": "friction_low",
+        "family": "friction",
+        "direction_index": 3,
+        "fixture_bias_xy_m": [
+          0.0,
+          0.0
+        ],
+        "approach_xy_m": [
+          0.0,
+          0.0
+        ],
+        "fixed_static_friction": 0.25,
+        "fixed_dynamic_friction": 0.25
+      },
+      "retry": {
+        "job_index": 23,
+        "initialization_valid": true,
+        "outcome": "success",
+        "classification": "witnessed_recovery",
+        "upstream_success_seen": true,
+        "retained_grasp": true,
+        "fixture_contact_observed": true,
+        "contact_failure_witnessed": true,
+        "withdrawal_verified": true,
+        "witnessed_complete_recovery": true,
+        "elapsed_s": 28.983333333333334,
+        "peak_raw_wrist_force_n": 19.232589721679688,
+        "force_violation": false,
+        "discounted_job_return": 105.3436186693982,
+        "terminal_partial_physics_steps_omitted": 6
+      },
+      "continue": {
+        "job_index": 23,
+        "initialization_valid": true,
+        "outcome": "deadline",
+        "classification": "contact_stall_deadline",
+        "upstream_success_seen": false,
+        "retained_grasp": true,
+        "fixture_contact_observed": true,
+        "contact_failure_witnessed": true,
+        "withdrawal_verified": false,
+        "witnessed_complete_recovery": false,
+        "elapsed_s": 30.0,
+        "peak_raw_wrist_force_n": 19.232589721679688,
+        "force_violation": false,
+        "discounted_job_return": -38.73247182307257,
+        "terminal_partial_physics_steps_omitted": 0
+      }
+    },
+    {
+      "case": {
+        "case_id": "dev-10070-friction_high-0",
+        "split": "development",
+        "seed": 10070,
+        "bin_id": "friction_high",
+        "family": "friction",
+        "direction_index": 0,
+        "fixture_bias_xy_m": [
+          0.0,
+          0.0
+        ],
+        "approach_xy_m": [
+          0.0,
+          0.0
+        ],
+        "fixed_static_friction": 1.25,
+        "fixed_dynamic_friction": 0.25
+      },
+      "retry": {
+        "job_index": 24,
+        "initialization_valid": true,
+        "outcome": "deadline",
+        "classification": "contact_stall_deadline",
+        "upstream_success_seen": false,
+        "retained_grasp": true,
+        "fixture_contact_observed": true,
+        "contact_failure_witnessed": true,
+        "withdrawal_verified": true,
+        "witnessed_complete_recovery": false,
+        "elapsed_s": 30.0,
+        "peak_raw_wrist_force_n": 13.569601058959961,
+        "force_violation": false,
+        "discounted_job_return": 79.62769070622178,
+        "terminal_partial_physics_steps_omitted": 0
+      },
+      "continue": {
+        "job_index": 24,
+        "initialization_valid": true,
+        "outcome": "deadline",
+        "classification": "contact_stall_deadline",
+        "upstream_success_seen": false,
+        "retained_grasp": true,
+        "fixture_contact_observed": true,
+        "contact_failure_witnessed": true,
+        "withdrawal_verified": false,
+        "witnessed_complete_recovery": false,
+        "elapsed_s": 30.0,
+        "peak_raw_wrist_force_n": 13.569601058959961,
+        "force_violation": false,
+        "discounted_job_return": 58.892838335876725,
+        "terminal_partial_physics_steps_omitted": 0
+      }
+    },
+    {
+      "case": {
+        "case_id": "dev-10070-friction_high-1",
+        "split": "development",
+        "seed": 10070,
+        "bin_id": "friction_high",
+        "family": "friction",
+        "direction_index": 1,
+        "fixture_bias_xy_m": [
+          0.0,
+          0.0
+        ],
+        "approach_xy_m": [
+          0.0,
+          0.0
+        ],
+        "fixed_static_friction": 1.25,
+        "fixed_dynamic_friction": 0.25
+      },
+      "retry": {
+        "job_index": 25,
+        "initialization_valid": true,
+        "outcome": "success",
+        "classification": "completion_without_witnessed_contact_failure",
+        "upstream_success_seen": true,
+        "retained_grasp": true,
+        "fixture_contact_observed": true,
+        "contact_failure_witnessed": false,
+        "withdrawal_verified": false,
+        "witnessed_complete_recovery": false,
+        "elapsed_s": 2.875,
+        "peak_raw_wrist_force_n": 19.84935760498047,
+        "force_violation": false,
+        "discounted_job_return": 36.617074070449924,
+        "terminal_partial_physics_steps_omitted": 1
+      },
+      "continue": {
+        "job_index": 25,
+        "initialization_valid": true,
+        "outcome": "success",
+        "classification": "completion_without_witnessed_contact_failure",
+        "upstream_success_seen": true,
+        "retained_grasp": true,
+        "fixture_contact_observed": true,
+        "contact_failure_witnessed": false,
+        "withdrawal_verified": false,
+        "witnessed_complete_recovery": false,
+        "elapsed_s": 2.875,
+        "peak_raw_wrist_force_n": 19.84935760498047,
+        "force_violation": false,
+        "discounted_job_return": 36.617074070449924,
+        "terminal_partial_physics_steps_omitted": 1
+      }
+    },
+    {
+      "case": {
+        "case_id": "dev-10070-friction_high-2",
+        "split": "development",
+        "seed": 10070,
+        "bin_id": "friction_high",
+        "family": "friction",
+        "direction_index": 2,
+        "fixture_bias_xy_m": [
+          0.0,
+          0.0
+        ],
+        "approach_xy_m": [
+          0.0,
+          0.0
+        ],
+        "fixed_static_friction": 1.25,
+        "fixed_dynamic_friction": 0.25
+      },
+      "retry": {
+        "job_index": 26,
+        "initialization_valid": true,
+        "outcome": "success",
+        "classification": "witnessed_recovery",
+        "upstream_success_seen": true,
+        "retained_grasp": true,
+        "fixture_contact_observed": true,
+        "contact_failure_witnessed": true,
+        "withdrawal_verified": true,
+        "witnessed_complete_recovery": true,
+        "elapsed_s": 15.283333333333333,
+        "peak_raw_wrist_force_n": 19.709644317626953,
+        "force_violation": false,
+        "discounted_job_return": 60.6151514539021,
+        "terminal_partial_physics_steps_omitted": 2
+      },
+      "continue": {
+        "job_index": 26,
+        "initialization_valid": true,
+        "outcome": "deadline",
+        "classification": "contact_stall_deadline",
+        "upstream_success_seen": false,
+        "retained_grasp": true,
+        "fixture_contact_observed": true,
+        "contact_failure_witnessed": true,
+        "withdrawal_verified": false,
+        "witnessed_complete_recovery": false,
+        "elapsed_s": 30.0,
+        "peak_raw_wrist_force_n": 19.709644317626953,
+        "force_violation": false,
+        "discounted_job_return": -8.054973951204403,
+        "terminal_partial_physics_steps_omitted": 0
+      }
+    },
+    {
+      "case": {
+        "case_id": "dev-10070-friction_high-3",
+        "split": "development",
+        "seed": 10070,
+        "bin_id": "friction_high",
+        "family": "friction",
+        "direction_index": 3,
+        "fixture_bias_xy_m": [
+          0.0,
+          0.0
+        ],
+        "approach_xy_m": [
+          0.0,
+          0.0
+        ],
+        "fixed_static_friction": 1.25,
+        "fixed_dynamic_friction": 0.25
+      },
+      "retry": {
+        "job_index": 27,
+        "initialization_valid": true,
+        "outcome": "success",
+        "classification": "completion_without_witnessed_contact_failure",
+        "upstream_success_seen": true,
+        "retained_grasp": true,
+        "fixture_contact_observed": true,
+        "contact_failure_witnessed": false,
+        "withdrawal_verified": false,
+        "witnessed_complete_recovery": false,
+        "elapsed_s": 3.225,
+        "peak_raw_wrist_force_n": 19.476734161376953,
+        "force_violation": false,
+        "discounted_job_return": 49.872668552749474,
+        "terminal_partial_physics_steps_omitted": 3
+      },
+      "continue": {
+        "job_index": 27,
+        "initialization_valid": true,
+        "outcome": "success",
+        "classification": "completion_without_witnessed_contact_failure",
+        "upstream_success_seen": true,
+        "retained_grasp": true,
+        "fixture_contact_observed": true,
+        "contact_failure_witnessed": false,
+        "withdrawal_verified": false,
+        "witnessed_complete_recovery": false,
+        "elapsed_s": 3.225,
+        "peak_raw_wrist_force_n": 19.476734161376953,
+        "force_violation": false,
+        "discounted_job_return": 49.872668552749474,
+        "terminal_partial_physics_steps_omitted": 3
+      }
+    },
+    {
+      "case": {
+        "case_id": "dev-10071-nominal-0",
+        "split": "development",
+        "seed": 10071,
+        "bin_id": "nominal",
+        "family": "nominal",
+        "direction_index": 0,
+        "fixture_bias_xy_m": [
+          0.0,
+          0.0
+        ],
+        "approach_xy_m": [
+          0.0,
+          0.0
+        ],
+        "fixed_static_friction": 0.75,
+        "fixed_dynamic_friction": 0.25
+      },
+      "retry": {
+        "job_index": 0,
+        "initialization_valid": true,
+        "outcome": "deadline",
+        "classification": "contact_stall_deadline",
+        "upstream_success_seen": false,
+        "retained_grasp": true,
+        "fixture_contact_observed": true,
+        "contact_failure_witnessed": true,
+        "withdrawal_verified": true,
+        "witnessed_complete_recovery": false,
+        "elapsed_s": 30.0,
+        "peak_raw_wrist_force_n": 18.957378387451172,
+        "force_violation": false,
+        "discounted_job_return": 119.86519066773262,
+        "terminal_partial_physics_steps_omitted": 0
+      },
+      "continue": {
+        "job_index": 0,
+        "initialization_valid": true,
+        "outcome": "deadline",
+        "classification": "contact_stall_deadline",
+        "upstream_success_seen": false,
+        "retained_grasp": true,
+        "fixture_contact_observed": true,
+        "contact_failure_witnessed": true,
+        "withdrawal_verified": false,
+        "witnessed_complete_recovery": false,
+        "elapsed_s": 30.0,
+        "peak_raw_wrist_force_n": 18.957378387451172,
+        "force_violation": false,
+        "discounted_job_return": 68.49477351569679,
+        "terminal_partial_physics_steps_omitted": 0
+      }
+    },
+    {
+      "case": {
+        "case_id": "dev-10071-nominal-1",
+        "split": "development",
+        "seed": 10071,
+        "bin_id": "nominal",
+        "family": "nominal",
+        "direction_index": 1,
+        "fixture_bias_xy_m": [
+          0.0,
+          0.0
+        ],
+        "approach_xy_m": [
+          0.0,
+          0.0
+        ],
+        "fixed_static_friction": 0.75,
+        "fixed_dynamic_friction": 0.25
+      },
+      "retry": {
+        "job_index": 1,
+        "initialization_valid": true,
+        "outcome": "deadline",
+        "classification": "contact_stall_deadline",
+        "upstream_success_seen": false,
+        "retained_grasp": true,
+        "fixture_contact_observed": true,
+        "contact_failure_witnessed": true,
+        "withdrawal_verified": true,
+        "witnessed_complete_recovery": false,
+        "elapsed_s": 30.0,
+        "peak_raw_wrist_force_n": 19.730688095092773,
+        "force_violation": false,
+        "discounted_job_return": 126.48935668588892,
+        "terminal_partial_physics_steps_omitted": 0
+      },
+      "continue": {
+        "job_index": 1,
+        "initialization_valid": true,
+        "outcome": "success",
+        "classification": "completion_without_full_recovery_witness",
+        "upstream_success_seen": true,
+        "retained_grasp": true,
+        "fixture_contact_observed": true,
+        "contact_failure_witnessed": true,
+        "withdrawal_verified": false,
+        "witnessed_complete_recovery": false,
+        "elapsed_s": 13.541666666666666,
+        "peak_raw_wrist_force_n": 19.679779052734375,
+        "force_violation": false,
+        "discounted_job_return": 45.98007122055803,
+        "terminal_partial_physics_steps_omitted": 1
+      }
+    },
+    {
+      "case": {
+        "case_id": "dev-10071-nominal-2",
+        "split": "development",
+        "seed": 10071,
+        "bin_id": "nominal",
+        "family": "nominal",
+        "direction_index": 2,
+        "fixture_bias_xy_m": [
+          0.0,
+          0.0
+        ],
+        "approach_xy_m": [
+          0.0,
+          0.0
+        ],
+        "fixed_static_friction": 0.75,
+        "fixed_dynamic_friction": 0.25
+      },
+      "retry": {
+        "job_index": 2,
+        "initialization_valid": true,
+        "outcome": "success",
+        "classification": "witnessed_recovery",
+        "upstream_success_seen": true,
+        "retained_grasp": true,
+        "fixture_contact_observed": true,
+        "contact_failure_witnessed": true,
+        "withdrawal_verified": true,
+        "witnessed_complete_recovery": true,
+        "elapsed_s": 11.408333333333333,
+        "peak_raw_wrist_force_n": 19.1597843170166,
+        "force_violation": false,
+        "discounted_job_return": 62.44795589499249,
+        "terminal_partial_physics_steps_omitted": 1
+      },
+      "continue": {
+        "job_index": 2,
+        "initialization_valid": true,
+        "outcome": "deadline",
+        "classification": "contact_stall_deadline",
+        "upstream_success_seen": false,
+        "retained_grasp": true,
+        "fixture_contact_observed": true,
+        "contact_failure_witnessed": true,
+        "withdrawal_verified": false,
+        "witnessed_complete_recovery": false,
+        "elapsed_s": 30.0,
+        "peak_raw_wrist_force_n": 19.1597843170166,
+        "force_violation": false,
+        "discounted_job_return": 71.91009858524953,
+        "terminal_partial_physics_steps_omitted": 0
+      }
+    },
+    {
+      "case": {
+        "case_id": "dev-10071-nominal-3",
+        "split": "development",
+        "seed": 10071,
+        "bin_id": "nominal",
+        "family": "nominal",
+        "direction_index": 3,
+        "fixture_bias_xy_m": [
+          0.0,
+          0.0
+        ],
+        "approach_xy_m": [
+          0.0,
+          0.0
+        ],
+        "fixed_static_friction": 0.75,
+        "fixed_dynamic_friction": 0.25
+      },
+      "retry": {
+        "job_index": 3,
+        "initialization_valid": true,
+        "outcome": "success",
+        "classification": "witnessed_recovery",
+        "upstream_success_seen": true,
+        "retained_grasp": true,
+        "fixture_contact_observed": true,
+        "contact_failure_witnessed": true,
+        "withdrawal_verified": true,
+        "witnessed_complete_recovery": true,
+        "elapsed_s": 17.316666666666666,
+        "peak_raw_wrist_force_n": 19.2830810546875,
+        "force_violation": false,
+        "discounted_job_return": 65.80157244591855,
+        "terminal_partial_physics_steps_omitted": 6
+      },
+      "continue": {
+        "job_index": 3,
+        "initialization_valid": true,
+        "outcome": "deadline",
+        "classification": "contact_stall_deadline",
+        "upstream_success_seen": false,
+        "retained_grasp": true,
+        "fixture_contact_observed": true,
+        "contact_failure_witnessed": true,
+        "withdrawal_verified": false,
+        "witnessed_complete_recovery": false,
+        "elapsed_s": 30.0,
+        "peak_raw_wrist_force_n": 19.2830810546875,
+        "force_violation": false,
+        "discounted_job_return": 63.81074945092685,
+        "terminal_partial_physics_steps_omitted": 0
+      }
+    },
+    {
+      "case": {
+        "case_id": "dev-10071-bias_low-0",
+        "split": "development",
+        "seed": 10071,
+        "bin_id": "bias_low",
+        "family": "lateral_pose_bias",
+        "direction_index": 0,
+        "fixture_bias_xy_m": [
+          0.00075,
+          0.0
+        ],
+        "approach_xy_m": [
+          0.0,
+          0.0
+        ],
+        "fixed_static_friction": 0.75,
+        "fixed_dynamic_friction": 0.25
+      },
+      "retry": {
+        "job_index": 4,
+        "initialization_valid": true,
+        "outcome": "success",
+        "classification": "completion_without_witnessed_contact_failure",
+        "upstream_success_seen": true,
+        "retained_grasp": true,
+        "fixture_contact_observed": true,
+        "contact_failure_witnessed": false,
+        "withdrawal_verified": false,
+        "witnessed_complete_recovery": false,
+        "elapsed_s": 5.15,
+        "peak_raw_wrist_force_n": 12.419711112976074,
+        "force_violation": false,
+        "discounted_job_return": 80.27541891130113,
+        "terminal_partial_physics_steps_omitted": 2
+      },
+      "continue": {
+        "job_index": 4,
+        "initialization_valid": true,
+        "outcome": "success",
+        "classification": "completion_without_witnessed_contact_failure",
+        "upstream_success_seen": true,
+        "retained_grasp": true,
+        "fixture_contact_observed": true,
+        "contact_failure_witnessed": false,
+        "withdrawal_verified": false,
+        "witnessed_complete_recovery": false,
+        "elapsed_s": 5.15,
+        "peak_raw_wrist_force_n": 12.419711112976074,
+        "force_violation": false,
+        "discounted_job_return": 80.27541891130113,
+        "terminal_partial_physics_steps_omitted": 2
+      }
+    },
+    {
+      "case": {
+        "case_id": "dev-10071-bias_low-1",
+        "split": "development",
+        "seed": 10071,
+        "bin_id": "bias_low",
+        "family": "lateral_pose_bias",
+        "direction_index": 1,
+        "fixture_bias_xy_m": [
+          -0.00075,
+          0.0
+        ],
+        "approach_xy_m": [
+          0.0,
+          0.0
+        ],
+        "fixed_static_friction": 0.75,
+        "fixed_dynamic_friction": 0.25
+      },
+      "retry": {
+        "job_index": 5,
+        "initialization_valid": true,
+        "outcome": "success",
+        "classification": "witnessed_recovery",
+        "upstream_success_seen": true,
+        "retained_grasp": true,
+        "fixture_contact_observed": true,
+        "contact_failure_witnessed": true,
+        "withdrawal_verified": true,
+        "witnessed_complete_recovery": true,
+        "elapsed_s": 18.975,
+        "peak_raw_wrist_force_n": 19.465925216674805,
+        "force_violation": false,
+        "discounted_job_return": 60.27506309174908,
+        "terminal_partial_physics_steps_omitted": 5
+      },
+      "continue": {
+        "job_index": 5,
+        "initialization_valid": true,
+        "outcome": "deadline",
+        "classification": "contact_stall_deadline",
+        "upstream_success_seen": false,
+        "retained_grasp": true,
+        "fixture_contact_observed": true,
+        "contact_failure_witnessed": true,
+        "withdrawal_verified": false,
+        "witnessed_complete_recovery": false,
+        "elapsed_s": 30.0,
+        "peak_raw_wrist_force_n": 19.465925216674805,
+        "force_violation": false,
+        "discounted_job_return": -41.23440217903143,
+        "terminal_partial_physics_steps_omitted": 0
+      }
+    },
+    {
+      "case": {
+        "case_id": "dev-10071-bias_low-2",
+        "split": "development",
+        "seed": 10071,
+        "bin_id": "bias_low",
+        "family": "lateral_pose_bias",
+        "direction_index": 2,
+        "fixture_bias_xy_m": [
+          0.0,
+          0.00075
+        ],
+        "approach_xy_m": [
+          0.0,
+          0.0
+        ],
+        "fixed_static_friction": 0.75,
+        "fixed_dynamic_friction": 0.25
+      },
+      "retry": {
+        "job_index": 6,
+        "initialization_valid": true,
+        "outcome": "success",
+        "classification": "witnessed_recovery",
+        "upstream_success_seen": true,
+        "retained_grasp": true,
+        "fixture_contact_observed": true,
+        "contact_failure_witnessed": true,
+        "withdrawal_verified": true,
+        "witnessed_complete_recovery": true,
+        "elapsed_s": 15.358333333333333,
+        "peak_raw_wrist_force_n": 19.143579483032227,
+        "force_violation": false,
+        "discounted_job_return": 59.746399437484605,
+        "terminal_partial_physics_steps_omitted": 3
+      },
+      "continue": {
+        "job_index": 6,
+        "initialization_valid": true,
+        "outcome": "deadline",
+        "classification": "contact_stall_deadline",
+        "upstream_success_seen": false,
+        "retained_grasp": true,
+        "fixture_contact_observed": true,
+        "contact_failure_witnessed": true,
+        "withdrawal_verified": false,
+        "witnessed_complete_recovery": false,
+        "elapsed_s": 30.0,
+        "peak_raw_wrist_force_n": 19.143579483032227,
+        "force_violation": false,
+        "discounted_job_return": 12.945840319851815,
+        "terminal_partial_physics_steps_omitted": 0
+      }
+    },
+    {
+      "case": {
+        "case_id": "dev-10071-bias_low-3",
+        "split": "development",
+        "seed": 10071,
+        "bin_id": "bias_low",
+        "family": "lateral_pose_bias",
+        "direction_index": 3,
+        "fixture_bias_xy_m": [
+          0.0,
+          -0.00075
+        ],
+        "approach_xy_m": [
+          0.0,
+          0.0
+        ],
+        "fixed_static_friction": 0.75,
+        "fixed_dynamic_friction": 0.25
+      },
+      "retry": {
+        "job_index": 7,
+        "initialization_valid": true,
+        "outcome": "success",
+        "classification": "completion_without_full_recovery_witness",
+        "upstream_success_seen": true,
+        "retained_grasp": true,
+        "fixture_contact_observed": true,
+        "contact_failure_witnessed": true,
+        "withdrawal_verified": true,
+        "witnessed_complete_recovery": false,
+        "elapsed_s": 24.883333333333333,
+        "peak_raw_wrist_force_n": 16.855573654174805,
+        "force_violation": false,
+        "discounted_job_return": 89.34244074530667,
+        "terminal_partial_physics_steps_omitted": 2
+      },
+      "continue": {
+        "job_index": 7,
+        "initialization_valid": true,
+        "outcome": "deadline",
+        "classification": "contact_stall_deadline",
+        "upstream_success_seen": false,
+        "retained_grasp": true,
+        "fixture_contact_observed": true,
+        "contact_failure_witnessed": true,
+        "withdrawal_verified": false,
+        "witnessed_complete_recovery": false,
+        "elapsed_s": 30.0,
+        "peak_raw_wrist_force_n": 16.855573654174805,
+        "force_violation": false,
+        "discounted_job_return": 30.05547733444581,
+        "terminal_partial_physics_steps_omitted": 0
+      }
+    },
+    {
+      "case": {
+        "case_id": "dev-10071-bias_medium-0",
+        "split": "development",
+        "seed": 10071,
+        "bin_id": "bias_medium",
+        "family": "lateral_pose_bias",
+        "direction_index": 0,
+        "fixture_bias_xy_m": [
+          0.0015,
+          0.0
+        ],
+        "approach_xy_m": [
+          0.0,
+          0.0
+        ],
+        "fixed_static_friction": 0.75,
+        "fixed_dynamic_friction": 0.25
+      },
+      "retry": {
+        "job_index": 8,
+        "initialization_valid": true,
+        "outcome": "deadline",
+        "classification": "contact_stall_deadline",
+        "upstream_success_seen": false,
+        "retained_grasp": true,
+        "fixture_contact_observed": true,
+        "contact_failure_witnessed": true,
+        "withdrawal_verified": true,
+        "witnessed_complete_recovery": false,
+        "elapsed_s": 30.0,
+        "peak_raw_wrist_force_n": 16.002517700195312,
+        "force_violation": false,
+        "discounted_job_return": 45.225764794635175,
+        "terminal_partial_physics_steps_omitted": 0
+      },
+      "continue": {
+        "job_index": 8,
+        "initialization_valid": true,
+        "outcome": "force_abort",
+        "classification": "force_abort",
+        "upstream_success_seen": false,
+        "retained_grasp": true,
+        "fixture_contact_observed": true,
+        "contact_failure_witnessed": true,
+        "withdrawal_verified": false,
+        "witnessed_complete_recovery": false,
+        "elapsed_s": 8.308333333333334,
+        "peak_raw_wrist_force_n": 20.545005798339844,
+        "force_violation": true,
+        "discounted_job_return": -40.97554053945206,
+        "terminal_partial_physics_steps_omitted": 5
+      }
+    },
+    {
+      "case": {
+        "case_id": "dev-10071-bias_medium-1",
+        "split": "development",
+        "seed": 10071,
+        "bin_id": "bias_medium",
+        "family": "lateral_pose_bias",
+        "direction_index": 1,
+        "fixture_bias_xy_m": [
+          -0.0015,
+          0.0
+        ],
+        "approach_xy_m": [
+          0.0,
+          0.0
+        ],
+        "fixed_static_friction": 0.75,
+        "fixed_dynamic_friction": 0.25
+      },
+      "retry": {
+        "job_index": 9,
+        "initialization_valid": true,
+        "outcome": "deadline",
+        "classification": "contact_stall_deadline",
+        "upstream_success_seen": false,
+        "retained_grasp": true,
+        "fixture_contact_observed": true,
+        "contact_failure_witnessed": true,
+        "withdrawal_verified": true,
+        "witnessed_complete_recovery": false,
+        "elapsed_s": 30.0,
+        "peak_raw_wrist_force_n": 19.09703254699707,
+        "force_violation": false,
+        "discounted_job_return": 90.70605497294649,
+        "terminal_partial_physics_steps_omitted": 0
+      },
+      "continue": {
+        "job_index": 9,
+        "initialization_valid": true,
+        "outcome": "deadline",
+        "classification": "contact_stall_deadline",
+        "upstream_success_seen": false,
+        "retained_grasp": true,
+        "fixture_contact_observed": true,
+        "contact_failure_witnessed": true,
+        "withdrawal_verified": false,
+        "witnessed_complete_recovery": false,
+        "elapsed_s": 30.0,
+        "peak_raw_wrist_force_n": 19.09703254699707,
+        "force_violation": false,
+        "discounted_job_return": 69.8060796724167,
+        "terminal_partial_physics_steps_omitted": 0
+      }
+    },
+    {
+      "case": {
+        "case_id": "dev-10071-bias_medium-2",
+        "split": "development",
+        "seed": 10071,
+        "bin_id": "bias_medium",
+        "family": "lateral_pose_bias",
+        "direction_index": 2,
+        "fixture_bias_xy_m": [
+          0.0,
+          0.0015
+        ],
+        "approach_xy_m": [
+          0.0,
+          0.0
+        ],
+        "fixed_static_friction": 0.75,
+        "fixed_dynamic_friction": 0.25
+      },
+      "retry": {
+        "job_index": 10,
+        "initialization_valid": true,
+        "outcome": "force_abort",
+        "classification": "force_abort",
+        "upstream_success_seen": false,
+        "retained_grasp": true,
+        "fixture_contact_observed": true,
+        "contact_failure_witnessed": false,
+        "withdrawal_verified": false,
+        "witnessed_complete_recovery": false,
+        "elapsed_s": 1.5083333333333333,
+        "peak_raw_wrist_force_n": 20.158672332763672,
+        "force_violation": true,
+        "discounted_job_return": 6.287626466769431,
+        "terminal_partial_physics_steps_omitted": 5
+      },
+      "continue": {
+        "job_index": 10,
+        "initialization_valid": true,
+        "outcome": "force_abort",
+        "classification": "force_abort",
+        "upstream_success_seen": false,
+        "retained_grasp": true,
+        "fixture_contact_observed": true,
+        "contact_failure_witnessed": false,
+        "withdrawal_verified": false,
+        "witnessed_complete_recovery": false,
+        "elapsed_s": 1.5083333333333333,
+        "peak_raw_wrist_force_n": 20.158672332763672,
+        "force_violation": true,
+        "discounted_job_return": 6.287626466769431,
+        "terminal_partial_physics_steps_omitted": 5
+      }
+    },
+    {
+      "case": {
+        "case_id": "dev-10071-bias_medium-3",
+        "split": "development",
+        "seed": 10071,
+        "bin_id": "bias_medium",
+        "family": "lateral_pose_bias",
+        "direction_index": 3,
+        "fixture_bias_xy_m": [
+          0.0,
+          -0.0015
+        ],
+        "approach_xy_m": [
+          0.0,
+          0.0
+        ],
+        "fixed_static_friction": 0.75,
+        "fixed_dynamic_friction": 0.25
+      },
+      "retry": {
+        "job_index": 11,
+        "initialization_valid": true,
+        "outcome": "success",
+        "classification": "witnessed_recovery",
+        "upstream_success_seen": true,
+        "retained_grasp": true,
+        "fixture_contact_observed": true,
+        "contact_failure_witnessed": true,
+        "withdrawal_verified": true,
+        "witnessed_complete_recovery": true,
+        "elapsed_s": 16.966666666666665,
+        "peak_raw_wrist_force_n": 19.687440872192383,
+        "force_violation": false,
+        "discounted_job_return": 68.1632224301038,
+        "terminal_partial_physics_steps_omitted": 4
+      },
+      "continue": {
+        "job_index": 11,
+        "initialization_valid": true,
+        "outcome": "deadline",
+        "classification": "contact_stall_deadline",
+        "upstream_success_seen": false,
+        "retained_grasp": true,
+        "fixture_contact_observed": true,
+        "contact_failure_witnessed": true,
+        "withdrawal_verified": false,
+        "witnessed_complete_recovery": false,
+        "elapsed_s": 30.0,
+        "peak_raw_wrist_force_n": 19.687440872192383,
+        "force_violation": false,
+        "discounted_job_return": 25.121385851131762,
+        "terminal_partial_physics_steps_omitted": 0
+      }
+    },
+    {
+      "case": {
+        "case_id": "dev-10071-approach_low-0",
+        "split": "development",
+        "seed": 10071,
+        "bin_id": "approach_low",
+        "family": "approach_offset",
+        "direction_index": 0,
+        "fixture_bias_xy_m": [
+          0.0,
+          0.0
+        ],
+        "approach_xy_m": [
+          0.004,
+          0.0
+        ],
+        "fixed_static_friction": 0.75,
+        "fixed_dynamic_friction": 0.25
+      },
+      "retry": {
+        "job_index": 12,
+        "initialization_valid": true,
+        "outcome": "success",
+        "classification": "witnessed_recovery",
+        "upstream_success_seen": true,
+        "retained_grasp": true,
+        "fixture_contact_observed": true,
+        "contact_failure_witnessed": true,
+        "withdrawal_verified": true,
+        "witnessed_complete_recovery": true,
+        "elapsed_s": 28.316666666666666,
+        "peak_raw_wrist_force_n": 19.587242126464844,
+        "force_violation": false,
+        "discounted_job_return": 54.50694173136802,
+        "terminal_partial_physics_steps_omitted": 6
+      },
+      "continue": {
+        "job_index": 12,
+        "initialization_valid": true,
+        "outcome": "deadline",
+        "classification": "contact_stall_deadline",
+        "upstream_success_seen": false,
+        "retained_grasp": true,
+        "fixture_contact_observed": true,
+        "contact_failure_witnessed": true,
+        "withdrawal_verified": false,
+        "witnessed_complete_recovery": false,
+        "elapsed_s": 30.0,
+        "peak_raw_wrist_force_n": 19.587242126464844,
+        "force_violation": false,
+        "discounted_job_return": -97.09604544551468,
+        "terminal_partial_physics_steps_omitted": 0
+      }
+    },
+    {
+      "case": {
+        "case_id": "dev-10071-approach_low-1",
+        "split": "development",
+        "seed": 10071,
+        "bin_id": "approach_low",
+        "family": "approach_offset",
+        "direction_index": 1,
+        "fixture_bias_xy_m": [
+          0.0,
+          0.0
+        ],
+        "approach_xy_m": [
+          -0.004,
+          0.0
+        ],
+        "fixed_static_friction": 0.75,
+        "fixed_dynamic_friction": 0.25
+      },
+      "retry": {
+        "job_index": 13,
+        "initialization_valid": true,
+        "outcome": "deadline",
+        "classification": "contact_stall_deadline",
+        "upstream_success_seen": false,
+        "retained_grasp": true,
+        "fixture_contact_observed": true,
+        "contact_failure_witnessed": true,
+        "withdrawal_verified": true,
+        "witnessed_complete_recovery": false,
+        "elapsed_s": 30.0,
+        "peak_raw_wrist_force_n": 19.54471778869629,
+        "force_violation": false,
+        "discounted_job_return": 66.75950983685551,
+        "terminal_partial_physics_steps_omitted": 0
+      },
+      "continue": {
+        "job_index": 13,
+        "initialization_valid": true,
+        "outcome": "deadline",
+        "classification": "contact_stall_deadline",
+        "upstream_success_seen": false,
+        "retained_grasp": true,
+        "fixture_contact_observed": true,
+        "contact_failure_witnessed": true,
+        "withdrawal_verified": false,
+        "witnessed_complete_recovery": false,
+        "elapsed_s": 30.0,
+        "peak_raw_wrist_force_n": 19.54471778869629,
+        "force_violation": false,
+        "discounted_job_return": 59.053627768878684,
+        "terminal_partial_physics_steps_omitted": 0
+      }
+    },
+    {
+      "case": {
+        "case_id": "dev-10071-approach_low-2",
+        "split": "development",
+        "seed": 10071,
+        "bin_id": "approach_low",
+        "family": "approach_offset",
+        "direction_index": 2,
+        "fixture_bias_xy_m": [
+          0.0,
+          0.0
+        ],
+        "approach_xy_m": [
+          0.0,
+          0.004
+        ],
+        "fixed_static_friction": 0.75,
+        "fixed_dynamic_friction": 0.25
+      },
+      "retry": {
+        "job_index": 14,
+        "initialization_valid": true,
+        "outcome": "success",
+        "classification": "witnessed_recovery",
+        "upstream_success_seen": true,
+        "retained_grasp": true,
+        "fixture_contact_observed": true,
+        "contact_failure_witnessed": true,
+        "withdrawal_verified": true,
+        "witnessed_complete_recovery": true,
+        "elapsed_s": 15.424999999999999,
+        "peak_raw_wrist_force_n": 19.34786033630371,
+        "force_violation": false,
+        "discounted_job_return": 68.09205080594322,
+        "terminal_partial_physics_steps_omitted": 3
+      },
+      "continue": {
+        "job_index": 14,
+        "initialization_valid": true,
+        "outcome": "force_abort",
+        "classification": "force_abort",
+        "upstream_success_seen": true,
+        "retained_grasp": true,
+        "fixture_contact_observed": true,
+        "contact_failure_witnessed": true,
+        "withdrawal_verified": false,
+        "witnessed_complete_recovery": false,
+        "elapsed_s": 8.841666666666667,
+        "peak_raw_wrist_force_n": 20.240001678466797,
+        "force_violation": true,
+        "discounted_job_return": 41.080069660435264,
+        "terminal_partial_physics_steps_omitted": 5
+      }
+    },
+    {
+      "case": {
+        "case_id": "dev-10071-approach_low-3",
+        "split": "development",
+        "seed": 10071,
+        "bin_id": "approach_low",
+        "family": "approach_offset",
+        "direction_index": 3,
+        "fixture_bias_xy_m": [
+          0.0,
+          0.0
+        ],
+        "approach_xy_m": [
+          0.0,
+          -0.004
+        ],
+        "fixed_static_friction": 0.75,
+        "fixed_dynamic_friction": 0.25
+      },
+      "retry": {
+        "job_index": 15,
+        "initialization_valid": true,
+        "outcome": "success",
+        "classification": "witnessed_recovery",
+        "upstream_success_seen": true,
+        "retained_grasp": true,
+        "fixture_contact_observed": true,
+        "contact_failure_witnessed": true,
+        "withdrawal_verified": true,
+        "witnessed_complete_recovery": true,
+        "elapsed_s": 25.941666666666666,
+        "peak_raw_wrist_force_n": 15.338523864746094,
+        "force_violation": false,
+        "discounted_job_return": 65.4812366934171,
+        "terminal_partial_physics_steps_omitted": 1
+      },
+      "continue": {
+        "job_index": 15,
+        "initialization_valid": true,
+        "outcome": "deadline",
+        "classification": "contact_stall_deadline",
+        "upstream_success_seen": false,
+        "retained_grasp": true,
+        "fixture_contact_observed": true,
+        "contact_failure_witnessed": true,
+        "withdrawal_verified": false,
+        "witnessed_complete_recovery": false,
+        "elapsed_s": 30.0,
+        "peak_raw_wrist_force_n": 15.820388793945312,
+        "force_violation": false,
+        "discounted_job_return": -47.57630393164102,
+        "terminal_partial_physics_steps_omitted": 0
+      }
+    },
+    {
+      "case": {
+        "case_id": "dev-10071-approach_high-0",
+        "split": "development",
+        "seed": 10071,
+        "bin_id": "approach_high",
+        "family": "approach_offset",
+        "direction_index": 0,
+        "fixture_bias_xy_m": [
+          0.0,
+          0.0
+        ],
+        "approach_xy_m": [
+          0.008,
+          0.0
+        ],
+        "fixed_static_friction": 0.75,
+        "fixed_dynamic_friction": 0.25
+      },
+      "retry": {
+        "job_index": 16,
+        "initialization_valid": true,
+        "outcome": "success",
+        "classification": "witnessed_recovery",
+        "upstream_success_seen": true,
+        "retained_grasp": true,
+        "fixture_contact_observed": true,
+        "contact_failure_witnessed": true,
+        "withdrawal_verified": true,
+        "witnessed_complete_recovery": true,
+        "elapsed_s": 12.841666666666667,
+        "peak_raw_wrist_force_n": 19.185258865356445,
+        "force_violation": false,
+        "discounted_job_return": 61.46706372190522,
+        "terminal_partial_physics_steps_omitted": 5
+      },
+      "continue": {
+        "job_index": 16,
+        "initialization_valid": true,
+        "outcome": "deadline",
+        "classification": "contact_stall_deadline",
+        "upstream_success_seen": false,
+        "retained_grasp": true,
+        "fixture_contact_observed": true,
+        "contact_failure_witnessed": true,
+        "withdrawal_verified": false,
+        "witnessed_complete_recovery": false,
+        "elapsed_s": 30.0,
+        "peak_raw_wrist_force_n": 19.185258865356445,
+        "force_violation": false,
+        "discounted_job_return": 21.62287114665008,
+        "terminal_partial_physics_steps_omitted": 0
+      }
+    },
+    {
+      "case": {
+        "case_id": "dev-10071-approach_high-1",
+        "split": "development",
+        "seed": 10071,
+        "bin_id": "approach_high",
+        "family": "approach_offset",
+        "direction_index": 1,
+        "fixture_bias_xy_m": [
+          0.0,
+          0.0
+        ],
+        "approach_xy_m": [
+          -0.008,
+          0.0
+        ],
+        "fixed_static_friction": 0.75,
+        "fixed_dynamic_friction": 0.25
+      },
+      "retry": {
+        "job_index": 17,
+        "initialization_valid": true,
+        "outcome": "success",
+        "classification": "witnessed_recovery",
+        "upstream_success_seen": true,
+        "retained_grasp": true,
+        "fixture_contact_observed": true,
+        "contact_failure_witnessed": true,
+        "withdrawal_verified": true,
+        "witnessed_complete_recovery": true,
+        "elapsed_s": 16.175,
+        "peak_raw_wrist_force_n": 19.690120697021484,
+        "force_violation": false,
+        "discounted_job_return": 62.24010611410697,
+        "terminal_partial_physics_steps_omitted": 5
+      },
+      "continue": {
+        "job_index": 17,
+        "initialization_valid": true,
+        "outcome": "deadline",
+        "classification": "contact_stall_deadline",
+        "upstream_success_seen": false,
+        "retained_grasp": true,
+        "fixture_contact_observed": true,
+        "contact_failure_witnessed": true,
+        "withdrawal_verified": false,
+        "witnessed_complete_recovery": false,
+        "elapsed_s": 30.0,
+        "peak_raw_wrist_force_n": 19.153484344482422,
+        "force_violation": false,
+        "discounted_job_return": -1.7597329614977981,
+        "terminal_partial_physics_steps_omitted": 0
+      }
+    },
+    {
+      "case": {
+        "case_id": "dev-10071-approach_high-2",
+        "split": "development",
+        "seed": 10071,
+        "bin_id": "approach_high",
+        "family": "approach_offset",
+        "direction_index": 2,
+        "fixture_bias_xy_m": [
+          0.0,
+          0.0
+        ],
+        "approach_xy_m": [
+          0.0,
+          0.008
+        ],
+        "fixed_static_friction": 0.75,
+        "fixed_dynamic_friction": 0.25
+      },
+      "retry": {
+        "job_index": 18,
+        "initialization_valid": true,
+        "outcome": "success",
+        "classification": "completion_without_full_recovery_witness",
+        "upstream_success_seen": true,
+        "retained_grasp": true,
+        "fixture_contact_observed": true,
+        "contact_failure_witnessed": true,
+        "withdrawal_verified": false,
+        "witnessed_complete_recovery": false,
+        "elapsed_s": 22.383333333333333,
+        "peak_raw_wrist_force_n": 19.916370391845703,
+        "force_violation": false,
+        "discounted_job_return": 68.16625109186106,
+        "terminal_partial_physics_steps_omitted": 6
+      },
+      "continue": {
+        "job_index": 18,
+        "initialization_valid": true,
+        "outcome": "deadline",
+        "classification": "contact_stall_deadline",
+        "upstream_success_seen": false,
+        "retained_grasp": true,
+        "fixture_contact_observed": true,
+        "contact_failure_witnessed": true,
+        "withdrawal_verified": false,
+        "witnessed_complete_recovery": false,
+        "elapsed_s": 30.0,
+        "peak_raw_wrist_force_n": 15.120647430419922,
+        "force_violation": false,
+        "discounted_job_return": 49.71461305493975,
+        "terminal_partial_physics_steps_omitted": 0
+      }
+    },
+    {
+      "case": {
+        "case_id": "dev-10071-approach_high-3",
+        "split": "development",
+        "seed": 10071,
+        "bin_id": "approach_high",
+        "family": "approach_offset",
+        "direction_index": 3,
+        "fixture_bias_xy_m": [
+          0.0,
+          0.0
+        ],
+        "approach_xy_m": [
+          0.0,
+          -0.008
+        ],
+        "fixed_static_friction": 0.75,
+        "fixed_dynamic_friction": 0.25
+      },
+      "retry": {
+        "job_index": 19,
+        "initialization_valid": true,
+        "outcome": "success",
+        "classification": "witnessed_recovery",
+        "upstream_success_seen": true,
+        "retained_grasp": true,
+        "fixture_contact_observed": true,
+        "contact_failure_witnessed": true,
+        "withdrawal_verified": true,
+        "witnessed_complete_recovery": true,
+        "elapsed_s": 15.45,
+        "peak_raw_wrist_force_n": 19.537887573242188,
+        "force_violation": false,
+        "discounted_job_return": 63.6724864676659,
+        "terminal_partial_physics_steps_omitted": 6
+      },
+      "continue": {
+        "job_index": 19,
+        "initialization_valid": true,
+        "outcome": "deadline",
+        "classification": "contact_stall_deadline",
+        "upstream_success_seen": false,
+        "retained_grasp": true,
+        "fixture_contact_observed": true,
+        "contact_failure_witnessed": true,
+        "withdrawal_verified": false,
+        "witnessed_complete_recovery": false,
+        "elapsed_s": 30.0,
+        "peak_raw_wrist_force_n": 19.537887573242188,
+        "force_violation": false,
+        "discounted_job_return": 70.24713372075381,
+        "terminal_partial_physics_steps_omitted": 0
+      }
+    },
+    {
+      "case": {
+        "case_id": "dev-10071-friction_low-0",
+        "split": "development",
+        "seed": 10071,
+        "bin_id": "friction_low",
+        "family": "friction",
+        "direction_index": 0,
+        "fixture_bias_xy_m": [
+          0.0,
+          0.0
+        ],
+        "approach_xy_m": [
+          0.0,
+          0.0
+        ],
+        "fixed_static_friction": 0.25,
+        "fixed_dynamic_friction": 0.25
+      },
+      "retry": {
+        "job_index": 20,
+        "initialization_valid": true,
+        "outcome": "success",
+        "classification": "witnessed_recovery",
+        "upstream_success_seen": true,
+        "retained_grasp": true,
+        "fixture_contact_observed": true,
+        "contact_failure_witnessed": true,
+        "withdrawal_verified": true,
+        "witnessed_complete_recovery": true,
+        "elapsed_s": 20.816666666666666,
+        "peak_raw_wrist_force_n": 19.193620681762695,
+        "force_violation": false,
+        "discounted_job_return": 74.19595156919891,
+        "terminal_partial_physics_steps_omitted": 2
+      },
+      "continue": {
+        "job_index": 20,
+        "initialization_valid": true,
+        "outcome": "deadline",
+        "classification": "contact_stall_deadline",
+        "upstream_success_seen": false,
+        "retained_grasp": true,
+        "fixture_contact_observed": true,
+        "contact_failure_witnessed": true,
+        "withdrawal_verified": false,
+        "witnessed_complete_recovery": false,
+        "elapsed_s": 30.0,
+        "peak_raw_wrist_force_n": 19.193620681762695,
+        "force_violation": false,
+        "discounted_job_return": 67.45496456614752,
+        "terminal_partial_physics_steps_omitted": 0
+      }
+    },
+    {
+      "case": {
+        "case_id": "dev-10071-friction_low-1",
+        "split": "development",
+        "seed": 10071,
+        "bin_id": "friction_low",
+        "family": "friction",
+        "direction_index": 1,
+        "fixture_bias_xy_m": [
+          0.0,
+          0.0
+        ],
+        "approach_xy_m": [
+          0.0,
+          0.0
+        ],
+        "fixed_static_friction": 0.25,
+        "fixed_dynamic_friction": 0.25
+      },
+      "retry": {
+        "job_index": 21,
+        "initialization_valid": true,
+        "outcome": "success",
+        "classification": "completion_without_witnessed_contact_failure",
+        "upstream_success_seen": true,
+        "retained_grasp": true,
+        "fixture_contact_observed": true,
+        "contact_failure_witnessed": false,
+        "withdrawal_verified": false,
+        "witnessed_complete_recovery": false,
+        "elapsed_s": 3.5,
+        "peak_raw_wrist_force_n": 19.412281036376953,
+        "force_violation": false,
+        "discounted_job_return": 47.93508121272087,
+        "terminal_partial_physics_steps_omitted": 4
+      },
+      "continue": {
+        "job_index": 21,
+        "initialization_valid": true,
+        "outcome": "success",
+        "classification": "completion_without_witnessed_contact_failure",
+        "upstream_success_seen": true,
+        "retained_grasp": true,
+        "fixture_contact_observed": true,
+        "contact_failure_witnessed": false,
+        "withdrawal_verified": false,
+        "witnessed_complete_recovery": false,
+        "elapsed_s": 3.5,
+        "peak_raw_wrist_force_n": 19.412281036376953,
+        "force_violation": false,
+        "discounted_job_return": 47.93508121272087,
+        "terminal_partial_physics_steps_omitted": 4
+      }
+    },
+    {
+      "case": {
+        "case_id": "dev-10071-friction_low-2",
+        "split": "development",
+        "seed": 10071,
+        "bin_id": "friction_low",
+        "family": "friction",
+        "direction_index": 2,
+        "fixture_bias_xy_m": [
+          0.0,
+          0.0
+        ],
+        "approach_xy_m": [
+          0.0,
+          0.0
+        ],
+        "fixed_static_friction": 0.25,
+        "fixed_dynamic_friction": 0.25
+      },
+      "retry": {
+        "job_index": 22,
+        "initialization_valid": true,
+        "outcome": "success",
+        "classification": "witnessed_recovery",
+        "upstream_success_seen": true,
+        "retained_grasp": true,
+        "fixture_contact_observed": true,
+        "contact_failure_witnessed": true,
+        "withdrawal_verified": true,
+        "witnessed_complete_recovery": true,
+        "elapsed_s": 22.375,
+        "peak_raw_wrist_force_n": 18.97967529296875,
+        "force_violation": false,
+        "discounted_job_return": 71.97178616017645,
+        "terminal_partial_physics_steps_omitted": 5
+      },
+      "continue": {
+        "job_index": 22,
+        "initialization_valid": true,
+        "outcome": "deadline",
+        "classification": "contact_stall_deadline",
+        "upstream_success_seen": false,
+        "retained_grasp": true,
+        "fixture_contact_observed": true,
+        "contact_failure_witnessed": true,
+        "withdrawal_verified": false,
+        "witnessed_complete_recovery": false,
+        "elapsed_s": 30.0,
+        "peak_raw_wrist_force_n": 18.97967529296875,
+        "force_violation": false,
+        "discounted_job_return": 72.73804873111322,
+        "terminal_partial_physics_steps_omitted": 0
+      }
+    },
+    {
+      "case": {
+        "case_id": "dev-10071-friction_low-3",
+        "split": "development",
+        "seed": 10071,
+        "bin_id": "friction_low",
+        "family": "friction",
+        "direction_index": 3,
+        "fixture_bias_xy_m": [
+          0.0,
+          0.0
+        ],
+        "approach_xy_m": [
+          0.0,
+          0.0
+        ],
+        "fixed_static_friction": 0.25,
+        "fixed_dynamic_friction": 0.25
+      },
+      "retry": {
+        "job_index": 23,
+        "initialization_valid": true,
+        "outcome": "success",
+        "classification": "completion_without_full_recovery_witness",
+        "upstream_success_seen": true,
+        "retained_grasp": true,
+        "fixture_contact_observed": true,
+        "contact_failure_witnessed": true,
+        "withdrawal_verified": true,
+        "witnessed_complete_recovery": false,
+        "elapsed_s": 18.083333333333332,
+        "peak_raw_wrist_force_n": 19.57600975036621,
+        "force_violation": false,
+        "discounted_job_return": 66.6940482952094,
+        "terminal_partial_physics_steps_omitted": 2
+      },
+      "continue": {
+        "job_index": 23,
+        "initialization_valid": true,
+        "outcome": "deadline",
+        "classification": "contact_stall_deadline",
+        "upstream_success_seen": false,
+        "retained_grasp": true,
+        "fixture_contact_observed": true,
+        "contact_failure_witnessed": true,
+        "withdrawal_verified": false,
+        "witnessed_complete_recovery": false,
+        "elapsed_s": 30.0,
+        "peak_raw_wrist_force_n": 19.57600975036621,
+        "force_violation": false,
+        "discounted_job_return": 71.34068967693105,
+        "terminal_partial_physics_steps_omitted": 0
+      }
+    },
+    {
+      "case": {
+        "case_id": "dev-10071-friction_high-0",
+        "split": "development",
+        "seed": 10071,
+        "bin_id": "friction_high",
+        "family": "friction",
+        "direction_index": 0,
+        "fixture_bias_xy_m": [
+          0.0,
+          0.0
+        ],
+        "approach_xy_m": [
+          0.0,
+          0.0
+        ],
+        "fixed_static_friction": 1.25,
+        "fixed_dynamic_friction": 0.25
+      },
+      "retry": {
+        "job_index": 24,
+        "initialization_valid": true,
+        "outcome": "success",
+        "classification": "completion_without_witnessed_contact_failure",
+        "upstream_success_seen": true,
+        "retained_grasp": true,
+        "fixture_contact_observed": true,
+        "contact_failure_witnessed": false,
+        "withdrawal_verified": false,
+        "witnessed_complete_recovery": false,
+        "elapsed_s": 3.966666666666667,
+        "peak_raw_wrist_force_n": 13.496749877929688,
+        "force_violation": false,
+        "discounted_job_return": 57.6685214965637,
+        "terminal_partial_physics_steps_omitted": 4
+      },
+      "continue": {
+        "job_index": 24,
+        "initialization_valid": true,
+        "outcome": "success",
+        "classification": "completion_without_witnessed_contact_failure",
+        "upstream_success_seen": true,
+        "retained_grasp": true,
+        "fixture_contact_observed": true,
+        "contact_failure_witnessed": false,
+        "withdrawal_verified": false,
+        "witnessed_complete_recovery": false,
+        "elapsed_s": 3.966666666666667,
+        "peak_raw_wrist_force_n": 13.496749877929688,
+        "force_violation": false,
+        "discounted_job_return": 57.6685214965637,
+        "terminal_partial_physics_steps_omitted": 4
+      }
+    },
+    {
+      "case": {
+        "case_id": "dev-10071-friction_high-1",
+        "split": "development",
+        "seed": 10071,
+        "bin_id": "friction_high",
+        "family": "friction",
+        "direction_index": 1,
+        "fixture_bias_xy_m": [
+          0.0,
+          0.0
+        ],
+        "approach_xy_m": [
+          0.0,
+          0.0
+        ],
+        "fixed_static_friction": 1.25,
+        "fixed_dynamic_friction": 0.25
+      },
+      "retry": {
+        "job_index": 25,
+        "initialization_valid": true,
+        "outcome": "success",
+        "classification": "completion_without_witnessed_contact_failure",
+        "upstream_success_seen": true,
+        "retained_grasp": true,
+        "fixture_contact_observed": true,
+        "contact_failure_witnessed": false,
+        "withdrawal_verified": false,
+        "witnessed_complete_recovery": false,
+        "elapsed_s": 3.9,
+        "peak_raw_wrist_force_n": 12.420844078063965,
+        "force_violation": false,
+        "discounted_job_return": 61.98792213227624,
+        "terminal_partial_physics_steps_omitted": 4
+      },
+      "continue": {
+        "job_index": 25,
+        "initialization_valid": true,
+        "outcome": "success",
+        "classification": "completion_without_witnessed_contact_failure",
+        "upstream_success_seen": true,
+        "retained_grasp": true,
+        "fixture_contact_observed": true,
+        "contact_failure_witnessed": false,
+        "withdrawal_verified": false,
+        "witnessed_complete_recovery": false,
+        "elapsed_s": 3.9,
+        "peak_raw_wrist_force_n": 12.420844078063965,
+        "force_violation": false,
+        "discounted_job_return": 61.98792213227624,
+        "terminal_partial_physics_steps_omitted": 4
+      }
+    },
+    {
+      "case": {
+        "case_id": "dev-10071-friction_high-2",
+        "split": "development",
+        "seed": 10071,
+        "bin_id": "friction_high",
+        "family": "friction",
+        "direction_index": 2,
+        "fixture_bias_xy_m": [
+          0.0,
+          0.0
+        ],
+        "approach_xy_m": [
+          0.0,
+          0.0
+        ],
+        "fixed_static_friction": 1.25,
+        "fixed_dynamic_friction": 0.25
+      },
+      "retry": {
+        "job_index": 26,
+        "initialization_valid": true,
+        "outcome": "success",
+        "classification": "completion_without_witnessed_contact_failure",
+        "upstream_success_seen": true,
+        "retained_grasp": true,
+        "fixture_contact_observed": true,
+        "contact_failure_witnessed": false,
+        "withdrawal_verified": false,
+        "witnessed_complete_recovery": false,
+        "elapsed_s": 4.091666666666667,
+        "peak_raw_wrist_force_n": 19.626419067382812,
+        "force_violation": false,
+        "discounted_job_return": 49.108791931221326,
+        "terminal_partial_physics_steps_omitted": 3
+      },
+      "continue": {
+        "job_index": 26,
+        "initialization_valid": true,
+        "outcome": "success",
+        "classification": "completion_without_witnessed_contact_failure",
+        "upstream_success_seen": true,
+        "retained_grasp": true,
+        "fixture_contact_observed": true,
+        "contact_failure_witnessed": false,
+        "withdrawal_verified": false,
+        "witnessed_complete_recovery": false,
+        "elapsed_s": 4.091666666666667,
+        "peak_raw_wrist_force_n": 19.626419067382812,
+        "force_violation": false,
+        "discounted_job_return": 49.108791931221326,
+        "terminal_partial_physics_steps_omitted": 3
+      }
+    },
+    {
+      "case": {
+        "case_id": "dev-10071-friction_high-3",
+        "split": "development",
+        "seed": 10071,
+        "bin_id": "friction_high",
+        "family": "friction",
+        "direction_index": 3,
+        "fixture_bias_xy_m": [
+          0.0,
+          0.0
+        ],
+        "approach_xy_m": [
+          0.0,
+          0.0
+        ],
+        "fixed_static_friction": 1.25,
+        "fixed_dynamic_friction": 0.25
+      },
+      "retry": {
+        "job_index": 27,
+        "initialization_valid": true,
+        "outcome": "success",
+        "classification": "witnessed_recovery",
+        "upstream_success_seen": true,
+        "retained_grasp": true,
+        "fixture_contact_observed": true,
+        "contact_failure_witnessed": true,
+        "withdrawal_verified": true,
+        "witnessed_complete_recovery": true,
+        "elapsed_s": 24.4,
+        "peak_raw_wrist_force_n": 19.957870483398438,
+        "force_violation": false,
+        "discounted_job_return": 66.34221654456842,
+        "terminal_partial_physics_steps_omitted": 0
+      },
+      "continue": {
+        "job_index": 27,
+        "initialization_valid": true,
+        "outcome": "deadline",
+        "classification": "contact_stall_deadline",
+        "upstream_success_seen": false,
+        "retained_grasp": true,
+        "fixture_contact_observed": true,
+        "contact_failure_witnessed": true,
+        "withdrawal_verified": false,
+        "witnessed_complete_recovery": false,
+        "elapsed_s": 30.0,
+        "peak_raw_wrist_force_n": 19.037263870239258,
+        "force_violation": false,
+        "discounted_job_return": 55.134973052538555,
+        "terminal_partial_physics_steps_omitted": 0
+      }
+    },
+    {
+      "case": {
+        "case_id": "dev-10072-nominal-0",
+        "split": "development",
+        "seed": 10072,
+        "bin_id": "nominal",
+        "family": "nominal",
+        "direction_index": 0,
+        "fixture_bias_xy_m": [
+          0.0,
+          0.0
+        ],
+        "approach_xy_m": [
+          0.0,
+          0.0
+        ],
+        "fixed_static_friction": 0.75,
+        "fixed_dynamic_friction": 0.25
+      },
+      "retry": {
+        "job_index": 0,
+        "initialization_valid": true,
+        "outcome": "success",
+        "classification": "witnessed_recovery",
+        "upstream_success_seen": true,
+        "retained_grasp": true,
+        "fixture_contact_observed": true,
+        "contact_failure_witnessed": true,
+        "withdrawal_verified": true,
+        "witnessed_complete_recovery": true,
+        "elapsed_s": 22.566666666666666,
+        "peak_raw_wrist_force_n": 19.273799896240234,
+        "force_violation": false,
+        "discounted_job_return": 65.17384480334465,
+        "terminal_partial_physics_steps_omitted": 4
+      },
+      "continue": {
+        "job_index": 0,
+        "initialization_valid": true,
+        "outcome": "deadline",
+        "classification": "contact_stall_deadline",
+        "upstream_success_seen": false,
+        "retained_grasp": true,
+        "fixture_contact_observed": true,
+        "contact_failure_witnessed": true,
+        "withdrawal_verified": false,
+        "witnessed_complete_recovery": false,
+        "elapsed_s": 30.0,
+        "peak_raw_wrist_force_n": 19.273799896240234,
+        "force_violation": false,
+        "discounted_job_return": 47.34246728454757,
+        "terminal_partial_physics_steps_omitted": 0
+      }
+    },
+    {
+      "case": {
+        "case_id": "dev-10072-nominal-1",
+        "split": "development",
+        "seed": 10072,
+        "bin_id": "nominal",
+        "family": "nominal",
+        "direction_index": 1,
+        "fixture_bias_xy_m": [
+          0.0,
+          0.0
+        ],
+        "approach_xy_m": [
+          0.0,
+          0.0
+        ],
+        "fixed_static_friction": 0.75,
+        "fixed_dynamic_friction": 0.25
+      },
+      "retry": {
+        "job_index": 1,
+        "initialization_valid": true,
+        "outcome": "success",
+        "classification": "witnessed_recovery",
+        "upstream_success_seen": true,
+        "retained_grasp": true,
+        "fixture_contact_observed": true,
+        "contact_failure_witnessed": true,
+        "withdrawal_verified": true,
+        "witnessed_complete_recovery": true,
+        "elapsed_s": 18.683333333333334,
+        "peak_raw_wrist_force_n": 14.912792205810547,
+        "force_violation": false,
+        "discounted_job_return": 79.31797807713995,
+        "terminal_partial_physics_steps_omitted": 2
+      },
+      "continue": {
+        "job_index": 1,
+        "initialization_valid": true,
+        "outcome": "deadline",
+        "classification": "contact_stall_deadline",
+        "upstream_success_seen": false,
+        "retained_grasp": true,
+        "fixture_contact_observed": true,
+        "contact_failure_witnessed": true,
+        "withdrawal_verified": false,
+        "witnessed_complete_recovery": false,
+        "elapsed_s": 30.0,
+        "peak_raw_wrist_force_n": 14.289848327636719,
+        "force_violation": false,
+        "discounted_job_return": 56.917750001283125,
+        "terminal_partial_physics_steps_omitted": 0
+      }
+    },
+    {
+      "case": {
+        "case_id": "dev-10072-nominal-2",
+        "split": "development",
+        "seed": 10072,
+        "bin_id": "nominal",
+        "family": "nominal",
+        "direction_index": 2,
+        "fixture_bias_xy_m": [
+          0.0,
+          0.0
+        ],
+        "approach_xy_m": [
+          0.0,
+          0.0
+        ],
+        "fixed_static_friction": 0.75,
+        "fixed_dynamic_friction": 0.25
+      },
+      "retry": {
+        "job_index": 2,
+        "initialization_valid": true,
+        "outcome": "success",
+        "classification": "witnessed_recovery",
+        "upstream_success_seen": true,
+        "retained_grasp": true,
+        "fixture_contact_observed": true,
+        "contact_failure_witnessed": true,
+        "withdrawal_verified": true,
+        "witnessed_complete_recovery": true,
+        "elapsed_s": 25.341666666666665,
+        "peak_raw_wrist_force_n": 19.28436279296875,
+        "force_violation": false,
+        "discounted_job_return": 92.48995453530499,
+        "terminal_partial_physics_steps_omitted": 1
+      },
+      "continue": {
+        "job_index": 2,
+        "initialization_valid": true,
+        "outcome": "force_abort",
+        "classification": "force_abort",
+        "upstream_success_seen": false,
+        "retained_grasp": true,
+        "fixture_contact_observed": true,
+        "contact_failure_witnessed": true,
+        "withdrawal_verified": false,
+        "witnessed_complete_recovery": false,
+        "elapsed_s": 6.275,
+        "peak_raw_wrist_force_n": 20.166797637939453,
+        "force_violation": true,
+        "discounted_job_return": -4.694916128856408,
+        "terminal_partial_physics_steps_omitted": 1
+      }
+    },
+    {
+      "case": {
+        "case_id": "dev-10072-nominal-3",
+        "split": "development",
+        "seed": 10072,
+        "bin_id": "nominal",
+        "family": "nominal",
+        "direction_index": 3,
+        "fixture_bias_xy_m": [
+          0.0,
+          0.0
+        ],
+        "approach_xy_m": [
+          0.0,
+          0.0
+        ],
+        "fixed_static_friction": 0.75,
+        "fixed_dynamic_friction": 0.25
+      },
+      "retry": {
+        "job_index": 3,
+        "initialization_valid": true,
+        "outcome": "success",
+        "classification": "completion_without_witnessed_contact_failure",
+        "upstream_success_seen": true,
+        "retained_grasp": true,
+        "fixture_contact_observed": true,
+        "contact_failure_witnessed": false,
+        "withdrawal_verified": false,
+        "witnessed_complete_recovery": false,
+        "elapsed_s": 3.908333333333333,
+        "peak_raw_wrist_force_n": 19.336124420166016,
+        "force_violation": false,
+        "discounted_job_return": 56.506177077554575,
+        "terminal_partial_physics_steps_omitted": 5
+      },
+      "continue": {
+        "job_index": 3,
+        "initialization_valid": true,
+        "outcome": "success",
+        "classification": "completion_without_witnessed_contact_failure",
+        "upstream_success_seen": true,
+        "retained_grasp": true,
+        "fixture_contact_observed": true,
+        "contact_failure_witnessed": false,
+        "withdrawal_verified": false,
+        "witnessed_complete_recovery": false,
+        "elapsed_s": 3.908333333333333,
+        "peak_raw_wrist_force_n": 19.336124420166016,
+        "force_violation": false,
+        "discounted_job_return": 56.506177077554575,
+        "terminal_partial_physics_steps_omitted": 5
+      }
+    },
+    {
+      "case": {
+        "case_id": "dev-10072-bias_low-0",
+        "split": "development",
+        "seed": 10072,
+        "bin_id": "bias_low",
+        "family": "lateral_pose_bias",
+        "direction_index": 0,
+        "fixture_bias_xy_m": [
+          0.00075,
+          0.0
+        ],
+        "approach_xy_m": [
+          0.0,
+          0.0
+        ],
+        "fixed_static_friction": 0.75,
+        "fixed_dynamic_friction": 0.25
+      },
+      "retry": {
+        "job_index": 4,
+        "initialization_valid": true,
+        "outcome": "success",
+        "classification": "witnessed_recovery",
+        "upstream_success_seen": true,
+        "retained_grasp": true,
+        "fixture_contact_observed": true,
+        "contact_failure_witnessed": true,
+        "withdrawal_verified": true,
+        "witnessed_complete_recovery": true,
+        "elapsed_s": 13.95,
+        "peak_raw_wrist_force_n": 19.013626098632812,
+        "force_violation": false,
+        "discounted_job_return": 68.0651150270701,
+        "terminal_partial_physics_steps_omitted": 2
+      },
+      "continue": {
+        "job_index": 4,
+        "initialization_valid": true,
+        "outcome": "deadline",
+        "classification": "contact_stall_deadline",
+        "upstream_success_seen": false,
+        "retained_grasp": true,
+        "fixture_contact_observed": true,
+        "contact_failure_witnessed": true,
+        "withdrawal_verified": false,
+        "witnessed_complete_recovery": false,
+        "elapsed_s": 30.0,
+        "peak_raw_wrist_force_n": 19.013626098632812,
+        "force_violation": false,
+        "discounted_job_return": 0.22608294565213077,
+        "terminal_partial_physics_steps_omitted": 0
+      }
+    },
+    {
+      "case": {
+        "case_id": "dev-10072-bias_low-1",
+        "split": "development",
+        "seed": 10072,
+        "bin_id": "bias_low",
+        "family": "lateral_pose_bias",
+        "direction_index": 1,
+        "fixture_bias_xy_m": [
+          -0.00075,
+          0.0
+        ],
+        "approach_xy_m": [
+          0.0,
+          0.0
+        ],
+        "fixed_static_friction": 0.75,
+        "fixed_dynamic_friction": 0.25
+      },
+      "retry": {
+        "job_index": 5,
+        "initialization_valid": true,
+        "outcome": "success",
+        "classification": "witnessed_recovery",
+        "upstream_success_seen": true,
+        "retained_grasp": true,
+        "fixture_contact_observed": true,
+        "contact_failure_witnessed": true,
+        "withdrawal_verified": true,
+        "witnessed_complete_recovery": true,
+        "elapsed_s": 18.483333333333334,
+        "peak_raw_wrist_force_n": 16.938480377197266,
+        "force_violation": false,
+        "discounted_job_return": 71.41871563045534,
+        "terminal_partial_physics_steps_omitted": 2
+      },
+      "continue": {
+        "job_index": 5,
+        "initialization_valid": true,
+        "outcome": "deadline",
+        "classification": "contact_stall_deadline",
+        "upstream_success_seen": false,
+        "retained_grasp": true,
+        "fixture_contact_observed": true,
+        "contact_failure_witnessed": true,
+        "withdrawal_verified": false,
+        "witnessed_complete_recovery": false,
+        "elapsed_s": 30.0,
+        "peak_raw_wrist_force_n": 16.938480377197266,
+        "force_violation": false,
+        "discounted_job_return": 54.76870571826376,
+        "terminal_partial_physics_steps_omitted": 0
+      }
+    },
+    {
+      "case": {
+        "case_id": "dev-10072-bias_low-2",
+        "split": "development",
+        "seed": 10072,
+        "bin_id": "bias_low",
+        "family": "lateral_pose_bias",
+        "direction_index": 2,
+        "fixture_bias_xy_m": [
+          0.0,
+          0.00075
+        ],
+        "approach_xy_m": [
+          0.0,
+          0.0
+        ],
+        "fixed_static_friction": 0.75,
+        "fixed_dynamic_friction": 0.25
+      },
+      "retry": {
+        "job_index": 6,
+        "initialization_valid": true,
+        "outcome": "success",
+        "classification": "completion_without_witnessed_contact_failure",
+        "upstream_success_seen": true,
+        "retained_grasp": true,
+        "fixture_contact_observed": true,
+        "contact_failure_witnessed": false,
+        "withdrawal_verified": false,
+        "witnessed_complete_recovery": false,
+        "elapsed_s": 10.775,
+        "peak_raw_wrist_force_n": 19.22817611694336,
+        "force_violation": false,
+        "discounted_job_return": 149.09056478712606,
+        "terminal_partial_physics_steps_omitted": 5
+      },
+      "continue": {
+        "job_index": 6,
+        "initialization_valid": true,
+        "outcome": "success",
+        "classification": "completion_without_witnessed_contact_failure",
+        "upstream_success_seen": true,
+        "retained_grasp": true,
+        "fixture_contact_observed": true,
+        "contact_failure_witnessed": false,
+        "withdrawal_verified": false,
+        "witnessed_complete_recovery": false,
+        "elapsed_s": 10.775,
+        "peak_raw_wrist_force_n": 19.22817611694336,
+        "force_violation": false,
+        "discounted_job_return": 149.09056478712606,
+        "terminal_partial_physics_steps_omitted": 5
+      }
+    },
+    {
+      "case": {
+        "case_id": "dev-10072-bias_low-3",
+        "split": "development",
+        "seed": 10072,
+        "bin_id": "bias_low",
+        "family": "lateral_pose_bias",
+        "direction_index": 3,
+        "fixture_bias_xy_m": [
+          0.0,
+          -0.00075
+        ],
+        "approach_xy_m": [
+          0.0,
+          0.0
+        ],
+        "fixed_static_friction": 0.75,
+        "fixed_dynamic_friction": 0.25
+      },
+      "retry": {
+        "job_index": 7,
+        "initialization_valid": true,
+        "outcome": "success",
+        "classification": "witnessed_recovery",
+        "upstream_success_seen": true,
+        "retained_grasp": true,
+        "fixture_contact_observed": true,
+        "contact_failure_witnessed": true,
+        "withdrawal_verified": true,
+        "witnessed_complete_recovery": true,
+        "elapsed_s": 17.191666666666666,
+        "peak_raw_wrist_force_n": 19.022226333618164,
+        "force_violation": false,
+        "discounted_job_return": 58.50118202089464,
+        "terminal_partial_physics_steps_omitted": 7
+      },
+      "continue": {
+        "job_index": 7,
+        "initialization_valid": true,
+        "outcome": "force_abort",
+        "classification": "force_abort",
+        "upstream_success_seen": false,
+        "retained_grasp": true,
+        "fixture_contact_observed": true,
+        "contact_failure_witnessed": true,
+        "withdrawal_verified": false,
+        "witnessed_complete_recovery": false,
+        "elapsed_s": 17.575,
+        "peak_raw_wrist_force_n": 20.746824264526367,
+        "force_violation": true,
+        "discounted_job_return": -14.145329789444085,
+        "terminal_partial_physics_steps_omitted": 5
+      }
+    },
+    {
+      "case": {
+        "case_id": "dev-10072-bias_medium-0",
+        "split": "development",
+        "seed": 10072,
+        "bin_id": "bias_medium",
+        "family": "lateral_pose_bias",
+        "direction_index": 0,
+        "fixture_bias_xy_m": [
+          0.0015,
+          0.0
+        ],
+        "approach_xy_m": [
+          0.0,
+          0.0
+        ],
+        "fixed_static_friction": 0.75,
+        "fixed_dynamic_friction": 0.25
+      },
+      "retry": {
+        "job_index": 8,
+        "initialization_valid": true,
+        "outcome": "success",
+        "classification": "completion_without_witnessed_contact_failure",
+        "upstream_success_seen": true,
+        "retained_grasp": true,
+        "fixture_contact_observed": true,
+        "contact_failure_witnessed": false,
+        "withdrawal_verified": false,
+        "witnessed_complete_recovery": false,
+        "elapsed_s": 3.025,
+        "peak_raw_wrist_force_n": 18.384580612182617,
+        "force_violation": false,
+        "discounted_job_return": 45.049204046736726,
+        "terminal_partial_physics_steps_omitted": 3
+      },
+      "continue": {
+        "job_index": 8,
+        "initialization_valid": true,
+        "outcome": "success",
+        "classification": "completion_without_witnessed_contact_failure",
+        "upstream_success_seen": true,
+        "retained_grasp": true,
+        "fixture_contact_observed": true,
+        "contact_failure_witnessed": false,
+        "withdrawal_verified": false,
+        "witnessed_complete_recovery": false,
+        "elapsed_s": 3.025,
+        "peak_raw_wrist_force_n": 18.384580612182617,
+        "force_violation": false,
+        "discounted_job_return": 45.049204046736726,
+        "terminal_partial_physics_steps_omitted": 3
+      }
+    },
+    {
+      "case": {
+        "case_id": "dev-10072-bias_medium-1",
+        "split": "development",
+        "seed": 10072,
+        "bin_id": "bias_medium",
+        "family": "lateral_pose_bias",
+        "direction_index": 1,
+        "fixture_bias_xy_m": [
+          -0.0015,
+          0.0
+        ],
+        "approach_xy_m": [
+          0.0,
+          0.0
+        ],
+        "fixed_static_friction": 0.75,
+        "fixed_dynamic_friction": 0.25
+      },
+      "retry": {
+        "job_index": 9,
+        "initialization_valid": true,
+        "outcome": "deadline",
+        "classification": "contact_stall_deadline",
+        "upstream_success_seen": false,
+        "retained_grasp": true,
+        "fixture_contact_observed": true,
+        "contact_failure_witnessed": true,
+        "withdrawal_verified": true,
+        "witnessed_complete_recovery": false,
+        "elapsed_s": 30.0,
+        "peak_raw_wrist_force_n": 12.295681953430176,
+        "force_violation": false,
+        "discounted_job_return": 67.71558525986208,
+        "terminal_partial_physics_steps_omitted": 0
+      },
+      "continue": {
+        "job_index": 9,
+        "initialization_valid": true,
+        "outcome": "deadline",
+        "classification": "contact_stall_deadline",
+        "upstream_success_seen": false,
+        "retained_grasp": true,
+        "fixture_contact_observed": true,
+        "contact_failure_witnessed": true,
+        "withdrawal_verified": false,
+        "witnessed_complete_recovery": false,
+        "elapsed_s": 30.0,
+        "peak_raw_wrist_force_n": 12.45002269744873,
+        "force_violation": false,
+        "discounted_job_return": 66.89691510552979,
+        "terminal_partial_physics_steps_omitted": 0
+      }
+    },
+    {
+      "case": {
+        "case_id": "dev-10072-bias_medium-2",
+        "split": "development",
+        "seed": 10072,
+        "bin_id": "bias_medium",
+        "family": "lateral_pose_bias",
+        "direction_index": 2,
+        "fixture_bias_xy_m": [
+          0.0,
+          0.0015
+        ],
+        "approach_xy_m": [
+          0.0,
+          0.0
+        ],
+        "fixed_static_friction": 0.75,
+        "fixed_dynamic_friction": 0.25
+      },
+      "retry": {
+        "job_index": 10,
+        "initialization_valid": true,
+        "outcome": "deadline",
+        "classification": "contact_stall_deadline",
+        "upstream_success_seen": false,
+        "retained_grasp": true,
+        "fixture_contact_observed": true,
+        "contact_failure_witnessed": true,
+        "withdrawal_verified": true,
+        "witnessed_complete_recovery": false,
+        "elapsed_s": 30.0,
+        "peak_raw_wrist_force_n": 17.074602127075195,
+        "force_violation": false,
+        "discounted_job_return": 78.40893807765858,
+        "terminal_partial_physics_steps_omitted": 0
+      },
+      "continue": {
+        "job_index": 10,
+        "initialization_valid": true,
+        "outcome": "deadline",
+        "classification": "contact_stall_deadline",
+        "upstream_success_seen": false,
+        "retained_grasp": true,
+        "fixture_contact_observed": true,
+        "contact_failure_witnessed": true,
+        "withdrawal_verified": false,
+        "witnessed_complete_recovery": false,
+        "elapsed_s": 30.0,
+        "peak_raw_wrist_force_n": 19.484527587890625,
+        "force_violation": false,
+        "discounted_job_return": -89.92937245542652,
+        "terminal_partial_physics_steps_omitted": 0
+      }
+    },
+    {
+      "case": {
+        "case_id": "dev-10072-bias_medium-3",
+        "split": "development",
+        "seed": 10072,
+        "bin_id": "bias_medium",
+        "family": "lateral_pose_bias",
+        "direction_index": 3,
+        "fixture_bias_xy_m": [
+          0.0,
+          -0.0015
+        ],
+        "approach_xy_m": [
+          0.0,
+          0.0
+        ],
+        "fixed_static_friction": 0.75,
+        "fixed_dynamic_friction": 0.25
+      },
+      "retry": {
+        "job_index": 11,
+        "initialization_valid": true,
+        "outcome": "success",
+        "classification": "witnessed_recovery",
+        "upstream_success_seen": true,
+        "retained_grasp": true,
+        "fixture_contact_observed": true,
+        "contact_failure_witnessed": true,
+        "withdrawal_verified": true,
+        "witnessed_complete_recovery": true,
+        "elapsed_s": 16.341666666666665,
+        "peak_raw_wrist_force_n": 19.618337631225586,
+        "force_violation": false,
+        "discounted_job_return": 61.586740076008454,
+        "terminal_partial_physics_steps_omitted": 1
+      },
+      "continue": {
+        "job_index": 11,
+        "initialization_valid": true,
+        "outcome": "deadline",
+        "classification": "contact_stall_deadline",
+        "upstream_success_seen": false,
+        "retained_grasp": true,
+        "fixture_contact_observed": true,
+        "contact_failure_witnessed": true,
+        "withdrawal_verified": false,
+        "witnessed_complete_recovery": false,
+        "elapsed_s": 30.0,
+        "peak_raw_wrist_force_n": 19.618337631225586,
+        "force_violation": false,
+        "discounted_job_return": 60.549269938170106,
+        "terminal_partial_physics_steps_omitted": 0
+      }
+    },
+    {
+      "case": {
+        "case_id": "dev-10072-approach_low-0",
+        "split": "development",
+        "seed": 10072,
+        "bin_id": "approach_low",
+        "family": "approach_offset",
+        "direction_index": 0,
+        "fixture_bias_xy_m": [
+          0.0,
+          0.0
+        ],
+        "approach_xy_m": [
+          0.004,
+          0.0
+        ],
+        "fixed_static_friction": 0.75,
+        "fixed_dynamic_friction": 0.25
+      },
+      "retry": {
+        "job_index": 12,
+        "initialization_valid": true,
+        "outcome": "success",
+        "classification": "witnessed_recovery",
+        "upstream_success_seen": true,
+        "retained_grasp": true,
+        "fixture_contact_observed": true,
+        "contact_failure_witnessed": true,
+        "withdrawal_verified": true,
+        "witnessed_complete_recovery": true,
+        "elapsed_s": 21.916666666666668,
+        "peak_raw_wrist_force_n": 19.146242141723633,
+        "force_violation": false,
+        "discounted_job_return": 77.34944605304212,
+        "terminal_partial_physics_steps_omitted": 6
+      },
+      "continue": {
+        "job_index": 12,
+        "initialization_valid": true,
+        "outcome": "deadline",
+        "classification": "contact_stall_deadline",
+        "upstream_success_seen": false,
+        "retained_grasp": true,
+        "fixture_contact_observed": true,
+        "contact_failure_witnessed": true,
+        "withdrawal_verified": false,
+        "witnessed_complete_recovery": false,
+        "elapsed_s": 30.0,
+        "peak_raw_wrist_force_n": 19.146242141723633,
+        "force_violation": false,
+        "discounted_job_return": 64.86028830634469,
+        "terminal_partial_physics_steps_omitted": 0
+      }
+    },
+    {
+      "case": {
+        "case_id": "dev-10072-approach_low-1",
+        "split": "development",
+        "seed": 10072,
+        "bin_id": "approach_low",
+        "family": "approach_offset",
+        "direction_index": 1,
+        "fixture_bias_xy_m": [
+          0.0,
+          0.0
+        ],
+        "approach_xy_m": [
+          -0.004,
+          0.0
+        ],
+        "fixed_static_friction": 0.75,
+        "fixed_dynamic_friction": 0.25
+      },
+      "retry": {
+        "job_index": 13,
+        "initialization_valid": true,
+        "outcome": "success",
+        "classification": "witnessed_recovery",
+        "upstream_success_seen": true,
+        "retained_grasp": true,
+        "fixture_contact_observed": true,
+        "contact_failure_witnessed": true,
+        "withdrawal_verified": true,
+        "witnessed_complete_recovery": true,
+        "elapsed_s": 16.933333333333334,
+        "peak_raw_wrist_force_n": 16.555252075195312,
+        "force_violation": false,
+        "discounted_job_return": 72.41088353823997,
+        "terminal_partial_physics_steps_omitted": 0
+      },
+      "continue": {
+        "job_index": 13,
+        "initialization_valid": true,
+        "outcome": "deadline",
+        "classification": "contact_stall_deadline",
+        "upstream_success_seen": false,
+        "retained_grasp": true,
+        "fixture_contact_observed": true,
+        "contact_failure_witnessed": true,
+        "withdrawal_verified": false,
+        "witnessed_complete_recovery": false,
+        "elapsed_s": 30.0,
+        "peak_raw_wrist_force_n": 16.555252075195312,
+        "force_violation": false,
+        "discounted_job_return": 67.26317820884604,
+        "terminal_partial_physics_steps_omitted": 0
+      }
+    },
+    {
+      "case": {
+        "case_id": "dev-10072-approach_low-2",
+        "split": "development",
+        "seed": 10072,
+        "bin_id": "approach_low",
+        "family": "approach_offset",
+        "direction_index": 2,
+        "fixture_bias_xy_m": [
+          0.0,
+          0.0
+        ],
+        "approach_xy_m": [
+          0.0,
+          0.004
+        ],
+        "fixed_static_friction": 0.75,
+        "fixed_dynamic_friction": 0.25
+      },
+      "retry": {
+        "job_index": 14,
+        "initialization_valid": true,
+        "outcome": "deadline",
+        "classification": "contact_stall_deadline",
+        "upstream_success_seen": false,
+        "retained_grasp": true,
+        "fixture_contact_observed": true,
+        "contact_failure_witnessed": true,
+        "withdrawal_verified": true,
+        "witnessed_complete_recovery": false,
+        "elapsed_s": 30.0,
+        "peak_raw_wrist_force_n": 19.537992477416992,
+        "force_violation": false,
+        "discounted_job_return": 67.27510827343504,
+        "terminal_partial_physics_steps_omitted": 0
+      },
+      "continue": {
+        "job_index": 14,
+        "initialization_valid": true,
+        "outcome": "deadline",
+        "classification": "contact_stall_deadline",
+        "upstream_success_seen": false,
+        "retained_grasp": true,
+        "fixture_contact_observed": true,
+        "contact_failure_witnessed": true,
+        "withdrawal_verified": false,
+        "witnessed_complete_recovery": false,
+        "elapsed_s": 30.0,
+        "peak_raw_wrist_force_n": 19.537992477416992,
+        "force_violation": false,
+        "discounted_job_return": 5.926165923994147,
+        "terminal_partial_physics_steps_omitted": 0
+      }
+    },
+    {
+      "case": {
+        "case_id": "dev-10072-approach_low-3",
+        "split": "development",
+        "seed": 10072,
+        "bin_id": "approach_low",
+        "family": "approach_offset",
+        "direction_index": 3,
+        "fixture_bias_xy_m": [
+          0.0,
+          0.0
+        ],
+        "approach_xy_m": [
+          0.0,
+          -0.004
+        ],
+        "fixed_static_friction": 0.75,
+        "fixed_dynamic_friction": 0.25
+      },
+      "retry": {
+        "job_index": 15,
+        "initialization_valid": true,
+        "outcome": "success",
+        "classification": "witnessed_recovery",
+        "upstream_success_seen": true,
+        "retained_grasp": true,
+        "fixture_contact_observed": true,
+        "contact_failure_witnessed": true,
+        "withdrawal_verified": true,
+        "witnessed_complete_recovery": true,
+        "elapsed_s": 18.566666666666666,
+        "peak_raw_wrist_force_n": 18.87862205505371,
+        "force_violation": false,
+        "discounted_job_return": 91.53640167155356,
+        "terminal_partial_physics_steps_omitted": 4
+      },
+      "continue": {
+        "job_index": 15,
+        "initialization_valid": true,
+        "outcome": "deadline",
+        "classification": "contact_stall_deadline",
+        "upstream_success_seen": false,
+        "retained_grasp": true,
+        "fixture_contact_observed": true,
+        "contact_failure_witnessed": true,
+        "withdrawal_verified": false,
+        "witnessed_complete_recovery": false,
+        "elapsed_s": 30.0,
+        "peak_raw_wrist_force_n": 18.87862205505371,
+        "force_violation": false,
+        "discounted_job_return": 61.28927616869678,
+        "terminal_partial_physics_steps_omitted": 0
+      }
+    },
+    {
+      "case": {
+        "case_id": "dev-10072-approach_high-0",
+        "split": "development",
+        "seed": 10072,
+        "bin_id": "approach_high",
+        "family": "approach_offset",
+        "direction_index": 0,
+        "fixture_bias_xy_m": [
+          0.0,
+          0.0
+        ],
+        "approach_xy_m": [
+          0.008,
+          0.0
+        ],
+        "fixed_static_friction": 0.75,
+        "fixed_dynamic_friction": 0.25
+      },
+      "retry": {
+        "job_index": 16,
+        "initialization_valid": true,
+        "outcome": "success",
+        "classification": "completion_without_witnessed_contact_failure",
+        "upstream_success_seen": true,
+        "retained_grasp": true,
+        "fixture_contact_observed": true,
+        "contact_failure_witnessed": false,
+        "withdrawal_verified": false,
+        "witnessed_complete_recovery": false,
+        "elapsed_s": 3.9916666666666667,
+        "peak_raw_wrist_force_n": 12.819324493408203,
+        "force_violation": false,
+        "discounted_job_return": 54.657232857699874,
+        "terminal_partial_physics_steps_omitted": 7
+      },
+      "continue": {
+        "job_index": 16,
+        "initialization_valid": true,
+        "outcome": "success",
+        "classification": "completion_without_witnessed_contact_failure",
+        "upstream_success_seen": true,
+        "retained_grasp": true,
+        "fixture_contact_observed": true,
+        "contact_failure_witnessed": false,
+        "withdrawal_verified": false,
+        "witnessed_complete_recovery": false,
+        "elapsed_s": 3.9916666666666667,
+        "peak_raw_wrist_force_n": 12.819324493408203,
+        "force_violation": false,
+        "discounted_job_return": 54.657232857699874,
+        "terminal_partial_physics_steps_omitted": 7
+      }
+    },
+    {
+      "case": {
+        "case_id": "dev-10072-approach_high-1",
+        "split": "development",
+        "seed": 10072,
+        "bin_id": "approach_high",
+        "family": "approach_offset",
+        "direction_index": 1,
+        "fixture_bias_xy_m": [
+          0.0,
+          0.0
+        ],
+        "approach_xy_m": [
+          -0.008,
+          0.0
+        ],
+        "fixed_static_friction": 0.75,
+        "fixed_dynamic_friction": 0.25
+      },
+      "retry": {
+        "job_index": 17,
+        "initialization_valid": true,
+        "outcome": "success",
+        "classification": "witnessed_recovery",
+        "upstream_success_seen": true,
+        "retained_grasp": true,
+        "fixture_contact_observed": true,
+        "contact_failure_witnessed": true,
+        "withdrawal_verified": true,
+        "witnessed_complete_recovery": true,
+        "elapsed_s": 19.475,
+        "peak_raw_wrist_force_n": 19.165163040161133,
+        "force_violation": false,
+        "discounted_job_return": 71.19670225121467,
+        "terminal_partial_physics_steps_omitted": 1
+      },
+      "continue": {
+        "job_index": 17,
+        "initialization_valid": true,
+        "outcome": "deadline",
+        "classification": "contact_stall_deadline",
+        "upstream_success_seen": false,
+        "retained_grasp": true,
+        "fixture_contact_observed": true,
+        "contact_failure_witnessed": true,
+        "withdrawal_verified": false,
+        "witnessed_complete_recovery": false,
+        "elapsed_s": 30.0,
+        "peak_raw_wrist_force_n": 19.165163040161133,
+        "force_violation": false,
+        "discounted_job_return": 12.494256457764433,
+        "terminal_partial_physics_steps_omitted": 0
+      }
+    },
+    {
+      "case": {
+        "case_id": "dev-10072-approach_high-2",
+        "split": "development",
+        "seed": 10072,
+        "bin_id": "approach_high",
+        "family": "approach_offset",
+        "direction_index": 2,
+        "fixture_bias_xy_m": [
+          0.0,
+          0.0
+        ],
+        "approach_xy_m": [
+          0.0,
+          0.008
+        ],
+        "fixed_static_friction": 0.75,
+        "fixed_dynamic_friction": 0.25
+      },
+      "retry": {
+        "job_index": 18,
+        "initialization_valid": true,
+        "outcome": "deadline",
+        "classification": "contact_stall_deadline",
+        "upstream_success_seen": false,
+        "retained_grasp": true,
+        "fixture_contact_observed": true,
+        "contact_failure_witnessed": true,
+        "withdrawal_verified": false,
+        "witnessed_complete_recovery": false,
+        "elapsed_s": 30.0,
+        "peak_raw_wrist_force_n": 19.6574764251709,
+        "force_violation": false,
+        "discounted_job_return": 65.06523884160313,
+        "terminal_partial_physics_steps_omitted": 0
+      },
+      "continue": {
+        "job_index": 18,
+        "initialization_valid": true,
+        "outcome": "deadline",
+        "classification": "contact_stall_deadline",
+        "upstream_success_seen": false,
+        "retained_grasp": true,
+        "fixture_contact_observed": true,
+        "contact_failure_witnessed": true,
+        "withdrawal_verified": false,
+        "witnessed_complete_recovery": false,
+        "elapsed_s": 30.0,
+        "peak_raw_wrist_force_n": 19.6574764251709,
+        "force_violation": false,
+        "discounted_job_return": 12.741850545865267,
+        "terminal_partial_physics_steps_omitted": 0
+      }
+    },
+    {
+      "case": {
+        "case_id": "dev-10072-approach_high-3",
+        "split": "development",
+        "seed": 10072,
+        "bin_id": "approach_high",
+        "family": "approach_offset",
+        "direction_index": 3,
+        "fixture_bias_xy_m": [
+          0.0,
+          0.0
+        ],
+        "approach_xy_m": [
+          0.0,
+          -0.008
+        ],
+        "fixed_static_friction": 0.75,
+        "fixed_dynamic_friction": 0.25
+      },
+      "retry": {
+        "job_index": 19,
+        "initialization_valid": true,
+        "outcome": "success",
+        "classification": "witnessed_recovery",
+        "upstream_success_seen": true,
+        "retained_grasp": true,
+        "fixture_contact_observed": true,
+        "contact_failure_witnessed": true,
+        "withdrawal_verified": true,
+        "witnessed_complete_recovery": true,
+        "elapsed_s": 22.608333333333334,
+        "peak_raw_wrist_force_n": 19.781217575073242,
+        "force_violation": false,
+        "discounted_job_return": 87.04189147363337,
+        "terminal_partial_physics_steps_omitted": 1
+      },
+      "continue": {
+        "job_index": 19,
+        "initialization_valid": true,
+        "outcome": "deadline",
+        "classification": "contact_stall_deadline",
+        "upstream_success_seen": false,
+        "retained_grasp": true,
+        "fixture_contact_observed": true,
+        "contact_failure_witnessed": true,
+        "withdrawal_verified": false,
+        "witnessed_complete_recovery": false,
+        "elapsed_s": 30.0,
+        "peak_raw_wrist_force_n": 19.781217575073242,
+        "force_violation": false,
+        "discounted_job_return": 51.513918740078154,
+        "terminal_partial_physics_steps_omitted": 0
+      }
+    },
+    {
+      "case": {
+        "case_id": "dev-10072-friction_low-0",
+        "split": "development",
+        "seed": 10072,
+        "bin_id": "friction_low",
+        "family": "friction",
+        "direction_index": 0,
+        "fixture_bias_xy_m": [
+          0.0,
+          0.0
+        ],
+        "approach_xy_m": [
+          0.0,
+          0.0
+        ],
+        "fixed_static_friction": 0.25,
+        "fixed_dynamic_friction": 0.25
+      },
+      "retry": {
+        "job_index": 20,
+        "initialization_valid": true,
+        "outcome": "success",
+        "classification": "completion_without_witnessed_contact_failure",
+        "upstream_success_seen": true,
+        "retained_grasp": true,
+        "fixture_contact_observed": true,
+        "contact_failure_witnessed": false,
+        "withdrawal_verified": false,
+        "witnessed_complete_recovery": false,
+        "elapsed_s": 7.175,
+        "peak_raw_wrist_force_n": 12.914103507995605,
+        "force_violation": false,
+        "discounted_job_return": 94.2973685405364,
+        "terminal_partial_physics_steps_omitted": 5
+      },
+      "continue": {
+        "job_index": 20,
+        "initialization_valid": true,
+        "outcome": "success",
+        "classification": "completion_without_witnessed_contact_failure",
+        "upstream_success_seen": true,
+        "retained_grasp": true,
+        "fixture_contact_observed": true,
+        "contact_failure_witnessed": false,
+        "withdrawal_verified": false,
+        "witnessed_complete_recovery": false,
+        "elapsed_s": 7.175,
+        "peak_raw_wrist_force_n": 12.914103507995605,
+        "force_violation": false,
+        "discounted_job_return": 94.2973685405364,
+        "terminal_partial_physics_steps_omitted": 5
+      }
+    },
+    {
+      "case": {
+        "case_id": "dev-10072-friction_low-1",
+        "split": "development",
+        "seed": 10072,
+        "bin_id": "friction_low",
+        "family": "friction",
+        "direction_index": 1,
+        "fixture_bias_xy_m": [
+          0.0,
+          0.0
+        ],
+        "approach_xy_m": [
+          0.0,
+          0.0
+        ],
+        "fixed_static_friction": 0.25,
+        "fixed_dynamic_friction": 0.25
+      },
+      "retry": {
+        "job_index": 21,
+        "initialization_valid": true,
+        "outcome": "deadline",
+        "classification": "contact_stall_deadline",
+        "upstream_success_seen": false,
+        "retained_grasp": true,
+        "fixture_contact_observed": true,
+        "contact_failure_witnessed": true,
+        "withdrawal_verified": true,
+        "witnessed_complete_recovery": false,
+        "elapsed_s": 30.0,
+        "peak_raw_wrist_force_n": 19.409931182861328,
+        "force_violation": false,
+        "discounted_job_return": 65.60018885117373,
+        "terminal_partial_physics_steps_omitted": 0
+      },
+      "continue": {
+        "job_index": 21,
+        "initialization_valid": true,
+        "outcome": "deadline",
+        "classification": "contact_stall_deadline",
+        "upstream_success_seen": false,
+        "retained_grasp": true,
+        "fixture_contact_observed": true,
+        "contact_failure_witnessed": true,
+        "withdrawal_verified": false,
+        "witnessed_complete_recovery": false,
+        "elapsed_s": 30.0,
+        "peak_raw_wrist_force_n": 19.409931182861328,
+        "force_violation": false,
+        "discounted_job_return": 65.95443879541766,
+        "terminal_partial_physics_steps_omitted": 0
+      }
+    },
+    {
+      "case": {
+        "case_id": "dev-10072-friction_low-2",
+        "split": "development",
+        "seed": 10072,
+        "bin_id": "friction_low",
+        "family": "friction",
+        "direction_index": 2,
+        "fixture_bias_xy_m": [
+          0.0,
+          0.0
+        ],
+        "approach_xy_m": [
+          0.0,
+          0.0
+        ],
+        "fixed_static_friction": 0.25,
+        "fixed_dynamic_friction": 0.25
+      },
+      "retry": {
+        "job_index": 22,
+        "initialization_valid": true,
+        "outcome": "success",
+        "classification": "witnessed_recovery",
+        "upstream_success_seen": true,
+        "retained_grasp": true,
+        "fixture_contact_observed": true,
+        "contact_failure_witnessed": true,
+        "withdrawal_verified": true,
+        "witnessed_complete_recovery": true,
+        "elapsed_s": 14.241666666666667,
+        "peak_raw_wrist_force_n": 19.256547927856445,
+        "force_violation": false,
+        "discounted_job_return": 66.37667504618562,
+        "terminal_partial_physics_steps_omitted": 5
+      },
+      "continue": {
+        "job_index": 22,
+        "initialization_valid": true,
+        "outcome": "deadline",
+        "classification": "contact_stall_deadline",
+        "upstream_success_seen": false,
+        "retained_grasp": true,
+        "fixture_contact_observed": true,
+        "contact_failure_witnessed": true,
+        "withdrawal_verified": false,
+        "witnessed_complete_recovery": false,
+        "elapsed_s": 30.0,
+        "peak_raw_wrist_force_n": 19.256547927856445,
+        "force_violation": false,
+        "discounted_job_return": -27.740955472597737,
+        "terminal_partial_physics_steps_omitted": 0
+      }
+    },
+    {
+      "case": {
+        "case_id": "dev-10072-friction_low-3",
+        "split": "development",
+        "seed": 10072,
+        "bin_id": "friction_low",
+        "family": "friction",
+        "direction_index": 3,
+        "fixture_bias_xy_m": [
+          0.0,
+          0.0
+        ],
+        "approach_xy_m": [
+          0.0,
+          0.0
+        ],
+        "fixed_static_friction": 0.25,
+        "fixed_dynamic_friction": 0.25
+      },
+      "retry": {
+        "job_index": 23,
+        "initialization_valid": true,
+        "outcome": "success",
+        "classification": "witnessed_recovery",
+        "upstream_success_seen": true,
+        "retained_grasp": true,
+        "fixture_contact_observed": true,
+        "contact_failure_witnessed": true,
+        "withdrawal_verified": true,
+        "witnessed_complete_recovery": true,
+        "elapsed_s": 17.375,
+        "peak_raw_wrist_force_n": 18.943058013916016,
+        "force_violation": false,
+        "discounted_job_return": 72.95096030321622,
+        "terminal_partial_physics_steps_omitted": 5
+      },
+      "continue": {
+        "job_index": 23,
+        "initialization_valid": true,
+        "outcome": "deadline",
+        "classification": "contact_stall_deadline",
+        "upstream_success_seen": false,
+        "retained_grasp": true,
+        "fixture_contact_observed": true,
+        "contact_failure_witnessed": true,
+        "withdrawal_verified": false,
+        "witnessed_complete_recovery": false,
+        "elapsed_s": 30.0,
+        "peak_raw_wrist_force_n": 18.943058013916016,
+        "force_violation": false,
+        "discounted_job_return": 69.30736277549917,
+        "terminal_partial_physics_steps_omitted": 0
+      }
+    },
+    {
+      "case": {
+        "case_id": "dev-10072-friction_high-0",
+        "split": "development",
+        "seed": 10072,
+        "bin_id": "friction_high",
+        "family": "friction",
+        "direction_index": 0,
+        "fixture_bias_xy_m": [
+          0.0,
+          0.0
+        ],
+        "approach_xy_m": [
+          0.0,
+          0.0
+        ],
+        "fixed_static_friction": 1.25,
+        "fixed_dynamic_friction": 0.25
+      },
+      "retry": {
+        "job_index": 24,
+        "initialization_valid": true,
+        "outcome": "deadline",
+        "classification": "contact_stall_deadline",
+        "upstream_success_seen": false,
+        "retained_grasp": true,
+        "fixture_contact_observed": true,
+        "contact_failure_witnessed": true,
+        "withdrawal_verified": true,
+        "witnessed_complete_recovery": false,
+        "elapsed_s": 30.0,
+        "peak_raw_wrist_force_n": 19.423669815063477,
+        "force_violation": false,
+        "discounted_job_return": 79.66144619900307,
+        "terminal_partial_physics_steps_omitted": 0
+      },
+      "continue": {
+        "job_index": 24,
+        "initialization_valid": true,
+        "outcome": "deadline",
+        "classification": "contact_stall_deadline",
+        "upstream_success_seen": false,
+        "retained_grasp": true,
+        "fixture_contact_observed": true,
+        "contact_failure_witnessed": true,
+        "withdrawal_verified": false,
+        "witnessed_complete_recovery": false,
+        "elapsed_s": 30.0,
+        "peak_raw_wrist_force_n": 19.080949783325195,
+        "force_violation": false,
+        "discounted_job_return": 33.51579315834946,
+        "terminal_partial_physics_steps_omitted": 0
+      }
+    },
+    {
+      "case": {
+        "case_id": "dev-10072-friction_high-1",
+        "split": "development",
+        "seed": 10072,
+        "bin_id": "friction_high",
+        "family": "friction",
+        "direction_index": 1,
+        "fixture_bias_xy_m": [
+          0.0,
+          0.0
+        ],
+        "approach_xy_m": [
+          0.0,
+          0.0
+        ],
+        "fixed_static_friction": 1.25,
+        "fixed_dynamic_friction": 0.25
+      },
+      "retry": {
+        "job_index": 25,
+        "initialization_valid": true,
+        "outcome": "deadline",
+        "classification": "contact_stall_deadline",
+        "upstream_success_seen": false,
+        "retained_grasp": true,
+        "fixture_contact_observed": true,
+        "contact_failure_witnessed": true,
+        "withdrawal_verified": true,
+        "witnessed_complete_recovery": false,
+        "elapsed_s": 30.0,
+        "peak_raw_wrist_force_n": 13.080276489257812,
+        "force_violation": false,
+        "discounted_job_return": 69.64424817881986,
+        "terminal_partial_physics_steps_omitted": 0
+      },
+      "continue": {
+        "job_index": 25,
+        "initialization_valid": true,
+        "outcome": "deadline",
+        "classification": "contact_stall_deadline",
+        "upstream_success_seen": false,
+        "retained_grasp": true,
+        "fixture_contact_observed": true,
+        "contact_failure_witnessed": true,
+        "withdrawal_verified": false,
+        "witnessed_complete_recovery": false,
+        "elapsed_s": 30.0,
+        "peak_raw_wrist_force_n": 15.72301959991455,
+        "force_violation": false,
+        "discounted_job_return": 35.451965298324616,
+        "terminal_partial_physics_steps_omitted": 0
+      }
+    },
+    {
+      "case": {
+        "case_id": "dev-10072-friction_high-2",
+        "split": "development",
+        "seed": 10072,
+        "bin_id": "friction_high",
+        "family": "friction",
+        "direction_index": 2,
+        "fixture_bias_xy_m": [
+          0.0,
+          0.0
+        ],
+        "approach_xy_m": [
+          0.0,
+          0.0
+        ],
+        "fixed_static_friction": 1.25,
+        "fixed_dynamic_friction": 0.25
+      },
+      "retry": {
+        "job_index": 26,
+        "initialization_valid": true,
+        "outcome": "success",
+        "classification": "witnessed_recovery",
+        "upstream_success_seen": true,
+        "retained_grasp": true,
+        "fixture_contact_observed": true,
+        "contact_failure_witnessed": true,
+        "withdrawal_verified": true,
+        "witnessed_complete_recovery": true,
+        "elapsed_s": 18.708333333333332,
+        "peak_raw_wrist_force_n": 19.697202682495117,
+        "force_violation": false,
+        "discounted_job_return": 87.03382329530615,
+        "terminal_partial_physics_steps_omitted": 5
+      },
+      "continue": {
+        "job_index": 26,
+        "initialization_valid": true,
+        "outcome": "deadline",
+        "classification": "contact_stall_deadline",
+        "upstream_success_seen": false,
+        "retained_grasp": true,
+        "fixture_contact_observed": true,
+        "contact_failure_witnessed": true,
+        "withdrawal_verified": false,
+        "witnessed_complete_recovery": false,
+        "elapsed_s": 30.0,
+        "peak_raw_wrist_force_n": 18.374704360961914,
+        "force_violation": false,
+        "discounted_job_return": 19.60716341112304,
+        "terminal_partial_physics_steps_omitted": 0
+      }
+    },
+    {
+      "case": {
+        "case_id": "dev-10072-friction_high-3",
+        "split": "development",
+        "seed": 10072,
+        "bin_id": "friction_high",
+        "family": "friction",
+        "direction_index": 3,
+        "fixture_bias_xy_m": [
+          0.0,
+          0.0
+        ],
+        "approach_xy_m": [
+          0.0,
+          0.0
+        ],
+        "fixed_static_friction": 1.25,
+        "fixed_dynamic_friction": 0.25
+      },
+      "retry": {
+        "job_index": 27,
+        "initialization_valid": true,
+        "outcome": "success",
+        "classification": "completion_without_full_recovery_witness",
+        "upstream_success_seen": true,
+        "retained_grasp": true,
+        "fixture_contact_observed": true,
+        "contact_failure_witnessed": true,
+        "withdrawal_verified": true,
+        "witnessed_complete_recovery": false,
+        "elapsed_s": 26.991666666666667,
+        "peak_raw_wrist_force_n": 14.662217140197754,
+        "force_violation": false,
+        "discounted_job_return": 75.88529263863566,
+        "terminal_partial_physics_steps_omitted": 7
+      },
+      "continue": {
+        "job_index": 27,
+        "initialization_valid": true,
+        "outcome": "deadline",
+        "classification": "contact_stall_deadline",
+        "upstream_success_seen": false,
+        "retained_grasp": true,
+        "fixture_contact_observed": true,
+        "contact_failure_witnessed": true,
+        "withdrawal_verified": false,
+        "witnessed_complete_recovery": false,
+        "elapsed_s": 30.0,
+        "peak_raw_wrist_force_n": 14.583621978759766,
+        "force_violation": false,
+        "discounted_job_return": 32.817086583489115,
+        "terminal_partial_physics_steps_omitted": 0
+      }
+    }
+  ],
+  "requested_jobs": 168,
+  "unique_development_cases": 84,
+  "control_transitions_including_post_terminal_holds": 75600,
+  "scope_and_limitations": [
+    "Scripted development feasibility matrix; not learned recovery, equal-cost training benefit, or final-test evidence.",
+    "Four directions/replicates at one representative severity per bin per development seed; range interiors/boundaries and reserved combinations are not validated.",
+    "Shared grasp offset, pose/force noise, mass, controller gains, smoothing, and dead-zone randomization remain; a nominal label means no controlled fault, not guaranteed insertion.",
+    "All requested jobs, including invalid initialization, force abort, grasp loss and deadline, remain in denominators.",
+    "Returns use unchanged upstream reward with endpoint cutoff and omitted partial terminal interval; training terminal integration remains open.",
+    "Geometry, synthetic observation interface, 30 s deadline, 20 N wrist abort budget and 0.5 s seating dwell are shared across each pair.",
+    "Failure of this bounded script does not establish an infeasible fault. No additional controller tuning is authorized by this report."
+  ],
+  "plan_path": "artifacts/assembly/peg_fault_matrix_v1_plan.json",
+  "plan_sha256": "a72868e6581120e3a2e35e2796447397a2694e46d06d5715fcdbfd51b8899270",
+  "comparison_artifacts": [
+    {
+      "path": "artifacts/assembly/peg_matrix_v1_10070_pair.json",
+      "sha256": "fea6a3058f8be7a29f399c01bf357ed043096c51a1e7705a80fe291dc4be9559"
+    },
+    {
+      "path": "artifacts/assembly/peg_matrix_v1_10071_pair.json",
+      "sha256": "18b90863d60fe16ddae60cf860468d7836926158f5b6376a2c8d58dac908b02d"
+    },
+    {
+      "path": "artifacts/assembly/peg_matrix_v1_10072_pair.json",
+      "sha256": "4efb92ef5a2e221b0a1540751322d138b706d8bfc1346bb1002b34f749a4ac78"
+    }
+  ]
+}

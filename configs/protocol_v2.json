@@ -1,0 +1,149 @@
+{
+  "schema": 1,
+  "version": "peg_pilot_v2",
+  "status": "frozen_before_pilot",
+  "created_at_utc": "2026-09-09T01:27:04.253342+00:00",
+  "study_sha256": "af0521a5f703016c414134e6ea1bfdcc1e2ff90df226f307ad7cedd141930b57",
+  "behavior_source_sha256": {
+    "scripts/probe_training.py": "b2d6fa4d1db5ff1c018dee25abb459c8b878dc15046fab3267ee925cc850df0f",
+    "scripts/run_experiment.py": "f78526878acccc4c4e3cff07730bb03fc51a80c5b27eeb17fd305b17f8bf2e72",
+    "scripts/run_training_probe.py": "4cc8c987b705f85eae5f559b7e32304ca90da165336ef00fd71932a0b7f1537b",
+    "scripts/run_uniform.py": "2e3b6dbd9c7b85fbdaacda1a05100102f827d8495b5d827f0476be5357a9a8a6",
+    "scripts/train_uniform.py": "68951f8a7cd6c6c134c17ab90ba9c937c148c60662ff6f76b3347b049f6a4d39",
+    "src/assembly_recovery/__init__.py": "c245621cf4ce1260e99af39b4dfff6286b9d1f741c7f06c2157e2306b1e54b71",
+    "src/assembly_recovery/contact_witness.py": "3d4ef4111494738ebe5056e0c1d936d8e308b6db9438f1c4f6de4a6218b9c4ba",
+    "src/assembly_recovery/evaluation.py": "42d8a41b9ede199c3435717870d1d127ca95564b714a6d2904d9c22ff5836c0a",
+    "src/assembly_recovery/fault_env.py": "9fa5e7cd544f40bba2015a404d367700a902de96e998e302389025ec0c108306",
+    "src/assembly_recovery/faults.py": "86e3812e1e97335d844c325d32cffa4b2cafe306bc0ca9327e4b5f97a1119e5b",
+    "src/assembly_recovery/force_diagnostics.py": "c64c6b8de97555dbc8b39e8be8a3b11fc50d9a19803cf29972d585cd47954bc0",
+    "src/assembly_recovery/geometry.py": "4438eb81ea3f58dff9330d6669f1ab7db6175e202782768ff76368ace1dfdc86",
+    "src/assembly_recovery/peg_env.py": "0fe0db0879ff86631c4bd2a0593c3475c71b37a28e5a9f571d87b16e55acc5f1",
+    "src/assembly_recovery/protocol.py": "473d7a8a4002ec2781a53a51bcff81c5b91df69e895c0b19afdb7b8398215545",
+    "src/assembly_recovery/refinement_env.py": "7ad6bb5a3c8984a511087ce83654204613f1576256e1eb968d7e406967878cd0",
+    "src/assembly_recovery/retry_controller.py": "cf899ca4cd16151da407d3fea5e02b25e0d830feb6177a69ace1fc52cbcabdcf",
+    "src/assembly_recovery/reward_ledger.py": "2813b287ad2b3286af8a498695023c706a73a99a21685d5416ea37f56c4f3a8c",
+    "src/assembly_recovery/study_ppo.py": "25e45cde7e4ba63620683f72516fd03c7909fedf4dded964d4c3df05aecda6e3",
+    "src/assembly_recovery/tensor_jobs.py": "ed4a558bc196ba21f63dbdf27b5f1581236393b527ce377316932e25f48ce1db",
+    "src/assembly_recovery/training_cases.py": "b1ffe2c359f63cb1bcfe80807cb8cc0404bcc1abcfa7b9f1431e5ea9caa007ad",
+    "src/assembly_recovery/training_env.py": "d404c10c4379b474384ac52a44ec2c276de13d29bf5aef46497ae9c3e08fade9",
+    "src/assembly_recovery/training_inputs.py": "ea0dc86aa073c452a5dfe87fe03f7df3f8967e68edb87a98baa57ab4e5e84d28"
+  },
+  "gate_evidence_sha256": {
+    "evidence/training_adapter_development_plan_v1.json": "202ed4499c06aa873b086c590e1fc6a7cb873d9b544655bfc344dca91e363323",
+    "evidence/training_contract_verified_v1.json": "8d49988abb8ac1eb4e97705aee853df3b20885157cbd74d29243a87d8f5efc3c",
+    "evidence/training_path_parity_r01.json": "5c40b09a810053382b654aee7dfdcd9bc0f3ce2faed1433de8b2b902d6952cfd",
+    "evidence/training_support_v1.json": "3a9cc4fc0873fd550df241eab7f6113865bd28b38a72ae250016277af5a85398",
+    "evidence/physics_refinement_development_v1.json": "8ea6ebe3a7756775b74df018323b4ee63b903855fb04a129a3c4074afa214276",
+    "evidence/reward_audit.json": "dd9695d9fdfb233642d01274e5e8147b463cdae651a431a712dcb2dc0223700e",
+    "evidence/initial_action_projection_v2.json": "8b56ae59e0bd430b66ed3449f980c37870042c443c7afd6abadd5b4cb9a77899",
+    "evidence/training_path_parity_r02.json": "c155bdd873768c0301cd54f2644a2352c582d5964e65b5003cb72be7f6022d6f"
+  },
+  "upstream": {
+    "isaac_sim": "5.1.0",
+    "isaac_lab_tag": "v2.3.2",
+    "isaac_lab_commit": "37ddf626871758333d6ed89cf64ad702aef127d0",
+    "rl_games_commit": "6b3534f29568158e9e29ec8bf83cc88fce5f0cae"
+  },
+  "controller": "project_uniform_fault_ppo_v1",
+  "architecture": {
+    "actor": 24,
+    "critic": 61,
+    "actions": 7,
+    "widths": [
+      512,
+      128,
+      64
+    ],
+    "activation": "ELU",
+    "separate_actor_critic": true,
+    "recurrent": false,
+    "trainable_state_independent_log_std_initial": 0
+  },
+  "ppo": {
+    "gamma": 0.995,
+    "gae_tau": 0.95,
+    "learning_rate": 0.0001,
+    "clip_ratio": 0.2,
+    "value_clip": 0.2,
+    "value_loss_coefficient": 1,
+    "entropy_coefficient": 0,
+    "bounds_loss_coefficient": 0.0001,
+    "gradient_norm": 1,
+    "mini_epochs": 4,
+    "minibatch": 512,
+    "horizon": 128,
+    "short_cohort_end_horizon": 66,
+    "normalization": "Separate running norms. Collected normalized inputs frozen during update; only active raw rows update statistics after optimizer."
+  },
+  "finite_job_contract": {
+    "physics_hz": 120,
+    "policy_hz": 15,
+    "servo_hz": 120,
+    "controls_per_cohort": 450,
+    "deadline_s": 30,
+    "dwell_s": 0.5,
+    "raw_wrist_abort_n": 20,
+    "automatic_reset": false,
+    "terminal_bootstrap": 0,
+    "partial_reward": "Omit terminal partial interval; zero after termination. Preserve actual resolved upstream reward terms and persistent full-cohort success-prediction latch, including absorbing physical slots in latch calculation.",
+    "action_grad_penalty_scale": 0,
+    "action_penalty_ee_scale": 0,
+    "initial_action_history": "After physical initialization, project finite initial EMA and previous-action history into [-1,1]. Preserve nonfinite values for validation failure. Record original/projected history; no pose or noise changes."
+  },
+  "training": {
+    "seed": 170,
+    "num_envs": 1024,
+    "cohorts": 5,
+    "requested_jobs": 5120,
+    "nominal_jobs": 1280,
+    "rollout_control_transitions": 2304000,
+    "expected_initialization_physics_env_steps": 343040,
+    "charged_control_equivalent_transitions": 2346880,
+    "nominal_fraction": 0.25,
+    "fault_sampler": "Uniform severity and radial direction within each bin; six balanced fault bins at each initialization. No combined faults.",
+    "checkpoint_selection": "Last predeclared cohort only. Partial weights are not complete. No prior development weights used.",
+    "max_minutes": 45,
+    "run_id": "uniform_pilot_170_v2"
+  },
+  "development_evaluation": {
+    "seeds": [
+      10070,
+      10071,
+      10072
+    ],
+    "jobs_per_seed": 28,
+    "checkpoint": "budget_checkpoint.pt from uniform_pilot_170_v2 only",
+    "deterministic_actions": true,
+    "metrics": [
+      "nominal and per-bin completion",
+      "upstream success separately",
+      "contact-witness recovery",
+      "force abort",
+      "lost grasp",
+      "deadline",
+      "time per requested job",
+      "discounted job returns"
+    ]
+  },
+  "budget_accounting": "Every full rollout slot including absorbing holds plus all measured initialization physics/decimation. All prior probes are shared development costs and must be reported separately; fault mining in future arms must be charged. No 20-epoch upstream throughput claim.",
+  "capacity_plan_amendment_before_launch": "Use the five-cohort, 20-update bounded uniform pilot to measure longer stability instead of a second disposable five-cohort development optimization. Six shorter capacity probes already passed. Pilot weights start fresh and pilot cost is declared separately. This replaces only the planned final capacity measurement in training_adapter_development_plan_v1.json; previous plan and all runs remain preserved.",
+  "scope_and_limitations": [
+    "Peg-only bounded pilot, not frozen gear/primary campaign or final-test result.",
+    "The unchanged reward passes a narrow scripted recovery-versus-stall comparison; general learned incentive alignment remains a pilot diagnostic.",
+    "Final seeds, severity extrapolations and combinations remain unopened.",
+    "Comparison arms must share this architecture, support, reward and cost convention; any correction requires a new version and reruns.",
+    "No checkpoint resume equivalence, hardware fidelity, force-certified safety or camera perception claim."
+  ],
+  "previous_protocol": {
+    "path": "configs/protocol_v1.json",
+    "sha256": "ac68ce38a15c13ba2180ab9ae052fe6fa842b5fce46ba190b9c4ae48cd1199b3",
+    "frozen_study_path": "configs/study_peg_pilot_v1.json"
+  },
+  "change": "Bound initial action/EMA history after physical initialization; record projection. All physical task, noise, force, reward and PPO settings remain unchanged. Rerun exact paired paths and the training contract; start replacement pilot from fresh weights.",
+  "prior_failed_pilot_cost": {
+    "path": "artifacts/assembly/uniform_pilot_170_v1",
+    "charged_control_equivalent_transitions": 947328,
+    "weights_reused": false,
+    "classification": "failed development/tuning cost; not hidden in replacement pilot budget"
+  }
+}

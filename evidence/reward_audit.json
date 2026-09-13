@@ -1,0 +1,166 @@
+{
+  "schema": 1,
+  "status": "source_and_one_development_recovery_pair_verified",
+  "upstream_commit": "37ddf626871758333d6ed89cf64ad702aef127d0",
+  "source_sha256": {
+    ".deps/IsaacLab/source/isaaclab_tasks/isaaclab_tasks/direct/factory/factory_env.py": "9e2d6b0b3cfb97e8b691947c6ecf312e9b3b8adf563f0d4148a3c7102e98256a",
+    ".deps/IsaacLab/source/isaaclab_tasks/isaaclab_tasks/direct/factory/factory_utils.py": "d65da4571a0c53451914109f8699b2587d97b5e1e92093b155ca72e385596095",
+    ".deps/IsaacLab/source/isaaclab_tasks/isaaclab_tasks/direct/forge/forge_env.py": "492d52568719a35cd434fe4269b2cd5cb9b69c6750bc049f255130e47d38fe1c",
+    ".deps/IsaacLab/source/isaaclab_tasks/isaaclab_tasks/direct/forge/forge_tasks_cfg.py": "e1df702ad3c80488eecbd5badbf0b7b545a28d42c6bb790dab1255e9e1967364",
+    ".deps/IsaacLab/source/isaaclab_tasks/isaaclab_tasks/direct/forge/agents/rl_games_ppo_cfg.yaml": "80ab97a56bacbe5eefeb4874f8a26b13bd4c8701bc1759a38b2e08a716778e8c"
+  },
+  "finding": "No literal signed downward-progress penalty. One matched, physically completed scripted recovery earns greater full discounted job return than continued insertion to deadline under the unchanged resolved FORGE reward.",
+  "proximity_terms": {
+    "distance": "mean corresponding 3D keypoint distance",
+    "formula": "sum(1 / (exp(a*d) + b + exp(-a*d)))",
+    "coefficients": [
+      [
+        5,
+        4
+      ],
+      [
+        50,
+        2
+      ],
+      [
+        100,
+        0
+      ]
+    ]
+  },
+  "other_terms": {
+    "engagement": 1,
+    "upstream_success": 1,
+    "action_magnitude_scale": 0,
+    "action_change_scale": 0.0,
+    "asset_relative_action_error_scale": -0.001,
+    "excess_filtered_wrist_load_scale": -0.2,
+    "success_prediction_error_scale": "0 until cohort success >=0.25, then -1"
+  },
+  "ppo": {
+    "gamma": 0.995,
+    "gae_tau": 0.95
+  },
+  "analytic_proximity_only": [
+    {
+      "aligned_keypoint_distance_m": 0.005,
+      "proximity_reward_only": 0.8561928311823965
+    },
+    {
+      "aligned_keypoint_distance_m": 0.025,
+      "proximity_reward_only": 0.42087360669190255
+    }
+  ],
+  "decision": "Keep the unchanged resolved upstream reward. This feasible recovery is favored over its persistent stall; no shared reward correction is justified by this pair. This does not establish learning or reward compatibility across the future fault support.",
+  "required_next_check": "Validate numeric recoverable fault support and implement/freeze training terminal and bootstrap handling. Check additional matched development faults before a learning campaign; no final-test selection.",
+  "scope_and_limitations": [
+    "Source audit plus one recorded scripted development pairing; not proof that PPO learns recovery or that targeted training improves reliability.",
+    "The analytic proximity examples remain partial rewards, not full trajectory returns.",
+    "The unrecorded and recorded successful recovery runs repeat the same seed and case; they are not independent experimental replicates.",
+    "All four jobs in each paired arm are retained, including a shared force abort and unrecovered deadline case.",
+    "Only control reward endpoints at/before evaluator termination; later rewards zero, no bootstrap. Partial terminal interval omitted. Training integration is not implemented.",
+    "The -0.1 action-change coefficient in the earlier source-only interpretation is explicitly superseded by the observed instantiated value 0.0."
+  ],
+  "superseded": [
+    {
+      "field": "other_terms.action_change_scale",
+      "previous_value": -0.1,
+      "replacement_value": 0.0,
+      "reason": "The source-only audit quoted a class default instead of the instantiated peg configuration. Resolved environment YAML and every recorded reward term show action_grad_penalty_scale=0.0.",
+      "evidence": "artifacts/assembly/peg_retry_10070_video_r02/probe/environment.yaml",
+      "sha256": "4950e53af7c14e1e59af3b57e19fdf021a20ec352dd8e4d2fdc6db9e13af1dce"
+    }
+  ],
+  "trajectory_comparison": {
+    "evidence": "evidence/recovery_pair_10070_r02.json",
+    "sha256": "65f6e8b27f91ea9ed9f91c187cc0a26ca25a49fd07075bc3ed0af178590c7e36",
+    "seed": 10070,
+    "case_index": 2,
+    "controller_family": "scripted development; no learned policy",
+    "identical_initial_state": true,
+    "identical_resolved_environment_yaml": true,
+    "identical_pretrigger_control_steps": 60,
+    "deadline_s": 30.0,
+    "seated_dwell_s": 0.5,
+    "raw_wrist_force_budget_n": 20.0,
+    "gamma": 0.995,
+    "recovery": {
+      "outcome": "success",
+      "elapsed_s": 13.75,
+      "gamma": 0.995,
+      "discounted_return": 75.79707181166995,
+      "discounted_terms": {
+        "kp_baseline": 21.390300876133324,
+        "kp_coarse": 21.207204726437286,
+        "kp_fine": 15.247998608311772,
+        "action_penalty_ee": 0.0,
+        "action_grad_penalty": 0.0,
+        "curr_engaged": 21.671215206899,
+        "curr_success": 2.9138648232606355,
+        "action_penalty_asset": -0.07441189053976074,
+        "contact_penalty": -3.6452359299943264,
+        "success_pred_error": -2.9138648232606355
+      },
+      "included_control_endpoints": 206,
+      "terminal_partial_physics_steps_without_endpoint_reward": 2,
+      "excluded_control_endpoints": 244,
+      "max_reward_reconstruction_error": 2.675224095582962e-07,
+      "terminal_handling": "Only control reward endpoints at/before evaluator termination; later rewards zero, no bootstrap. Partial terminal interval omitted. Training integration is not implemented."
+    },
+    "continued_insertion": {
+      "outcome": "deadline",
+      "elapsed_s": 30.0,
+      "gamma": 0.995,
+      "discounted_return": 37.54266591923983,
+      "discounted_terms": {
+        "kp_baseline": 29.74193962764274,
+        "kp_coarse": 29.048862103505762,
+        "kp_fine": 12.714613956622804,
+        "action_penalty_ee": 0.0,
+        "action_grad_penalty": 0.0,
+        "curr_engaged": 0.0,
+        "curr_success": 0.0,
+        "action_penalty_asset": -0.21302831240920997,
+        "contact_penalty": -33.749721509500624,
+        "success_pred_error": 0.0
+      },
+      "included_control_endpoints": 450,
+      "terminal_partial_physics_steps_without_endpoint_reward": 0,
+      "excluded_control_endpoints": 0,
+      "max_reward_reconstruction_error": 5.9371814131736755e-08,
+      "terminal_handling": "Only control reward endpoints at/before evaluator termination; later rewards zero, no bootstrap. Partial terminal interval omitted. Training integration is not implemented."
+    },
+    "recovery_minus_continued_return": 38.25440589243012,
+    "witness": {
+      "witnessed_complete_recovery": true,
+      "trigger": {
+        "time_s": 4.0,
+        "observed_height_m": 0.03227968141436577,
+        "noisy_load_mean_n": 9.31917552414687,
+        "load_occupancy": 1.0
+      },
+      "evaluator_first_stall_s": 2.933333333333333,
+      "fixture_contact_fraction_in_stall_window": 1.0,
+      "withdrawn_part_rise_m": 0.01236792653799057,
+      "withdrawal_final_base_clearance_m": 0.012516306154429911,
+      "withdrawal_longest_fixture_clear_s": 1.3333333333333333,
+      "outcome": "success",
+      "retained_grasp_to_termination": true
+    },
+    "all_requested_jobs_retained": 8,
+    "full_cohort_outcomes": {
+      "retry": {
+        "success": 2,
+        "deadline": 1,
+        "force_abort": 1
+      },
+      "continued": {
+        "success": 1,
+        "deadline": 2,
+        "force_abort": 1
+      }
+    },
+    "return_explanation": "Recovery gives up some accumulated proximity reward but earns engagement and avoids prolonged contact penalties. The shared constant -1 prediction action makes the success reward and prediction penalty cancel in successful states.",
+    "terminal_handling": "Only control reward endpoints at/before evaluator termination; later rewards zero, no bootstrap. Partial terminal interval omitted. Training integration is not implemented."
+  }
+}

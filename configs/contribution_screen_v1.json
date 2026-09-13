@@ -1,0 +1,172 @@
+{
+  "schema": 1,
+  "version": "contribution_screen_v1",
+  "status": "design_only_not_a_launch_protocol",
+  "created_at_utc": "2026-09-10T00:08:54.797676+00:00",
+  "launch_permitted": false,
+  "purpose": "Smallest planned comparison that can reject spending on this adaptive sampler while retaining three independent training seeds and competent non-adaptive controls. It is an engineering replication/extension screen, not a new-algorithm claim.",
+  "contribution_review": {
+    "path": "evidence/contribution_review_v1.json",
+    "sha256": "21aaccd2ac41b29e5fcf22b9493ead4081c8d0b4e4a347e7745ffd173fe3f92e"
+  },
+  "required_before_launch": [
+    "Complete and interpret bounded frozen learned/retry 120/240 Hz refinement after a 120 Hz compatibility check. Do not treat the old scripted sensitivity result as convergence.",
+    "Implement versioned sampler/worker adapters without editing frozen workers, study.json, existing protocols or .deps/IsaacLab.",
+    "CPU-test quotas, score updates, seed separation and fixed schedules; run and charge one necessary bounded integration probe and source/physics checks.",
+    "Freeze exact source/config hashes, evaluation manifests, source lineage, wall limit and all accounting under a new common registration.",
+    "Demonstrate valid initialization and actor/action information parity, and assess whether direct-task saturation or a weak sampling signal makes the screen uninformative."
+  ],
+  "task": "Franka FORGE peg insertion first; gear remains required for the broader claim after the peg decision.",
+  "learning_arms": [
+    {
+      "id": "uniform",
+      "selection": "25 percent nominal jobs; remaining jobs evenly allocated across the existing six fault bins; unchanged within-bin uniform values."
+    },
+    {
+      "id": "fixed_easy_to_hard",
+      "selection": "25 percent nominal; a fixed, script-calibrated bin order with 20 percent uniform mixing over all fault bins. Cohorts 1-2 focus the other 80 percent on the first two bins; cohorts 3-4 on the first four; cohort 5 onward on all six. All within-bin ranges remain unchanged.",
+      "calibration_order": [
+        "friction_high",
+        "approach_high",
+        "bias_low",
+        "bias_medium",
+        "approach_low",
+        "friction_low"
+      ],
+      "calibration_counts": {
+        "bias_low": {
+          "jobs": 12,
+          "completions": 10
+        },
+        "bias_medium": {
+          "jobs": 12,
+          "completions": 10
+        },
+        "approach_low": {
+          "jobs": 12,
+          "completions": 8
+        },
+        "approach_high": {
+          "jobs": 12,
+          "completions": 10
+        },
+        "friction_low": {
+          "jobs": 12,
+          "completions": 6
+        },
+        "friction_high": {
+          "jobs": 12,
+          "completions": 11
+        }
+      },
+      "calibration_source": {
+        "path": "evidence/training_support_v1.json",
+        "sha256": "3a9cc4fc0873fd550df241eab7f6113865bd28b38a72ae250016277af5a85398"
+      },
+      "ordering_rule": "Descending unchanged-script completion fraction over the pre-existing lower/interior/upper development grid; exact ties use bin ID. Freeze before new training.",
+      "limitation": "This is a calibrated difficulty proxy, not proof of learning difficulty. Friction and geometric offsets are not globally ordered by their numerical magnitude. No uncharged retuning if the fixed arm loses."
+    },
+    {
+      "id": "adaptive_intermediate_success",
+      "selection": "25 percent nominal; q_b = 0.2/6 + 0.8*s_b/sum(s), where s_b=p_b*(1-p_b). p_b=(successes+1)/(jobs+2) over the two most recent completed training cohorts. First cohort is uniform; fallback to uniform if needed. Within-bin uniform values stay fixed.",
+      "feedback": "Only finalized training job outcomes from this arm and seed; update once per full cohort. Evaluation outcomes, final tests and privileged actor inputs cannot enter the selector.",
+      "label": "Established intermediate-difficulty heuristic. Not a learned recoverability score or a new curriculum algorithm.",
+      "learning_progress_term": false
+    }
+  ],
+  "controller_controls": [
+    {
+      "id": "scripted_retry",
+      "role": "Unchanged ActorRetryController and retry_unload_realign_v1 settings; same observations, physical job, force abort and clock. No new optimization.",
+      "training_cost": 0,
+      "cost_reporting": "Historical controller development and all new evaluation/calibration rollouts are reported. Do not pad it with fictitious training to label the script compute-matched."
+    },
+    {
+      "id": "continued_insertion",
+      "role": "Unchanged negative control for spontaneous post-stall completion under the same fixed prefix; it is not the sole practical baseline."
+    }
+  ],
+  "closest_prior_method_comparison": "The three-arm screen tests whether this simple heuristic adds practical value over uniform/fixed practice. It cannot establish superiority to established adaptive methods. An algorithm-superiority claim would additionally require a faithful adaptive predecessor or clearly labeled same-PPO adaptation; the 2026 abstract is insufficient to reproduce its exact method.",
+  "fairness": {
+    "training_seeds": [
+      170,
+      271,
+      372
+    ],
+    "fresh_start": "Same initial model/optimizer state within each seed; no completed 10M weights or old partial checkpoints initialize this screen. Existing uniform v4 remains prior development evidence.",
+    "num_envs": 1024,
+    "nominal_jobs_per_cohort": 256,
+    "fault_jobs_per_cohort": 768,
+    "cohorts_per_run": 6,
+    "sampler_rounding": "Hamilton apportionment with stable bin-ID ties; quotas total 768, differ from continuous expected counts by at most one slot, and retain the floor implied by the 20 percent uniform mixture.",
+    "common_architecture": "Existing feedforward 24 actor / 61 critic inputs, widths 512/128/64, seven actions, v3 completion credit and v4 unclipped value loss.",
+    "ppo_schedule": "Same update boundaries at controls 128, 256, 384 and 450 per cohort; same optimizer, mini-epochs, minibatch and normalization rules. Log active samples, optimizer steps and wall time; do not claim equal FLOPs merely from equal simulator transitions.",
+    "nominal_and_support": "Same exact nominal share, fault-bin support, within-bin distributions, geometry, physical gravity, observations, action transforms and clamps. Only bin allocation/order differs.",
+    "invariants": {
+      "held_part_gravity": true,
+      "native_wrist_abort_n": 20,
+      "deadline_s": 30,
+      "dwell_s": 0.5,
+      "within_job_resets_pose_writes_attachment_changes": false,
+      "final_test_access": false
+    },
+    "tuning_budget": "One predeclared sampler/fixed-schedule setting per arm, zero outcome-driven tuning in the screen. Existing calibration and learning/reward debugging are shared prior development costs, with provenance and uncertainty retained. Any subsequent retuning needs a new common budget and retains losing runs.",
+    "randomness": "Pair initial model seeds and evaluation conditions. Separate sampler draws from simulator/actor RNG. Training fault situations intentionally differ across arms; do not claim identical physical trajectories during training.",
+    "larger_batches": "1024 is the planning baseline. A 2048 benchmark is authorized separately; 4096 requires measured headroom and benefit. Any adoption requires a new common configuration for all learning arms and a recalculated schedule/cost before launch."
+  },
+  "budget": {
+    "control_steps_per_job": 450,
+    "expected_initialization_physics_steps_per_env": 67,
+    "physics_decimation": 8,
+    "expected_charged_per_cohort": 469376,
+    "registered_milestone_cohorts": [
+      2,
+      6,
+      22
+    ],
+    "expected_milestone_charged_transitions": [
+      938752,
+      2816256,
+      10326272
+    ],
+    "screen_training_runs": 9,
+    "screen_training_transitions": 25346304,
+    "screen_main_evaluation_runs": 54,
+    "screen_script_control_runs": 6,
+    "requests_per_evaluation_run": 28,
+    "expected_charged_per_evaluation_run": 12834.5,
+    "screen_evaluation_transitions": 770070,
+    "screen_total_new_transitions_excluding_separately_registered_physics_integration": 26116374,
+    "full_nine_run_10m_training_total_if_later_justified": 92936448,
+    "scope": "Planning values at the verified 120 Hz/1024 environment configuration, not spent cost. Include initialization, active and absorbing slots, every probe, mining, failure and evaluation. Physics and integration probes require their own explicit bounded budgets. If initialization or physics changes, recalculate and freeze all arms together before launch."
+  },
+  "evaluation": {
+    "screen_checkpoint": "Predeclared six-cohort budget checkpoint, not best development score. Save cohort-two state for a future registered cost-curve evaluation; do not silently reinterpret partial/incomplete runs as budget-complete.",
+    "development_seeds": [
+      10070,
+      10071,
+      10072
+    ],
+    "per_policy": "84 direct jobs and 84 separate fixed-four-second-prefix jobs (28 per seed each); nine policies total. Two script controls each run all 84 fixed-prefix requests once under the same observation/RNG setup; reuse only after exact compatibility is verified.",
+    "primary": "Unfinished whole jobs per 100 requests at equal charged training budget; report raw counts, nominal/fault strata, outcomes, upstream predicate and time per request including failures.",
+    "recovery": "For the separate prefix assay, retain all requested jobs and prefix-script completions/aborts. Compare completion after the same actual contact-stall cohort active at fixed handoff. Keep the unchanged withdrawal endpoint separately. Training success is never substituted for frozen evaluation.",
+    "interpretation": "A gain in direct completion without a conditional post-stall gain is prevention evidence, not improved recovery. Do not combine primary and prefix jobs into one deployment-success rate.",
+    "uncertainty": "Report each training seed and paired case differences; seeds, not thousands of correlated trajectories, determine training variability. Three seeds is a minimum diagnostic comparison, not a precision guarantee.",
+    "final_tests": "Keep reserved seeds/combinations closed. After method and budget freeze, retain the existing minimum of 200 fault plus 100 nominal final requests per training seed/task; add the separately declared prefix assay, report realized stall denominators and expand samples prospectively if precision requires it."
+  },
+  "screen_decision_rules": {
+    "not_a_significance_test": true,
+    "eligible_for_larger_comparison": "All validity gates pass; at six cohorts adaptive has fewer unfinished direct jobs than both uniform and fixed in at least two of three training seeds, at least 20 percent pooled relative unfinished-job reduction versus uniform, and no more than two percentage points lower nominal completion. Inspect conditional recovery and script reliability/time separately before deciding that extra training is useful.",
+    "screen_threshold_scope": "This is a conservative development spending rule, not a paper result. Coarse nominal counts and three seeds cannot demonstrate tight non-inferiority or practical equivalence.",
+    "if_primary_saturates": "Do not increase fault severity or open tests to manufacture a difference. Examine the predeclared smaller budget or report that adaptive selection is unnecessary at this operating point.",
+    "if_no_signal": "Stop extra sampler tuning and the automatic 10M adaptive campaign. Preserve the negative screen and complete the useful benchmark/failure analysis; do not claim that all curricula fail.",
+    "if_all_policies_incompetent": "Classify the result as an insufficient-budget screen; no superiority claim. Any common extension must be predeclared for all arms with verified optimizer/RNG/sampler resume or fresh matched runs and full cost accounting.",
+    "full_study": "A positive screen only licenses a new full registration. Keep the 1M/3M/10M axis, three seeds, gear, a mechanism ablation and the existing final target of halving unfinished jobs versus uniform with at most two percentage points nominal loss. Include a competent upstream FORGE reference and distinguish its architecture and cost."
+  },
+  "scope_and_limitations": [
+    "Design agreed before future launches; workers and all exact launch artifacts are not yet implemented/frozen.",
+    "No new algorithm novelty is supported. A comparison to uniform/fixed/scripted retry cannot establish superiority over other adaptive curricula.",
+    "The existing 10M policy and all failed experiments remain preserved; current measured recovery does not pass the original withdrawal-based competence gate.",
+    "No hardware-transfer, force-certification, paper-acceptance or guaranteed positive-result claim."
+  ]
+}

@@ -1,0 +1,1859 @@
+{
+  "schema": 1,
+  "status": "verified",
+  "research_result": false,
+  "registration_sha256": "731c15115a2b46b8b37ab115255d782c6fc8a4936618ab20cf20128a28a46669",
+  "checks": {
+    "deterministic_process_complete": true,
+    "deterministic_all_28_valid": true,
+    "deterministic_same_jobs": true,
+    "deterministic_same_witnesses": true,
+    "deterministic_same_cost": true,
+    "deterministic_same_actor_before": true,
+    "deterministic_same_mean_action": true,
+    "deterministic_same_requested_action": true,
+    "deterministic_same_applied_action": true,
+    "deterministic_same_target_xyz": true,
+    "deterministic_same_tool_xyz": true,
+    "deterministic_same_part_relative_xyz": true,
+    "deterministic_same_part_quat": true,
+    "deterministic_same_raw_reward": true,
+    "deterministic_preserved_upstream_job_reward": true,
+    "deterministic_same_active": true,
+    "deterministic_same_dead_zone": true,
+    "deterministic_same_initial": true,
+    "deterministic_same_physics": true,
+    "deterministic_same_sensor_draws": true,
+    "deterministic_same_cuda_rng_before_steps": true,
+    "deterministic_same_reward_terms": true,
+    "deterministic_0_credit_formula": true,
+    "deterministic_0_full_return": true,
+    "deterministic_0_reward_ledger": true,
+    "deterministic_0_single_completion_event": true,
+    "deterministic_1_credit_formula": true,
+    "deterministic_1_full_return": true,
+    "deterministic_1_reward_ledger": true,
+    "deterministic_1_single_completion_event": true,
+    "deterministic_2_credit_formula": true,
+    "deterministic_2_full_return": true,
+    "deterministic_2_reward_ledger": true,
+    "deterministic_2_single_completion_event": true,
+    "deterministic_3_credit_formula": true,
+    "deterministic_3_full_return": true,
+    "deterministic_3_reward_ledger": true,
+    "deterministic_3_single_completion_event": true,
+    "deterministic_4_credit_formula": true,
+    "deterministic_4_full_return": true,
+    "deterministic_4_reward_ledger": true,
+    "deterministic_4_single_completion_event": true,
+    "deterministic_5_credit_formula": true,
+    "deterministic_5_full_return": true,
+    "deterministic_5_reward_ledger": true,
+    "deterministic_5_single_completion_event": true,
+    "deterministic_6_credit_formula": true,
+    "deterministic_6_full_return": true,
+    "deterministic_6_reward_ledger": true,
+    "deterministic_6_single_completion_event": true,
+    "deterministic_7_credit_formula": true,
+    "deterministic_7_full_return": true,
+    "deterministic_7_reward_ledger": true,
+    "deterministic_7_single_completion_event": true,
+    "deterministic_8_credit_formula": true,
+    "deterministic_8_full_return": true,
+    "deterministic_8_reward_ledger": true,
+    "deterministic_8_single_completion_event": true,
+    "deterministic_9_credit_formula": true,
+    "deterministic_9_full_return": true,
+    "deterministic_9_reward_ledger": true,
+    "deterministic_9_single_completion_event": true,
+    "deterministic_10_credit_formula": true,
+    "deterministic_10_full_return": true,
+    "deterministic_10_reward_ledger": true,
+    "deterministic_10_single_completion_event": true,
+    "deterministic_11_credit_formula": true,
+    "deterministic_11_full_return": true,
+    "deterministic_11_reward_ledger": true,
+    "deterministic_11_single_completion_event": true,
+    "deterministic_12_credit_formula": true,
+    "deterministic_12_full_return": true,
+    "deterministic_12_reward_ledger": true,
+    "deterministic_12_single_completion_event": true,
+    "deterministic_13_credit_formula": true,
+    "deterministic_13_full_return": true,
+    "deterministic_13_reward_ledger": true,
+    "deterministic_13_single_completion_event": true,
+    "deterministic_14_credit_formula": true,
+    "deterministic_14_full_return": true,
+    "deterministic_14_reward_ledger": true,
+    "deterministic_14_single_completion_event": true,
+    "deterministic_15_credit_formula": true,
+    "deterministic_15_full_return": true,
+    "deterministic_15_reward_ledger": true,
+    "deterministic_15_single_completion_event": true,
+    "deterministic_16_credit_formula": true,
+    "deterministic_16_full_return": true,
+    "deterministic_16_reward_ledger": true,
+    "deterministic_16_single_completion_event": true,
+    "deterministic_17_credit_formula": true,
+    "deterministic_17_full_return": true,
+    "deterministic_17_reward_ledger": true,
+    "deterministic_17_single_completion_event": true,
+    "deterministic_18_credit_formula": true,
+    "deterministic_18_full_return": true,
+    "deterministic_18_reward_ledger": true,
+    "deterministic_18_single_completion_event": true,
+    "deterministic_19_credit_formula": true,
+    "deterministic_19_full_return": true,
+    "deterministic_19_reward_ledger": true,
+    "deterministic_19_single_completion_event": true,
+    "deterministic_20_credit_formula": true,
+    "deterministic_20_full_return": true,
+    "deterministic_20_reward_ledger": true,
+    "deterministic_20_single_completion_event": true,
+    "deterministic_21_credit_formula": true,
+    "deterministic_21_full_return": true,
+    "deterministic_21_reward_ledger": true,
+    "deterministic_21_single_completion_event": true,
+    "deterministic_22_credit_formula": true,
+    "deterministic_22_full_return": true,
+    "deterministic_22_reward_ledger": true,
+    "deterministic_22_single_completion_event": true,
+    "deterministic_23_credit_formula": true,
+    "deterministic_23_full_return": true,
+    "deterministic_23_reward_ledger": true,
+    "deterministic_23_single_completion_event": true,
+    "deterministic_24_credit_formula": true,
+    "deterministic_24_full_return": true,
+    "deterministic_24_reward_ledger": true,
+    "deterministic_24_single_completion_event": true,
+    "deterministic_25_credit_formula": true,
+    "deterministic_25_full_return": true,
+    "deterministic_25_reward_ledger": true,
+    "deterministic_25_single_completion_event": true,
+    "deterministic_26_credit_formula": true,
+    "deterministic_26_full_return": true,
+    "deterministic_26_reward_ledger": true,
+    "deterministic_26_single_completion_event": true,
+    "deterministic_27_credit_formula": true,
+    "deterministic_27_full_return": true,
+    "deterministic_27_reward_ledger": true,
+    "deterministic_27_single_completion_event": true,
+    "stochastic_process_complete": true,
+    "stochastic_all_28_valid": true,
+    "stochastic_same_jobs": true,
+    "stochastic_same_witnesses": true,
+    "stochastic_same_cost": true,
+    "stochastic_same_actor_before": true,
+    "stochastic_same_mean_action": true,
+    "stochastic_same_requested_action": true,
+    "stochastic_same_applied_action": true,
+    "stochastic_same_target_xyz": true,
+    "stochastic_same_tool_xyz": true,
+    "stochastic_same_part_relative_xyz": true,
+    "stochastic_same_part_quat": true,
+    "stochastic_same_raw_reward": true,
+    "stochastic_preserved_upstream_job_reward": true,
+    "stochastic_same_active": true,
+    "stochastic_same_dead_zone": true,
+    "stochastic_same_initial": true,
+    "stochastic_same_physics": true,
+    "stochastic_same_sensor_draws": true,
+    "stochastic_same_cuda_rng_before_steps": true,
+    "stochastic_same_reward_terms": true,
+    "stochastic_0_credit_formula": true,
+    "stochastic_0_full_return": true,
+    "stochastic_0_reward_ledger": true,
+    "stochastic_0_single_completion_event": true,
+    "stochastic_1_credit_formula": true,
+    "stochastic_1_full_return": true,
+    "stochastic_1_reward_ledger": true,
+    "stochastic_1_single_completion_event": true,
+    "stochastic_2_credit_formula": true,
+    "stochastic_2_full_return": true,
+    "stochastic_2_reward_ledger": true,
+    "stochastic_2_single_completion_event": true,
+    "stochastic_3_credit_formula": true,
+    "stochastic_3_full_return": true,
+    "stochastic_3_reward_ledger": true,
+    "stochastic_3_single_completion_event": true,
+    "stochastic_4_credit_formula": true,
+    "stochastic_4_full_return": true,
+    "stochastic_4_reward_ledger": true,
+    "stochastic_4_single_completion_event": true,
+    "stochastic_5_credit_formula": true,
+    "stochastic_5_full_return": true,
+    "stochastic_5_reward_ledger": true,
+    "stochastic_5_single_completion_event": true,
+    "stochastic_6_credit_formula": true,
+    "stochastic_6_full_return": true,
+    "stochastic_6_reward_ledger": true,
+    "stochastic_6_single_completion_event": true,
+    "stochastic_7_credit_formula": true,
+    "stochastic_7_full_return": true,
+    "stochastic_7_reward_ledger": true,
+    "stochastic_7_single_completion_event": true,
+    "stochastic_8_credit_formula": true,
+    "stochastic_8_full_return": true,
+    "stochastic_8_reward_ledger": true,
+    "stochastic_8_single_completion_event": true,
+    "stochastic_9_credit_formula": true,
+    "stochastic_9_full_return": true,
+    "stochastic_9_reward_ledger": true,
+    "stochastic_9_single_completion_event": true,
+    "stochastic_10_credit_formula": true,
+    "stochastic_10_full_return": true,
+    "stochastic_10_reward_ledger": true,
+    "stochastic_10_single_completion_event": true,
+    "stochastic_11_credit_formula": true,
+    "stochastic_11_full_return": true,
+    "stochastic_11_reward_ledger": true,
+    "stochastic_11_single_completion_event": true,
+    "stochastic_12_credit_formula": true,
+    "stochastic_12_full_return": true,
+    "stochastic_12_reward_ledger": true,
+    "stochastic_12_single_completion_event": true,
+    "stochastic_13_credit_formula": true,
+    "stochastic_13_full_return": true,
+    "stochastic_13_reward_ledger": true,
+    "stochastic_13_single_completion_event": true,
+    "stochastic_14_credit_formula": true,
+    "stochastic_14_full_return": true,
+    "stochastic_14_reward_ledger": true,
+    "stochastic_14_single_completion_event": true,
+    "stochastic_15_credit_formula": true,
+    "stochastic_15_full_return": true,
+    "stochastic_15_reward_ledger": true,
+    "stochastic_15_single_completion_event": true,
+    "stochastic_16_credit_formula": true,
+    "stochastic_16_full_return": true,
+    "stochastic_16_reward_ledger": true,
+    "stochastic_16_single_completion_event": true,
+    "stochastic_17_credit_formula": true,
+    "stochastic_17_full_return": true,
+    "stochastic_17_reward_ledger": true,
+    "stochastic_17_single_completion_event": true,
+    "stochastic_18_credit_formula": true,
+    "stochastic_18_full_return": true,
+    "stochastic_18_reward_ledger": true,
+    "stochastic_18_single_completion_event": true,
+    "stochastic_19_credit_formula": true,
+    "stochastic_19_full_return": true,
+    "stochastic_19_reward_ledger": true,
+    "stochastic_19_single_completion_event": true,
+    "stochastic_20_credit_formula": true,
+    "stochastic_20_full_return": true,
+    "stochastic_20_reward_ledger": true,
+    "stochastic_20_single_completion_event": true,
+    "stochastic_21_credit_formula": true,
+    "stochastic_21_full_return": true,
+    "stochastic_21_reward_ledger": true,
+    "stochastic_21_single_completion_event": true,
+    "stochastic_22_credit_formula": true,
+    "stochastic_22_full_return": true,
+    "stochastic_22_reward_ledger": true,
+    "stochastic_22_single_completion_event": true,
+    "stochastic_23_credit_formula": true,
+    "stochastic_23_full_return": true,
+    "stochastic_23_reward_ledger": true,
+    "stochastic_23_single_completion_event": true,
+    "stochastic_24_credit_formula": true,
+    "stochastic_24_full_return": true,
+    "stochastic_24_reward_ledger": true,
+    "stochastic_24_single_completion_event": true,
+    "stochastic_25_credit_formula": true,
+    "stochastic_25_full_return": true,
+    "stochastic_25_reward_ledger": true,
+    "stochastic_25_single_completion_event": true,
+    "stochastic_26_credit_formula": true,
+    "stochastic_26_full_return": true,
+    "stochastic_26_reward_ledger": true,
+    "stochastic_26_single_completion_event": true,
+    "stochastic_27_credit_formula": true,
+    "stochastic_27_full_return": true,
+    "stochastic_27_reward_ledger": true,
+    "stochastic_27_single_completion_event": true,
+    "retry_process_complete": true,
+    "retry_all_28_valid": true,
+    "retry_same_jobs": true,
+    "retry_same_witnesses": true,
+    "retry_same_cost": true,
+    "retry_same_actor_before": true,
+    "retry_same_mean_action": true,
+    "retry_same_requested_action": true,
+    "retry_same_applied_action": true,
+    "retry_same_target_xyz": true,
+    "retry_same_tool_xyz": true,
+    "retry_same_part_relative_xyz": true,
+    "retry_same_part_quat": true,
+    "retry_same_raw_reward": true,
+    "retry_preserved_upstream_job_reward": true,
+    "retry_same_active": true,
+    "retry_same_dead_zone": true,
+    "retry_same_initial": true,
+    "retry_same_physics": true,
+    "retry_same_sensor_draws": true,
+    "retry_same_cuda_rng_before_steps": true,
+    "retry_same_reward_terms": true,
+    "retry_0_credit_formula": true,
+    "retry_0_full_return": true,
+    "retry_0_reward_ledger": true,
+    "retry_0_single_completion_event": true,
+    "retry_1_credit_formula": true,
+    "retry_1_full_return": true,
+    "retry_1_reward_ledger": true,
+    "retry_1_single_completion_event": true,
+    "retry_2_credit_formula": true,
+    "retry_2_full_return": true,
+    "retry_2_reward_ledger": true,
+    "retry_2_single_completion_event": true,
+    "retry_3_credit_formula": true,
+    "retry_3_full_return": true,
+    "retry_3_reward_ledger": true,
+    "retry_3_single_completion_event": true,
+    "retry_4_credit_formula": true,
+    "retry_4_full_return": true,
+    "retry_4_reward_ledger": true,
+    "retry_4_single_completion_event": true,
+    "retry_5_credit_formula": true,
+    "retry_5_full_return": true,
+    "retry_5_reward_ledger": true,
+    "retry_5_single_completion_event": true,
+    "retry_6_credit_formula": true,
+    "retry_6_full_return": true,
+    "retry_6_reward_ledger": true,
+    "retry_6_single_completion_event": true,
+    "retry_7_credit_formula": true,
+    "retry_7_full_return": true,
+    "retry_7_reward_ledger": true,
+    "retry_7_single_completion_event": true,
+    "retry_8_credit_formula": true,
+    "retry_8_full_return": true,
+    "retry_8_reward_ledger": true,
+    "retry_8_single_completion_event": true,
+    "retry_9_credit_formula": true,
+    "retry_9_full_return": true,
+    "retry_9_reward_ledger": true,
+    "retry_9_single_completion_event": true,
+    "retry_10_credit_formula": true,
+    "retry_10_full_return": true,
+    "retry_10_reward_ledger": true,
+    "retry_10_single_completion_event": true,
+    "retry_11_credit_formula": true,
+    "retry_11_full_return": true,
+    "retry_11_reward_ledger": true,
+    "retry_11_single_completion_event": true,
+    "retry_12_credit_formula": true,
+    "retry_12_full_return": true,
+    "retry_12_reward_ledger": true,
+    "retry_12_single_completion_event": true,
+    "retry_13_credit_formula": true,
+    "retry_13_full_return": true,
+    "retry_13_reward_ledger": true,
+    "retry_13_single_completion_event": true,
+    "retry_14_credit_formula": true,
+    "retry_14_full_return": true,
+    "retry_14_reward_ledger": true,
+    "retry_14_single_completion_event": true,
+    "retry_15_credit_formula": true,
+    "retry_15_full_return": true,
+    "retry_15_reward_ledger": true,
+    "retry_15_single_completion_event": true,
+    "retry_16_credit_formula": true,
+    "retry_16_full_return": true,
+    "retry_16_reward_ledger": true,
+    "retry_16_single_completion_event": true,
+    "retry_17_credit_formula": true,
+    "retry_17_full_return": true,
+    "retry_17_reward_ledger": true,
+    "retry_17_single_completion_event": true,
+    "retry_18_credit_formula": true,
+    "retry_18_full_return": true,
+    "retry_18_reward_ledger": true,
+    "retry_18_single_completion_event": true,
+    "retry_19_credit_formula": true,
+    "retry_19_full_return": true,
+    "retry_19_reward_ledger": true,
+    "retry_19_single_completion_event": true,
+    "retry_20_credit_formula": true,
+    "retry_20_full_return": true,
+    "retry_20_reward_ledger": true,
+    "retry_20_single_completion_event": true,
+    "retry_21_credit_formula": true,
+    "retry_21_full_return": true,
+    "retry_21_reward_ledger": true,
+    "retry_21_single_completion_event": true,
+    "retry_22_credit_formula": true,
+    "retry_22_full_return": true,
+    "retry_22_reward_ledger": true,
+    "retry_22_single_completion_event": true,
+    "retry_23_credit_formula": true,
+    "retry_23_full_return": true,
+    "retry_23_reward_ledger": true,
+    "retry_23_single_completion_event": true,
+    "retry_24_credit_formula": true,
+    "retry_24_full_return": true,
+    "retry_24_reward_ledger": true,
+    "retry_24_single_completion_event": true,
+    "retry_25_credit_formula": true,
+    "retry_25_full_return": true,
+    "retry_25_reward_ledger": true,
+    "retry_25_single_completion_event": true,
+    "retry_26_credit_formula": true,
+    "retry_26_full_return": true,
+    "retry_26_reward_ledger": true,
+    "retry_26_single_completion_event": true,
+    "retry_27_credit_formula": true,
+    "retry_27_full_return": true,
+    "retry_27_reward_ledger": true,
+    "retry_27_single_completion_event": true,
+    "all_19_matched_successes_now_outrank_failures": true
+  },
+  "arms": {
+    "deterministic": {
+      "manifest_sha256": "19b2b4d7e69bca17559611d021b1441ba6b933f54005fb80951edbe2b3292244",
+      "cost": {
+        "rollout_control_transitions": 12600,
+        "active_control_transitions": 11714,
+        "absorbing_control_transitions": 886,
+        "rollout_physics_env_steps": 100800,
+        "active_physics_env_steps": 93709,
+        "initialization_physics_env_steps": 1876,
+        "charged_control_equivalent_transitions": 12834.5,
+        "scope": "All rollout slots, including holds, plus initialization physics divided by decimation. Probes/mining charged by their own manifests."
+      },
+      "metrics": {
+        "all": {
+          "requests": 28,
+          "completions": 0,
+          "outcomes": {
+            "deadline": 26,
+            "force_abort": 2
+          },
+          "upstream_success_seen": 0,
+          "witnessed_contact_failures": 0,
+          "witnessed_recoveries": 0,
+          "mean_time_per_request_s": 27.889583333333334,
+          "peak_raw_wrist_force_n": 20.745223999023438,
+          "mean_discounted_return": 64.42888067632694,
+          "forbidden_events": 0,
+          "active_control_transitions": 11714,
+          "return_by_outcome": {
+            "deadline": {
+              "requests": 26,
+              "mean": 69.23882405778284
+            },
+            "force_abort": {
+              "requests": 2,
+              "mean": 1.8996167174003107
+            }
+          }
+        },
+        "nominal": {
+          "requests": 4,
+          "completions": 0,
+          "outcomes": {
+            "deadline": 4
+          },
+          "upstream_success_seen": 0,
+          "witnessed_contact_failures": 0,
+          "witnessed_recoveries": 0,
+          "mean_time_per_request_s": 30.0,
+          "peak_raw_wrist_force_n": 19.943981170654297,
+          "mean_discounted_return": 70.91971138139691,
+          "forbidden_events": 0,
+          "active_control_transitions": 1800,
+          "return_by_outcome": {
+            "deadline": {
+              "requests": 4,
+              "mean": 70.91971138139691
+            }
+          }
+        },
+        "bias_low": {
+          "requests": 4,
+          "completions": 0,
+          "outcomes": {
+            "deadline": 4
+          },
+          "upstream_success_seen": 0,
+          "witnessed_contact_failures": 0,
+          "witnessed_recoveries": 0,
+          "mean_time_per_request_s": 30.0,
+          "peak_raw_wrist_force_n": 19.546977996826172,
+          "mean_discounted_return": 69.34960938083388,
+          "forbidden_events": 0,
+          "active_control_transitions": 1800,
+          "return_by_outcome": {
+            "deadline": {
+              "requests": 4,
+              "mean": 69.34960938083388
+            }
+          }
+        },
+        "bias_medium": {
+          "requests": 4,
+          "completions": 0,
+          "outcomes": {
+            "deadline": 3,
+            "force_abort": 1
+          },
+          "upstream_success_seen": 0,
+          "witnessed_contact_failures": 0,
+          "witnessed_recoveries": 0,
+          "mean_time_per_request_s": 22.614583333333332,
+          "peak_raw_wrist_force_n": 20.401140213012695,
+          "mean_discounted_return": 53.77394827069876,
+          "forbidden_events": 0,
+          "active_control_transitions": 1357,
+          "return_by_outcome": {
+            "deadline": {
+              "requests": 3,
+              "mean": 71.08223284020403
+            },
+            "force_abort": {
+              "requests": 1,
+              "mean": 1.8490945621829544
+            }
+          }
+        },
+        "approach_low": {
+          "requests": 4,
+          "completions": 0,
+          "outcomes": {
+            "deadline": 4
+          },
+          "upstream_success_seen": 0,
+          "witnessed_contact_failures": 0,
+          "witnessed_recoveries": 0,
+          "mean_time_per_request_s": 30.0,
+          "peak_raw_wrist_force_n": 19.18181800842285,
+          "mean_discounted_return": 68.56695502411011,
+          "forbidden_events": 0,
+          "active_control_transitions": 1800,
+          "return_by_outcome": {
+            "deadline": {
+              "requests": 4,
+              "mean": 68.56695502411011
+            }
+          }
+        },
+        "approach_high": {
+          "requests": 4,
+          "completions": 0,
+          "outcomes": {
+            "deadline": 4
+          },
+          "upstream_success_seen": 0,
+          "witnessed_contact_failures": 0,
+          "witnessed_recoveries": 0,
+          "mean_time_per_request_s": 30.0,
+          "peak_raw_wrist_force_n": 19.050432205200195,
+          "mean_discounted_return": 68.40211819812677,
+          "forbidden_events": 0,
+          "active_control_transitions": 1800,
+          "return_by_outcome": {
+            "deadline": {
+              "requests": 4,
+              "mean": 68.40211819812677
+            }
+          }
+        },
+        "friction_low": {
+          "requests": 4,
+          "completions": 0,
+          "outcomes": {
+            "deadline": 4
+          },
+          "upstream_success_seen": 0,
+          "witnessed_contact_failures": 0,
+          "witnessed_recoveries": 0,
+          "mean_time_per_request_s": 30.0,
+          "peak_raw_wrist_force_n": 19.84090805053711,
+          "mean_discounted_return": 68.49801259625896,
+          "forbidden_events": 0,
+          "active_control_transitions": 1800,
+          "return_by_outcome": {
+            "deadline": {
+              "requests": 4,
+              "mean": 68.49801259625896
+            }
+          }
+        },
+        "friction_high": {
+          "requests": 4,
+          "completions": 0,
+          "outcomes": {
+            "deadline": 3,
+            "force_abort": 1
+          },
+          "upstream_success_seen": 0,
+          "witnessed_contact_failures": 0,
+          "witnessed_recoveries": 0,
+          "mean_time_per_request_s": 22.6125,
+          "peak_raw_wrist_force_n": 20.745223999023438,
+          "mean_discounted_return": 51.49180988286322,
+          "forbidden_events": 0,
+          "active_control_transitions": 1357,
+          "return_by_outcome": {
+            "deadline": {
+              "requests": 3,
+              "mean": 68.00570021961174
+            },
+            "force_abort": {
+              "requests": 1,
+              "mean": 1.950138872617667
+            }
+          }
+        }
+      },
+      "cases": [
+        {
+          "case_id": "dev-10070-nominal-0",
+          "success": false,
+          "outcome": "deadline",
+          "original_return": 70.5784717142277,
+          "completion_credit_return": 0.0,
+          "corrected_return": 70.57847171422766
+        },
+        {
+          "case_id": "dev-10070-nominal-1",
+          "success": false,
+          "outcome": "deadline",
+          "original_return": 74.50305566625337,
+          "completion_credit_return": 0.0,
+          "corrected_return": 74.50305566625343
+        },
+        {
+          "case_id": "dev-10070-nominal-2",
+          "success": false,
+          "outcome": "deadline",
+          "original_return": 68.01616032203471,
+          "completion_credit_return": 0.0,
+          "corrected_return": 68.01616032203468
+        },
+        {
+          "case_id": "dev-10070-nominal-3",
+          "success": false,
+          "outcome": "deadline",
+          "original_return": 70.58115782307183,
+          "completion_credit_return": 0.0,
+          "corrected_return": 70.58115782307178
+        },
+        {
+          "case_id": "dev-10070-bias_low-0",
+          "success": false,
+          "outcome": "deadline",
+          "original_return": 69.0136575097387,
+          "completion_credit_return": 0.0,
+          "corrected_return": 69.01365750973868
+        },
+        {
+          "case_id": "dev-10070-bias_low-1",
+          "success": false,
+          "outcome": "deadline",
+          "original_return": 72.96794819293213,
+          "completion_credit_return": 0.0,
+          "corrected_return": 72.96794819293206
+        },
+        {
+          "case_id": "dev-10070-bias_low-2",
+          "success": false,
+          "outcome": "deadline",
+          "original_return": 68.72799350622448,
+          "completion_credit_return": 0.0,
+          "corrected_return": 68.72799350622452
+        },
+        {
+          "case_id": "dev-10070-bias_low-3",
+          "success": false,
+          "outcome": "deadline",
+          "original_return": 66.68883831444023,
+          "completion_credit_return": 0.0,
+          "corrected_return": 66.68883831444032
+        },
+        {
+          "case_id": "dev-10070-bias_medium-0",
+          "success": false,
+          "outcome": "deadline",
+          "original_return": 68.66018218567118,
+          "completion_credit_return": 0.0,
+          "corrected_return": 68.66018218567109
+        },
+        {
+          "case_id": "dev-10070-bias_medium-1",
+          "success": false,
+          "outcome": "deadline",
+          "original_return": 70.17227416017477,
+          "completion_credit_return": 0.0,
+          "corrected_return": 70.17227416017475
+        },
+        {
+          "case_id": "dev-10070-bias_medium-2",
+          "success": false,
+          "outcome": "deadline",
+          "original_return": 74.41424217476614,
+          "completion_credit_return": 0.0,
+          "corrected_return": 74.41424217476613
+        },
+        {
+          "case_id": "dev-10070-bias_medium-3",
+          "success": false,
+          "outcome": "force_abort",
+          "original_return": 1.8490945621829544,
+          "completion_credit_return": 0.0,
+          "corrected_return": 1.8490945621829544
+        },
+        {
+          "case_id": "dev-10070-approach_low-0",
+          "success": false,
+          "outcome": "deadline",
+          "original_return": 69.91856929345062,
+          "completion_credit_return": 0.0,
+          "corrected_return": 69.91856929345064
+        },
+        {
+          "case_id": "dev-10070-approach_low-1",
+          "success": false,
+          "outcome": "deadline",
+          "original_return": 71.93407493594475,
+          "completion_credit_return": 0.0,
+          "corrected_return": 71.9340749359448
+        },
+        {
+          "case_id": "dev-10070-approach_low-2",
+          "success": false,
+          "outcome": "deadline",
+          "original_return": 65.23498625960382,
+          "completion_credit_return": 0.0,
+          "corrected_return": 65.2349862596038
+        },
+        {
+          "case_id": "dev-10070-approach_low-3",
+          "success": false,
+          "outcome": "deadline",
+          "original_return": 67.18018960744128,
+          "completion_credit_return": 0.0,
+          "corrected_return": 67.18018960744125
+        },
+        {
+          "case_id": "dev-10070-approach_high-0",
+          "success": false,
+          "outcome": "deadline",
+          "original_return": 69.01031384754376,
+          "completion_credit_return": 0.0,
+          "corrected_return": 69.01031384754383
+        },
+        {
+          "case_id": "dev-10070-approach_high-1",
+          "success": false,
+          "outcome": "deadline",
+          "original_return": 67.1755065081034,
+          "completion_credit_return": 0.0,
+          "corrected_return": 67.17550650810341
+        },
+        {
+          "case_id": "dev-10070-approach_high-2",
+          "success": false,
+          "outcome": "deadline",
+          "original_return": 69.80055714817263,
+          "completion_credit_return": 0.0,
+          "corrected_return": 69.80055714817254
+        },
+        {
+          "case_id": "dev-10070-approach_high-3",
+          "success": false,
+          "outcome": "deadline",
+          "original_return": 67.6220952886873,
+          "completion_credit_return": 0.0,
+          "corrected_return": 67.62209528868733
+        },
+        {
+          "case_id": "dev-10070-friction_low-0",
+          "success": false,
+          "outcome": "deadline",
+          "original_return": 65.37231043294997,
+          "completion_credit_return": 0.0,
+          "corrected_return": 65.37231043295
+        },
+        {
+          "case_id": "dev-10070-friction_low-1",
+          "success": false,
+          "outcome": "deadline",
+          "original_return": 66.77789727714045,
+          "completion_credit_return": 0.0,
+          "corrected_return": 66.77789727714043
+        },
+        {
+          "case_id": "dev-10070-friction_low-2",
+          "success": false,
+          "outcome": "deadline",
+          "original_return": 75.24324810350876,
+          "completion_credit_return": 0.0,
+          "corrected_return": 75.24324810350883
+        },
+        {
+          "case_id": "dev-10070-friction_low-3",
+          "success": false,
+          "outcome": "deadline",
+          "original_return": 66.59859457143666,
+          "completion_credit_return": 0.0,
+          "corrected_return": 66.59859457143665
+        },
+        {
+          "case_id": "dev-10070-friction_high-0",
+          "success": false,
+          "outcome": "deadline",
+          "original_return": 71.21476342869911,
+          "completion_credit_return": 0.0,
+          "corrected_return": 71.21476342869906
+        },
+        {
+          "case_id": "dev-10070-friction_high-1",
+          "success": false,
+          "outcome": "deadline",
+          "original_return": 68.04885213978692,
+          "completion_credit_return": 0.0,
+          "corrected_return": 68.04885213978696
+        },
+        {
+          "case_id": "dev-10070-friction_high-2",
+          "success": false,
+          "outcome": "force_abort",
+          "original_return": 1.950138872617667,
+          "completion_credit_return": 0.0,
+          "corrected_return": 1.9501388726176672
+        },
+        {
+          "case_id": "dev-10070-friction_high-3",
+          "success": false,
+          "outcome": "deadline",
+          "original_return": 64.7534850903492,
+          "completion_credit_return": 0.0,
+          "corrected_return": 64.75348509034919
+        }
+      ]
+    },
+    "stochastic": {
+      "manifest_sha256": "482bc9454119ae6d75c6f11e62a1dac7b233daa99883d91cb3da8c8a09971ec8",
+      "cost": {
+        "rollout_control_transitions": 12600,
+        "active_control_transitions": 6526,
+        "absorbing_control_transitions": 6074,
+        "rollout_physics_env_steps": 100800,
+        "active_physics_env_steps": 52144,
+        "initialization_physics_env_steps": 1876,
+        "charged_control_equivalent_transitions": 12834.5,
+        "scope": "All rollout slots, including holds, plus initialization physics divided by decimation. Probes/mining charged by their own manifests."
+      },
+      "metrics": {
+        "all": {
+          "requests": 28,
+          "completions": 5,
+          "outcomes": {
+            "force_abort": 13,
+            "deadline": 10,
+            "success": 5
+          },
+          "upstream_success_seen": 8,
+          "witnessed_contact_failures": 9,
+          "witnessed_recoveries": 0,
+          "mean_time_per_request_s": 15.519047619047619,
+          "peak_raw_wrist_force_n": 42.215457916259766,
+          "mean_discounted_return": 83.52993282311684,
+          "forbidden_events": 0,
+          "active_control_transitions": 6526,
+          "return_by_outcome": {
+            "deadline": {
+              "requests": 10,
+              "mean": 88.97564048368889
+            },
+            "force_abort": {
+              "requests": 13,
+              "mean": 13.144198984787915
+            },
+            "success": {
+              "requests": 5,
+              "mean": 255.64142548162795
+            }
+          }
+        },
+        "nominal": {
+          "requests": 4,
+          "completions": 0,
+          "outcomes": {
+            "force_abort": 3,
+            "deadline": 1
+          },
+          "upstream_success_seen": 0,
+          "witnessed_contact_failures": 1,
+          "witnessed_recoveries": 0,
+          "mean_time_per_request_s": 7.85625,
+          "peak_raw_wrist_force_n": 22.42966079711914,
+          "mean_discounted_return": 15.6806438424238,
+          "forbidden_events": 0,
+          "active_control_transitions": 473,
+          "return_by_outcome": {
+            "deadline": {
+              "requests": 1,
+              "mean": 56.29431707639374
+            },
+            "force_abort": {
+              "requests": 3,
+              "mean": 2.1427527644338196
+            }
+          }
+        },
+        "bias_low": {
+          "requests": 4,
+          "completions": 1,
+          "outcomes": {
+            "force_abort": 1,
+            "deadline": 2,
+            "success": 1
+          },
+          "upstream_success_seen": 2,
+          "witnessed_contact_failures": 1,
+          "witnessed_recoveries": 0,
+          "mean_time_per_request_s": 17.78125,
+          "peak_raw_wrist_force_n": 21.422229766845703,
+          "mean_discounted_return": 138.30752549332945,
+          "forbidden_events": 0,
+          "active_control_transitions": 1068,
+          "return_by_outcome": {
+            "deadline": {
+              "requests": 2,
+              "mean": 96.67709764933376
+            },
+            "force_abort": {
+              "requests": 1,
+              "mean": 3.034376662390377
+            },
+            "success": {
+              "requests": 1,
+              "mean": 356.8415300122599
+            }
+          }
+        },
+        "bias_medium": {
+          "requests": 4,
+          "completions": 2,
+          "outcomes": {
+            "success": 2,
+            "deadline": 2
+          },
+          "upstream_success_seen": 2,
+          "witnessed_contact_failures": 4,
+          "witnessed_recoveries": 0,
+          "mean_time_per_request_s": 26.672916666666666,
+          "peak_raw_wrist_force_n": 19.70850372314453,
+          "mean_discounted_return": 105.12252175611425,
+          "forbidden_events": 0,
+          "active_control_transitions": 1601,
+          "return_by_outcome": {
+            "deadline": {
+              "requests": 2,
+              "mean": 70.76239938475854
+            },
+            "success": {
+              "requests": 2,
+              "mean": 139.48264412746994
+            }
+          }
+        },
+        "approach_low": {
+          "requests": 4,
+          "completions": 1,
+          "outcomes": {
+            "success": 1,
+            "force_abort": 1,
+            "deadline": 2
+          },
+          "upstream_success_seen": 2,
+          "witnessed_contact_failures": 1,
+          "witnessed_recoveries": 0,
+          "mean_time_per_request_s": 19.952083333333334,
+          "peak_raw_wrist_force_n": 21.21253776550293,
+          "mean_discounted_return": 114.99235159369407,
+          "forbidden_events": 0,
+          "active_control_transitions": 1198,
+          "return_by_outcome": {
+            "deadline": {
+              "requests": 2,
+              "mean": 69.78713342479244
+            },
+            "force_abort": {
+              "requests": 1,
+              "mean": 19.325879232282183
+            },
+            "success": {
+              "requests": 1,
+              "mean": 301.0692602929092
+            }
+          }
+        },
+        "approach_high": {
+          "requests": 4,
+          "completions": 0,
+          "outcomes": {
+            "force_abort": 2,
+            "deadline": 2
+          },
+          "upstream_success_seen": 0,
+          "witnessed_contact_failures": 1,
+          "witnessed_recoveries": 0,
+          "mean_time_per_request_s": 18.685416666666665,
+          "peak_raw_wrist_force_n": 20.734960556030273,
+          "mean_discounted_return": 47.93170730153518,
+          "forbidden_events": 0,
+          "active_control_transitions": 1122,
+          "return_by_outcome": {
+            "deadline": {
+              "requests": 2,
+              "mean": 66.90120531371392
+            },
+            "force_abort": {
+              "requests": 2,
+              "mean": 28.962209289356448
+            }
+          }
+        },
+        "friction_low": {
+          "requests": 4,
+          "completions": 0,
+          "outcomes": {
+            "deadline": 1,
+            "force_abort": 3
+          },
+          "upstream_success_seen": 1,
+          "witnessed_contact_failures": 1,
+          "witnessed_recoveries": 0,
+          "mean_time_per_request_s": 14.122916666666667,
+          "peak_raw_wrist_force_n": 42.215457916259766,
+          "mean_discounted_return": 75.85267978623048,
+          "forbidden_events": 0,
+          "active_control_transitions": 849,
+          "return_by_outcome": {
+            "deadline": {
+              "requests": 1,
+              "mean": 225.2064162152978
+            },
+            "force_abort": {
+              "requests": 3,
+              "mean": 26.06810097654137
+            }
+          }
+        },
+        "friction_high": {
+          "requests": 4,
+          "completions": 1,
+          "outcomes": {
+            "success": 1,
+            "force_abort": 3
+          },
+          "upstream_success_seen": 1,
+          "witnessed_contact_failures": 0,
+          "witnessed_recoveries": 0,
+          "mean_time_per_request_s": 3.5625,
+          "peak_raw_wrist_force_n": 21.67224884033203,
+          "mean_discounted_return": 86.82209998849065,
+          "forbidden_events": 0,
+          "active_control_transitions": 215,
+          "return_by_outcome": {
+            "force_abort": {
+              "requests": 3,
+              "mean": 1.9857837019772873
+            },
+            "success": {
+              "requests": 1,
+              "mean": 341.3310488480307
+            }
+          }
+        }
+      },
+      "cases": [
+        {
+          "case_id": "dev-10070-nominal-0",
+          "success": false,
+          "outcome": "force_abort",
+          "original_return": 2.8347009114512014,
+          "completion_credit_return": 0.0,
+          "corrected_return": 2.8347009114512014
+        },
+        {
+          "case_id": "dev-10070-nominal-1",
+          "success": false,
+          "outcome": "force_abort",
+          "original_return": 2.2747145381576783,
+          "completion_credit_return": 0.0,
+          "corrected_return": 2.2747145381576788
+        },
+        {
+          "case_id": "dev-10070-nominal-2",
+          "success": false,
+          "outcome": "deadline",
+          "original_return": 56.29431707639374,
+          "completion_credit_return": 0.0,
+          "corrected_return": 56.29431707639374
+        },
+        {
+          "case_id": "dev-10070-nominal-3",
+          "success": false,
+          "outcome": "force_abort",
+          "original_return": 1.3188428436925785,
+          "completion_credit_return": 0.0,
+          "corrected_return": 1.3188428436925785
+        },
+        {
+          "case_id": "dev-10070-bias_low-0",
+          "success": false,
+          "outcome": "force_abort",
+          "original_return": 3.034376662390377,
+          "completion_credit_return": 0.0,
+          "corrected_return": 3.0343766623903776
+        },
+        {
+          "case_id": "dev-10070-bias_low-1",
+          "success": false,
+          "outcome": "deadline",
+          "original_return": 68.97498618772188,
+          "completion_credit_return": 0.0,
+          "corrected_return": 68.97498618772197
+        },
+        {
+          "case_id": "dev-10070-bias_low-2",
+          "success": true,
+          "outcome": "success",
+          "original_return": 151.09762740859495,
+          "completion_credit_return": 205.743902603665,
+          "corrected_return": 356.84153001225985
+        },
+        {
+          "case_id": "dev-10070-bias_low-3",
+          "success": false,
+          "outcome": "deadline",
+          "original_return": 124.37920911094564,
+          "completion_credit_return": 0.0,
+          "corrected_return": 124.37920911094562
+        },
+        {
+          "case_id": "dev-10070-bias_medium-0",
+          "success": true,
+          "outcome": "success",
+          "original_return": 106.41587655490318,
+          "completion_credit_return": 49.31663068562343,
+          "corrected_return": 155.73250724052662
+        },
+        {
+          "case_id": "dev-10070-bias_medium-1",
+          "success": false,
+          "outcome": "deadline",
+          "original_return": 69.2456211939518,
+          "completion_credit_return": 0.0,
+          "corrected_return": 69.24562119395178
+        },
+        {
+          "case_id": "dev-10070-bias_medium-2",
+          "success": true,
+          "outcome": "success",
+          "original_return": 92.1527677189735,
+          "completion_credit_return": 31.080013674240472,
+          "corrected_return": 123.23278101441332
+        },
+        {
+          "case_id": "dev-10070-bias_medium-3",
+          "success": false,
+          "outcome": "deadline",
+          "original_return": 72.27917757556528,
+          "completion_credit_return": 0.0,
+          "corrected_return": 72.27917757556524
+        },
+        {
+          "case_id": "dev-10070-approach_low-0",
+          "success": true,
+          "outcome": "success",
+          "original_return": 206.8923519772114,
+          "completion_credit_return": 94.17690831569777,
+          "corrected_return": 301.0692602929091
+        },
+        {
+          "case_id": "dev-10070-approach_low-1",
+          "success": false,
+          "outcome": "force_abort",
+          "original_return": 19.325879232282183,
+          "completion_credit_return": 0.0,
+          "corrected_return": 19.325879232282183
+        },
+        {
+          "case_id": "dev-10070-approach_low-2",
+          "success": false,
+          "outcome": "deadline",
+          "original_return": 70.02394045536303,
+          "completion_credit_return": 0.0,
+          "corrected_return": 70.02394045536303
+        },
+        {
+          "case_id": "dev-10070-approach_low-3",
+          "success": false,
+          "outcome": "deadline",
+          "original_return": 69.55032639422187,
+          "completion_credit_return": 0.0,
+          "corrected_return": 69.55032639422183
+        },
+        {
+          "case_id": "dev-10070-approach_high-0",
+          "success": false,
+          "outcome": "force_abort",
+          "original_return": 55.75152228884732,
+          "completion_credit_return": 0.0,
+          "corrected_return": 55.751522288847326
+        },
+        {
+          "case_id": "dev-10070-approach_high-1",
+          "success": false,
+          "outcome": "deadline",
+          "original_return": 72.06930689823409,
+          "completion_credit_return": 0.0,
+          "corrected_return": 72.06930689823409
+        },
+        {
+          "case_id": "dev-10070-approach_high-2",
+          "success": false,
+          "outcome": "force_abort",
+          "original_return": 2.1728962898655753,
+          "completion_credit_return": 0.0,
+          "corrected_return": 2.1728962898655753
+        },
+        {
+          "case_id": "dev-10070-approach_high-3",
+          "success": false,
+          "outcome": "deadline",
+          "original_return": 61.73310372919373,
+          "completion_credit_return": 0.0,
+          "corrected_return": 61.7331037291937
+        },
+        {
+          "case_id": "dev-10070-friction_low-0",
+          "success": false,
+          "outcome": "deadline",
+          "original_return": 225.2064162152978,
+          "completion_credit_return": 0.0,
+          "corrected_return": 225.20641621529765
+        },
+        {
+          "case_id": "dev-10070-friction_low-1",
+          "success": false,
+          "outcome": "force_abort",
+          "original_return": 62.19998521358041,
+          "completion_credit_return": 0.0,
+          "corrected_return": 62.19998521358042
+        },
+        {
+          "case_id": "dev-10070-friction_low-2",
+          "success": false,
+          "outcome": "force_abort",
+          "original_return": 14.275052459772253,
+          "completion_credit_return": 0.0,
+          "corrected_return": 14.275052459772247
+        },
+        {
+          "case_id": "dev-10070-friction_low-3",
+          "success": false,
+          "outcome": "force_abort",
+          "original_return": 1.7292652562714417,
+          "completion_credit_return": 0.0,
+          "corrected_return": 1.7292652562714417
+        },
+        {
+          "case_id": "dev-10070-friction_high-0",
+          "success": true,
+          "outcome": "success",
+          "original_return": 180.76508045025912,
+          "completion_credit_return": 160.56596839777163,
+          "corrected_return": 341.3310488480306
+        },
+        {
+          "case_id": "dev-10070-friction_high-1",
+          "success": false,
+          "outcome": "force_abort",
+          "original_return": 2.2163670345847013,
+          "completion_credit_return": 0.0,
+          "corrected_return": 2.2163670345847013
+        },
+        {
+          "case_id": "dev-10070-friction_high-2",
+          "success": false,
+          "outcome": "force_abort",
+          "original_return": 1.8793917186161977,
+          "completion_credit_return": 0.0,
+          "corrected_return": 1.8793917186161977
+        },
+        {
+          "case_id": "dev-10070-friction_high-3",
+          "success": false,
+          "outcome": "force_abort",
+          "original_return": 1.8615923527309626,
+          "completion_credit_return": 0.0,
+          "corrected_return": 1.8615923527309624
+        }
+      ]
+    },
+    "retry": {
+      "manifest_sha256": "7c31285b58e0671f2e62575e11d0cb1bcbc1415da11d93b26b15f708da3a7caf",
+      "cost": {
+        "rollout_control_transitions": 12600,
+        "active_control_transitions": 7714,
+        "absorbing_control_transitions": 4886,
+        "rollout_physics_env_steps": 100800,
+        "active_physics_env_steps": 61632,
+        "initialization_physics_env_steps": 1876,
+        "charged_control_equivalent_transitions": 12834.5,
+        "scope": "All rollout slots, including holds, plus initialization physics divided by decimation. Probes/mining charged by their own manifests."
+      },
+      "metrics": {
+        "all": {
+          "requests": 28,
+          "completions": 19,
+          "outcomes": {
+            "success": 19,
+            "force_abort": 3,
+            "deadline": 6
+          },
+          "upstream_success_seen": 21,
+          "witnessed_contact_failures": 21,
+          "witnessed_recoveries": 15,
+          "mean_time_per_request_s": 18.34285714285714,
+          "peak_raw_wrist_force_n": 20.185998916625977,
+          "mean_discounted_return": 153.06268566587144,
+          "forbidden_events": 0,
+          "active_control_transitions": 7714,
+          "return_by_outcome": {
+            "deadline": {
+              "requests": 6,
+              "mean": 85.62175463987342
+            },
+            "force_abort": {
+              "requests": 3,
+              "mean": 18.22214934826118
+            },
+            "success": {
+              "requests": 19,
+              "mean": 195.6504327768619
+            }
+          }
+        },
+        "nominal": {
+          "requests": 4,
+          "completions": 3,
+          "outcomes": {
+            "success": 3,
+            "force_abort": 1
+          },
+          "upstream_success_seen": 3,
+          "witnessed_contact_failures": 2,
+          "witnessed_recoveries": 2,
+          "mean_time_per_request_s": 16.020833333333332,
+          "peak_raw_wrist_force_n": 20.185998916625977,
+          "mean_discounted_return": 106.69646004339073,
+          "forbidden_events": 0,
+          "active_control_transitions": 963,
+          "return_by_outcome": {
+            "force_abort": {
+              "requests": 1,
+              "mean": 5.990864023358306
+            },
+            "success": {
+              "requests": 3,
+              "mean": 140.2649920500682
+            }
+          }
+        },
+        "bias_low": {
+          "requests": 4,
+          "completions": 3,
+          "outcomes": {
+            "success": 3,
+            "deadline": 1
+          },
+          "upstream_success_seen": 3,
+          "witnessed_contact_failures": 4,
+          "witnessed_recoveries": 3,
+          "mean_time_per_request_s": 23.0125,
+          "peak_raw_wrist_force_n": 19.393247604370117,
+          "mean_discounted_return": 134.0398079407532,
+          "forbidden_events": 0,
+          "active_control_transitions": 1382,
+          "return_by_outcome": {
+            "deadline": {
+              "requests": 1,
+              "mean": 103.9764646567023
+            },
+            "success": {
+              "requests": 3,
+              "mean": 144.06092236877018
+            }
+          }
+        },
+        "bias_medium": {
+          "requests": 4,
+          "completions": 4,
+          "outcomes": {
+            "success": 4
+          },
+          "upstream_success_seen": 4,
+          "witnessed_contact_failures": 3,
+          "witnessed_recoveries": 3,
+          "mean_time_per_request_s": 18.24375,
+          "peak_raw_wrist_force_n": 19.967851638793945,
+          "mean_discounted_return": 204.59441739777841,
+          "forbidden_events": 0,
+          "active_control_transitions": 1097,
+          "return_by_outcome": {
+            "success": {
+              "requests": 4,
+              "mean": 204.59441739777841
+            }
+          }
+        },
+        "approach_low": {
+          "requests": 4,
+          "completions": 2,
+          "outcomes": {
+            "deadline": 2,
+            "success": 2
+          },
+          "upstream_success_seen": 2,
+          "witnessed_contact_failures": 4,
+          "witnessed_recoveries": 2,
+          "mean_time_per_request_s": 23.047916666666666,
+          "peak_raw_wrist_force_n": 19.27863311767578,
+          "mean_discounted_return": 129.0661403527058,
+          "forbidden_events": 0,
+          "active_control_transitions": 1384,
+          "return_by_outcome": {
+            "deadline": {
+              "requests": 2,
+              "mean": 75.1320385997131
+            },
+            "success": {
+              "requests": 2,
+              "mean": 183.00024210569848
+            }
+          }
+        },
+        "approach_high": {
+          "requests": 4,
+          "completions": 2,
+          "outcomes": {
+            "success": 2,
+            "deadline": 2
+          },
+          "upstream_success_seen": 2,
+          "witnessed_contact_failures": 4,
+          "witnessed_recoveries": 2,
+          "mean_time_per_request_s": 24.547916666666666,
+          "peak_raw_wrist_force_n": 19.43140411376953,
+          "mean_discounted_return": 113.91741306612684,
+          "forbidden_events": 0,
+          "active_control_transitions": 1474,
+          "return_by_outcome": {
+            "deadline": {
+              "requests": 2,
+              "mean": 79.51563250455084
+            },
+            "success": {
+              "requests": 2,
+              "mean": 148.31919362770287
+            }
+          }
+        },
+        "friction_low": {
+          "requests": 4,
+          "completions": 1,
+          "outcomes": {
+            "success": 1,
+            "force_abort": 2,
+            "deadline": 1
+          },
+          "upstream_success_seen": 3,
+          "witnessed_contact_failures": 2,
+          "witnessed_recoveries": 1,
+          "mean_time_per_request_s": 13.731250000000001,
+          "peak_raw_wrist_force_n": 20.08344078063965,
+          "mean_discounted_return": 74.32314154691603,
+          "forbidden_events": 0,
+          "active_control_transitions": 824,
+          "return_by_outcome": {
+            "deadline": {
+              "requests": 1,
+              "mean": 100.45872097401033
+            },
+            "force_abort": {
+              "requests": 2,
+              "mean": 24.33779201071262
+            },
+            "success": {
+              "requests": 1,
+              "mean": 148.15826119222857
+            }
+          }
+        },
+        "friction_high": {
+          "requests": 4,
+          "completions": 4,
+          "outcomes": {
+            "success": 4
+          },
+          "upstream_success_seen": 4,
+          "witnessed_contact_failures": 2,
+          "witnessed_recoveries": 2,
+          "mean_time_per_request_s": 9.795833333333333,
+          "peak_raw_wrist_force_n": 19.84935760498047,
+          "mean_discounted_return": 308.80141931342905,
+          "forbidden_events": 0,
+          "active_control_transitions": 590,
+          "return_by_outcome": {
+            "success": {
+              "requests": 4,
+              "mean": 308.80141931342905
+            }
+          }
+        }
+      },
+      "cases": [
+        {
+          "case_id": "dev-10070-nominal-0",
+          "success": true,
+          "outcome": "success",
+          "original_return": 75.95229890949462,
+          "completion_credit_return": 13.199776546145369,
+          "corrected_return": 89.15207545564004
+        },
+        {
+          "case_id": "dev-10070-nominal-1",
+          "success": true,
+          "outcome": "success",
+          "original_return": 67.18949535615978,
+          "completion_credit_return": 136.42452804213016,
+          "corrected_return": 203.61402339828993
+        },
+        {
+          "case_id": "dev-10070-nominal-2",
+          "success": true,
+          "outcome": "success",
+          "original_return": 67.06512676081768,
+          "completion_credit_return": 60.96375053545701,
+          "corrected_return": 128.0288772962747
+        },
+        {
+          "case_id": "dev-10070-nominal-3",
+          "success": false,
+          "outcome": "force_abort",
+          "original_return": 5.990864023358306,
+          "completion_credit_return": 0.0,
+          "corrected_return": 5.990864023358307
+        },
+        {
+          "case_id": "dev-10070-bias_low-0",
+          "success": true,
+          "outcome": "success",
+          "original_return": 88.22945942351674,
+          "completion_credit_return": 58.53999531353416,
+          "corrected_return": 146.76945473705086
+        },
+        {
+          "case_id": "dev-10070-bias_low-1",
+          "success": true,
+          "outcome": "success",
+          "original_return": 70.1498972786417,
+          "completion_credit_return": 21.451380113943063,
+          "corrected_return": 91.60127739258482
+        },
+        {
+          "case_id": "dev-10070-bias_low-2",
+          "success": false,
+          "outcome": "deadline",
+          "original_return": 103.9764646567023,
+          "completion_credit_return": 0.0,
+          "corrected_return": 103.9764646567024
+        },
+        {
+          "case_id": "dev-10070-bias_low-3",
+          "success": true,
+          "outcome": "success",
+          "original_return": 65.15303033844359,
+          "completion_credit_return": 128.65900066213143,
+          "corrected_return": 193.8120349766748
+        },
+        {
+          "case_id": "dev-10070-bias_medium-0",
+          "success": true,
+          "outcome": "success",
+          "original_return": 92.39885749069288,
+          "completion_credit_return": 31.08001493488907,
+          "corrected_return": 123.478872425582
+        },
+        {
+          "case_id": "dev-10070-bias_medium-1",
+          "success": true,
+          "outcome": "success",
+          "original_return": 72.58436221312779,
+          "completion_credit_return": 2.8212137841643807,
+          "corrected_return": 75.40557599729212
+        },
+        {
+          "case_id": "dev-10070-bias_medium-2",
+          "success": true,
+          "outcome": "success",
+          "original_return": 54.352053122936866,
+          "completion_credit_return": 117.5792553594693,
+          "corrected_return": 171.9313084824062
+        },
+        {
+          "case_id": "dev-10070-bias_medium-3",
+          "success": true,
+          "outcome": "success",
+          "original_return": 50.108777761810465,
+          "completion_credit_return": 397.4531349240229,
+          "corrected_return": 447.56191268583336
+        },
+        {
+          "case_id": "dev-10070-approach_low-0",
+          "success": false,
+          "outcome": "deadline",
+          "original_return": 69.21742748015406,
+          "completion_credit_return": 0.0,
+          "corrected_return": 69.2174274801541
+        },
+        {
+          "case_id": "dev-10070-approach_low-1",
+          "success": true,
+          "outcome": "success",
+          "original_return": 72.71235942320433,
+          "completion_credit_return": 119.37990329798959,
+          "corrected_return": 192.09226272119398
+        },
+        {
+          "case_id": "dev-10070-approach_low-2",
+          "success": false,
+          "outcome": "deadline",
+          "original_return": 81.04664971927212,
+          "completion_credit_return": 0.0,
+          "corrected_return": 81.04664971927212
+        },
+        {
+          "case_id": "dev-10070-approach_low-3",
+          "success": true,
+          "outcome": "success",
+          "original_return": 66.7619089328984,
+          "completion_credit_return": 107.14631255730461,
+          "corrected_return": 173.908221490203
+        },
+        {
+          "case_id": "dev-10070-approach_high-0",
+          "success": true,
+          "outcome": "success",
+          "original_return": 70.46707806142578,
+          "completion_credit_return": 95.7417743658214,
+          "corrected_return": 166.20885242724717
+        },
+        {
+          "case_id": "dev-10070-approach_high-1",
+          "success": false,
+          "outcome": "deadline",
+          "original_return": 90.18542617650047,
+          "completion_credit_return": 0.0,
+          "corrected_return": 90.18542617650058
+        },
+        {
+          "case_id": "dev-10070-approach_high-2",
+          "success": false,
+          "outcome": "deadline",
+          "original_return": 68.84583883260119,
+          "completion_credit_return": 0.0,
+          "corrected_return": 68.8458388326012
+        },
+        {
+          "case_id": "dev-10070-approach_high-3",
+          "success": true,
+          "outcome": "success",
+          "original_return": 68.23554971086756,
+          "completion_credit_return": 62.193985117291,
+          "corrected_return": 130.42953482815855
+        },
+        {
+          "case_id": "dev-10070-friction_low-0",
+          "success": true,
+          "outcome": "success",
+          "original_return": 53.981353144484395,
+          "completion_credit_return": 94.17691117386968,
+          "corrected_return": 148.15826119222854
+        },
+        {
+          "case_id": "dev-10070-friction_low-1",
+          "success": false,
+          "outcome": "force_abort",
+          "original_return": 20.605139970171603,
+          "completion_credit_return": 0.0,
+          "corrected_return": 20.605139970171603
+        },
+        {
+          "case_id": "dev-10070-friction_low-2",
+          "success": false,
+          "outcome": "force_abort",
+          "original_return": 28.07044405125363,
+          "completion_credit_return": 0.0,
+          "corrected_return": 28.070444051253627
+        },
+        {
+          "case_id": "dev-10070-friction_low-3",
+          "success": false,
+          "outcome": "deadline",
+          "original_return": 100.45872097401033,
+          "completion_credit_return": 0.0,
+          "corrected_return": 100.45872097401032
+        },
+        {
+          "case_id": "dev-10070-friction_high-0",
+          "success": true,
+          "outcome": "success",
+          "original_return": 66.67803733333223,
+          "completion_credit_return": 89.57535239376419,
+          "corrected_return": 156.25338972709642
+        },
+        {
+          "case_id": "dev-10070-friction_high-1",
+          "success": true,
+          "outcome": "success",
+          "original_return": 36.617074070449924,
+          "completion_credit_return": 409.0918869718322,
+          "corrected_return": 445.70896104228206
+        },
+        {
+          "case_id": "dev-10070-friction_high-2",
+          "success": true,
+          "outcome": "success",
+          "original_return": 58.207507954665274,
+          "completion_credit_return": 127.71001505289995,
+          "corrected_return": 185.91752300756522
+        },
+        {
+          "case_id": "dev-10070-friction_high-3",
+          "success": true,
+          "outcome": "success",
+          "original_return": 49.872668552749474,
+          "completion_credit_return": 397.4531349240229,
+          "corrected_return": 447.32580347677236
+        }
+      ]
+    }
+  },
+  "paired_reward_comparison": [
+    {
+      "case_id": "dev-10070-nominal-0",
+      "corrected_retry_minus_deterministic": 18.573603741412384,
+      "original_retry_minus_deterministic": 5.373827195266912
+    },
+    {
+      "case_id": "dev-10070-nominal-1",
+      "corrected_retry_minus_deterministic": 129.1109677320365,
+      "original_retry_minus_deterministic": -7.313560310093592
+    },
+    {
+      "case_id": "dev-10070-nominal-2",
+      "corrected_retry_minus_deterministic": 60.01271697424001,
+      "original_retry_minus_deterministic": -0.9510335612170309
+    },
+    {
+      "case_id": "dev-10070-bias_low-0",
+      "corrected_retry_minus_deterministic": 77.75579722731219,
+      "original_retry_minus_deterministic": 19.215801913778037
+    },
+    {
+      "case_id": "dev-10070-bias_low-1",
+      "corrected_retry_minus_deterministic": 18.633329199652763,
+      "original_retry_minus_deterministic": -2.818050914290424
+    },
+    {
+      "case_id": "dev-10070-bias_low-3",
+      "corrected_retry_minus_deterministic": 127.12319666223448,
+      "original_retry_minus_deterministic": -1.5358079759966472
+    },
+    {
+      "case_id": "dev-10070-bias_medium-0",
+      "corrected_retry_minus_deterministic": 54.81869023991091,
+      "original_retry_minus_deterministic": 23.7386753050217
+    },
+    {
+      "case_id": "dev-10070-bias_medium-1",
+      "corrected_retry_minus_deterministic": 5.2333018371173665,
+      "original_retry_minus_deterministic": 2.412088052953024
+    },
+    {
+      "case_id": "dev-10070-bias_medium-2",
+      "corrected_retry_minus_deterministic": 97.51706630764006,
+      "original_retry_minus_deterministic": -20.06218905182928
+    },
+    {
+      "case_id": "dev-10070-bias_medium-3",
+      "corrected_retry_minus_deterministic": 445.71281812365044,
+      "original_retry_minus_deterministic": 48.25968319962751
+    },
+    {
+      "case_id": "dev-10070-approach_low-1",
+      "corrected_retry_minus_deterministic": 120.15818778524917,
+      "original_retry_minus_deterministic": 0.7782844872595831
+    },
+    {
+      "case_id": "dev-10070-approach_low-3",
+      "corrected_retry_minus_deterministic": 106.72803188276175,
+      "original_retry_minus_deterministic": -0.41828067454288487
+    },
+    {
+      "case_id": "dev-10070-approach_high-0",
+      "corrected_retry_minus_deterministic": 97.19853857970334,
+      "original_retry_minus_deterministic": 1.4567642138820247
+    },
+    {
+      "case_id": "dev-10070-approach_high-3",
+      "corrected_retry_minus_deterministic": 62.80743953947122,
+      "original_retry_minus_deterministic": 0.6134544221802543
+    },
+    {
+      "case_id": "dev-10070-friction_low-0",
+      "corrected_retry_minus_deterministic": 82.78595075927853,
+      "original_retry_minus_deterministic": -11.390957288465579
+    },
+    {
+      "case_id": "dev-10070-friction_high-0",
+      "corrected_retry_minus_deterministic": 85.03862629839736,
+      "original_retry_minus_deterministic": -4.5367260953668875
+    },
+    {
+      "case_id": "dev-10070-friction_high-1",
+      "corrected_retry_minus_deterministic": 377.6601089024951,
+      "original_retry_minus_deterministic": -31.431778069336993
+    },
+    {
+      "case_id": "dev-10070-friction_high-2",
+      "corrected_retry_minus_deterministic": 183.96738413494757,
+      "original_retry_minus_deterministic": 56.25736908204761
+    },
+    {
+      "case_id": "dev-10070-friction_high-3",
+      "corrected_retry_minus_deterministic": 382.57231838642315,
+      "original_retry_minus_deterministic": -14.880816537599728
+    }
+  ],
+  "summary": {
+    "physical_traces_bitwise_unchanged": true,
+    "charged_transitions": 38503.5,
+    "original_incentive_counterexamples": 10,
+    "corrected_incentive_counterexamples": 0
+  },
+  "scope_and_limitations": [
+    "Reward-only development control reruns; all old checkpoints and script actions unchanged.",
+    "Exact physical, sensor, action, reward-ledger and finite-job outcome parity against all v2 diagnostic cases.",
+    "The algebraic ideal-success credit removes these observed early-completion counterexamples; global reward alignment is not established.",
+    "No learned-policy improvement is inferred from relabeling rewards. A fresh learning run is required."
+  ]
+}

@@ -1,0 +1,9 @@
+{
+  "realignment_min_s": 2.0,
+  "realignment_max_s": 4.0,
+  "realignment_tolerance_m": 0.001,
+  "insertion_load_n": 4.0,
+  "initial_pressure_offset_m": 0.006,
+  "spiral_angular_speed_rad_s": 0.6,
+  "spiral_radial_speed_m_s": 0.0003
+}

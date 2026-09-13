@@ -1,0 +1,103 @@
+{
+  "purpose": "Upstream FORGE smoke check; no policy trained or evaluated",
+  "status": "passed",
+  "seed": 170,
+  "num_envs": 4,
+  "task": "Isaac-Forge-PegInsert-Direct-v0",
+  "completed_control_steps": 16,
+  "actor_observation_shape": [
+    4,
+    24
+  ],
+  "action_dimensions": 7,
+  "simulated_force_peak_n": 8.573932647705078,
+  "automatic_episode_resets": 0,
+  "gravity": [
+    0.0,
+    0.0,
+    -9.81
+  ],
+  "held_asset_gravity_disabled": true,
+  "scope": [
+    "Zero actions, not a policy test.",
+    "Upstream task starts with a grasped part; no pickup or release tested.",
+    "Pose observations are simulator-derived with synthetic noise, not camera-derived.",
+    "Held-part gravity is disabled upstream; resolve before primary recovery experiments.",
+    "No recovery or hardware-transfer claim."
+  ],
+  "schema": 1,
+  "research_result": false,
+  "run_manifest": {
+    "schema": 1,
+    "run_id": "audit-assembly-smoke-verified-20260906",
+    "mode": "smoke",
+    "status": "completed",
+    "started_at_utc": "2026-09-07T02:53:28.333660+00:00",
+    "spec": {
+      "task": "peg",
+      "seed": 170,
+      "num_envs": 4,
+      "control_steps": 16
+    },
+    "source_commit_at_start": "1b969f6db01aeac226667db4759b7603b3f663a0",
+    "source_dirty_at_start": true,
+    "source_hashes": {
+      "AGENTS.md": "af9bb799e5cebe0e1a212db179538bd15f4351e096affd588cd7edd8eb99504a",
+      "configs/study.json": "94eda04667e1e0ae2102b4db3f24ac6e44b5ba62dc7261ad8bde3f00debf72a8",
+      "environment-lock.example.json": "cbbaa78ed6feef9eec6e311ec717f60b74ea6def1fbbca6ed55c7508211f1b9f",
+      "pyproject.toml": "009adf119b986602d6b8fa7edc631182e61eceb0ca080ee66976245b46ab72cf",
+      "README.md": "07176d0a56db5def0bb5f97f3a10d33b956231a74ae661a9952e088c820f9aa7",
+      "ROADMAP.md": "431e5f0ec682c93504893cc94db5bd68917b13bd114458c72654eb5dade8ea77",
+      "scripts/assembly_smoke.py": "f12bf7d95f6078667895b2b36ebfaace3d8afe612e39178f5a5bb9d910f149db",
+      "scripts/run_experiment.py": "afdf4d1689b09c8567df26a1555a5021485dc9dc61e3712a0ebda131b18c3f12",
+      "scripts/setup_windows.ps1": "e772c9867dce220df0a07ae877c8aef8f7468244d93b35869de90bd53ad2c845",
+      "scripts/verify_checkpoint.py": "dd4e2a00aee41fba8ec96f5f525fc2085f22b485d2ae2f948f4c16ccfbb48550",
+      "scripts/write_environment_lock.py": "e3e9247078dcb34f623ff7ad6701e804972848472a2147c284dac8be1cdfece1",
+      "src/assembly_recovery/__init__.py": "c245621cf4ce1260e99af39b4dfff6286b9d1f741c7f06c2157e2306b1e54b71",
+      "src/assembly_recovery/protocol.py": "d38b46cbb7e58f85bdb78a8904d8510c09478e30f8f673f62ea9272761dd3117"
+    },
+    "upstream_commit": "37ddf626871758333d6ed89cf64ad702aef127d0",
+    "upstream_dirty": false,
+    "command": [
+      "C:\\isaac-sim\\python.bat",
+      "D:\\6axis-space-robotics\\scripts\\assembly_smoke.py",
+      "--headless",
+      "--task",
+      "peg",
+      "--report",
+      "D:\\6axis-space-robotics\\artifacts\\assembly\\audit-assembly-smoke-verified-20260906\\smoke.json",
+      "--num_envs",
+      "4",
+      "--steps",
+      "16",
+      "--seed",
+      "170"
+    ],
+    "environment_overrides": {
+      "TORCHDYNAMO_DISABLE": "1",
+      "PYTHONUNBUFFERED": "1"
+    },
+    "unmet_study_gates": [
+      "held_part_gravity_resolved",
+      "actor_information_audited",
+      "fault_support_validated",
+      "within_job_reset_accounting_verified",
+      "success_and_force_evaluator_verified",
+      "protocol_frozen"
+    ],
+    "scope": [
+      "Upstream infrastructure check only.",
+      "Upstream held-part gravity disabled; preset grasp and synthetic pose observations.",
+      "Snapshot preserves exact project files for this development run; no new-method evidence."
+    ],
+    "process_exit_code": 0,
+    "timed_out": false,
+    "artifact_checks": {
+      "smoke_passed": true
+    },
+    "finished_at_utc": "2026-09-07T02:53:44.794452+00:00",
+    "elapsed_seconds": 16.452999999994063
+  },
+  "local_manifest_sha256": "2597ab85914c87ad60727c1cffc3434ce0c30ccc9be0e46f97e971a5d9074c85",
+  "source_snapshot": "artifacts/assembly/audit-assembly-smoke-verified-20260906/source.zip"
+}

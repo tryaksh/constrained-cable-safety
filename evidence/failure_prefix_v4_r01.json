@@ -1,0 +1,4459 @@
+{
+  "schema": 1,
+  "status": "verified",
+  "research_result": false,
+  "registration_sha256": "53c06fbf978202c86ef672c8e8110dd04ed8233e2027349c1f2530468bff729b",
+  "checks": {
+    "learned_completed": true,
+    "learned_valid_requests": true,
+    "learned_exact_cost": true,
+    "learned_finite_arrays": true,
+    "learned_0_ledger": true,
+    "learned_0_return": true,
+    "learned_0_credit": true,
+    "learned_0_absorbing_zero": true,
+    "learned_1_ledger": true,
+    "learned_1_return": true,
+    "learned_1_credit": true,
+    "learned_1_absorbing_zero": true,
+    "learned_2_ledger": true,
+    "learned_2_return": true,
+    "learned_2_credit": true,
+    "learned_2_absorbing_zero": true,
+    "learned_3_ledger": true,
+    "learned_3_return": true,
+    "learned_3_credit": true,
+    "learned_3_absorbing_zero": true,
+    "learned_4_ledger": true,
+    "learned_4_return": true,
+    "learned_4_credit": true,
+    "learned_4_absorbing_zero": true,
+    "learned_5_ledger": true,
+    "learned_5_return": true,
+    "learned_5_credit": true,
+    "learned_5_absorbing_zero": true,
+    "learned_6_ledger": true,
+    "learned_6_return": true,
+    "learned_6_credit": true,
+    "learned_6_absorbing_zero": true,
+    "learned_7_ledger": true,
+    "learned_7_return": true,
+    "learned_7_credit": true,
+    "learned_7_absorbing_zero": true,
+    "learned_8_ledger": true,
+    "learned_8_return": true,
+    "learned_8_credit": true,
+    "learned_8_absorbing_zero": true,
+    "learned_9_ledger": true,
+    "learned_9_return": true,
+    "learned_9_credit": true,
+    "learned_9_absorbing_zero": true,
+    "learned_10_ledger": true,
+    "learned_10_return": true,
+    "learned_10_credit": true,
+    "learned_10_absorbing_zero": true,
+    "learned_11_ledger": true,
+    "learned_11_return": true,
+    "learned_11_credit": true,
+    "learned_11_absorbing_zero": true,
+    "learned_12_ledger": true,
+    "learned_12_return": true,
+    "learned_12_credit": true,
+    "learned_12_absorbing_zero": true,
+    "learned_13_ledger": true,
+    "learned_13_return": true,
+    "learned_13_credit": true,
+    "learned_13_absorbing_zero": true,
+    "learned_14_ledger": true,
+    "learned_14_return": true,
+    "learned_14_credit": true,
+    "learned_14_absorbing_zero": true,
+    "learned_15_ledger": true,
+    "learned_15_return": true,
+    "learned_15_credit": true,
+    "learned_15_absorbing_zero": true,
+    "learned_16_ledger": true,
+    "learned_16_return": true,
+    "learned_16_credit": true,
+    "learned_16_absorbing_zero": true,
+    "learned_17_ledger": true,
+    "learned_17_return": true,
+    "learned_17_credit": true,
+    "learned_17_absorbing_zero": true,
+    "learned_18_ledger": true,
+    "learned_18_return": true,
+    "learned_18_credit": true,
+    "learned_18_absorbing_zero": true,
+    "learned_19_ledger": true,
+    "learned_19_return": true,
+    "learned_19_credit": true,
+    "learned_19_absorbing_zero": true,
+    "learned_20_ledger": true,
+    "learned_20_return": true,
+    "learned_20_credit": true,
+    "learned_20_absorbing_zero": true,
+    "learned_21_ledger": true,
+    "learned_21_return": true,
+    "learned_21_credit": true,
+    "learned_21_absorbing_zero": true,
+    "learned_22_ledger": true,
+    "learned_22_return": true,
+    "learned_22_credit": true,
+    "learned_22_absorbing_zero": true,
+    "learned_23_ledger": true,
+    "learned_23_return": true,
+    "learned_23_credit": true,
+    "learned_23_absorbing_zero": true,
+    "learned_24_ledger": true,
+    "learned_24_return": true,
+    "learned_24_credit": true,
+    "learned_24_absorbing_zero": true,
+    "learned_25_ledger": true,
+    "learned_25_return": true,
+    "learned_25_credit": true,
+    "learned_25_absorbing_zero": true,
+    "learned_26_ledger": true,
+    "learned_26_return": true,
+    "learned_26_credit": true,
+    "learned_26_absorbing_zero": true,
+    "learned_27_ledger": true,
+    "learned_27_return": true,
+    "learned_27_credit": true,
+    "learned_27_absorbing_zero": true,
+    "retry_completed": true,
+    "retry_valid_requests": true,
+    "retry_exact_cost": true,
+    "retry_finite_arrays": true,
+    "retry_0_ledger": true,
+    "retry_0_return": true,
+    "retry_0_credit": true,
+    "retry_0_absorbing_zero": true,
+    "retry_1_ledger": true,
+    "retry_1_return": true,
+    "retry_1_credit": true,
+    "retry_1_absorbing_zero": true,
+    "retry_2_ledger": true,
+    "retry_2_return": true,
+    "retry_2_credit": true,
+    "retry_2_absorbing_zero": true,
+    "retry_3_ledger": true,
+    "retry_3_return": true,
+    "retry_3_credit": true,
+    "retry_3_absorbing_zero": true,
+    "retry_4_ledger": true,
+    "retry_4_return": true,
+    "retry_4_credit": true,
+    "retry_4_absorbing_zero": true,
+    "retry_5_ledger": true,
+    "retry_5_return": true,
+    "retry_5_credit": true,
+    "retry_5_absorbing_zero": true,
+    "retry_6_ledger": true,
+    "retry_6_return": true,
+    "retry_6_credit": true,
+    "retry_6_absorbing_zero": true,
+    "retry_7_ledger": true,
+    "retry_7_return": true,
+    "retry_7_credit": true,
+    "retry_7_absorbing_zero": true,
+    "retry_8_ledger": true,
+    "retry_8_return": true,
+    "retry_8_credit": true,
+    "retry_8_absorbing_zero": true,
+    "retry_9_ledger": true,
+    "retry_9_return": true,
+    "retry_9_credit": true,
+    "retry_9_absorbing_zero": true,
+    "retry_10_ledger": true,
+    "retry_10_return": true,
+    "retry_10_credit": true,
+    "retry_10_absorbing_zero": true,
+    "retry_11_ledger": true,
+    "retry_11_return": true,
+    "retry_11_credit": true,
+    "retry_11_absorbing_zero": true,
+    "retry_12_ledger": true,
+    "retry_12_return": true,
+    "retry_12_credit": true,
+    "retry_12_absorbing_zero": true,
+    "retry_13_ledger": true,
+    "retry_13_return": true,
+    "retry_13_credit": true,
+    "retry_13_absorbing_zero": true,
+    "retry_14_ledger": true,
+    "retry_14_return": true,
+    "retry_14_credit": true,
+    "retry_14_absorbing_zero": true,
+    "retry_15_ledger": true,
+    "retry_15_return": true,
+    "retry_15_credit": true,
+    "retry_15_absorbing_zero": true,
+    "retry_16_ledger": true,
+    "retry_16_return": true,
+    "retry_16_credit": true,
+    "retry_16_absorbing_zero": true,
+    "retry_17_ledger": true,
+    "retry_17_return": true,
+    "retry_17_credit": true,
+    "retry_17_absorbing_zero": true,
+    "retry_18_ledger": true,
+    "retry_18_return": true,
+    "retry_18_credit": true,
+    "retry_18_absorbing_zero": true,
+    "retry_19_ledger": true,
+    "retry_19_return": true,
+    "retry_19_credit": true,
+    "retry_19_absorbing_zero": true,
+    "retry_20_ledger": true,
+    "retry_20_return": true,
+    "retry_20_credit": true,
+    "retry_20_absorbing_zero": true,
+    "retry_21_ledger": true,
+    "retry_21_return": true,
+    "retry_21_credit": true,
+    "retry_21_absorbing_zero": true,
+    "retry_22_ledger": true,
+    "retry_22_return": true,
+    "retry_22_credit": true,
+    "retry_22_absorbing_zero": true,
+    "retry_23_ledger": true,
+    "retry_23_return": true,
+    "retry_23_credit": true,
+    "retry_23_absorbing_zero": true,
+    "retry_24_ledger": true,
+    "retry_24_return": true,
+    "retry_24_credit": true,
+    "retry_24_absorbing_zero": true,
+    "retry_25_ledger": true,
+    "retry_25_return": true,
+    "retry_25_credit": true,
+    "retry_25_absorbing_zero": true,
+    "retry_26_ledger": true,
+    "retry_26_return": true,
+    "retry_26_credit": true,
+    "retry_26_absorbing_zero": true,
+    "retry_27_ledger": true,
+    "retry_27_return": true,
+    "retry_27_credit": true,
+    "retry_27_absorbing_zero": true,
+    "continue_completed": true,
+    "continue_valid_requests": true,
+    "continue_exact_cost": true,
+    "continue_finite_arrays": true,
+    "continue_0_ledger": true,
+    "continue_0_return": true,
+    "continue_0_credit": true,
+    "continue_0_absorbing_zero": true,
+    "continue_1_ledger": true,
+    "continue_1_return": true,
+    "continue_1_credit": true,
+    "continue_1_absorbing_zero": true,
+    "continue_2_ledger": true,
+    "continue_2_return": true,
+    "continue_2_credit": true,
+    "continue_2_absorbing_zero": true,
+    "continue_3_ledger": true,
+    "continue_3_return": true,
+    "continue_3_credit": true,
+    "continue_3_absorbing_zero": true,
+    "continue_4_ledger": true,
+    "continue_4_return": true,
+    "continue_4_credit": true,
+    "continue_4_absorbing_zero": true,
+    "continue_5_ledger": true,
+    "continue_5_return": true,
+    "continue_5_credit": true,
+    "continue_5_absorbing_zero": true,
+    "continue_6_ledger": true,
+    "continue_6_return": true,
+    "continue_6_credit": true,
+    "continue_6_absorbing_zero": true,
+    "continue_7_ledger": true,
+    "continue_7_return": true,
+    "continue_7_credit": true,
+    "continue_7_absorbing_zero": true,
+    "continue_8_ledger": true,
+    "continue_8_return": true,
+    "continue_8_credit": true,
+    "continue_8_absorbing_zero": true,
+    "continue_9_ledger": true,
+    "continue_9_return": true,
+    "continue_9_credit": true,
+    "continue_9_absorbing_zero": true,
+    "continue_10_ledger": true,
+    "continue_10_return": true,
+    "continue_10_credit": true,
+    "continue_10_absorbing_zero": true,
+    "continue_11_ledger": true,
+    "continue_11_return": true,
+    "continue_11_credit": true,
+    "continue_11_absorbing_zero": true,
+    "continue_12_ledger": true,
+    "continue_12_return": true,
+    "continue_12_credit": true,
+    "continue_12_absorbing_zero": true,
+    "continue_13_ledger": true,
+    "continue_13_return": true,
+    "continue_13_credit": true,
+    "continue_13_absorbing_zero": true,
+    "continue_14_ledger": true,
+    "continue_14_return": true,
+    "continue_14_credit": true,
+    "continue_14_absorbing_zero": true,
+    "continue_15_ledger": true,
+    "continue_15_return": true,
+    "continue_15_credit": true,
+    "continue_15_absorbing_zero": true,
+    "continue_16_ledger": true,
+    "continue_16_return": true,
+    "continue_16_credit": true,
+    "continue_16_absorbing_zero": true,
+    "continue_17_ledger": true,
+    "continue_17_return": true,
+    "continue_17_credit": true,
+    "continue_17_absorbing_zero": true,
+    "continue_18_ledger": true,
+    "continue_18_return": true,
+    "continue_18_credit": true,
+    "continue_18_absorbing_zero": true,
+    "continue_19_ledger": true,
+    "continue_19_return": true,
+    "continue_19_credit": true,
+    "continue_19_absorbing_zero": true,
+    "continue_20_ledger": true,
+    "continue_20_return": true,
+    "continue_20_credit": true,
+    "continue_20_absorbing_zero": true,
+    "continue_21_ledger": true,
+    "continue_21_return": true,
+    "continue_21_credit": true,
+    "continue_21_absorbing_zero": true,
+    "continue_22_ledger": true,
+    "continue_22_return": true,
+    "continue_22_credit": true,
+    "continue_22_absorbing_zero": true,
+    "continue_23_ledger": true,
+    "continue_23_return": true,
+    "continue_23_credit": true,
+    "continue_23_absorbing_zero": true,
+    "continue_24_ledger": true,
+    "continue_24_return": true,
+    "continue_24_credit": true,
+    "continue_24_absorbing_zero": true,
+    "continue_25_ledger": true,
+    "continue_25_return": true,
+    "continue_25_credit": true,
+    "continue_25_absorbing_zero": true,
+    "continue_26_ledger": true,
+    "continue_26_return": true,
+    "continue_26_credit": true,
+    "continue_26_absorbing_zero": true,
+    "continue_27_ledger": true,
+    "continue_27_return": true,
+    "continue_27_credit": true,
+    "continue_27_absorbing_zero": true,
+    "learned_actions_after_handoff_equal_frozen_means": true,
+    "exact_registered_checkpoint": true,
+    "retry_same_initial_state": true,
+    "retry_same_sensor_draws": true,
+    "retry_same_cuda_rng_before_steps": true,
+    "retry_same_dead_zone": true,
+    "retry_same_prefix_requested_action": true,
+    "retry_same_prefix_applied_action": true,
+    "retry_same_prefix_actor_before": true,
+    "retry_same_prefix_job_reward": true,
+    "retry_same_prefix_physics": true,
+    "retry_same_checkpoint": true,
+    "continue_same_initial_state": true,
+    "continue_same_sensor_draws": true,
+    "continue_same_cuda_rng_before_steps": true,
+    "continue_same_dead_zone": true,
+    "continue_same_prefix_requested_action": true,
+    "continue_same_prefix_applied_action": true,
+    "continue_same_prefix_actor_before": true,
+    "continue_same_prefix_job_reward": true,
+    "continue_same_prefix_physics": true,
+    "continue_same_checkpoint": true,
+    "frozen_retry_positive_control": true,
+    "identical_prefix_failure_cohort": true
+  },
+  "arms": {
+    "learned": {
+      "manifest_sha256": "099124d7a3d4208f1a1ca57ff3a1a5505b8d2a4ba06cd13e5bf5087b8da8f5f9",
+      "checkpoint_sha256": "cee349b1b9283a66924294323f5c7bd8f5de98434be70ed19d8a07986f9eb532",
+      "cost": {
+        "rollout_control_transitions": 12600,
+        "active_control_transitions": 4322,
+        "absorbing_control_transitions": 8278,
+        "rollout_physics_env_steps": 100800,
+        "active_physics_env_steps": 34493,
+        "initialization_physics_env_steps": 1876,
+        "charged_control_equivalent_transitions": 12834.5,
+        "scope": "All rollout slots, including holds, plus initialization physics divided by decimation. Probes/mining charged by their own manifests."
+      },
+      "metrics": {
+        "all": {
+          "requests": 28,
+          "completions": 22,
+          "outcomes": {
+            "success": 22,
+            "force_abort": 3,
+            "deadline": 3
+          },
+          "upstream_success_seen": 24,
+          "witnessed_contact_failures": 17,
+          "witnessed_recoveries": 0,
+          "mean_time_per_request_s": 10.26577380952381,
+          "peak_raw_wrist_force_n": 20.185998916625977,
+          "mean_discounted_return": 253.37473604823236,
+          "forbidden_events": 0,
+          "active_control_transitions": 4322,
+          "return_by_outcome": {
+            "deadline": {
+              "requests": 3,
+              "mean": 49.36646279403531
+            },
+            "force_abort": {
+              "requests": 3,
+              "mean": 32.86864674525429
+            },
+            "success": {
+              "requests": 22,
+              "mean": 311.2630582151199
+            }
+          }
+        },
+        "nominal": {
+          "requests": 4,
+          "completions": 3,
+          "outcomes": {
+            "success": 3,
+            "force_abort": 1
+          },
+          "upstream_success_seen": 3,
+          "witnessed_contact_failures": 2,
+          "witnessed_recoveries": 0,
+          "mean_time_per_request_s": 9.670833333333333,
+          "peak_raw_wrist_force_n": 20.185998916625977,
+          "mean_discounted_return": 182.76570881373203,
+          "forbidden_events": 0,
+          "active_control_transitions": 582,
+          "return_by_outcome": {
+            "force_abort": {
+              "requests": 1,
+              "mean": 5.990864023358306
+            },
+            "success": {
+              "requests": 3,
+              "mean": 241.69065707718994
+            }
+          }
+        },
+        "bias_low": {
+          "requests": 4,
+          "completions": 4,
+          "outcomes": {
+            "success": 4
+          },
+          "upstream_success_seen": 4,
+          "witnessed_contact_failures": 3,
+          "witnessed_recoveries": 0,
+          "mean_time_per_request_s": 7.466666666666667,
+          "peak_raw_wrist_force_n": 19.393247604370117,
+          "mean_discounted_return": 323.42530133076957,
+          "forbidden_events": 0,
+          "active_control_transitions": 449,
+          "return_by_outcome": {
+            "success": {
+              "requests": 4,
+              "mean": 323.42530133076957
+            }
+          }
+        },
+        "bias_medium": {
+          "requests": 4,
+          "completions": 3,
+          "outcomes": {
+            "success": 3,
+            "deadline": 1
+          },
+          "upstream_success_seen": 3,
+          "witnessed_contact_failures": 3,
+          "witnessed_recoveries": 0,
+          "mean_time_per_request_s": 12.277083333333334,
+          "peak_raw_wrist_force_n": 19.967851638793945,
+          "mean_discounted_return": 278.46898798905204,
+          "forbidden_events": 0,
+          "active_control_transitions": 738,
+          "return_by_outcome": {
+            "deadline": {
+              "requests": 1,
+              "mean": 53.157926096332055
+            },
+            "success": {
+              "requests": 3,
+              "mean": 353.5726752866254
+            }
+          }
+        },
+        "approach_low": {
+          "requests": 4,
+          "completions": 2,
+          "outcomes": {
+            "deadline": 1,
+            "force_abort": 1,
+            "success": 2
+          },
+          "upstream_success_seen": 3,
+          "witnessed_contact_failures": 3,
+          "witnessed_recoveries": 0,
+          "mean_time_per_request_s": 13.933333333333334,
+          "peak_raw_wrist_force_n": 20.06166648864746,
+          "mean_discounted_return": 177.44135955469105,
+          "forbidden_events": 0,
+          "active_control_transitions": 837,
+          "return_by_outcome": {
+            "deadline": {
+              "requests": 1,
+              "mean": 44.21749497508032
+            },
+            "force_abort": {
+              "requests": 1,
+              "mean": 72.00993624223295
+            },
+            "success": {
+              "requests": 2,
+              "mean": 296.76900350072543
+            }
+          }
+        },
+        "approach_high": {
+          "requests": 4,
+          "completions": 3,
+          "outcomes": {
+            "success": 3,
+            "deadline": 1
+          },
+          "upstream_success_seen": 3,
+          "witnessed_contact_failures": 2,
+          "witnessed_recoveries": 0,
+          "mean_time_per_request_s": 14.845833333333333,
+          "peak_raw_wrist_force_n": 19.907447814941406,
+          "mean_discounted_return": 219.56373228541273,
+          "forbidden_events": 0,
+          "active_control_transitions": 892,
+          "return_by_outcome": {
+            "deadline": {
+              "requests": 1,
+              "mean": 50.723967310693546
+            },
+            "success": {
+              "requests": 3,
+              "mean": 275.84365394365244
+            }
+          }
+        },
+        "friction_low": {
+          "requests": 4,
+          "completions": 3,
+          "outcomes": {
+            "success": 3,
+            "force_abort": 1
+          },
+          "upstream_success_seen": 4,
+          "witnessed_contact_failures": 2,
+          "witnessed_recoveries": 0,
+          "mean_time_per_request_s": 6.695833333333334,
+          "peak_raw_wrist_force_n": 20.08344078063965,
+          "mean_discounted_return": 234.50196841663262,
+          "forbidden_events": 0,
+          "active_control_transitions": 403,
+          "return_by_outcome": {
+            "force_abort": {
+              "requests": 1,
+              "mean": 20.605139970171603
+            },
+            "success": {
+              "requests": 3,
+              "mean": 305.80091123211963
+            }
+          }
+        },
+        "friction_high": {
+          "requests": 4,
+          "completions": 4,
+          "outcomes": {
+            "success": 4
+          },
+          "upstream_success_seen": 4,
+          "witnessed_contact_failures": 2,
+          "witnessed_recoveries": 0,
+          "mean_time_per_request_s": 6.970833333333333,
+          "peak_raw_wrist_force_n": 19.84935760498047,
+          "mean_discounted_return": 357.45609394733646,
+          "forbidden_events": 0,
+          "active_control_transitions": 421,
+          "return_by_outcome": {
+            "success": {
+              "requests": 4,
+              "mean": 357.45609394733646
+            }
+          }
+        }
+      },
+      "cases": [
+        {
+          "case_id": "dev-10070-nominal-0",
+          "bin_id": "nominal",
+          "outcome": "success",
+          "success": true,
+          "elapsed_s": 14.95,
+          "discounted_return": 198.2488958631485,
+          "upstream_discounted_return": 69.58989850775974,
+          "discounted_reward_terms": {
+            "kp_baseline": 22.428265402393308,
+            "kp_coarse": 23.61799507511419,
+            "kp_fine": 14.92293931536608,
+            "action_penalty_ee": 0.0,
+            "action_grad_penalty": 0.0,
+            "curr_engaged": 20.656681098106414,
+            "curr_success": 2.6624708034899287,
+            "action_penalty_asset": -0.26456659541555727,
+            "contact_penalty": 0.0,
+            "success_pred_error": -14.433886591294625
+          },
+          "completion_credit_return": 128.65899746877756,
+          "peak_raw_wrist_n": 19.71228790283203,
+          "final_target_xyz_m": [
+            -0.0036233351565897465,
+            0.0020393000449985266,
+            0.004929154645651579
+          ],
+          "final_tool_xyz_m": [
+            0.0017795562744140625,
+            0.001039743423461914,
+            0.009081467986106873
+          ],
+          "minimum_held_base_height_m": 3.2071024179472496e-06,
+          "contact_fraction": 0.6471571922302246,
+          "witnessed_recovery": false,
+          "prefix_terminal": false,
+          "witnessed_failure_by_handoff": false,
+          "active_at_handoff": true,
+          "recovery_after_prefix_failure": false
+        },
+        {
+          "case_id": "dev-10070-nominal-1",
+          "bin_id": "nominal",
+          "outcome": "success",
+          "success": true,
+          "elapsed_s": 9.733333333333333,
+          "discounted_return": 280.1864448449283,
+          "upstream_discounted_return": 60.72407963995725,
+          "discounted_reward_terms": {
+            "kp_baseline": 17.252537336170562,
+            "kp_coarse": 18.1515307618212,
+            "kp_fine": 12.666250062331292,
+            "action_penalty_ee": 0.0,
+            "action_grad_penalty": 0.0,
+            "curr_engaged": 16.738015080005045,
+            "curr_success": 3.9362670595610245,
+            "action_penalty_asset": -0.1475018505216755,
+            "contact_penalty": -0.07351955072910293,
+            "success_pred_error": -7.799499258681081
+          },
+          "completion_credit_return": 219.46236445792002,
+          "peak_raw_wrist_n": 13.548151969909668,
+          "final_target_xyz_m": [
+            -0.00328044593334198,
+            0.003197052050381899,
+            0.007820175029337406
+          ],
+          "final_tool_xyz_m": [
+            0.0011510848999023438,
+            0.0008113384246826172,
+            0.010234201326966286
+          ],
+          "minimum_held_base_height_m": 6.750561296939989e-05,
+          "contact_fraction": 0.7979452013969421,
+          "witnessed_recovery": false,
+          "prefix_terminal": false,
+          "witnessed_failure_by_handoff": true,
+          "active_at_handoff": true,
+          "recovery_after_prefix_failure": false
+        },
+        {
+          "case_id": "dev-10070-nominal-2",
+          "bin_id": "nominal",
+          "outcome": "success",
+          "success": true,
+          "elapsed_s": 12.608333333333333,
+          "discounted_return": 246.63663052349298,
+          "upstream_discounted_return": 81.58062427063568,
+          "discounted_reward_terms": {
+            "kp_baseline": 20.35385232575799,
+            "kp_coarse": 21.870634057538837,
+            "kp_fine": 17.14665796608392,
+            "action_penalty_ee": 0.0,
+            "action_grad_penalty": 0.0,
+            "curr_engaged": 37.10285855027419,
+            "curr_success": 3.1730508203586054,
+            "action_penalty_asset": -0.12032727788961706,
+            "contact_penalty": -3.7643272907568903,
+            "success_pred_error": -14.181774880731371
+          },
+          "completion_credit_return": 165.0560062840198,
+          "peak_raw_wrist_n": 19.270719528198242,
+          "final_target_xyz_m": [
+            -0.0026941541582345963,
+            -0.00026934468769468367,
+            0.0009664811077527702
+          ],
+          "final_tool_xyz_m": [
+            0.0014352798461914062,
+            0.0013641640543937683,
+            0.007346021942794323
+          ],
+          "minimum_held_base_height_m": 5.8980286121369796e-05,
+          "contact_fraction": 0.5393258333206177,
+          "witnessed_recovery": false,
+          "prefix_terminal": false,
+          "witnessed_failure_by_handoff": true,
+          "active_at_handoff": true,
+          "recovery_after_prefix_failure": false
+        },
+        {
+          "case_id": "dev-10070-nominal-3",
+          "bin_id": "nominal",
+          "outcome": "force_abort",
+          "success": false,
+          "elapsed_s": 1.3916666666666666,
+          "discounted_return": 5.990864023358307,
+          "upstream_discounted_return": 5.990864047033473,
+          "discounted_reward_terms": {
+            "kp_baseline": 3.162205750921813,
+            "kp_coarse": 2.305933873266155,
+            "kp_fine": 0.5275844801365155,
+            "action_penalty_ee": 0.0,
+            "action_grad_penalty": 0.0,
+            "curr_engaged": 0.0,
+            "curr_success": 0.0,
+            "action_penalty_asset": -0.004860057291009839,
+            "contact_penalty": 0.0,
+            "success_pred_error": 0.0
+          },
+          "completion_credit_return": 0.0,
+          "peak_raw_wrist_n": 20.185998916625977,
+          "final_target_xyz_m": [
+            -0.0002247049706056714,
+            2.184268487326335e-05,
+            0.029065821319818497
+          ],
+          "final_tool_xyz_m": [
+            -0.004728794097900391,
+            0.001611948013305664,
+            0.03401460871100426
+          ],
+          "minimum_held_base_height_m": 0.025004624947905542,
+          "contact_fraction": 0.011976048350334167,
+          "witnessed_recovery": false,
+          "prefix_terminal": true,
+          "witnessed_failure_by_handoff": false,
+          "active_at_handoff": false,
+          "recovery_after_prefix_failure": false
+        },
+        {
+          "case_id": "dev-10070-bias_low-0",
+          "bin_id": "bias_low",
+          "outcome": "success",
+          "success": true,
+          "elapsed_s": 7.483333333333333,
+          "discounted_return": 330.3327469166244,
+          "upstream_discounted_return": 58.73213285853642,
+          "discounted_reward_terms": {
+            "kp_baseline": 14.275889111126085,
+            "kp_coarse": 14.633354100316964,
+            "kp_fine": 11.302135218590168,
+            "action_penalty_ee": 0.0,
+            "action_grad_penalty": 0.0,
+            "curr_engaged": 21.87731391570234,
+            "curr_success": 4.667666413125879,
+            "action_penalty_asset": -0.09356378944449295,
+            "contact_penalty": -2.6781764226365294,
+            "success_pred_error": -5.252485688244001
+          },
+          "completion_credit_return": 271.60061388821464,
+          "peak_raw_wrist_n": 19.31596565246582,
+          "final_target_xyz_m": [
+            -0.002041999716311693,
+            0.0024818622041493654,
+            0.00544012663885951
+          ],
+          "final_tool_xyz_m": [
+            -0.0005187339847907424,
+            0.00013637542724609375,
+            0.006759357638657093
+          ],
+          "minimum_held_base_height_m": 9.284131228923936e-05,
+          "contact_fraction": 0.5846325159072876,
+          "witnessed_recovery": false,
+          "prefix_terminal": false,
+          "witnessed_failure_by_handoff": true,
+          "active_at_handoff": true,
+          "recovery_after_prefix_failure": false
+        },
+        {
+          "case_id": "dev-10070-bias_low-1",
+          "bin_id": "bias_low",
+          "outcome": "success",
+          "success": true,
+          "elapsed_s": 8.983333333333333,
+          "discounted_return": 288.11259763091346,
+          "upstream_discounted_return": 51.25411752580612,
+          "discounted_reward_terms": {
+            "kp_baseline": 16.256520516092262,
+            "kp_coarse": 16.467262757656794,
+            "kp_fine": 9.515391048726363,
+            "action_penalty_ee": 0.0,
+            "action_grad_penalty": 0.0,
+            "curr_engaged": 11.911587678751939,
+            "curr_success": 3.6485504897372096,
+            "action_penalty_asset": -0.12969869906310655,
+            "contact_penalty": 0.0,
+            "success_pred_error": -6.415496266095344
+          },
+          "completion_credit_return": 236.85848019334526,
+          "peak_raw_wrist_n": 19.283504486083984,
+          "final_target_xyz_m": [
+            -0.0025512566789984703,
+            0.0010256072273477912,
+            0.0014905888820067048
+          ],
+          "final_tool_xyz_m": [
+            -0.00012237357441335917,
+            0.0004954338073730469,
+            0.007035586051642895
+          ],
+          "minimum_held_base_height_m": 1.5101954340936141e-05,
+          "contact_fraction": 0.47680890560150146,
+          "witnessed_recovery": false,
+          "prefix_terminal": false,
+          "witnessed_failure_by_handoff": false,
+          "active_at_handoff": true,
+          "recovery_after_prefix_failure": false
+        },
+        {
+          "case_id": "dev-10070-bias_low-2",
+          "bin_id": "bias_low",
+          "outcome": "success",
+          "success": true,
+          "elapsed_s": 6.733333333333333,
+          "discounted_return": 337.87192254458876,
+          "upstream_discounted_return": 47.4096286592114,
+          "discounted_reward_terms": {
+            "kp_baseline": 13.19886016243282,
+            "kp_coarse": 13.109073487084512,
+            "kp_fine": 8.526616869020593,
+            "action_penalty_ee": 0.0,
+            "action_grad_penalty": 0.0,
+            "curr_engaged": 11.38233174715782,
+            "curr_success": 4.932259549106875,
+            "action_penalty_asset": -0.04243277163825779,
+            "contact_penalty": -0.3011819470242591,
+            "success_pred_error": -3.395898436928698
+          },
+          "completion_credit_return": 290.4623026356487,
+          "peak_raw_wrist_n": 18.685523986816406,
+          "final_target_xyz_m": [
+            -0.0023350799456238747,
+            0.0033683315850794315,
+            0.004082571715116501
+          ],
+          "final_tool_xyz_m": [
+            0.00020933151245117188,
+            -0.00021880341228097677,
+            0.00555000314489007
+          ],
+          "minimum_held_base_height_m": 5.369596183300157e-05,
+          "contact_fraction": 0.5878713130950928,
+          "witnessed_recovery": false,
+          "prefix_terminal": false,
+          "witnessed_failure_by_handoff": true,
+          "active_at_handoff": true,
+          "recovery_after_prefix_failure": false
+        },
+        {
+          "case_id": "dev-10070-bias_low-3",
+          "bin_id": "bias_low",
+          "outcome": "success",
+          "success": true,
+          "elapsed_s": 6.666666666666667,
+          "discounted_return": 337.38393823095157,
+          "upstream_discounted_return": 45.15479470753329,
+          "discounted_reward_terms": {
+            "kp_baseline": 13.102459716557256,
+            "kp_coarse": 13.589674243845565,
+            "kp_fine": 10.478351004285114,
+            "action_penalty_ee": 0.0,
+            "action_grad_penalty": 0.0,
+            "curr_engaged": 17.558186268117872,
+            "curr_success": 4.9570447729717335,
+            "action_penalty_asset": -0.07452984543341866,
+            "contact_penalty": -11.488609285316873,
+            "success_pred_error": -2.9677821674939597
+          },
+          "completion_credit_return": 292.22914354189,
+          "peak_raw_wrist_n": 19.393247604370117,
+          "final_target_xyz_m": [
+            -0.0022542793303728104,
+            0.002850100165233016,
+            0.006169895175844431
+          ],
+          "final_tool_xyz_m": [
+            -0.0016012191772460938,
+            0.0003652033628895879,
+            0.007040937431156635
+          ],
+          "minimum_held_base_height_m": 4.4788792729379134e-05,
+          "contact_fraction": 0.5212500095367432,
+          "witnessed_recovery": false,
+          "prefix_terminal": false,
+          "witnessed_failure_by_handoff": true,
+          "active_at_handoff": true,
+          "recovery_after_prefix_failure": false
+        },
+        {
+          "case_id": "dev-10070-bias_medium-0",
+          "bin_id": "bias_medium",
+          "outcome": "success",
+          "success": true,
+          "elapsed_s": 6.991666666666666,
+          "discounted_return": 330.6731130570412,
+          "upstream_discounted_return": 45.45848170804736,
+          "discounted_reward_terms": {
+            "kp_baseline": 13.503229001584664,
+            "kp_coarse": 14.006205186112648,
+            "kp_fine": 9.802606949692846,
+            "action_penalty_ee": 0.0,
+            "action_grad_penalty": 0.0,
+            "curr_engaged": 17.209647502576466,
+            "curr_success": 4.240606143190217,
+            "action_penalty_asset": -0.055497028141486354,
+            "contact_penalty": -9.607815762480179,
+            "success_pred_error": -3.6405002844878243
+          },
+          "completion_credit_return": 285.2146311751995,
+          "peak_raw_wrist_n": 14.049351692199707,
+          "final_target_xyz_m": [
+            -0.0011980514973402023,
+            0.0015679702628403902,
+            0.006061012856662273
+          ],
+          "final_tool_xyz_m": [
+            -0.000508178723976016,
+            -4.2557716369628906e-05,
+            0.008173549547791481
+          ],
+          "minimum_held_base_height_m": 1.4140829443932967e-05,
+          "contact_fraction": 0.4660309851169586,
+          "witnessed_recovery": false,
+          "prefix_terminal": false,
+          "witnessed_failure_by_handoff": true,
+          "active_at_handoff": true,
+          "recovery_after_prefix_failure": false
+        },
+        {
+          "case_id": "dev-10070-bias_medium-1",
+          "bin_id": "bias_medium",
+          "outcome": "deadline",
+          "success": false,
+          "elapsed_s": 30.0,
+          "discounted_return": 53.15792609633199,
+          "upstream_discounted_return": 53.15792625457537,
+          "discounted_reward_terms": {
+            "kp_baseline": 29.747665882602,
+            "kp_coarse": 29.338942955929433,
+            "kp_fine": 12.648372910299674,
+            "action_penalty_ee": 0.0,
+            "action_grad_penalty": 0.0,
+            "curr_engaged": 0.0,
+            "curr_success": 0.0,
+            "action_penalty_asset": -0.15764550339881217,
+            "contact_penalty": -0.005073932361354803,
+            "success_pred_error": -18.414336058495568
+          },
+          "completion_credit_return": 0.0,
+          "peak_raw_wrist_n": 19.24302101135254,
+          "final_target_xyz_m": [
+            0.0016231866320595145,
+            -0.0031937919557094574,
+            0.028778422623872757
+          ],
+          "final_tool_xyz_m": [
+            0.001146902097389102,
+            0.0029296875,
+            0.0314667671918869
+          ],
+          "minimum_held_base_height_m": 0.024931078404188158,
+          "contact_fraction": 0.7730555534362793,
+          "witnessed_recovery": false,
+          "prefix_terminal": false,
+          "witnessed_failure_by_handoff": true,
+          "active_at_handoff": true,
+          "recovery_after_prefix_failure": false
+        },
+        {
+          "case_id": "dev-10070-bias_medium-2",
+          "bin_id": "bias_medium",
+          "outcome": "success",
+          "success": true,
+          "elapsed_s": 8.891666666666666,
+          "discounted_return": 282.4830001170015,
+          "upstream_discounted_return": 44.1270380897503,
+          "discounted_reward_terms": {
+            "kp_baseline": 16.171204892873266,
+            "kp_coarse": 16.580078937018165,
+            "kp_fine": 11.453638608367314,
+            "action_penalty_ee": 0.0,
+            "action_grad_penalty": 0.0,
+            "curr_engaged": 17.86503638720538,
+            "curr_success": 4.201307855960804,
+            "action_penalty_asset": -0.2243776635951349,
+            "contact_penalty": -14.839004286393282,
+            "success_pred_error": -7.0808466416862155
+          },
+          "completion_credit_return": 238.35596203976687,
+          "peak_raw_wrist_n": 19.570463180541992,
+          "final_target_xyz_m": [
+            0.0009889458306133747,
+            0.0027932454831898212,
+            0.0025193023029714823
+          ],
+          "final_tool_xyz_m": [
+            -0.0017848014831542969,
+            -0.0018535747658461332,
+            0.005463005974888802
+          ],
+          "minimum_held_base_height_m": 5.112551152706285e-05,
+          "contact_fraction": 0.63261479139328,
+          "witnessed_recovery": false,
+          "prefix_terminal": false,
+          "witnessed_failure_by_handoff": true,
+          "active_at_handoff": true,
+          "recovery_after_prefix_failure": false
+        },
+        {
+          "case_id": "dev-10070-bias_medium-3",
+          "bin_id": "bias_medium",
+          "outcome": "success",
+          "success": true,
+          "elapsed_s": 3.225,
+          "discounted_return": 447.56191268583336,
+          "upstream_discounted_return": 50.10877720865739,
+          "discounted_reward_terms": {
+            "kp_baseline": 7.10488772138974,
+            "kp_coarse": 7.508230686653995,
+            "kp_fine": 8.97025919771757,
+            "action_penalty_ee": 0.0,
+            "action_grad_penalty": 0.0,
+            "curr_engaged": 20.099812563402995,
+            "curr_success": 6.4331346676762955,
+            "action_penalty_asset": -0.0075476281832111535,
+            "contact_penalty": 0.0,
+            "success_pred_error": 0.0
+          },
+          "completion_credit_return": 397.4531349240229,
+          "peak_raw_wrist_n": 19.967851638793945,
+          "final_target_xyz_m": [
+            -1.6201251128222793e-05,
+            6.182971992529929e-05,
+            0.009100421331822872
+          ],
+          "final_tool_xyz_m": [
+            -0.0005003213882446289,
+            0.0022364750038832426,
+            0.008031490258872509
+          ],
+          "minimum_held_base_height_m": 0.00012148134410381456,
+          "contact_fraction": 0.23255814611911774,
+          "witnessed_recovery": false,
+          "prefix_terminal": true,
+          "witnessed_failure_by_handoff": false,
+          "active_at_handoff": false,
+          "recovery_after_prefix_failure": false
+        },
+        {
+          "case_id": "dev-10070-approach_low-0",
+          "bin_id": "approach_low",
+          "outcome": "deadline",
+          "success": false,
+          "elapsed_s": 30.0,
+          "discounted_return": 44.21749497508033,
+          "upstream_discounted_return": 44.21749494345435,
+          "discounted_reward_terms": {
+            "kp_baseline": 29.7481890844413,
+            "kp_coarse": 29.375728693707913,
+            "kp_fine": 12.67318191317177,
+            "action_penalty_ee": 0.0,
+            "action_grad_penalty": 0.0,
+            "curr_engaged": 0.0,
+            "curr_success": 0.0,
+            "action_penalty_asset": -0.10740300487179655,
+            "contact_penalty": -9.170555494122025,
+            "success_pred_error": -18.301646248872807
+          },
+          "completion_credit_return": 0.0,
+          "peak_raw_wrist_n": 18.960798263549805,
+          "final_target_xyz_m": [
+            -0.002074980176985264,
+            0.0002840610686689615,
+            0.026357142254710197
+          ],
+          "final_tool_xyz_m": [
+            0.0009813308715820312,
+            0.00018677301704883575,
+            0.030918458476662636
+          ],
+          "minimum_held_base_height_m": 0.02483375705778599,
+          "contact_fraction": 0.8525000214576721,
+          "witnessed_recovery": false,
+          "prefix_terminal": false,
+          "witnessed_failure_by_handoff": true,
+          "active_at_handoff": true,
+          "recovery_after_prefix_failure": false
+        },
+        {
+          "case_id": "dev-10070-approach_low-1",
+          "bin_id": "approach_low",
+          "outcome": "force_abort",
+          "success": false,
+          "elapsed_s": 8.25,
+          "discounted_return": 72.00993624223292,
+          "upstream_discounted_return": 72.00993606754996,
+          "discounted_reward_terms": {
+            "kp_baseline": 15.302185856947393,
+            "kp_coarse": 16.908692898487878,
+            "kp_fine": 15.13726960669702,
+            "action_penalty_ee": 0.0,
+            "action_grad_penalty": 0.0,
+            "curr_engaged": 31.44781583093544,
+            "curr_success": 0.0,
+            "action_penalty_asset": -0.09539547669037979,
+            "contact_penalty": 0.0,
+            "success_pred_error": -6.690632648827389
+          },
+          "completion_credit_return": 0.0,
+          "peak_raw_wrist_n": 20.06166648864746,
+          "final_target_xyz_m": [
+            -0.002267282223328948,
+            0.002692731563001871,
+            0.0013801541645079851
+          ],
+          "final_tool_xyz_m": [
+            -0.0008854866027832031,
+            -0.0007560253143310547,
+            0.005288021173328161
+          ],
+          "minimum_held_base_height_m": 9.961202740669389e-05,
+          "contact_fraction": 0.6858586072921753,
+          "witnessed_recovery": false,
+          "prefix_terminal": false,
+          "witnessed_failure_by_handoff": true,
+          "active_at_handoff": true,
+          "recovery_after_prefix_failure": false
+        },
+        {
+          "case_id": "dev-10070-approach_low-2",
+          "bin_id": "approach_low",
+          "outcome": "success",
+          "success": true,
+          "elapsed_s": 9.25,
+          "discounted_return": 291.0108112019299,
+          "upstream_discounted_return": 60.067675997586704,
+          "discounted_reward_terms": {
+            "kp_baseline": 16.589809245578284,
+            "kp_coarse": 16.677062397540382,
+            "kp_fine": 11.71048403106882,
+            "action_penalty_ee": 0.0,
+            "action_grad_penalty": 0.0,
+            "curr_engaged": 18.607376914784417,
+            "curr_success": 3.5761249405210256,
+            "action_penalty_asset": -0.08679165506415783,
+            "contact_penalty": -0.19199982967476936,
+            "success_pred_error": -6.814390047167278
+          },
+          "completion_credit_return": 230.94313507692394,
+          "peak_raw_wrist_n": 12.597701072692871,
+          "final_target_xyz_m": [
+            -0.0008255221182480454,
+            0.0004259061242919415,
+            0.0036852352786809206
+          ],
+          "final_tool_xyz_m": [
+            -0.0009058713912963867,
+            -0.00016498565673828125,
+            0.004737459123134613
+          ],
+          "minimum_held_base_height_m": 6.847046315670152e-05,
+          "contact_fraction": 0.45315316319465637,
+          "witnessed_recovery": false,
+          "prefix_terminal": false,
+          "witnessed_failure_by_handoff": false,
+          "active_at_handoff": true,
+          "recovery_after_prefix_failure": false
+        },
+        {
+          "case_id": "dev-10070-approach_low-3",
+          "bin_id": "approach_low",
+          "outcome": "success",
+          "success": true,
+          "elapsed_s": 8.233333333333333,
+          "discounted_return": 302.527195799521,
+          "upstream_discounted_return": 48.77644440526457,
+          "discounted_reward_terms": {
+            "kp_baseline": 15.296672462222705,
+            "kp_coarse": 15.78791407420734,
+            "kp_fine": 9.751528094541515,
+            "action_penalty_ee": 0.0,
+            "action_grad_penalty": 0.0,
+            "curr_engaged": 13.801397471017978,
+            "curr_success": 3.8553736279867286,
+            "action_penalty_asset": -0.07216144229906836,
+            "contact_penalty": -4.809447647303623,
+            "success_pred_error": -4.834832235109004
+          },
+          "completion_credit_return": 253.7507521827591,
+          "peak_raw_wrist_n": 16.89726448059082,
+          "final_target_xyz_m": [
+            -0.001642673509195447,
+            0.001039471011608839,
+            0.003558803116902709
+          ],
+          "final_tool_xyz_m": [
+            -0.0006255507469177246,
+            -4.029273986816406e-05,
+            0.009708949364721775
+          ],
+          "minimum_held_base_height_m": 2.868436276912828e-05,
+          "contact_fraction": 0.6548582911491394,
+          "witnessed_recovery": false,
+          "prefix_terminal": false,
+          "witnessed_failure_by_handoff": true,
+          "active_at_handoff": true,
+          "recovery_after_prefix_failure": false
+        },
+        {
+          "case_id": "dev-10070-approach_high-0",
+          "bin_id": "approach_high",
+          "outcome": "success",
+          "success": true,
+          "elapsed_s": 7.725,
+          "discounted_return": 314.55080633020197,
+          "upstream_discounted_return": 47.91634240337569,
+          "discounted_reward_terms": {
+            "kp_baseline": 14.55749159731587,
+            "kp_coarse": 14.587336628984815,
+            "kp_fine": 9.083991644995736,
+            "action_penalty_ee": 0.0,
+            "action_grad_penalty": 0.0,
+            "curr_engaged": 13.732360247850742,
+            "curr_success": 4.0131170447930815,
+            "action_penalty_asset": -0.0739481669996146,
+            "contact_penalty": -3.382175889976506,
+            "success_pred_error": -4.6018307035884405
+          },
+          "completion_credit_return": 266.6344634221832,
+          "peak_raw_wrist_n": 19.43140411376953,
+          "final_target_xyz_m": [
+            -0.0017836106708273292,
+            0.001741980784572661,
+            0.007264032959938049
+          ],
+          "final_tool_xyz_m": [
+            -0.0012673735618591309,
+            -0.0008569955825805664,
+            0.009433107450604439
+          ],
+          "minimum_held_base_height_m": 3.3016875386239486e-05,
+          "contact_fraction": 0.5275080800056458,
+          "witnessed_recovery": false,
+          "prefix_terminal": false,
+          "witnessed_failure_by_handoff": true,
+          "active_at_handoff": true,
+          "recovery_after_prefix_failure": false
+        },
+        {
+          "case_id": "dev-10070-approach_high-1",
+          "bin_id": "approach_high",
+          "outcome": "success",
+          "success": true,
+          "elapsed_s": 12.716666666666667,
+          "discounted_return": 217.65249945005957,
+          "upstream_discounted_return": 53.727445803375915,
+          "discounted_reward_terms": {
+            "kp_baseline": 20.407968968690945,
+            "kp_coarse": 20.11282594107427,
+            "kp_fine": 10.443012471235502,
+            "action_penalty_ee": 0.0,
+            "action_grad_penalty": 0.0,
+            "curr_engaged": 9.429230317345178,
+            "curr_success": 2.7555791009589967,
+            "action_penalty_asset": -0.1358898408637769,
+            "contact_penalty": 0.0,
+            "success_pred_error": -9.28528115506521
+          },
+          "completion_credit_return": 163.9250534323736,
+          "peak_raw_wrist_n": 19.907447814941406,
+          "final_target_xyz_m": [
+            -0.003594679059460759,
+            0.001994361402466893,
+            0.006253221537917852
+          ],
+          "final_tool_xyz_m": [
+            0.00023889541625976562,
+            0.00038913264870643616,
+            0.0071727740578353405
+          ],
+          "minimum_held_base_height_m": 3.339312970638414e-05,
+          "contact_fraction": 0.5733944773674011,
+          "witnessed_recovery": false,
+          "prefix_terminal": false,
+          "witnessed_failure_by_handoff": false,
+          "active_at_handoff": true,
+          "recovery_after_prefix_failure": false
+        },
+        {
+          "case_id": "dev-10070-approach_high-2",
+          "bin_id": "approach_high",
+          "outcome": "deadline",
+          "success": false,
+          "elapsed_s": 30.0,
+          "discounted_return": 50.72396731069355,
+          "upstream_discounted_return": 50.723967293838356,
+          "discounted_reward_terms": {
+            "kp_baseline": 29.733715271506213,
+            "kp_coarse": 27.58348517574389,
+            "kp_fine": 10.234741675438523,
+            "action_penalty_ee": 0.0,
+            "action_grad_penalty": 0.0,
+            "curr_engaged": 0.0,
+            "curr_success": 0.0,
+            "action_penalty_asset": -0.15135796506112856,
+            "contact_penalty": 0.0,
+            "success_pred_error": -16.676616863789153
+          },
+          "completion_credit_return": 0.0,
+          "peak_raw_wrist_n": 18.839927673339844,
+          "final_target_xyz_m": [
+            -0.0012339837849140167,
+            -0.0008369546267203987,
+            0.03161865100264549
+          ],
+          "final_tool_xyz_m": [
+            0.0009559988975524902,
+            0.0005898475646972656,
+            0.035801950842142105
+          ],
+          "minimum_held_base_height_m": 0.02502761371433735,
+          "contact_fraction": 0.8938888907432556,
+          "witnessed_recovery": false,
+          "prefix_terminal": false,
+          "witnessed_failure_by_handoff": true,
+          "active_at_handoff": true,
+          "recovery_after_prefix_failure": false
+        },
+        {
+          "case_id": "dev-10070-approach_high-3",
+          "bin_id": "approach_high",
+          "outcome": "success",
+          "success": true,
+          "elapsed_s": 8.941666666666666,
+          "discounted_return": 295.3276560506958,
+          "upstream_discounted_return": 58.469175974713494,
+          "discounted_reward_terms": {
+            "kp_baseline": 16.254444889409857,
+            "kp_coarse": 16.431184325525038,
+            "kp_fine": 10.363749247439305,
+            "action_penalty_ee": 0.0,
+            "action_grad_penalty": 0.0,
+            "curr_engaged": 20.819860235068035,
+            "curr_success": 4.1803013166810015,
+            "action_penalty_asset": -0.08441942911241468,
+            "contact_penalty": -3.3017830687380587,
+            "success_pred_error": -6.194161541559256
+          },
+          "completion_credit_return": 236.85848019334526,
+          "peak_raw_wrist_n": 18.272382736206055,
+          "final_target_xyz_m": [
+            -0.0013442164054140449,
+            0.0021461239084601402,
+            0.003840174525976181
+          ],
+          "final_tool_xyz_m": [
+            -0.001689136028289795,
+            -0.00015234947204589844,
+            0.0098043167963624
+          ],
+          "minimum_held_base_height_m": 3.521107137203355e-05,
+          "contact_fraction": 0.6141659021377563,
+          "witnessed_recovery": false,
+          "prefix_terminal": false,
+          "witnessed_failure_by_handoff": false,
+          "active_at_handoff": true,
+          "recovery_after_prefix_failure": false
+        },
+        {
+          "case_id": "dev-10070-friction_low-0",
+          "bin_id": "friction_low",
+          "outcome": "success",
+          "success": true,
+          "elapsed_s": 10.183333333333334,
+          "discounted_return": 248.79839678775312,
+          "upstream_discounted_return": 37.64949770371255,
+          "discounted_reward_terms": {
+            "kp_baseline": 17.71885280332059,
+            "kp_coarse": 17.657098518181314,
+            "kp_fine": 9.958532226183445,
+            "action_penalty_ee": 0.0,
+            "action_grad_penalty": 0.0,
+            "curr_engaged": 11.407728473379425,
+            "curr_success": 3.333771380346323,
+            "action_penalty_asset": -0.10657077479758736,
+            "contact_penalty": -15.18420067700413,
+            "success_pred_error": -7.135714245896827
+          },
+          "completion_credit_return": 211.1488991957167,
+          "peak_raw_wrist_n": 19.842220306396484,
+          "final_target_xyz_m": [
+            -0.0026772955898195505,
+            -0.00042134823161177337,
+            0.005659129470586777
+          ],
+          "final_tool_xyz_m": [
+            0.0016508102416992188,
+            0.0012221336364746094,
+            0.008981240913271904
+          ],
+          "minimum_held_base_height_m": 7.652454078197618e-05,
+          "contact_fraction": 0.6538461446762085,
+          "witnessed_recovery": false,
+          "prefix_terminal": false,
+          "witnessed_failure_by_handoff": true,
+          "active_at_handoff": true,
+          "recovery_after_prefix_failure": false
+        },
+        {
+          "case_id": "dev-10070-friction_low-1",
+          "bin_id": "friction_low",
+          "outcome": "force_abort",
+          "success": false,
+          "elapsed_s": 2.325,
+          "discounted_return": 20.605139970171603,
+          "upstream_discounted_return": 20.60513994395788,
+          "discounted_reward_terms": {
+            "kp_baseline": 5.199875813204754,
+            "kp_coarse": 4.595510128498209,
+            "kp_fine": 3.0362984345367705,
+            "action_penalty_ee": 0.0,
+            "action_grad_penalty": 0.0,
+            "curr_engaged": 7.783021379593551,
+            "curr_success": 0.0,
+            "action_penalty_asset": -0.009565811875403084,
+            "contact_penalty": 0.0,
+            "success_pred_error": 0.0
+          },
+          "completion_credit_return": 0.0,
+          "peak_raw_wrist_n": 20.08344078063965,
+          "final_target_xyz_m": [
+            -3.881498196278699e-05,
+            3.2073596685222583e-06,
+            0.012308242730796337
+          ],
+          "final_tool_xyz_m": [
+            -0.0013015270233154297,
+            -0.0012552738189697266,
+            0.0053741890005767345
+          ],
+          "minimum_held_base_height_m": 1.7974153161050277e-05,
+          "contact_fraction": 0.11469534039497375,
+          "witnessed_recovery": false,
+          "prefix_terminal": true,
+          "witnessed_failure_by_handoff": false,
+          "active_at_handoff": false,
+          "recovery_after_prefix_failure": false
+        },
+        {
+          "case_id": "dev-10070-friction_low-2",
+          "bin_id": "friction_low",
+          "outcome": "success",
+          "success": true,
+          "elapsed_s": 5.625,
+          "discounted_return": 373.83964775145284,
+          "upstream_discounted_return": 52.10286299899993,
+          "discounted_reward_terms": {
+            "kp_baseline": 11.419635422606206,
+            "kp_coarse": 11.669556807247975,
+            "kp_fine": 9.141469347808423,
+            "action_penalty_ee": 0.0,
+            "action_grad_penalty": 0.0,
+            "curr_engaged": 14.57149870832365,
+            "curr_success": 5.370980178484164,
+            "action_penalty_asset": -0.07027746547048877,
+            "contact_penalty": 0.0,
+            "success_pred_error": 0.0
+          },
+          "completion_credit_return": 321.73678487028144,
+          "peak_raw_wrist_n": 17.802274703979492,
+          "final_target_xyz_m": [
+            -0.002624663058668375,
+            0.002139634918421507,
+            0.0073755900375545025
+          ],
+          "final_tool_xyz_m": [
+            -0.0007624626159667969,
+            -0.0005798265337944031,
+            0.01002706028521061
+          ],
+          "minimum_held_base_height_m": 0.00013019293546676775,
+          "contact_fraction": 0.6592592597007751,
+          "witnessed_recovery": false,
+          "prefix_terminal": false,
+          "witnessed_failure_by_handoff": false,
+          "active_at_handoff": true,
+          "recovery_after_prefix_failure": false
+        },
+        {
+          "case_id": "dev-10070-friction_low-3",
+          "bin_id": "friction_low",
+          "outcome": "success",
+          "success": true,
+          "elapsed_s": 8.65,
+          "discounted_return": 294.76468915715293,
+          "upstream_discounted_return": 50.3432407486637,
+          "discounted_reward_terms": {
+            "kp_baseline": 15.83142100456255,
+            "kp_coarse": 16.880397549421726,
+            "kp_fine": 12.681524065798232,
+            "action_penalty_ee": 0.0,
+            "action_grad_penalty": 0.0,
+            "curr_engaged": 21.348256194556978,
+            "curr_success": 3.7411485818954513,
+            "action_penalty_asset": -0.15319653651069304,
+            "contact_penalty": -12.7851984596766,
+            "success_pred_error": -7.201111651383932
+          },
+          "completion_credit_return": 244.42144788705696,
+          "peak_raw_wrist_n": 19.232589721679688,
+          "final_target_xyz_m": [
+            -0.0032815367449074984,
+            0.0026310731191188097,
+            0.005205297376960516
+          ],
+          "final_tool_xyz_m": [
+            0.000774383544921875,
+            0.0007424354553222656,
+            0.009197574108839035
+          ],
+          "minimum_held_base_height_m": 0.00012569837272167345,
+          "contact_fraction": 0.662813127040863,
+          "witnessed_recovery": false,
+          "prefix_terminal": false,
+          "witnessed_failure_by_handoff": true,
+          "active_at_handoff": true,
+          "recovery_after_prefix_failure": false
+        },
+        {
+          "case_id": "dev-10070-friction_high-0",
+          "bin_id": "friction_high",
+          "outcome": "success",
+          "success": true,
+          "elapsed_s": 6.966666666666667,
+          "discounted_return": 334.6442640395611,
+          "upstream_discounted_return": 49.42963246885693,
+          "discounted_reward_terms": {
+            "kp_baseline": 13.501519303979673,
+            "kp_coarse": 13.760395113280902,
+            "kp_fine": 8.930097520357995,
+            "action_penalty_ee": 0.0,
+            "action_grad_penalty": 0.0,
+            "curr_engaged": 12.521877201813561,
+            "curr_success": 4.240606143190217,
+            "action_penalty_asset": -0.08439242032964211,
+            "contact_penalty": 0.0,
+            "success_pred_error": -3.440470393435773
+          },
+          "completion_credit_return": 285.2146311751995,
+          "peak_raw_wrist_n": 18.73221778869629,
+          "final_target_xyz_m": [
+            -0.0007129884324967861,
+            0.0026379122864454985,
+            -6.974544521654025e-05
+          ],
+          "final_tool_xyz_m": [
+            -0.0013282299041748047,
+            -0.00032138824462890625,
+            0.005074968561530113
+          ],
+          "minimum_held_base_height_m": 3.322176635265489e-05,
+          "contact_fraction": 0.6016746163368225,
+          "witnessed_recovery": false,
+          "prefix_terminal": false,
+          "witnessed_failure_by_handoff": true,
+          "active_at_handoff": true,
+          "recovery_after_prefix_failure": false
+        },
+        {
+          "case_id": "dev-10070-friction_high-1",
+          "bin_id": "friction_high",
+          "outcome": "success",
+          "success": true,
+          "elapsed_s": 2.875,
+          "discounted_return": 445.70896104228206,
+          "upstream_discounted_return": 36.617074485750564,
+          "discounted_reward_terms": {
+            "kp_baseline": 6.438800523860753,
+            "kp_coarse": 6.232342392256035,
+            "kp_fine": 5.64547214512224,
+            "action_penalty_ee": 0.0,
+            "action_grad_penalty": 0.0,
+            "curr_engaged": 11.720227928227594,
+            "curr_success": 6.596403888836717,
+            "action_penalty_asset": -0.016172392552772558,
+            "contact_penalty": 0.0,
+            "success_pred_error": 0.0
+          },
+          "completion_credit_return": 409.0918869718322,
+          "peak_raw_wrist_n": 19.84935760498047,
+          "final_target_xyz_m": [
+            -3.067270154133439e-05,
+            3.496087856547092e-06,
+            0.009665196761488914
+          ],
+          "final_tool_xyz_m": [
+            0.0014657974243164062,
+            0.0003848075866699219,
+            0.00786601658910513
+          ],
+          "minimum_held_base_height_m": -6.742775440077287e-08,
+          "contact_fraction": 0.20000000298023224,
+          "witnessed_recovery": false,
+          "prefix_terminal": true,
+          "witnessed_failure_by_handoff": false,
+          "active_at_handoff": false,
+          "recovery_after_prefix_failure": false
+        },
+        {
+          "case_id": "dev-10070-friction_high-2",
+          "bin_id": "friction_high",
+          "outcome": "success",
+          "success": true,
+          "elapsed_s": 14.816666666666666,
+          "discounted_return": 202.14534723073024,
+          "upstream_discounted_return": 71.57405194015617,
+          "discounted_reward_terms": {
+            "kp_baseline": 22.319047751869913,
+            "kp_coarse": 23.74187511451985,
+            "kp_fine": 18.077673135388373,
+            "action_penalty_ee": 0.0,
+            "action_grad_penalty": 0.0,
+            "curr_engaged": 27.159841408965583,
+            "curr_success": 2.689296536440927,
+            "action_penalty_asset": -0.21900697484282294,
+            "contact_penalty": -7.476045091952576,
+            "success_pred_error": -14.718629940233056
+          },
+          "completion_credit_return": 130.57129595648783,
+          "peak_raw_wrist_n": 19.709644317626953,
+          "final_target_xyz_m": [
+            0.00012977374717593193,
+            -0.0007338232244364917,
+            0.00542452372610569
+          ],
+          "final_tool_xyz_m": [
+            0.0010933876037597656,
+            0.0005691051483154297,
+            0.007890639826655388
+          ],
+          "minimum_held_base_height_m": 0.0008697152137756362,
+          "contact_fraction": 0.7502812147140503,
+          "witnessed_recovery": false,
+          "prefix_terminal": false,
+          "witnessed_failure_by_handoff": true,
+          "active_at_handoff": true,
+          "recovery_after_prefix_failure": false
+        },
+        {
+          "case_id": "dev-10070-friction_high-3",
+          "bin_id": "friction_high",
+          "outcome": "success",
+          "success": true,
+          "elapsed_s": 3.225,
+          "discounted_return": 447.32580347677236,
+          "upstream_discounted_return": 49.87266822313313,
+          "discounted_reward_terms": {
+            "kp_baseline": 7.104258375852234,
+            "kp_coarse": 7.452333432019275,
+            "kp_fine": 8.917138223466523,
+            "action_penalty_ee": 0.0,
+            "action_grad_penalty": 0.0,
+            "curr_engaged": 20.099812563402995,
+            "curr_success": 6.4331346676762955,
+            "action_penalty_asset": -0.010712611512458399,
+            "contact_penalty": -0.12329642777173083,
+            "success_pred_error": 0.0
+          },
+          "completion_credit_return": 397.4531349240229,
+          "peak_raw_wrist_n": 19.476734161376953,
+          "final_target_xyz_m": [
+            -1.7062984625226818e-05,
+            1.3591270544566214e-06,
+            0.009380154311656952
+          ],
+          "final_tool_xyz_m": [
+            -0.0009183883666992188,
+            -0.0005495762452483177,
+            0.008773991838097572
+          ],
+          "minimum_held_base_height_m": 8.776746690273424e-05,
+          "contact_fraction": 0.09819121658802032,
+          "witnessed_recovery": false,
+          "prefix_terminal": true,
+          "witnessed_failure_by_handoff": false,
+          "active_at_handoff": false,
+          "recovery_after_prefix_failure": false
+        }
+      ],
+      "failure_exposure": {
+        "all_requested_jobs": 28,
+        "prefix_completions": 3,
+        "prefix_failed_jobs": 2,
+        "active_at_handoff": 23,
+        "witnessed_prefix_failures_active_at_handoff": 17,
+        "completed_after_witnessed_prefix_failure": 13,
+        "witnessed_recoveries_after_prefix_failure": 0,
+        "scope": "Conditional recovery counts accompany all-request outcomes; prefix failures and prefix scripted completions remain in the full-job denominator."
+      }
+    },
+    "retry": {
+      "manifest_sha256": "729cfbc4c97c8f2a31835f018ceab91b14185b0f960e1d91d6b960c5639c6234",
+      "checkpoint_sha256": "cee349b1b9283a66924294323f5c7bd8f5de98434be70ed19d8a07986f9eb532",
+      "cost": {
+        "rollout_control_transitions": 12600,
+        "active_control_transitions": 7714,
+        "absorbing_control_transitions": 4886,
+        "rollout_physics_env_steps": 100800,
+        "active_physics_env_steps": 61632,
+        "initialization_physics_env_steps": 1876,
+        "charged_control_equivalent_transitions": 12834.5,
+        "scope": "All rollout slots, including holds, plus initialization physics divided by decimation. Probes/mining charged by their own manifests."
+      },
+      "metrics": {
+        "all": {
+          "requests": 28,
+          "completions": 19,
+          "outcomes": {
+            "success": 19,
+            "force_abort": 3,
+            "deadline": 6
+          },
+          "upstream_success_seen": 21,
+          "witnessed_contact_failures": 21,
+          "witnessed_recoveries": 15,
+          "mean_time_per_request_s": 18.34285714285714,
+          "peak_raw_wrist_force_n": 20.185998916625977,
+          "mean_discounted_return": 153.06268566587144,
+          "forbidden_events": 0,
+          "active_control_transitions": 7714,
+          "return_by_outcome": {
+            "deadline": {
+              "requests": 6,
+              "mean": 85.62175463987342
+            },
+            "force_abort": {
+              "requests": 3,
+              "mean": 18.22214934826118
+            },
+            "success": {
+              "requests": 19,
+              "mean": 195.6504327768619
+            }
+          }
+        },
+        "nominal": {
+          "requests": 4,
+          "completions": 3,
+          "outcomes": {
+            "success": 3,
+            "force_abort": 1
+          },
+          "upstream_success_seen": 3,
+          "witnessed_contact_failures": 2,
+          "witnessed_recoveries": 2,
+          "mean_time_per_request_s": 16.020833333333332,
+          "peak_raw_wrist_force_n": 20.185998916625977,
+          "mean_discounted_return": 106.69646004339073,
+          "forbidden_events": 0,
+          "active_control_transitions": 963,
+          "return_by_outcome": {
+            "force_abort": {
+              "requests": 1,
+              "mean": 5.990864023358306
+            },
+            "success": {
+              "requests": 3,
+              "mean": 140.2649920500682
+            }
+          }
+        },
+        "bias_low": {
+          "requests": 4,
+          "completions": 3,
+          "outcomes": {
+            "success": 3,
+            "deadline": 1
+          },
+          "upstream_success_seen": 3,
+          "witnessed_contact_failures": 4,
+          "witnessed_recoveries": 3,
+          "mean_time_per_request_s": 23.0125,
+          "peak_raw_wrist_force_n": 19.393247604370117,
+          "mean_discounted_return": 134.0398079407532,
+          "forbidden_events": 0,
+          "active_control_transitions": 1382,
+          "return_by_outcome": {
+            "deadline": {
+              "requests": 1,
+              "mean": 103.9764646567023
+            },
+            "success": {
+              "requests": 3,
+              "mean": 144.06092236877018
+            }
+          }
+        },
+        "bias_medium": {
+          "requests": 4,
+          "completions": 4,
+          "outcomes": {
+            "success": 4
+          },
+          "upstream_success_seen": 4,
+          "witnessed_contact_failures": 3,
+          "witnessed_recoveries": 3,
+          "mean_time_per_request_s": 18.24375,
+          "peak_raw_wrist_force_n": 19.967851638793945,
+          "mean_discounted_return": 204.59441739777841,
+          "forbidden_events": 0,
+          "active_control_transitions": 1097,
+          "return_by_outcome": {
+            "success": {
+              "requests": 4,
+              "mean": 204.59441739777841
+            }
+          }
+        },
+        "approach_low": {
+          "requests": 4,
+          "completions": 2,
+          "outcomes": {
+            "deadline": 2,
+            "success": 2
+          },
+          "upstream_success_seen": 2,
+          "witnessed_contact_failures": 4,
+          "witnessed_recoveries": 2,
+          "mean_time_per_request_s": 23.047916666666666,
+          "peak_raw_wrist_force_n": 19.27863311767578,
+          "mean_discounted_return": 129.0661403527058,
+          "forbidden_events": 0,
+          "active_control_transitions": 1384,
+          "return_by_outcome": {
+            "deadline": {
+              "requests": 2,
+              "mean": 75.1320385997131
+            },
+            "success": {
+              "requests": 2,
+              "mean": 183.00024210569848
+            }
+          }
+        },
+        "approach_high": {
+          "requests": 4,
+          "completions": 2,
+          "outcomes": {
+            "success": 2,
+            "deadline": 2
+          },
+          "upstream_success_seen": 2,
+          "witnessed_contact_failures": 4,
+          "witnessed_recoveries": 2,
+          "mean_time_per_request_s": 24.547916666666666,
+          "peak_raw_wrist_force_n": 19.43140411376953,
+          "mean_discounted_return": 113.91741306612684,
+          "forbidden_events": 0,
+          "active_control_transitions": 1474,
+          "return_by_outcome": {
+            "deadline": {
+              "requests": 2,
+              "mean": 79.51563250455084
+            },
+            "success": {
+              "requests": 2,
+              "mean": 148.31919362770287
+            }
+          }
+        },
+        "friction_low": {
+          "requests": 4,
+          "completions": 1,
+          "outcomes": {
+            "success": 1,
+            "force_abort": 2,
+            "deadline": 1
+          },
+          "upstream_success_seen": 3,
+          "witnessed_contact_failures": 2,
+          "witnessed_recoveries": 1,
+          "mean_time_per_request_s": 13.731250000000001,
+          "peak_raw_wrist_force_n": 20.08344078063965,
+          "mean_discounted_return": 74.32314154691603,
+          "forbidden_events": 0,
+          "active_control_transitions": 824,
+          "return_by_outcome": {
+            "deadline": {
+              "requests": 1,
+              "mean": 100.45872097401033
+            },
+            "force_abort": {
+              "requests": 2,
+              "mean": 24.33779201071262
+            },
+            "success": {
+              "requests": 1,
+              "mean": 148.15826119222857
+            }
+          }
+        },
+        "friction_high": {
+          "requests": 4,
+          "completions": 4,
+          "outcomes": {
+            "success": 4
+          },
+          "upstream_success_seen": 4,
+          "witnessed_contact_failures": 2,
+          "witnessed_recoveries": 2,
+          "mean_time_per_request_s": 9.795833333333333,
+          "peak_raw_wrist_force_n": 19.84935760498047,
+          "mean_discounted_return": 308.80141931342905,
+          "forbidden_events": 0,
+          "active_control_transitions": 590,
+          "return_by_outcome": {
+            "success": {
+              "requests": 4,
+              "mean": 308.80141931342905
+            }
+          }
+        }
+      },
+      "cases": [
+        {
+          "case_id": "dev-10070-nominal-0",
+          "bin_id": "nominal",
+          "outcome": "success",
+          "success": true,
+          "elapsed_s": 27.45,
+          "discounted_return": 89.15207545564004,
+          "upstream_discounted_return": 75.95229887295466,
+          "discounted_reward_terms": {
+            "kp_baseline": 28.99441596837425,
+            "kp_coarse": 28.441560520263657,
+            "kp_fine": 12.676796663856274,
+            "action_penalty_ee": 0.0,
+            "action_grad_penalty": 0.0,
+            "curr_engaged": 5.943601649534313,
+            "curr_success": 0.9101515794647723,
+            "action_penalty_asset": -0.10407592907384355,
+            "contact_penalty": 0.0,
+            "success_pred_error": -0.9101515794647723
+          },
+          "completion_credit_return": 13.199776546145369,
+          "peak_raw_wrist_n": 19.400100708007812,
+          "final_target_xyz_m": [
+            0.0015529324300587177,
+            -0.0074556441977620125,
+            0.00966921541839838
+          ],
+          "final_tool_xyz_m": [
+            0.0016355514526367188,
+            -0.0020296573638916016,
+            0.009165622293949127
+          ],
+          "minimum_held_base_height_m": 0.00012227296829223772,
+          "contact_fraction": 0.4538554847240448,
+          "witnessed_recovery": false,
+          "prefix_terminal": false,
+          "witnessed_failure_by_handoff": false,
+          "active_at_handoff": true,
+          "recovery_after_prefix_failure": false
+        },
+        {
+          "case_id": "dev-10070-nominal-1",
+          "bin_id": "nominal",
+          "outcome": "success",
+          "success": true,
+          "elapsed_s": 14.416666666666666,
+          "discounted_return": 203.61402339828993,
+          "upstream_discounted_return": 67.18949530269738,
+          "discounted_reward_terms": {
+            "kp_baseline": 21.973205320780288,
+            "kp_coarse": 21.47557467388334,
+            "kp_fine": 11.232318510045314,
+            "action_penalty_ee": 0.0,
+            "action_grad_penalty": 0.0,
+            "curr_engaged": 9.816507856069773,
+            "curr_success": 2.771406352211046,
+            "action_penalty_asset": -0.07951741029238887,
+            "contact_penalty": 0.0,
+            "success_pred_error": 0.0
+          },
+          "completion_credit_return": 136.42452804213016,
+          "peak_raw_wrist_n": 16.108795166015625,
+          "final_target_xyz_m": [
+            0.002943306928500533,
+            0.002142395591363311,
+            0.007372924592345953
+          ],
+          "final_tool_xyz_m": [
+            0.0011792182922363281,
+            -0.0001385211944580078,
+            0.010266335681080818
+          ],
+          "minimum_held_base_height_m": 4.46844846010222e-05,
+          "contact_fraction": 0.44797688722610474,
+          "witnessed_recovery": true,
+          "prefix_terminal": false,
+          "witnessed_failure_by_handoff": true,
+          "active_at_handoff": true,
+          "recovery_after_prefix_failure": true
+        },
+        {
+          "case_id": "dev-10070-nominal-2",
+          "bin_id": "nominal",
+          "outcome": "success",
+          "success": true,
+          "elapsed_s": 20.825,
+          "discounted_return": 128.0288772962747,
+          "upstream_discounted_return": 67.06512677549371,
+          "discounted_reward_terms": {
+            "kp_baseline": 26.263480722919493,
+            "kp_coarse": 24.86576571511924,
+            "kp_fine": 11.762668956319969,
+            "action_penalty_ee": 0.0,
+            "action_grad_penalty": 0.0,
+            "curr_engaged": 8.028051459725694,
+            "curr_success": 1.7128366995050637,
+            "action_penalty_asset": -0.09051278783379015,
+            "contact_penalty": -3.7643272907568903,
+            "success_pred_error": -1.7128366995050637
+          },
+          "completion_credit_return": 60.96375053545701,
+          "peak_raw_wrist_n": 19.270719528198242,
+          "final_target_xyz_m": [
+            0.0037831522058695555,
+            0.007455141749233007,
+            0.0052540781907737255
+          ],
+          "final_tool_xyz_m": [
+            0.002724170684814453,
+            0.0017548799514770508,
+            0.007201376371085644
+          ],
+          "minimum_held_base_height_m": 0.00012536123394966264,
+          "contact_fraction": 0.4209683835506439,
+          "witnessed_recovery": true,
+          "prefix_terminal": false,
+          "witnessed_failure_by_handoff": true,
+          "active_at_handoff": true,
+          "recovery_after_prefix_failure": true
+        },
+        {
+          "case_id": "dev-10070-nominal-3",
+          "bin_id": "nominal",
+          "outcome": "force_abort",
+          "success": false,
+          "elapsed_s": 1.3916666666666666,
+          "discounted_return": 5.990864023358307,
+          "upstream_discounted_return": 5.990864047033473,
+          "discounted_reward_terms": {
+            "kp_baseline": 3.162205750921813,
+            "kp_coarse": 2.305933873266155,
+            "kp_fine": 0.5275844801365155,
+            "action_penalty_ee": 0.0,
+            "action_grad_penalty": 0.0,
+            "curr_engaged": 0.0,
+            "curr_success": 0.0,
+            "action_penalty_asset": -0.004860057291009839,
+            "contact_penalty": 0.0,
+            "success_pred_error": 0.0
+          },
+          "completion_credit_return": 0.0,
+          "peak_raw_wrist_n": 20.185998916625977,
+          "final_target_xyz_m": [
+            -0.0002247049706056714,
+            2.184268487326335e-05,
+            0.029065821319818497
+          ],
+          "final_tool_xyz_m": [
+            -0.004728794097900391,
+            0.001611948013305664,
+            0.03401460871100426
+          ],
+          "minimum_held_base_height_m": 0.025004624947905542,
+          "contact_fraction": 0.011976048350334167,
+          "witnessed_recovery": false,
+          "prefix_terminal": true,
+          "witnessed_failure_by_handoff": false,
+          "active_at_handoff": false,
+          "recovery_after_prefix_failure": false
+        },
+        {
+          "case_id": "dev-10070-bias_low-0",
+          "bin_id": "bias_low",
+          "outcome": "success",
+          "success": true,
+          "elapsed_s": 21.091666666666665,
+          "discounted_return": 146.76945473705086,
+          "upstream_discounted_return": 88.22945938994036,
+          "discounted_reward_terms": {
+            "kp_baseline": 26.408124849096758,
+            "kp_coarse": 25.88591483280417,
+            "kp_fine": 14.025806461274584,
+            "action_penalty_ee": 0.0,
+            "action_grad_penalty": 0.0,
+            "curr_engaged": 24.69645228725414,
+            "curr_success": 1.6788360356720613,
+            "action_penalty_asset": -0.11079021053637468,
+            "contact_penalty": -2.676048829952918,
+            "success_pred_error": -1.6788360356720613
+          },
+          "completion_credit_return": 58.53999531353416,
+          "peak_raw_wrist_n": 19.31596565246582,
+          "final_target_xyz_m": [
+            -0.004986107815057039,
+            0.008113590069115162,
+            0.0049497466534376144
+          ],
+          "final_tool_xyz_m": [
+            -0.0013021774357184768,
+            0.00040721893310546875,
+            0.0069562094286084175
+          ],
+          "minimum_held_base_height_m": 7.03405588865294e-05,
+          "contact_fraction": 0.4950612485408783,
+          "witnessed_recovery": true,
+          "prefix_terminal": false,
+          "witnessed_failure_by_handoff": true,
+          "active_at_handoff": true,
+          "recovery_after_prefix_failure": true
+        },
+        {
+          "case_id": "dev-10070-bias_low-1",
+          "bin_id": "bias_low",
+          "outcome": "success",
+          "success": true,
+          "elapsed_s": 26.025,
+          "discounted_return": 91.60127739258482,
+          "upstream_discounted_return": 70.14989726018541,
+          "discounted_reward_terms": {
+            "kp_baseline": 28.51987408036586,
+            "kp_coarse": 27.488476532902503,
+            "kp_fine": 11.984008783272385,
+            "action_penalty_ee": 0.0,
+            "action_grad_penalty": 0.0,
+            "curr_engaged": 3.460129817807321,
+            "curr_success": 1.1585539381788952,
+            "action_penalty_asset": -0.137967891282605,
+            "contact_penalty": -1.164624062880066,
+            "success_pred_error": -1.1585539381788952
+          },
+          "completion_credit_return": 21.451380113943063,
+          "peak_raw_wrist_n": 18.781173706054688,
+          "final_target_xyz_m": [
+            0.0027079612482339144,
+            0.0050530582666397095,
+            0.009403029456734657
+          ],
+          "final_tool_xyz_m": [
+            0.000280792242847383,
+            0.0006511211395263672,
+            0.007146674208343029
+          ],
+          "minimum_held_base_height_m": -8.300319314001603e-06,
+          "contact_fraction": 0.5219340324401855,
+          "witnessed_recovery": true,
+          "prefix_terminal": false,
+          "witnessed_failure_by_handoff": false,
+          "active_at_handoff": true,
+          "recovery_after_prefix_failure": false
+        },
+        {
+          "case_id": "dev-10070-bias_low-2",
+          "bin_id": "bias_low",
+          "outcome": "deadline",
+          "success": false,
+          "elapsed_s": 30.0,
+          "discounted_return": 103.9764646567024,
+          "upstream_discounted_return": 103.97646448500849,
+          "discounted_reward_terms": {
+            "kp_baseline": 29.74381580112614,
+            "kp_coarse": 29.558446201783966,
+            "kp_fine": 19.764774592523278,
+            "action_penalty_ee": 0.0,
+            "action_grad_penalty": 0.0,
+            "curr_engaged": 25.31625717631727,
+            "curr_success": 0.0,
+            "action_penalty_asset": -0.08325474404380968,
+            "contact_penalty": -0.3235745426983432,
+            "success_pred_error": 0.0
+          },
+          "completion_credit_return": 0.0,
+          "peak_raw_wrist_n": 18.354537963867188,
+          "final_target_xyz_m": [
+            -0.003740886924788356,
+            -0.014340664260089397,
+            0.003439097199589014
+          ],
+          "final_tool_xyz_m": [
+            -0.0002772808074951172,
+            -0.001335794455371797,
+            0.007952755317091942
+          ],
+          "minimum_held_base_height_m": 0.0023373994976282134,
+          "contact_fraction": 0.570277750492096,
+          "witnessed_recovery": false,
+          "prefix_terminal": false,
+          "witnessed_failure_by_handoff": true,
+          "active_at_handoff": true,
+          "recovery_after_prefix_failure": false
+        },
+        {
+          "case_id": "dev-10070-bias_low-3",
+          "bin_id": "bias_low",
+          "outcome": "success",
+          "success": true,
+          "elapsed_s": 14.933333333333334,
+          "discounted_return": 193.8120349766748,
+          "upstream_discounted_return": 65.15303001076339,
+          "discounted_reward_terms": {
+            "kp_baseline": 22.41638890173076,
+            "kp_coarse": 22.212997131020607,
+            "kp_fine": 13.139359343498143,
+            "action_penalty_ee": 0.0,
+            "action_grad_penalty": 0.0,
+            "curr_engaged": 19.904620335357038,
+            "curr_success": 2.6624708034899287,
+            "action_penalty_asset": -0.06150178342703521,
+            "contact_penalty": -12.458833917416136,
+            "success_pred_error": -2.6624708034899287
+          },
+          "completion_credit_return": 128.65900066213143,
+          "peak_raw_wrist_n": 19.393247604370117,
+          "final_target_xyz_m": [
+            0.0018192395800724626,
+            0.001338948030024767,
+            0.0069668167270720005
+          ],
+          "final_tool_xyz_m": [
+            -0.001092672348022461,
+            0.0002705111401155591,
+            0.007036176510155201
+          ],
+          "minimum_held_base_height_m": 4.3350830674172836e-05,
+          "contact_fraction": 0.2901785671710968,
+          "witnessed_recovery": true,
+          "prefix_terminal": false,
+          "witnessed_failure_by_handoff": true,
+          "active_at_handoff": true,
+          "recovery_after_prefix_failure": true
+        },
+        {
+          "case_id": "dev-10070-bias_medium-0",
+          "bin_id": "bias_medium",
+          "outcome": "success",
+          "success": true,
+          "elapsed_s": 24.575,
+          "discounted_return": 123.478872425582,
+          "upstream_discounted_return": 92.39885720809701,
+          "discounted_reward_terms": {
+            "kp_baseline": 27.981289038593903,
+            "kp_coarse": 28.421561281380374,
+            "kp_fine": 17.160152362755856,
+            "action_penalty_ee": 0.0,
+            "action_grad_penalty": 0.0,
+            "curr_engaged": 28.742369670014497,
+            "curr_success": 1.1290710058812519,
+            "action_penalty_asset": -0.06684253715238955,
+            "contact_penalty": -9.839672607495215,
+            "success_pred_error": -1.1290710058812519
+          },
+          "completion_credit_return": 31.08001493488907,
+          "peak_raw_wrist_n": 19.13948631286621,
+          "final_target_xyz_m": [
+            -0.007364021148532629,
+            -0.0017769550904631615,
+            0.0052591292187571526
+          ],
+          "final_tool_xyz_m": [
+            -0.0012544288765639067,
+            0.00047647953033447266,
+            0.008241655305027962
+          ],
+          "minimum_held_base_height_m": 2.516023814678331e-05,
+          "contact_fraction": 0.4170905351638794,
+          "witnessed_recovery": true,
+          "prefix_terminal": false,
+          "witnessed_failure_by_handoff": true,
+          "active_at_handoff": true,
+          "recovery_after_prefix_failure": true
+        },
+        {
+          "case_id": "dev-10070-bias_medium-1",
+          "bin_id": "bias_medium",
+          "outcome": "success",
+          "success": true,
+          "elapsed_s": 29.433333333333334,
+          "discounted_return": 75.40557599729212,
+          "upstream_discounted_return": 72.58436201272994,
+          "discounted_reward_terms": {
+            "kp_baseline": 29.573400660831958,
+            "kp_coarse": 27.67421483243671,
+            "kp_fine": 11.683110182731758,
+            "action_penalty_ee": 0.0,
+            "action_grad_penalty": 0.0,
+            "curr_engaged": 3.815160164205763,
+            "curr_success": 0.7830800312176823,
+            "action_penalty_asset": -0.10628833380775786,
+            "contact_penalty": -0.05523549366848904,
+            "success_pred_error": -0.7830800312176823
+          },
+          "completion_credit_return": 2.8212137841643807,
+          "peak_raw_wrist_n": 19.24302101135254,
+          "final_target_xyz_m": [
+            0.0070721167139709,
+            -0.007914110086858273,
+            0.007360059302300215
+          ],
+          "final_tool_xyz_m": [
+            0.004071821458637714,
+            -6.389617919921875e-05,
+            0.006686455104500055
+          ],
+          "minimum_held_base_height_m": 0.0002481132745742812,
+          "contact_fraction": 0.5956965088844299,
+          "witnessed_recovery": true,
+          "prefix_terminal": false,
+          "witnessed_failure_by_handoff": true,
+          "active_at_handoff": true,
+          "recovery_after_prefix_failure": true
+        },
+        {
+          "case_id": "dev-10070-bias_medium-2",
+          "bin_id": "bias_medium",
+          "outcome": "success",
+          "success": true,
+          "elapsed_s": 15.741666666666667,
+          "discounted_return": 171.9313084824062,
+          "upstream_discounted_return": 54.352052989210456,
+          "discounted_reward_terms": {
+            "kp_baseline": 23.035484938125336,
+            "kp_coarse": 21.397083394483,
+            "kp_fine": 10.940019970264675,
+            "action_penalty_ee": 0.0,
+            "action_grad_penalty": 0.0,
+            "curr_engaged": 13.980084007941267,
+            "curr_success": 2.50704323130976,
+            "action_penalty_asset": -0.08118714214358351,
+            "contact_penalty": -14.919432179460262,
+            "success_pred_error": -2.50704323130976
+          },
+          "completion_credit_return": 117.5792553594693,
+          "peak_raw_wrist_n": 19.107236862182617,
+          "final_target_xyz_m": [
+            0.001530673005618155,
+            0.0003471913223620504,
+            0.005134186241775751
+          ],
+          "final_tool_xyz_m": [
+            -0.0007325410842895508,
+            -0.000494588864967227,
+            0.005544440820813179
+          ],
+          "minimum_held_base_height_m": 9.150765836239e-05,
+          "contact_fraction": 0.31445208191871643,
+          "witnessed_recovery": true,
+          "prefix_terminal": false,
+          "witnessed_failure_by_handoff": true,
+          "active_at_handoff": true,
+          "recovery_after_prefix_failure": true
+        },
+        {
+          "case_id": "dev-10070-bias_medium-3",
+          "bin_id": "bias_medium",
+          "outcome": "success",
+          "success": true,
+          "elapsed_s": 3.225,
+          "discounted_return": 447.56191268583336,
+          "upstream_discounted_return": 50.10877720865739,
+          "discounted_reward_terms": {
+            "kp_baseline": 7.10488772138974,
+            "kp_coarse": 7.508230686653995,
+            "kp_fine": 8.97025919771757,
+            "action_penalty_ee": 0.0,
+            "action_grad_penalty": 0.0,
+            "curr_engaged": 20.099812563402995,
+            "curr_success": 6.4331346676762955,
+            "action_penalty_asset": -0.0075476281832111535,
+            "contact_penalty": 0.0,
+            "success_pred_error": 0.0
+          },
+          "completion_credit_return": 397.4531349240229,
+          "peak_raw_wrist_n": 19.967851638793945,
+          "final_target_xyz_m": [
+            -1.6201251128222793e-05,
+            6.182971992529929e-05,
+            0.009100421331822872
+          ],
+          "final_tool_xyz_m": [
+            -0.0005003213882446289,
+            0.0022364750038832426,
+            0.008031490258872509
+          ],
+          "minimum_held_base_height_m": 0.00012148134410381456,
+          "contact_fraction": 0.23255814611911774,
+          "witnessed_recovery": false,
+          "prefix_terminal": true,
+          "witnessed_failure_by_handoff": false,
+          "active_at_handoff": false,
+          "recovery_after_prefix_failure": false
+        },
+        {
+          "case_id": "dev-10070-approach_low-0",
+          "bin_id": "approach_low",
+          "outcome": "deadline",
+          "success": false,
+          "elapsed_s": 30.0,
+          "discounted_return": 69.2174274801541,
+          "upstream_discounted_return": 69.21742746650244,
+          "discounted_reward_terms": {
+            "kp_baseline": 29.73753535756595,
+            "kp_coarse": 28.269064668671,
+            "kp_fine": 12.096132171566769,
+            "action_penalty_ee": 0.0,
+            "action_grad_penalty": 0.0,
+            "curr_engaged": 8.810288282271763,
+            "curr_success": 0.0,
+            "action_penalty_asset": -0.10461287833701743,
+            "contact_penalty": -9.590980135236016,
+            "success_pred_error": 0.0
+          },
+          "completion_credit_return": 0.0,
+          "peak_raw_wrist_n": 18.960798263549805,
+          "final_target_xyz_m": [
+            -0.006187183782458305,
+            -0.0021353671327233315,
+            0.013744036667048931
+          ],
+          "final_tool_xyz_m": [
+            -0.0005805492401123047,
+            -0.0006118826568126678,
+            0.019013362005352974
+          ],
+          "minimum_held_base_height_m": 0.012893240526318551,
+          "contact_fraction": 0.6183333396911621,
+          "witnessed_recovery": false,
+          "prefix_terminal": false,
+          "witnessed_failure_by_handoff": true,
+          "active_at_handoff": true,
+          "recovery_after_prefix_failure": false
+        },
+        {
+          "case_id": "dev-10070-approach_low-1",
+          "bin_id": "approach_low",
+          "outcome": "success",
+          "success": true,
+          "elapsed_s": 15.608333333333333,
+          "discounted_return": 192.09226272119398,
+          "upstream_discounted_return": 72.71235950800664,
+          "discounted_reward_terms": {
+            "kp_baseline": 22.932770600047956,
+            "kp_coarse": 21.412300212254223,
+            "kp_fine": 11.058214701849717,
+            "action_penalty_ee": 0.0,
+            "action_grad_penalty": 0.0,
+            "curr_engaged": 17.37569847562103,
+            "curr_success": 2.5323029532686143,
+            "action_penalty_asset": -0.06662448176630058,
+            "contact_penalty": 0.0,
+            "success_pred_error": -2.5323029532686143
+          },
+          "completion_credit_return": 119.37990329798959,
+          "peak_raw_wrist_n": 19.27863311767578,
+          "final_target_xyz_m": [
+            -0.00029162451392039657,
+            -0.0004019549523945898,
+            0.006141777615994215
+          ],
+          "final_tool_xyz_m": [
+            -0.0019731521606445312,
+            0.0003777742385864258,
+            0.005457261111587286
+          ],
+          "minimum_held_base_height_m": 4.909522831440111e-05,
+          "contact_fraction": 0.2189001590013504,
+          "witnessed_recovery": true,
+          "prefix_terminal": false,
+          "witnessed_failure_by_handoff": true,
+          "active_at_handoff": true,
+          "recovery_after_prefix_failure": true
+        },
+        {
+          "case_id": "dev-10070-approach_low-2",
+          "bin_id": "approach_low",
+          "outcome": "deadline",
+          "success": false,
+          "elapsed_s": 30.0,
+          "discounted_return": 81.04664971927212,
+          "upstream_discounted_return": 81.04664984329376,
+          "discounted_reward_terms": {
+            "kp_baseline": 29.738520392712434,
+            "kp_coarse": 28.91698224189261,
+            "kp_fine": 17.761945014697382,
+            "action_penalty_ee": 0.0,
+            "action_grad_penalty": 0.0,
+            "curr_engaged": 21.749704861696376,
+            "curr_success": 0.0,
+            "action_penalty_asset": -0.09008965688245205,
+            "contact_penalty": -17.03041301082259,
+            "success_pred_error": 0.0
+          },
+          "completion_credit_return": 0.0,
+          "peak_raw_wrist_n": 18.784019470214844,
+          "final_target_xyz_m": [
+            -0.013430926017463207,
+            -0.0032632199581712484,
+            0.003688165917992592
+          ],
+          "final_tool_xyz_m": [
+            -0.0027829408645629883,
+            -0.0003261566162109375,
+            0.007823668420314789
+          ],
+          "minimum_held_base_height_m": 0.0026500668376684203,
+          "contact_fraction": 0.5722222328186035,
+          "witnessed_recovery": false,
+          "prefix_terminal": false,
+          "witnessed_failure_by_handoff": false,
+          "active_at_handoff": true,
+          "recovery_after_prefix_failure": false
+        },
+        {
+          "case_id": "dev-10070-approach_low-3",
+          "bin_id": "approach_low",
+          "outcome": "success",
+          "success": true,
+          "elapsed_s": 16.583333333333332,
+          "discounted_return": 173.908221490203,
+          "upstream_discounted_return": 66.76190929647994,
+          "discounted_reward_terms": {
+            "kp_baseline": 23.644450363193325,
+            "kp_coarse": 23.557181972515956,
+            "kp_fine": 12.827359371910351,
+            "action_penalty_ee": 0.0,
+            "action_grad_penalty": 0.0,
+            "curr_engaged": 14.599081340922043,
+            "curr_success": 2.060400115436409,
+            "action_penalty_asset": -0.05859571380569633,
+            "contact_penalty": -7.807568038256025,
+            "success_pred_error": -2.060400115436409
+          },
+          "completion_credit_return": 107.14631255730461,
+          "peak_raw_wrist_n": 16.93754768371582,
+          "final_target_xyz_m": [
+            -0.0010057209292426705,
+            0.0017534754006192088,
+            0.010470202192664146
+          ],
+          "final_tool_xyz_m": [
+            -0.0006963014602661133,
+            0.0005936622619628906,
+            0.009853214956820011
+          ],
+          "minimum_held_base_height_m": 8.629225194454332e-05,
+          "contact_fraction": 0.3010050356388092,
+          "witnessed_recovery": true,
+          "prefix_terminal": false,
+          "witnessed_failure_by_handoff": true,
+          "active_at_handoff": true,
+          "recovery_after_prefix_failure": true
+        },
+        {
+          "case_id": "dev-10070-approach_high-0",
+          "bin_id": "approach_high",
+          "outcome": "success",
+          "success": true,
+          "elapsed_s": 17.516666666666666,
+          "discounted_return": 166.20885242724717,
+          "upstream_discounted_return": 70.46707818003186,
+          "discounted_reward_terms": {
+            "kp_baseline": 24.288995736371533,
+            "kp_coarse": 23.674429503434602,
+            "kp_fine": 11.783340325461515,
+            "action_penalty_ee": 0.0,
+            "action_grad_penalty": 0.0,
+            "curr_engaged": 15.085242193250954,
+            "curr_success": 1.9207670456567976,
+            "action_penalty_asset": -0.062459074029022135,
+            "contact_penalty": -4.3024705044577125,
+            "success_pred_error": -1.9207670456567976
+          },
+          "completion_credit_return": 95.7417743658214,
+          "peak_raw_wrist_n": 19.43140411376953,
+          "final_target_xyz_m": [
+            -0.0008086985908448696,
+            -0.00048275708104483783,
+            0.015873707830905914
+          ],
+          "final_tool_xyz_m": [
+            -0.0018507838249206543,
+            0.0003170967102050781,
+            0.009583177044987679
+          ],
+          "minimum_held_base_height_m": 1.6688928008080917e-05,
+          "contact_fraction": 0.2982873320579529,
+          "witnessed_recovery": true,
+          "prefix_terminal": false,
+          "witnessed_failure_by_handoff": true,
+          "active_at_handoff": true,
+          "recovery_after_prefix_failure": true
+        },
+        {
+          "case_id": "dev-10070-approach_high-1",
+          "bin_id": "approach_high",
+          "outcome": "deadline",
+          "success": false,
+          "elapsed_s": 30.0,
+          "discounted_return": 90.18542617650058,
+          "upstream_discounted_return": 90.18542619561042,
+          "discounted_reward_terms": {
+            "kp_baseline": 29.73885932073326,
+            "kp_coarse": 28.63021123349734,
+            "kp_fine": 16.312810691675494,
+            "action_penalty_ee": 0.0,
+            "action_grad_penalty": 0.0,
+            "curr_engaged": 15.602847112576892,
+            "curr_success": 0.0,
+            "action_penalty_asset": -0.09930216287258123,
+            "contact_penalty": 0.0,
+            "success_pred_error": 0.0
+          },
+          "completion_credit_return": 0.0,
+          "peak_raw_wrist_n": 18.65590476989746,
+          "final_target_xyz_m": [
+            -0.005262091290205717,
+            0.007695722859352827,
+            0.004206876736134291
+          ],
+          "final_tool_xyz_m": [
+            4.0411949157714844e-05,
+            0.0004899203777313232,
+            0.008650463074445724
+          ],
+          "minimum_held_base_height_m": 0.0014247592538595213,
+          "contact_fraction": 0.4772222340106964,
+          "witnessed_recovery": false,
+          "prefix_terminal": false,
+          "witnessed_failure_by_handoff": false,
+          "active_at_handoff": true,
+          "recovery_after_prefix_failure": false
+        },
+        {
+          "case_id": "dev-10070-approach_high-2",
+          "bin_id": "approach_high",
+          "outcome": "deadline",
+          "success": false,
+          "elapsed_s": 30.0,
+          "discounted_return": 68.8458388326012,
+          "upstream_discounted_return": 68.84583885703383,
+          "discounted_reward_terms": {
+            "kp_baseline": 29.737652873146082,
+            "kp_coarse": 28.129694913299666,
+            "kp_fine": 11.101391525571225,
+            "action_penalty_ee": 0.0,
+            "action_grad_penalty": 0.0,
+            "curr_engaged": 0.0,
+            "curr_success": 0.0,
+            "action_penalty_asset": -0.12290045498315816,
+            "contact_penalty": 0.0,
+            "success_pred_error": 0.0
+          },
+          "completion_credit_return": 0.0,
+          "peak_raw_wrist_n": 18.839927673339844,
+          "final_target_xyz_m": [
+            -0.0005569798522628844,
+            -0.010852179490029812,
+            0.025988737121224403
+          ],
+          "final_tool_xyz_m": [
+            0.0019626617431640625,
+            -0.0003641843795776367,
+            0.03593864664435387
+          ],
+          "minimum_held_base_height_m": 0.024969596043229104,
+          "contact_fraction": 0.6341666579246521,
+          "witnessed_recovery": false,
+          "prefix_terminal": false,
+          "witnessed_failure_by_handoff": true,
+          "active_at_handoff": true,
+          "recovery_after_prefix_failure": false
+        },
+        {
+          "case_id": "dev-10070-approach_high-3",
+          "bin_id": "approach_high",
+          "outcome": "success",
+          "success": true,
+          "elapsed_s": 20.675,
+          "discounted_return": 130.42953482815855,
+          "upstream_discounted_return": 68.23554972224642,
+          "discounted_reward_terms": {
+            "kp_baseline": 26.19943901617136,
+            "kp_coarse": 25.56340213987935,
+            "kp_fine": 13.371618358134947,
+            "action_penalty_ee": 0.0,
+            "action_grad_penalty": 0.0,
+            "curr_engaged": 12.59142817122667,
+            "curr_success": 1.7300943910558457,
+            "action_penalty_asset": -0.0801036922406855,
+            "contact_penalty": -9.410234270925235,
+            "success_pred_error": -1.7300943910558457
+          },
+          "completion_credit_return": 62.193985117291,
+          "peak_raw_wrist_n": 19.367517471313477,
+          "final_target_xyz_m": [
+            -0.001707379356957972,
+            0.0011911825276911259,
+            0.006987848784774542
+          ],
+          "final_tool_xyz_m": [
+            -0.001851201057434082,
+            -0.0012068748474121094,
+            0.0097190598025918
+          ],
+          "minimum_held_base_height_m": 3.95398586988463e-05,
+          "contact_fraction": 0.34744054079055786,
+          "witnessed_recovery": true,
+          "prefix_terminal": false,
+          "witnessed_failure_by_handoff": false,
+          "active_at_handoff": true,
+          "recovery_after_prefix_failure": false
+        },
+        {
+          "case_id": "dev-10070-friction_low-0",
+          "bin_id": "friction_low",
+          "outcome": "success",
+          "success": true,
+          "elapsed_s": 17.6,
+          "discounted_return": 148.15826119222854,
+          "upstream_discounted_return": 53.98135317803765,
+          "discounted_reward_terms": {
+            "kp_baseline": 24.37673462348549,
+            "kp_coarse": 23.46942278196807,
+            "kp_fine": 11.374325919739405,
+            "action_penalty_ee": 0.0,
+            "action_grad_penalty": 0.0,
+            "curr_engaged": 10.211799326930263,
+            "curr_success": 2.1787534301312155,
+            "action_penalty_asset": -0.0773893233462095,
+            "contact_penalty": -15.373540150739368,
+            "success_pred_error": -2.1787534301312155
+          },
+          "completion_credit_return": 94.17691117386968,
+          "peak_raw_wrist_n": 19.897764205932617,
+          "final_target_xyz_m": [
+            2.0609659259207547e-05,
+            0.004683614242821932,
+            0.01033726055175066
+          ],
+          "final_tool_xyz_m": [
+            0.0013005733489990234,
+            -5.6743621826171875e-05,
+            0.00899898074567318
+          ],
+          "minimum_held_base_height_m": 3.153085708619552e-06,
+          "contact_fraction": 0.3442234992980957,
+          "witnessed_recovery": true,
+          "prefix_terminal": false,
+          "witnessed_failure_by_handoff": true,
+          "active_at_handoff": true,
+          "recovery_after_prefix_failure": true
+        },
+        {
+          "case_id": "dev-10070-friction_low-1",
+          "bin_id": "friction_low",
+          "outcome": "force_abort",
+          "success": false,
+          "elapsed_s": 2.325,
+          "discounted_return": 20.605139970171603,
+          "upstream_discounted_return": 20.60513994395788,
+          "discounted_reward_terms": {
+            "kp_baseline": 5.199875813204754,
+            "kp_coarse": 4.595510128498209,
+            "kp_fine": 3.0362984345367705,
+            "action_penalty_ee": 0.0,
+            "action_grad_penalty": 0.0,
+            "curr_engaged": 7.783021379593551,
+            "curr_success": 0.0,
+            "action_penalty_asset": -0.009565811875403084,
+            "contact_penalty": 0.0,
+            "success_pred_error": 0.0
+          },
+          "completion_credit_return": 0.0,
+          "peak_raw_wrist_n": 20.08344078063965,
+          "final_target_xyz_m": [
+            -3.881498196278699e-05,
+            3.2073596685222583e-06,
+            0.012308242730796337
+          ],
+          "final_tool_xyz_m": [
+            -0.0013015270233154297,
+            -0.0012552738189697266,
+            0.0053741890005767345
+          ],
+          "minimum_held_base_height_m": 1.7974153161050277e-05,
+          "contact_fraction": 0.11469534039497375,
+          "witnessed_recovery": false,
+          "prefix_terminal": true,
+          "witnessed_failure_by_handoff": false,
+          "active_at_handoff": false,
+          "recovery_after_prefix_failure": false
+        },
+        {
+          "case_id": "dev-10070-friction_low-2",
+          "bin_id": "friction_low",
+          "outcome": "force_abort",
+          "success": false,
+          "elapsed_s": 5.0,
+          "discounted_return": 28.070444051253627,
+          "upstream_discounted_return": 28.07044417580487,
+          "discounted_reward_terms": {
+            "kp_baseline": 10.407843386974006,
+            "kp_coarse": 9.779065943955922,
+            "kp_fine": 4.475766098594525,
+            "action_penalty_ee": 0.0,
+            "action_grad_penalty": 0.0,
+            "curr_engaged": 2.7812508772323348,
+            "curr_success": 0.6900935609921608,
+            "action_penalty_asset": -0.06357569194408197,
+            "contact_penalty": 0.0,
+            "success_pred_error": 0.0
+          },
+          "completion_credit_return": 0.0,
+          "peak_raw_wrist_n": 20.035541534423828,
+          "final_target_xyz_m": [
+            -4.971861017111223e-06,
+            3.6346870047054836e-07,
+            0.007674794178456068
+          ],
+          "final_tool_xyz_m": [
+            -0.0006091594696044922,
+            -0.0007593147456645966,
+            0.009124631062150002
+          ],
+          "minimum_held_base_height_m": 8.813068270683427e-05,
+          "contact_fraction": 0.6200000047683716,
+          "witnessed_recovery": false,
+          "prefix_terminal": false,
+          "witnessed_failure_by_handoff": false,
+          "active_at_handoff": true,
+          "recovery_after_prefix_failure": false
+        },
+        {
+          "case_id": "dev-10070-friction_low-3",
+          "bin_id": "friction_low",
+          "outcome": "deadline",
+          "success": false,
+          "elapsed_s": 30.0,
+          "discounted_return": 100.45872097401032,
+          "upstream_discounted_return": 100.45872126995178,
+          "discounted_reward_terms": {
+            "kp_baseline": 29.75185515926374,
+            "kp_coarse": 30.10711198064765,
+            "kp_fine": 15.670667291243882,
+            "action_penalty_ee": 0.0,
+            "action_grad_penalty": 0.0,
+            "curr_engaged": 38.200214593170394,
+            "curr_success": 0.0,
+            "action_penalty_asset": -0.1152372268636195,
+            "contact_penalty": -13.155890527510262,
+            "success_pred_error": 0.0
+          },
+          "completion_credit_return": 0.0,
+          "peak_raw_wrist_n": 19.844655990600586,
+          "final_target_xyz_m": [
+            0.004314742516726255,
+            0.00729023152962327,
+            0.014047292061150074
+          ],
+          "final_tool_xyz_m": [
+            0.002735614776611328,
+            0.0024704933166503906,
+            0.02101248875260353
+          ],
+          "minimum_held_base_height_m": 0.012254267558455469,
+          "contact_fraction": 0.6725000143051147,
+          "witnessed_recovery": false,
+          "prefix_terminal": false,
+          "witnessed_failure_by_handoff": true,
+          "active_at_handoff": true,
+          "recovery_after_prefix_failure": false
+        },
+        {
+          "case_id": "dev-10070-friction_high-0",
+          "bin_id": "friction_high",
+          "outcome": "success",
+          "success": true,
+          "elapsed_s": 18.03333333333333,
+          "discounted_return": 156.25338972709642,
+          "upstream_discounted_return": 66.6780373058328,
+          "discounted_reward_terms": {
+            "kp_baseline": 24.638478565497596,
+            "kp_coarse": 23.63893337036868,
+            "kp_fine": 10.98870074122818,
+            "action_penalty_ee": 0.0,
+            "action_grad_penalty": 0.0,
+            "curr_engaged": 7.488647335642407,
+            "curr_success": 1.8452675390914288,
+            "action_penalty_asset": -0.07672270690406273,
+            "contact_penalty": 0.0,
+            "success_pred_error": -1.8452675390914288
+          },
+          "completion_credit_return": 89.57535239376419,
+          "peak_raw_wrist_n": 13.569601058959961,
+          "final_target_xyz_m": [
+            -0.00477772019803524,
+            -0.006644487380981445,
+            0.009761839173734188
+          ],
+          "final_tool_xyz_m": [
+            -0.001550912857055664,
+            0.00020694732666015625,
+            0.005215412005782127
+          ],
+          "minimum_held_base_height_m": 2.18745321035399e-05,
+          "contact_fraction": 0.3391866981983185,
+          "witnessed_recovery": true,
+          "prefix_terminal": false,
+          "witnessed_failure_by_handoff": true,
+          "active_at_handoff": true,
+          "recovery_after_prefix_failure": true
+        },
+        {
+          "case_id": "dev-10070-friction_high-1",
+          "bin_id": "friction_high",
+          "outcome": "success",
+          "success": true,
+          "elapsed_s": 2.875,
+          "discounted_return": 445.70896104228206,
+          "upstream_discounted_return": 36.617074485750564,
+          "discounted_reward_terms": {
+            "kp_baseline": 6.438800523860753,
+            "kp_coarse": 6.232342392256035,
+            "kp_fine": 5.64547214512224,
+            "action_penalty_ee": 0.0,
+            "action_grad_penalty": 0.0,
+            "curr_engaged": 11.720227928227594,
+            "curr_success": 6.596403888836717,
+            "action_penalty_asset": -0.016172392552772558,
+            "contact_penalty": 0.0,
+            "success_pred_error": 0.0
+          },
+          "completion_credit_return": 409.0918869718322,
+          "peak_raw_wrist_n": 19.84935760498047,
+          "final_target_xyz_m": [
+            -3.067270154133439e-05,
+            3.496087856547092e-06,
+            0.009665196761488914
+          ],
+          "final_tool_xyz_m": [
+            0.0014657974243164062,
+            0.0003848075866699219,
+            0.00786601658910513
+          ],
+          "minimum_held_base_height_m": -6.742775440077287e-08,
+          "contact_fraction": 0.20000000298023224,
+          "witnessed_recovery": false,
+          "prefix_terminal": true,
+          "witnessed_failure_by_handoff": false,
+          "active_at_handoff": false,
+          "recovery_after_prefix_failure": false
+        },
+        {
+          "case_id": "dev-10070-friction_high-2",
+          "bin_id": "friction_high",
+          "outcome": "success",
+          "success": true,
+          "elapsed_s": 15.049999999999999,
+          "discounted_return": 185.91752300756522,
+          "upstream_discounted_return": 58.20750807033887,
+          "discounted_reward_terms": {
+            "kp_baseline": 22.45676615987189,
+            "kp_coarse": 20.67758844548583,
+            "kp_fine": 10.383158562099208,
+            "action_penalty_ee": 0.0,
+            "action_grad_penalty": 0.0,
+            "curr_engaged": 12.416583766261903,
+            "curr_success": 2.3121750385898947,
+            "action_penalty_asset": -0.06798409437216502,
+            "contact_penalty": -7.6586047690078125,
+            "success_pred_error": -2.3121750385898947
+          },
+          "completion_credit_return": 127.71001505289995,
+          "peak_raw_wrist_n": 19.709644317626953,
+          "final_target_xyz_m": [
+            0.0019688706379383802,
+            0.0016945385141298175,
+            0.006087048444896936
+          ],
+          "final_tool_xyz_m": [
+            0.00013399124145507812,
+            -7.62939453125e-05,
+            0.0073638311587274075
+          ],
+          "minimum_held_base_height_m": 3.724321722984453e-05,
+          "contact_fraction": 0.2585825026035309,
+          "witnessed_recovery": true,
+          "prefix_terminal": false,
+          "witnessed_failure_by_handoff": true,
+          "active_at_handoff": true,
+          "recovery_after_prefix_failure": true
+        },
+        {
+          "case_id": "dev-10070-friction_high-3",
+          "bin_id": "friction_high",
+          "outcome": "success",
+          "success": true,
+          "elapsed_s": 3.225,
+          "discounted_return": 447.32580347677236,
+          "upstream_discounted_return": 49.87266822313313,
+          "discounted_reward_terms": {
+            "kp_baseline": 7.104258375852234,
+            "kp_coarse": 7.452333432019275,
+            "kp_fine": 8.917138223466523,
+            "action_penalty_ee": 0.0,
+            "action_grad_penalty": 0.0,
+            "curr_engaged": 20.099812563402995,
+            "curr_success": 6.4331346676762955,
+            "action_penalty_asset": -0.010712611512458399,
+            "contact_penalty": -0.12329642777173083,
+            "success_pred_error": 0.0
+          },
+          "completion_credit_return": 397.4531349240229,
+          "peak_raw_wrist_n": 19.476734161376953,
+          "final_target_xyz_m": [
+            -1.7062984625226818e-05,
+            1.3591270544566214e-06,
+            0.009380154311656952
+          ],
+          "final_tool_xyz_m": [
+            -0.0009183883666992188,
+            -0.0005495762452483177,
+            0.008773991838097572
+          ],
+          "minimum_held_base_height_m": 8.776746690273424e-05,
+          "contact_fraction": 0.09819121658802032,
+          "witnessed_recovery": false,
+          "prefix_terminal": true,
+          "witnessed_failure_by_handoff": false,
+          "active_at_handoff": false,
+          "recovery_after_prefix_failure": false
+        }
+      ],
+      "failure_exposure": {
+        "all_requested_jobs": 28,
+        "prefix_completions": 3,
+        "prefix_failed_jobs": 2,
+        "active_at_handoff": 23,
+        "witnessed_prefix_failures_active_at_handoff": 17,
+        "completed_after_witnessed_prefix_failure": 13,
+        "witnessed_recoveries_after_prefix_failure": 13,
+        "scope": "Conditional recovery counts accompany all-request outcomes; prefix failures and prefix scripted completions remain in the full-job denominator."
+      }
+    },
+    "continue": {
+      "manifest_sha256": "52748622ca12c50b7d35ccbefc6d1fa893fec23f31575dfc19b1c7fed63a7889",
+      "checkpoint_sha256": "cee349b1b9283a66924294323f5c7bd8f5de98434be70ed19d8a07986f9eb532",
+      "cost": {
+        "rollout_control_transitions": 12600,
+        "active_control_transitions": 9331,
+        "absorbing_control_transitions": 3269,
+        "rollout_physics_env_steps": 100800,
+        "active_physics_env_steps": 74620,
+        "initialization_physics_env_steps": 1876,
+        "charged_control_equivalent_transitions": 12834.5,
+        "scope": "All rollout slots, including holds, plus initialization physics divided by decimation. Probes/mining charged by their own manifests."
+      },
+      "metrics": {
+        "all": {
+          "requests": 28,
+          "completions": 3,
+          "outcomes": {
+            "deadline": 19,
+            "force_abort": 6,
+            "success": 3
+          },
+          "upstream_success_seen": 6,
+          "witnessed_contact_failures": 22,
+          "witnessed_recoveries": 0,
+          "mean_time_per_request_s": 22.208333333333332,
+          "peak_raw_wrist_force_n": 20.5838680267334,
+          "mean_discounted_return": 58.354830240609516,
+          "forbidden_events": 0,
+          "active_control_transitions": 9331,
+          "return_by_outcome": {
+            "deadline": {
+              "requests": 19,
+              "mean": 11.241198729358484
+            },
+            "force_abort": {
+              "requests": 6,
+              "mean": 13.29263227906122
+            },
+            "success": {
+              "requests": 3,
+              "mean": 446.86555906829597
+            }
+          }
+        },
+        "nominal": {
+          "requests": 4,
+          "completions": 0,
+          "outcomes": {
+            "deadline": 3,
+            "force_abort": 1
+          },
+          "upstream_success_seen": 0,
+          "witnessed_contact_failures": 3,
+          "witnessed_recoveries": 0,
+          "mean_time_per_request_s": 22.847916666666666,
+          "peak_raw_wrist_force_n": 20.185998916625977,
+          "mean_discounted_return": 47.5987079508303,
+          "forbidden_events": 0,
+          "active_control_transitions": 1371,
+          "return_by_outcome": {
+            "deadline": {
+              "requests": 3,
+              "mean": 61.46798925998763
+            },
+            "force_abort": {
+              "requests": 1,
+              "mean": 5.990864023358306
+            }
+          }
+        },
+        "bias_low": {
+          "requests": 4,
+          "completions": 0,
+          "outcomes": {
+            "deadline": 4
+          },
+          "upstream_success_seen": 0,
+          "witnessed_contact_failures": 4,
+          "witnessed_recoveries": 0,
+          "mean_time_per_request_s": 30.0,
+          "peak_raw_wrist_force_n": 19.393247604370117,
+          "mean_discounted_return": -2.668210801197274,
+          "forbidden_events": 0,
+          "active_control_transitions": 1800,
+          "return_by_outcome": {
+            "deadline": {
+              "requests": 4,
+              "mean": -2.668210801197274
+            }
+          }
+        },
+        "bias_medium": {
+          "requests": 4,
+          "completions": 1,
+          "outcomes": {
+            "force_abort": 1,
+            "deadline": 2,
+            "success": 1
+          },
+          "upstream_success_seen": 1,
+          "witnessed_contact_failures": 3,
+          "witnessed_recoveries": 0,
+          "mean_time_per_request_s": 19.333333333333332,
+          "peak_raw_wrist_force_n": 20.5838680267334,
+          "mean_discounted_return": 107.24722241933225,
+          "forbidden_events": 0,
+          "active_control_transitions": 1161,
+          "return_by_outcome": {
+            "deadline": {
+              "requests": 2,
+              "mean": -5.359110895913403
+            },
+            "force_abort": {
+              "requests": 1,
+              "mean": -7.854801216677545
+            },
+            "success": {
+              "requests": 1,
+              "mean": 447.56191268583336
+            }
+          }
+        },
+        "approach_low": {
+          "requests": 4,
+          "completions": 0,
+          "outcomes": {
+            "force_abort": 2,
+            "deadline": 2
+          },
+          "upstream_success_seen": 1,
+          "witnessed_contact_failures": 4,
+          "witnessed_recoveries": 0,
+          "mean_time_per_request_s": 19.920833333333334,
+          "peak_raw_wrist_force_n": 20.322959899902344,
+          "mean_discounted_return": -0.6955508893449331,
+          "forbidden_events": 0,
+          "active_control_transitions": 1196,
+          "return_by_outcome": {
+            "deadline": {
+              "requests": 2,
+              "mean": -17.863175201820525
+            },
+            "force_abort": {
+              "requests": 2,
+              "mean": 16.47207342313066
+            }
+          }
+        },
+        "approach_high": {
+          "requests": 4,
+          "completions": 0,
+          "outcomes": {
+            "deadline": 4
+          },
+          "upstream_success_seen": 0,
+          "witnessed_contact_failures": 4,
+          "witnessed_recoveries": 0,
+          "mean_time_per_request_s": 30.0,
+          "peak_raw_wrist_force_n": 19.43140411376953,
+          "mean_discounted_return": 22.571858520303664,
+          "forbidden_events": 0,
+          "active_control_transitions": 1800,
+          "return_by_outcome": {
+            "deadline": {
+              "requests": 4,
+              "mean": 22.571858520303664
+            }
+          }
+        },
+        "friction_low": {
+          "requests": 4,
+          "completions": 0,
+          "outcomes": {
+            "deadline": 2,
+            "force_abort": 2
+          },
+          "upstream_success_seen": 2,
+          "witnessed_contact_failures": 2,
+          "witnessed_recoveries": 0,
+          "mean_time_per_request_s": 16.83125,
+          "peak_raw_wrist_force_n": 20.08344078063965,
+          "mean_discounted_return": -1.5383727415891215,
+          "forbidden_events": 0,
+          "active_control_transitions": 1010,
+          "return_by_outcome": {
+            "deadline": {
+              "requests": 2,
+              "mean": -27.41453749389086
+            },
+            "force_abort": {
+              "requests": 2,
+              "mean": 24.33779201071262
+            }
+          }
+        },
+        "friction_high": {
+          "requests": 4,
+          "completions": 2,
+          "outcomes": {
+            "deadline": 2,
+            "success": 2
+          },
+          "upstream_success_seen": 2,
+          "witnessed_contact_failures": 2,
+          "witnessed_recoveries": 0,
+          "mean_time_per_request_s": 16.525,
+          "peak_raw_wrist_force_n": 19.84935760498047,
+          "mean_discounted_return": 235.9681572259317,
+          "forbidden_events": 0,
+          "active_control_transitions": 993,
+          "return_by_outcome": {
+            "deadline": {
+              "requests": 2,
+              "mean": 25.41893219233616
+            },
+            "success": {
+              "requests": 2,
+              "mean": 446.51738225952727
+            }
+          }
+        }
+      },
+      "cases": [
+        {
+          "case_id": "dev-10070-nominal-0",
+          "bin_id": "nominal",
+          "outcome": "deadline",
+          "success": false,
+          "elapsed_s": 30.0,
+          "discounted_return": 72.36739290056344,
+          "upstream_discounted_return": 72.3673927490746,
+          "discounted_reward_terms": {
+            "kp_baseline": 29.75207029771246,
+            "kp_coarse": 29.779440023025007,
+            "kp_fine": 13.051297049426687,
+            "action_penalty_ee": 0.0,
+            "action_grad_penalty": 0.0,
+            "curr_engaged": 0.0,
+            "curr_success": 0.0,
+            "action_penalty_asset": -0.215414621089548,
+            "contact_penalty": 0.0,
+            "success_pred_error": 0.0
+          },
+          "completion_credit_return": 0.0,
+          "peak_raw_wrist_n": 17.489770889282227,
+          "final_target_xyz_m": [
+            -6.799535146515725e-17,
+            0.0,
+            0.0073920004069805145
+          ],
+          "final_tool_xyz_m": [
+            -0.002254962921142578,
+            -0.0042743682861328125,
+            0.034137479960918427
+          ],
+          "minimum_held_base_height_m": 0.0249912828207016,
+          "contact_fraction": 0.9466666579246521,
+          "witnessed_recovery": false,
+          "prefix_terminal": false,
+          "witnessed_failure_by_handoff": false,
+          "active_at_handoff": true,
+          "recovery_after_prefix_failure": false
+        },
+        {
+          "case_id": "dev-10070-nominal-1",
+          "bin_id": "nominal",
+          "outcome": "deadline",
+          "success": false,
+          "elapsed_s": 30.0,
+          "discounted_return": 72.07579516199883,
+          "upstream_discounted_return": 72.07579511791387,
+          "discounted_reward_terms": {
+            "kp_baseline": 29.75190175305444,
+            "kp_coarse": 29.74842238759784,
+            "kp_fine": 12.976458988869728,
+            "action_penalty_ee": 0.0,
+            "action_grad_penalty": 0.0,
+            "curr_engaged": 0.0,
+            "curr_success": 0.0,
+            "action_penalty_asset": -0.24653121566522399,
+            "contact_penalty": -0.15445679594290382,
+            "success_pred_error": 0.0
+          },
+          "completion_credit_return": 0.0,
+          "peak_raw_wrist_n": 13.548151969909668,
+          "final_target_xyz_m": [
+            -1.4859370741913154e-21,
+            4.266161353157042e-23,
+            0.007392005063593388
+          ],
+          "final_tool_xyz_m": [
+            -0.003983497619628906,
+            -0.004488468170166016,
+            0.035352788865566254
+          ],
+          "minimum_held_base_height_m": 0.024997885897755624,
+          "contact_fraction": 0.9486111402511597,
+          "witnessed_recovery": false,
+          "prefix_terminal": false,
+          "witnessed_failure_by_handoff": true,
+          "active_at_handoff": true,
+          "recovery_after_prefix_failure": false
+        },
+        {
+          "case_id": "dev-10070-nominal-2",
+          "bin_id": "nominal",
+          "outcome": "deadline",
+          "success": false,
+          "elapsed_s": 30.0,
+          "discounted_return": 39.96077971740061,
+          "upstream_discounted_return": 39.96077967616289,
+          "discounted_reward_terms": {
+            "kp_baseline": 29.746044376184486,
+            "kp_coarse": 29.21516361443264,
+            "kp_fine": 12.563676912188408,
+            "action_penalty_ee": 0.0,
+            "action_grad_penalty": 0.0,
+            "curr_engaged": 0.0,
+            "curr_success": 0.0,
+            "action_penalty_asset": -0.2013906087285712,
+            "contact_penalty": -31.362714617914072,
+            "success_pred_error": 0.0
+          },
+          "completion_credit_return": 0.0,
+          "peak_raw_wrist_n": 19.270719528198242,
+          "final_target_xyz_m": [
+            -2.2538213414687073e-19,
+            -1.6477796462400035e-20,
+            0.007392003666609526
+          ],
+          "final_tool_xyz_m": [
+            -2.47955322265625e-05,
+            -0.0013342052698135376,
+            0.03213214501738548
+          ],
+          "minimum_held_base_height_m": 0.024997081235051156,
+          "contact_fraction": 0.9502778053283691,
+          "witnessed_recovery": false,
+          "prefix_terminal": false,
+          "witnessed_failure_by_handoff": true,
+          "active_at_handoff": true,
+          "recovery_after_prefix_failure": false
+        },
+        {
+          "case_id": "dev-10070-nominal-3",
+          "bin_id": "nominal",
+          "outcome": "force_abort",
+          "success": false,
+          "elapsed_s": 1.3916666666666666,
+          "discounted_return": 5.990864023358307,
+          "upstream_discounted_return": 5.990864047033473,
+          "discounted_reward_terms": {
+            "kp_baseline": 3.162205750921813,
+            "kp_coarse": 2.305933873266155,
+            "kp_fine": 0.5275844801365155,
+            "action_penalty_ee": 0.0,
+            "action_grad_penalty": 0.0,
+            "curr_engaged": 0.0,
+            "curr_success": 0.0,
+            "action_penalty_asset": -0.004860057291009839,
+            "contact_penalty": 0.0,
+            "success_pred_error": 0.0
+          },
+          "completion_credit_return": 0.0,
+          "peak_raw_wrist_n": 20.185998916625977,
+          "final_target_xyz_m": [
+            -0.0002247049706056714,
+            2.184268487326335e-05,
+            0.029065821319818497
+          ],
+          "final_tool_xyz_m": [
+            -0.004728794097900391,
+            0.001611948013305664,
+            0.03401460871100426
+          ],
+          "minimum_held_base_height_m": 0.025004624947905542,
+          "contact_fraction": 0.011976048350334167,
+          "witnessed_recovery": false,
+          "prefix_terminal": true,
+          "witnessed_failure_by_handoff": false,
+          "active_at_handoff": false,
+          "recovery_after_prefix_failure": false
+        },
+        {
+          "case_id": "dev-10070-bias_low-0",
+          "bin_id": "bias_low",
+          "outcome": "deadline",
+          "success": false,
+          "elapsed_s": 30.0,
+          "discounted_return": 35.78786536582871,
+          "upstream_discounted_return": 35.787865363780604,
+          "discounted_reward_terms": {
+            "kp_baseline": 29.729701788901,
+            "kp_coarse": 27.097382568487475,
+            "kp_fine": 9.667271401305154,
+            "action_penalty_ee": 0.0,
+            "action_grad_penalty": 0.0,
+            "curr_engaged": 0.0,
+            "curr_success": 0.0,
+            "action_penalty_asset": -0.21894603578343103,
+            "contact_penalty": -30.487544359129593,
+            "success_pred_error": 0.0
+          },
+          "completion_credit_return": 0.0,
+          "peak_raw_wrist_n": 19.31596565246582,
+          "final_target_xyz_m": [
+            -3.311316157740832e-17,
+            9.48605246404254e-19,
+            0.0073920078575611115
+          ],
+          "final_tool_xyz_m": [
+            -0.0018262214725837111,
+            0.0016679763793945312,
+            0.031016705557703972
+          ],
+          "minimum_held_base_height_m": 0.02501000426709652,
+          "contact_fraction": 0.9477777481079102,
+          "witnessed_recovery": false,
+          "prefix_terminal": false,
+          "witnessed_failure_by_handoff": true,
+          "active_at_handoff": true,
+          "recovery_after_prefix_failure": false
+        },
+        {
+          "case_id": "dev-10070-bias_low-1",
+          "bin_id": "bias_low",
+          "outcome": "deadline",
+          "success": false,
+          "elapsed_s": 30.0,
+          "discounted_return": 62.50074635573843,
+          "upstream_discounted_return": 62.50074650368238,
+          "discounted_reward_terms": {
+            "kp_baseline": 29.749894482838776,
+            "kp_coarse": 29.55530586705445,
+            "kp_fine": 12.825334169525386,
+            "action_penalty_ee": 0.0,
+            "action_grad_penalty": 0.0,
+            "curr_engaged": 0.0,
+            "curr_success": 0.0,
+            "action_penalty_asset": -0.2131770602627578,
+            "contact_penalty": -9.416610955473491,
+            "success_pred_error": 0.0
+          },
+          "completion_credit_return": 0.0,
+          "peak_raw_wrist_n": 10.576680183410645,
+          "final_target_xyz_m": [
+            5.95134282291487e-17,
+            2.936682460079901e-18,
+            0.007392001338303089
+          ],
+          "final_tool_xyz_m": [
+            -0.004651849623769522,
+            -0.0030612945556640625,
+            0.03228156641125679
+          ],
+          "minimum_held_base_height_m": 0.02499993108212948,
+          "contact_fraction": 0.9424999952316284,
+          "witnessed_recovery": false,
+          "prefix_terminal": false,
+          "witnessed_failure_by_handoff": false,
+          "active_at_handoff": true,
+          "recovery_after_prefix_failure": false
+        },
+        {
+          "case_id": "dev-10070-bias_low-2",
+          "bin_id": "bias_low",
+          "outcome": "deadline",
+          "success": false,
+          "elapsed_s": 30.0,
+          "discounted_return": 3.5771948341885556,
+          "upstream_discounted_return": 3.5771951569152662,
+          "discounted_reward_terms": {
+            "kp_baseline": 29.74777307732041,
+            "kp_coarse": 29.406475566991055,
+            "kp_fine": 12.84104133062718,
+            "action_penalty_ee": 0.0,
+            "action_grad_penalty": 0.0,
+            "curr_engaged": 0.0,
+            "curr_success": 0.0,
+            "action_penalty_asset": -0.18605949169360825,
+            "contact_penalty": -68.23203532632976,
+            "success_pred_error": 0.0
+          },
+          "completion_credit_return": 0.0,
+          "peak_raw_wrist_n": 18.354537963867188,
+          "final_target_xyz_m": [
+            -1.3105483712139154e-11,
+            -2.3235992990811027e-11,
+            0.007392009254544973
+          ],
+          "final_tool_xyz_m": [
+            -0.0012664794921875,
+            -0.0031713792122900486,
+            0.030500618740916252
+          ],
+          "minimum_held_base_height_m": 0.02498047761619091,
+          "contact_fraction": 0.9302777647972107,
+          "witnessed_recovery": false,
+          "prefix_terminal": false,
+          "witnessed_failure_by_handoff": true,
+          "active_at_handoff": true,
+          "recovery_after_prefix_failure": false
+        },
+        {
+          "case_id": "dev-10070-bias_low-3",
+          "bin_id": "bias_low",
+          "outcome": "deadline",
+          "success": false,
+          "elapsed_s": 30.0,
+          "discounted_return": -112.53864976054487,
+          "upstream_discounted_return": -112.5386497971085,
+          "discounted_reward_terms": {
+            "kp_baseline": 29.748304566861233,
+            "kp_coarse": 29.394755337992756,
+            "kp_fine": 12.66384180978995,
+            "action_penalty_ee": 0.0,
+            "action_grad_penalty": 0.0,
+            "curr_engaged": 0.0,
+            "curr_success": 0.0,
+            "action_penalty_asset": -0.20180431337196725,
+            "contact_penalty": -184.14374719838048,
+            "success_pred_error": 0.0
+          },
+          "completion_credit_return": 0.0,
+          "peak_raw_wrist_n": 19.393247604370117,
+          "final_target_xyz_m": [
+            -3.853288402331373e-14,
+            6.732166365173986e-14,
+            0.007392004132270813
+          ],
+          "final_tool_xyz_m": [
+            0.0015125274658203125,
+            -0.004021958913654089,
+            0.0320386104285717
+          ],
+          "minimum_held_base_height_m": 0.02498896010220051,
+          "contact_fraction": 0.9386110901832581,
+          "witnessed_recovery": false,
+          "prefix_terminal": false,
+          "witnessed_failure_by_handoff": true,
+          "active_at_handoff": true,
+          "recovery_after_prefix_failure": false
+        },
+        {
+          "case_id": "dev-10070-bias_medium-0",
+          "bin_id": "bias_medium",
+          "outcome": "force_abort",
+          "success": false,
+          "elapsed_s": 14.108333333333333,
+          "discounted_return": -7.854801216677539,
+          "upstream_discounted_return": -7.854801243276654,
+          "discounted_reward_terms": {
+            "kp_baseline": 21.691555026703575,
+            "kp_coarse": 21.513349339207462,
+            "kp_fine": 9.394305336970882,
+            "action_penalty_ee": 0.0,
+            "action_grad_penalty": 0.0,
+            "curr_engaged": 0.0,
+            "curr_success": 0.0,
+            "action_penalty_asset": -0.12012130433943563,
+            "contact_penalty": -60.333889641819134,
+            "success_pred_error": 0.0
+          },
+          "completion_credit_return": 0.0,
+          "peak_raw_wrist_n": 20.5838680267334,
+          "final_target_xyz_m": [
+            -3.7051490835438017e-06,
+            5.329303220946713e-08,
+            0.007474638521671295
+          ],
+          "final_tool_xyz_m": [
+            0.00023830984719097614,
+            9.989738464355469e-05,
+            0.03253322094678879
+          ],
+          "minimum_held_base_height_m": 0.02424198351800442,
+          "contact_fraction": 0.8535144925117493,
+          "witnessed_recovery": false,
+          "prefix_terminal": false,
+          "witnessed_failure_by_handoff": true,
+          "active_at_handoff": true,
+          "recovery_after_prefix_failure": false
+        },
+        {
+          "case_id": "dev-10070-bias_medium-1",
+          "bin_id": "bias_medium",
+          "outcome": "deadline",
+          "success": false,
+          "elapsed_s": 30.0,
+          "discounted_return": 69.07841132611613,
+          "upstream_discounted_return": 69.07841107217354,
+          "discounted_reward_terms": {
+            "kp_baseline": 29.74443210379514,
+            "kp_coarse": 28.902694057092624,
+            "kp_fine": 11.968005950769463,
+            "action_penalty_ee": 0.0,
+            "action_grad_penalty": 0.0,
+            "curr_engaged": 0.0,
+            "curr_success": 0.0,
+            "action_penalty_asset": -0.21636530112489538,
+            "contact_penalty": -1.3203557383587998,
+            "success_pred_error": 0.0
+          },
+          "completion_credit_return": 0.0,
+          "peak_raw_wrist_n": 19.24302101135254,
+          "final_target_xyz_m": [
+            1.3984481433103324e-13,
+            -8.824401420593918e-16,
+            0.0073920078575611115
+          ],
+          "final_tool_xyz_m": [
+            -0.002592693315818906,
+            -0.0031523704528808594,
+            0.03147256374359131
+          ],
+          "minimum_held_base_height_m": 0.02500886991620064,
+          "contact_fraction": 0.9344444274902344,
+          "witnessed_recovery": false,
+          "prefix_terminal": false,
+          "witnessed_failure_by_handoff": true,
+          "active_at_handoff": true,
+          "recovery_after_prefix_failure": false
+        },
+        {
+          "case_id": "dev-10070-bias_medium-2",
+          "bin_id": "bias_medium",
+          "outcome": "deadline",
+          "success": false,
+          "elapsed_s": 30.0,
+          "discounted_return": -79.79663311794289,
+          "upstream_discounted_return": -79.79663331939041,
+          "discounted_reward_terms": {
+            "kp_baseline": 29.744694894019922,
+            "kp_coarse": 28.941065480177585,
+            "kp_fine": 12.013168717468691,
+            "action_penalty_ee": 0.0,
+            "action_grad_penalty": 0.0,
+            "curr_engaged": 0.0,
+            "curr_success": 0.0,
+            "action_penalty_asset": -0.2144032318390286,
+            "contact_penalty": -150.28115917921758,
+            "success_pred_error": 0.0
+          },
+          "completion_credit_return": 0.0,
+          "peak_raw_wrist_n": 19.107236862182617,
+          "final_target_xyz_m": [
+            -5.743266858146257e-20,
+            -1.3220884599102154e-19,
+            0.0073920064605772495
+          ],
+          "final_tool_xyz_m": [
+            -0.005105853080749512,
+            -0.00797282624989748,
+            0.03048241324722767
+          ],
+          "minimum_held_base_height_m": 0.025004885718226434,
+          "contact_fraction": 0.9461110830307007,
+          "witnessed_recovery": false,
+          "prefix_terminal": false,
+          "witnessed_failure_by_handoff": true,
+          "active_at_handoff": true,
+          "recovery_after_prefix_failure": false
+        },
+        {
+          "case_id": "dev-10070-bias_medium-3",
+          "bin_id": "bias_medium",
+          "outcome": "success",
+          "success": true,
+          "elapsed_s": 3.225,
+          "discounted_return": 447.56191268583336,
+          "upstream_discounted_return": 50.10877720865739,
+          "discounted_reward_terms": {
+            "kp_baseline": 7.10488772138974,
+            "kp_coarse": 7.508230686653995,
+            "kp_fine": 8.97025919771757,
+            "action_penalty_ee": 0.0,
+            "action_grad_penalty": 0.0,
+            "curr_engaged": 20.099812563402995,
+            "curr_success": 6.4331346676762955,
+            "action_penalty_asset": -0.0075476281832111535,
+            "contact_penalty": 0.0,
+            "success_pred_error": 0.0
+          },
+          "completion_credit_return": 397.4531349240229,
+          "peak_raw_wrist_n": 19.967851638793945,
+          "final_target_xyz_m": [
+            -1.6201251128222793e-05,
+            6.182971992529929e-05,
+            0.009100421331822872
+          ],
+          "final_tool_xyz_m": [
+            -0.0005003213882446289,
+            0.0022364750038832426,
+            0.008031490258872509
+          ],
+          "minimum_held_base_height_m": 0.00012148134410381456,
+          "contact_fraction": 0.23255814611911774,
+          "witnessed_recovery": false,
+          "prefix_terminal": true,
+          "witnessed_failure_by_handoff": false,
+          "active_at_handoff": false,
+          "recovery_after_prefix_failure": false
+        },
+        {
+          "case_id": "dev-10070-approach_low-0",
+          "bin_id": "approach_low",
+          "outcome": "force_abort",
+          "success": false,
+          "elapsed_s": 7.175,
+          "discounted_return": -11.575147420175428,
+          "upstream_discounted_return": -11.575147446811034,
+          "discounted_reward_terms": {
+            "kp_baseline": 13.78760798655141,
+            "kp_coarse": 12.811333769623381,
+            "kp_fine": 4.946242544621725,
+            "action_penalty_ee": 0.0,
+            "action_grad_penalty": 0.0,
+            "curr_engaged": 0.0,
+            "curr_success": 0.0,
+            "action_penalty_asset": -0.0726523428068743,
+            "contact_penalty": -43.047679404800675,
+            "success_pred_error": 0.0
+          },
+          "completion_credit_return": 0.0,
+          "peak_raw_wrist_n": 20.322959899902344,
+          "final_target_xyz_m": [
+            0.00013839763414580375,
+            1.6697553064659587e-06,
+            0.008798914961516857
+          ],
+          "final_tool_xyz_m": [
+            -0.0028121471405029297,
+            0.0018247561529278755,
+            0.03147757053375244
+          ],
+          "minimum_held_base_height_m": 0.025025810673832895,
+          "contact_fraction": 0.7235772609710693,
+          "witnessed_recovery": false,
+          "prefix_terminal": false,
+          "witnessed_failure_by_handoff": true,
+          "active_at_handoff": true,
+          "recovery_after_prefix_failure": false
+        },
+        {
+          "case_id": "dev-10070-approach_low-1",
+          "bin_id": "approach_low",
+          "outcome": "force_abort",
+          "success": false,
+          "elapsed_s": 12.508333333333333,
+          "discounted_return": 44.51929426643675,
+          "upstream_discounted_return": 44.519294082012635,
+          "discounted_reward_terms": {
+            "kp_baseline": 20.21599611288331,
+            "kp_coarse": 20.094740367322856,
+            "kp_fine": 9.177650709786635,
+            "action_penalty_ee": 0.0,
+            "action_grad_penalty": 0.0,
+            "curr_engaged": 1.988052154087475,
+            "curr_success": 0.0,
+            "action_penalty_asset": -0.12344440899038592,
+            "contact_penalty": -6.83370085307725,
+            "success_pred_error": 0.0
+          },
+          "completion_credit_return": 0.0,
+          "peak_raw_wrist_n": 20.25464630126953,
+          "final_target_xyz_m": [
+            -2.701977974695069e-09,
+            2.1005646874683315e-11,
+            0.007392021361738443
+          ],
+          "final_tool_xyz_m": [
+            -0.0010467767715454102,
+            -1.4901161193847656e-05,
+            0.004735761787742376
+          ],
+          "minimum_held_base_height_m": 0.00010800696909427782,
+          "contact_fraction": 0.8474350571632385,
+          "witnessed_recovery": false,
+          "prefix_terminal": false,
+          "witnessed_failure_by_handoff": true,
+          "active_at_handoff": true,
+          "recovery_after_prefix_failure": false
+        },
+        {
+          "case_id": "dev-10070-approach_low-2",
+          "bin_id": "approach_low",
+          "outcome": "deadline",
+          "success": false,
+          "elapsed_s": 30.0,
+          "discounted_return": -42.585225880821554,
+          "upstream_discounted_return": -42.58522559343547,
+          "discounted_reward_terms": {
+            "kp_baseline": 29.742925902159946,
+            "kp_coarse": 28.87433392988604,
+            "kp_fine": 12.212755778488065,
+            "action_penalty_ee": 0.0,
+            "action_grad_penalty": 0.0,
+            "curr_engaged": 0.0,
+            "curr_success": 0.0,
+            "action_penalty_asset": -0.16950130439653566,
+            "contact_penalty": -113.24573989957298,
+            "success_pred_error": 0.0
+          },
+          "completion_credit_return": 0.0,
+          "peak_raw_wrist_n": 16.719144821166992,
+          "final_target_xyz_m": [
+            -7.438140658955206e-10,
+            6.407545161124517e-09,
+            0.0073920683935284615
+          ],
+          "final_tool_xyz_m": [
+            0.0026237964630126953,
+            0.0016789436340332031,
+            0.029656514525413513
+          ],
+          "minimum_held_base_height_m": 0.024994201585650445,
+          "contact_fraction": 0.8997222185134888,
+          "witnessed_recovery": false,
+          "prefix_terminal": false,
+          "witnessed_failure_by_handoff": false,
+          "active_at_handoff": true,
+          "recovery_after_prefix_failure": false
+        },
+        {
+          "case_id": "dev-10070-approach_low-3",
+          "bin_id": "approach_low",
+          "outcome": "deadline",
+          "success": false,
+          "elapsed_s": 30.0,
+          "discounted_return": 6.858875477180515,
+          "upstream_discounted_return": 6.858875578547227,
+          "discounted_reward_terms": {
+            "kp_baseline": 29.75263972472871,
+            "kp_coarse": 29.830104575146233,
+            "kp_fine": 13.088602878957794,
+            "action_penalty_ee": 0.0,
+            "action_grad_penalty": 0.0,
+            "curr_engaged": 0.0,
+            "curr_success": 0.0,
+            "action_penalty_asset": -0.21446217403961493,
+            "contact_penalty": -65.59800942624591,
+            "success_pred_error": 0.0
+          },
+          "completion_credit_return": 0.0,
+          "peak_raw_wrist_n": 16.93754768371582,
+          "final_target_xyz_m": [
+            -4.9986972026905274e-12,
+            -3.947918728042232e-11,
+            0.007392004132270813
+          ],
+          "final_tool_xyz_m": [
+            0.0012609362602233887,
+            -0.004395961761474609,
+            0.03477568179368973
+          ],
+          "minimum_held_base_height_m": 0.025015122815966608,
+          "contact_fraction": 0.945555567741394,
+          "witnessed_recovery": false,
+          "prefix_terminal": false,
+          "witnessed_failure_by_handoff": true,
+          "active_at_handoff": true,
+          "recovery_after_prefix_failure": false
+        },
+        {
+          "case_id": "dev-10070-approach_high-0",
+          "bin_id": "approach_high",
+          "outcome": "deadline",
+          "success": false,
+          "elapsed_s": 30.0,
+          "discounted_return": -5.357657587650773,
+          "upstream_discounted_return": -5.357657513833686,
+          "discounted_reward_terms": {
+            "kp_baseline": 29.747313032168556,
+            "kp_coarse": 29.332234549672663,
+            "kp_fine": 12.682441679624613,
+            "action_penalty_ee": 0.0,
+            "action_grad_penalty": 0.0,
+            "curr_engaged": 0.0,
+            "curr_success": 0.0,
+            "action_penalty_asset": -0.20532963838826734,
+            "contact_penalty": -76.91431713691125,
+            "success_pred_error": 0.0
+          },
+          "completion_credit_return": 0.0,
+          "peak_raw_wrist_n": 19.43140411376953,
+          "final_target_xyz_m": [
+            3.4812666083183785e-09,
+            -4.827337488078065e-11,
+            0.0073920185677707195
+          ],
+          "final_tool_xyz_m": [
+            0.0004960894584655762,
+            -0.00420832633972168,
+            0.03444763645529747
+          ],
+          "minimum_held_base_height_m": 0.024995322898030282,
+          "contact_fraction": 0.9305555820465088,
+          "witnessed_recovery": false,
+          "prefix_terminal": false,
+          "witnessed_failure_by_handoff": true,
+          "active_at_handoff": true,
+          "recovery_after_prefix_failure": false
+        },
+        {
+          "case_id": "dev-10070-approach_high-1",
+          "bin_id": "approach_high",
+          "outcome": "deadline",
+          "success": false,
+          "elapsed_s": 30.0,
+          "discounted_return": 5.4227341245519245,
+          "upstream_discounted_return": 5.4227340086737,
+          "discounted_reward_terms": {
+            "kp_baseline": 29.733626893068227,
+            "kp_coarse": 27.49370414971766,
+            "kp_fine": 10.022734067245635,
+            "action_penalty_ee": 0.0,
+            "action_grad_penalty": 0.0,
+            "curr_engaged": 0.0,
+            "curr_success": 0.0,
+            "action_penalty_asset": -0.20822307591927852,
+            "contact_penalty": -61.61910802543855,
+            "success_pred_error": 0.0
+          },
+          "completion_credit_return": 0.0,
+          "peak_raw_wrist_n": 18.65590476989746,
+          "final_target_xyz_m": [
+            -2.865752257719123e-08,
+            1.9360897607345606e-10,
+            0.007392127998173237
+          ],
+          "final_tool_xyz_m": [
+            -0.0034459829330444336,
+            -0.003290090709924698,
+            0.031200166791677475
+          ],
+          "minimum_held_base_height_m": 0.024986786395311357,
+          "contact_fraction": 0.9058333039283752,
+          "witnessed_recovery": false,
+          "prefix_terminal": false,
+          "witnessed_failure_by_handoff": false,
+          "active_at_handoff": true,
+          "recovery_after_prefix_failure": false
+        },
+        {
+          "case_id": "dev-10070-approach_high-2",
+          "bin_id": "approach_high",
+          "outcome": "deadline",
+          "success": false,
+          "elapsed_s": 30.0,
+          "discounted_return": 62.25834244192329,
+          "upstream_discounted_return": 62.25834229336543,
+          "discounted_reward_terms": {
+            "kp_baseline": 29.736947474366417,
+            "kp_coarse": 27.987575988073093,
+            "kp_fine": 10.755124804612382,
+            "action_penalty_ee": 0.0,
+            "action_grad_penalty": 0.0,
+            "curr_engaged": 0.0,
+            "curr_success": 0.0,
+            "action_penalty_asset": -0.2588859969570883,
+            "contact_penalty": -5.962419976729365,
+            "success_pred_error": 0.0
+          },
+          "completion_credit_return": 0.0,
+          "peak_raw_wrist_n": 18.839927673339844,
+          "final_target_xyz_m": [
+            -9.846783422819659e-15,
+            1.0415077139483767e-13,
+            0.007392008788883686
+          ],
+          "final_tool_xyz_m": [
+            -0.0014284253120422363,
+            -0.00025331974029541016,
+            0.03603604808449745
+          ],
+          "minimum_held_base_height_m": 0.02502761371433735,
+          "contact_fraction": 0.945555567741394,
+          "witnessed_recovery": false,
+          "prefix_terminal": false,
+          "witnessed_failure_by_handoff": true,
+          "active_at_handoff": true,
+          "recovery_after_prefix_failure": false
+        },
+        {
+          "case_id": "dev-10070-approach_high-3",
+          "bin_id": "approach_high",
+          "outcome": "deadline",
+          "success": false,
+          "elapsed_s": 30.0,
+          "discounted_return": 27.964015102390288,
+          "upstream_discounted_return": 27.964015198503617,
+          "discounted_reward_terms": {
+            "kp_baseline": 29.746822016582747,
+            "kp_coarse": 29.333428969630937,
+            "kp_fine": 12.790137711262659,
+            "action_penalty_ee": 0.0,
+            "action_grad_penalty": 0.0,
+            "curr_engaged": 0.0,
+            "curr_success": 0.0,
+            "action_penalty_asset": -0.2176088892410996,
+            "contact_penalty": -43.68876460973162,
+            "success_pred_error": 0.0
+          },
+          "completion_credit_return": 0.0,
+          "peak_raw_wrist_n": 18.272382736206055,
+          "final_target_xyz_m": [
+            -4.5415691640618514e-15,
+            -4.632752514943661e-14,
+            0.007392001338303089
+          ],
+          "final_tool_xyz_m": [
+            0.0003815293312072754,
+            -0.0038268566131591797,
+            0.03468690812587738
+          ],
+          "minimum_held_base_height_m": 0.02497456930577755,
+          "contact_fraction": 0.9411110877990723,
+          "witnessed_recovery": false,
+          "prefix_terminal": false,
+          "witnessed_failure_by_handoff": false,
+          "active_at_handoff": true,
+          "recovery_after_prefix_failure": false
+        },
+        {
+          "case_id": "dev-10070-friction_low-0",
+          "bin_id": "friction_low",
+          "outcome": "deadline",
+          "success": false,
+          "elapsed_s": 30.0,
+          "discounted_return": -16.096603164709148,
+          "upstream_discounted_return": -16.096602813582663,
+          "discounted_reward_terms": {
+            "kp_baseline": 29.744989805019074,
+            "kp_coarse": 28.950229406476915,
+            "kp_fine": 12.005038723469054,
+            "action_penalty_ee": 0.0,
+            "action_grad_penalty": 0.0,
+            "curr_engaged": 0.0,
+            "curr_success": 0.0,
+            "action_penalty_asset": -0.22385141434647413,
+            "contact_penalty": -86.57300933420123,
+            "success_pred_error": 0.0
+          },
+          "completion_credit_return": 0.0,
+          "peak_raw_wrist_n": 19.22676658630371,
+          "final_target_xyz_m": [
+            -5.311434953425738e-14,
+            -3.6879522297085434e-15,
+            0.0073920078575611115
+          ],
+          "final_tool_xyz_m": [
+            -0.004673480987548828,
+            -0.004394054412841797,
+            0.034032586961984634
+          ],
+          "minimum_held_base_height_m": 0.024981818720698358,
+          "contact_fraction": 0.9433333277702332,
+          "witnessed_recovery": false,
+          "prefix_terminal": false,
+          "witnessed_failure_by_handoff": true,
+          "active_at_handoff": true,
+          "recovery_after_prefix_failure": false
+        },
+        {
+          "case_id": "dev-10070-friction_low-1",
+          "bin_id": "friction_low",
+          "outcome": "force_abort",
+          "success": false,
+          "elapsed_s": 2.325,
+          "discounted_return": 20.605139970171603,
+          "upstream_discounted_return": 20.60513994395788,
+          "discounted_reward_terms": {
+            "kp_baseline": 5.199875813204754,
+            "kp_coarse": 4.595510128498209,
+            "kp_fine": 3.0362984345367705,
+            "action_penalty_ee": 0.0,
+            "action_grad_penalty": 0.0,
+            "curr_engaged": 7.783021379593551,
+            "curr_success": 0.0,
+            "action_penalty_asset": -0.009565811875403084,
+            "contact_penalty": 0.0,
+            "success_pred_error": 0.0
+          },
+          "completion_credit_return": 0.0,
+          "peak_raw_wrist_n": 20.08344078063965,
+          "final_target_xyz_m": [
+            -3.881498196278699e-05,
+            3.2073596685222583e-06,
+            0.012308242730796337
+          ],
+          "final_tool_xyz_m": [
+            -0.0013015270233154297,
+            -0.0012552738189697266,
+            0.0053741890005767345
+          ],
+          "minimum_held_base_height_m": 1.7974153161050277e-05,
+          "contact_fraction": 0.11469534039497375,
+          "witnessed_recovery": false,
+          "prefix_terminal": true,
+          "witnessed_failure_by_handoff": false,
+          "active_at_handoff": false,
+          "recovery_after_prefix_failure": false
+        },
+        {
+          "case_id": "dev-10070-friction_low-2",
+          "bin_id": "friction_low",
+          "outcome": "force_abort",
+          "success": false,
+          "elapsed_s": 5.0,
+          "discounted_return": 28.070444051253627,
+          "upstream_discounted_return": 28.07044417580487,
+          "discounted_reward_terms": {
+            "kp_baseline": 10.407843386974006,
+            "kp_coarse": 9.779065943955922,
+            "kp_fine": 4.475766098594525,
+            "action_penalty_ee": 0.0,
+            "action_grad_penalty": 0.0,
+            "curr_engaged": 2.7812508772323348,
+            "curr_success": 0.6900935609921608,
+            "action_penalty_asset": -0.06357569194408197,
+            "contact_penalty": 0.0,
+            "success_pred_error": 0.0
+          },
+          "completion_credit_return": 0.0,
+          "peak_raw_wrist_n": 20.035541534423828,
+          "final_target_xyz_m": [
+            -4.971861017111223e-06,
+            3.6346870047054836e-07,
+            0.007674794178456068
+          ],
+          "final_tool_xyz_m": [
+            -0.0006091594696044922,
+            -0.0007593147456645966,
+            0.009124631062150002
+          ],
+          "minimum_held_base_height_m": 8.813068270683427e-05,
+          "contact_fraction": 0.6200000047683716,
+          "witnessed_recovery": false,
+          "prefix_terminal": false,
+          "witnessed_failure_by_handoff": false,
+          "active_at_handoff": true,
+          "recovery_after_prefix_failure": false
+        },
+        {
+          "case_id": "dev-10070-friction_low-3",
+          "bin_id": "friction_low",
+          "outcome": "deadline",
+          "success": false,
+          "elapsed_s": 30.0,
+          "discounted_return": -38.73247182307253,
+          "upstream_discounted_return": -38.732471760937386,
+          "discounted_reward_terms": {
+            "kp_baseline": 29.752544479519088,
+            "kp_coarse": 29.82249611805409,
+            "kp_fine": 13.087903166582986,
+            "action_penalty_ee": 0.0,
+            "action_grad_penalty": 0.0,
+            "curr_engaged": 0.0,
+            "curr_success": 0.0,
+            "action_penalty_asset": -0.23017229771637576,
+            "contact_penalty": -111.16524322737718,
+            "success_pred_error": 0.0
+          },
+          "completion_credit_return": 0.0,
+          "peak_raw_wrist_n": 19.232589721679688,
+          "final_target_xyz_m": [
+            -2.0779231371213462e-21,
+            2.8479582618033804e-22,
+            0.007392005529254675
+          ],
+          "final_tool_xyz_m": [
+            -0.0012264251708984375,
+            0.0019190311431884766,
+            0.034177642315626144
+          ],
+          "minimum_held_base_height_m": 0.02495735101401806,
+          "contact_fraction": 0.9538888931274414,
+          "witnessed_recovery": false,
+          "prefix_terminal": false,
+          "witnessed_failure_by_handoff": true,
+          "active_at_handoff": true,
+          "recovery_after_prefix_failure": false
+        },
+        {
+          "case_id": "dev-10070-friction_high-0",
+          "bin_id": "friction_high",
+          "outcome": "deadline",
+          "success": false,
+          "elapsed_s": 30.0,
+          "discounted_return": 58.89283833587673,
+          "upstream_discounted_return": 58.89283829670669,
+          "discounted_reward_terms": {
+            "kp_baseline": 29.749603540486348,
+            "kp_coarse": 29.50582549409178,
+            "kp_fine": 12.720491674066363,
+            "action_penalty_ee": 0.0,
+            "action_grad_penalty": 0.0,
+            "curr_engaged": 0.0,
+            "curr_success": 0.0,
+            "action_penalty_asset": -0.19444145629122722,
+            "contact_penalty": -12.888640955646572,
+            "success_pred_error": 0.0
+          },
+          "completion_credit_return": 0.0,
+          "peak_raw_wrist_n": 13.569601058959961,
+          "final_target_xyz_m": [
+            -3.378365837948538e-14,
+            8.799627083315269e-15,
+            0.007391996216028929
+          ],
+          "final_tool_xyz_m": [
+            -0.003974437713623047,
+            0.004178762435913086,
+            0.02995607815682888
+          ],
+          "minimum_held_base_height_m": 0.02498355470597744,
+          "contact_fraction": 0.9355555772781372,
+          "witnessed_recovery": false,
+          "prefix_terminal": false,
+          "witnessed_failure_by_handoff": true,
+          "active_at_handoff": true,
+          "recovery_after_prefix_failure": false
+        },
+        {
+          "case_id": "dev-10070-friction_high-1",
+          "bin_id": "friction_high",
+          "outcome": "success",
+          "success": true,
+          "elapsed_s": 2.875,
+          "discounted_return": 445.70896104228206,
+          "upstream_discounted_return": 36.617074485750564,
+          "discounted_reward_terms": {
+            "kp_baseline": 6.438800523860753,
+            "kp_coarse": 6.232342392256035,
+            "kp_fine": 5.64547214512224,
+            "action_penalty_ee": 0.0,
+            "action_grad_penalty": 0.0,
+            "curr_engaged": 11.720227928227594,
+            "curr_success": 6.596403888836717,
+            "action_penalty_asset": -0.016172392552772558,
+            "contact_penalty": 0.0,
+            "success_pred_error": 0.0
+          },
+          "completion_credit_return": 409.0918869718322,
+          "peak_raw_wrist_n": 19.84935760498047,
+          "final_target_xyz_m": [
+            -3.067270154133439e-05,
+            3.496087856547092e-06,
+            0.009665196761488914
+          ],
+          "final_tool_xyz_m": [
+            0.0014657974243164062,
+            0.0003848075866699219,
+            0.00786601658910513
+          ],
+          "minimum_held_base_height_m": -6.742775440077287e-08,
+          "contact_fraction": 0.20000000298023224,
+          "witnessed_recovery": false,
+          "prefix_terminal": true,
+          "witnessed_failure_by_handoff": false,
+          "active_at_handoff": false,
+          "recovery_after_prefix_failure": false
+        },
+        {
+          "case_id": "dev-10070-friction_high-2",
+          "bin_id": "friction_high",
+          "outcome": "deadline",
+          "success": false,
+          "elapsed_s": 30.0,
+          "discounted_return": -8.054973951204408,
+          "upstream_discounted_return": -8.054973476683543,
+          "discounted_reward_terms": {
+            "kp_baseline": 29.74901378393217,
+            "kp_coarse": 29.48959394245047,
+            "kp_fine": 12.817448573615529,
+            "action_penalty_ee": 0.0,
+            "action_grad_penalty": 0.0,
+            "curr_engaged": 0.0,
+            "curr_success": 0.0,
+            "action_penalty_asset": -0.21210194725223996,
+            "contact_penalty": -79.89892782942948,
+            "success_pred_error": 0.0
+          },
+          "completion_credit_return": 0.0,
+          "peak_raw_wrist_n": 19.709644317626953,
+          "final_target_xyz_m": [
+            -9.346202871569596e-22,
+            1.1428773194594487e-22,
+            0.007392005529254675
+          ],
+          "final_tool_xyz_m": [
+            -0.0030336380004882812,
+            -0.0008587837219238281,
+            0.03233981505036354
+          ],
+          "minimum_held_base_height_m": 0.02499879114329815,
+          "contact_fraction": 0.9513888955116272,
+          "witnessed_recovery": false,
+          "prefix_terminal": false,
+          "witnessed_failure_by_handoff": true,
+          "active_at_handoff": true,
+          "recovery_after_prefix_failure": false
+        },
+        {
+          "case_id": "dev-10070-friction_high-3",
+          "bin_id": "friction_high",
+          "outcome": "success",
+          "success": true,
+          "elapsed_s": 3.225,
+          "discounted_return": 447.32580347677236,
+          "upstream_discounted_return": 49.87266822313313,
+          "discounted_reward_terms": {
+            "kp_baseline": 7.104258375852234,
+            "kp_coarse": 7.452333432019275,
+            "kp_fine": 8.917138223466523,
+            "action_penalty_ee": 0.0,
+            "action_grad_penalty": 0.0,
+            "curr_engaged": 20.099812563402995,
+            "curr_success": 6.4331346676762955,
+            "action_penalty_asset": -0.010712611512458399,
+            "contact_penalty": -0.12329642777173083,
+            "success_pred_error": 0.0
+          },
+          "completion_credit_return": 397.4531349240229,
+          "peak_raw_wrist_n": 19.476734161376953,
+          "final_target_xyz_m": [
+            -1.7062984625226818e-05,
+            1.3591270544566214e-06,
+            0.009380154311656952
+          ],
+          "final_tool_xyz_m": [
+            -0.0009183883666992188,
+            -0.0005495762452483177,
+            0.008773991838097572
+          ],
+          "minimum_held_base_height_m": 8.776746690273424e-05,
+          "contact_fraction": 0.09819121658802032,
+          "witnessed_recovery": false,
+          "prefix_terminal": true,
+          "witnessed_failure_by_handoff": false,
+          "active_at_handoff": false,
+          "recovery_after_prefix_failure": false
+        }
+      ],
+      "failure_exposure": {
+        "all_requested_jobs": 28,
+        "prefix_completions": 3,
+        "prefix_failed_jobs": 2,
+        "active_at_handoff": 23,
+        "witnessed_prefix_failures_active_at_handoff": 17,
+        "completed_after_witnessed_prefix_failure": 0,
+        "witnessed_recoveries_after_prefix_failure": 0,
+        "scope": "Conditional recovery counts accompany all-request outcomes; prefix failures and prefix scripted completions remain in the full-job denominator."
+      }
+    }
+  },
+  "charged_transitions": 38503.5,
+  "scope_and_limitations": [
+    "Separate, fixed four-second scripted insertion prefix followed by learned mean, unchanged retry or continued insertion. The original 30-second clock includes the prefix.",
+    "Handoff time is fixed before launch and independent of evaluator contact, hidden state or policy outcomes. No within-job reset, pose write or attachment change.",
+    "Prefix completions were produced by the script. Only post-handoff outcomes after a witnessed prefix failure can establish learned recovery in this assay.",
+    "One development seed with 28 requested jobs per controller; conditional recovery samples are not all jobs or independent training seeds.",
+    "This assay does not replace or retrospectively pass the original 84-case competence gate and is not an equal-cost learning-method comparison.",
+    "No geometry, force abort, dwell, reward, trained parameters or final-test cases changed."
+  ]
+}

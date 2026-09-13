@@ -1,0 +1,254 @@
+{
+  "schema": 1,
+  "status": "decision_recorded_before_further_training",
+  "research_result": false,
+  "reviewed_at_utc": "2026-09-10T00:06:13.494156+00:00",
+  "source_commit_at_review_start": "4e61ee518ad8f043f544d7ba50be0b099e6b4e21",
+  "scope": "Targeted primary-source contribution review within Franka/pinned-FORGE peg-then-gear recovery. Not an exhaustive systematic review or a claim that the remaining question is absent from all literature.",
+  "supersedes_scope": {
+    "record": "evidence/research_assessment_20260909.json",
+    "sha256": "05bb21b82f626ad1400ca35fd9142bd4ec7f90df2453d235c19651fbfe316898",
+    "clarification": "Earlier bounded assessment omitted close assembly-curriculum predecessors. Its record and hashes remain unchanged; this review controls prospective contribution and campaign decisions."
+  },
+  "sources": [
+    {
+      "id": "yu_lee_2026",
+      "title": "Recovery-Focused Dynamic Curriculum TD3 for Robotic Peg-in-Hole Insertion Skill",
+      "authors": [
+        "Hanghao Yu",
+        "Sukhan Lee"
+      ],
+      "year": 2026,
+      "venue": "IMCOM 2026",
+      "doi": "10.1109/IMCOM69009.2026.11360912",
+      "url": "https://scholarx.skku.edu/item/822cdd01-3c7c-4237-afdd-43cc4e05bbb6",
+      "access": "Institutional metadata and abstract read; publisher/full text unavailable in this check.",
+      "locator": "Abstract, especially difficulty regimes and scheduler paragraphs",
+      "established_overlap": "Simulated recovery-oriented peg insertion; success-dependent redistribution across three difficulty classes, easier-case retention, and comparisons against non-curricular and static training.",
+      "consequence": "Closest direct overlap. The broad recovery-plus-adaptive-selection proposal is already represented in prior work.",
+      "unresolved_details": "Exact scheduler, contact witness, dwell, force abort timing, grasp constraints, budgets and independent seed treatment cannot be determined from this abstract. Do not assert those features are absent."
+    },
+    {
+      "id": "beltran_hernandez_2022",
+      "title": "Accelerating Robot Learning of Contact-Rich Manipulations: A Curriculum Learning Study",
+      "authors": [
+        "Cristian C. Beltran-Hernandez",
+        "Damien Petit",
+        "Ixchel G. Ramirez-Alpizar",
+        "Kensuke Harada"
+      ],
+      "year": 2022,
+      "url": "https://arxiv.org/html/2204.12844v2",
+      "access": "Primary full text, sections III-E/F and IV-A/E inspected.",
+      "locator": "III-F2/3; IV-B/C/D",
+      "established_overlap": "Industrial insertion with curriculum-controlled randomization; fixed and performance-adaptive schedules, uniform/Gaussian sampling, three training repeats, unseen conditions and real-robot evaluation.",
+      "important_credit": "Already includes force-triggered termination, success and time comparisons. Its reported mean completion times omit failures; dynamic reward is studied separately.",
+      "difference_to_test": "Keep our reward, geometry and force/dwell criteria fixed while changing sampling, report time per request including failures, and evaluate completion after a common witnessed stall. These are benchmark choices, not proof of field-wide novelty."
+    },
+    {
+      "id": "industreal_2023",
+      "title": "IndustReal: Transferring Contact-Rich Assembly Tasks from Simulation to Reality",
+      "year": 2023,
+      "url": "https://arxiv.org/html/2305.17110v1",
+      "access": "Primary full text inspected.",
+      "locator": "IV-G, Table II; IV-H",
+      "established_overlap": "Success-dependent sampling of assembly start heights, with stage advances/reversions and comparison to standard/no curriculum on peg and gear assembly.",
+      "difference_to_test": "Its studied curriculum includes partial engagement at initialization. Our primary jobs start from a valid retained grasp above the fixture and select fixed fault bins. This operating constraint does not make adaptive sampling new."
+    },
+    {
+      "id": "automate_2024",
+      "title": "AutoMate: Specialist and Generalist Assembly Policies over Diverse Geometries",
+      "year": 2024,
+      "url": "https://arxiv.org/html/2407.08028v1",
+      "access": "Primary full text inspected.",
+      "locator": "Generalist training/evaluation and Appendix F",
+      "established_overlap": "Uses IndustReal sampling curricula during assembly fine-tuning, alongside demonstrations, imitation and diverse geometries.",
+      "consequence": "Neither applying a curriculum to assembly nor scaling beyond one geometry is new."
+    },
+    {
+      "id": "forge_2024",
+      "title": "FORGE: Force-Guided Exploration for Robust Contact-Rich Manipulation under Uncertainty",
+      "year": 2024,
+      "url": "https://arxiv.org/html/2408.04587v2",
+      "access": "Primary full text inspected; installed task remains pinned.",
+      "locator": "Abstract, method and baseline evaluation",
+      "established_overlap": "Force-aware learned search/assembly, dynamics randomization, success prediction and real-robot peg/gear/nut tasks.",
+      "consequence": "Credit the base manipulation method. Our finite-job adapter is enabling engineering; a scripted retry is not a substitute for a competent upstream learned reference in the full study."
+    },
+    {
+      "id": "reverse_curriculum_2017",
+      "title": "Reverse Curriculum Generation for Reinforcement Learning",
+      "year": 2017,
+      "url": "https://proceedings.mlr.press/v78/florensa17a.html",
+      "full_text_url": "https://arxiv.org/html/1707.05300v3",
+      "access": "Primary proceedings and full-text sections 4/5 inspected.",
+      "locator": "Sections 4.1-4.3 and Algorithm 1",
+      "established_overlap": "Selects intermediate-success starting states, retains old starts and expands feasible starts with action-space exploration; evaluates manipulation.",
+      "consequence": "The idea behind p*(1-p) is established. Our between-job parameter selection avoids copying contact states but is not a novel principle."
+    },
+    {
+      "id": "alp_gmm_2019",
+      "title": "Teacher algorithms for curriculum learning of Deep RL in continuously parameterized environments",
+      "year": 2019,
+      "url": "https://proceedings.mlr.press/v100/portelas20a.html",
+      "access": "Primary proceedings abstract and paper summary inspected.",
+      "established_overlap": "Samples environment parameters using absolute learning progress and addresses differing learnability.",
+      "consequence": "Adding a learning-progress term would also require attribution and controlled comparison, not a novelty claim by renaming it."
+    },
+    {
+      "id": "plr_2021",
+      "title": "Prioritized Level Replay",
+      "year": 2021,
+      "url": "https://proceedings.mlr.press/v139/jiang21b.html",
+      "access": "Primary proceedings abstract and paper introduction inspected.",
+      "established_overlap": "Reweights environment instances by estimated learning potential to improve sample efficiency/generalization.",
+      "consequence": "Selecting useful training situations is an established problem. A new-algorithm claim would need a strong adaptive reference, not only uniform and fixed curricula."
+    }
+  ],
+  "novelty_decision": {
+    "algorithmic_novelty_supported": false,
+    "first_adaptive_assembly_recovery_claim_allowed": false,
+    "new_difficulty_score_claim_allowed": false,
+    "claim_route": "Replication and controlled engineering extension; any useful empirical contribution must still be earned.",
+    "not_evidence_of_novelty": [
+      "Different robot, simulator, PPO instead of TD3, or different thresholds",
+      "A p*(1-p) priority or a learning-progress term",
+      "A new website, force penalty, extra training, or the existence of learned post-stall completion"
+    ],
+    "full_text_limit": "The 2026 institutional abstract is sufficient to reject a broad first-method claim. It is insufficient to establish exact equivalence or to claim that our accounting requirements are missing from that paper."
+  },
+  "precise_unanswered_question": "In the pinned Franka assembly benchmark, at the same total charged simulator cost and fixed nominal share, does reallocating the existing fault-bin practice from uniform or a calibrated fixed schedule to recent-outcome-based selection reduce unfinished whole jobs? If so, does it improve prevention, completion after a common witnessed contact stall, or both, and does it offer a practical reliability/time advantage over unchanged scripted retry?",
+  "question_scope": "Unanswered for this controlled setup. It is not presented as the first investigation of assembly curricula or recovery efficiency.",
+  "practical_benefit_to_establish": [
+    "A measured choice of the simplest controller/training schedule that meets a declared reliability target for the least training cost, with failed jobs and retries included in elapsed time.",
+    "An executable, versioned benchmark that exposes false recovery attribution, missing cost, and sensitivity to physics timestep; source, manifests, per-job records and publishable artifacts must support the result.",
+    "A documented boundary where adaptive training is unnecessary or fails to improve on uniform/fixed training or retry; no general claim beyond the evaluated tasks and fault support."
+  ],
+  "existing_evidence": {
+    "primary_insertion": {
+      "path": "evidence/uniform_unclipped_v4.json",
+      "sha256": "ef7019ca4520c66eef7281a13f27ef399f921e65a05252a915a5e37ec1419ba6",
+      "completions": 81,
+      "requests": 84,
+      "witnessed_stalls": 0
+    },
+    "post_stall_confirmation": {
+      "path": "evidence/post_stall_confirmation_v2_verified.json",
+      "sha256": "f8ccc622db5bd9ebf8e71a7e811d0c2a115ebef75289aad214bde32b56ded744",
+      "whole_job_completions_learned_retry_continue": [
+        47,
+        47,
+        11
+      ],
+      "whole_job_requests_per_arm": 56,
+      "post_stall_completions_learned_retry_continue": [
+        30,
+        31,
+        1
+      ],
+      "conditional_requests_per_arm": 37
+    },
+    "interpretation": "A competent insertion policy and post-stall behavior are measured. There is no learned reliability advantage over retry in the confirmation, no curriculum comparison, and no evidence of learned-policy physics robustness.",
+    "original_competence_gate_passed": false
+  },
+  "offline_training_signal_audit": {
+    "artifact": "artifacts/assembly/contribution_review_v1/uniform_signal.json",
+    "sha256": "bd637eda4b56baf8f34f70292b8cb9c885193340c6b0977b9f5ca305dec67548",
+    "script": "scripts/analyze_curriculum_signal.py",
+    "script_sha256": "867cb7a09454744f1a9f033ce10afe8219f05f5d9e52241ecf4bcb7abb4a8427",
+    "windows": [
+      {
+        "cohorts": [
+          1
+        ],
+        "jobs": 1024,
+        "completions": 218,
+        "force_aborts": 690,
+        "deadlines": 115,
+        "other_failures": 1,
+        "logged_contact_stalls": 593,
+        "illustrative_fault_share_range": [
+          0.13279687162255105,
+          0.2007093870974081
+        ]
+      },
+      {
+        "cohorts": [
+          1,
+          2
+        ],
+        "jobs": 2048,
+        "completions": 497,
+        "force_aborts": 1375,
+        "deadlines": 175,
+        "other_failures": 1,
+        "logged_contact_stalls": 1120,
+        "illustrative_fault_share_range": [
+          0.1470621986544139,
+          0.19854613768659135
+        ]
+      },
+      {
+        "cohorts": [
+          5,
+          6
+        ],
+        "jobs": 2048,
+        "completions": 1101,
+        "force_aborts": 909,
+        "deadlines": 38,
+        "other_failures": 0,
+        "logged_contact_stalls": 721,
+        "illustrative_fault_share_range": [
+          0.1635091699754207,
+          0.16817653890824624
+        ]
+      },
+      {
+        "cohorts": [
+          21,
+          22
+        ],
+        "jobs": 2048,
+        "completions": 1664,
+        "force_aborts": 379,
+        "deadlines": 5,
+        "other_failures": 0,
+        "logged_contact_stalls": 1,
+        "illustrative_fault_share_range": [
+          0.14700151920938465,
+          0.18218452912340052
+        ]
+      }
+    ],
+    "interpretation": [
+      "At cohorts 5-6, illustrative p*(1-p) shares span only 16.35-16.82 percent across fault bins, near uniform 16.67 percent. This is weak discrimination at the proposed short-screen budget.",
+      "In the last two cohorts, 379 of 384 failures are force aborts and only one contact stall is logged among 2048 jobs. The score cannot be described as identifying recoverable stalls.",
+      "These are stochastic changing-policy training logs. Differences from frozen mean evaluation do not establish that exploration noise causes the failures; conditions differ.",
+      "A replayed score is not an estimate of how an adaptively trained policy would perform. No sampler advantage or new rollout is inferred."
+    ],
+    "source_training_cost": 10326272,
+    "additional_simulator_transitions": 0
+  },
+  "minimum_fair_experiment": "configs/contribution_screen_v1.json",
+  "decision": {
+    "substantial_training_campaign_ready": false,
+    "engineering_replication_extension_is_the_current_route": true,
+    "physics_validation_required_before_screen": true,
+    "adaptive_screener_may_use_only_registered_training_outcomes": true,
+    "nine_run_ten_million_campaign_authorized_by_this_document": false,
+    "next": "Finish the frozen learned/retry physics validation, then verify and register the bounded peg comparison. Use the small screen to decide whether a larger comparative study is justified; do not buy novelty with more training."
+  },
+  "contribution_acceptance": [
+    "A claimed benefit must survive all-request accounting, matched costs, a competent fixed curriculum and retry, multiple training seeds, and physics checks. A changed reward/geometry invalidates both affected arms.",
+    "The existing final target remains halving unfinished jobs versus uniform with no more than two percentage points nominal loss. Report uncertainty; a small development screen cannot establish it.",
+    "A two-task result and a mechanism ablation are required for the planned broader claim. Without a useful effect or a well-supported actionable negative boundary, deliver a reproducible technical report and do not assert a novel research contribution."
+  ],
+  "scope_and_limitations": [
+    "Prior work already studies sample efficiency, force handling and recovery curricula; the chosen collection of controls is not itself a proven novelty claim.",
+    "No final-test seed or reserved combination was sampled, and no training or simulator job ran in this review.",
+    "The current frozen withdrawal metric and failed competence gate remain unchanged; the separate post-stall endpoint is retained.",
+    "Full text and exact details of the 2026 direct predecessor remain unavailable. Before an exact reproduction or method-superiority claim, obtain primary implementation details; do not infer them from the abstract.",
+    "All old results and registrations are retained. The new design is not a launchable protocol and does not unfreeze study.json or upstream source."
+  ]
+}

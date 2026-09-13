@@ -1,0 +1,5387 @@
+{
+  "schema": 1,
+  "status": "verified",
+  "research_result": false,
+  "registration": "evidence/pilot_failure_diagnosis_v2.json",
+  "checks": {
+    "deterministic_complete": true,
+    "deterministic_all_cases": true,
+    "deterministic_valid_initializations": true,
+    "deterministic_exact_cost": true,
+    "deterministic_sensor_draw_shape": true,
+    "deterministic_finite_trace": true,
+    "deterministic_0_return": true,
+    "deterministic_0_finite_terminal_mask": true,
+    "deterministic_1_return": true,
+    "deterministic_1_finite_terminal_mask": true,
+    "deterministic_2_return": true,
+    "deterministic_2_finite_terminal_mask": true,
+    "deterministic_3_return": true,
+    "deterministic_3_finite_terminal_mask": true,
+    "deterministic_4_return": true,
+    "deterministic_4_finite_terminal_mask": true,
+    "deterministic_5_return": true,
+    "deterministic_5_finite_terminal_mask": true,
+    "deterministic_6_return": true,
+    "deterministic_6_finite_terminal_mask": true,
+    "deterministic_7_return": true,
+    "deterministic_7_finite_terminal_mask": true,
+    "deterministic_8_return": true,
+    "deterministic_8_finite_terminal_mask": true,
+    "deterministic_9_return": true,
+    "deterministic_9_finite_terminal_mask": true,
+    "deterministic_10_return": true,
+    "deterministic_10_finite_terminal_mask": true,
+    "deterministic_11_return": true,
+    "deterministic_11_finite_terminal_mask": true,
+    "deterministic_12_return": true,
+    "deterministic_12_finite_terminal_mask": true,
+    "deterministic_13_return": true,
+    "deterministic_13_finite_terminal_mask": true,
+    "deterministic_14_return": true,
+    "deterministic_14_finite_terminal_mask": true,
+    "deterministic_15_return": true,
+    "deterministic_15_finite_terminal_mask": true,
+    "deterministic_16_return": true,
+    "deterministic_16_finite_terminal_mask": true,
+    "deterministic_17_return": true,
+    "deterministic_17_finite_terminal_mask": true,
+    "deterministic_18_return": true,
+    "deterministic_18_finite_terminal_mask": true,
+    "deterministic_19_return": true,
+    "deterministic_19_finite_terminal_mask": true,
+    "deterministic_20_return": true,
+    "deterministic_20_finite_terminal_mask": true,
+    "deterministic_21_return": true,
+    "deterministic_21_finite_terminal_mask": true,
+    "deterministic_22_return": true,
+    "deterministic_22_finite_terminal_mask": true,
+    "deterministic_23_return": true,
+    "deterministic_23_finite_terminal_mask": true,
+    "deterministic_24_return": true,
+    "deterministic_24_finite_terminal_mask": true,
+    "deterministic_25_return": true,
+    "deterministic_25_finite_terminal_mask": true,
+    "deterministic_26_return": true,
+    "deterministic_26_finite_terminal_mask": true,
+    "deterministic_27_return": true,
+    "deterministic_27_finite_terminal_mask": true,
+    "stochastic_complete": true,
+    "stochastic_all_cases": true,
+    "stochastic_valid_initializations": true,
+    "stochastic_exact_cost": true,
+    "stochastic_sensor_draw_shape": true,
+    "stochastic_finite_trace": true,
+    "stochastic_0_return": true,
+    "stochastic_0_finite_terminal_mask": true,
+    "stochastic_1_return": true,
+    "stochastic_1_finite_terminal_mask": true,
+    "stochastic_2_return": true,
+    "stochastic_2_finite_terminal_mask": true,
+    "stochastic_3_return": true,
+    "stochastic_3_finite_terminal_mask": true,
+    "stochastic_4_return": true,
+    "stochastic_4_finite_terminal_mask": true,
+    "stochastic_5_return": true,
+    "stochastic_5_finite_terminal_mask": true,
+    "stochastic_6_return": true,
+    "stochastic_6_finite_terminal_mask": true,
+    "stochastic_7_return": true,
+    "stochastic_7_finite_terminal_mask": true,
+    "stochastic_8_return": true,
+    "stochastic_8_finite_terminal_mask": true,
+    "stochastic_9_return": true,
+    "stochastic_9_finite_terminal_mask": true,
+    "stochastic_10_return": true,
+    "stochastic_10_finite_terminal_mask": true,
+    "stochastic_11_return": true,
+    "stochastic_11_finite_terminal_mask": true,
+    "stochastic_12_return": true,
+    "stochastic_12_finite_terminal_mask": true,
+    "stochastic_13_return": true,
+    "stochastic_13_finite_terminal_mask": true,
+    "stochastic_14_return": true,
+    "stochastic_14_finite_terminal_mask": true,
+    "stochastic_15_return": true,
+    "stochastic_15_finite_terminal_mask": true,
+    "stochastic_16_return": true,
+    "stochastic_16_finite_terminal_mask": true,
+    "stochastic_17_return": true,
+    "stochastic_17_finite_terminal_mask": true,
+    "stochastic_18_return": true,
+    "stochastic_18_finite_terminal_mask": true,
+    "stochastic_19_return": true,
+    "stochastic_19_finite_terminal_mask": true,
+    "stochastic_20_return": true,
+    "stochastic_20_finite_terminal_mask": true,
+    "stochastic_21_return": true,
+    "stochastic_21_finite_terminal_mask": true,
+    "stochastic_22_return": true,
+    "stochastic_22_finite_terminal_mask": true,
+    "stochastic_23_return": true,
+    "stochastic_23_finite_terminal_mask": true,
+    "stochastic_24_return": true,
+    "stochastic_24_finite_terminal_mask": true,
+    "stochastic_25_return": true,
+    "stochastic_25_finite_terminal_mask": true,
+    "stochastic_26_return": true,
+    "stochastic_26_finite_terminal_mask": true,
+    "stochastic_27_return": true,
+    "stochastic_27_finite_terminal_mask": true,
+    "retry_complete": true,
+    "retry_all_cases": true,
+    "retry_valid_initializations": true,
+    "retry_exact_cost": true,
+    "retry_sensor_draw_shape": true,
+    "retry_finite_trace": true,
+    "retry_0_return": true,
+    "retry_0_finite_terminal_mask": true,
+    "retry_1_return": true,
+    "retry_1_finite_terminal_mask": true,
+    "retry_2_return": true,
+    "retry_2_finite_terminal_mask": true,
+    "retry_3_return": true,
+    "retry_3_finite_terminal_mask": true,
+    "retry_4_return": true,
+    "retry_4_finite_terminal_mask": true,
+    "retry_5_return": true,
+    "retry_5_finite_terminal_mask": true,
+    "retry_6_return": true,
+    "retry_6_finite_terminal_mask": true,
+    "retry_7_return": true,
+    "retry_7_finite_terminal_mask": true,
+    "retry_8_return": true,
+    "retry_8_finite_terminal_mask": true,
+    "retry_9_return": true,
+    "retry_9_finite_terminal_mask": true,
+    "retry_10_return": true,
+    "retry_10_finite_terminal_mask": true,
+    "retry_11_return": true,
+    "retry_11_finite_terminal_mask": true,
+    "retry_12_return": true,
+    "retry_12_finite_terminal_mask": true,
+    "retry_13_return": true,
+    "retry_13_finite_terminal_mask": true,
+    "retry_14_return": true,
+    "retry_14_finite_terminal_mask": true,
+    "retry_15_return": true,
+    "retry_15_finite_terminal_mask": true,
+    "retry_16_return": true,
+    "retry_16_finite_terminal_mask": true,
+    "retry_17_return": true,
+    "retry_17_finite_terminal_mask": true,
+    "retry_18_return": true,
+    "retry_18_finite_terminal_mask": true,
+    "retry_19_return": true,
+    "retry_19_finite_terminal_mask": true,
+    "retry_20_return": true,
+    "retry_20_finite_terminal_mask": true,
+    "retry_21_return": true,
+    "retry_21_finite_terminal_mask": true,
+    "retry_22_return": true,
+    "retry_22_finite_terminal_mask": true,
+    "retry_23_return": true,
+    "retry_23_finite_terminal_mask": true,
+    "retry_24_return": true,
+    "retry_24_finite_terminal_mask": true,
+    "retry_25_return": true,
+    "retry_25_finite_terminal_mask": true,
+    "retry_26_return": true,
+    "retry_26_finite_terminal_mask": true,
+    "retry_27_return": true,
+    "retry_27_finite_terminal_mask": true,
+    "instrumentation_preserves_original_deterministic_physics": true,
+    "instrumentation_preserves_original_deterministic_actions": true,
+    "stochastic_same_initial_tensors": true,
+    "stochastic_same_sensor_draws": true,
+    "stochastic_same_environment_rng": true,
+    "stochastic_same_dead_zone_randomization": true,
+    "stochastic_same_cases": true,
+    "retry_same_initial_tensors": true,
+    "retry_same_sensor_draws": true,
+    "retry_same_environment_rng": true,
+    "retry_same_dead_zone_randomization": true,
+    "retry_same_cases": true
+  },
+  "arms": {
+    "deterministic": {
+      "controller": "deterministic",
+      "manifest_sha256": "84af12afb36c1c9bb06580639b1ca76945247d68177e14e3f8c8b63857a7cd72",
+      "checkpoint_sha256": "ae8dffd185921923f4d14e590c1c7e5faf80c5e1131b43c48bf0a263e15bc6e2",
+      "cost": {
+        "rollout_control_transitions": 12600,
+        "active_control_transitions": 11714,
+        "absorbing_control_transitions": 886,
+        "rollout_physics_env_steps": 100800,
+        "active_physics_env_steps": 93709,
+        "initialization_physics_env_steps": 1876,
+        "charged_control_equivalent_transitions": 12834.5,
+        "scope": "All rollout slots, including holds, plus initialization physics divided by decimation. Probes/mining charged by their own manifests."
+      },
+      "process_wall_s": 158.5470000000205,
+      "metrics": {
+        "all": {
+          "requests": 28,
+          "completions": 0,
+          "outcomes": {
+            "deadline": 26,
+            "force_abort": 2
+          },
+          "upstream_success_seen": 0,
+          "witnessed_contact_failures": 0,
+          "witnessed_recoveries": 0,
+          "mean_time_per_request_s": 27.889583333333334,
+          "peak_raw_wrist_force_n": 20.745223999023438,
+          "mean_discounted_return": 64.42888067632694,
+          "forbidden_events": 0,
+          "active_control_transitions": 11714,
+          "return_by_outcome": {
+            "deadline": {
+              "requests": 26,
+              "mean": 69.23882405778284
+            },
+            "force_abort": {
+              "requests": 2,
+              "mean": 1.8996167174003107
+            }
+          }
+        },
+        "nominal": {
+          "requests": 4,
+          "completions": 0,
+          "outcomes": {
+            "deadline": 4
+          },
+          "upstream_success_seen": 0,
+          "witnessed_contact_failures": 0,
+          "witnessed_recoveries": 0,
+          "mean_time_per_request_s": 30.0,
+          "peak_raw_wrist_force_n": 19.943981170654297,
+          "mean_discounted_return": 70.91971138139691,
+          "forbidden_events": 0,
+          "active_control_transitions": 1800,
+          "return_by_outcome": {
+            "deadline": {
+              "requests": 4,
+              "mean": 70.91971138139691
+            }
+          }
+        },
+        "bias_low": {
+          "requests": 4,
+          "completions": 0,
+          "outcomes": {
+            "deadline": 4
+          },
+          "upstream_success_seen": 0,
+          "witnessed_contact_failures": 0,
+          "witnessed_recoveries": 0,
+          "mean_time_per_request_s": 30.0,
+          "peak_raw_wrist_force_n": 19.546977996826172,
+          "mean_discounted_return": 69.34960938083388,
+          "forbidden_events": 0,
+          "active_control_transitions": 1800,
+          "return_by_outcome": {
+            "deadline": {
+              "requests": 4,
+              "mean": 69.34960938083388
+            }
+          }
+        },
+        "bias_medium": {
+          "requests": 4,
+          "completions": 0,
+          "outcomes": {
+            "deadline": 3,
+            "force_abort": 1
+          },
+          "upstream_success_seen": 0,
+          "witnessed_contact_failures": 0,
+          "witnessed_recoveries": 0,
+          "mean_time_per_request_s": 22.614583333333332,
+          "peak_raw_wrist_force_n": 20.401140213012695,
+          "mean_discounted_return": 53.77394827069876,
+          "forbidden_events": 0,
+          "active_control_transitions": 1357,
+          "return_by_outcome": {
+            "deadline": {
+              "requests": 3,
+              "mean": 71.08223284020403
+            },
+            "force_abort": {
+              "requests": 1,
+              "mean": 1.8490945621829544
+            }
+          }
+        },
+        "approach_low": {
+          "requests": 4,
+          "completions": 0,
+          "outcomes": {
+            "deadline": 4
+          },
+          "upstream_success_seen": 0,
+          "witnessed_contact_failures": 0,
+          "witnessed_recoveries": 0,
+          "mean_time_per_request_s": 30.0,
+          "peak_raw_wrist_force_n": 19.18181800842285,
+          "mean_discounted_return": 68.56695502411011,
+          "forbidden_events": 0,
+          "active_control_transitions": 1800,
+          "return_by_outcome": {
+            "deadline": {
+              "requests": 4,
+              "mean": 68.56695502411011
+            }
+          }
+        },
+        "approach_high": {
+          "requests": 4,
+          "completions": 0,
+          "outcomes": {
+            "deadline": 4
+          },
+          "upstream_success_seen": 0,
+          "witnessed_contact_failures": 0,
+          "witnessed_recoveries": 0,
+          "mean_time_per_request_s": 30.0,
+          "peak_raw_wrist_force_n": 19.050432205200195,
+          "mean_discounted_return": 68.40211819812677,
+          "forbidden_events": 0,
+          "active_control_transitions": 1800,
+          "return_by_outcome": {
+            "deadline": {
+              "requests": 4,
+              "mean": 68.40211819812677
+            }
+          }
+        },
+        "friction_low": {
+          "requests": 4,
+          "completions": 0,
+          "outcomes": {
+            "deadline": 4
+          },
+          "upstream_success_seen": 0,
+          "witnessed_contact_failures": 0,
+          "witnessed_recoveries": 0,
+          "mean_time_per_request_s": 30.0,
+          "peak_raw_wrist_force_n": 19.84090805053711,
+          "mean_discounted_return": 68.49801259625896,
+          "forbidden_events": 0,
+          "active_control_transitions": 1800,
+          "return_by_outcome": {
+            "deadline": {
+              "requests": 4,
+              "mean": 68.49801259625896
+            }
+          }
+        },
+        "friction_high": {
+          "requests": 4,
+          "completions": 0,
+          "outcomes": {
+            "deadline": 3,
+            "force_abort": 1
+          },
+          "upstream_success_seen": 0,
+          "witnessed_contact_failures": 0,
+          "witnessed_recoveries": 0,
+          "mean_time_per_request_s": 22.6125,
+          "peak_raw_wrist_force_n": 20.745223999023438,
+          "mean_discounted_return": 51.49180988286322,
+          "forbidden_events": 0,
+          "active_control_transitions": 1357,
+          "return_by_outcome": {
+            "deadline": {
+              "requests": 3,
+              "mean": 68.00570021961174
+            },
+            "force_abort": {
+              "requests": 1,
+              "mean": 1.950138872617667
+            }
+          }
+        }
+      },
+      "mean_discounted_terms": {
+        "kp_baseline": 27.686758900969053,
+        "kp_coarse": 26.425230094964604,
+        "kp_fine": 10.517841184741894,
+        "action_penalty_ee": 0.0,
+        "action_grad_penalty": 0.0,
+        "curr_engaged": 0.0,
+        "curr_success": 0.0,
+        "action_penalty_asset": -0.19397161408388228,
+        "contact_penalty": -0.006977898385560933,
+        "success_pred_error": 0.0
+      }
+    },
+    "stochastic": {
+      "controller": "stochastic",
+      "manifest_sha256": "3de21ea197de45785194c503cbb1d10eaff3bba2e153a5303c9c33749ae79d22",
+      "checkpoint_sha256": "ae8dffd185921923f4d14e590c1c7e5faf80c5e1131b43c48bf0a263e15bc6e2",
+      "cost": {
+        "rollout_control_transitions": 12600,
+        "active_control_transitions": 6526,
+        "absorbing_control_transitions": 6074,
+        "rollout_physics_env_steps": 100800,
+        "active_physics_env_steps": 52144,
+        "initialization_physics_env_steps": 1876,
+        "charged_control_equivalent_transitions": 12834.5,
+        "scope": "All rollout slots, including holds, plus initialization physics divided by decimation. Probes/mining charged by their own manifests."
+      },
+      "process_wall_s": 166.8279999999795,
+      "metrics": {
+        "all": {
+          "requests": 28,
+          "completions": 5,
+          "outcomes": {
+            "force_abort": 13,
+            "deadline": 10,
+            "success": 5
+          },
+          "upstream_success_seen": 8,
+          "witnessed_contact_failures": 9,
+          "witnessed_recoveries": 0,
+          "mean_time_per_request_s": 15.519047619047619,
+          "peak_raw_wrist_force_n": 42.215457916259766,
+          "mean_discounted_return": 64.21266770532407,
+          "forbidden_events": 0,
+          "active_control_transitions": 6526,
+          "return_by_outcome": {
+            "deadline": {
+              "requests": 10,
+              "mean": 88.97564048368889
+            },
+            "force_abort": {
+              "requests": 13,
+              "mean": 13.144198984787915
+            },
+            "success": {
+              "requests": 5,
+              "mean": 147.4647408219884
+            }
+          }
+        },
+        "nominal": {
+          "requests": 4,
+          "completions": 0,
+          "outcomes": {
+            "force_abort": 3,
+            "deadline": 1
+          },
+          "upstream_success_seen": 0,
+          "witnessed_contact_failures": 1,
+          "witnessed_recoveries": 0,
+          "mean_time_per_request_s": 7.85625,
+          "peak_raw_wrist_force_n": 22.42966079711914,
+          "mean_discounted_return": 15.6806438424238,
+          "forbidden_events": 0,
+          "active_control_transitions": 473,
+          "return_by_outcome": {
+            "deadline": {
+              "requests": 1,
+              "mean": 56.29431707639374
+            },
+            "force_abort": {
+              "requests": 3,
+              "mean": 2.1427527644338196
+            }
+          }
+        },
+        "bias_low": {
+          "requests": 4,
+          "completions": 1,
+          "outcomes": {
+            "force_abort": 1,
+            "deadline": 2,
+            "success": 1
+          },
+          "upstream_success_seen": 2,
+          "witnessed_contact_failures": 1,
+          "witnessed_recoveries": 0,
+          "mean_time_per_request_s": 17.78125,
+          "peak_raw_wrist_force_n": 21.422229766845703,
+          "mean_discounted_return": 86.87154984241322,
+          "forbidden_events": 0,
+          "active_control_transitions": 1068,
+          "return_by_outcome": {
+            "deadline": {
+              "requests": 2,
+              "mean": 96.67709764933376
+            },
+            "force_abort": {
+              "requests": 1,
+              "mean": 3.034376662390377
+            },
+            "success": {
+              "requests": 1,
+              "mean": 151.09762740859495
+            }
+          }
+        },
+        "bias_medium": {
+          "requests": 4,
+          "completions": 2,
+          "outcomes": {
+            "success": 2,
+            "deadline": 2
+          },
+          "upstream_success_seen": 2,
+          "witnessed_contact_failures": 4,
+          "witnessed_recoveries": 0,
+          "mean_time_per_request_s": 26.672916666666666,
+          "peak_raw_wrist_force_n": 19.70850372314453,
+          "mean_discounted_return": 85.02336076084845,
+          "forbidden_events": 0,
+          "active_control_transitions": 1601,
+          "return_by_outcome": {
+            "deadline": {
+              "requests": 2,
+              "mean": 70.76239938475854
+            },
+            "success": {
+              "requests": 2,
+              "mean": 99.28432213693833
+            }
+          }
+        },
+        "approach_low": {
+          "requests": 4,
+          "completions": 1,
+          "outcomes": {
+            "success": 1,
+            "force_abort": 1,
+            "deadline": 2
+          },
+          "upstream_success_seen": 2,
+          "witnessed_contact_failures": 1,
+          "witnessed_recoveries": 0,
+          "mean_time_per_request_s": 19.952083333333334,
+          "peak_raw_wrist_force_n": 21.21253776550293,
+          "mean_discounted_return": 91.44812451476962,
+          "forbidden_events": 0,
+          "active_control_transitions": 1198,
+          "return_by_outcome": {
+            "deadline": {
+              "requests": 2,
+              "mean": 69.78713342479244
+            },
+            "force_abort": {
+              "requests": 1,
+              "mean": 19.325879232282183
+            },
+            "success": {
+              "requests": 1,
+              "mean": 206.8923519772114
+            }
+          }
+        },
+        "approach_high": {
+          "requests": 4,
+          "completions": 0,
+          "outcomes": {
+            "force_abort": 2,
+            "deadline": 2
+          },
+          "upstream_success_seen": 0,
+          "witnessed_contact_failures": 1,
+          "witnessed_recoveries": 0,
+          "mean_time_per_request_s": 18.685416666666665,
+          "peak_raw_wrist_force_n": 20.734960556030273,
+          "mean_discounted_return": 47.93170730153518,
+          "forbidden_events": 0,
+          "active_control_transitions": 1122,
+          "return_by_outcome": {
+            "deadline": {
+              "requests": 2,
+              "mean": 66.90120531371392
+            },
+            "force_abort": {
+              "requests": 2,
+              "mean": 28.962209289356448
+            }
+          }
+        },
+        "friction_low": {
+          "requests": 4,
+          "completions": 0,
+          "outcomes": {
+            "deadline": 1,
+            "force_abort": 3
+          },
+          "upstream_success_seen": 1,
+          "witnessed_contact_failures": 1,
+          "witnessed_recoveries": 0,
+          "mean_time_per_request_s": 14.122916666666667,
+          "peak_raw_wrist_force_n": 42.215457916259766,
+          "mean_discounted_return": 75.85267978623048,
+          "forbidden_events": 0,
+          "active_control_transitions": 849,
+          "return_by_outcome": {
+            "deadline": {
+              "requests": 1,
+              "mean": 225.2064162152978
+            },
+            "force_abort": {
+              "requests": 3,
+              "mean": 26.06810097654137
+            }
+          }
+        },
+        "friction_high": {
+          "requests": 4,
+          "completions": 1,
+          "outcomes": {
+            "success": 1,
+            "force_abort": 3
+          },
+          "upstream_success_seen": 1,
+          "witnessed_contact_failures": 0,
+          "witnessed_recoveries": 0,
+          "mean_time_per_request_s": 3.5625,
+          "peak_raw_wrist_force_n": 21.67224884033203,
+          "mean_discounted_return": 46.68060788904774,
+          "forbidden_events": 0,
+          "active_control_transitions": 215,
+          "return_by_outcome": {
+            "force_abort": {
+              "requests": 3,
+              "mean": 1.9857837019772873
+            },
+            "success": {
+              "requests": 1,
+              "mean": 180.76508045025912
+            }
+          }
+        }
+      },
+      "mean_discounted_terms": {
+        "kp_baseline": 17.363733063071408,
+        "kp_coarse": 18.132029687581824,
+        "kp_fine": 12.39165139187097,
+        "action_penalty_ee": 0.0,
+        "action_grad_penalty": 0.0,
+        "curr_engaged": 17.231799346052053,
+        "curr_success": 0.5159260130532897,
+        "action_penalty_asset": -0.24459559450759472,
+        "contact_penalty": -1.1156415341974604,
+        "success_pred_error": -0.062234692668679495
+      }
+    },
+    "retry": {
+      "controller": "retry",
+      "manifest_sha256": "839bdc5be848d07114f833bc043ba0b72544ea0ed7cce008325d36a147f5a729",
+      "checkpoint_sha256": "ae8dffd185921923f4d14e590c1c7e5faf80c5e1131b43c48bf0a263e15bc6e2",
+      "cost": {
+        "rollout_control_transitions": 12600,
+        "active_control_transitions": 7714,
+        "absorbing_control_transitions": 4886,
+        "rollout_physics_env_steps": 100800,
+        "active_physics_env_steps": 61632,
+        "initialization_physics_env_steps": 1876,
+        "charged_control_equivalent_transitions": 12834.5,
+        "scope": "All rollout slots, including holds, plus initialization physics divided by decimation. Probes/mining charged by their own manifests."
+      },
+      "process_wall_s": 166.18699999997625,
+      "metrics": {
+        "all": {
+          "requests": 28,
+          "completions": 19,
+          "outcomes": {
+            "success": 19,
+            "force_abort": 3,
+            "deadline": 6
+          },
+          "upstream_success_seen": 21,
+          "witnessed_contact_failures": 21,
+          "witnessed_recoveries": 15,
+          "mean_time_per_request_s": 18.34285714285714,
+          "peak_raw_wrist_force_n": 20.185998916625977,
+          "mean_discounted_return": 64.82549541870513,
+          "forbidden_events": 0,
+          "active_control_transitions": 7714,
+          "return_by_outcome": {
+            "deadline": {
+              "requests": 6,
+              "mean": 85.62175463987342
+            },
+            "force_abort": {
+              "requests": 3,
+              "mean": 18.22214934826118
+            },
+            "success": {
+              "requests": 19,
+              "mean": 65.61667872840628
+            }
+          }
+        },
+        "nominal": {
+          "requests": 4,
+          "completions": 3,
+          "outcomes": {
+            "success": 3,
+            "force_abort": 1
+          },
+          "upstream_success_seen": 3,
+          "witnessed_contact_failures": 2,
+          "witnessed_recoveries": 2,
+          "mean_time_per_request_s": 16.020833333333332,
+          "peak_raw_wrist_force_n": 20.185998916625977,
+          "mean_discounted_return": 54.04944626245759,
+          "forbidden_events": 0,
+          "active_control_transitions": 963,
+          "return_by_outcome": {
+            "force_abort": {
+              "requests": 1,
+              "mean": 5.990864023358306
+            },
+            "success": {
+              "requests": 3,
+              "mean": 70.0689736754907
+            }
+          }
+        },
+        "bias_low": {
+          "requests": 4,
+          "completions": 3,
+          "outcomes": {
+            "success": 3,
+            "deadline": 1
+          },
+          "upstream_success_seen": 3,
+          "witnessed_contact_failures": 4,
+          "witnessed_recoveries": 3,
+          "mean_time_per_request_s": 23.0125,
+          "peak_raw_wrist_force_n": 19.393247604370117,
+          "mean_discounted_return": 81.87721292432609,
+          "forbidden_events": 0,
+          "active_control_transitions": 1382,
+          "return_by_outcome": {
+            "deadline": {
+              "requests": 1,
+              "mean": 103.9764646567023
+            },
+            "success": {
+              "requests": 3,
+              "mean": 74.51079568020067
+            }
+          }
+        },
+        "bias_medium": {
+          "requests": 4,
+          "completions": 4,
+          "outcomes": {
+            "success": 4
+          },
+          "upstream_success_seen": 4,
+          "witnessed_contact_failures": 3,
+          "witnessed_recoveries": 3,
+          "mean_time_per_request_s": 18.24375,
+          "peak_raw_wrist_force_n": 19.967851638793945,
+          "mean_discounted_return": 67.361012647142,
+          "forbidden_events": 0,
+          "active_control_transitions": 1097,
+          "return_by_outcome": {
+            "success": {
+              "requests": 4,
+              "mean": 67.361012647142
+            }
+          }
+        },
+        "approach_low": {
+          "requests": 4,
+          "completions": 2,
+          "outcomes": {
+            "deadline": 2,
+            "success": 2
+          },
+          "upstream_success_seen": 2,
+          "witnessed_contact_failures": 4,
+          "witnessed_recoveries": 2,
+          "mean_time_per_request_s": 23.047916666666666,
+          "peak_raw_wrist_force_n": 19.27863311767578,
+          "mean_discounted_return": 72.43458638888222,
+          "forbidden_events": 0,
+          "active_control_transitions": 1384,
+          "return_by_outcome": {
+            "deadline": {
+              "requests": 2,
+              "mean": 75.1320385997131
+            },
+            "success": {
+              "requests": 2,
+              "mean": 69.73713417805136
+            }
+          }
+        },
+        "approach_high": {
+          "requests": 4,
+          "completions": 2,
+          "outcomes": {
+            "success": 2,
+            "deadline": 2
+          },
+          "upstream_success_seen": 2,
+          "witnessed_contact_failures": 4,
+          "witnessed_recoveries": 2,
+          "mean_time_per_request_s": 24.547916666666666,
+          "peak_raw_wrist_force_n": 19.43140411376953,
+          "mean_discounted_return": 74.43347319534875,
+          "forbidden_events": 0,
+          "active_control_transitions": 1474,
+          "return_by_outcome": {
+            "deadline": {
+              "requests": 2,
+              "mean": 79.51563250455084
+            },
+            "success": {
+              "requests": 2,
+              "mean": 69.35131388614667
+            }
+          }
+        },
+        "friction_low": {
+          "requests": 4,
+          "completions": 1,
+          "outcomes": {
+            "success": 1,
+            "force_abort": 2,
+            "deadline": 1
+          },
+          "upstream_success_seen": 3,
+          "witnessed_contact_failures": 2,
+          "witnessed_recoveries": 1,
+          "mean_time_per_request_s": 13.731250000000001,
+          "peak_raw_wrist_force_n": 20.08344078063965,
+          "mean_discounted_return": 50.77891453497999,
+          "forbidden_events": 0,
+          "active_control_transitions": 824,
+          "return_by_outcome": {
+            "deadline": {
+              "requests": 1,
+              "mean": 100.45872097401033
+            },
+            "force_abort": {
+              "requests": 2,
+              "mean": 24.33779201071262
+            },
+            "success": {
+              "requests": 1,
+              "mean": 53.981353144484395
+            }
+          }
+        },
+        "friction_high": {
+          "requests": 4,
+          "completions": 4,
+          "outcomes": {
+            "success": 4
+          },
+          "upstream_success_seen": 4,
+          "witnessed_contact_failures": 2,
+          "witnessed_recoveries": 2,
+          "mean_time_per_request_s": 9.795833333333333,
+          "peak_raw_wrist_force_n": 19.84935760498047,
+          "mean_discounted_return": 52.84382197779922,
+          "forbidden_events": 0,
+          "active_control_transitions": 590,
+          "return_by_outcome": {
+            "success": {
+              "requests": 4,
+              "mean": 52.84382197779922
+            }
+          }
+        }
+      },
+      "mean_discounted_terms": {
+        "kp_baseline": 22.198907500793165,
+        "kp_coarse": 21.476476251308647,
+        "kp_fine": 11.452542824331944,
+        "action_penalty_ee": 0.0,
+        "action_grad_penalty": 0.0,
+        "curr_engaged": 13.582817685559187,
+        "curr_success": 1.7873563205479335,
+        "action_penalty_asset": -0.07344265819126733,
+        "contact_penalty": -4.630526669966253,
+        "success_pred_error": -0.9686358513553436
+      }
+    }
+  },
+  "paired_comparisons": [
+    {
+      "case_id": "dev-10070-nominal-0",
+      "outcomes": {
+        "deterministic": "deadline",
+        "stochastic": "force_abort",
+        "retry": "success"
+      },
+      "returns": {
+        "deterministic": 70.57847171422766,
+        "stochastic": 2.8347009114512014,
+        "retry": 75.95229890949467
+      },
+      "retry_complete_deterministic_failed": true,
+      "deterministic_return_minus_retry": -5.373827195267012
+    },
+    {
+      "case_id": "dev-10070-nominal-1",
+      "outcomes": {
+        "deterministic": "deadline",
+        "stochastic": "force_abort",
+        "retry": "success"
+      },
+      "returns": {
+        "deterministic": 74.50305566625343,
+        "stochastic": 2.2747145381576788,
+        "retry": 67.18949535615977
+      },
+      "retry_complete_deterministic_failed": true,
+      "deterministic_return_minus_retry": 7.3135603100936635
+    },
+    {
+      "case_id": "dev-10070-nominal-2",
+      "outcomes": {
+        "deterministic": "deadline",
+        "stochastic": "deadline",
+        "retry": "success"
+      },
+      "returns": {
+        "deterministic": 68.01616032203468,
+        "stochastic": 56.29431707639374,
+        "retry": 67.06512676081769
+      },
+      "retry_complete_deterministic_failed": true,
+      "deterministic_return_minus_retry": 0.9510335612169882
+    },
+    {
+      "case_id": "dev-10070-nominal-3",
+      "outcomes": {
+        "deterministic": "deadline",
+        "stochastic": "force_abort",
+        "retry": "force_abort"
+      },
+      "returns": {
+        "deterministic": 70.58115782307178,
+        "stochastic": 1.3188428436925785,
+        "retry": 5.990864023358307
+      },
+      "retry_complete_deterministic_failed": false,
+      "deterministic_return_minus_retry": 64.59029379971346
+    },
+    {
+      "case_id": "dev-10070-bias_low-0",
+      "outcomes": {
+        "deterministic": "deadline",
+        "stochastic": "force_abort",
+        "retry": "success"
+      },
+      "returns": {
+        "deterministic": 69.01365750973868,
+        "stochastic": 3.0343766623903776,
+        "retry": 88.2294594235167
+      },
+      "retry_complete_deterministic_failed": true,
+      "deterministic_return_minus_retry": -19.215801913778023
+    },
+    {
+      "case_id": "dev-10070-bias_low-1",
+      "outcomes": {
+        "deterministic": "deadline",
+        "stochastic": "deadline",
+        "retry": "success"
+      },
+      "returns": {
+        "deterministic": 72.96794819293206,
+        "stochastic": 68.97498618772197,
+        "retry": 70.14989727864175
+      },
+      "retry_complete_deterministic_failed": true,
+      "deterministic_return_minus_retry": 2.8180509142903105
+    },
+    {
+      "case_id": "dev-10070-bias_low-2",
+      "outcomes": {
+        "deterministic": "deadline",
+        "stochastic": "success",
+        "retry": "deadline"
+      },
+      "returns": {
+        "deterministic": 68.72799350622452,
+        "stochastic": 151.09762740859486,
+        "retry": 103.9764646567024
+      },
+      "retry_complete_deterministic_failed": false,
+      "deterministic_return_minus_retry": -35.24847115047788
+    },
+    {
+      "case_id": "dev-10070-bias_low-3",
+      "outcomes": {
+        "deterministic": "deadline",
+        "stochastic": "deadline",
+        "retry": "success"
+      },
+      "returns": {
+        "deterministic": 66.68883831444032,
+        "stochastic": 124.37920911094562,
+        "retry": 65.15303033844354
+      },
+      "retry_complete_deterministic_failed": true,
+      "deterministic_return_minus_retry": 1.535807975996775
+    },
+    {
+      "case_id": "dev-10070-bias_medium-0",
+      "outcomes": {
+        "deterministic": "deadline",
+        "stochastic": "success",
+        "retry": "success"
+      },
+      "returns": {
+        "deterministic": 68.66018218567109,
+        "stochastic": 106.41587655490316,
+        "retry": 92.39885749069293
+      },
+      "retry_complete_deterministic_failed": true,
+      "deterministic_return_minus_retry": -23.738675305021843
+    },
+    {
+      "case_id": "dev-10070-bias_medium-1",
+      "outcomes": {
+        "deterministic": "deadline",
+        "stochastic": "deadline",
+        "retry": "success"
+      },
+      "returns": {
+        "deterministic": 70.17227416017475,
+        "stochastic": 69.24562119395178,
+        "retry": 72.58436221312775
+      },
+      "retry_complete_deterministic_failed": true,
+      "deterministic_return_minus_retry": -2.4120880529529956
+    },
+    {
+      "case_id": "dev-10070-bias_medium-2",
+      "outcomes": {
+        "deterministic": "deadline",
+        "stochastic": "success",
+        "retry": "success"
+      },
+      "returns": {
+        "deterministic": 74.41424217476613,
+        "stochastic": 92.15276771897351,
+        "retry": 54.35205312293688
+      },
+      "retry_complete_deterministic_failed": true,
+      "deterministic_return_minus_retry": 20.06218905182925
+    },
+    {
+      "case_id": "dev-10070-bias_medium-3",
+      "outcomes": {
+        "deterministic": "force_abort",
+        "stochastic": "deadline",
+        "retry": "success"
+      },
+      "returns": {
+        "deterministic": 1.8490945621829544,
+        "stochastic": 72.27917757556524,
+        "retry": 50.108777761810465
+      },
+      "retry_complete_deterministic_failed": true,
+      "deterministic_return_minus_retry": -48.25968319962751
+    },
+    {
+      "case_id": "dev-10070-approach_low-0",
+      "outcomes": {
+        "deterministic": "deadline",
+        "stochastic": "success",
+        "retry": "deadline"
+      },
+      "returns": {
+        "deterministic": 69.91856929345064,
+        "stochastic": 206.89235197721135,
+        "retry": 69.2174274801541
+      },
+      "retry_complete_deterministic_failed": false,
+      "deterministic_return_minus_retry": 0.7011418132965446
+    },
+    {
+      "case_id": "dev-10070-approach_low-1",
+      "outcomes": {
+        "deterministic": "deadline",
+        "stochastic": "force_abort",
+        "retry": "success"
+      },
+      "returns": {
+        "deterministic": 71.9340749359448,
+        "stochastic": 19.325879232282183,
+        "retry": 72.71235942320436
+      },
+      "retry_complete_deterministic_failed": true,
+      "deterministic_return_minus_retry": -0.7782844872595547
+    },
+    {
+      "case_id": "dev-10070-approach_low-2",
+      "outcomes": {
+        "deterministic": "deadline",
+        "stochastic": "deadline",
+        "retry": "deadline"
+      },
+      "returns": {
+        "deterministic": 65.2349862596038,
+        "stochastic": 70.02394045536303,
+        "retry": 81.04664971927212
+      },
+      "retry_complete_deterministic_failed": false,
+      "deterministic_return_minus_retry": -15.811663459668324
+    },
+    {
+      "case_id": "dev-10070-approach_low-3",
+      "outcomes": {
+        "deterministic": "deadline",
+        "stochastic": "deadline",
+        "retry": "success"
+      },
+      "returns": {
+        "deterministic": 67.18018960744125,
+        "stochastic": 69.55032639422183,
+        "retry": 66.7619089328984
+      },
+      "retry_complete_deterministic_failed": true,
+      "deterministic_return_minus_retry": 0.41828067454285645
+    },
+    {
+      "case_id": "dev-10070-approach_high-0",
+      "outcomes": {
+        "deterministic": "deadline",
+        "stochastic": "force_abort",
+        "retry": "success"
+      },
+      "returns": {
+        "deterministic": 69.01031384754383,
+        "stochastic": 55.751522288847326,
+        "retry": 70.46707806142577
+      },
+      "retry_complete_deterministic_failed": true,
+      "deterministic_return_minus_retry": -1.4567642138819394
+    },
+    {
+      "case_id": "dev-10070-approach_high-1",
+      "outcomes": {
+        "deterministic": "deadline",
+        "stochastic": "deadline",
+        "retry": "deadline"
+      },
+      "returns": {
+        "deterministic": 67.17550650810341,
+        "stochastic": 72.06930689823409,
+        "retry": 90.18542617650058
+      },
+      "retry_complete_deterministic_failed": false,
+      "deterministic_return_minus_retry": -23.009919668397174
+    },
+    {
+      "case_id": "dev-10070-approach_high-2",
+      "outcomes": {
+        "deterministic": "deadline",
+        "stochastic": "force_abort",
+        "retry": "deadline"
+      },
+      "returns": {
+        "deterministic": 69.80055714817254,
+        "stochastic": 2.1728962898655757,
+        "retry": 68.8458388326012
+      },
+      "retry_complete_deterministic_failed": false,
+      "deterministic_return_minus_retry": 0.9547183155713412
+    },
+    {
+      "case_id": "dev-10070-approach_high-3",
+      "outcomes": {
+        "deterministic": "deadline",
+        "stochastic": "deadline",
+        "retry": "success"
+      },
+      "returns": {
+        "deterministic": 67.62209528868733,
+        "stochastic": 61.7331037291937,
+        "retry": 68.23554971086753
+      },
+      "retry_complete_deterministic_failed": true,
+      "deterministic_return_minus_retry": -0.6134544221801974
+    },
+    {
+      "case_id": "dev-10070-friction_low-0",
+      "outcomes": {
+        "deterministic": "deadline",
+        "stochastic": "deadline",
+        "retry": "success"
+      },
+      "returns": {
+        "deterministic": 65.37231043295,
+        "stochastic": 225.20641621529765,
+        "retry": 53.981353144484366
+      },
+      "retry_complete_deterministic_failed": true,
+      "deterministic_return_minus_retry": 11.390957288465636
+    },
+    {
+      "case_id": "dev-10070-friction_low-1",
+      "outcomes": {
+        "deterministic": "deadline",
+        "stochastic": "force_abort",
+        "retry": "force_abort"
+      },
+      "returns": {
+        "deterministic": 66.77789727714043,
+        "stochastic": 62.19998521358042,
+        "retry": 20.605139970171603
+      },
+      "retry_complete_deterministic_failed": false,
+      "deterministic_return_minus_retry": 46.17275730696882
+    },
+    {
+      "case_id": "dev-10070-friction_low-2",
+      "outcomes": {
+        "deterministic": "deadline",
+        "stochastic": "force_abort",
+        "retry": "force_abort"
+      },
+      "returns": {
+        "deterministic": 75.24324810350883,
+        "stochastic": 14.275052459772247,
+        "retry": 28.070444051253627
+      },
+      "retry_complete_deterministic_failed": false,
+      "deterministic_return_minus_retry": 47.1728040522552
+    },
+    {
+      "case_id": "dev-10070-friction_low-3",
+      "outcomes": {
+        "deterministic": "deadline",
+        "stochastic": "force_abort",
+        "retry": "deadline"
+      },
+      "returns": {
+        "deterministic": 66.59859457143665,
+        "stochastic": 1.7292652562714417,
+        "retry": 100.45872097401032
+      },
+      "retry_complete_deterministic_failed": false,
+      "deterministic_return_minus_retry": -33.86012640257367
+    },
+    {
+      "case_id": "dev-10070-friction_high-0",
+      "outcomes": {
+        "deterministic": "deadline",
+        "stochastic": "success",
+        "retry": "success"
+      },
+      "returns": {
+        "deterministic": 71.21476342869906,
+        "stochastic": 180.765080450259,
+        "retry": 66.67803733333226
+      },
+      "retry_complete_deterministic_failed": true,
+      "deterministic_return_minus_retry": 4.536726095366802
+    },
+    {
+      "case_id": "dev-10070-friction_high-1",
+      "outcomes": {
+        "deterministic": "deadline",
+        "stochastic": "force_abort",
+        "retry": "success"
+      },
+      "returns": {
+        "deterministic": 68.04885213978696,
+        "stochastic": 2.2163670345847013,
+        "retry": 36.617074070449924
+      },
+      "retry_complete_deterministic_failed": true,
+      "deterministic_return_minus_retry": 31.431778069337035
+    },
+    {
+      "case_id": "dev-10070-friction_high-2",
+      "outcomes": {
+        "deterministic": "force_abort",
+        "stochastic": "force_abort",
+        "retry": "success"
+      },
+      "returns": {
+        "deterministic": 1.9501388726176672,
+        "stochastic": 1.879391718616198,
+        "retry": 58.207507954665274
+      },
+      "retry_complete_deterministic_failed": true,
+      "deterministic_return_minus_retry": -56.25736908204761
+    },
+    {
+      "case_id": "dev-10070-friction_high-3",
+      "outcomes": {
+        "deterministic": "deadline",
+        "stochastic": "force_abort",
+        "retry": "success"
+      },
+      "returns": {
+        "deterministic": 64.75348509034919,
+        "stochastic": 1.8615923527309624,
+        "retry": 49.87266855274948
+      },
+      "retry_complete_deterministic_failed": true,
+      "deterministic_return_minus_retry": 14.880816537599706
+    }
+  ],
+  "case_diagnostics": {
+    "deterministic": [
+      {
+        "case_id": "dev-10070-nominal-0",
+        "bin_id": "nominal",
+        "outcome": "deadline",
+        "success": false,
+        "elapsed_s": 30.0,
+        "discounted_return": 70.57847171422766,
+        "undiscounted_return": 181.67042070627213,
+        "discounted_terms": {
+          "kp_baseline": 29.745524541208866,
+          "kp_coarse": 29.0039839182987,
+          "kp_fine": 12.363536929835293,
+          "action_penalty_ee": 0.0,
+          "action_grad_penalty": 0.0,
+          "curr_engaged": 0.0,
+          "curr_success": 0.0,
+          "action_penalty_asset": -0.5345737103446562,
+          "contact_penalty": 0.0,
+          "success_pred_error": 0.0
+        },
+        "upstream_success_seen": false,
+        "raw_peak_wrist_n": 17.590797424316406,
+        "fixture_contact_fraction": 0.07027778029441833,
+        "minimum_base_height_m": 0.006126865372061731,
+        "final_base_height_m": 0.012041214480996133,
+        "target_height_min_max_m": [
+          0.026542672887444496,
+          0.043737705796957016
+        ],
+        "final_target_xyz_m": [
+          0.0112016461789608,
+          -0.013372905552387238,
+          0.02900388278067112
+        ],
+        "final_tool_xyz_m": [
+          0.010940074920654297,
+          -0.012322425842285156,
+          0.02107936143875122
+        ],
+        "tool_height_range_m": 0.031274572014808655,
+        "requested_action_clipped_fraction": 0.08571428805589676,
+        "witness": {
+          "version": 1,
+          "witnessed_failure_step": null,
+          "witnessed_withdrawal_step": null,
+          "witnessed_complete_recovery": false
+        }
+      },
+      {
+        "case_id": "dev-10070-nominal-1",
+        "bin_id": "nominal",
+        "outcome": "deadline",
+        "success": false,
+        "elapsed_s": 30.0,
+        "discounted_return": 74.50305566625343,
+        "undiscounted_return": 187.11319586634636,
+        "discounted_terms": {
+          "kp_baseline": 29.75650656908142,
+          "kp_coarse": 30.444824258115815,
+          "kp_fine": 14.632490037474803,
+          "action_penalty_ee": 0.0,
+          "action_grad_penalty": 0.0,
+          "curr_engaged": 0.0,
+          "curr_success": 0.0,
+          "action_penalty_asset": -0.33076476119353826,
+          "contact_penalty": 0.0,
+          "success_pred_error": 0.0
+        },
+        "upstream_success_seen": false,
+        "raw_peak_wrist_n": 18.82044219970703,
+        "fixture_contact_fraction": 0.11527777463197708,
+        "minimum_base_height_m": 0.00827518440783024,
+        "final_base_height_m": 0.01339528299868107,
+        "target_height_min_max_m": [
+          0.02306317538022995,
+          0.04378537833690643
+        ],
+        "final_target_xyz_m": [
+          0.01454172283411026,
+          -0.011395598761737347,
+          0.030182886868715286
+        ],
+        "final_tool_xyz_m": [
+          0.011636734008789062,
+          -0.0165255069732666,
+          0.023566866293549538
+        ],
+        "tool_height_range_m": 0.028983233496546745,
+        "requested_action_clipped_fraction": 0.07841269671916962,
+        "witness": {
+          "version": 1,
+          "witnessed_failure_step": null,
+          "witnessed_withdrawal_step": null,
+          "witnessed_complete_recovery": false
+        }
+      },
+      {
+        "case_id": "dev-10070-nominal-2",
+        "bin_id": "nominal",
+        "outcome": "deadline",
+        "success": false,
+        "elapsed_s": 30.0,
+        "discounted_return": 68.01616032203468,
+        "undiscounted_return": 169.86695006489754,
+        "discounted_terms": {
+          "kp_baseline": 29.735895736268475,
+          "kp_coarse": 27.809784407114847,
+          "kp_fine": 10.600255278324912,
+          "action_penalty_ee": 0.0,
+          "action_grad_penalty": 0.0,
+          "curr_engaged": 0.0,
+          "curr_success": 0.0,
+          "action_penalty_asset": -0.12977531402500136,
+          "contact_penalty": 0.0,
+          "success_pred_error": 0.0
+        },
+        "upstream_success_seen": false,
+        "raw_peak_wrist_n": 3.6327340602874756,
+        "fixture_contact_fraction": 0.05277777835726738,
+        "minimum_base_height_m": 0.014501002244651319,
+        "final_base_height_m": 0.015624620579183103,
+        "target_height_min_max_m": [
+          0.028896475210785866,
+          0.044193726032972336
+        ],
+        "final_target_xyz_m": [
+          0.014036429114639759,
+          -0.01245723944157362,
+          0.031704146414995193
+        ],
+        "final_tool_xyz_m": [
+          0.013293266296386719,
+          -0.0137779600918293,
+          0.02296571619808674
+        ],
+        "tool_height_range_m": 0.025510700419545174,
+        "requested_action_clipped_fraction": 0.04698412865400314,
+        "witness": {
+          "version": 1,
+          "witnessed_failure_step": null,
+          "witnessed_withdrawal_step": null,
+          "witnessed_complete_recovery": false
+        }
+      },
+      {
+        "case_id": "dev-10070-nominal-3",
+        "bin_id": "nominal",
+        "outcome": "deadline",
+        "success": false,
+        "elapsed_s": 30.0,
+        "discounted_return": 70.58115782307178,
+        "undiscounted_return": 183.86230757832527,
+        "discounted_terms": {
+          "kp_baseline": 29.745621292933663,
+          "kp_coarse": 28.933303996804803,
+          "kp_fine": 12.002292691855455,
+          "action_penalty_ee": 0.0,
+          "action_grad_penalty": 0.0,
+          "curr_engaged": 0.0,
+          "curr_success": 0.0,
+          "action_penalty_asset": -0.10006032764528837,
+          "contact_penalty": 0.0,
+          "success_pred_error": 0.0
+        },
+        "upstream_success_seen": false,
+        "raw_peak_wrist_n": 19.943981170654297,
+        "fixture_contact_fraction": 0.4194444417953491,
+        "minimum_base_height_m": 0.0017035748809576048,
+        "final_base_height_m": 0.012414730712771417,
+        "target_height_min_max_m": [
+          0.021297506988048553,
+          0.04278817027807236
+        ],
+        "final_target_xyz_m": [
+          0.01035365741699934,
+          -0.01164921186864376,
+          0.025102272629737854
+        ],
+        "final_tool_xyz_m": [
+          0.0077342987060546875,
+          -0.015135526657104492,
+          0.02134609781205654
+        ],
+        "tool_height_range_m": 0.035882093012332916,
+        "requested_action_clipped_fraction": 0.046666666865348816,
+        "witness": {
+          "version": 1,
+          "witnessed_failure_step": null,
+          "witnessed_withdrawal_step": null,
+          "witnessed_complete_recovery": false
+        }
+      },
+      {
+        "case_id": "dev-10070-bias_low-0",
+        "bin_id": "bias_low",
+        "outcome": "deadline",
+        "success": false,
+        "elapsed_s": 30.0,
+        "discounted_return": 69.01365750973868,
+        "undiscounted_return": 175.4833758175373,
+        "discounted_terms": {
+          "kp_baseline": 29.742214819934475,
+          "kp_coarse": 28.434496068197802,
+          "kp_fine": 10.98726312587958,
+          "action_penalty_ee": 0.0,
+          "action_grad_penalty": 0.0,
+          "curr_engaged": 0.0,
+          "curr_success": 0.0,
+          "action_penalty_asset": -0.15031656638660404,
+          "contact_penalty": 0.0,
+          "success_pred_error": 0.0
+        },
+        "upstream_success_seen": false,
+        "raw_peak_wrist_n": 17.675384521484375,
+        "fixture_contact_fraction": 0.40444445610046387,
+        "minimum_base_height_m": 0.02499179504811764,
+        "final_base_height_m": 0.025026030465960504,
+        "target_height_min_max_m": [
+          0.026427680626511574,
+          0.04422804340720177
+        ],
+        "final_target_xyz_m": [
+          0.011646811850368977,
+          -0.00568243907764554,
+          0.026634836569428444
+        ],
+        "final_tool_xyz_m": [
+          0.006174629088491201,
+          -0.0035102367401123047,
+          0.03185610845685005
+        ],
+        "tool_height_range_m": 0.01460767537355423,
+        "requested_action_clipped_fraction": 0.0015873016091063619,
+        "witness": {
+          "version": 1,
+          "witnessed_failure_step": null,
+          "witnessed_withdrawal_step": null,
+          "witnessed_complete_recovery": false
+        }
+      },
+      {
+        "case_id": "dev-10070-bias_low-1",
+        "bin_id": "bias_low",
+        "outcome": "deadline",
+        "success": false,
+        "elapsed_s": 30.0,
+        "discounted_return": 72.96794819293206,
+        "undiscounted_return": 183.8781098127365,
+        "discounted_terms": {
+          "kp_baseline": 29.754753129038424,
+          "kp_coarse": 30.108458087413734,
+          "kp_fine": 13.507036669478289,
+          "action_penalty_ee": 0.0,
+          "action_grad_penalty": 0.0,
+          "curr_engaged": 0.0,
+          "curr_success": 0.0,
+          "action_penalty_asset": -0.4022998337649758,
+          "contact_penalty": 0.0,
+          "success_pred_error": 0.0
+        },
+        "upstream_success_seen": false,
+        "raw_peak_wrist_n": 18.564699172973633,
+        "fixture_contact_fraction": 0.9244444370269775,
+        "minimum_base_height_m": 0.016343488916754724,
+        "final_base_height_m": 0.016494571790099145,
+        "target_height_min_max_m": [
+          0.02432573400437832,
+          0.04343511164188385
+        ],
+        "final_target_xyz_m": [
+          0.00423780782148242,
+          -0.00939264427870512,
+          0.02725367061793804
+        ],
+        "final_tool_xyz_m": [
+          0.012694055214524269,
+          -0.0046672821044921875,
+          0.02356291003525257
+        ],
+        "tool_height_range_m": 0.022496746852993965,
+        "requested_action_clipped_fraction": 0.0,
+        "witness": {
+          "version": 1,
+          "witnessed_failure_step": null,
+          "witnessed_withdrawal_step": null,
+          "witnessed_complete_recovery": false
+        }
+      },
+      {
+        "case_id": "dev-10070-bias_low-2",
+        "bin_id": "bias_low",
+        "outcome": "deadline",
+        "success": false,
+        "elapsed_s": 30.0,
+        "discounted_return": 68.72799350622452,
+        "undiscounted_return": 171.54682072997093,
+        "discounted_terms": {
+          "kp_baseline": 29.74068783896728,
+          "kp_coarse": 28.26040374038769,
+          "kp_fine": 10.80196091987004,
+          "action_penalty_ee": 0.0,
+          "action_grad_penalty": 0.0,
+          "curr_engaged": 0.0,
+          "curr_success": 0.0,
+          "action_penalty_asset": -0.07505902302762561,
+          "contact_penalty": 0.0,
+          "success_pred_error": 0.0
+        },
+        "upstream_success_seen": false,
+        "raw_peak_wrist_n": 7.282039165496826,
+        "fixture_contact_fraction": 0.534166693687439,
+        "minimum_base_height_m": 0.024951666221022607,
+        "final_base_height_m": 0.024996555969119073,
+        "target_height_min_max_m": [
+          0.02537953294813633,
+          0.04357342794537544
+        ],
+        "final_target_xyz_m": [
+          0.011010832153260708,
+          -0.00965928565710783,
+          0.02817881479859352
+        ],
+        "final_tool_xyz_m": [
+          0.010859966278076172,
+          -0.011260921135544777,
+          0.030506005510687828
+        ],
+        "tool_height_range_m": 0.014512905851006508,
+        "requested_action_clipped_fraction": 0.059365078806877136,
+        "witness": {
+          "version": 1,
+          "witnessed_failure_step": null,
+          "witnessed_withdrawal_step": null,
+          "witnessed_complete_recovery": false
+        }
+      },
+      {
+        "case_id": "dev-10070-bias_low-3",
+        "bin_id": "bias_low",
+        "outcome": "deadline",
+        "success": false,
+        "elapsed_s": 30.0,
+        "discounted_return": 66.68883831444032,
+        "undiscounted_return": 164.8270881474018,
+        "discounted_terms": {
+          "kp_baseline": 29.731306133882562,
+          "kp_coarse": 27.25730503332112,
+          "kp_fine": 9.893722339782999,
+          "action_penalty_ee": 0.0,
+          "action_grad_penalty": 0.0,
+          "curr_engaged": 0.0,
+          "curr_success": 0.0,
+          "action_penalty_asset": -0.19349514346537658,
+          "contact_penalty": 0.0,
+          "success_pred_error": 0.0
+        },
+        "upstream_success_seen": false,
+        "raw_peak_wrist_n": 19.546977996826172,
+        "fixture_contact_fraction": 0.060277778655290604,
+        "minimum_base_height_m": 0.01734779365360737,
+        "final_base_height_m": 0.024459253624081613,
+        "target_height_min_max_m": [
+          0.030567515641450882,
+          0.045051563531160355
+        ],
+        "final_target_xyz_m": [
+          0.014343030750751495,
+          -0.010553677566349506,
+          0.03417002409696579
+        ],
+        "final_tool_xyz_m": [
+          0.02007460594177246,
+          -0.016366885975003242,
+          0.031422991305589676
+        ],
+        "tool_height_range_m": 0.022716298699378967,
+        "requested_action_clipped_fraction": 0.053015872836112976,
+        "witness": {
+          "version": 1,
+          "witnessed_failure_step": null,
+          "witnessed_withdrawal_step": null,
+          "witnessed_complete_recovery": false
+        }
+      },
+      {
+        "case_id": "dev-10070-bias_medium-0",
+        "bin_id": "bias_medium",
+        "outcome": "deadline",
+        "success": false,
+        "elapsed_s": 30.0,
+        "discounted_return": 68.66018218567109,
+        "undiscounted_return": 176.11565986275673,
+        "discounted_terms": {
+          "kp_baseline": 29.739940626883122,
+          "kp_coarse": 28.188943767303698,
+          "kp_fine": 10.80058620821015,
+          "action_penalty_ee": 0.0,
+          "action_grad_penalty": 0.0,
+          "curr_engaged": 0.0,
+          "curr_success": 0.0,
+          "action_penalty_asset": -0.06928814444871954,
+          "contact_penalty": 0.0,
+          "success_pred_error": 0.0
+        },
+        "upstream_success_seen": false,
+        "raw_peak_wrist_n": 18.745708465576172,
+        "fixture_contact_fraction": 0.29305556416511536,
+        "minimum_base_height_m": 0.014510959014296533,
+        "final_base_height_m": 0.017279497906565668,
+        "target_height_min_max_m": [
+          0.02628100849688053,
+          0.044219210743904114
+        ],
+        "final_target_xyz_m": [
+          0.00737300980836153,
+          -0.009150080382823944,
+          0.028033966198563576
+        ],
+        "final_tool_xyz_m": [
+          0.010924945585429668,
+          -0.0103837251663208,
+          0.025440001860260963
+        ],
+        "tool_height_range_m": 0.02280539833009243,
+        "requested_action_clipped_fraction": 0.0057142856530845165,
+        "witness": {
+          "version": 1,
+          "witnessed_failure_step": null,
+          "witnessed_withdrawal_step": null,
+          "witnessed_complete_recovery": false
+        }
+      },
+      {
+        "case_id": "dev-10070-bias_medium-1",
+        "bin_id": "bias_medium",
+        "outcome": "deadline",
+        "success": false,
+        "elapsed_s": 30.0,
+        "discounted_return": 70.17227416017475,
+        "undiscounted_return": 174.2386603653431,
+        "discounted_terms": {
+          "kp_baseline": 29.744600039673102,
+          "kp_coarse": 28.8584454690069,
+          "kp_fine": 11.851675349412206,
+          "action_penalty_ee": 0.0,
+          "action_grad_penalty": 0.0,
+          "curr_engaged": 0.0,
+          "curr_success": 0.0,
+          "action_penalty_asset": -0.2824466291419784,
+          "contact_penalty": 0.0,
+          "success_pred_error": 0.0
+        },
+        "upstream_success_seen": false,
+        "raw_peak_wrist_n": 17.800445556640625,
+        "fixture_contact_fraction": 0.6549999713897705,
+        "minimum_base_height_m": 0.01486715078353882,
+        "final_base_height_m": 0.0231236532330513,
+        "target_height_min_max_m": [
+          0.027323797345161438,
+          0.042223431169986725
+        ],
+        "final_target_xyz_m": [
+          0.01659608818590641,
+          -0.011417950503528118,
+          0.032062631100416183
+        ],
+        "final_tool_xyz_m": [
+          0.017879832535982132,
+          -0.018780946731567383,
+          0.02958620898425579
+        ],
+        "tool_height_range_m": 0.02434239722788334,
+        "requested_action_clipped_fraction": 0.06031746044754982,
+        "witness": {
+          "version": 1,
+          "witnessed_failure_step": null,
+          "witnessed_withdrawal_step": null,
+          "witnessed_complete_recovery": false
+        }
+      },
+      {
+        "case_id": "dev-10070-bias_medium-2",
+        "bin_id": "bias_medium",
+        "outcome": "deadline",
+        "success": false,
+        "elapsed_s": 30.0,
+        "discounted_return": 74.41424217476613,
+        "undiscounted_return": 188.1169690489769,
+        "discounted_terms": {
+          "kp_baseline": 29.758699395040964,
+          "kp_coarse": 30.693018427060956,
+          "kp_fine": 14.68353612816701,
+          "action_penalty_ee": 0.0,
+          "action_grad_penalty": 0.0,
+          "curr_engaged": 0.0,
+          "curr_success": 0.0,
+          "action_penalty_asset": -0.7210117972648885,
+          "contact_penalty": 0.0,
+          "success_pred_error": 0.0
+        },
+        "upstream_success_seen": false,
+        "raw_peak_wrist_n": 18.887670516967773,
+        "fixture_contact_fraction": 0.1944444477558136,
+        "minimum_base_height_m": 0.011731393262743951,
+        "final_base_height_m": 0.016234032437205316,
+        "target_height_min_max_m": [
+          0.022924082353711128,
+          0.042007483541965485
+        ],
+        "final_target_xyz_m": [
+          0.006452504079788923,
+          -0.012221679091453552,
+          0.024826530367136
+        ],
+        "final_tool_xyz_m": [
+          0.007387518882751465,
+          -0.016024459153413773,
+          0.021487006917595863
+        ],
+        "tool_height_range_m": 0.02848525531589985,
+        "requested_action_clipped_fraction": 0.0015873016091063619,
+        "witness": {
+          "version": 1,
+          "witnessed_failure_step": null,
+          "witnessed_withdrawal_step": null,
+          "witnessed_complete_recovery": false
+        }
+      },
+      {
+        "case_id": "dev-10070-bias_medium-3",
+        "bin_id": "bias_medium",
+        "outcome": "force_abort",
+        "success": false,
+        "elapsed_s": 0.4583333333333333,
+        "discounted_return": 1.8490945621829544,
+        "undiscounted_return": 1.8737635910511017,
+        "discounted_terms": {
+          "kp_baseline": 0.9820869285630912,
+          "kp_coarse": 0.7154150007274207,
+          "kp_fine": 0.16858795568139007,
+          "action_penalty_ee": 0.0,
+          "action_grad_penalty": 0.0,
+          "curr_engaged": 0.0,
+          "curr_success": 0.0,
+          "action_penalty_asset": -0.01699530028081018,
+          "contact_penalty": 0.0,
+          "success_pred_error": 0.0
+        },
+        "upstream_success_seen": false,
+        "raw_peak_wrist_n": 20.401140213012695,
+        "fixture_contact_fraction": 0.036363635212183,
+        "minimum_base_height_m": 0.025061726197600366,
+        "final_base_height_m": 0.025061726197600366,
+        "target_height_min_max_m": [
+          0.033807169646024704,
+          0.04656810685992241
+        ],
+        "final_target_xyz_m": [
+          0.014486173167824745,
+          0.0008513486827723682,
+          0.033807169646024704
+        ],
+        "final_tool_xyz_m": [
+          0.013921618461608887,
+          0.0013030662667006254,
+          0.03291669115424156
+        ],
+        "tool_height_range_m": 0.016832783818244934,
+        "requested_action_clipped_fraction": 0.0,
+        "witness": {
+          "version": 1,
+          "witnessed_failure_step": null,
+          "witnessed_withdrawal_step": null,
+          "witnessed_complete_recovery": false
+        }
+      },
+      {
+        "case_id": "dev-10070-approach_low-0",
+        "bin_id": "approach_low",
+        "outcome": "deadline",
+        "success": false,
+        "elapsed_s": 30.0,
+        "discounted_return": 69.91856929345064,
+        "undiscounted_return": 174.74127328395844,
+        "discounted_terms": {
+          "kp_baseline": 29.745195020213654,
+          "kp_coarse": 28.81524536432112,
+          "kp_fine": 11.520749648414576,
+          "action_penalty_ee": 0.0,
+          "action_grad_penalty": 0.0,
+          "curr_engaged": 0.0,
+          "curr_success": 0.0,
+          "action_penalty_asset": -0.1626208568734081,
+          "contact_penalty": 0.0,
+          "success_pred_error": 0.0
+        },
+        "upstream_success_seen": false,
+        "raw_peak_wrist_n": 12.528191566467285,
+        "fixture_contact_fraction": 0.4611110985279083,
+        "minimum_base_height_m": 0.024169470742344858,
+        "final_base_height_m": 0.025006603077054025,
+        "target_height_min_max_m": [
+          0.027078643441200256,
+          0.042495984584093094
+        ],
+        "final_target_xyz_m": [
+          0.01076960377395153,
+          -0.006723717786371708,
+          0.029902104288339615
+        ],
+        "final_tool_xyz_m": [
+          0.012384653091430664,
+          -0.007472248747944832,
+          0.03117559291422367
+        ],
+        "tool_height_range_m": 0.013072146102786064,
+        "requested_action_clipped_fraction": 0.0006349206087179482,
+        "witness": {
+          "version": 1,
+          "witnessed_failure_step": null,
+          "witnessed_withdrawal_step": null,
+          "witnessed_complete_recovery": false
+        }
+      },
+      {
+        "case_id": "dev-10070-approach_low-1",
+        "bin_id": "approach_low",
+        "outcome": "deadline",
+        "success": false,
+        "elapsed_s": 30.0,
+        "discounted_return": 71.9340749359448,
+        "undiscounted_return": 190.013797134161,
+        "discounted_terms": {
+          "kp_baseline": 29.749515184057188,
+          "kp_coarse": 29.491203500544138,
+          "kp_fine": 12.912458905403616,
+          "action_penalty_ee": 0.0,
+          "action_grad_penalty": 0.0,
+          "curr_engaged": 0.0,
+          "curr_success": 0.0,
+          "action_penalty_asset": -0.21910268546241057,
+          "contact_penalty": 0.0,
+          "success_pred_error": 0.0
+        },
+        "upstream_success_seen": false,
+        "raw_peak_wrist_n": 19.18181800842285,
+        "fixture_contact_fraction": 0.2294444441795349,
+        "minimum_base_height_m": 0.010168578103184701,
+        "final_base_height_m": 0.010168578103184701,
+        "target_height_min_max_m": [
+          0.02173869125545025,
+          0.04159270599484444
+        ],
+        "final_target_xyz_m": [
+          0.00303400750271976,
+          -0.012554416432976723,
+          0.022016186267137527
+        ],
+        "final_tool_xyz_m": [
+          0.008434176445007324,
+          -0.014887213706970215,
+          0.015361534431576729
+        ],
+        "tool_height_range_m": 0.029453730210661888,
+        "requested_action_clipped_fraction": 0.011428571306169033,
+        "witness": {
+          "version": 1,
+          "witnessed_failure_step": null,
+          "witnessed_withdrawal_step": null,
+          "witnessed_complete_recovery": false
+        }
+      },
+      {
+        "case_id": "dev-10070-approach_low-2",
+        "bin_id": "approach_low",
+        "outcome": "deadline",
+        "success": false,
+        "elapsed_s": 30.0,
+        "discounted_return": 65.2349862596038,
+        "undiscounted_return": 161.80522334575653,
+        "discounted_terms": {
+          "kp_baseline": 29.72542176937447,
+          "kp_coarse": 26.559928783747843,
+          "kp_fine": 9.066814524206203,
+          "action_penalty_ee": 0.0,
+          "action_grad_penalty": 0.0,
+          "curr_engaged": 0.0,
+          "curr_success": 0.0,
+          "action_penalty_asset": -0.11717854780855362,
+          "contact_penalty": 0.0,
+          "success_pred_error": 0.0
+        },
+        "upstream_success_seen": false,
+        "raw_peak_wrist_n": 4.995234966278076,
+        "fixture_contact_fraction": 0.09194444119930267,
+        "minimum_base_height_m": 0.017027467116713525,
+        "final_base_height_m": 0.025311588868498804,
+        "target_height_min_max_m": [
+          0.02850877307355404,
+          0.044438235461711884
+        ],
+        "final_target_xyz_m": [
+          0.016788596287369728,
+          -0.010519561357796192,
+          0.03304149582982063
+        ],
+        "final_tool_xyz_m": [
+          0.01370084285736084,
+          -0.016700029373168945,
+          0.02999807894229889
+        ],
+        "tool_height_range_m": 0.02409246563911438,
+        "requested_action_clipped_fraction": 0.03999999910593033,
+        "witness": {
+          "version": 1,
+          "witnessed_failure_step": null,
+          "witnessed_withdrawal_step": null,
+          "witnessed_complete_recovery": false
+        }
+      },
+      {
+        "case_id": "dev-10070-approach_low-3",
+        "bin_id": "approach_low",
+        "outcome": "deadline",
+        "success": false,
+        "elapsed_s": 30.0,
+        "discounted_return": 67.18018960744125,
+        "undiscounted_return": 167.84949424862862,
+        "discounted_terms": {
+          "kp_baseline": 29.734683476436718,
+          "kp_coarse": 27.54049731827783,
+          "kp_fine": 9.988943373299824,
+          "action_penalty_ee": 0.0,
+          "action_grad_penalty": 0.0,
+          "curr_engaged": 0.0,
+          "curr_success": 0.0,
+          "action_penalty_asset": -0.0839343777728935,
+          "contact_penalty": 0.0,
+          "success_pred_error": 0.0
+        },
+        "upstream_success_seen": false,
+        "raw_peak_wrist_n": 13.855592727661133,
+        "fixture_contact_fraction": 0.11138889193534851,
+        "minimum_base_height_m": 0.015528320893645288,
+        "final_base_height_m": 0.02174857221543789,
+        "target_height_min_max_m": [
+          0.030993998050689697,
+          0.04265360161662102
+        ],
+        "final_target_xyz_m": [
+          0.015600750222802162,
+          -0.010321065783500671,
+          0.033264290541410446
+        ],
+        "final_tool_xyz_m": [
+          0.01698547601699829,
+          -0.010775566101074219,
+          0.03143749386072159
+        ],
+        "tool_height_range_m": 0.019078843295574188,
+        "requested_action_clipped_fraction": 0.08603174239397049,
+        "witness": {
+          "version": 1,
+          "witnessed_failure_step": null,
+          "witnessed_withdrawal_step": null,
+          "witnessed_complete_recovery": false
+        }
+      },
+      {
+        "case_id": "dev-10070-approach_high-0",
+        "bin_id": "approach_high",
+        "outcome": "deadline",
+        "success": false,
+        "elapsed_s": 30.0,
+        "discounted_return": 69.01031384754383,
+        "undiscounted_return": 173.6980725824833,
+        "discounted_terms": {
+          "kp_baseline": 29.738367140059633,
+          "kp_coarse": 28.20715654608326,
+          "kp_fine": 11.242680713153742,
+          "action_penalty_ee": 0.0,
+          "action_grad_penalty": 0.0,
+          "curr_engaged": 0.0,
+          "curr_success": 0.0,
+          "action_penalty_asset": -0.17789053283445674,
+          "contact_penalty": 0.0,
+          "success_pred_error": 0.0
+        },
+        "upstream_success_seen": false,
+        "raw_peak_wrist_n": 19.050432205200195,
+        "fixture_contact_fraction": 0.02388888970017433,
+        "minimum_base_height_m": 0.014538475871086122,
+        "final_base_height_m": 0.02561817653477192,
+        "target_height_min_max_m": [
+          0.030518177896738052,
+          0.04663016274571419
+        ],
+        "final_target_xyz_m": [
+          0.015166404657065868,
+          -0.009628004394471645,
+          0.03593664616346359
+        ],
+        "final_tool_xyz_m": [
+          0.020925045013427734,
+          -0.006149411201477051,
+          0.03503154590725899
+        ],
+        "tool_height_range_m": 0.0260933730751276,
+        "requested_action_clipped_fraction": 0.012698412872850895,
+        "witness": {
+          "version": 1,
+          "witnessed_failure_step": null,
+          "witnessed_withdrawal_step": null,
+          "witnessed_complete_recovery": false
+        }
+      },
+      {
+        "case_id": "dev-10070-approach_high-1",
+        "bin_id": "approach_high",
+        "outcome": "deadline",
+        "success": false,
+        "elapsed_s": 30.0,
+        "discounted_return": 67.17550650810341,
+        "undiscounted_return": 169.4761977493763,
+        "discounted_terms": {
+          "kp_baseline": 29.734305845202435,
+          "kp_coarse": 27.571768479363236,
+          "kp_fine": 10.144416994856781,
+          "action_penalty_ee": 0.0,
+          "action_grad_penalty": 0.0,
+          "curr_engaged": 0.0,
+          "curr_success": 0.0,
+          "action_penalty_asset": -0.27498485834659125,
+          "contact_penalty": 0.0,
+          "success_pred_error": 0.0
+        },
+        "upstream_success_seen": false,
+        "raw_peak_wrist_n": 19.024192810058594,
+        "fixture_contact_fraction": 0.15416666865348816,
+        "minimum_base_height_m": 0.016525240242481233,
+        "final_base_height_m": 0.02012925557792187,
+        "target_height_min_max_m": [
+          0.02696106769144535,
+          0.04284336790442467
+        ],
+        "final_target_xyz_m": [
+          0.014080810360610485,
+          -0.01156825665384531,
+          0.032256580889225006
+        ],
+        "final_tool_xyz_m": [
+          0.012166738510131836,
+          -0.01145578920841217,
+          0.027262981981039047
+        ],
+        "tool_height_range_m": 0.02080336958169937,
+        "requested_action_clipped_fraction": 0.046666666865348816,
+        "witness": {
+          "version": 1,
+          "witnessed_failure_step": null,
+          "witnessed_withdrawal_step": null,
+          "witnessed_complete_recovery": false
+        }
+      },
+      {
+        "case_id": "dev-10070-approach_high-2",
+        "bin_id": "approach_high",
+        "outcome": "deadline",
+        "success": false,
+        "elapsed_s": 30.0,
+        "discounted_return": 69.80055714817254,
+        "undiscounted_return": 174.21185067296028,
+        "discounted_terms": {
+          "kp_baseline": 29.74433287494889,
+          "kp_coarse": 28.73175578398917,
+          "kp_fine": 11.475470853685529,
+          "action_penalty_ee": 0.0,
+          "action_grad_penalty": 0.0,
+          "curr_engaged": 0.0,
+          "curr_success": 0.0,
+          "action_penalty_asset": -0.15100239019586864,
+          "contact_penalty": 0.0,
+          "success_pred_error": 0.0
+        },
+        "upstream_success_seen": false,
+        "raw_peak_wrist_n": 18.582260131835938,
+        "fixture_contact_fraction": 0.5994444489479065,
+        "minimum_base_height_m": 0.015471744909882547,
+        "final_base_height_m": 0.015546841174364091,
+        "target_height_min_max_m": [
+          0.026922613382339478,
+          0.04589672014117241
+        ],
+        "final_target_xyz_m": [
+          0.008002111688256264,
+          -0.010459705255925655,
+          0.027418959885835648
+        ],
+        "final_tool_xyz_m": [
+          0.013566434383392334,
+          -0.012789487838745117,
+          0.0266801156103611
+        ],
+        "tool_height_range_m": 0.02226094901561737,
+        "requested_action_clipped_fraction": 0.03999999910593033,
+        "witness": {
+          "version": 1,
+          "witnessed_failure_step": null,
+          "witnessed_withdrawal_step": null,
+          "witnessed_complete_recovery": false
+        }
+      },
+      {
+        "case_id": "dev-10070-approach_high-3",
+        "bin_id": "approach_high",
+        "outcome": "deadline",
+        "success": false,
+        "elapsed_s": 30.0,
+        "discounted_return": 67.62209528868733,
+        "undiscounted_return": 171.20186081528664,
+        "discounted_terms": {
+          "kp_baseline": 29.735540402969306,
+          "kp_coarse": 27.72756357085151,
+          "kp_fine": 10.270896046592695,
+          "action_penalty_ee": 0.0,
+          "action_grad_penalty": 0.0,
+          "curr_engaged": 0.0,
+          "curr_success": 0.0,
+          "action_penalty_asset": -0.11190465983737471,
+          "contact_penalty": 0.0,
+          "success_pred_error": 0.0
+        },
+        "upstream_success_seen": false,
+        "raw_peak_wrist_n": 18.762048721313477,
+        "fixture_contact_fraction": 0.476666659116745,
+        "minimum_base_height_m": 0.024977661296725275,
+        "final_base_height_m": 0.02501530908048153,
+        "target_height_min_max_m": [
+          0.028601188212633133,
+          0.045577820390462875
+        ],
+        "final_target_xyz_m": [
+          0.01162007451057434,
+          -0.004984828177839518,
+          0.031039372086524963
+        ],
+        "final_tool_xyz_m": [
+          0.01254183053970337,
+          -0.006808280944824219,
+          0.0345732644200325
+        ],
+        "tool_height_range_m": 0.016172707080841064,
+        "requested_action_clipped_fraction": 0.0028571428265422583,
+        "witness": {
+          "version": 1,
+          "witnessed_failure_step": null,
+          "witnessed_withdrawal_step": null,
+          "witnessed_complete_recovery": false
+        }
+      },
+      {
+        "case_id": "dev-10070-friction_low-0",
+        "bin_id": "friction_low",
+        "outcome": "deadline",
+        "success": false,
+        "elapsed_s": 30.0,
+        "discounted_return": 65.37231043295,
+        "undiscounted_return": 165.67451593279839,
+        "discounted_terms": {
+          "kp_baseline": 29.726515878309094,
+          "kp_coarse": 26.683145091322416,
+          "kp_fine": 9.227061920459295,
+          "action_penalty_ee": 0.0,
+          "action_grad_penalty": 0.0,
+          "curr_engaged": 0.0,
+          "curr_success": 0.0,
+          "action_penalty_asset": -0.264412560268243,
+          "contact_penalty": 0.0,
+          "success_pred_error": 0.0
+        },
+        "upstream_success_seen": false,
+        "raw_peak_wrist_n": 16.51333999633789,
+        "fixture_contact_fraction": 0.010555555112659931,
+        "minimum_base_height_m": 0.015637242794036867,
+        "final_base_height_m": 0.016801416501402856,
+        "target_height_min_max_m": [
+          0.031507015228271484,
+          0.043060753494501114
+        ],
+        "final_target_xyz_m": [
+          0.016669372096657753,
+          -0.010610455647110939,
+          0.034181661903858185
+        ],
+        "final_tool_xyz_m": [
+          0.014243125915527344,
+          -0.013549327850341797,
+          0.025832025334239006
+        ],
+        "tool_height_range_m": 0.02041695825755596,
+        "requested_action_clipped_fraction": 0.027936507016420364,
+        "witness": {
+          "version": 1,
+          "witnessed_failure_step": null,
+          "witnessed_withdrawal_step": null,
+          "witnessed_complete_recovery": false
+        }
+      },
+      {
+        "case_id": "dev-10070-friction_low-1",
+        "bin_id": "friction_low",
+        "outcome": "deadline",
+        "success": false,
+        "elapsed_s": 30.0,
+        "discounted_return": 66.77789727714043,
+        "undiscounted_return": 167.812564432621,
+        "discounted_terms": {
+          "kp_baseline": 29.733466047855746,
+          "kp_coarse": 27.394993217453475,
+          "kp_fine": 9.74920611198489,
+          "action_penalty_ee": 0.0,
+          "action_grad_penalty": 0.0,
+          "curr_engaged": 0.0,
+          "curr_success": 0.0,
+          "action_penalty_asset": -0.09976835447177307,
+          "contact_penalty": 0.0,
+          "success_pred_error": 0.0
+        },
+        "upstream_success_seen": false,
+        "raw_peak_wrist_n": 19.795307159423828,
+        "fixture_contact_fraction": 0.4030555486679077,
+        "minimum_base_height_m": 0.024738529324531557,
+        "final_base_height_m": 0.025007867813110353,
+        "target_height_min_max_m": [
+          0.02559085562825203,
+          0.043332405388355255
+        ],
+        "final_target_xyz_m": [
+          0.010562547482550144,
+          -0.00917120836675167,
+          0.029102949425578117
+        ],
+        "final_tool_xyz_m": [
+          0.011581182479858398,
+          -0.010985612869262695,
+          0.03026866540312767
+        ],
+        "tool_height_range_m": 0.016974538564682007,
+        "requested_action_clipped_fraction": 0.018095238134264946,
+        "witness": {
+          "version": 1,
+          "witnessed_failure_step": null,
+          "witnessed_withdrawal_step": null,
+          "witnessed_complete_recovery": false
+        }
+      },
+      {
+        "case_id": "dev-10070-friction_low-2",
+        "bin_id": "friction_low",
+        "outcome": "deadline",
+        "success": false,
+        "elapsed_s": 30.0,
+        "discounted_return": 75.24324810350883,
+        "undiscounted_return": 195.39693480730057,
+        "discounted_terms": {
+          "kp_baseline": 29.75924936693509,
+          "kp_coarse": 30.773000920749084,
+          "kp_fine": 14.842054443017558,
+          "action_penalty_ee": 0.0,
+          "action_grad_penalty": 0.0,
+          "curr_engaged": 0.0,
+          "curr_success": 0.0,
+          "action_penalty_asset": -0.1310568777349127,
+          "contact_penalty": 0.0,
+          "success_pred_error": 0.0
+        },
+        "upstream_success_seen": false,
+        "raw_peak_wrist_n": 19.84090805053711,
+        "fixture_contact_fraction": 0.5786111354827881,
+        "minimum_base_height_m": 0.00548875853419304,
+        "final_base_height_m": 0.008947947621345521,
+        "target_height_min_max_m": [
+          0.02332124672830105,
+          0.043936826288700104
+        ],
+        "final_target_xyz_m": [
+          0.00729617103934288,
+          -0.014128382317721844,
+          0.02436448633670807
+        ],
+        "final_tool_xyz_m": [
+          0.006948232650756836,
+          -0.018260017037391663,
+          0.018415750935673714
+        ],
+        "tool_height_range_m": 0.032815054059028625,
+        "requested_action_clipped_fraction": 0.0063492064364254475,
+        "witness": {
+          "version": 1,
+          "witnessed_failure_step": null,
+          "witnessed_withdrawal_step": null,
+          "witnessed_complete_recovery": false
+        }
+      },
+      {
+        "case_id": "dev-10070-friction_low-3",
+        "bin_id": "friction_low",
+        "outcome": "deadline",
+        "success": false,
+        "elapsed_s": 30.0,
+        "discounted_return": 66.59859457143665,
+        "undiscounted_return": 167.36695757508278,
+        "discounted_terms": {
+          "kp_baseline": 29.732024056148088,
+          "kp_coarse": 27.254505421509805,
+          "kp_fine": 9.727606945302249,
+          "action_penalty_ee": 0.0,
+          "action_grad_penalty": 0.0,
+          "curr_engaged": 0.0,
+          "curr_success": 0.0,
+          "action_penalty_asset": -0.11554177516418102,
+          "contact_penalty": 0.0,
+          "success_pred_error": 0.0
+        },
+        "upstream_success_seen": false,
+        "raw_peak_wrist_n": 19.32297706604004,
+        "fixture_contact_fraction": 0.06833333522081375,
+        "minimum_base_height_m": 0.015107616409659387,
+        "final_base_height_m": 0.019292618706822397,
+        "target_height_min_max_m": [
+          0.030855579301714897,
+          0.04215002432465553
+        ],
+        "final_target_xyz_m": [
+          0.011857504025101662,
+          -0.010542862117290497,
+          0.034204259514808655
+        ],
+        "final_tool_xyz_m": [
+          0.016157150268554688,
+          -0.007361292839050293,
+          0.028520699590444565
+        ],
+        "tool_height_range_m": 0.019930996000766754,
+        "requested_action_clipped_fraction": 0.0634920671582222,
+        "witness": {
+          "version": 1,
+          "witnessed_failure_step": null,
+          "witnessed_withdrawal_step": null,
+          "witnessed_complete_recovery": false
+        }
+      },
+      {
+        "case_id": "dev-10070-friction_high-0",
+        "bin_id": "friction_high",
+        "outcome": "deadline",
+        "success": false,
+        "elapsed_s": 30.0,
+        "discounted_return": 71.21476342869906,
+        "undiscounted_return": 179.46308633685112,
+        "discounted_terms": {
+          "kp_baseline": 29.748219390953793,
+          "kp_coarse": 29.306037463554713,
+          "kp_fine": 12.411860058617084,
+          "action_penalty_ee": 0.0,
+          "action_grad_penalty": 0.0,
+          "curr_engaged": 0.0,
+          "curr_success": 0.0,
+          "action_penalty_asset": -0.25135373873726546,
+          "contact_penalty": 0.0,
+          "success_pred_error": 0.0
+        },
+        "upstream_success_seen": false,
+        "raw_peak_wrist_n": 16.01183319091797,
+        "fixture_contact_fraction": 0.9361110925674438,
+        "minimum_base_height_m": 0.015297971293330194,
+        "final_base_height_m": 0.017283543571829797,
+        "target_height_min_max_m": [
+          0.021362340077757835,
+          0.042402785271406174
+        ],
+        "final_target_xyz_m": [
+          0.0027622743509709835,
+          -0.010815358720719814,
+          0.023722654208540916
+        ],
+        "final_tool_xyz_m": [
+          0.009151697158813477,
+          -0.0036132335662841797,
+          0.02169409953057766
+        ],
+        "tool_height_range_m": 0.023994984105229378,
+        "requested_action_clipped_fraction": 0.0,
+        "witness": {
+          "version": 1,
+          "witnessed_failure_step": null,
+          "witnessed_withdrawal_step": null,
+          "witnessed_complete_recovery": false
+        }
+      },
+      {
+        "case_id": "dev-10070-friction_high-1",
+        "bin_id": "friction_high",
+        "outcome": "deadline",
+        "success": false,
+        "elapsed_s": 30.0,
+        "discounted_return": 68.04885213978696,
+        "undiscounted_return": 171.35613471269608,
+        "discounted_terms": {
+          "kp_baseline": 29.73883956852724,
+          "kp_coarse": 28.052858966475668,
+          "kp_fine": 10.556304864763947,
+          "action_penalty_ee": 0.0,
+          "action_grad_penalty": 0.0,
+          "curr_engaged": 0.0,
+          "curr_success": 0.0,
+          "action_penalty_asset": -0.10377023404038255,
+          "contact_penalty": -0.1953811547957061,
+          "success_pred_error": 0.0
+        },
+        "upstream_success_seen": false,
+        "raw_peak_wrist_n": 19.40313148498535,
+        "fixture_contact_fraction": 0.4286110997200012,
+        "minimum_base_height_m": 0.024964198097586633,
+        "final_base_height_m": 0.025005776062607767,
+        "target_height_min_max_m": [
+          0.027062807232141495,
+          0.044067542999982834
+        ],
+        "final_target_xyz_m": [
+          0.009510966949164867,
+          -0.003781645093113184,
+          0.027682805433869362
+        ],
+        "final_tool_xyz_m": [
+          0.011487483978271484,
+          -0.007589817047119141,
+          0.03287149965763092
+        ],
+        "tool_height_range_m": 0.015812553465366364,
+        "requested_action_clipped_fraction": 0.0019047618843615055,
+        "witness": {
+          "version": 1,
+          "witnessed_failure_step": null,
+          "witnessed_withdrawal_step": null,
+          "witnessed_complete_recovery": false
+        }
+      },
+      {
+        "case_id": "dev-10070-friction_high-2",
+        "bin_id": "friction_high",
+        "outcome": "force_abort",
+        "success": false,
+        "elapsed_s": 0.45,
+        "discounted_return": 1.9501388726176672,
+        "undiscounted_return": 1.9762005805969238,
+        "discounted_terms": {
+          "kp_baseline": 0.9827507184002846,
+          "kp_coarse": 0.7743145747644266,
+          "kp_fine": 0.21075912155803303,
+          "action_penalty_ee": 0.0,
+          "action_grad_penalty": 0.0,
+          "curr_engaged": 0.0,
+          "curr_success": 0.0,
+          "action_penalty_asset": -0.01768558383781419,
+          "contact_penalty": 0.0,
+          "success_pred_error": 0.0
+        },
+        "upstream_success_seen": false,
+        "raw_peak_wrist_n": 20.745223999023438,
+        "fixture_contact_fraction": 0.03703703731298447,
+        "minimum_base_height_m": 0.025026172026991846,
+        "final_base_height_m": 0.025026172026991846,
+        "target_height_min_max_m": [
+          0.03116898238658905,
+          0.0426783561706543
+        ],
+        "final_target_xyz_m": [
+          0.015103155747056007,
+          1.3504177331924438e-05,
+          0.03116898238658905
+        ],
+        "final_tool_xyz_m": [
+          0.00921487808227539,
+          0.0017387866973876953,
+          0.032192546874284744
+        ],
+        "tool_height_range_m": 0.014234565198421478,
+        "requested_action_clipped_fraction": 0.0,
+        "witness": {
+          "version": 1,
+          "witnessed_failure_step": null,
+          "witnessed_withdrawal_step": null,
+          "witnessed_complete_recovery": false
+        }
+      },
+      {
+        "case_id": "dev-10070-friction_high-3",
+        "bin_id": "friction_high",
+        "outcome": "deadline",
+        "success": false,
+        "elapsed_s": 30.0,
+        "discounted_return": 64.75348509034919,
+        "undiscounted_return": 164.24687242507935,
+        "discounted_terms": {
+          "kp_baseline": 29.72298543526646,
+          "kp_coarse": 26.314085482247727,
+          "kp_fine": 8.859325013484888,
+          "action_penalty_ee": 0.0,
+          "action_grad_penalty": 0.0,
+          "curr_engaged": 0.0,
+          "curr_success": 0.0,
+          "action_penalty_asset": -0.14291060997311197,
+          "contact_penalty": 0.0,
+          "success_pred_error": 0.0
+        },
+        "upstream_success_seen": false,
+        "raw_peak_wrist_n": 15.159823417663574,
+        "fixture_contact_fraction": 0.07138888537883759,
+        "minimum_base_height_m": 0.01572573147714138,
+        "final_base_height_m": 0.02497430853545666,
+        "target_height_min_max_m": [
+          0.03070010244846344,
+          0.04567829519510269
+        ],
+        "final_target_xyz_m": [
+          0.01533766370266676,
+          -0.00950152799487114,
+          0.033001091331243515
+        ],
+        "final_tool_xyz_m": [
+          0.014758110046386719,
+          -0.006002198904752731,
+          0.033891599625349045
+        ],
+        "tool_height_range_m": 0.02476983703672886,
+        "requested_action_clipped_fraction": 0.06730158627033234,
+        "witness": {
+          "version": 1,
+          "witnessed_failure_step": null,
+          "witnessed_withdrawal_step": null,
+          "witnessed_complete_recovery": false
+        }
+      }
+    ],
+    "stochastic": [
+      {
+        "case_id": "dev-10070-nominal-0",
+        "bin_id": "nominal",
+        "outcome": "force_abort",
+        "success": false,
+        "elapsed_s": 0.6166666666666667,
+        "discounted_return": 2.8347009114512014,
+        "undiscounted_return": 2.8946976959705353,
+        "discounted_terms": {
+          "kp_baseline": 1.462708154993729,
+          "kp_coarse": 1.109691755216755,
+          "kp_fine": 0.2808934530105464,
+          "action_penalty_ee": 0.0,
+          "action_grad_penalty": 0.0,
+          "curr_engaged": 0.0,
+          "curr_success": 0.0,
+          "action_penalty_asset": -0.018592392760855246,
+          "contact_penalty": 0.0,
+          "success_pred_error": 0.0
+        },
+        "upstream_success_seen": false,
+        "raw_peak_wrist_n": 20.368200302124023,
+        "fixture_contact_fraction": 0.027027027681469917,
+        "minimum_base_height_m": 0.024991592019796373,
+        "final_base_height_m": 0.024991592019796373,
+        "target_height_min_max_m": [
+          0.028641430661082268,
+          0.04644656181335449
+        ],
+        "final_target_xyz_m": [
+          0.0036944083403795958,
+          0.0032626085449010134,
+          0.028641430661082268
+        ],
+        "final_tool_xyz_m": [
+          0.009639739990234375,
+          0.008409738540649414,
+          0.033930703997612
+        ],
+        "tool_height_range_m": 0.013333648443222046,
+        "requested_action_clipped_fraction": 0.4571428596973419,
+        "witness": {
+          "version": 1,
+          "witnessed_failure_step": null,
+          "witnessed_withdrawal_step": null,
+          "witnessed_complete_recovery": false
+        }
+      },
+      {
+        "case_id": "dev-10070-nominal-1",
+        "bin_id": "nominal",
+        "outcome": "force_abort",
+        "success": false,
+        "elapsed_s": 0.49166666666666664,
+        "discounted_return": 2.2747145381576788,
+        "undiscounted_return": 2.3111326694488525,
+        "discounted_terms": {
+          "kp_baseline": 1.1436727779313052,
+          "kp_coarse": 0.8999120986335618,
+          "kp_fine": 0.24688195852748698,
+          "action_penalty_ee": 0.0,
+          "action_grad_penalty": 0.0,
+          "curr_engaged": 0.0,
+          "curr_success": 0.0,
+          "action_penalty_asset": -0.015752237924036724,
+          "contact_penalty": 0.0,
+          "success_pred_error": 0.0
+        },
+        "upstream_success_seen": false,
+        "raw_peak_wrist_n": 20.538631439208984,
+        "fixture_contact_fraction": 0.033898305147886276,
+        "minimum_base_height_m": 0.025003816559910776,
+        "final_base_height_m": 0.025006163492798807,
+        "target_height_min_max_m": [
+          0.02144714631140232,
+          0.042373333126306534
+        ],
+        "final_target_xyz_m": [
+          0.004604054149240255,
+          0.006184702273458242,
+          0.02144714631140232
+        ],
+        "final_tool_xyz_m": [
+          0.0003151893615722656,
+          0.0068511962890625,
+          0.03484361618757248
+        ],
+        "tool_height_range_m": 0.012866571545600891,
+        "requested_action_clipped_fraction": 0.2678571343421936,
+        "witness": {
+          "version": 1,
+          "witnessed_failure_step": null,
+          "witnessed_withdrawal_step": null,
+          "witnessed_complete_recovery": false
+        }
+      },
+      {
+        "case_id": "dev-10070-nominal-2",
+        "bin_id": "nominal",
+        "outcome": "deadline",
+        "success": false,
+        "elapsed_s": 30.0,
+        "discounted_return": 56.29431707639374,
+        "undiscounted_return": 120.75662618875504,
+        "discounted_terms": {
+          "kp_baseline": 29.708277470140935,
+          "kp_coarse": 26.89876830847164,
+          "kp_fine": 13.646120844126086,
+          "action_penalty_ee": 0.0,
+          "action_grad_penalty": 0.0,
+          "curr_engaged": 0.0,
+          "curr_success": 0.0,
+          "action_penalty_asset": -0.4803450242076266,
+          "contact_penalty": -13.369322688285392,
+          "success_pred_error": -0.10918155953033555
+        },
+        "upstream_success_seen": false,
+        "raw_peak_wrist_n": 19.938901901245117,
+        "fixture_contact_fraction": 0.31888890266418457,
+        "minimum_base_height_m": 5.417838692665239e-05,
+        "final_base_height_m": 0.02714602239429951,
+        "target_height_min_max_m": [
+          -0.00910012423992157,
+          0.04750341922044754
+        ],
+        "final_target_xyz_m": [
+          0.011251574382185936,
+          -0.008194737136363983,
+          0.01763024739921093
+        ],
+        "final_tool_xyz_m": [
+          0.006539344787597656,
+          -0.008904250338673592,
+          0.021276982501149178
+        ],
+        "tool_height_range_m": 0.04669174551963806,
+        "requested_action_clipped_fraction": 0.32730159163475037,
+        "witness": {
+          "version": 1,
+          "witnessed_failure_step": 876,
+          "witnessed_withdrawal_step": 2166,
+          "witnessed_complete_recovery": false
+        }
+      },
+      {
+        "case_id": "dev-10070-nominal-3",
+        "bin_id": "nominal",
+        "outcome": "force_abort",
+        "success": false,
+        "elapsed_s": 0.31666666666666665,
+        "discounted_return": 1.3188428436925785,
+        "undiscounted_return": 1.3293710350990295,
+        "discounted_terms": {
+          "kp_baseline": 0.6585174319856968,
+          "kp_coarse": 0.5239555830143876,
+          "kp_fine": 0.1427359398358455,
+          "action_penalty_ee": 0.0,
+          "action_grad_penalty": 0.0,
+          "curr_engaged": 0.0,
+          "curr_success": 0.0,
+          "action_penalty_asset": -0.006366156575639843,
+          "contact_penalty": 0.0,
+          "success_pred_error": 0.0
+        },
+        "upstream_success_seen": false,
+        "raw_peak_wrist_n": 22.42966079711914,
+        "fixture_contact_fraction": 0.05263157933950424,
+        "minimum_base_height_m": 0.024988263472914697,
+        "final_base_height_m": 0.024988263472914697,
+        "target_height_min_max_m": [
+          0.025950893759727478,
+          0.044366732239723206
+        ],
+        "final_target_xyz_m": [
+          0.0028389329090714455,
+          -0.010196002200245857,
+          0.025950893759727478
+        ],
+        "final_tool_xyz_m": [
+          -0.006580829620361328,
+          -0.0047615766525268555,
+          0.03369705006480217
+        ],
+        "tool_height_range_m": 0.013014554977416992,
+        "requested_action_clipped_fraction": 0.3142857253551483,
+        "witness": {
+          "version": 1,
+          "witnessed_failure_step": null,
+          "witnessed_withdrawal_step": null,
+          "witnessed_complete_recovery": false
+        }
+      },
+      {
+        "case_id": "dev-10070-bias_low-0",
+        "bin_id": "bias_low",
+        "outcome": "force_abort",
+        "success": false,
+        "elapsed_s": 0.6833333333333333,
+        "discounted_return": 3.0343766623903776,
+        "undiscounted_return": 3.1071964502334595,
+        "discounted_terms": {
+          "kp_baseline": 1.6204261502597972,
+          "kp_coarse": 1.1673078855835206,
+          "kp_fine": 0.2766892501350242,
+          "action_penalty_ee": 0.0,
+          "action_grad_penalty": 0.0,
+          "curr_engaged": 0.0,
+          "curr_success": 0.0,
+          "action_penalty_asset": -0.030046718222768873,
+          "contact_penalty": 0.0,
+          "success_pred_error": 0.0
+        },
+        "upstream_success_seen": false,
+        "raw_peak_wrist_n": 21.422229766845703,
+        "fixture_contact_fraction": 0.024390242993831635,
+        "minimum_base_height_m": 0.02498694472014904,
+        "final_base_height_m": 0.02498694472014904,
+        "target_height_min_max_m": [
+          0.023550821468234062,
+          0.04718149080872536
+        ],
+        "final_target_xyz_m": [
+          0.0070756650529801846,
+          0.00019456596055533737,
+          0.023550821468234062
+        ],
+        "final_tool_xyz_m": [
+          -0.007539684418588877,
+          -0.0012083053588867188,
+          0.031591255217790604
+        ],
+        "tool_height_range_m": 0.01511913537979126,
+        "requested_action_clipped_fraction": 0.3246753215789795,
+        "witness": {
+          "version": 1,
+          "witnessed_failure_step": null,
+          "witnessed_withdrawal_step": null,
+          "witnessed_complete_recovery": false
+        }
+      },
+      {
+        "case_id": "dev-10070-bias_low-1",
+        "bin_id": "bias_low",
+        "outcome": "deadline",
+        "success": false,
+        "elapsed_s": 30.0,
+        "discounted_return": 68.97498618772197,
+        "undiscounted_return": 172.3776318281889,
+        "discounted_terms": {
+          "kp_baseline": 29.743723270713705,
+          "kp_coarse": 28.650893768820872,
+          "kp_fine": 11.359404338866337,
+          "action_penalty_ee": 0.0,
+          "action_grad_penalty": 0.0,
+          "curr_engaged": 0.0,
+          "curr_success": 0.0,
+          "action_penalty_asset": -0.5185735552778118,
+          "contact_penalty": -0.07331221424987601,
+          "success_pred_error": -0.1871495956735133
+        },
+        "upstream_success_seen": false,
+        "raw_peak_wrist_n": 19.527257919311523,
+        "fixture_contact_fraction": 0.7497222423553467,
+        "minimum_base_height_m": 0.0240770872682333,
+        "final_base_height_m": 0.025256067141890527,
+        "target_height_min_max_m": [
+          0.010352320037782192,
+          0.04269687458872795
+        ],
+        "final_target_xyz_m": [
+          -0.00021818411187268794,
+          0.006697916425764561,
+          0.023612355813384056
+        ],
+        "final_tool_xyz_m": [
+          0.00896351970732212,
+          -0.0009226799011230469,
+          0.03206789866089821
+        ],
+        "tool_height_range_m": 0.014659687876701355,
+        "requested_action_clipped_fraction": 0.3593650758266449,
+        "witness": {
+          "version": 1,
+          "witnessed_failure_step": 3230,
+          "witnessed_withdrawal_step": null,
+          "witnessed_complete_recovery": false
+        }
+      },
+      {
+        "case_id": "dev-10070-bias_low-2",
+        "bin_id": "bias_low",
+        "outcome": "success",
+        "success": true,
+        "elapsed_s": 10.441666666666666,
+        "discounted_return": 151.09762740859486,
+        "undiscounted_return": 235.48230642080307,
+        "discounted_terms": {
+          "kp_baseline": 18.061259271222987,
+          "kp_coarse": 23.34466814870686,
+          "kp_fine": 29.37688043126062,
+          "action_penalty_ee": 0.0,
+          "action_grad_penalty": 0.0,
+          "curr_engaged": 77.15902610216561,
+          "curr_success": 3.2675943536443652,
+          "action_penalty_asset": -0.11180124569499052,
+          "contact_penalty": 0.0,
+          "success_pred_error": 0.0
+        },
+        "upstream_success_seen": true,
+        "raw_peak_wrist_n": 18.937896728515625,
+        "fixture_contact_fraction": 0.6719872355461121,
+        "minimum_base_height_m": 4.0568038821221786e-05,
+        "final_base_height_m": 0.000191568955779077,
+        "target_height_min_max_m": [
+          0.00431021535769105,
+          0.044276654720306396
+        ],
+        "final_target_xyz_m": [
+          -0.0030547555070370436,
+          -0.01029625441879034,
+          0.008418557234108448
+        ],
+        "final_tool_xyz_m": [
+          -0.00012683868408203125,
+          -0.0012080020969733596,
+          0.005611701402813196
+        ],
+        "tool_height_range_m": 0.03960023075342178,
+        "requested_action_clipped_fraction": 0.36851683259010315,
+        "witness": {
+          "version": 1,
+          "witnessed_failure_step": null,
+          "witnessed_withdrawal_step": null,
+          "witnessed_complete_recovery": false
+        }
+      },
+      {
+        "case_id": "dev-10070-bias_low-3",
+        "bin_id": "bias_low",
+        "outcome": "deadline",
+        "success": false,
+        "elapsed_s": 30.0,
+        "discounted_return": 124.37920911094562,
+        "undiscounted_return": 457.0120358169079,
+        "discounted_terms": {
+          "kp_baseline": 29.761404189543967,
+          "kp_coarse": 31.28068780967234,
+          "kp_fine": 17.887892273366504,
+          "action_penalty_ee": 0.0,
+          "action_grad_penalty": 0.0,
+          "curr_engaged": 45.7631911278852,
+          "curr_success": 0.5319833126926967,
+          "action_penalty_asset": -0.3636275667294798,
+          "contact_penalty": -0.08272358298091533,
+          "success_pred_error": -0.39959791038800896
+        },
+        "upstream_success_seen": true,
+        "raw_peak_wrist_n": 19.882434844970703,
+        "fixture_contact_fraction": 0.8502777814865112,
+        "minimum_base_height_m": 7.616691291332384e-05,
+        "final_base_height_m": 0.00012353397905826707,
+        "target_height_min_max_m": [
+          0.0038924410473555326,
+          0.04159129410982132
+        ],
+        "final_target_xyz_m": [
+          -0.0033587284851819277,
+          -0.0011966171441599727,
+          0.0077570052817463875
+        ],
+        "final_tool_xyz_m": [
+          0.0005054473876953125,
+          0.0008776519680395722,
+          0.0063017504289746284
+        ],
+        "tool_height_range_m": 0.039984166622161865,
+        "requested_action_clipped_fraction": 0.34857141971588135,
+        "witness": {
+          "version": 1,
+          "witnessed_failure_step": null,
+          "witnessed_withdrawal_step": null,
+          "witnessed_complete_recovery": false
+        }
+      },
+      {
+        "case_id": "dev-10070-bias_medium-0",
+        "bin_id": "bias_medium",
+        "outcome": "success",
+        "success": true,
+        "elapsed_s": 22.15833333333333,
+        "discounted_return": 106.41587655490316,
+        "undiscounted_return": 300.02247074246407,
+        "discounted_terms": {
+          "kp_baseline": 26.952472322866697,
+          "kp_coarse": 28.76389535836404,
+          "kp_fine": 20.080041247151527,
+          "action_penalty_ee": 0.0,
+          "action_grad_penalty": 0.0,
+          "curr_engaged": 29.526900336716814,
+          "curr_success": 1.5494500293712665,
+          "action_penalty_asset": -0.18649432418913375,
+          "contact_penalty": -0.2703884543333165,
+          "success_pred_error": 0.0
+        },
+        "upstream_success_seen": true,
+        "raw_peak_wrist_n": 19.70850372314453,
+        "fixture_contact_fraction": 0.711921751499176,
+        "minimum_base_height_m": 3.7669762969018417e-05,
+        "final_base_height_m": 0.0005795132368803038,
+        "target_height_min_max_m": [
+          0.00910838134586811,
+          0.04494208097457886
+        ],
+        "final_target_xyz_m": [
+          -0.0006688466528430581,
+          0.0005854961927980185,
+          0.012379689142107964
+        ],
+        "final_tool_xyz_m": [
+          -0.0006474151741713285,
+          0.0008450746536254883,
+          0.00857091136276722
+        ],
+        "tool_height_range_m": 0.03732360154390335,
+        "requested_action_clipped_fraction": 0.35006433725357056,
+        "witness": {
+          "version": 1,
+          "witnessed_failure_step": 468,
+          "witnessed_withdrawal_step": null,
+          "witnessed_complete_recovery": false
+        }
+      },
+      {
+        "case_id": "dev-10070-bias_medium-1",
+        "bin_id": "bias_medium",
+        "outcome": "deadline",
+        "success": false,
+        "elapsed_s": 30.0,
+        "discounted_return": 69.24562119395178,
+        "undiscounted_return": 166.5800246745348,
+        "discounted_terms": {
+          "kp_baseline": 29.74063618072738,
+          "kp_coarse": 28.478150305004853,
+          "kp_fine": 11.547802754526078,
+          "action_penalty_ee": 0.0,
+          "action_grad_penalty": 0.0,
+          "curr_engaged": 0.0,
+          "curr_success": 0.0,
+          "action_penalty_asset": -0.38200791535662,
+          "contact_penalty": -0.042187948024928416,
+          "success_pred_error": -0.09677217578715684
+        },
+        "upstream_success_seen": false,
+        "raw_peak_wrist_n": 19.52384376525879,
+        "fixture_contact_fraction": 0.6480555534362793,
+        "minimum_base_height_m": 0.003231010958552362,
+        "final_base_height_m": 0.01936313658952713,
+        "target_height_min_max_m": [
+          0.004026889801025391,
+          0.04202670976519585
+        ],
+        "final_target_xyz_m": [
+          0.003680212888866663,
+          -0.012239830568432808,
+          0.021093985065817833
+        ],
+        "final_tool_xyz_m": [
+          0.003908027894794941,
+          -0.013074874877929688,
+          0.021164609119296074
+        ],
+        "tool_height_range_m": 0.03918803483247757,
+        "requested_action_clipped_fraction": 0.3492063581943512,
+        "witness": {
+          "version": 1,
+          "witnessed_failure_step": 1764,
+          "witnessed_withdrawal_step": null,
+          "witnessed_complete_recovery": false
+        }
+      },
+      {
+        "case_id": "dev-10070-bias_medium-2",
+        "bin_id": "bias_medium",
+        "outcome": "success",
+        "success": true,
+        "elapsed_s": 24.53333333333333,
+        "discounted_return": 92.15276771897351,
+        "undiscounted_return": 280.95980620384216,
+        "discounted_terms": {
+          "kp_baseline": 27.986150744151697,
+          "kp_coarse": 28.931743780881508,
+          "kp_fine": 17.184593919738898,
+          "action_penalty_ee": 0.0,
+          "action_grad_penalty": 0.0,
+          "curr_engaged": 18.27391038766894,
+          "curr_success": 2.1415386454938807,
+          "action_penalty_asset": -0.8215935605476633,
+          "contact_penalty": -1.5435764153876008,
+          "success_pred_error": 0.0
+        },
+        "upstream_success_seen": true,
+        "raw_peak_wrist_n": 19.229270935058594,
+        "fixture_contact_fraction": 0.781589686870575,
+        "minimum_base_height_m": 4.12609428167357e-05,
+        "final_base_height_m": 0.00015962831676006456,
+        "target_height_min_max_m": [
+          -0.002338688587769866,
+          0.0457194447517395
+        ],
+        "final_target_xyz_m": [
+          0.006195890251547098,
+          -0.011416259221732616,
+          0.007751081138849258
+        ],
+        "final_tool_xyz_m": [
+          -0.002367258071899414,
+          -0.0024522438179701567,
+          0.005078660324215889
+        ],
+        "tool_height_range_m": 0.04186303913593292,
+        "requested_action_clipped_fraction": 0.36529502272605896,
+        "witness": {
+          "version": 1,
+          "witnessed_failure_step": 1840,
+          "witnessed_withdrawal_step": null,
+          "witnessed_complete_recovery": false
+        }
+      },
+      {
+        "case_id": "dev-10070-bias_medium-3",
+        "bin_id": "bias_medium",
+        "outcome": "deadline",
+        "success": false,
+        "elapsed_s": 30.0,
+        "discounted_return": 72.27917757556524,
+        "undiscounted_return": 177.98986031115055,
+        "discounted_terms": {
+          "kp_baseline": 29.760975426695154,
+          "kp_coarse": 31.300310759147408,
+          "kp_fine": 16.98901586308737,
+          "action_penalty_ee": 0.0,
+          "action_grad_penalty": 0.0,
+          "curr_engaged": 0.0,
+          "curr_success": 0.0,
+          "action_penalty_asset": -0.6060274278865311,
+          "contact_penalty": -4.98956354110606,
+          "success_pred_error": -0.17553382740460813
+        },
+        "upstream_success_seen": false,
+        "raw_peak_wrist_n": 19.594036102294922,
+        "fixture_contact_fraction": 0.5294444561004639,
+        "minimum_base_height_m": -0.001629218831658362,
+        "final_base_height_m": 0.014837443456053735,
+        "target_height_min_max_m": [
+          -0.007249133195728064,
+          0.04422178119421005
+        ],
+        "final_target_xyz_m": [
+          0.0034571357537060976,
+          -0.0013895429437980056,
+          0.014837654307484627
+        ],
+        "final_tool_xyz_m": [
+          -0.0015058517456054688,
+          -0.0058213574811816216,
+          0.018507514148950577
+        ],
+        "tool_height_range_m": 0.04541720449924469,
+        "requested_action_clipped_fraction": 0.3466666638851166,
+        "witness": {
+          "version": 1,
+          "witnessed_failure_step": 1132,
+          "witnessed_withdrawal_step": 1477,
+          "witnessed_complete_recovery": false
+        }
+      },
+      {
+        "case_id": "dev-10070-approach_low-0",
+        "bin_id": "approach_low",
+        "outcome": "success",
+        "success": true,
+        "elapsed_s": 17.608333333333334,
+        "discounted_return": 206.89235197721135,
+        "undiscounted_return": 419.0356473326683,
+        "discounted_terms": {
+          "kp_baseline": 24.430325732486498,
+          "kp_coarse": 31.721977692640447,
+          "kp_fine": 40.93304738062139,
+          "action_penalty_ee": 0.0,
+          "action_grad_penalty": 0.0,
+          "curr_engaged": 107.9708644644414,
+          "curr_success": 2.1787534301312155,
+          "action_penalty_asset": -0.24101488233903634,
+          "contact_penalty": -0.10160221590869853,
+          "success_pred_error": 0.0
+        },
+        "upstream_success_seen": true,
+        "raw_peak_wrist_n": 19.5493106842041,
+        "fixture_contact_fraction": 0.7827733159065247,
+        "minimum_base_height_m": 6.658919155597826e-05,
+        "final_base_height_m": 0.00021957941353321214,
+        "target_height_min_max_m": [
+          -0.0002372900053160265,
+          0.04371592029929161
+        ],
+        "final_target_xyz_m": [
+          -0.002791420789435506,
+          0.0006177599425427616,
+          0.005308077670633793
+        ],
+        "final_tool_xyz_m": [
+          0.001645207405090332,
+          0.00045539066195487976,
+          0.006314092315733433
+        ],
+        "tool_height_range_m": 0.03755960613489151,
+        "requested_action_clipped_fraction": 0.3223719596862793,
+        "witness": {
+          "version": 1,
+          "witnessed_failure_step": null,
+          "witnessed_withdrawal_step": null,
+          "witnessed_complete_recovery": false
+        }
+      },
+      {
+        "case_id": "dev-10070-approach_low-1",
+        "bin_id": "approach_low",
+        "outcome": "force_abort",
+        "success": false,
+        "elapsed_s": 2.2,
+        "discounted_return": 19.325879232282183,
+        "undiscounted_return": 21.55538421869278,
+        "discounted_terms": {
+          "kp_baseline": 5.067082996503627,
+          "kp_coarse": 5.184812264218904,
+          "kp_fine": 3.1985377673814233,
+          "action_penalty_ee": 0.0,
+          "action_grad_penalty": 0.0,
+          "curr_engaged": 5.175449144608346,
+          "curr_success": 0.8518018596003469,
+          "action_penalty_asset": -0.1518046835833901,
+          "contact_penalty": 0.0,
+          "success_pred_error": 0.0
+        },
+        "upstream_success_seen": true,
+        "raw_peak_wrist_n": 21.21253776550293,
+        "fixture_contact_fraction": 0.5454545617103577,
+        "minimum_base_height_m": -3.314018249510331e-06,
+        "final_base_height_m": -3.314018249510331e-06,
+        "target_height_min_max_m": [
+          0.005318775307387114,
+          0.03827197477221489
+        ],
+        "final_target_xyz_m": [
+          0.004541104193776846,
+          -0.002510471036657691,
+          0.007600650191307068
+        ],
+        "final_tool_xyz_m": [
+          -0.001196146011352539,
+          -0.0009157657623291016,
+          0.004844830837100744
+        ],
+        "tool_height_range_m": 0.03960692882537842,
+        "requested_action_clipped_fraction": 0.28138527274131775,
+        "witness": {
+          "version": 1,
+          "witnessed_failure_step": null,
+          "witnessed_withdrawal_step": null,
+          "witnessed_complete_recovery": false
+        }
+      },
+      {
+        "case_id": "dev-10070-approach_low-2",
+        "bin_id": "approach_low",
+        "outcome": "deadline",
+        "success": false,
+        "elapsed_s": 30.0,
+        "discounted_return": 70.02394045536303,
+        "undiscounted_return": 178.48382234573364,
+        "discounted_terms": {
+          "kp_baseline": 29.74552213790563,
+          "kp_coarse": 28.903986007895405,
+          "kp_fine": 11.720173913089997,
+          "action_penalty_ee": 0.0,
+          "action_grad_penalty": 0.0,
+          "curr_engaged": 0.0,
+          "curr_success": 0.0,
+          "action_penalty_asset": -0.18986630483481498,
+          "contact_penalty": -0.03525816772599019,
+          "success_pred_error": -0.12061708316150793
+        },
+        "upstream_success_seen": false,
+        "raw_peak_wrist_n": 18.242944717407227,
+        "fixture_contact_fraction": 0.804444432258606,
+        "minimum_base_height_m": 0.024759918078780176,
+        "final_base_height_m": 0.02515958957374096,
+        "target_height_min_max_m": [
+          0.017703620716929436,
+          0.04406069964170456
+        ],
+        "final_target_xyz_m": [
+          0.004274805076420307,
+          -0.0026542150881141424,
+          0.023542264476418495
+        ],
+        "final_tool_xyz_m": [
+          0.007334709167480469,
+          -0.0045397281646728516,
+          0.02977737784385681
+        ],
+        "tool_height_range_m": 0.016321778297424316,
+        "requested_action_clipped_fraction": 0.34063491225242615,
+        "witness": {
+          "version": 1,
+          "witnessed_failure_step": null,
+          "witnessed_withdrawal_step": null,
+          "witnessed_complete_recovery": false
+        }
+      },
+      {
+        "case_id": "dev-10070-approach_low-3",
+        "bin_id": "approach_low",
+        "outcome": "deadline",
+        "success": false,
+        "elapsed_s": 30.0,
+        "discounted_return": 69.55032639422183,
+        "undiscounted_return": 172.92299269139767,
+        "discounted_terms": {
+          "kp_baseline": 29.74476220393163,
+          "kp_coarse": 28.83580896395982,
+          "kp_fine": 11.804767451595168,
+          "action_penalty_ee": 0.0,
+          "action_grad_penalty": 0.0,
+          "curr_engaged": 0.0,
+          "curr_success": 0.0,
+          "action_penalty_asset": -0.30204451509361485,
+          "contact_penalty": -0.42926957927264464,
+          "success_pred_error": -0.10369818160242
+        },
+        "upstream_success_seen": false,
+        "raw_peak_wrist_n": 10.912104606628418,
+        "fixture_contact_fraction": 0.6916666626930237,
+        "minimum_base_height_m": 0.0031698342412710204,
+        "final_base_height_m": 0.016985542699694635,
+        "target_height_min_max_m": [
+          0.01215116586536169,
+          0.04335930570960045
+        ],
+        "final_target_xyz_m": [
+          0.002419938100501895,
+          -0.007211492862552404,
+          0.022801226004958153
+        ],
+        "final_tool_xyz_m": [
+          0.003228902816772461,
+          -0.007597923278808594,
+          0.023136049509048462
+        ],
+        "tool_height_range_m": 0.03312692046165466,
+        "requested_action_clipped_fraction": 0.35968253016471863,
+        "witness": {
+          "version": 1,
+          "witnessed_failure_step": 1578,
+          "witnessed_withdrawal_step": null,
+          "witnessed_complete_recovery": false
+        }
+      },
+      {
+        "case_id": "dev-10070-approach_high-0",
+        "bin_id": "approach_high",
+        "outcome": "force_abort",
+        "success": false,
+        "elapsed_s": 14.225,
+        "discounted_return": 55.751522288847326,
+        "undiscounted_return": 90.98517492413521,
+        "discounted_terms": {
+          "kp_baseline": 21.814338921713777,
+          "kp_coarse": 22.841742831195447,
+          "kp_fine": 12.188700040870268,
+          "action_penalty_ee": 0.0,
+          "action_grad_penalty": 0.0,
+          "curr_engaged": 0.0,
+          "curr_success": 0.0,
+          "action_penalty_asset": -0.25444683939465795,
+          "contact_penalty": -0.8388130034772352,
+          "success_pred_error": 0.0
+        },
+        "upstream_success_seen": false,
+        "raw_peak_wrist_n": 20.28955078125,
+        "fixture_contact_fraction": 0.6455770134925842,
+        "minimum_base_height_m": 0.0001413334161043181,
+        "final_base_height_m": 0.001024430245161058,
+        "target_height_min_max_m": [
+          0.003853401867672801,
+          0.0459463968873024
+        ],
+        "final_target_xyz_m": [
+          -0.0005560779827646911,
+          0.002996204188093543,
+          0.005448277108371258
+        ],
+        "final_tool_xyz_m": [
+          -0.0007137656211853027,
+          0.011689066886901855,
+          0.00898648239672184
+        ],
+        "tool_height_range_m": 0.039701253175735474,
+        "requested_action_clipped_fraction": 0.32710281014442444,
+        "witness": {
+          "version": 1,
+          "witnessed_failure_step": null,
+          "witnessed_withdrawal_step": null,
+          "witnessed_complete_recovery": false
+        }
+      },
+      {
+        "case_id": "dev-10070-approach_high-1",
+        "bin_id": "approach_high",
+        "outcome": "deadline",
+        "success": false,
+        "elapsed_s": 30.0,
+        "discounted_return": 72.06930689823409,
+        "undiscounted_return": 187.35460075736046,
+        "discounted_terms": {
+          "kp_baseline": 29.750793390285782,
+          "kp_coarse": 29.74270403040683,
+          "kp_fine": 13.626613744761336,
+          "action_penalty_ee": 0.0,
+          "action_grad_penalty": 0.0,
+          "curr_engaged": 0.0,
+          "curr_success": 0.0,
+          "action_penalty_asset": -0.27113229707055836,
+          "contact_penalty": -0.6135257101942082,
+          "success_pred_error": -0.16614623686383456
+        },
+        "upstream_success_seen": false,
+        "raw_peak_wrist_n": 19.955965042114258,
+        "fixture_contact_fraction": 0.7644444704055786,
+        "minimum_base_height_m": 0.003681670501828195,
+        "final_base_height_m": 0.004966316372156145,
+        "target_height_min_max_m": [
+          0.015136408619582653,
+          0.04249754920601845
+        ],
+        "final_target_xyz_m": [
+          -0.0028590408619493246,
+          -0.012824338860809803,
+          0.015324175357818604
+        ],
+        "final_tool_xyz_m": [
+          0.007374763488769531,
+          -0.0174981988966465,
+          0.01206735149025917
+        ],
+        "tool_height_range_m": 0.03374471515417099,
+        "requested_action_clipped_fraction": 0.3479365110397339,
+        "witness": {
+          "version": 1,
+          "witnessed_failure_step": null,
+          "witnessed_withdrawal_step": null,
+          "witnessed_complete_recovery": false
+        }
+      },
+      {
+        "case_id": "dev-10070-approach_high-2",
+        "bin_id": "approach_high",
+        "outcome": "force_abort",
+        "success": false,
+        "elapsed_s": 0.5166666666666666,
+        "discounted_return": 2.1728962898655757,
+        "undiscounted_return": 2.20736026763916,
+        "discounted_terms": {
+          "kp_baseline": 1.1430509251453957,
+          "kp_coarse": 0.8415067158673024,
+          "kp_fine": 0.20101805536441703,
+          "action_penalty_ee": 0.0,
+          "action_grad_penalty": 0.0,
+          "curr_engaged": 0.0,
+          "curr_success": 0.0,
+          "action_penalty_asset": -0.012679425738233161,
+          "contact_penalty": 0.0,
+          "success_pred_error": 0.0
+        },
+        "upstream_success_seen": false,
+        "raw_peak_wrist_n": 20.734960556030273,
+        "fixture_contact_fraction": 0.04838709533214569,
+        "minimum_base_height_m": 0.024964440241456033,
+        "final_base_height_m": 0.025000068917870523,
+        "target_height_min_max_m": [
+          0.026590246707201004,
+          0.0486140102148056
+        ],
+        "final_target_xyz_m": [
+          0.0026566258165985346,
+          0.011643781326711178,
+          0.026590246707201004
+        ],
+        "final_tool_xyz_m": [
+          -0.004548192024230957,
+          0.006751537322998047,
+          0.03611515089869499
+        ],
+        "tool_height_range_m": 0.013071365654468536,
+        "requested_action_clipped_fraction": 0.3928571343421936,
+        "witness": {
+          "version": 1,
+          "witnessed_failure_step": null,
+          "witnessed_withdrawal_step": null,
+          "witnessed_complete_recovery": false
+        }
+      },
+      {
+        "case_id": "dev-10070-approach_high-3",
+        "bin_id": "approach_high",
+        "outcome": "deadline",
+        "success": false,
+        "elapsed_s": 30.0,
+        "discounted_return": 61.7331037291937,
+        "undiscounted_return": 154.86932289600372,
+        "discounted_terms": {
+          "kp_baseline": 29.736064700037765,
+          "kp_coarse": 27.902066957754982,
+          "kp_fine": 10.807507617543099,
+          "action_penalty_ee": 0.0,
+          "action_grad_penalty": 0.0,
+          "curr_engaged": 0.0,
+          "curr_success": 0.0,
+          "action_penalty_asset": -0.375434653429476,
+          "contact_penalty": -6.1088727428908145,
+          "success_pred_error": -0.22822807641935355
+        },
+        "upstream_success_seen": false,
+        "raw_peak_wrist_n": 19.63420295715332,
+        "fixture_contact_fraction": 0.5677777528762817,
+        "minimum_base_height_m": -0.0003736395388841615,
+        "final_base_height_m": 0.0016571428626775755,
+        "target_height_min_max_m": [
+          -0.006706362124532461,
+          0.04686416685581207
+        ],
+        "final_target_xyz_m": [
+          -0.002918759360909462,
+          0.005055536516010761,
+          -5.363710442907177e-05
+        ],
+        "final_tool_xyz_m": [
+          -0.007279813289642334,
+          0.011716127395629883,
+          0.005119592882692814
+        ],
+        "tool_height_range_m": 0.047288864850997925,
+        "requested_action_clipped_fraction": 0.341269850730896,
+        "witness": {
+          "version": 1,
+          "witnessed_failure_step": 577,
+          "witnessed_withdrawal_step": null,
+          "witnessed_complete_recovery": false
+        }
+      },
+      {
+        "case_id": "dev-10070-friction_low-0",
+        "bin_id": "friction_low",
+        "outcome": "deadline",
+        "success": false,
+        "elapsed_s": 30.0,
+        "discounted_return": 225.20641621529765,
+        "undiscounted_return": 697.5342710614204,
+        "discounted_terms": {
+          "kp_baseline": 29.79863315846824,
+          "kp_coarse": 37.553620055007244,
+          "kp_fine": 46.41999430755229,
+          "action_penalty_ee": 0.0,
+          "action_grad_penalty": 0.0,
+          "curr_engaged": 110.96943946489172,
+          "curr_success": 1.2103549961285445,
+          "action_penalty_asset": -0.5494645254693107,
+          "contact_penalty": -0.040514444517748605,
+          "success_pred_error": -0.155646747892287
+        },
+        "upstream_success_seen": true,
+        "raw_peak_wrist_n": 19.058101654052734,
+        "fixture_contact_fraction": 0.6744444370269775,
+        "minimum_base_height_m": 0.0007581446319818511,
+        "final_base_height_m": 0.01404928006231785,
+        "target_height_min_max_m": [
+          0.007885534316301346,
+          0.04033713415265083
+        ],
+        "final_target_xyz_m": [
+          -0.0014245350612327456,
+          -0.00011026197898900136,
+          0.021777311339974403
+        ],
+        "final_tool_xyz_m": [
+          0.001252889633178711,
+          0.001184701919555664,
+          0.022891266271471977
+        ],
+        "tool_height_range_m": 0.03503916412591934,
+        "requested_action_clipped_fraction": 0.3307936489582062,
+        "witness": {
+          "version": 1,
+          "witnessed_failure_step": null,
+          "witnessed_withdrawal_step": null,
+          "witnessed_complete_recovery": false
+        }
+      },
+      {
+        "case_id": "dev-10070-friction_low-1",
+        "bin_id": "friction_low",
+        "outcome": "force_abort",
+        "success": false,
+        "elapsed_s": 23.333333333333332,
+        "discounted_return": 62.19998521358042,
+        "undiscounted_return": 133.24027164280415,
+        "discounted_terms": {
+          "kp_baseline": 27.476556845069474,
+          "kp_coarse": 26.575018915808833,
+          "kp_fine": 11.312767062903296,
+          "action_penalty_ee": 0.0,
+          "action_grad_penalty": 0.0,
+          "curr_engaged": 0.0,
+          "curr_success": 0.0,
+          "action_penalty_asset": -0.494176465169098,
+          "contact_penalty": -2.6701810224181104,
+          "success_pred_error": 0.0
+        },
+        "upstream_success_seen": false,
+        "raw_peak_wrist_n": 42.215457916259766,
+        "fixture_contact_fraction": 0.5496428608894348,
+        "minimum_base_height_m": -0.0004623629152774797,
+        "final_base_height_m": 0.00031357035040855546,
+        "target_height_min_max_m": [
+          -0.006126420572400093,
+          0.045661069452762604
+        ],
+        "final_target_xyz_m": [
+          -0.01834794320166111,
+          0.020572280511260033,
+          -0.006126420572400093
+        ],
+        "final_tool_xyz_m": [
+          -0.02162790298461914,
+          0.018178105354309082,
+          0.0012279259972274303
+        ],
+        "tool_height_range_m": 0.04638668894767761,
+        "requested_action_clipped_fraction": 0.34285715222358704,
+        "witness": {
+          "version": 1,
+          "witnessed_failure_step": 286,
+          "witnessed_withdrawal_step": null,
+          "witnessed_complete_recovery": false
+        }
+      },
+      {
+        "case_id": "dev-10070-friction_low-2",
+        "bin_id": "friction_low",
+        "outcome": "force_abort",
+        "success": false,
+        "elapsed_s": 2.808333333333333,
+        "discounted_return": 14.275052459772247,
+        "undiscounted_return": 15.854248136281967,
+        "discounted_terms": {
+          "kp_baseline": 6.305559958592033,
+          "kp_coarse": 5.864847605627175,
+          "kp_fine": 2.236444824456228,
+          "action_penalty_ee": 0.0,
+          "action_grad_penalty": 0.0,
+          "curr_engaged": 0.0,
+          "curr_success": 0.0,
+          "action_penalty_asset": -0.13179980728278878,
+          "contact_penalty": 0.0,
+          "success_pred_error": 0.0
+        },
+        "upstream_success_seen": false,
+        "raw_peak_wrist_n": 20.203493118286133,
+        "fixture_contact_fraction": 0.6231454014778137,
+        "minimum_base_height_m": 0.023761082068085672,
+        "final_base_height_m": 0.023761082068085672,
+        "target_height_min_max_m": [
+          0.012714788317680359,
+          0.046041738241910934
+        ],
+        "final_target_xyz_m": [
+          -0.004763987381011248,
+          -0.0016521484358236194,
+          0.018117858096957207
+        ],
+        "final_tool_xyz_m": [
+          -0.0028998851776123047,
+          -0.0030811354517936707,
+          0.03338250890374184
+        ],
+        "tool_height_range_m": 0.015397444367408752,
+        "requested_action_clipped_fraction": 0.31893688440322876,
+        "witness": {
+          "version": 1,
+          "witnessed_failure_step": null,
+          "witnessed_withdrawal_step": null,
+          "witnessed_complete_recovery": false
+        }
+      },
+      {
+        "case_id": "dev-10070-friction_low-3",
+        "bin_id": "friction_low",
+        "outcome": "force_abort",
+        "success": false,
+        "elapsed_s": 0.35,
+        "discounted_return": 1.7292652562714417,
+        "undiscounted_return": 1.7477050721645355,
+        "discounted_terms": {
+          "kp_baseline": 0.8215380506561204,
+          "kp_coarse": 0.6985935180178108,
+          "kp_fine": 0.21982522097671636,
+          "action_penalty_ee": 0.0,
+          "action_grad_penalty": 0.0,
+          "curr_engaged": 0.0,
+          "curr_success": 0.0,
+          "action_penalty_asset": -0.01069149395857118,
+          "contact_penalty": 0.0,
+          "success_pred_error": 0.0
+        },
+        "upstream_success_seen": false,
+        "raw_peak_wrist_n": 22.19549560546875,
+        "fixture_contact_fraction": 0.0476190485060215,
+        "minimum_base_height_m": 0.02493790127336979,
+        "final_base_height_m": 0.02493790127336979,
+        "target_height_min_max_m": [
+          0.0273443553596735,
+          0.04467111825942993
+        ],
+        "final_target_xyz_m": [
+          0.01643817126750946,
+          -0.00628787511959672,
+          0.028358817100524902
+        ],
+        "final_tool_xyz_m": [
+          0.007189750671386719,
+          0.001852869987487793,
+          0.034187402576208115
+        ],
+        "tool_height_range_m": 0.010133147239685059,
+        "requested_action_clipped_fraction": 0.4523809552192688,
+        "witness": {
+          "version": 1,
+          "witnessed_failure_step": null,
+          "witnessed_withdrawal_step": null,
+          "witnessed_complete_recovery": false
+        }
+      },
+      {
+        "case_id": "dev-10070-friction_high-0",
+        "bin_id": "friction_high",
+        "outcome": "success",
+        "success": true,
+        "elapsed_s": 12.916666666666666,
+        "discounted_return": 180.765080450259,
+        "undiscounted_return": 309.27890843153,
+        "discounted_terms": {
+          "kp_baseline": 20.64228805899437,
+          "kp_coarse": 27.345755837553682,
+          "kp_fine": 42.67241388542284,
+          "action_penalty_ee": 0.0,
+          "action_grad_penalty": 0.0,
+          "curr_engaged": 87.6516006610795,
+          "curr_success": 2.714451738429796,
+          "action_penalty_asset": -0.2614298416793826,
+          "contact_penalty": 0.0,
+          "success_pred_error": 0.0
+        },
+        "upstream_success_seen": true,
+        "raw_peak_wrist_n": 19.575672149658203,
+        "fixture_contact_fraction": 0.7612903118133545,
+        "minimum_base_height_m": 3.1254813075067e-05,
+        "final_base_height_m": 5.7868286967278915e-05,
+        "target_height_min_max_m": [
+          0.003126341849565506,
+          0.039632052183151245
+        ],
+        "final_target_xyz_m": [
+          -0.007146396674215794,
+          0.008369981311261654,
+          0.009870540350675583
+        ],
+        "final_tool_xyz_m": [
+          -0.0017528533935546875,
+          -0.0003685951232910156,
+          0.005101269111037254
+        ],
+        "tool_height_range_m": 0.03943708539009094,
+        "requested_action_clipped_fraction": 0.3298968970775604,
+        "witness": {
+          "version": 1,
+          "witnessed_failure_step": null,
+          "witnessed_withdrawal_step": null,
+          "witnessed_complete_recovery": false
+        }
+      },
+      {
+        "case_id": "dev-10070-friction_high-1",
+        "bin_id": "friction_high",
+        "outcome": "force_abort",
+        "success": false,
+        "elapsed_s": 0.48333333333333334,
+        "discounted_return": 2.2163670345847013,
+        "undiscounted_return": 2.2524079382419586,
+        "discounted_terms": {
+          "kp_baseline": 1.1432094905891916,
+          "kp_coarse": 0.8626768410189319,
+          "kp_fine": 0.22697161737339897,
+          "action_penalty_ee": 0.0,
+          "action_grad_penalty": 0.0,
+          "curr_engaged": 0.0,
+          "curr_success": 0.0,
+          "action_penalty_asset": -0.01649094326687459,
+          "contact_penalty": 0.0,
+          "success_pred_error": 0.0
+        },
+        "upstream_success_seen": false,
+        "raw_peak_wrist_n": 20.624298095703125,
+        "fixture_contact_fraction": 0.03448275849223137,
+        "minimum_base_height_m": 0.02499123625457287,
+        "final_base_height_m": 0.02499123625457287,
+        "target_height_min_max_m": [
+          0.024042239412665367,
+          0.04726783558726311
+        ],
+        "final_target_xyz_m": [
+          0.010920763947069645,
+          -0.003130468772724271,
+          0.02765735052525997
+        ],
+        "final_tool_xyz_m": [
+          0.009471893310546875,
+          0.00031375885009765625,
+          0.03250650316476822
+        ],
+        "tool_height_range_m": 0.015193939208984375,
+        "requested_action_clipped_fraction": 0.3214285671710968,
+        "witness": {
+          "version": 1,
+          "witnessed_failure_step": null,
+          "witnessed_withdrawal_step": null,
+          "witnessed_complete_recovery": false
+        }
+      },
+      {
+        "case_id": "dev-10070-friction_high-2",
+        "bin_id": "friction_high",
+        "outcome": "force_abort",
+        "success": false,
+        "elapsed_s": 0.4,
+        "discounted_return": 1.879391718616198,
+        "undiscounted_return": 1.9045661091804504,
+        "discounted_terms": {
+          "kp_baseline": 0.9824509838308881,
+          "kp_coarse": 0.7527342190711446,
+          "kp_fine": 0.20614967415287475,
+          "action_penalty_ee": 0.0,
+          "action_grad_penalty": 0.0,
+          "curr_engaged": 0.0,
+          "curr_success": 0.0,
+          "action_penalty_asset": -0.03309198694477249,
+          "contact_penalty": -0.028851226755349277,
+          "success_pred_error": 0.0
+        },
+        "upstream_success_seen": false,
+        "raw_peak_wrist_n": 21.650409698486328,
+        "fixture_contact_fraction": 0.0416666679084301,
+        "minimum_base_height_m": 0.024997565522789957,
+        "final_base_height_m": 0.024997565522789957,
+        "target_height_min_max_m": [
+          0.029096154496073723,
+          0.04512391611933708
+        ],
+        "final_target_xyz_m": [
+          0.01196382474154234,
+          0.006269393023103476,
+          0.03095307946205139
+        ],
+        "final_tool_xyz_m": [
+          0.006038188934326172,
+          0.002259969711303711,
+          0.031981196254491806
+        ],
+        "tool_height_range_m": 0.015028677880764008,
+        "requested_action_clipped_fraction": 0.4047619104385376,
+        "witness": {
+          "version": 1,
+          "witnessed_failure_step": null,
+          "witnessed_withdrawal_step": null,
+          "witnessed_complete_recovery": false
+        }
+      },
+      {
+        "case_id": "dev-10070-friction_high-3",
+        "bin_id": "friction_high",
+        "outcome": "force_abort",
+        "success": false,
+        "elapsed_s": 0.45,
+        "discounted_return": 1.8615923527309624,
+        "undiscounted_return": 1.8864947259426117,
+        "discounted_terms": {
+          "kp_baseline": 0.9821248205559645,
+          "kp_coarse": 0.7189932347293279,
+          "kp_fine": 0.1723541346901235,
+          "action_penalty_ee": 0.0,
+          "action_grad_penalty": 0.0,
+          "curr_engaged": 0.0,
+          "curr_success": 0.0,
+          "action_penalty_asset": -0.011879855584914138,
+          "contact_penalty": 0.0,
+          "success_pred_error": 0.0
+        },
+        "upstream_success_seen": false,
+        "raw_peak_wrist_n": 21.67224884033203,
+        "fixture_contact_fraction": 0.03703703731298447,
+        "minimum_base_height_m": 0.02503320537507534,
+        "final_base_height_m": 0.02503883056342602,
+        "target_height_min_max_m": [
+          0.024267470464110374,
+          0.048487234860658646
+        ],
+        "final_target_xyz_m": [
+          0.01686306856572628,
+          0.004994240123778582,
+          0.024267470464110374
+        ],
+        "final_tool_xyz_m": [
+          0.010147571563720703,
+          0.001448595430701971,
+          0.03290143981575966
+        ],
+        "tool_height_range_m": 0.01684490591287613,
+        "requested_action_clipped_fraction": 0.3265306055545807,
+        "witness": {
+          "version": 1,
+          "witnessed_failure_step": null,
+          "witnessed_withdrawal_step": null,
+          "witnessed_complete_recovery": false
+        }
+      }
+    ],
+    "retry": [
+      {
+        "case_id": "dev-10070-nominal-0",
+        "bin_id": "nominal",
+        "outcome": "success",
+        "success": true,
+        "elapsed_s": 27.45,
+        "discounted_return": 75.95229890949467,
+        "undiscounted_return": 196.52449756860733,
+        "discounted_terms": {
+          "kp_baseline": 28.99441596837425,
+          "kp_coarse": 28.441560520263657,
+          "kp_fine": 12.676796663856274,
+          "action_penalty_ee": 0.0,
+          "action_grad_penalty": 0.0,
+          "curr_engaged": 5.943601649534313,
+          "curr_success": 0.9101515794647723,
+          "action_penalty_asset": -0.10407592907384355,
+          "contact_penalty": 0.0,
+          "success_pred_error": -0.9101515794647723
+        },
+        "upstream_success_seen": true,
+        "raw_peak_wrist_n": 19.400100708007812,
+        "fixture_contact_fraction": 0.4538554847240448,
+        "minimum_base_height_m": 0.00012227296829223772,
+        "final_base_height_m": 0.00017669573426246782,
+        "target_height_min_max_m": [
+          0.008641112595796585,
+          0.04593506082892418
+        ],
+        "final_target_xyz_m": [
+          0.0015529324300587177,
+          -0.0074556441977620125,
+          0.00966921541839838
+        ],
+        "final_tool_xyz_m": [
+          0.0016355514526367188,
+          -0.0020296573638916016,
+          0.009165622293949127
+        ],
+        "tool_height_range_m": 0.03813118487596512,
+        "requested_action_clipped_fraction": 0.0,
+        "witness": {
+          "version": 1,
+          "witnessed_failure_step": null,
+          "witnessed_withdrawal_step": null,
+          "witnessed_complete_recovery": false
+        }
+      },
+      {
+        "case_id": "dev-10070-nominal-1",
+        "bin_id": "nominal",
+        "outcome": "success",
+        "success": true,
+        "elapsed_s": 14.416666666666666,
+        "discounted_return": 67.18949535615977,
+        "undiscounted_return": 129.1406900882721,
+        "discounted_terms": {
+          "kp_baseline": 21.973205320780288,
+          "kp_coarse": 21.47557467388334,
+          "kp_fine": 11.232318510045314,
+          "action_penalty_ee": 0.0,
+          "action_grad_penalty": 0.0,
+          "curr_engaged": 9.816507856069773,
+          "curr_success": 2.771406352211046,
+          "action_penalty_asset": -0.07951741029238887,
+          "contact_penalty": 0.0,
+          "success_pred_error": 0.0
+        },
+        "upstream_success_seen": true,
+        "raw_peak_wrist_n": 16.108795166015625,
+        "fixture_contact_fraction": 0.44797688722610474,
+        "minimum_base_height_m": 4.46844846010222e-05,
+        "final_base_height_m": 5.4850801825524764e-05,
+        "target_height_min_max_m": [
+          0.007372924592345953,
+          0.04704826697707176
+        ],
+        "final_target_xyz_m": [
+          0.002943306928500533,
+          0.002142395591363311,
+          0.007372924592345953
+        ],
+        "final_tool_xyz_m": [
+          0.0011792182922363281,
+          -0.0001385211944580078,
+          0.010266335681080818
+        ],
+        "tool_height_range_m": 0.03705933690071106,
+        "requested_action_clipped_fraction": 0.0,
+        "witness": {
+          "version": 1,
+          "witnessed_failure_step": 331,
+          "witnessed_withdrawal_step": 681,
+          "witnessed_complete_recovery": true
+        }
+      },
+      {
+        "case_id": "dev-10070-nominal-2",
+        "bin_id": "nominal",
+        "outcome": "success",
+        "success": true,
+        "elapsed_s": 20.825,
+        "discounted_return": 67.06512676081769,
+        "undiscounted_return": 163.40525236725807,
+        "discounted_terms": {
+          "kp_baseline": 26.263480722919493,
+          "kp_coarse": 24.86576571511924,
+          "kp_fine": 11.762668956319969,
+          "action_penalty_ee": 0.0,
+          "action_grad_penalty": 0.0,
+          "curr_engaged": 8.028051459725694,
+          "curr_success": 1.7128366995050637,
+          "action_penalty_asset": -0.09051278783379015,
+          "contact_penalty": -3.7643272907568903,
+          "success_pred_error": -1.7128366995050637
+        },
+        "upstream_success_seen": true,
+        "raw_peak_wrist_n": 19.270719528198242,
+        "fixture_contact_fraction": 0.4209683835506439,
+        "minimum_base_height_m": 0.00012536123394966264,
+        "final_base_height_m": 0.00014186054468155046,
+        "target_height_min_max_m": [
+          0.0052540781907737255,
+          0.04728812351822853
+        ],
+        "final_target_xyz_m": [
+          0.0037831522058695555,
+          0.007455141749233007,
+          0.0052540781907737255
+        ],
+        "final_tool_xyz_m": [
+          0.002724170684814453,
+          0.0017548799514770508,
+          0.007201376371085644
+        ],
+        "tool_height_range_m": 0.04142267256975174,
+        "requested_action_clipped_fraction": 0.0,
+        "witness": {
+          "version": 1,
+          "witnessed_failure_step": 330,
+          "witnessed_withdrawal_step": 745,
+          "witnessed_complete_recovery": true
+        }
+      },
+      {
+        "case_id": "dev-10070-nominal-3",
+        "bin_id": "nominal",
+        "outcome": "force_abort",
+        "success": false,
+        "elapsed_s": 1.3916666666666666,
+        "discounted_return": 5.990864023358307,
+        "undiscounted_return": 6.289375454187393,
+        "discounted_terms": {
+          "kp_baseline": 3.162205750921813,
+          "kp_coarse": 2.305933873266155,
+          "kp_fine": 0.5275844801365155,
+          "action_penalty_ee": 0.0,
+          "action_grad_penalty": 0.0,
+          "curr_engaged": 0.0,
+          "curr_success": 0.0,
+          "action_penalty_asset": -0.004860057291009839,
+          "contact_penalty": 0.0,
+          "success_pred_error": 0.0
+        },
+        "upstream_success_seen": false,
+        "raw_peak_wrist_n": 20.185998916625977,
+        "fixture_contact_fraction": 0.011976048350334167,
+        "minimum_base_height_m": 0.025004624947905542,
+        "final_base_height_m": 0.025004624947905542,
+        "target_height_min_max_m": [
+          0.029065821319818497,
+          0.046900078654289246
+        ],
+        "final_target_xyz_m": [
+          -0.0002247049706056714,
+          2.184268487326335e-05,
+          0.029065821319818497
+        ],
+        "final_tool_xyz_m": [
+          -0.004728794097900391,
+          0.001611948013305664,
+          0.03401460871100426
+        ],
+        "tool_height_range_m": 0.013121992349624634,
+        "requested_action_clipped_fraction": 0.0,
+        "witness": {
+          "version": 1,
+          "witnessed_failure_step": null,
+          "witnessed_withdrawal_step": null,
+          "witnessed_complete_recovery": false
+        }
+      },
+      {
+        "case_id": "dev-10070-bias_low-0",
+        "bin_id": "bias_low",
+        "outcome": "success",
+        "success": true,
+        "elapsed_s": 21.091666666666665,
+        "discounted_return": 88.2294594235167,
+        "undiscounted_return": 236.97257728874683,
+        "discounted_terms": {
+          "kp_baseline": 26.408124849096758,
+          "kp_coarse": 25.88591483280417,
+          "kp_fine": 14.025806461274584,
+          "action_penalty_ee": 0.0,
+          "action_grad_penalty": 0.0,
+          "curr_engaged": 24.69645228725414,
+          "curr_success": 1.6788360356720613,
+          "action_penalty_asset": -0.11079021053637468,
+          "contact_penalty": -2.676048829952918,
+          "success_pred_error": -1.6788360356720613
+        },
+        "upstream_success_seen": true,
+        "raw_peak_wrist_n": 19.31596565246582,
+        "fixture_contact_fraction": 0.4950612485408783,
+        "minimum_base_height_m": 7.03405588865294e-05,
+        "final_base_height_m": 0.00019748471677303453,
+        "target_height_min_max_m": [
+          0.0049497466534376144,
+          0.046504534780979156
+        ],
+        "final_target_xyz_m": [
+          -0.004986107815057039,
+          0.008113590069115162,
+          0.0049497466534376144
+        ],
+        "final_tool_xyz_m": [
+          -0.0013021774357184768,
+          0.00040721893310546875,
+          0.0069562094286084175
+        ],
+        "tool_height_range_m": 0.039792098104953766,
+        "requested_action_clipped_fraction": 0.0,
+        "witness": {
+          "version": 1,
+          "witnessed_failure_step": 399,
+          "witnessed_withdrawal_step": 734,
+          "witnessed_complete_recovery": true
+        }
+      },
+      {
+        "case_id": "dev-10070-bias_low-1",
+        "bin_id": "bias_low",
+        "outcome": "success",
+        "success": true,
+        "elapsed_s": 26.025,
+        "discounted_return": 70.14989727864175,
+        "undiscounted_return": 181.07459504902363,
+        "discounted_terms": {
+          "kp_baseline": 28.51987408036586,
+          "kp_coarse": 27.488476532902503,
+          "kp_fine": 11.984008783272385,
+          "action_penalty_ee": 0.0,
+          "action_grad_penalty": 0.0,
+          "curr_engaged": 3.460129817807321,
+          "curr_success": 1.1585539381788952,
+          "action_penalty_asset": -0.137967891282605,
+          "contact_penalty": -1.164624062880066,
+          "success_pred_error": -1.1585539381788952
+        },
+        "upstream_success_seen": true,
+        "raw_peak_wrist_n": 18.781173706054688,
+        "fixture_contact_fraction": 0.5219340324401855,
+        "minimum_base_height_m": -8.300319314001603e-06,
+        "final_base_height_m": 2.858750522136827e-05,
+        "target_height_min_max_m": [
+          0.0074057066813111305,
+          0.0458112508058548
+        ],
+        "final_target_xyz_m": [
+          0.0027079612482339144,
+          0.0050530582666397095,
+          0.009403029456734657
+        ],
+        "final_tool_xyz_m": [
+          0.000280792242847383,
+          0.0006511211395263672,
+          0.007146674208343029
+        ],
+        "tool_height_range_m": 0.03886936604976654,
+        "requested_action_clipped_fraction": 0.0,
+        "witness": {
+          "version": 1,
+          "witnessed_failure_step": 1057,
+          "witnessed_withdrawal_step": 1388,
+          "witnessed_complete_recovery": true
+        }
+      },
+      {
+        "case_id": "dev-10070-bias_low-2",
+        "bin_id": "bias_low",
+        "outcome": "deadline",
+        "success": false,
+        "elapsed_s": 30.0,
+        "discounted_return": 103.9764646567024,
+        "undiscounted_return": 403.22641333937645,
+        "discounted_terms": {
+          "kp_baseline": 29.74381580112614,
+          "kp_coarse": 29.558446201783966,
+          "kp_fine": 19.764774592523278,
+          "action_penalty_ee": 0.0,
+          "action_grad_penalty": 0.0,
+          "curr_engaged": 25.31625717631727,
+          "curr_success": 0.0,
+          "action_penalty_asset": -0.08325474404380968,
+          "contact_penalty": -0.3235745426983432,
+          "success_pred_error": 0.0
+        },
+        "upstream_success_seen": false,
+        "raw_peak_wrist_n": 18.354537963867188,
+        "fixture_contact_fraction": 0.570277750492096,
+        "minimum_base_height_m": 0.0023373994976282134,
+        "final_base_height_m": 0.0024352591484785094,
+        "target_height_min_max_m": [
+          0.003439097199589014,
+          0.04501667246222496
+        ],
+        "final_target_xyz_m": [
+          -0.003740886924788356,
+          -0.014340664260089397,
+          0.003439097199589014
+        ],
+        "final_tool_xyz_m": [
+          -0.0002772808074951172,
+          -0.001335794455371797,
+          0.007952755317091942
+        ],
+        "tool_height_range_m": 0.03739684075117111,
+        "requested_action_clipped_fraction": 0.0,
+        "witness": {
+          "version": 1,
+          "witnessed_failure_step": 425,
+          "witnessed_withdrawal_step": 932,
+          "witnessed_complete_recovery": false
+        }
+      },
+      {
+        "case_id": "dev-10070-bias_low-3",
+        "bin_id": "bias_low",
+        "outcome": "success",
+        "success": true,
+        "elapsed_s": 14.933333333333334,
+        "discounted_return": 65.15303033844354,
+        "undiscounted_return": 138.9427448362112,
+        "discounted_terms": {
+          "kp_baseline": 22.41638890173076,
+          "kp_coarse": 22.212997131020607,
+          "kp_fine": 13.139359343498143,
+          "action_penalty_ee": 0.0,
+          "action_grad_penalty": 0.0,
+          "curr_engaged": 19.904620335357038,
+          "curr_success": 2.6624708034899287,
+          "action_penalty_asset": -0.06150178342703521,
+          "contact_penalty": -12.458833917416136,
+          "success_pred_error": -2.6624708034899287
+        },
+        "upstream_success_seen": true,
+        "raw_peak_wrist_n": 19.393247604370117,
+        "fixture_contact_fraction": 0.2901785671710968,
+        "minimum_base_height_m": 4.3350830674172836e-05,
+        "final_base_height_m": 5.270130932331224e-05,
+        "target_height_min_max_m": [
+          0.0069668167270720005,
+          0.046402640640735626
+        ],
+        "final_target_xyz_m": [
+          0.0018192395800724626,
+          0.001338948030024767,
+          0.0069668167270720005
+        ],
+        "final_tool_xyz_m": [
+          -0.001092672348022461,
+          0.0002705111401155591,
+          0.007036176510155201
+        ],
+        "tool_height_range_m": 0.03963405638933182,
+        "requested_action_clipped_fraction": 0.0,
+        "witness": {
+          "version": 1,
+          "witnessed_failure_step": 386,
+          "witnessed_withdrawal_step": 720,
+          "witnessed_complete_recovery": true
+        }
+      },
+      {
+        "case_id": "dev-10070-bias_medium-0",
+        "bin_id": "bias_medium",
+        "outcome": "success",
+        "success": true,
+        "elapsed_s": 24.575,
+        "discounted_return": 92.39885749069293,
+        "undiscounted_return": 300.3217343389988,
+        "discounted_terms": {
+          "kp_baseline": 27.981289038593903,
+          "kp_coarse": 28.421561281380374,
+          "kp_fine": 17.160152362755856,
+          "action_penalty_ee": 0.0,
+          "action_grad_penalty": 0.0,
+          "curr_engaged": 28.742369670014497,
+          "curr_success": 1.1290710058812519,
+          "action_penalty_asset": -0.06684253715238955,
+          "contact_penalty": -9.839672607495215,
+          "success_pred_error": -1.1290710058812519
+        },
+        "upstream_success_seen": true,
+        "raw_peak_wrist_n": 19.13948631286621,
+        "fixture_contact_fraction": 0.4170905351638794,
+        "minimum_base_height_m": 2.516023814678331e-05,
+        "final_base_height_m": 4.544071853160997e-05,
+        "target_height_min_max_m": [
+          0.0052591292187571526,
+          0.04510192945599556
+        ],
+        "final_target_xyz_m": [
+          -0.007364021148532629,
+          -0.0017769550904631615,
+          0.0052591292187571526
+        ],
+        "final_tool_xyz_m": [
+          -0.0012544288765639067,
+          0.00047647953033447266,
+          0.008241655305027962
+        ],
+        "tool_height_range_m": 0.03703282028436661,
+        "requested_action_clipped_fraction": 0.0,
+        "witness": {
+          "version": 1,
+          "witnessed_failure_step": 397,
+          "witnessed_withdrawal_step": 1146,
+          "witnessed_complete_recovery": true
+        }
+      },
+      {
+        "case_id": "dev-10070-bias_medium-1",
+        "bin_id": "bias_medium",
+        "outcome": "success",
+        "success": true,
+        "elapsed_s": 29.433333333333334,
+        "discounted_return": 72.58436221312775,
+        "undiscounted_return": 216.18003234267235,
+        "discounted_terms": {
+          "kp_baseline": 29.573400660831958,
+          "kp_coarse": 27.67421483243671,
+          "kp_fine": 11.683110182731758,
+          "action_penalty_ee": 0.0,
+          "action_grad_penalty": 0.0,
+          "curr_engaged": 3.815160164205763,
+          "curr_success": 0.7830800312176823,
+          "action_penalty_asset": -0.10628833380775786,
+          "contact_penalty": -0.05523549366848904,
+          "success_pred_error": -0.7830800312176823
+        },
+        "upstream_success_seen": true,
+        "raw_peak_wrist_n": 19.24302101135254,
+        "fixture_contact_fraction": 0.5956965088844299,
+        "minimum_base_height_m": 0.0002481132745742812,
+        "final_base_height_m": 0.0003478858619928374,
+        "target_height_min_max_m": [
+          0.007360059302300215,
+          0.044947024434804916
+        ],
+        "final_target_xyz_m": [
+          0.0070721167139709,
+          -0.007914110086858273,
+          0.007360059302300215
+        ],
+        "final_tool_xyz_m": [
+          0.004071821458637714,
+          -6.389617919921875e-05,
+          0.006686455104500055
+        ],
+        "tool_height_range_m": 0.03833489865064621,
+        "requested_action_clipped_fraction": 0.0,
+        "witness": {
+          "version": 1,
+          "witnessed_failure_step": 391,
+          "witnessed_withdrawal_step": 723,
+          "witnessed_complete_recovery": true
+        }
+      },
+      {
+        "case_id": "dev-10070-bias_medium-2",
+        "bin_id": "bias_medium",
+        "outcome": "success",
+        "success": true,
+        "elapsed_s": 15.741666666666667,
+        "discounted_return": 54.35205312293688,
+        "undiscounted_return": 122.64576014876366,
+        "discounted_terms": {
+          "kp_baseline": 23.035484938125336,
+          "kp_coarse": 21.397083394483,
+          "kp_fine": 10.940019970264675,
+          "action_penalty_ee": 0.0,
+          "action_grad_penalty": 0.0,
+          "curr_engaged": 13.980084007941267,
+          "curr_success": 2.50704323130976,
+          "action_penalty_asset": -0.08118714214358351,
+          "contact_penalty": -14.919432179460262,
+          "success_pred_error": -2.50704323130976
+        },
+        "upstream_success_seen": true,
+        "raw_peak_wrist_n": 19.107236862182617,
+        "fixture_contact_fraction": 0.31445208191871643,
+        "minimum_base_height_m": 9.150765836239e-05,
+        "final_base_height_m": 9.496472775936265e-05,
+        "target_height_min_max_m": [
+          0.005134186241775751,
+          0.045339763164520264
+        ],
+        "final_target_xyz_m": [
+          0.001530673005618155,
+          0.0003471913223620504,
+          0.005134186241775751
+        ],
+        "final_tool_xyz_m": [
+          -0.0007325410842895508,
+          -0.000494588864967227,
+          0.005544440820813179
+        ],
+        "tool_height_range_m": 0.040169015526771545,
+        "requested_action_clipped_fraction": 0.0,
+        "witness": {
+          "version": 1,
+          "witnessed_failure_step": 322,
+          "witnessed_withdrawal_step": 714,
+          "witnessed_complete_recovery": true
+        }
+      },
+      {
+        "case_id": "dev-10070-bias_medium-3",
+        "bin_id": "bias_medium",
+        "outcome": "success",
+        "success": true,
+        "elapsed_s": 3.225,
+        "discounted_return": 50.108777761810465,
+        "undiscounted_return": 59.31131634116173,
+        "discounted_terms": {
+          "kp_baseline": 7.10488772138974,
+          "kp_coarse": 7.508230686653995,
+          "kp_fine": 8.97025919771757,
+          "action_penalty_ee": 0.0,
+          "action_grad_penalty": 0.0,
+          "curr_engaged": 20.099812563402995,
+          "curr_success": 6.4331346676762955,
+          "action_penalty_asset": -0.0075476281832111535,
+          "contact_penalty": 0.0,
+          "success_pred_error": 0.0
+        },
+        "upstream_success_seen": true,
+        "raw_peak_wrist_n": 19.967851638793945,
+        "fixture_contact_fraction": 0.23255814611911774,
+        "minimum_base_height_m": 0.00012148134410381456,
+        "final_base_height_m": 0.00014805011451244493,
+        "target_height_min_max_m": [
+          0.009100421331822872,
+          0.049905795603990555
+        ],
+        "final_target_xyz_m": [
+          -1.6201251128222793e-05,
+          6.182971992529929e-05,
+          0.009100421331822872
+        ],
+        "final_tool_xyz_m": [
+          -0.0005003213882446289,
+          0.0022364750038832426,
+          0.008031490258872509
+        ],
+        "tool_height_range_m": 0.04214639961719513,
+        "requested_action_clipped_fraction": 0.0,
+        "witness": {
+          "version": 1,
+          "witnessed_failure_step": null,
+          "witnessed_withdrawal_step": null,
+          "witnessed_complete_recovery": false
+        }
+      },
+      {
+        "case_id": "dev-10070-approach_low-0",
+        "bin_id": "approach_low",
+        "outcome": "deadline",
+        "success": false,
+        "elapsed_s": 30.0,
+        "discounted_return": 69.2174274801541,
+        "undiscounted_return": 246.68545739352703,
+        "discounted_terms": {
+          "kp_baseline": 29.73753535756595,
+          "kp_coarse": 28.269064668671,
+          "kp_fine": 12.096132171566769,
+          "action_penalty_ee": 0.0,
+          "action_grad_penalty": 0.0,
+          "curr_engaged": 8.810288282271763,
+          "curr_success": 0.0,
+          "action_penalty_asset": -0.10461287833701743,
+          "contact_penalty": -9.590980135236016,
+          "success_pred_error": 0.0
+        },
+        "upstream_success_seen": false,
+        "raw_peak_wrist_n": 18.960798263549805,
+        "fixture_contact_fraction": 0.6183333396911621,
+        "minimum_base_height_m": 0.012893240526318551,
+        "final_base_height_m": 0.012893240526318551,
+        "target_height_min_max_m": [
+          0.013744036667048931,
+          0.04425475746393204
+        ],
+        "final_target_xyz_m": [
+          -0.006187183782458305,
+          -0.0021353671327233315,
+          0.013744036667048931
+        ],
+        "final_tool_xyz_m": [
+          -0.0005805492401123047,
+          -0.0006118826568126678,
+          0.019013362005352974
+        ],
+        "tool_height_range_m": 0.027607982978224754,
+        "requested_action_clipped_fraction": 0.0,
+        "witness": {
+          "version": 1,
+          "witnessed_failure_step": 400,
+          "witnessed_withdrawal_step": 836,
+          "witnessed_complete_recovery": false
+        }
+      },
+      {
+        "case_id": "dev-10070-approach_low-1",
+        "bin_id": "approach_low",
+        "outcome": "success",
+        "success": true,
+        "elapsed_s": 15.608333333333333,
+        "discounted_return": 72.71235942320436,
+        "undiscounted_return": 140.4535753428936,
+        "discounted_terms": {
+          "kp_baseline": 22.932770600047956,
+          "kp_coarse": 21.412300212254223,
+          "kp_fine": 11.058214701849717,
+          "action_penalty_ee": 0.0,
+          "action_grad_penalty": 0.0,
+          "curr_engaged": 17.37569847562103,
+          "curr_success": 2.5323029532686143,
+          "action_penalty_asset": -0.06662448176630058,
+          "contact_penalty": 0.0,
+          "success_pred_error": -2.5323029532686143
+        },
+        "upstream_success_seen": true,
+        "raw_peak_wrist_n": 19.27863311767578,
+        "fixture_contact_fraction": 0.2189001590013504,
+        "minimum_base_height_m": 4.909522831440111e-05,
+        "final_base_height_m": 6.224550306797166e-05,
+        "target_height_min_max_m": [
+          0.006141777615994215,
+          0.04499369487166405
+        ],
+        "final_target_xyz_m": [
+          -0.00029162451392039657,
+          -0.0004019549523945898,
+          0.006141777615994215
+        ],
+        "final_tool_xyz_m": [
+          -0.0019731521606445312,
+          0.0003777742385864258,
+          0.005457261111587286
+        ],
+        "tool_height_range_m": 0.04170946031808853,
+        "requested_action_clipped_fraction": 0.0,
+        "witness": {
+          "version": 1,
+          "witnessed_failure_step": 347,
+          "witnessed_withdrawal_step": 786,
+          "witnessed_complete_recovery": true
+        }
+      },
+      {
+        "case_id": "dev-10070-approach_low-2",
+        "bin_id": "approach_low",
+        "outcome": "deadline",
+        "success": false,
+        "elapsed_s": 30.0,
+        "discounted_return": 81.04664971927212,
+        "undiscounted_return": 351.360986828804,
+        "discounted_terms": {
+          "kp_baseline": 29.738520392712434,
+          "kp_coarse": 28.91698224189261,
+          "kp_fine": 17.761945014697382,
+          "action_penalty_ee": 0.0,
+          "action_grad_penalty": 0.0,
+          "curr_engaged": 21.749704861696376,
+          "curr_success": 0.0,
+          "action_penalty_asset": -0.09008965688245205,
+          "contact_penalty": -17.03041301082259,
+          "success_pred_error": 0.0
+        },
+        "upstream_success_seen": false,
+        "raw_peak_wrist_n": 18.784019470214844,
+        "fixture_contact_fraction": 0.5722222328186035,
+        "minimum_base_height_m": 0.0026500668376684203,
+        "final_base_height_m": 0.0033067833632230773,
+        "target_height_min_max_m": [
+          0.003688165917992592,
+          0.04568362981081009
+        ],
+        "final_target_xyz_m": [
+          -0.013430926017463207,
+          -0.0032632199581712484,
+          0.003688165917992592
+        ],
+        "final_tool_xyz_m": [
+          -0.0027829408645629883,
+          -0.0003261566162109375,
+          0.007823668420314789
+        ],
+        "tool_height_range_m": 0.038615547120571136,
+        "requested_action_clipped_fraction": 0.0,
+        "witness": {
+          "version": 1,
+          "witnessed_failure_step": 576,
+          "witnessed_withdrawal_step": 986,
+          "witnessed_complete_recovery": false
+        }
+      },
+      {
+        "case_id": "dev-10070-approach_low-3",
+        "bin_id": "approach_low",
+        "outcome": "success",
+        "success": true,
+        "elapsed_s": 16.583333333333332,
+        "discounted_return": 66.7619089328984,
+        "undiscounted_return": 145.88378661870956,
+        "discounted_terms": {
+          "kp_baseline": 23.644450363193325,
+          "kp_coarse": 23.557181972515956,
+          "kp_fine": 12.827359371910351,
+          "action_penalty_ee": 0.0,
+          "action_grad_penalty": 0.0,
+          "curr_engaged": 14.599081340922043,
+          "curr_success": 2.060400115436409,
+          "action_penalty_asset": -0.05859571380569633,
+          "contact_penalty": -7.807568038256025,
+          "success_pred_error": -2.060400115436409
+        },
+        "upstream_success_seen": true,
+        "raw_peak_wrist_n": 16.93754768371582,
+        "fixture_contact_fraction": 0.3010050356388092,
+        "minimum_base_height_m": 8.629225194454332e-05,
+        "final_base_height_m": 0.00013888590037822862,
+        "target_height_min_max_m": [
+          0.010470202192664146,
+          0.04443718492984772
+        ],
+        "final_target_xyz_m": [
+          -0.0010057209292426705,
+          0.0017534754006192088,
+          0.010470202192664146
+        ],
+        "final_tool_xyz_m": [
+          -0.0006963014602661133,
+          0.0005936622619628906,
+          0.009853214956820011
+        ],
+        "tool_height_range_m": 0.03596436232328415,
+        "requested_action_clipped_fraction": 0.0,
+        "witness": {
+          "version": 1,
+          "witnessed_failure_step": 377,
+          "witnessed_withdrawal_step": 948,
+          "witnessed_complete_recovery": true
+        }
+      },
+      {
+        "case_id": "dev-10070-approach_high-0",
+        "bin_id": "approach_high",
+        "outcome": "success",
+        "success": true,
+        "elapsed_s": 17.516666666666666,
+        "discounted_return": 70.46707806142577,
+        "undiscounted_return": 156.35780900716782,
+        "discounted_terms": {
+          "kp_baseline": 24.288995736371533,
+          "kp_coarse": 23.674429503434602,
+          "kp_fine": 11.783340325461515,
+          "action_penalty_ee": 0.0,
+          "action_grad_penalty": 0.0,
+          "curr_engaged": 15.085242193250954,
+          "curr_success": 1.9207670456567976,
+          "action_penalty_asset": -0.062459074029022135,
+          "contact_penalty": -4.3024705044577125,
+          "success_pred_error": -1.9207670456567976
+        },
+        "upstream_success_seen": true,
+        "raw_peak_wrist_n": 19.43140411376953,
+        "fixture_contact_fraction": 0.2982873320579529,
+        "minimum_base_height_m": 1.6688928008080917e-05,
+        "final_base_height_m": 0.00018978267908096452,
+        "target_height_min_max_m": [
+          0.015873707830905914,
+          0.047703955322504044
+        ],
+        "final_target_xyz_m": [
+          -0.0008086985908448696,
+          -0.00048275708104483783,
+          0.015873707830905914
+        ],
+        "final_tool_xyz_m": [
+          -0.0018507838249206543,
+          0.0003170967102050781,
+          0.009583177044987679
+        ],
+        "tool_height_range_m": 0.03973282128572464,
+        "requested_action_clipped_fraction": 0.0,
+        "witness": {
+          "version": 1,
+          "witnessed_failure_step": 479,
+          "witnessed_withdrawal_step": 1210,
+          "witnessed_complete_recovery": true
+        }
+      },
+      {
+        "case_id": "dev-10070-approach_high-1",
+        "bin_id": "approach_high",
+        "outcome": "deadline",
+        "success": false,
+        "elapsed_s": 30.0,
+        "discounted_return": 90.18542617650058,
+        "undiscounted_return": 337.48740351200104,
+        "discounted_terms": {
+          "kp_baseline": 29.73885932073326,
+          "kp_coarse": 28.63021123349734,
+          "kp_fine": 16.312810691675494,
+          "action_penalty_ee": 0.0,
+          "action_grad_penalty": 0.0,
+          "curr_engaged": 15.602847112576892,
+          "curr_success": 0.0,
+          "action_penalty_asset": -0.09930216287258123,
+          "contact_penalty": 0.0,
+          "success_pred_error": 0.0
+        },
+        "upstream_success_seen": false,
+        "raw_peak_wrist_n": 18.65590476989746,
+        "fixture_contact_fraction": 0.4772222340106964,
+        "minimum_base_height_m": 0.0014247592538595213,
+        "final_base_height_m": 0.0014706399291753783,
+        "target_height_min_max_m": [
+          0.004206876736134291,
+          0.044376879930496216
+        ],
+        "final_target_xyz_m": [
+          -0.005262091290205717,
+          0.007695722859352827,
+          0.004206876736134291
+        ],
+        "final_tool_xyz_m": [
+          4.0411949157714844e-05,
+          0.0004899203777313232,
+          0.008650463074445724
+        ],
+        "tool_height_range_m": 0.03586135059595108,
+        "requested_action_clipped_fraction": 0.0,
+        "witness": {
+          "version": 1,
+          "witnessed_failure_step": 577,
+          "witnessed_withdrawal_step": 1174,
+          "witnessed_complete_recovery": false
+        }
+      },
+      {
+        "case_id": "dev-10070-approach_high-2",
+        "bin_id": "approach_high",
+        "outcome": "deadline",
+        "success": false,
+        "elapsed_s": 30.0,
+        "discounted_return": 68.8458388326012,
+        "undiscounted_return": 177.8739415705204,
+        "discounted_terms": {
+          "kp_baseline": 29.737652873146082,
+          "kp_coarse": 28.129694913299666,
+          "kp_fine": 11.101391525571225,
+          "action_penalty_ee": 0.0,
+          "action_grad_penalty": 0.0,
+          "curr_engaged": 0.0,
+          "curr_success": 0.0,
+          "action_penalty_asset": -0.12290045498315816,
+          "contact_penalty": 0.0,
+          "success_pred_error": 0.0
+        },
+        "upstream_success_seen": false,
+        "raw_peak_wrist_n": 18.839927673339844,
+        "fixture_contact_fraction": 0.6341666579246521,
+        "minimum_base_height_m": 0.024969596043229104,
+        "final_base_height_m": 0.025026481226086618,
+        "target_height_min_max_m": [
+          0.010469457134604454,
+          0.04853181168437004
+        ],
+        "final_target_xyz_m": [
+          -0.0005569798522628844,
+          -0.010852179490029812,
+          0.025988737121224403
+        ],
+        "final_tool_xyz_m": [
+          0.0019626617431640625,
+          -0.0003641843795776367,
+          0.03593864664435387
+        ],
+        "tool_height_range_m": 0.014106892049312592,
+        "requested_action_clipped_fraction": 0.0,
+        "witness": {
+          "version": 1,
+          "witnessed_failure_step": 367,
+          "witnessed_withdrawal_step": 1012,
+          "witnessed_complete_recovery": false
+        }
+      },
+      {
+        "case_id": "dev-10070-approach_high-3",
+        "bin_id": "approach_high",
+        "outcome": "success",
+        "success": true,
+        "elapsed_s": 20.675,
+        "discounted_return": 68.23554971086753,
+        "undiscounted_return": 177.5193186700344,
+        "discounted_terms": {
+          "kp_baseline": 26.19943901617136,
+          "kp_coarse": 25.56340213987935,
+          "kp_fine": 13.371618358134947,
+          "action_penalty_ee": 0.0,
+          "action_grad_penalty": 0.0,
+          "curr_engaged": 12.59142817122667,
+          "curr_success": 1.7300943910558457,
+          "action_penalty_asset": -0.0801036922406855,
+          "contact_penalty": -9.410234270925235,
+          "success_pred_error": -1.7300943910558457
+        },
+        "upstream_success_seen": true,
+        "raw_peak_wrist_n": 19.367517471313477,
+        "fixture_contact_fraction": 0.34744054079055786,
+        "minimum_base_height_m": 3.95398586988463e-05,
+        "final_base_height_m": 3.95398586988463e-05,
+        "target_height_min_max_m": [
+          0.006987848784774542,
+          0.04710590839385986
+        ],
+        "final_target_xyz_m": [
+          -0.001707379356957972,
+          0.0011911825276911259,
+          0.006987848784774542
+        ],
+        "final_tool_xyz_m": [
+          -0.001851201057434082,
+          -0.0012068748474121094,
+          0.0097190598025918
+        ],
+        "tool_height_range_m": 0.0407215878367424,
+        "requested_action_clipped_fraction": 0.0,
+        "witness": {
+          "version": 1,
+          "witnessed_failure_step": 562,
+          "witnessed_withdrawal_step": 1455,
+          "witnessed_complete_recovery": true
+        }
+      },
+      {
+        "case_id": "dev-10070-friction_low-0",
+        "bin_id": "friction_low",
+        "outcome": "success",
+        "success": true,
+        "elapsed_s": 17.6,
+        "discounted_return": 53.981353144484366,
+        "undiscounted_return": 128.54012106359005,
+        "discounted_terms": {
+          "kp_baseline": 24.37673462348549,
+          "kp_coarse": 23.46942278196807,
+          "kp_fine": 11.374325919739405,
+          "action_penalty_ee": 0.0,
+          "action_grad_penalty": 0.0,
+          "curr_engaged": 10.211799326930263,
+          "curr_success": 2.1787534301312155,
+          "action_penalty_asset": -0.0773893233462095,
+          "contact_penalty": -15.373540150739368,
+          "success_pred_error": -2.1787534301312155
+        },
+        "upstream_success_seen": true,
+        "raw_peak_wrist_n": 19.897764205932617,
+        "fixture_contact_fraction": 0.3442234992980957,
+        "minimum_base_height_m": 3.153085708619552e-06,
+        "final_base_height_m": 3.356821835041185e-05,
+        "target_height_min_max_m": [
+          0.01033726055175066,
+          0.0448807068169117
+        ],
+        "final_target_xyz_m": [
+          2.0609659259207547e-05,
+          0.004683614242821932,
+          0.01033726055175066
+        ],
+        "final_tool_xyz_m": [
+          0.0013005733489990234,
+          -5.6743621826171875e-05,
+          0.00899898074567318
+        ],
+        "tool_height_range_m": 0.03750059753656387,
+        "requested_action_clipped_fraction": 0.0,
+        "witness": {
+          "version": 1,
+          "witnessed_failure_step": 348,
+          "witnessed_withdrawal_step": 847,
+          "witnessed_complete_recovery": true
+        }
+      },
+      {
+        "case_id": "dev-10070-friction_low-1",
+        "bin_id": "friction_low",
+        "outcome": "force_abort",
+        "success": false,
+        "elapsed_s": 2.325,
+        "discounted_return": 20.605139970171603,
+        "undiscounted_return": 23.172753781080246,
+        "discounted_terms": {
+          "kp_baseline": 5.199875813204754,
+          "kp_coarse": 4.595510128498209,
+          "kp_fine": 3.0362984345367705,
+          "action_penalty_ee": 0.0,
+          "action_grad_penalty": 0.0,
+          "curr_engaged": 7.783021379593551,
+          "curr_success": 0.0,
+          "action_penalty_asset": -0.009565811875403084,
+          "contact_penalty": 0.0,
+          "success_pred_error": 0.0
+        },
+        "upstream_success_seen": true,
+        "raw_peak_wrist_n": 20.08344078063965,
+        "fixture_contact_fraction": 0.11469534039497375,
+        "minimum_base_height_m": 1.7974153161050277e-05,
+        "final_base_height_m": 1.7974153161050277e-05,
+        "target_height_min_max_m": [
+          0.012308242730796337,
+          0.04686040058732033
+        ],
+        "final_target_xyz_m": [
+          -3.881498196278699e-05,
+          3.2073596685222583e-06,
+          0.012308242730796337
+        ],
+        "final_tool_xyz_m": [
+          -0.0013015270233154297,
+          -0.0012552738189697266,
+          0.0053741890005767345
+        ],
+        "tool_height_range_m": 0.04173533618450165,
+        "requested_action_clipped_fraction": 0.0,
+        "witness": {
+          "version": 1,
+          "witnessed_failure_step": null,
+          "witnessed_withdrawal_step": null,
+          "witnessed_complete_recovery": false
+        }
+      },
+      {
+        "case_id": "dev-10070-friction_low-2",
+        "bin_id": "friction_low",
+        "outcome": "force_abort",
+        "success": false,
+        "elapsed_s": 5.0,
+        "discounted_return": 28.070444051253627,
+        "undiscounted_return": 34.97738167643547,
+        "discounted_terms": {
+          "kp_baseline": 10.407843386974006,
+          "kp_coarse": 9.779065943955922,
+          "kp_fine": 4.475766098594525,
+          "action_penalty_ee": 0.0,
+          "action_grad_penalty": 0.0,
+          "curr_engaged": 2.7812508772323348,
+          "curr_success": 0.6900935609921608,
+          "action_penalty_asset": -0.06357569194408197,
+          "contact_penalty": 0.0,
+          "success_pred_error": 0.0
+        },
+        "upstream_success_seen": true,
+        "raw_peak_wrist_n": 20.035541534423828,
+        "fixture_contact_fraction": 0.6200000047683716,
+        "minimum_base_height_m": 8.813068270683427e-05,
+        "final_base_height_m": 8.813068270683427e-05,
+        "target_height_min_max_m": [
+          0.007674794178456068,
+          0.0471121110022068
+        ],
+        "final_target_xyz_m": [
+          -4.971861017111223e-06,
+          3.6346870047054836e-07,
+          0.007674794178456068
+        ],
+        "final_tool_xyz_m": [
+          -0.0006091594696044922,
+          -0.0007593147456645966,
+          0.009124631062150002
+        ],
+        "tool_height_range_m": 0.0389537587761879,
+        "requested_action_clipped_fraction": 0.0,
+        "witness": {
+          "version": 1,
+          "witnessed_failure_step": null,
+          "witnessed_withdrawal_step": null,
+          "witnessed_complete_recovery": false
+        }
+      },
+      {
+        "case_id": "dev-10070-friction_low-3",
+        "bin_id": "friction_low",
+        "outcome": "deadline",
+        "success": false,
+        "elapsed_s": 30.0,
+        "discounted_return": 100.45872097401032,
+        "undiscounted_return": 402.13886857032776,
+        "discounted_terms": {
+          "kp_baseline": 29.75185515926374,
+          "kp_coarse": 30.10711198064765,
+          "kp_fine": 15.670667291243882,
+          "action_penalty_ee": 0.0,
+          "action_grad_penalty": 0.0,
+          "curr_engaged": 38.200214593170394,
+          "curr_success": 0.0,
+          "action_penalty_asset": -0.1152372268636195,
+          "contact_penalty": -13.155890527510262,
+          "success_pred_error": 0.0
+        },
+        "upstream_success_seen": false,
+        "raw_peak_wrist_n": 19.844655990600586,
+        "fixture_contact_fraction": 0.6725000143051147,
+        "minimum_base_height_m": 0.012254267558455469,
+        "final_base_height_m": 0.012254267558455469,
+        "target_height_min_max_m": [
+          0.008009901270270348,
+          0.0449964813888073
+        ],
+        "final_target_xyz_m": [
+          0.004314742516726255,
+          0.00729023152962327,
+          0.014047292061150074
+        ],
+        "final_tool_xyz_m": [
+          0.002735614776611328,
+          0.0024704933166503906,
+          0.02101248875260353
+        ],
+        "tool_height_range_m": 0.025932930409908295,
+        "requested_action_clipped_fraction": 0.0,
+        "witness": {
+          "version": 1,
+          "witnessed_failure_step": 304,
+          "witnessed_withdrawal_step": 682,
+          "witnessed_complete_recovery": false
+        }
+      },
+      {
+        "case_id": "dev-10070-friction_high-0",
+        "bin_id": "friction_high",
+        "outcome": "success",
+        "success": true,
+        "elapsed_s": 18.03333333333333,
+        "discounted_return": 66.67803733333226,
+        "undiscounted_return": 140.5918626487255,
+        "discounted_terms": {
+          "kp_baseline": 24.638478565497596,
+          "kp_coarse": 23.63893337036868,
+          "kp_fine": 10.98870074122818,
+          "action_penalty_ee": 0.0,
+          "action_grad_penalty": 0.0,
+          "curr_engaged": 7.488647335642407,
+          "curr_success": 1.8452675390914288,
+          "action_penalty_asset": -0.07672270690406273,
+          "contact_penalty": 0.0,
+          "success_pred_error": -1.8452675390914288
+        },
+        "upstream_success_seen": true,
+        "raw_peak_wrist_n": 13.569601058959961,
+        "fixture_contact_fraction": 0.3391866981983185,
+        "minimum_base_height_m": 2.18745321035399e-05,
+        "final_base_height_m": 7.836483418941637e-05,
+        "target_height_min_max_m": [
+          0.009761839173734188,
+          0.04485636204481125
+        ],
+        "final_target_xyz_m": [
+          -0.00477772019803524,
+          -0.006644487380981445,
+          0.009761839173734188
+        ],
+        "final_tool_xyz_m": [
+          -0.001550912857055664,
+          0.00020694732666015625,
+          0.005215412005782127
+        ],
+        "tool_height_range_m": 0.039345771074295044,
+        "requested_action_clipped_fraction": 0.0,
+        "witness": {
+          "version": 1,
+          "witnessed_failure_step": 425,
+          "witnessed_withdrawal_step": 723,
+          "witnessed_complete_recovery": true
+        }
+      },
+      {
+        "case_id": "dev-10070-friction_high-1",
+        "bin_id": "friction_high",
+        "outcome": "success",
+        "success": true,
+        "elapsed_s": 2.875,
+        "discounted_return": 36.617074070449924,
+        "undiscounted_return": 42.86080625653267,
+        "discounted_terms": {
+          "kp_baseline": 6.438800523860753,
+          "kp_coarse": 6.232342392256035,
+          "kp_fine": 5.64547214512224,
+          "action_penalty_ee": 0.0,
+          "action_grad_penalty": 0.0,
+          "curr_engaged": 11.720227928227594,
+          "curr_success": 6.596403888836717,
+          "action_penalty_asset": -0.016172392552772558,
+          "contact_penalty": 0.0,
+          "success_pred_error": 0.0
+        },
+        "upstream_success_seen": true,
+        "raw_peak_wrist_n": 19.84935760498047,
+        "fixture_contact_fraction": 0.20000000298023224,
+        "minimum_base_height_m": -6.742775440077287e-08,
+        "final_base_height_m": 5.532763898372789e-05,
+        "target_height_min_max_m": [
+          0.009665196761488914,
+          0.047077812254428864
+        ],
+        "final_target_xyz_m": [
+          -3.067270154133439e-05,
+          3.496087856547092e-06,
+          0.009665196761488914
+        ],
+        "final_tool_xyz_m": [
+          0.0014657974243164062,
+          0.0003848075866699219,
+          0.00786601658910513
+        ],
+        "tool_height_range_m": 0.040764354169368744,
+        "requested_action_clipped_fraction": 0.0,
+        "witness": {
+          "version": 1,
+          "witnessed_failure_step": null,
+          "witnessed_withdrawal_step": null,
+          "witnessed_complete_recovery": false
+        }
+      },
+      {
+        "case_id": "dev-10070-friction_high-2",
+        "bin_id": "friction_high",
+        "outcome": "success",
+        "success": true,
+        "elapsed_s": 15.049999999999999,
+        "discounted_return": 58.207507954665274,
+        "undiscounted_return": 119.43686635792255,
+        "discounted_terms": {
+          "kp_baseline": 22.45676615987189,
+          "kp_coarse": 20.67758844548583,
+          "kp_fine": 10.383158562099208,
+          "action_penalty_ee": 0.0,
+          "action_grad_penalty": 0.0,
+          "curr_engaged": 12.416583766261903,
+          "curr_success": 2.3121750385898947,
+          "action_penalty_asset": -0.06798409437216502,
+          "contact_penalty": -7.6586047690078125,
+          "success_pred_error": -2.3121750385898947
+        },
+        "upstream_success_seen": true,
+        "raw_peak_wrist_n": 19.709644317626953,
+        "fixture_contact_fraction": 0.2585825026035309,
+        "minimum_base_height_m": 3.724321722984453e-05,
+        "final_base_height_m": 4.1989237070085006e-05,
+        "target_height_min_max_m": [
+          0.006087048444896936,
+          0.04680275544524193
+        ],
+        "final_target_xyz_m": [
+          0.0019688706379383802,
+          0.0016945385141298175,
+          0.006087048444896936
+        ],
+        "final_tool_xyz_m": [
+          0.00013399124145507812,
+          -7.62939453125e-05,
+          0.0073638311587274075
+        ],
+        "tool_height_range_m": 0.04003787785768509,
+        "requested_action_clipped_fraction": 0.0,
+        "witness": {
+          "version": 1,
+          "witnessed_failure_step": 299,
+          "witnessed_withdrawal_step": 630,
+          "witnessed_complete_recovery": true
+        }
+      },
+      {
+        "case_id": "dev-10070-friction_high-3",
+        "bin_id": "friction_high",
+        "outcome": "success",
+        "success": true,
+        "elapsed_s": 3.225,
+        "discounted_return": 49.87266855274948,
+        "undiscounted_return": 59.05394911766052,
+        "discounted_terms": {
+          "kp_baseline": 7.104258375852234,
+          "kp_coarse": 7.452333432019275,
+          "kp_fine": 8.917138223466523,
+          "action_penalty_ee": 0.0,
+          "action_grad_penalty": 0.0,
+          "curr_engaged": 20.099812563402995,
+          "curr_success": 6.4331346676762955,
+          "action_penalty_asset": -0.010712611512458399,
+          "contact_penalty": -0.12329642777173083,
+          "success_pred_error": 0.0
+        },
+        "upstream_success_seen": true,
+        "raw_peak_wrist_n": 19.476734161376953,
+        "fixture_contact_fraction": 0.09819121658802032,
+        "minimum_base_height_m": 8.776746690273424e-05,
+        "final_base_height_m": 0.0001310925930738463,
+        "target_height_min_max_m": [
+          0.009380154311656952,
+          0.04956236481666565
+        ],
+        "final_target_xyz_m": [
+          -1.7062984625226818e-05,
+          1.3591270544566214e-06,
+          0.009380154311656952
+        ],
+        "final_tool_xyz_m": [
+          -0.0009183883666992188,
+          -0.0005495762452483177,
+          0.008773991838097572
+        ],
+        "tool_height_range_m": 0.042622365057468414,
+        "requested_action_clipped_fraction": 0.0,
+        "witness": {
+          "version": 1,
+          "witnessed_failure_step": null,
+          "witnessed_withdrawal_step": null,
+          "witnessed_complete_recovery": false
+        }
+      }
+    ]
+  },
+  "summary": {
+    "charged_transitions": 38503.5,
+    "retry_complete_deterministic_failed": 19,
+    "failed_deterministic_outreturns_successful_retry": 10,
+    "mean_return_advantage_of_failed_deterministic_over_successful_retry": -3.303513020698824
+  },
+  "scope_and_limitations": [
+    "Frozen deterministic and independent stochastic checkpoint, unchanged script, all 28 seed-10070 cases.",
+    "Full finite-job returns and outcomes are paired using exact initial tensors, raw sensor draws and nuisance records.",
+    "One frozen network and one development seed cannot separate every exploration or optimization failure.",
+    "A failed behavior earning more return than a successful matched trajectory establishes a local incentive counterexample, not global optimality.",
+    "No training, final-test opening, reward correction or change to the original pilot result."
+  ]
+}

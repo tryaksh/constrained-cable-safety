@@ -1,0 +1,26 @@
+{
+  "schema": 1,
+  "status": "aborted_incomplete",
+  "research_result": false,
+  "run_id": "partial_checkpoint_diagnosis_v3_r01",
+  "manifest_sha256": "2dd929e6640f5ed92cd95892a46296e35c33482e52437cfa0b6a316925f05fb7",
+  "reason": "A further system suspension delayed command execution beyond the authorized overnight window. The owned simulator process tree was explicitly stopped after detecting the late start; remaining arms were not launched.",
+  "training_checkpoint_status": "partial from failed v3-r01 training; no complete-budget checkpoint or competence result",
+  "registered_requests": 112,
+  "attempted_requests": 28,
+  "unlaunched_requests": 84,
+  "completed_evaluation_reports": 0,
+  "last_logged_control_step": 128,
+  "charged_control_equivalent_transitions_lower_bound": 3818.5,
+  "charged_control_equivalent_transitions_upper_bound": 12834.5,
+  "queue_status": "failed_or_incomplete",
+  "process_status": "process_failed",
+  "elapsed_wall_s": 80.32799999997951,
+  "power_guard_released": true,
+  "scope_and_limitations": [
+    "Incomplete diagnostic; no controller success rate or critic-calibration claim is available.",
+    "All launched and unlaunched requests remain visible; an absent final report is not evidence of zero physical successes.",
+    "Unlogged simulator transitions are unknown; preserve cost bounds.",
+    "No additional training occurred."
+  ]
+}

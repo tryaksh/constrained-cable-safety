@@ -1,0 +1,208 @@
+{
+  "schema": 2,
+  "id": "cable_recovery_study_v2",
+  "status": "prospective_task_and_study_contract_not_an_executable_worker_config",
+  "goal": "Recover from a failed connector insertion without releasing an earlier cable clip or violating the declared load/time budgets.",
+  "primary_question": "On unfamiliar cable layouts and mechanical combinations, when does a learned action-outcome selector improve clip-preserving recovery over competent scripted rules and a cable-aware planner at matched experience?",
+  "method_status": "Candidate not implemented or trained. Its need and benefit must be established rather than assumed.",
+  "scope_decision": {
+    "endpoint": "retained_grasp_clip_preserving_seating_v2",
+    "success": "Robot still holds plug; actual tip/base engagement and continuous declared seating dwell achieved before deadline; required open clip stayed captured throughout; boundary-load and raw wrist/plug limits respected; no forbidden state mutation.",
+    "endpoint_is_not": "Released/latching connection, electrical/optical function, pickup, grasp-slip robustness, or hardware transfer.",
+    "retention_gate": "Passive SC latch validation remains mandatory for released-connection claims, but is not a dependency of this newly scoped pre-release experiment.",
+    "preservation": "Old SC retention measurements and all v1 outcomes remain unchanged; new task/endpoint must be versioned and all new arms use it equally."
+  },
+  "apparatus": {
+    "reuse": "Pinned AIC UR5e and current SC collision geometry, native MuJoCo adapter and fixed preset robot grasp.",
+    "proximal_boundary": "A fixed strain-relief anchor, instrumented for reaction load. Call it a boundary condition, not a validated prior latched connector.",
+    "required_relation": "One physically escapable open clip. No weld or closed collar that makes the release endpoint impossible. Validate retention and deliberate release using actual cable geometry.",
+    "fault_object": "One shallow smooth post after the clip along cable arclength; keep it in every factorial cell. A caught route must have a robot-driven escape with measured slack and reachability.",
+    "fixture": "A visible fixed board/mount with port, anchor, clip and post in explicit common coordinates. Added collision geometry is a new task version, not a cosmetic retroactive change.",
+    "parameters": "World poses, clip/post geometry, slack and load thresholds require calibration and a frozen executable config before comparison; this file does not pretend those unmeasured values are known."
+  },
+  "engineering_starting_points_not_validated": {
+    "high_level_hz": 50,
+    "servo_hz": 500,
+    "physics_hz_pair": [
+      4000,
+      8000
+    ],
+    "clock_rule": "Hold identical torque commands between registered servo ticks; keep policy, noise, observation and reference clocks fixed across physics resolutions. Validate the chosen servo before adopting it.",
+    "cable": {
+      "centerline_length_m": 0.96,
+      "radius_m": 0.002,
+      "mass_target_kg": 0.05,
+      "segment_pair": [
+        24,
+        48
+      ],
+      "mass_correction": "Existing compiled 24-capsule model is 0.0533333336171 kg, not nominal 0.05 kg. A 50 g target is a prospective task correction; rerun controls/all arms and preserve old results.",
+      "spatial_rule": "Conserve compiled total mass, rest length, radius, constitutive bending/twist behavior and justified distributed damping across segment counts; do not equate unchanged per-link density/damping with unchanged physics.",
+      "root_boundary": "Current point connection has free relative rotation; justify it for translational load/clip study, or validate a versioned finite boot-compliance model. No unsupported boot-torque claim.",
+      "material": "Keep flat=true across layout variations. Record actual model properties, quasi-static force/deflection, settling and representative contact/clip response; mathematical consistency is not hardware material calibration."
+    },
+    "deadline_s": 45,
+    "seating_position_tolerance_m": 0.001,
+    "seating_angle_tolerance_rad": 0.03,
+    "dwell_s": 0.5,
+    "force_limit_seed_n": 20,
+    "limits_note": "These are development starting points, not hardware damage ratings. Freeze raw wrist, plug, anchor and clip semantics/limits after physical controls and before comparison."
+  },
+  "mandatory_engineering_repairs": [
+    "Separate native physics integration from servo/reference/observation clocks; the old paired robot runs changed servo cadence with dt.",
+    "Choose a coherent timestamp and authoritative raw-force stream. Native solve versus diagnostic post-forward forces must remain separate; never call their maximum a native-only measurement. Freeze the rule before the new assay.",
+    "Replace hard-coded zero anchor/post loads, True clip/grasp flags and zero forbidden-event counters with real sensing/geometry and instrumented lifecycle guards. Fixed grasp may be a disclosed construction guarantee, never a measured grasp-reliability result.",
+    "Record native-rate minimal endpoint ledger: timing, depth/progress, contact witnesses, clip passage, signed force/wrench, loads, dwell, failures, actions and mutation events. Save full states at decision boundaries and failures, plus a dense evaluation subset.",
+    "Verify actual clip and anchor force paths with known-load positive controls; report vector/resultant forces and moments separately from sums of contact magnitudes.",
+    "Validate analytic cable-length/slack bounds and actual robot release/insertion witness. Count every failed construction/probe; never teleport into a stalled pose."
+  ],
+  "task_and_learning_gates": [
+    {
+      "id": "G0",
+      "gate": "Define and freeze the new task before its data are interpreted. All existing numerical evidence stays scoped to v1; no retrospective relabeling."
+    },
+    {
+      "id": "G1",
+      "gate": "Nominal held insertion, free/contact sensing, clip retain/release, anchor-load response and no-mutation controls pass. Representative identical-command physics/spatial checks preserve contact/clip outcome and the ranking of tested repairs within preregistered engineering margins."
+    },
+    {
+      "id": "G2",
+      "gate": "Observe an active physical failure of the competent first attempt and at least one feasible repair preserving the clip. Show separately that a plausible bad repair can raise distal load or lose the clip. Require more than one layout; a single cinematic case is insufficient."
+    },
+    {
+      "id": "G3",
+      "gate": "Screen local condition absent/present crossed with distal catch absent/present. Measure effects and action rankings; visible offsets that are prevented remain prevention. No blind controller or hidden observation may be introduced just to fill a recovery cohort."
+    },
+    {
+      "id": "G4",
+      "gate": "Competent cable-aware rules/planning leave reproducible feasible residual failures or a predeclared material cost deficit. If they solve the support, retain that useful baseline and reject the learning-spend premise for this support; do not claim learning is universally unnecessary."
+    },
+    {
+      "id": "G5",
+      "gate": "On held-out actions including bad repairs, a learned model predicts consequences/ranks feasible actions better than strong simple/factored alternatives. Action-ranking reversal alone does not establish a joint-model advantage."
+    },
+    {
+      "id": "G6",
+      "gate": "Only then test closed-loop control at matched acquisition/tuning/inference budgets and held-out layouts/mechanical combinations. Prediction accuracy alone is not a control contribution."
+    }
+  ],
+  "first_attempt_and_accounting": {
+    "common_controller": "Freeze a competent actual-target alignment/force controller validated on nominal conditions. It may be an existing local assembly routine; explicitly label that retrofit assumption.",
+    "handoff": "Event-driven persistent physical contact/no progress or distal load/motion stall while the job remains active; never a tuned fixed-duration push. Calibrate witness windows/thresholds from tracking/noise scales.",
+    "whole_request_primary": "All initial requests under the declared first-attempt plus repair system: initial completions, pre-handoff aborts, invalid initializations, clip losses, timeouts and process failures retained.",
+    "conditional_endpoint": "Recovery only on the identical active witnessed-failure cohort; physically replay the complete prefix for every arm and verify pairing. Charge each replay.",
+    "prevention_check": "Evaluate an end-to-end cable-aware rule/planner before claiming the retrofit is preferable to preventing failure. Do not force that planner through a weak prefix and call the result overall superiority.",
+    "mutations": "Initialization only between jobs. During a job no reset, pose write, reattachment or scripted restoration; actual clip release or modeled grasp failure ends the task."
+  },
+  "shared_information_and_actions": {
+    "inputs": "All arms receive the same declared robot state, plug/port pose estimates, cable centerline/history, clip/post geometry and load measurements. Start with full simulated state and exact known robot-model compensation equally; label perception/hardware limitations.",
+    "no_privilege_split": "Actor transforms, clamps, query access and probes are part of the interface; extra information or rollouts are never free.",
+    "repair_library": "Small shared set of physically validated parameterized macros: unload/retract-realign, and a clip-preserving cable-clearance arc followed by the same insertion controller. Expand only for a measured failure, not architectural appearance.",
+    "authority": "All methods have identical translation/orientation authority, limits and macro horizon. Exclude fault axes the action interface cannot correct."
+  },
+  "comparison_stages": [
+    {
+      "stage": "cheap_physical_screen",
+      "arms": [
+        "actual-target force-guided retry with precontact bias compensation",
+        "same insertion plus visible cable/clip-aware repair rules",
+        "compact geometric/cable-aware planner using the same information and insertion controller"
+      ],
+      "purpose": "Establish a residual problem worth learning; continued straight insertion is a negative control only."
+    },
+    {
+      "stage": "offline_consequence_prediction",
+      "arms": [
+        "simple calibrated geometric/load model",
+        "separate local and distal predictors with the same full inputs/history and constrained action selector",
+        "small action-conditioned outcome model over the shared repair library"
+      ],
+      "purpose": "Identify what joint prediction adds beyond separate consequence estimates. Freeze target, loss, selector and capacity/tuning accounting."
+    },
+    {
+      "stage": "closed_loop_if_earned",
+      "arms": [
+        "strongest affordable scripted/planned method",
+        "direct history-based/recurrent repair selector",
+        "best learned outcome model plus the same action selector",
+        "mechanism-removal ablation retaining inputs, primitives and comparable capacity"
+      ],
+      "purpose": "Determine whether learned consequences improve actual clip-preserving completion and justify their costs."
+    }
+  ],
+  "learning_design": {
+    "initial_candidate": "A compact macro-action outcome predictor/ranker with progress, clip-loss risk and load consequences. No graph, transformer, long-horizon RL or special architecture is mandatory.",
+    "joint_definition_required": "Before model training, state whether the proposed mechanism is cross-conditioned dynamics, shared representation, multi-step composition or correlated outcome risk. A factorial interaction does not uniquely establish any of these.",
+    "budget": "Shared training acquisitions may be reused by each arm, but credit the full equivalent acquisition budget to each method. Charge fault generation, alternate-action prefix replays, failed probes, inference and tuning; report project-total collection once.",
+    "starts": "Target at least three independent acquisition/training starts for comparative claims. Three optimizer seeds on one shared dataset are a weaker result and must be labelled as such.",
+    "checkpoint_rule": "Freeze acquisition and optimizer-update budgets and select by them; no final-test checkpoint selection.",
+    "hardware_policy": "No hardware access invented or required to begin this simulation study. Hardware/calibration is required before claiming actual deployment, retention strength or transfer.",
+    "prediction_metrics": [
+      "Feasible action ranking/regret on held-out good and bad repairs",
+      "False-safe clip-loss/load-violation predictions",
+      "Calibrated clip-loss or task-completion risk where probabilistic predictions are meaningful",
+      "Load/progress prediction near action-selection thresholds",
+      "Closed-loop completion and time benefits, separately from prediction error"
+    ]
+  },
+  "splits_and_evaluation": {
+    "freeze_before_use": "Save explicit disjoint development/training/test manifests before corresponding runs. Test layouts and mechanical combinations are held out as groups, not merely neighbouring timesteps or repeat seeds.",
+    "seed_blocks_reserved": {
+      "calibration": [
+        31000,
+        31099
+      ],
+      "development": [
+        31100,
+        31199
+      ],
+      "training": [
+        31200,
+        31999
+      ],
+      "test": [
+        41000,
+        41999
+      ]
+    },
+    "seed_note": "These are prospective disjoint ranges, not executed random trials. Seed labels must actually drive recorded RNG; deterministic cases must be labelled deterministic.",
+    "report": [
+      "Whole-request unfinished tasks, nominal and fault-cell completion",
+      "Conditional post-witness recovery on common support",
+      "Required-clip losses and boundary/load violations",
+      "Time per request including all failures; repair time separately",
+      "Native simulator work, wall time, memory and inference/tuning expense"
+    ],
+    "analysis": "Use paired case effects and uncertainty that respects layout/mechanical clusters and training starts. Consecutive frames are not independent trials. Small development screens remain exploratory.",
+    "practical_effect": "Declare the minimum useful completion/time improvement and sample size before final tests, using development variance and actual compute. No result is guaranteed; never choose the margin after seeing test outcomes.",
+    "transfer": "No unseen-connector claim unless connector geometry itself is withheld; varied cable layouts alone do not establish that."
+  },
+  "next_session_budget_and_stop_rules": {
+    "planning_wall_hours": 12,
+    "verification_handoff_reserve_minutes": 90,
+    "individual_job_cap_minutes": 60,
+    "first_block": "Implement and execute the task/clock/guard/physical-support work decisively. Use an initial 32-request tranche for rapid feedback, then expand toward 64-128 meaningful diagnostic requests and relevant numerical/clip controls. These are planning targets, not stop caps. Continue targeted fixes while they make measurable progress; do not abandon a tractable problem after an arbitrary two rounds.",
+    "first_screen": "Start with 16 contexts to debug the matrix, then expand to 64-128 registered development contexts across multiple layout/mechanical families. Compare at least the strong insertion/rules baseline and a cable-aware planner before deciding whether a residual learning problem exists. All feasibility and denominator rules remain.",
+    "resource_rule": "One serial GPU/simulator queue. Profile corrected native task with rendering off, including initialization and logging. Start small CPU batches/process counts only after parity checks; do not extrapolate old peg 2,048-environment results.",
+    "current_capacity_inference": "Existing baseline 721159 native steps  / 405.375 s is about 1779 steps/s. At 4000 Hz physics and 50 Hz policy this is 22.2 equivalent policy intervals/s: 1M intervals about 12.5 h before optimizer/evaluation. This is an extrapolation, not a training capacity measurement.",
+    "gpu_port_rule": "A backend accepting XML does not prove that cable plugin forces work. Any MJX/Warp/Isaac port requires positive force/deformation/contact checks and source pinning before adopting it; do not spend the session porting merely to request 2,048/4,096 environments.",
+    "stop": "Continue through the complete feasible campaign. If simple methods solve the small starter grid, test a broader practically justified distribution before rejecting learning spend; never manufacture hidden-information or impossible faults. If the broad strong baseline already suffices, complete and release that convincing negative/engineering result. If a physical gate remains invalid, resolve or specifically redesign it instead of burning training compute. Time exhaustion is an incomplete handoff, not evidence of success.",
+    "runtime_work": "Treat runtime engineering as part of the campaign: profile physics, control, contact queries, rolling-window bookkeeping, logging and model construction. Separate cadence, remove redundant work only with parity checks, reuse compiled scenes across legitimate between-job initialization, and benchmark small native CPU worker/batch counts such as 1/4/8 before scaling further.",
+    "data_campaign": "If physical and residual-problem gates pass, target 1000-3000 physical attempt/repair acquisitions per independent acquisition/training start, including alternate feasible and bad repairs. Derive the actual count from measured throughput, model needs and held-out evaluation reserve; freeze counts before acquisition. Do not mistake these planning targets for measured capacity.",
+    "training_campaign": "Target at least 3 independent acquisition/training starts for the selected candidate and relevant learned comparator/ablation. Run sufficient declared optimization to assess learning and reload checkpoints; do not stop at a few epochs because a file was saved. Same-dataset optimizer repeats are explicitly weaker evidence.",
+    "evaluation_campaign": "Target at least 128 held-out layout/mechanical contexts per training start for the learning comparison when throughput permits, plus matched strong scripted/planned references. Predeclare power/practical margins and group-aware analysis before opening tests. Scale intelligently from measured capacity, not from convenient test outcomes."
+  },
+  "demonstrator": {
+    "required": "Overview showing mounted port, boundary, required clip and snag; labelled connector close-up; common-case nominal/stall/repair/held-seat timeline; one success and one failure; cable/clip state and real load trace.",
+    "labels": "Simulation; actual controller; trained versus scripted actions; playback speed; held terminal frame; endpoint scope. No staged movie or hand-set recovery state substitutes for a physical witness.",
+    "schematic": "evidence/cable_research_task_v2.svg"
+  },
+  "handover_rule": "Read the active ROADMAP action, implement and execute the bounded witness block; do not restart broad literature brainstorming, the rejected peg prefix campaign, or a universal latch-development prerequisite.",
+  "execution_mandate": {
+    "owner_steering": "Be ambitious with the next session in terms of work; do not be conservative.",
+    "objective": "Own a full research campaign: implement the constrained task and measurement fixes, validate physical recovery, establish strong baselines, collect substantial data, train justified methods, perform held-out action and closed-loop evaluation, and release the result/demo.",
+    "persistence": "Small probes are the first tranche, not the session deliverable. Resolve ordinary implementation obstacles, revise the method when evidence requires it and continue across context compaction. Do not end at a task skeleton, literature review, tiny smoke run or saved pilot weights.",
+    "scientific_boundary": "Ambition increases implementation, data and evaluation work, not unsupported claims. Learning still needs a real feasible deficit; a broad, registered negative result is acceptable."
+  },
+  "test_access_rule": "Use development-only held-out groups for G5 mechanism selection and tuning. Keep final-test groups and outcomes closed until methods, budgets, selection rules and analysis are frozen. Repeated final-test-guided method changes require a new untouched test registration; preserve earlier results."
+}

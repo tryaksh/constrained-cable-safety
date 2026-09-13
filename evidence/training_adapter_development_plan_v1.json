@@ -1,0 +1,72 @@
+{
+  "schema": 1,
+  "created_at_utc": "2026-09-08T07:34:22.557770+00:00",
+  "status": "predeclared_development_checks",
+  "research_result": false,
+  "study_sha256": "d2cc0272ba7b8e0c1cd649e6ea675086f35c15e0e7644303b5f94ae24c3d32a0",
+  "runtime_contract": {
+    "deadline_seconds": 30,
+    "raw_force_abort_n": 20,
+    "seating_dwell_seconds": 0.5,
+    "reward": "Preserve endpoint-only partial-interval omission; no new shaping.",
+    "architecture": "Project feedforward PPO v1: separate 512/128/64 ELU actor and critic, actor 24 scalars, critic 61 scalars; no RNN. Upstream recurrent reference remains distinct.",
+    "architecture_status": "Development implementation choice; all future study learning arms must share the same frozen architecture.",
+    "terminal": "One done per job; absorbing slots excluded from PPO and normalizers; no terminal value bootstrap; full-cohort resets between jobs only.",
+    "witness": "Existing scripted-phase witness retained; added controller-independent contact/withdrawal witness tested separately in both paths.",
+    "initialization_cost": "All initialization physics env steps / decimation charged in addition to every rollout slot."
+  },
+  "physical_pairing": {
+    "seed": 10070,
+    "grid": "representative",
+    "controller": "unchanged retry_unload_realign_v1",
+    "jobs_per_path": 28,
+    "required": [
+      "identical sampled initial states",
+      "same complete-job outcomes and terminal times",
+      "same scripted and controller-independent witness outputs",
+      "identical action/physical trajectories or explicitly failed equivalence",
+      "per-term reward agreement at 1e-5"
+    ]
+  },
+  "support_checks": {
+    "grid_seed_pairs": [
+      [
+        "low",
+        10070
+      ],
+      [
+        "interior",
+        10071
+      ],
+      [
+        "high",
+        10072
+      ]
+    ],
+    "controllers": [
+      "retry",
+      "continue"
+    ],
+    "jobs_per_run": 32,
+    "requested_jobs": 192,
+    "nominal_jobs_per_run": 8,
+    "final_test_cases_opened": false,
+    "acceptance": "All requested initializations valid; at least one completion at each non-nominal bin/value and nominal group under the fixed retry; representative witnesses in each fault family remain required. Sampled coverage never proves all points of a continuous interval.",
+    "on_failure": "Preserve every outcome and keep the fault-support gate open; do not tune the script or change the geometry/force limit to pass."
+  },
+  "capacity": {
+    "completed_sizes": [
+      32,
+      64,
+      128
+    ],
+    "planned_final_path_measurement": "After physical parity, 5 cohorts at the selected size, yielding 20 PPO updates including shorter cohort-end chunks. Treat all weights and transitions as development probe cost.",
+    "maximum_device_memory_mib": 10240,
+    "reserve_for_evaluation_and_reporting_fraction": 0.25
+  },
+  "protocol_freeze": "Only after all required gates pass; the registered physics-timestep refinement development controls remain mandatory and final-test cases stay closed.",
+  "scope_and_limitations": [
+    "Implementation and development verification plan, not scientific effect-size evidence.",
+    "No learning pilot budget has been selected or launched; selection depends on gates and remaining block time."
+  ]
+}

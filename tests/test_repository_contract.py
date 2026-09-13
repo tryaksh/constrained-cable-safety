@@ -5,13 +5,26 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]
 
 
-def test_three_documents_link_to_real_active_files():
-    for name in ("README.md", "ROADMAP.md", "AGENTS.md"):
-        text = (ROOT / name).read_text(encoding="utf8")
+def maintained_documents():
+    """Every document a reader is expected to read, and that we therefore maintain.
+
+    The three at the root plus everything in `docs/`, except `docs/handover/`,
+    which is history: a handover describes the repository as it was on the day it
+    was written and is deliberately not updated afterwards.
+    """
+    documents = [ROOT / name for name in ("README.md", "ROADMAP.md", "AGENTS.md")]
+    documents += sorted(p for p in (ROOT / "docs").glob("*.md"))
+    return documents
+
+
+def test_maintained_documents_link_to_real_files():
+    for path in maintained_documents():
+        text = path.read_text(encoding="utf-8-sig")
         for target in re.findall(r"\]\(([^)]+)\)", text):
-            if target.startswith(("http://", "https://", "#")):
+            if target.startswith(("http://", "https://", "#", "mailto:")):
                 continue
-            assert (ROOT / target.split("#")[0]).is_file(), (name, target)
+            resolved = (path.parent / target.split("#")[0]).resolve()
+            assert resolved.is_file() or resolved.is_dir(), (path.name, target)
 
 
 #: The pre-registered studies. Every one of these must carry its own scope and
@@ -28,6 +41,19 @@ PRE_SCOPE_ERA = ("cable_cycle_decision_v1.json",)
 #: `scope_and_limitations` list.
 DECLARES_SCOPE = ("scope", "scope_and_limitations")
 
+#: Three files under `evidence/` are not measurements and have nothing to scope.
+#: They are named here rather than quietly exempted, and each must still say what
+#: it is. If you are tempted to add a fourth, check first that the new file really
+#: is not reporting a number.
+NOT_A_MEASUREMENT = {
+    # A session handover: what one working session passed to the next.
+    "claude_handover_v1.json": ("handover", "next_action"),
+    # A snapshot of the machine and package versions a run happened on.
+    "environment.json": ("platform", "python"),
+    # A pre-launch check that ran before any measurement did.
+    "learned_physics_preflight_v1.json": ("status", "required_acceptance"),
+}
+
 
 def test_every_evidence_record_says_what_it_is():
     index = json.loads((ROOT / "evidence/INDEX.json").read_text(encoding="utf-8-sig"))
@@ -37,6 +63,10 @@ def test_every_evidence_record_says_what_it_is():
         record = json.loads((ROOT / "evidence" / name).read_text(encoding="utf-8-sig"))
         if name in PRE_SCOPE_ERA:
             assert record.get("decision") or record.get("summary"), name
+            continue
+        if name in NOT_A_MEASUREMENT:
+            for key in NOT_A_MEASUREMENT[name]:
+                assert record.get(key), (name, key)
             continue
         assert any(record.get(key) for key in DECLARES_SCOPE), name
 
@@ -49,12 +79,31 @@ def test_registered_studies_carry_their_contract_hash():
         assert record["contract"]["content_sha256"], name
 
 
-def test_this_tree_carries_only_the_cable_work():
-    """The peg study and the training stack stayed in the repository this was cut from."""
+def test_the_running_code_is_only_the_cable_work():
+    """The peg study's code stayed behind; only its records came here.
+
+    The peg-insertion campaign was closed and its 66 evidence records now live in
+    `evidence/` next to the cable ones, because it is recovery work and this is
+    the recovery repository. Its reinforcement-learning training stack did not
+    come with them: it is code for a campaign nobody is continuing, it needs a GPU
+    and a simulator that is not installed here, and it is preserved whole under
+    the tag `archive/assembly-recovery-training` in the repository it ran in. See
+    docs/PEG_INSERTION.md and docs/REPO_MAP.md.
+    """
     modules = {path.name for path in (ROOT / "src/assembly_recovery").glob("*.py")}
     for retired in ("study_ppo.py", "tensor_jobs.py", "peg_env.py", "refinement_env.py"):
         assert retired not in modules, retired
     assert "cable_safety_filter_v4.py" in modules
+
+
+def test_the_peg_records_are_here_and_are_labelled_as_peg():
+    """A peg number must never be mistakable for a cable number."""
+    index = json.loads((ROOT / "evidence/INDEX.json").read_text(encoding="utf-8-sig"))
+    campaigns = {listed["file"]: listed["campaign"] for listed in index["records"]}
+    assert campaigns.get("research_cycle_decision_v1.json") == "peg"
+    assert campaigns.get("cable_perception_v4.json") == "cable"
+    assert set(campaigns.values()) <= {"cable", "peg", "shared"}
+    assert sum(1 for value in campaigns.values() if value == "peg") > 50
 
 
 def test_the_shipped_filter_reads_its_thresholds_from_evidence():

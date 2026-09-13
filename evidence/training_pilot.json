@@ -1,0 +1,162 @@
+{
+  "schema": 1,
+  "status": "completed",
+  "research_result": false,
+  "task": "Isaac-Forge-PegInsert-Direct-v0",
+  "run_date": "2026-09-06",
+  "num_envs": 64,
+  "training_seed": 170,
+  "epochs": 2,
+  "checkpoint_frame": 16384,
+  "fps_total_samples": [
+    205,
+    192
+  ],
+  "checkpoint": {
+    "path": "logs/rl_games/Forge/audit_20260906_forge_2epochs_eager/nn/Forge.pth",
+    "bytes": 213424595,
+    "sha256": "e6324cf912e793cbb8db8da7a86c5ab232df7f1966a6b4b6de3f45f4317372c4"
+  },
+  "checkpoint_validation": {
+    "status": "passed",
+    "checkpoint": "logs\\rl_games\\Forge\\audit_20260906_forge_2epochs_eager\\nn\\Forge.pth",
+    "epoch": 2,
+    "expected_epoch": 2,
+    "frame": 16384,
+    "model_tensor_count": 28,
+    "model_parameters_finite": true,
+    "scope": "Checkpoint structure/load check, not policy inference or task-success validation."
+  },
+  "upstream_commit": "37ddf626871758333d6ed89cf64ad702aef127d0",
+  "environment_overrides": {
+    "TORCHDYNAMO_DISABLE": "1"
+  },
+  "raw_log": "artifacts/audit_2026-09-06/forge_train_pilot_eager.log",
+  "configuration_paths": [
+    "logs/rl_games/Forge/audit_20260906_forge_2epochs_eager/params/env.yaml",
+    "logs/rl_games/Forge/audit_20260906_forge_2epochs_eager/params/agent.yaml"
+  ],
+  "failed_initial_attempt": {
+    "status": "process_failed",
+    "cause": "Optional Torch compiler import reached a broken jinja2.Environment import",
+    "raw_log": "artifacts/audit_2026-09-06/forge_train_pilot.log",
+    "resolution": "Disable optional compilation via TORCHDYNAMO_DISABLE=1; no simulator installation change."
+  },
+  "scope": [
+    "Upstream PPO infrastructure pilot; no trained recovery method or competent baseline established.",
+    "The saved checkpoint loads and has finite model tensors; no success-rate evaluation performed.",
+    "Two throughput samples do not establish sustained throughput.",
+    "Upstream held-part gravity disabled; pose observations are synthetic, task starts grasped.",
+    "Checkpoints and logs are local and excluded from a fresh clone."
+  ],
+  "launcher_verification": {
+    "manifest": {
+      "schema": 1,
+      "run_id": "audit-assembly-train-20260906",
+      "mode": "train",
+      "status": "completed",
+      "started_at_utc": "2026-09-07T02:50:10.311758+00:00",
+      "spec": {
+        "task": "peg",
+        "seed": 170,
+        "num_envs": 64,
+        "epochs": 2,
+        "max_minutes": 10,
+        "task_id": "Isaac-Forge-PegInsert-Direct-v0",
+        "requested_transitions": 16384,
+        "scope": "Upstream infrastructure check; no recovery study implementation or performance claim"
+      },
+      "source_commit_at_start": "1b969f6db01aeac226667db4759b7603b3f663a0",
+      "source_dirty_at_start": true,
+      "source_hashes": {
+        "AGENTS.md": "af9bb799e5cebe0e1a212db179538bd15f4351e096affd588cd7edd8eb99504a",
+        "configs/study.json": "94eda04667e1e0ae2102b4db3f24ac6e44b5ba62dc7261ad8bde3f00debf72a8",
+        "environment-lock.example.json": "cbbaa78ed6feef9eec6e311ec717f60b74ea6def1fbbca6ed55c7508211f1b9f",
+        "pyproject.toml": "009adf119b986602d6b8fa7edc631182e61eceb0ca080ee66976245b46ab72cf",
+        "README.md": "07176d0a56db5def0bb5f97f3a10d33b956231a74ae661a9952e088c820f9aa7",
+        "ROADMAP.md": "431e5f0ec682c93504893cc94db5bd68917b13bd114458c72654eb5dade8ea77",
+        "scripts/assembly_smoke.py": "f12bf7d95f6078667895b2b36ebfaace3d8afe612e39178f5a5bb9d910f149db",
+        "scripts/run_experiment.py": "afdf4d1689b09c8567df26a1555a5021485dc9dc61e3712a0ebda131b18c3f12",
+        "scripts/setup_windows.ps1": "e772c9867dce220df0a07ae877c8aef8f7468244d93b35869de90bd53ad2c845",
+        "scripts/verify_checkpoint.py": "dd4e2a00aee41fba8ec96f5f525fc2085f22b485d2ae2f948f4c16ccfbb48550",
+        "scripts/write_environment_lock.py": "e3e9247078dcb34f623ff7ad6701e804972848472a2147c284dac8be1cdfece1",
+        "src/assembly_recovery/__init__.py": "c245621cf4ce1260e99af39b4dfff6286b9d1f741c7f06c2157e2306b1e54b71",
+        "src/assembly_recovery/protocol.py": "d38b46cbb7e58f85bdb78a8904d8510c09478e30f8f673f62ea9272761dd3117"
+      },
+      "upstream_commit": "37ddf626871758333d6ed89cf64ad702aef127d0",
+      "upstream_dirty": false,
+      "command": [
+        "C:\\isaac-sim\\python.bat",
+        "D:\\6axis-space-robotics\\.deps\\IsaacLab\\scripts\\reinforcement_learning\\rl_games\\train.py",
+        "--task",
+        "Isaac-Forge-PegInsert-Direct-v0",
+        "--headless",
+        "--num_envs",
+        "64",
+        "--seed",
+        "170",
+        "--max_iterations",
+        "2",
+        "agent.params.config.full_experiment_name=audit-assembly-train-20260906",
+        "agent.params.config.save_frequency=2",
+        "agent.params.config.save_best_after=0"
+      ],
+      "environment_overrides": {
+        "TORCHDYNAMO_DISABLE": "1",
+        "PYTHONUNBUFFERED": "1"
+      },
+      "unmet_study_gates": [
+        "held_part_gravity_resolved",
+        "actor_information_audited",
+        "fault_support_validated",
+        "within_job_reset_accounting_verified",
+        "success_and_force_evaluator_verified",
+        "protocol_frozen"
+      ],
+      "scope": [
+        "Upstream infrastructure check only.",
+        "Upstream held-part gravity disabled; preset grasp and synthetic pose observations.",
+        "Snapshot preserves exact project files for this development run; no new-method evidence."
+      ],
+      "checkpoints": [
+        {
+          "path": "logs/rl_games/Forge/audit-assembly-train-20260906/nn/Forge.pth",
+          "bytes": 213424595,
+          "sha256": "e6324cf912e793cbb8db8da7a86c5ab232df7f1966a6b4b6de3f45f4317372c4"
+        },
+        {
+          "path": "logs/rl_games/Forge/audit-assembly-train-20260906/nn/last_Forge_ep_2_rew_39.64745.pth",
+          "bytes": 213430965,
+          "sha256": "21c75937e6191e11f4aef0200da94205c05dbddddd0ca383c77332b97ef22ac5"
+        },
+        {
+          "path": "logs/rl_games/Forge/audit-assembly-train-20260906/nn/last_Forge_ep_2_rew__39.64745_.pth",
+          "bytes": 213431377,
+          "sha256": "0a30935f4ce7a177051960ccf317533123cca26162da85bea374994113e83afe"
+        }
+      ],
+      "process_exit_code": 0,
+      "timed_out": false,
+      "artifact_checks": {
+        "checkpoint_saved": true,
+        "environment_config_saved": true,
+        "agent_config_saved": true,
+        "checkpoint_loadable_and_epoch_matches": true
+      },
+      "finished_at_utc": "2026-09-07T02:51:48.055713+00:00",
+      "elapsed_seconds": 97.73399999999674
+    },
+    "checkpoint_check": {
+      "status": "passed",
+      "checkpoint": "D:\\6axis-space-robotics\\logs\\rl_games\\Forge\\audit-assembly-train-20260906\\nn\\last_Forge_ep_2_rew__39.64745_.pth",
+      "epoch": 2,
+      "expected_epoch": 2,
+      "frame": 16384,
+      "model_tensor_count": 28,
+      "model_parameters_finite": true,
+      "scope": "Checkpoint structure/load check, not policy inference or task-success validation."
+    },
+    "source_snapshot": "artifacts/assembly/audit-assembly-train-20260906/source.zip",
+    "purpose": "Independent two-epoch run through the maintained launcher; verifies infrastructure only."
+  }
+}

@@ -1,0 +1,180 @@
+{
+  "schema": 1,
+  "research_result": false,
+  "source_run": "peg_retry_10070_video_r02",
+  "job_index": 1,
+  "inputs": {
+    "report.json": "490b9e5d950db36d1ccd3b3cee04808d84a9bd3702f88036d43253878496ad3b",
+    "control_samples.jsonl": "0b5ca846303c52030b1a5520c2fcfaad6b18bd87f1ac8a5a3b66c7129e887afd"
+  },
+  "geometry": {
+    "peg_diameter_m": 0.007986,
+    "hole_diameter_m": 0.0081,
+    "peg_height_m": 0.05,
+    "hole_height_m": 0.025,
+    "fingerpad_length_m": 0.017608,
+    "position_action_bound_m": 0.05,
+    "success_height_fraction": 0.04,
+    "radial_clearance_m": 5.699999999999976e-05,
+    "seated_fingertip_above_hole_top_m": 0.007392000000000003,
+    "maximum_withdrawn_base_clearance_m": 0.017608,
+    "success_height_tolerance_m": 0.001,
+    "gross_separation_distance_m": 0.04292487281241504,
+    "scope": "Configured dimensions, not a USD mesh or contact-patch certification. Separation detects gross loss, not every loss of contact."
+  },
+  "fixture_bias_m": [
+    0.00011440502566983923,
+    0.0008713671122677624,
+    -0.0018718853825703263
+  ],
+  "position_threshold_m": [
+    0.01720830239355564,
+    0.01605227030813694,
+    0.019896607846021652
+  ],
+  "phases": {
+    "insert": {
+      "control_steps": 45,
+      "time_range_s": [
+        1.0666666666666667,
+        4.0
+      ],
+      "closest_part_base_xy_m": 0.011826741955691746,
+      "part_xy_range_m": [
+        [
+          -0.009443044662475586,
+          -0.006451606750488281
+        ],
+        [
+          0.009903371334075928,
+          0.011824548244476318
+        ]
+      ],
+      "desired_target_xy_range_m": [
+        [
+          0.00011440502566983923,
+          0.00011440502566983923
+        ],
+        [
+          0.0008713671122677624,
+          0.0008713671122677624
+        ]
+      ],
+      "ema_applied_target_xy_range_m": [
+        [
+          -0.0037740973188192584,
+          4.9305676657240835e-05
+        ],
+        [
+          0.0010783741134218871,
+          0.013236269459594042
+        ]
+      ],
+      "median_applied_target_tip_error_m": 0.0074519995930062794,
+      "max_applied_target_tip_error_m": 0.008350065619924867,
+      "endpoint_xy_threshold_exceedances": 0,
+      "median_noisy_wrist_load_n": 7.870209228408647,
+      "last_integral_xy_m": [
+        0.0,
+        0.0
+      ]
+    },
+    "withdraw": {
+      "control_steps": 45,
+      "time_range_s": [
+        4.066666666666666,
+        7.0
+      ],
+      "closest_part_base_xy_m": 0.001955124068580094,
+      "part_xy_range_m": [
+        [
+          -0.006464242935180664,
+          -0.001209259033203125
+        ],
+        [
+          0.0006023049354553223,
+          0.00991445779800415
+        ]
+      ],
+      "desired_target_xy_range_m": [
+        [
+          0.00011440502566983923,
+          0.00011440502566983923
+        ],
+        [
+          0.0008713671122677624,
+          0.0008713671122677624
+        ]
+      ],
+      "ema_applied_target_xy_range_m": [
+        [
+          5.5084044288378205e-05,
+          0.00011341190393068245
+        ],
+        [
+          0.0008745251030632062,
+          0.0010599997011013329
+        ]
+      ],
+      "median_applied_target_tip_error_m": 0.006350672351946873,
+      "max_applied_target_tip_error_m": 0.00898599986088866,
+      "endpoint_xy_threshold_exceedances": 0,
+      "median_noisy_wrist_load_n": 1.5269379727344174,
+      "last_integral_xy_m": [
+        0.0,
+        0.0
+      ]
+    },
+    "search": {
+      "control_steps": 345,
+      "time_range_s": [
+        7.066666666666666,
+        30.0
+      ],
+      "closest_part_base_xy_m": 0.003252937751652251,
+      "part_xy_range_m": [
+        [
+          -0.004679441452026367,
+          -0.0025136470794677734
+        ],
+        [
+          0.0017088651657104492,
+          0.002588331699371338
+        ]
+      ],
+      "desired_target_xy_range_m": [
+        [
+          -0.003843965138366912,
+          0.0053199587957351475
+        ],
+        [
+          -0.0015223435009829702,
+          0.007368483499158174
+        ]
+      ],
+      "ema_applied_target_xy_range_m": [
+        [
+          -0.001971800382307265,
+          0.004106334467360285
+        ],
+        [
+          -0.00017952293856069454,
+          0.005930592224467546
+        ]
+      ],
+      "median_applied_target_tip_error_m": 0.002579286438376277,
+      "max_applied_target_tip_error_m": 0.006031779547832986,
+      "endpoint_xy_threshold_exceedances": 0,
+      "median_noisy_wrist_load_n": 6.6325045624367505,
+      "last_integral_xy_m": [
+        -7.892076054326965e-06,
+        0.004445745711886638
+      ]
+    }
+  },
+  "scope_and_limitations": [
+    "Offline evaluator diagnosis; true part/fixture positions do not enter controller decisions.",
+    "Applied targets reconstructed after EMA and before position-error clipping. Endpoint threshold checks do not prove every physics-step target was unclipped.",
+    "No counterfactual proves whether load, dead zone, or search coverage alone caused failure; feasibility remains unresolved."
+  ]
+}

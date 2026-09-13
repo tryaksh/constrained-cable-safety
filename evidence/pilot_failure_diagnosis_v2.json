@@ -1,0 +1,50 @@
+{
+  "schema": 1,
+  "status": "verified_observations_cause_unresolved",
+  "research_result": false,
+  "source_evidence_sha256": "4bdabdf99824633b51b38483505f0ba3edc052992b5a3450a7e351f2177b6702",
+  "checkpoint_sha256": "ae8dffd185921923f4d14e590c1c7e5faf80c5e1131b43c48bf0a263e15bc6e2",
+  "observations": {
+    "development_completions": 0,
+    "requests": 84,
+    "timeouts": 80,
+    "force_aborts": 4,
+    "nominal_completions": 0,
+    "nominal_requests": 12,
+    "witnessed_recoveries": 0,
+    "mean_discounted_timeout_return": 69.95779504492145,
+    "median_final_timeout_target_height_above_estimated_fixture_top_m": 0.028946105390787125,
+    "nominal_seated_fingertip_height_above_fixture_top_m": 0.007392,
+    "median_final_timeout_held_base_height_above_fixture_origin_m": 0.01835606396198273,
+    "success_height_tolerance_m": 0.001,
+    "timeout_jobs_with_fixture_contact": 80,
+    "training_active_samples": 851578,
+    "training_absorbing_fraction": 0.6303914930555555
+  },
+  "interpretation": "The deterministic policy ends mostly in incomplete insertion/contact or miss configurations, with targets above seating height. It receives positive cumulative reward while failing complete jobs. This suggests an incentive or policy-extraction problem but does not establish its cause; undertraining also remains possible.",
+  "next_diagnostic_predeclared": {
+    "seed": 10070,
+    "cases": "All 28 existing development cases, no outcome-based subset selection",
+    "controllers": [
+      "frozen checkpoint deterministic mean",
+      "same frozen checkpoint stochastic actions with an independent policy RNG stream",
+      "unchanged retry_unload_realign_v1"
+    ],
+    "comparison_contract": "Instantiate the same network in all three paths before rollout so environment RNG consumption matches; stochastic policy draws use a separate generator. Verify identical initial states/nuisance and common sensor random draws. Preserve v2 geometry, noisy actor/action frame, force, dwell, reward and 30 s deadline. No training or script/reward tuning.",
+    "rollout_control_transitions": 37800,
+    "expected_initialization_physics_env_steps": 5628,
+    "expected_charged_control_equivalent_transitions": 38503.5,
+    "readouts": [
+      "complete-job and upstream success separately",
+      "full discounted return and per-term ledger through each finite terminal",
+      "mean and sampled action targets",
+      "physical insertion/contact and witness traces"
+    ],
+    "purpose": "Separate deterministic extraction/exploration failure from objective incentives before more training or an adaptive curriculum."
+  },
+  "scope_and_limitations": [
+    "The original declared deterministic development evaluation remains 0/84; a stochastic diagnostic cannot replace it retrospectively.",
+    "This diagnostic is registered but not implemented or run in this block.",
+    "No final-test seeds, new faults, geometry relaxation, force-rule changes or further scripted-controller tuning."
+  ]
+}

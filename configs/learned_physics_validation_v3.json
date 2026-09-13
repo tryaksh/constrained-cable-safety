@@ -1,0 +1,232 @@
+{
+  "schema": 1,
+  "version": "learned_physics_validation_v3",
+  "status": "registered_before_launch",
+  "research_result": false,
+  "created_at_utc": "2026-09-10T08:35:43.847693+00:00",
+  "starting_commit": "15264c6",
+  "question": "Frozen learned/retry sensitivity to explicit 120/240 Hz PhysX integration from paired coarse initialization, after exact 120 Hz adapter compatibility.",
+  "checkpoint_path": "artifacts/assembly/uniform_unclipped_170_v4_r02/pilot/budget_checkpoint.pt",
+  "checkpoint_sha256": "cee349b1b9283a66924294323f5c7bd8f5de98434be70ed19d8a07986f9eb532",
+  "checkpoint_selection": "Complete 22-cohort model at 10326272 charged transitions. No partial checkpoint or score selection.",
+  "physical_protocol": {
+    "path": "configs/protocol_v4.json",
+    "sha256": "2b42e1961eb463cad2545a1d006ae01400d40e58d222d3861ab009915d35ea2d"
+  },
+  "seed": 10071,
+  "requests_per_run": 28,
+  "cases": "All development_cases(study, 10071), unchanged order: all seven bins and four directions. The first remaining confirmation seed, not selected by physics outcome. No reserved cases.",
+  "controllers": [
+    "frozen_v4_gaussian_mean",
+    "unchanged_actor_retry_v1"
+  ],
+  "assays": {
+    "direct": "Learned mean starts at control zero; compare all 28 jobs to unchanged retry.",
+    "fixed_prefix": "Unchanged four-second script, then frozen learned mean; compare all 28 whole jobs and separately the realized pre-handoff stalled active cohort to unchanged retry.",
+    "retry_reuse": "The retry controller already has the identical four-second prefix. Run it once per timestep and use the same trajectory in both analyses. Do not count duplicate independent jobs or charge fictitious work."
+  },
+  "run_order": [
+    {
+      "label": "120_prefix_learned",
+      "mode": "prefix_learned",
+      "refinement": 1,
+      "compatibility_required": true,
+      "expected_charged_reference_transitions": 12834.5,
+      "wall_limit_s": 420
+    },
+    {
+      "label": "120_retry",
+      "mode": "retry",
+      "refinement": 1,
+      "compatibility_required": true,
+      "expected_charged_reference_transitions": 12834.5,
+      "wall_limit_s": 420
+    },
+    {
+      "label": "120_direct_learned",
+      "mode": "direct_learned",
+      "refinement": 1,
+      "compatibility_required": false,
+      "expected_charged_reference_transitions": 12834.5,
+      "wall_limit_s": 420
+    },
+    {
+      "label": "240_prefix_learned",
+      "mode": "prefix_learned",
+      "refinement": 2,
+      "compatibility_required": false,
+      "expected_charged_reference_transitions": 25434.5,
+      "wall_limit_s": 600
+    },
+    {
+      "label": "240_retry",
+      "mode": "retry",
+      "refinement": 2,
+      "compatibility_required": false,
+      "expected_charged_reference_transitions": 25434.5,
+      "wall_limit_s": 600
+    },
+    {
+      "label": "240_direct_learned",
+      "mode": "direct_learned",
+      "refinement": 2,
+      "compatibility_required": false,
+      "expected_charged_reference_transitions": 25434.5,
+      "wall_limit_s": 600
+    }
+  ],
+  "compatibility_references": {
+    "prefix_learned": {
+      "path": "artifacts/assembly/failure_prefix_confirmation_v2_r01/10071_learned",
+      "manifest_sha256": "38537e7113e4c1d270ad4d9633878844b1b7e79b860e4aa55a7ecbcf157228a7",
+      "trajectory_sha256": "71ccbeafffe6f16f7fbf3da16239b54f0d415de834ca7a14f7ee9b192a25fd42",
+      "scope": "Already charged confirmed seed 10071 prefix assay; compatibility reference only."
+    },
+    "retry": {
+      "path": "artifacts/assembly/failure_prefix_confirmation_v2_r01/10071_retry",
+      "manifest_sha256": "c21caf618bd3fdadfd5fa9f88b86aee94f692be23f99ec7033b561dff9ddc0c4",
+      "trajectory_sha256": "f8594390e49d38d86df28f5dd05b34c17415e8ca58c3f31fbb2a165060d16aa1",
+      "scope": "Already charged confirmed seed 10071 prefix assay; compatibility reference only."
+    }
+  },
+  "compatibility_gate": "First two 120 Hz runs must match every tensor in the corresponding confirmed trajectory, initial fields, full sensor draws, CUDA RNG states, dead zones, reward terms, jobs and both witnesses bitwise. Any failure stops the queue before 240 Hz.",
+  "initialization": {
+    "physics_hz": 120,
+    "expected_native_steps_per_env": 67,
+    "hard_limit_native_steps_per_env": 256,
+    "procedure": "Each process constructs and resets at the confirmed 120 Hz. Model instantiation/load and sensor/RNG/filter state remain unchanged. Before begin_jobs, configure Python dt/decimation/contact-conversion timing and install a project-owned wrapper around PhysicsContext._step. Live steps invoke the same simulate/fetch backend calls with explicit 1/120 or 1/240 dt. No USD, timestep metadata, pose or attachment writes; no additional physics step, reset or RNG draw at preparation.",
+    "differences_from_older_refinement": "Inherits PegCompletionEnv completion credit; uses the original ForgeEnv sensor formulas and global RNG; no independent noise generator and no begin_jobs filter reset. Fine job steps hold sensor values between 120 Hz samples. Both processes initialize at the same coarse rate; quantify every captured initial field.",
+    "force_conversion": "ContactSensor cache uses the explicitly integrated native dt. Verify impulse/native_dt equals force, with positive fixture/finger controls. Verify every passed integration dt and actual PhysX callback time; do not use unchanged 120 Hz scene metadata as the actual step duration."
+  },
+  "timing": {
+    "policy_hz": 15,
+    "external_servo_hz": 120,
+    "external_sensor_hz": 120,
+    "physics_hz": [
+      120,
+      240
+    ],
+    "prefix_control_steps": 60,
+    "prefix_native_steps": [
+      480,
+      960
+    ],
+    "deadline_s": 30.0,
+    "dwell_s": 0.5,
+    "raw_wrist_abort_n": 20.0,
+    "implicit_gripper": "Unchanged targets/gains, integrated by the native solver. Commands held between fine substeps. Abort decision at native rate; commanded terminal hold updates on the next external servo tick."
+  },
+  "invariants": {
+    "held_part_gravity": true,
+    "within_job_reset_pose_write_attachment_change": false,
+    "reward": "completion_credit_v3",
+    "retry_settings": "configs/retry_unload_realign_v1.json",
+    "training_launches": 0,
+    "final_test_access": false,
+    "original_competence_gate_passed": false
+  },
+  "verification": {
+    "native_replay": "Frozen CPU evaluator and contact witness at native dt for every requested job; force priority, dwell and retained-grasp grace remain native. Native integration_dt trace must equal requested dt at every step while scene_metadata_dt stays 1/120.",
+    "sensor_replay": "Actual simulator times, 3600 sensor ticks per job, original position/quaternion/force draws, linear/angular derivatives over sensor timestamps, force EMA and fine-substep holds.",
+    "action_replay": "CPU checkpoint mean <=2e-5 absolute error; frozen scripted actions/phases exact; requested-action clamps and EMA <=2e-7; held torque/gripper commands bitwise.",
+    "cpu_tolerances": {
+      "contact_impulse_conversion_n": 3e-05,
+      "force_filter_n": 2e-05,
+      "position_noise_m": 2e-07,
+      "quaternion": 2e-06,
+      "linear_velocity_m_s": 2e-05,
+      "angular_velocity_rad_s": 0.0002,
+      "simulated_time_s": 2e-06
+    },
+    "pairing": "All six initial states/nuisances/materials, sensor draws, CUDA RNG states and dead-zone streams exact. Within each timestep, prefix actions/observations/native physics and eligible cohort exact across controllers. Across timesteps explicitly report changed eligibility and intersection outcomes; never compare unequal conditional sets as paired identical cohorts.",
+    "reward": "Replay original endpoint cutoff, completion credit and discounted returns with unchanged v3 tolerances."
+  },
+  "accounting": {
+    "reference_unit": "One charged reference transition = eight executed native physics environment steps. All initialization, live, absorbing and partial-control work is included. Fine-step work is charged at full native count.",
+    "time_equivalent_unit": "Also report rollout native steps / current decimation plus coarse initialization / 8. This is simulated control time, not the cumulative compute charge.",
+    "expected_initialization_physics_env_steps_per_run": 1876,
+    "expected_rollout_control_transitions_per_run": 12600,
+    "expected_rollout_physics_env_steps": [
+      100800,
+      201600
+    ],
+    "expected_control_equivalent_transitions_per_run": 12834.5,
+    "hard_failure": "Keep failed manifest, report/progress and logs. If a hard timeout prevents exact accounting, report last observed lower bound and conservative (256+3600*refinement)*28/8 upper bound; charge the upper bound until resolved. No automatic retry."
+  },
+  "expected_charged_reference_transitions": 114807.0,
+  "expected_charged_control_equivalent_transitions": 77007.0,
+  "expected_unique_simulated_jobs": 168,
+  "wall_limit_s": 4200,
+  "cpu_verifier_wall_limit_s": 120,
+  "training_launches_allowed": 0,
+  "material_sensitivity_rule": "Prospective diagnostic flag if any mode changes completion count by at least two of 28, or changes at least three individual terminal outcomes. Also report controller ranking, native force changes, and changed stalled eligibility regardless of flag. This is an engineering investigation trigger, not a significance test or equivalence margin.",
+  "decision_rule": "No training in this session. If material sensitivity appears, retain it and register one bounded explanation-focused physics check before a common training screen. Two resolutions do not prove convergence even if outcomes agree.",
+  "source_sha256": {
+    "src/assembly_recovery/physics_validation_v1.py": "fbaf58ddd9a1828cd2f4537085656564bbd2c597da12379274073501e70531fb",
+    "src/assembly_recovery/learned_refinement_env_v1.py": "28de0394075e131294b427ad53de18d2659156331ca84867b276635ae9b03428",
+    "scripts/validate_learned_physics_v1.py": "d6536c63e798140663550d084c4083a5cc83b8401305e6fc6c44b115b2c3fdf6",
+    "scripts/run_learned_physics_v1.py": "8426edc26cb42e3522f96cf8d67d778d91396c3062e04c73d9b1ab03eeabedb2",
+    "scripts/verify_learned_physics_v1.py": "273c1e60f26be65414a8ed88c6d6e9601826df1152da73a5d329660ca8705d4b",
+    "tests/test_learned_physics_v1.py": "aa869df443cb1631a5436aa24b855243867f9b52510cf38bec4ca17bfa602991",
+    "scripts/diagnose_failure_prefix_v2.py": "c6449b129213ce3997edb008856b07b39d11a4a7581be02c0b80254500ac15e1",
+    "scripts/run_failure_prefix_v2.py": "3b19940e9510d248fb616a97f3750d492261134217e321fb134f9f2167ae6bd3",
+    "scripts/verify_failure_prefix_v2_export_v1.py": "e4b84b906a5d972272b32cc985aeaabdb93598a79a3e26b56b7eee702aa0d6cc",
+    "scripts/probe_training.py": "b2d6fa4d1db5ff1c018dee25abb459c8b878dc15046fab3267ee925cc850df0f",
+    "scripts/run_training_probe.py": "4cc8c987b705f85eae5f559b7e32304ca90da165336ef00fd71932a0b7f1537b",
+    "scripts/run_experiment.py": "f78526878acccc4c4e3cff07730bb03fc51a80c5b27eeb17fd305b17f8bf2e72",
+    "scripts/verify_training_contract.py": "e401cb390822b4adec64882d1d062eb0ba7c97b04d16b0b51f7df494acb2c6fb",
+    "configs/retry_unload_realign_v1.json": "3b0c6fa3b5e7c10b545efbdbb380e58f7ac485cf80bed000d580ac780dd6a299",
+    "src/assembly_recovery/retry_controller.py": "cf899ca4cd16151da407d3fea5e02b25e0d830feb6177a69ace1fc52cbcabdcf",
+    "src/assembly_recovery/completion_env.py": "8cc403c547c8bedaaf15d6dee60a23e44d1f513a3c507b15ecfb89b90c6123e3",
+    "src/assembly_recovery/training_env.py": "d404c10c4379b474384ac52a44ec2c276de13d29bf5aef46497ae9c3e08fade9",
+    "src/assembly_recovery/post_stall.py": "43b061f5fbc3dbe47e47c90066b85a3248d05a355f9f3804a35f16ba6bddb826",
+    "src/assembly_recovery/explicit_physics_step_v2.py": "4dd675a878de289954f7292c4fc1d21bd839496901a59da733ea4a88ef1a0050",
+    "src/assembly_recovery/learned_refinement_env_v2.py": "49aacffb004ec3b5ecd4a37975a4585ac1b88d883a229a0325984f66168e6f28",
+    "scripts/validate_learned_physics_v3.py": "96d02fc6715e4c7c622073feb879f4646288908c786b25f5b3a59c3137461c7d",
+    "scripts/run_learned_physics_v3.py": "53887711fc91dbe7157d3b10e389bd630f5b8ceabd4ed76f96d4a538386cb319",
+    "scripts/verify_learned_physics_v3.py": "3739af066ce4ad91501f76ff95a5e6600416dc454efbc1d372675c00fc132eb3",
+    "tests/test_explicit_physics_step_v2.py": "a76472b6528314ff846110f739cd8b5aaac4c2c7ef1e9034047e12a192a3c2b8"
+  },
+  "installed_source_sha256": {
+    ".deps/IsaacLab/source/isaaclab/isaaclab/sensors/contact_sensor/contact_sensor.py": "79daa7117f6a162e59b771794f56ca5f527e0cf1fe76cbcebae4514ba21c7074",
+    ".deps/IsaacLab/source/isaaclab/isaaclab/sensors/sensor_base.py": "7533920fac557e672df6c6a9c65cefc16e846703e89cdaf7fc1b1801ad437cc7",
+    ".deps/IsaacLab/source/isaaclab/isaaclab/envs/direct_rl_env.py": "28b64cfcbfaf6310ad8a2bb2851e2fc08e58971c83ea34aa2753a4f7f86f5519",
+    ".deps/IsaacLab/source/isaaclab/isaaclab/sim/simulation_context.py": "3de193c49afc940c3cd99ed65bb8ef884b96873530e25cbe6696cc1f72fea090",
+    "C:/isaac-sim/exts/isaacsim.core.api/isaacsim/core/api/simulation_context/simulation_context.py": "e23f60927e5420d09c602bbafba9db48fc2f85990dae78f5346d5699715dc176",
+    "C:/isaac-sim/exts/isaacsim.core.api/isaacsim/core/api/physics_context/physics_context.py": "505ca865d8311f43fad4b83d58d764244c42af010505380ff7aa9b98029c6505"
+  },
+  "preserved_evidence_sha256": {
+    "evidence/contribution_review_v1.json": "21aaccd2ac41b29e5fcf22b9493ead4081c8d0b4e4a347e7745ffd173fe3f92e",
+    "evidence/contribution_review_checks_v1.json": "b8ae81a027c7d4c9286b3e06ad85f772a6379b2e882c182cbee6b96b5fc74b03",
+    "evidence/learned_physics_preflight_v1.json": "0293ffd080ccce18b1a6c4d02e331f563b836da4180311d9f6f1814a661506a6",
+    "evidence/post_stall_confirmation_block_v2.json": "985ef617aaef784db53ac898acdf5490001469aff0e40e16bf11dba1f49454d8",
+    "evidence/post_stall_confirmation_v2_verified.json": "f8ccc622db5bd9ebf8e71a7e811d0c2a115ebef75289aad214bde32b56ded744",
+    "evidence/uniform_unclipped_v4.json": "ef7019ca4520c66eef7281a13f27ef399f921e65a05252a915a5e37ec1419ba6",
+    "configs/contribution_screen_v1.json": "0d1f5a579067e7a4b4c64e749de5f3ea23c552508d55bb9e02c6df8987ca8651",
+    "configs/failure_prefix_confirmation_v2.json": "98fbbc43821024b97bd831c25fbe3e6e13ede0306e5a32121c855cba2cae9d74",
+    "configs/learned_physics_validation_v1.json": "d0e6b2c3f7f06e4eca14b3916bf48aa107398ecb59b1c40ca6177fe31d454baa",
+    "configs/learned_physics_continuation_v2.json": "2fead09cdac4c42f84d3ff07b9ca66d0e3442333345cde2cf89157b93695ebd4",
+    "evidence/learned_physics_verifier_failure_v1.json": "a3a55b31f6bbebe2417044a8d89396e770f5e55d6fa0ccf37b6d16f96d8105dd"
+  },
+  "scope_and_limitations": [
+    "One frozen model from one training seed; one previously used development seed. A bounded diagnostic, not a final test or reliability precision estimate.",
+    "The 120 Hz reference must first reproduce the confirmed completion-reward and observation/RNG path; the older scripted-only adapter is not a reference for attributing timestep effects.",
+    "Both resolutions independently initialize at 120 Hz and then use explicit native integration dt. This conditions on coarse initialization and retains its solver history; it does not validate fully refined initialization. Scene timing metadata remains coarse and is not evidence of actual dt; native passed dt and callback times are recorded.",
+    "Native raw 20 N abort is an experimental simulated stop condition, not a force ceiling or hardware safety certification. Implicit gripper integration changes with physics timestep.",
+    "Whole-job completion, mechanism-neutral post-stall completion and the original withdrawal witness remain distinct. Retry reused across assays is not an independent duplicate cohort.",
+    "No adaptive/uniform/fixed training, controller tuning, final-test access, gear, camera perception, learned pickup, hardware transfer or convergence claim. Original failed competence gate remains unchanged."
+  ],
+  "prelaunch_source_revision": "V3 replaces only the unsupported live scene-timestep mutation with explicit native stepping and reruns both resolutions. V1/V2 protocols, workers and all saved failures remain unchanged.",
+  "prior_probe_cost": 38738.0,
+  "total_session_expected_charged_reference_transitions": 153545.0,
+  "backend_failure_and_revision": {
+    "failed_run": "artifacts/assembly/learned_physics_v2_r01/240_prefix_learned",
+    "reason": "set_simulation_dt invalidated tensor views before the first job physics step. Preserved 1876 initialization physics environment steps = 234.5 charged reference transitions. No fine behavior result.",
+    "replacement": "The installed PhysicsContext._step(render=False path) calls _physx_sim_interface.simulate(self.get_physics_dt(), current_time) then fetch_results. The new project wrapper performs those exact calls with an explicit dt. It does not mutate USD or recreate views. Scene metadata remains at 120 Hz; actual integration dt is separately recorded and checked against native callback time increments.",
+    "rerun_rule": "Run all six cases/controller/resolution combinations anew under the same versioned worker, including both 120 Hz controller compatibility checks. Preserve the three completed prior coarse probes and the failed fine initialization; charge all of them."
+  },
+  "prior_failed_run_sha256": {
+    "artifacts/assembly/learned_physics_v2_r01/240_prefix_learned/manifest.json": "4ef820c3e7a38354969d4703267bf0d7a0107787398901d8eb78044c8dc5f444",
+    "artifacts/assembly/learned_physics_v2_r01/240_prefix_learned/validation/report.json": "2a89a6eeabed928ffa9d717669cf8f71ef980a132230e2bf9429e89a118ee9b6"
+  }
+}

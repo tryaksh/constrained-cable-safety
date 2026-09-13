@@ -1,0 +1,111 @@
+{
+  "schema": 1,
+  "status": "bounded_block_finished_training_incomplete",
+  "research_result": false,
+  "started_at_utc": "2026-09-09T06:10:19Z",
+  "finished_at_utc": "2026-09-09T14:43:28.260649+00:00",
+  "scope": "Authorized overnight development block; repeated Windows suspensions exhausted wall-clock availability. No learned competence or complete substantial training run is claimed.",
+  "runs": [
+    {
+      "run_id": "policy_diagnosis_v2_r01/deterministic",
+      "status": "completed",
+      "manifest_sha256": "84af12afb36c1c9bb06580639b1ca76945247d68177e14e3f8c8b63857a7cd72",
+      "charged_transitions": 12834.5,
+      "wall_s": 158.5470000000205
+    },
+    {
+      "run_id": "policy_diagnosis_v2_r01/stochastic",
+      "status": "completed",
+      "manifest_sha256": "3de21ea197de45785194c503cbb1d10eaff3bba2e153a5303c9c33749ae79d22",
+      "charged_transitions": 12834.5,
+      "wall_s": 166.8279999999795
+    },
+    {
+      "run_id": "policy_diagnosis_v2_r01/retry",
+      "status": "completed",
+      "manifest_sha256": "839bdc5be848d07114f833bc043ba0b72544ea0ed7cce008325d36a147f5a729",
+      "charged_transitions": 12834.5,
+      "wall_s": 166.18699999997625
+    },
+    {
+      "run_id": "completion_credit_controls_v3_r01/deterministic",
+      "status": "completed",
+      "manifest_sha256": "19b2b4d7e69bca17559611d021b1441ba6b933f54005fb80951edbe2b3292244",
+      "charged_transitions": 12834.5,
+      "wall_s": 159.625
+    },
+    {
+      "run_id": "completion_credit_controls_v3_r01/stochastic",
+      "status": "completed",
+      "manifest_sha256": "482bc9454119ae6d75c6f11e62a1dac7b233daa99883d91cb3da8c8a09971ec8",
+      "charged_transitions": 12834.5,
+      "wall_s": 156.76500000001397
+    },
+    {
+      "run_id": "completion_credit_controls_v3_r01/retry",
+      "status": "completed",
+      "manifest_sha256": "7c31285b58e0671f2e62575e11d0cb1bcbc1415da11d93b26b15f708da3a7caf",
+      "charged_transitions": 12834.5,
+      "wall_s": 165.96799999999348
+    },
+    {
+      "run_id": "uniform_completion_170_v3_r01",
+      "status": "failed_incomplete",
+      "manifest_sha256": "4a988587a7329fac2e1c020d3ec8f3d9b2cc43d9ca164d272c3fdc6299c95754",
+      "charged_transitions_lower_bound": 6241536.0,
+      "wall_s": 7453.0
+    },
+    {
+      "run_id": "partial_checkpoint_diagnosis_v3_r01/deterministic",
+      "status": "aborted_incomplete",
+      "manifest_sha256": "2dd929e6640f5ed92cd95892a46296e35c33482e52437cfa0b6a316925f05fb7",
+      "charged_transitions_lower_bound": 3818.5,
+      "wall_s": 80.32799999997951
+    }
+  ],
+  "gpu_process_launches": 8,
+  "completed_processes": 6,
+  "failed_or_incomplete_processes": 2,
+  "charged_transitions_lower_bound": 6322361.5,
+  "gpu_process_wall_s_including_suspension": 8507.247999999963,
+  "diagnosis": {
+    "deterministic_completions": 0,
+    "stochastic_completions": 5,
+    "scripted_completions": 19,
+    "requests_per_controller": 28,
+    "scripted_witnessed_recoveries": 15,
+    "reward_counterexamples_before": 10,
+    "reward_counterexamples_after": 0,
+    "solvable_pairs": 19
+  },
+  "training": {
+    "full_budget_completed": false,
+    "partial_checkpoints": 13,
+    "last_checkpoint_charged_cost": 6101888,
+    "all_partial_checkpoints_and_optimizer_states_verified": true,
+    "new_primary_evaluation": false
+  },
+  "verification": {
+    "cpu_tests": 169,
+    "ruff": "passed",
+    "staged_export": "pending final handoff verification",
+    "upstream_modified": false,
+    "all_run_source_and_artifacts_rehashed": true
+  },
+  "restart": {
+    "protocol": "configs/protocol_v3_restart_v1.json",
+    "run_id": "uniform_completion_170_v3_r02",
+    "fresh_weights": true,
+    "charged_training_budget": 10326272,
+    "requires_ac": true,
+    "requires_sufficient_new_wall_time": true,
+    "launched": false
+  },
+  "power_at_handoff": {
+    "platform": "windows",
+    "ac_line_status": 1,
+    "battery_percent": 90
+  },
+  "git_publication": "Local commits only; no push, repository creation or rename.",
+  "remaining_gap": "A competent budget-selected learned baseline, equal-cost adaptive comparison across independent seeds, gear, and learned-policy physics robustness remain unestablished."
+}

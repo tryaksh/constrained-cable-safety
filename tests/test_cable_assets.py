@@ -1,4 +1,4 @@
-﻿"""Source-only geometry integrity checks; no simulator or external assets required."""
+"""Source-only geometry integrity checks; no simulator or external assets required."""
 
 import hashlib
 import math

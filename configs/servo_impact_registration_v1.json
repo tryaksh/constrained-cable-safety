@@ -1,0 +1,62 @@
+{
+  "schema": 1,
+  "version": "servo_impact_registration_v1",
+  "status": "registered_before_fine_and_servo_results",
+  "question": "Does fixed480Hz external impedance feedback reduce native480/960Hz approach and impact sensitivity relative to the original120Hz feedback?",
+  "conditional_launch_rule": "Run only if the original480/960Hz prefix pair fails its registered gate after the single960Hz extension. No additional controller tuning from these cases.",
+  "trigger_evidence": "evidence/precontact_dynamics_audit_v1.json",
+  "trigger_evidence_sha256": "390eb52d71fce13c9e473ff7cdc58f96f803204063d35e6b2e6de199139fdd4e",
+  "independent_rationale": {
+    "source": "https://arxiv.org/html/2408.04587v2",
+    "section": "IV-A Robot System",
+    "fact": "FORGE paper reports15Hz policy targets and1000Hz real-robot impedance control.",
+    "inference": "480Hz is a fixed integer subdivision compatible with the existing15/120Hz clocks and permits a matched480/960 native test. It tests feedback bandwidth, not hardware reproduction."
+  },
+  "native_physics_hz": [
+    480,
+    960
+  ],
+  "external_servo_hz": 480,
+  "external_sensor_hz": 120,
+  "policy_hz": 15,
+  "seed": 10071,
+  "requests_per_run": 28,
+  "prefix_controls": 60,
+  "initialization_hz": 120,
+  "high_level_controller": "Unchanged first-attempt script. All applied high-level prefix actions must match from identical initialization; only native feedback/terminal hold opportunity frequency changes.",
+  "unchanged": [
+    "Franka/FORGE assets and geometry",
+    "gravity",
+    "gains and clamps",
+    "implicit gripper stiffness/damping/targets",
+    "sensor noise and smoothing",
+    "native raw20N abort",
+    "retained grasp",
+    "30s declaredjob deadline and0.5s dwell",
+    "no within-job reset,pose write orattachmentchange"
+  ],
+  "run_order": [
+    {
+      "refinement": 4,
+      "external_servo_hz": 480
+    },
+    {
+      "refinement": 8,
+      "external_servo_hz": 480
+    }
+  ],
+  "expected_charged_reference_transitions": 20629.0,
+  "acceptance": {
+    "prefix_gate": "For adjacent finest resolutions: at most one difference in prefix abort count, at most two individual outcome changes among 28; median paired peak wrist and contact-impulse relative differences <=20%, with every outlier and exposure difference reported. Positive fixture/finger controls, native CPU replay and unchanged coarse reference must pass.",
+    "extension": "Run 960 Hz once if 240/480 fails any material outcome or load-stability margin. This is a diagnostic extension, not a claim that three timesteps prove convergence.",
+    "training_gate": "A prefix pass alone does not enable substantial training. At the selected finest stable pair rerun frozen learned direct, learned continuation and unchanged retry for complete30s jobs; no more than one completion-count difference and two individual outcome differences per arm, no forbidden events, retained force/dwell/observation contracts. Alternatively identify and independently justify a physical-model or API correction, register it, and rerun affected common controls.",
+    "stop": "Spend at most three distinct explanation-driven probe variants or two hours of simulator diagnosis after this prefix series. If no interpretable force-limited task is established, reject the current comparative-training premise for this cycle and retain a concrete numerical-sensitivity result; do not spend large training merely to produce candidate scores."
+  },
+  "interpretation_rule": "Compare native refinement within each fixedservo condition and compare feedback conditions at each fixednative resolution. Better completion alone does not prove numerical correctness. Adoption for training requires the registered full-job learned/retry validation at the new common feedback/physics definition.",
+  "scope_and_limitations": [
+    "Conditional four-second causal diagnostic only; no candidate training or finaltests.",
+    "Explicit controller/task-condition change shared across the causalpair. Historical120Hz results remain separate.",
+    "A fixed480Hz feedback test is not pure solver convergence or replication of1000Hz hardware. Do not weaken scriptedretry or alterforcecriterion for a score.",
+    "Native force aborts and all censored/failed/absorbing work retained.120Hz block aggregates are sensor intervals containingfour servo updates."
+  ]
+}

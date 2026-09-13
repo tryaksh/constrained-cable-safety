@@ -1,0 +1,36 @@
+{
+  "schema": 1,
+  "status": "verified_diagnosis_and_reward_correction",
+  "research_result": false,
+  "diagnosis": "evidence/policy_diagnosis_v2_r01.json",
+  "corrected_controls": "evidence/completion_credit_controls_v3_r01.json",
+  "findings": {
+    "deterministic_completion": "0/28",
+    "independent_stochastic_completion": "5/28; 13 force aborts",
+    "unchanged_retry_completion": "19/28; 15 witnessed recoveries",
+    "matched_initialization_sensor_and_nuisance": true,
+    "original_deterministic_trajectory_reproduced_bitwise": true,
+    "incentive_counterexamples_before": 10,
+    "incentive_counterexamples_after": 0,
+    "solvable_paired_cases": 19,
+    "implementation_defect_found": false,
+    "extraction_problem": "Independent sampling improves some cases but remains incompetent; all four nominal stochastic cases fail.",
+    "training_sufficiency": "Not established. The changing stochastic pilot had 393/1024 successes in its last cohort; 20 PPO update batches are insufficient evidence of convergence.",
+    "reward_incentive": "Finite success termination discards positive remaining-horizon rewards; verified failures outreturn successful matched scripts in 10/19 cases. Corrected before scaling."
+  },
+  "correction": "Reward-only ideal remaining-horizon success credit at completed dwell; no task, action, script, force, deadline, or reset changes.",
+  "next_action": "Fresh 22-cohort uniform v3 run; 10,326,272 charged transitions, then fixed deterministic development competence evaluation.",
+  "checks": {
+    "cpu_tests": 162,
+    "ruff": "passed",
+    "bare_pytest_launcher": "Attempted; Windows Application Control blocked pytest.exe. Same environment python -m pytest passed.",
+    "simulator_control_requests": 168,
+    "simulator_charged_transitions": 77007
+  },
+  "scope_and_limitations": [
+    "One frozen trained network, one paired development seed; not a unique causal explanation for all learning weakness.",
+    "Reward correction removes observed incentive counterexamples and preserves all physical trajectories, but does not itself improve learned behavior.",
+    "The original pilot remains 0/84 deterministic development completions; no final seeds or combinations opened.",
+    "Longer training and the predeclared competence gate have not yet run."
+  ]
+}

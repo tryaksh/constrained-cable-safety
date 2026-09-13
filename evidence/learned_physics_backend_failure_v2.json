@@ -1,0 +1,33 @@
+{
+  "schema": 1,
+  "status": "preserved_failed_fine_initialization",
+  "research_result": false,
+  "failed_run": "artifacts/assembly/learned_physics_v2_r01/240_prefix_learned",
+  "source_commit": "15264c6",
+  "error": "Exception: Failed to set DOF actuation forces in backend",
+  "diagnostic": "PhysX reported all physics information deleted and simulationView invalidated immediately after set_simulation_dt. Initialization, cached sensor states and RNG checks passed, but cached tensors did not establish that backend views remained usable. Failure occurred on the first scene.write_data_to_sim before any live native step.",
+  "requested_jobs": 28,
+  "completed_job_rollouts": 0,
+  "run_status": "artifact_check_failed",
+  "process_returncode": 0,
+  "returncode_limitation": "Isaac shutdown returned zero despite the failed report; artifact-content checks correctly stopped the queue.",
+  "charged_reference_transitions": 234.5,
+  "initialization_physics_env_steps": 1876,
+  "job_physics_env_steps": 0,
+  "artifact_sha256": {
+    "artifacts/assembly/learned_physics_v2_r01/240_prefix_learned/manifest.json": "4ef820c3e7a38354969d4703267bf0d7a0107787398901d8eb78044c8dc5f444",
+    "artifacts/assembly/learned_physics_v2_r01/240_prefix_learned/validation/report.json": "2a89a6eeabed928ffa9d717669cf8f71ef980a132230e2bf9429e89a118ee9b6"
+  },
+  "resolution": "The installed PhysicsContext._step(render=False path) calls _physx_sim_interface.simulate(self.get_physics_dt(), current_time) then fetch_results. The new project wrapper performs those exact calls with an explicit dt. It does not mutate USD or recreate views. Scene metadata remains at 120 Hz; actual integration dt is separately recorded and checked against native callback time increments.",
+  "new_registration": "configs/learned_physics_validation_v3.json",
+  "prior_coarse_probes": {
+    "completed_runs": 3,
+    "charged_reference_transitions": 38503.5,
+    "scope": "Valid compatible 120 Hz probes; preserved and charged even though both resolutions are rerun under the new common backend wrapper."
+  },
+  "total_cost_before_v3": 38738.0,
+  "scope_and_limitations": [
+    "This is an implementation failure with no usable fine-physics trajectory. It supplies no evidence about learned/retry physics performance. All 28 failed-launch requests and full initialization cost remain recorded.",
+    "The new six-run implementation comparison is prospectively registered; no controller, reward, force, grasp, deadline, dwell, fault, seed, noise or final-test change."
+  ]
+}

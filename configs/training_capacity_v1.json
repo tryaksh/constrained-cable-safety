@@ -1,0 +1,32 @@
+{
+  "schema": 1,
+  "version": "training_capacity_v1",
+  "status": "registered_before_execution",
+  "purpose": "Bounded representative engineering capacity measurement; optimizer work is development cost, not a research training result.",
+  "seed": 170,
+  "num_envs": [1024, 2048],
+  "cohorts_per_size": 2,
+  "controls_per_cohort": 450,
+  "ppo_horizon": 128,
+  "ppo_mini_epochs": 4,
+  "ppo_minibatch": 512,
+  "learning_rate": 0.0001,
+  "expected_initialization_physics_steps_per_cohort": 67,
+  "reference_physics_steps_per_transition": 8,
+  "wall_limit_minutes_per_size": 25,
+  "runtime_target_minutes_per_size": 15,
+  "resource_guards": {"maximum_total_gpu_used_mib": 10240, "minimum_free_ram_mib": 4096},
+  "work_comparison": "Two full cohorts per size: 2048 has twice the rollout slots, initialization work and requested jobs. Actual active samples, optimizer steps, wall time and export bytes are measured; no equal-sample or learning-quality comparison is claimed.",
+  "initialization": "Fresh policy and Adam in each process; no existing checkpoint loaded and benchmark checkpoints never become research initializers.",
+  "task_contract": "Inherited frozen protocol_v4 physics, reward, observation, architecture and unclipped PPO. All failed and absorbing slots remain charged. Raw 20 N abort, physical held gravity, 30 s deadline and 0.5 s dwell unchanged.",
+  "diagnostic_export": "Full cases, initial validity, complete-job outcomes, terminal/control counts, model and optimizer per cohort; 450-step tensor traces for the first encountered case in each fault bin, matching the substantive training path.",
+  "scheduling_measurement": "Record wall time and allocated transitions after all jobs have terminated. No early exit, partial-slot reset or asynchronous reuse is enabled in this benchmark.",
+  "execution_order": [1024, 2048],
+  "stop_rule": "Run 2048 only after 1024 completes with valid artifacts and measured headroom. Stop on invalid initialization, nonfinite optimizer/state, wall/resource failure or cost mismatch; retain all partial artifacts and cost bounds.",
+  "scope_and_limitations": [
+    "Known timestep-sensitive physics remains unresolved; resource profiling does not pass a scientific gate or authorize a training campaign.",
+    "Two cohorts characterize early fresh-policy training, not mature-policy utilization or sustained multi-hour stability.",
+    "The same seed and sampler do not imply paired trajectories across environment counts.",
+    "No performance, recovery, equal-cost curriculum, hardware or final-test claim."
+  ]
+}

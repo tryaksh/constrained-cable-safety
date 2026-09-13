@@ -1,0 +1,610 @@
+{
+  "schema": 1,
+  "status": "verified_material_physics_sensitivity",
+  "research_result": false,
+  "recorded_at_utc": "2026-09-10T09:05:18.825082+00:00",
+  "registration": {
+    "path": "configs/learned_physics_validation_v3.json",
+    "sha256": "d350a808369602aec90b27624d1895c2fc9f09d17e689bdc2914e3bc474f1aac"
+  },
+  "checkpoint_sha256": "cee349b1b9283a66924294323f5c7bd8f5de98434be70ed19d8a07986f9eb532",
+  "final_prelaunch_commit": "8c17332c3cd91018c4455dd2a9927a5804d569eb",
+  "summary": {
+    "120_prefix_learned": {
+      "controller": "Frozen learned Gaussian mean",
+      "mode": "prefix_learned",
+      "whole_job": {
+        "requests": 28,
+        "completions": 25,
+        "outcomes": {
+          "success": 25,
+          "force_abort": 2,
+          "deadline": 1
+        },
+        "mean_seconds_per_request": 10.181249999999997,
+        "upstream_success_seen": 26,
+        "forbidden_events": 0
+      },
+      "nominal_completions": 4,
+      "nominal_requests": 4,
+      "actual_contact_stalls": 17,
+      "original_withdrawal_recoveries_all_jobs": 0,
+      "fixed_prefix_endpoint": {
+        "all_requested_jobs": 28,
+        "whole_job_completions": 25,
+        "prefix_script_completions": 3,
+        "prefix_failed_jobs": 1,
+        "active_at_handoff": 24,
+        "witnessed_stalls_active_at_handoff": 17,
+        "post_stall_completions": 16,
+        "post_stall_failures": 1,
+        "original_withdrawal_recoveries": 0,
+        "withdrawal_recoveries_after_handoff": 0,
+        "post_stall_outcomes": {
+          "deadline": 1,
+          "success": 16
+        }
+      }
+    },
+    "120_retry": {
+      "controller": "Unchanged scripted retry",
+      "mode": "retry",
+      "whole_job": {
+        "requests": 28,
+        "completions": 24,
+        "outcomes": {
+          "deadline": 3,
+          "success": 24,
+          "force_abort": 1
+        },
+        "mean_seconds_per_request": 17.60654761904762,
+        "upstream_success_seen": 24,
+        "forbidden_events": 0
+      },
+      "nominal_completions": 2,
+      "nominal_requests": 4,
+      "actual_contact_stalls": 22,
+      "original_withdrawal_recoveries_all_jobs": 19,
+      "fixed_prefix_endpoint": {
+        "all_requested_jobs": 28,
+        "whole_job_completions": 24,
+        "prefix_script_completions": 3,
+        "prefix_failed_jobs": 1,
+        "active_at_handoff": 24,
+        "witnessed_stalls_active_at_handoff": 17,
+        "post_stall_completions": 16,
+        "post_stall_failures": 1,
+        "original_withdrawal_recoveries": 19,
+        "withdrawal_recoveries_after_handoff": 16,
+        "post_stall_outcomes": {
+          "deadline": 1,
+          "success": 16
+        }
+      }
+    },
+    "120_direct_learned": {
+      "controller": "Frozen learned Gaussian mean",
+      "mode": "direct_learned",
+      "whole_job": {
+        "requests": 28,
+        "completions": 27,
+        "outcomes": {
+          "success": 27,
+          "force_abort": 1
+        },
+        "mean_seconds_per_request": 4.920535714285713,
+        "upstream_success_seen": 28,
+        "forbidden_events": 0
+      },
+      "nominal_completions": 4,
+      "nominal_requests": 4,
+      "actual_contact_stalls": 0,
+      "original_withdrawal_recoveries_all_jobs": 0
+    },
+    "240_prefix_learned": {
+      "controller": "Frozen learned Gaussian mean",
+      "mode": "prefix_learned",
+      "whole_job": {
+        "requests": 28,
+        "completions": 11,
+        "outcomes": {
+          "success": 11,
+          "force_abort": 17
+        },
+        "mean_seconds_per_request": 4.424107142857143,
+        "upstream_success_seen": 15,
+        "forbidden_events": 0
+      },
+      "nominal_completions": 1,
+      "nominal_requests": 4,
+      "actual_contact_stalls": 7,
+      "original_withdrawal_recoveries_all_jobs": 0,
+      "fixed_prefix_endpoint": {
+        "all_requested_jobs": 28,
+        "whole_job_completions": 11,
+        "prefix_script_completions": 3,
+        "prefix_failed_jobs": 13,
+        "active_at_handoff": 12,
+        "witnessed_stalls_active_at_handoff": 5,
+        "post_stall_completions": 3,
+        "post_stall_failures": 2,
+        "original_withdrawal_recoveries": 0,
+        "withdrawal_recoveries_after_handoff": 0,
+        "post_stall_outcomes": {
+          "force_abort": 2,
+          "success": 3
+        }
+      }
+    },
+    "240_retry": {
+      "controller": "Unchanged scripted retry",
+      "mode": "retry",
+      "whole_job": {
+        "requests": 28,
+        "completions": 12,
+        "outcomes": {
+          "success": 12,
+          "force_abort": 16
+        },
+        "mean_seconds_per_request": 6.1604166666666655,
+        "upstream_success_seen": 14,
+        "forbidden_events": 0
+      },
+      "nominal_completions": 3,
+      "nominal_requests": 4,
+      "actual_contact_stalls": 8,
+      "original_withdrawal_recoveries_all_jobs": 4,
+      "fixed_prefix_endpoint": {
+        "all_requested_jobs": 28,
+        "whole_job_completions": 12,
+        "prefix_script_completions": 3,
+        "prefix_failed_jobs": 13,
+        "active_at_handoff": 12,
+        "witnessed_stalls_active_at_handoff": 5,
+        "post_stall_completions": 2,
+        "post_stall_failures": 3,
+        "original_withdrawal_recoveries": 4,
+        "withdrawal_recoveries_after_handoff": 2,
+        "post_stall_outcomes": {
+          "force_abort": 3,
+          "success": 2
+        }
+      }
+    },
+    "240_direct_learned": {
+      "controller": "Frozen learned Gaussian mean",
+      "mode": "direct_learned",
+      "whole_job": {
+        "requests": 28,
+        "completions": 20,
+        "outcomes": {
+          "success": 20,
+          "force_abort": 8
+        },
+        "mean_seconds_per_request": 3.533630952380953,
+        "upstream_success_seen": 22,
+        "forbidden_events": 0
+      },
+      "nominal_completions": 4,
+      "nominal_requests": 4,
+      "actual_contact_stalls": 0,
+      "original_withdrawal_recoveries_all_jobs": 0
+    }
+  },
+  "pairing": {
+    "120": {
+      "direct": {
+        "requests": 28,
+        "both_complete": 23,
+        "learned_only": 4,
+        "retry_only": 1,
+        "neither_complete": 0
+      },
+      "prefix": {
+        "requests": 28,
+        "both_complete": 22,
+        "learned_only": 3,
+        "retry_only": 2,
+        "neither_complete": 1
+      }
+    },
+    "240": {
+      "direct": {
+        "requests": 28,
+        "both_complete": 10,
+        "learned_only": 10,
+        "retry_only": 2,
+        "neither_complete": 6
+      },
+      "prefix": {
+        "requests": 28,
+        "both_complete": 9,
+        "learned_only": 2,
+        "retry_only": 3,
+        "neither_complete": 14
+      }
+    }
+  },
+  "timestep_sensitivity": {
+    "prefix_learned": {
+      "completion_delta_240_minus_120": -14,
+      "outcome_changed": 15,
+      "eligibility_changed": 12,
+      "common_eligible": 5,
+      "post_stall_120_on_common": 5,
+      "post_stall_240_on_common": 3
+    },
+    "retry": {
+      "completion_delta_240_minus_120": -12,
+      "outcome_changed": 17,
+      "eligibility_changed": 12,
+      "common_eligible": 5,
+      "post_stall_120_on_common": 5,
+      "post_stall_240_on_common": 2
+    }
+  },
+  "direct_completion_change": -7,
+  "force_summary": {
+    "120_prefix_learned": {
+      "force_aborts": 2,
+      "during_scripted_prefix": 1,
+      "between_external_sensor_ticks": 0,
+      "with_fixture_contact_at_abort": 2,
+      "filtered_force_at_abort_min_max_n": [
+        5.036808490753174,
+        6.855529308319092
+      ]
+    },
+    "120_retry": {
+      "force_aborts": 1,
+      "during_scripted_prefix": 1,
+      "between_external_sensor_ticks": 0,
+      "with_fixture_contact_at_abort": 1,
+      "filtered_force_at_abort_min_max_n": [
+        6.855529308319092,
+        6.855529308319092
+      ]
+    },
+    "120_direct_learned": {
+      "force_aborts": 1,
+      "during_scripted_prefix": 0,
+      "between_external_sensor_ticks": 0,
+      "with_fixture_contact_at_abort": 1,
+      "filtered_force_at_abort_min_max_n": [
+        4.889981269836426,
+        4.889981269836426
+      ]
+    },
+    "240_prefix_learned": {
+      "force_aborts": 17,
+      "during_scripted_prefix": 13,
+      "between_external_sensor_ticks": 9,
+      "with_fixture_contact_at_abort": 17,
+      "filtered_force_at_abort_min_max_n": [
+        0.09188184142112732,
+        12.913680076599121
+      ]
+    },
+    "240_retry": {
+      "force_aborts": 16,
+      "during_scripted_prefix": 13,
+      "between_external_sensor_ticks": 6,
+      "with_fixture_contact_at_abort": 16,
+      "filtered_force_at_abort_min_max_n": [
+        0.09188184142112732,
+        12.913680076599121
+      ]
+    },
+    "240_direct_learned": {
+      "force_aborts": 8,
+      "during_scripted_prefix": 0,
+      "between_external_sensor_ticks": 2,
+      "with_fixture_contact_at_abort": 8,
+      "filtered_force_at_abort_min_max_n": [
+        0.14002948999404907,
+        7.876681804656982
+      ]
+    }
+  },
+  "free_space_hold_control": {
+    "interval_s": [
+      0.5,
+      1.0
+    ],
+    "cases": 28,
+    "fine_to_coarse_median_force_ratio_min_median_max": [
+      0.8303595705278483,
+      1.0020334983777555,
+      1.047628115173434
+    ],
+    "interpretation": "Free-space hold loads are comparable and native impulse conversion passes; this argues against a simple constant force-scale error. It does not prove dynamic force calibration or contact convergence."
+  },
+  "verification": {
+    "native_and_paired_checks_passed": 357,
+    "provenance_checks": {
+      "all_final_sources_clean": true,
+      "same_final_prelaunch_commit": true,
+      "same_exact_archived_sources": true,
+      "same_pinned_upstream": true,
+      "same_installed_source": true,
+      "same_frozen_checkpoint": true,
+      "same_initialization_configuration": true,
+      "failed_backend_evidence_unchanged": true,
+      "all_ten_attempts_charged": true
+    },
+    "maximum_captured_initial_state_difference": 0.0,
+    "paired_report": {
+      "path": "artifacts/assembly/learned_physics_v3_r01/paired_verification.json",
+      "sha256": "d222cd10c4e36b7ce04b4f133478f0c4b4ed398d6aa633464072e3f8cd8ec2cf"
+    },
+    "force_review": {
+      "path": "artifacts/assembly/learned_physics_v3_r01/force_review/force_aborts.json",
+      "sha256": "aa0a1fc26139eb7a36e4bfafce30492cfbf42b917480d581847a293130b9817b"
+    },
+    "analysis_manifest": {
+      "path": "artifacts/assembly/learned_physics_v3_r01/force_review/analysis_manifest.json",
+      "sha256": "e5012cc137c9fa3ef16f5a55bd36226299a23e2f020337ce61ad498310ad41d4"
+    }
+  },
+  "resources": [
+    {
+      "run": "120_prefix_learned",
+      "wall_s": 165.43800000000192,
+      "rollout_wall_s": 154.73400000000402,
+      "peak_gpu_mib": 4393,
+      "minimum_free_ram_mib": 11513.3046875,
+      "sustained_control_transitions_per_s_min_max": [
+        74.35602372312114,
+        90.0514579760436
+      ],
+      "native_physics_env_steps": 100800,
+      "active_control_transitions": 4288,
+      "absorbing_control_transitions": 8312,
+      "charged_reference_transitions": 12834.5
+    },
+    {
+      "run": "120_retry",
+      "wall_s": 166.65600000000268,
+      "rollout_wall_s": 155.65600000000268,
+      "peak_gpu_mib": 4413,
+      "minimum_free_ram_mib": 11539.390625,
+      "sustained_control_transitions_per_s_min_max": [
+        73.9501716700626,
+        87.98575468734867
+      ],
+      "native_physics_env_steps": 100800,
+      "active_control_transitions": 7408,
+      "absorbing_control_transitions": 5192,
+      "charged_reference_transitions": 12834.5
+    },
+    {
+      "run": "120_direct_learned",
+      "wall_s": 167.26499999999942,
+      "rollout_wall_s": 156.98500000000058,
+      "peak_gpu_mib": 4393,
+      "minimum_free_ram_mib": 11693.0546875,
+      "sustained_control_transitions_per_s_min_max": [
+        73.64544976326519,
+        87.5547217010876
+      ],
+      "native_physics_env_steps": 100800,
+      "active_control_transitions": 2079,
+      "absorbing_control_transitions": 10521,
+      "charged_reference_transitions": 12834.5
+    },
+    {
+      "run": "240_prefix_learned",
+      "wall_s": 293.8600000000006,
+      "rollout_wall_s": 282.9369999999981,
+      "peak_gpu_mib": 4431,
+      "minimum_free_ram_mib": 11755.5859375,
+      "sustained_control_transitions_per_s_min_max": [
+        41.93500074884893,
+        47.830543218317494
+      ],
+      "native_physics_env_steps": 201600,
+      "active_control_transitions": 1871,
+      "absorbing_control_transitions": 10729,
+      "charged_reference_transitions": 25434.5
+    },
+    {
+      "run": "240_retry",
+      "wall_s": 292.95300000000134,
+      "rollout_wall_s": 281.68700000000536,
+      "peak_gpu_mib": 4431,
+      "minimum_free_ram_mib": 11541.7578125,
+      "sustained_control_transitions_per_s_min_max": [
+        41.67493550307047,
+        48.916841369675375
+      ],
+      "native_physics_env_steps": 201600,
+      "active_control_transitions": 2602,
+      "absorbing_control_transitions": 9998,
+      "charged_reference_transitions": 25434.5
+    },
+    {
+      "run": "240_direct_learned",
+      "wall_s": 294.0460000000021,
+      "rollout_wall_s": 283.109000000004,
+      "peak_gpu_mib": 4431,
+      "minimum_free_ram_mib": 11459.9140625,
+      "sustained_control_transitions_per_s_min_max": [
+        41.44873186618802,
+        47.74354893712518
+      ],
+      "native_physics_env_steps": 201600,
+      "active_control_transitions": 1496,
+      "absorbing_control_transitions": 11104,
+      "charged_reference_transitions": 25434.5
+    }
+  ],
+  "all_attempts": [
+    {
+      "run_id": "learned_physics_v1_r01/120_prefix_learned",
+      "status": "completed",
+      "source_commit": "d36fffaea7c35d67d774c76174ac90ac8f3ec4ef",
+      "manifest_sha256": "ae99d422baaf3bd4457de96fbe45f367de963f9f721e3292962eacde8beb5546",
+      "requested_jobs": 28,
+      "jobs_with_terminal_records": 28,
+      "failed_backend_requests": 0,
+      "charged_reference_transitions": 12834.5,
+      "charged_control_equivalent_transitions": 12834.5,
+      "initialization_physics_env_steps": 1876,
+      "rollout_physics_env_steps": 100800
+    },
+    {
+      "run_id": "learned_physics_v2_r01/120_direct_learned",
+      "status": "completed",
+      "source_commit": "15264c63fe9f0bffd6583cea248842d9646a1b9d",
+      "manifest_sha256": "e8e0847f99afe79f450e85544fd0df1b6fb2a15a0ac401825f832550228089d8",
+      "requested_jobs": 28,
+      "jobs_with_terminal_records": 28,
+      "failed_backend_requests": 0,
+      "charged_reference_transitions": 12834.5,
+      "charged_control_equivalent_transitions": 12834.5,
+      "initialization_physics_env_steps": 1876,
+      "rollout_physics_env_steps": 100800
+    },
+    {
+      "run_id": "learned_physics_v2_r01/120_retry",
+      "status": "completed",
+      "source_commit": "15264c63fe9f0bffd6583cea248842d9646a1b9d",
+      "manifest_sha256": "5c60349c527a236edc83ddb6a8177e3f5620b7f8c389971b900cf7740220ee1c",
+      "requested_jobs": 28,
+      "jobs_with_terminal_records": 28,
+      "failed_backend_requests": 0,
+      "charged_reference_transitions": 12834.5,
+      "charged_control_equivalent_transitions": 12834.5,
+      "initialization_physics_env_steps": 1876,
+      "rollout_physics_env_steps": 100800
+    },
+    {
+      "run_id": "learned_physics_v2_r01/240_prefix_learned",
+      "status": "artifact_check_failed",
+      "source_commit": "15264c63fe9f0bffd6583cea248842d9646a1b9d",
+      "manifest_sha256": "4ef820c3e7a38354969d4703267bf0d7a0107787398901d8eb78044c8dc5f444",
+      "requested_jobs": 28,
+      "jobs_with_terminal_records": 0,
+      "failed_backend_requests": 28,
+      "charged_reference_transitions": 234.5,
+      "charged_control_equivalent_transitions": 234.5,
+      "initialization_physics_env_steps": 1876,
+      "rollout_physics_env_steps": 0
+    },
+    {
+      "run_id": "learned_physics_v3_r01/120_direct_learned",
+      "status": "completed",
+      "source_commit": "8c17332c3cd91018c4455dd2a9927a5804d569eb",
+      "manifest_sha256": "2d16c58d0a0e3dc4df04063922184d35581ceec966acab9a7295717edac92168",
+      "requested_jobs": 28,
+      "jobs_with_terminal_records": 28,
+      "failed_backend_requests": 0,
+      "charged_reference_transitions": 12834.5,
+      "charged_control_equivalent_transitions": 12834.5,
+      "initialization_physics_env_steps": 1876,
+      "rollout_physics_env_steps": 100800
+    },
+    {
+      "run_id": "learned_physics_v3_r01/120_prefix_learned",
+      "status": "completed",
+      "source_commit": "8c17332c3cd91018c4455dd2a9927a5804d569eb",
+      "manifest_sha256": "cb74b74c6b7d64e376cb1907d1c3bacc630fc82100943103bee39b8f4beb1d99",
+      "requested_jobs": 28,
+      "jobs_with_terminal_records": 28,
+      "failed_backend_requests": 0,
+      "charged_reference_transitions": 12834.5,
+      "charged_control_equivalent_transitions": 12834.5,
+      "initialization_physics_env_steps": 1876,
+      "rollout_physics_env_steps": 100800
+    },
+    {
+      "run_id": "learned_physics_v3_r01/120_retry",
+      "status": "completed",
+      "source_commit": "8c17332c3cd91018c4455dd2a9927a5804d569eb",
+      "manifest_sha256": "d2ef79ad6886695517a99633ef2d2ff612f1c03bc9c8691effbe78fe5c8738c3",
+      "requested_jobs": 28,
+      "jobs_with_terminal_records": 28,
+      "failed_backend_requests": 0,
+      "charged_reference_transitions": 12834.5,
+      "charged_control_equivalent_transitions": 12834.5,
+      "initialization_physics_env_steps": 1876,
+      "rollout_physics_env_steps": 100800
+    },
+    {
+      "run_id": "learned_physics_v3_r01/240_direct_learned",
+      "status": "completed",
+      "source_commit": "8c17332c3cd91018c4455dd2a9927a5804d569eb",
+      "manifest_sha256": "d75c263376fc340d03989189c1554c54735b892d9839c61aeee1fd8f32604d71",
+      "requested_jobs": 28,
+      "jobs_with_terminal_records": 28,
+      "failed_backend_requests": 0,
+      "charged_reference_transitions": 25434.5,
+      "charged_control_equivalent_transitions": 12834.5,
+      "initialization_physics_env_steps": 1876,
+      "rollout_physics_env_steps": 201600
+    },
+    {
+      "run_id": "learned_physics_v3_r01/240_prefix_learned",
+      "status": "completed",
+      "source_commit": "8c17332c3cd91018c4455dd2a9927a5804d569eb",
+      "manifest_sha256": "ff8c20ebec19624139b9df925a37144566f646a0b305d6ccc3fbb2661f4c1b50",
+      "requested_jobs": 28,
+      "jobs_with_terminal_records": 28,
+      "failed_backend_requests": 0,
+      "charged_reference_transitions": 25434.5,
+      "charged_control_equivalent_transitions": 12834.5,
+      "initialization_physics_env_steps": 1876,
+      "rollout_physics_env_steps": 201600
+    },
+    {
+      "run_id": "learned_physics_v3_r01/240_retry",
+      "status": "completed",
+      "source_commit": "8c17332c3cd91018c4455dd2a9927a5804d569eb",
+      "manifest_sha256": "ec1e3322899db48c92fb2640b6319ac8cb9ebd1c047f823ca4b2d703681b6119",
+      "requested_jobs": 28,
+      "jobs_with_terminal_records": 28,
+      "failed_backend_requests": 0,
+      "charged_reference_transitions": 25434.5,
+      "charged_control_equivalent_transitions": 12834.5,
+      "initialization_physics_env_steps": 1876,
+      "rollout_physics_env_steps": 201600
+    }
+  ],
+  "cost": {
+    "final_six_run_reference_transitions": 114807.0,
+    "prior_probe_reference_transitions": 38738.0,
+    "session_charged_reference_transitions": 153545.0,
+    "session_control_time_equivalent_transitions": 115745.0,
+    "cumulative_tracked_reference_transition_lower_bound": 24995215.25,
+    "training_transitions": 0,
+    "final_validation_requests": 168,
+    "all_attempted_requests": 280,
+    "prior_complete_probe_requests": 84,
+    "failed_backend_requests": 28,
+    "unit": "Eight executed native physics environment steps per reference transition. Initializations, absorbing slots and all failed attempts included; old cumulative accounting remains a lower bound."
+  },
+  "decision": {
+    "material_sensitivity": true,
+    "training_screen_ready": false,
+    "original_competence_gate_passed": false,
+    "reason": "Two resolutions establish sensitivity only. Material changes require a bounded physics investigation; this worker does not authorize training."
+  },
+  "superseded_interpretation": {
+    "field": "direct_learned reports' post_stall_summary.prefix_script_completions",
+    "correction": "The shared diagnostic helper uses a hypothetical four-second boundary in direct mode. Those early completions were produced by learned actions, not a script. This evidence reports direct whole jobs and actual witness incidence, and excludes that inapplicable field; saved reports remain unchanged.",
+    "pre_outcome_scope_note": "artifacts/assembly/learned_physics_v2_r01/reporting_scope_note.json"
+  },
+  "scope_and_limitations": [
+    "One frozen model from one training seed; one previously used development seed. A bounded diagnostic, not a final test or reliability precision estimate.",
+    "The 120 Hz reference must first reproduce the confirmed completion-reward and observation/RNG path; the older scripted-only adapter is not a reference for attributing timestep effects.",
+    "Both resolutions independently initialize at 120 Hz and then use explicit native integration dt. This conditions on coarse initialization and retains its solver history; it does not validate fully refined initialization. Scene timing metadata remains coarse and is not evidence of actual dt; native passed dt and callback times are recorded.",
+    "Native raw 20 N abort is an experimental simulated stop condition, not a force ceiling or hardware safety certification. Implicit gripper integration changes with physics timestep.",
+    "Whole-job completion, mechanism-neutral post-stall completion and the original withdrawal witness remain distinct. Retry reused across assays is not an independent duplicate cohort.",
+    "No adaptive/uniform/fixed training, controller tuning, final-test access, gear, camera perception, learned pickup, hardware transfer or convergence claim. Original failed competence gate remains unchanged.",
+    "The complete validation is six fresh common-worker runs. Three prior complete coarse probes and one failed fine initialization are preserved and charged separately. Repeated cases and different controllers must not be pooled into a deployment reliability rate.",
+    "Most additional prefix failures precede learned control. Conditional exposure changes from 17 to five jobs; on the same five cases, coarse learned/retry each complete five while fine learned/retry complete three/two.",
+    "Short peaks and actor filtering do not excuse a native force abort. Lower mean time at 240 Hz includes early failures and is not a throughput improvement.",
+    "No hardware calibration, contact convergence, adaptive-curriculum benefit or publication-worthiness is established. Training remains blocked by material physics sensitivity."
+  ],
+  "next_action": "Preregister and execute a bounded 120/240/480 Hz contact-impact diagnostic on fixed development cases with the frozen scripted prefix, 120 Hz external servo/sensors and native raw 20 N aborts. Compare native force peaks, impulses, contact durations and inter-sensor peaks to identify the source of timestep sensitivity. Keep controller settings, geometry, gravity and the failed competence gate unchanged; do not launch the training screen or open final tests."
+}

@@ -1,0 +1,107 @@
+{
+  "schema": 1,
+  "created_at_utc": "2026-09-08T04:22:01.059549+00:00",
+  "status": "source_audit_complete_training_integration_unverified",
+  "research_result": false,
+  "upstream_revision": "37ddf626871758333d6ed89cf64ad702aef127d0",
+  "rl_games_revision_from_environment_lock": "6b3534f29568158e9e29ec8bf83cc88fce5f0cae",
+  "source_sha256": {
+    ".deps/IsaacLab/source/isaaclab_tasks/isaaclab_tasks/direct/forge/forge_env.py": "492d52568719a35cd434fe4269b2cd5cb9b69c6750bc049f255130e47d38fe1c",
+    ".deps/IsaacLab/source/isaaclab_tasks/isaaclab_tasks/direct/factory/factory_env.py": "9e2d6b0b3cfb97e8b691947c6ecf312e9b3b8adf563f0d4148a3c7102e98256a",
+    ".deps/IsaacLab/source/isaaclab_tasks/isaaclab_tasks/direct/forge/agents/rl_games_ppo_cfg.yaml": "80ab97a56bacbe5eefeb4874f8a26b13bd4c8701bc1759a38b2e08a716778e8c",
+    ".deps/IsaacLab/source/isaaclab_rl/isaaclab_rl/rl_games/rl_games.py": "89a67123fb4b8fca6e496c3e1fc91e7e124badfd9e00e0c935dd1c6e8cc5f33d",
+    ".deps/IsaacLab/source/isaaclab/isaaclab/envs/direct_rl_env.py": "28b64cfcbfaf6310ad8a2bb2851e2fc08e58971c83ea34aa2753a4f7f86f5519",
+    ".deps/IsaacLab/source/isaaclab/isaaclab/envs/direct_rl_env_cfg.py": "b6edf16887581ff07ae92317c3d71cbe2f0cfada06fda861926a3368d4c89b14",
+    ".deps/IsaacLab/scripts/reinforcement_learning/rl_games/train.py": "f7cba46273ce272c842d7ce71303a988cb7e1d46b4c5a94f44858fffb8c6091b",
+    "src/assembly_recovery/peg_env.py": "0fe0db0879ff86631c4bd2a0593c3475c71b37a28e5a9f571d87b16e55acc5f1",
+    "src/assembly_recovery/reward_ledger.py": "2813b287ad2b3286af8a498695023c706a73a99a21685d5416ea37f56c4f3a8c",
+    "C:/isaac-sim/kit/python/Lib/site-packages/rl_games/common/a2c_common.py": "3941b19987e70565790353b43e478ae4f2e347fb41aa0439f58921b45ec17119",
+    "C:/isaac-sim/kit/python/Lib/site-packages/rl_games/algos_torch/a2c_continuous.py": "4f282404035a29d8441fc631d786099b29a5f27cdc477f7b766d2eb02fef3c82"
+  },
+  "actor_information": {
+    "vector_scalars": 24,
+    "routing": "RlGamesVecEnvWrapper defaults policy -> obs, critic -> states. a2c_common.get_action_values runs actor on obs only, then replaces values with the separate central critic fed states. No direct privileged-state actor input found in these source paths.",
+    "allowed_information": "Noisy relative fingertip XYZ/quaternion, corrected finite-difference velocities, noisy wrist force, reward force threshold, previous applied actions; ideal robot proprioception in servo.",
+    "runtime_evidence": "artifacts\\assembly\\peg_realign_v2_10070_retry\\probe\\report.json",
+    "runtime_report_sha256": "32a89cd3c1e6796a4d2e35410b503ea7e8fa879eaad4a6d93b679445883cebea",
+    "information_probe": {
+      "hidden_pose_actor_delta": 0.0,
+      "hidden_pose_critic_delta": 0.01000000536441803,
+      "same_estimate_actor_delta": 5.960464477539063e-08,
+      "same_estimate_target_delta": 5.960464477539063e-08,
+      "passed": true,
+      "scope": "Specific actor and action-frame pathways; critic has privileged state. Ideal robot proprioception remains."
+    },
+    "limitations": "Actor-only scripted replay and cached-target perturbation pass. An instantiated study PPO wrapper/network has not been exercised; the training actor-information gate stays false."
+  },
+  "action_transforms": {
+    "upstream_wrapper_action_clamp": [
+      -1,
+      1
+    ],
+    "upstream_obs_clip": "infinity from train.py default; observations normalized by PPO",
+    "position_bounds_m": [
+      0.05,
+      0.05,
+      0.05
+    ],
+    "ema_range": [
+      0.025,
+      0.1
+    ],
+    "position_error_clip_randomized_m": [
+      0.016,
+      0.025
+    ],
+    "roll_pitch_actions": "disabled",
+    "yaw_target_range_degrees": [
+      -180,
+      90
+    ],
+    "target_frame": "fixed_pos_obs_frame + init_fixed_pos_obs_noise, identical estimate in observations and action transforms",
+    "servo_clipping": "Position/orientation error clipped against ideal measured robot pose; no hidden true fixture target found. Controller gains and dead zones are shared nuisance randomization."
+  },
+  "reward": {
+    "resolved_scales": {
+      "action_penalty_ee_scale": 0.0,
+      "action_grad_penalty_scale": 0.0,
+      "action_penalty_asset_scale": 0.001,
+      "contact_penalty_scale": 0.2,
+      "delay_until_ratio": 0.25
+    },
+    "action_change_coefficient_verified_zero": true,
+    "decision": "Keep existing reward unchanged; the recovered case-1 variant returns more than its matched persistent insertion. No matched evidence justifies a shared correction.",
+    "cohort_dependency": "Success prediction penalty becomes active when current cohort success fraction >= 0.25 and stays latched on; it is initialized at environment construction, not cleared by Forge _reset_buffers. Batch/cohort composition and terminal holds can influence activation. Record this before selecting a training batching/terminal convention."
+  },
+  "upstream_training_terminal_behavior": {
+    "episode_length_s": 10.0,
+    "factory_get_dones": "Returns the same full-cohort horizon mask as both terminated and truncated. It does not implement project success dwell, force abort or grasp-loss terminals.",
+    "direct_env_step_order": "8 physics steps -> dones -> reward -> reset ended cohort -> interval events -> next observations",
+    "finite_horizon_default": false,
+    "value_bootstrap": true,
+    "wrapper_timeout_path": "For is_finite_horizon=False, extras.time_outs=truncated.",
+    "learner_bootstrap": "a2c_common.py lines 777-778 and 852-853 add gamma * pre-step values * time_outs to shaped rewards, including recurrent rollouts."
+  },
+  "current_project_evaluator_behavior": {
+    "job_deadline_s": 30,
+    "success_dwell_s": 0.5,
+    "raw_wrist_force_budget_n": 20,
+    "physics_dt_s": 0.008333333333333333,
+    "automatic_done": "PegStudyEnv returns false done masks and holds completed jobs until external finalization. Feeding it directly to PPO would omit finite-job terminal signals and continue upstream rewards.",
+    "reward_cutoff": "Offline ledger includes control endpoints at/before evaluator terminal step, discards the partial terminal interval and all later endpoints; absorbing zero, no bootstrap.",
+    "partial_interval_max_omission_s": 0.058333333333333334,
+    "training_implemented": false
+  },
+  "required_before_learning": [
+    "Implement a finite-job training adapter with real done signals, recurrent-state handling and full-cohort initialization only between jobs. Include all absorbing holds/initialization/probe/mining costs in declared transition accounting.",
+    "Choose and verify terminal partial-control-step reward accounting consistently for training and evaluation; preserve these existing endpoint-only records and rerun matched returns if the convention changes.",
+    "Disable value bootstrap at the finite job deadline and all failure/success terminal states. Verify GAE/return behavior against synthetic terminal transitions and a bounded actual simulator wrapper run.",
+    "Exercise the instantiated PPO actor/critic routing and action transforms with privileged-state perturbation controls.",
+    "Keep fixed reward formula/scales, architecture, tuning budget, 25% nominal share and checkpoint selection by declared transitions; record cohort-latch semantics and freeze the protocol before long training."
+  ],
+  "scope_and_limitations": [
+    "Local pinned source audit plus resolved configuration and scripted information probes; not a trained policy or verified study-training implementation.",
+    "No simulator or training launch was needed for this audit; existing run evidence is referenced by hash.",
+    "Finite-job integration remains an explicit blocking gate for long training."
+  ]
+}

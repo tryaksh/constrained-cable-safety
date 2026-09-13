@@ -1,4 +1,4 @@
-﻿"""CPU contracts for finite robot actuation and invariant cable material setup."""
+"""CPU contracts for finite robot actuation and invariant cable material setup."""
 
 import sys
 import xml.etree.ElementTree as ET
