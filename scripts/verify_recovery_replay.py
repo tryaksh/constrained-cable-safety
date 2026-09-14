@@ -72,14 +72,28 @@ def verify_replay(replay: dict, inspector: RecoveryInspector) -> dict:
                            "supervisor": case["supervisor"], "passes": not mismatch,
                            "mismatches": mismatch})
     source_verified = bool(replay["verification"]["reproduces_original"])
+    selection = replay["provenance"]["selected_cases"]
+    case_ids = [case["request"] for case in replay["cases"]]
+    coverage_mismatches = []
+    if case_ids != selection or len(set(case_ids)) != len(case_ids):
+        coverage_mismatches.append("case selection differs from prelaunch")
+    if replay["verification"]["decisions"] != len(checks):
+        coverage_mismatches.append("decision count differs from capture verification")
+    if replay["verification"]["cases"] != len(case_ids):
+        coverage_mismatches.append("case count differs from capture verification")
+    for case in replay["cases"]:
+        steps = [step["step"] for step in case["decisions"]]
+        if steps != list(range(len(steps))):
+            coverage_mismatches.append(f"nonsequential decisions: {case['request']}")
     return {
         "schema": 1,
-        "status": "verified" if source_verified and checks and all(row["passes"] for row in checks)
-                  else "FAILED",
+        "status": "verified" if source_verified and checks and not coverage_mismatches
+                  and all(row["passes"] for row in checks) else "FAILED",
         "cases": len(replay["cases"]),
         "decisions": len(checks),
         "mismatched_decisions": sum(not row["passes"] for row in checks),
         "source_replays_verified": source_verified,
+        "coverage_mismatches": coverage_mismatches,
         "absolute_numerical_tolerance": 1e-12,
         "checks": checks,
         "scope": "Software parity on a fixed nine-request replay selection. The original "
