@@ -1,0 +1,232 @@
+{
+ "schema": 1,
+ "id": "showcase_demo_v9",
+ "stage": "D",
+ "created_on": "2026-09-13",
+ "status": "recorded_decision_states",
+ "what_this_is": "Three recorded estimates, one per declared error level, taken at the FIRST repair decision of the registered five-clip job RC1_l15_compliant4000_m0_<level>_conservative_r0. They exist so scripts/try_the_safety_check.py can show the shipped safety layer deciding a real move without a simulator installed. Not a study result and not a new measurement.",
+ "why_it_is_committed": "The safety layer needs numpy and nothing heavier, but the state it judges comes out of MuJoCo. Committing three states is what makes the check runnable on a plain checkout. Each one is the state the block itself held at that decision, not a reconstruction.",
+ "how_it_was_taken": "scripts/evaluate_cable_routing_v6.run_case was run on the registered request expanded by cable_workbench_v7.WorkbenchSession, and the first dict returned by evaluate_cable_perception_v4.observed_decision_state was kept. Only the fields the filter and this demonstration read are stored; the estimated 24-point centreline and the occlusion weights are not, because no rule here reads them.",
+ "cross_check": {
+  "what": "The C1 headroom these states imply must equal the headroom the committed job result recorded at its first decision, to nine decimal places.",
+  "record": "artifacts/showcase/tool.json",
+  "field": "checks[2].expected.c1_headroom_series_m[0]",
+  "checked_by": "scripts/try_the_safety_check.py, on every run"
+ },
+ "scope": "One rig, one service loop, one port mount, one mounting offset, one repeat, and the first decision of each. What the fitted rule allows from geometry, which is not what the physics permits: the study's held-out false-approval rate is the measure of how often those differ. Simulation only; no hardware claim.",
+ "safety_filter": {
+  "fit": "evidence/cable_perception_v4.json",
+  "contract": "configs/cable_perception_v4.json",
+  "base": "configs/cable_recovery_task_v2.json",
+  "arm": "B0plus, the analytic budget carrying a margin sized from the declared estimator covariance",
+  "fitted_on": "single-clip layouts. It has never seen a five-clip rig, which is the point."
+ },
+ "candidate_actions": [
+  {
+   "retreat_m": 0.0,
+   "bearing_rad": 0.0,
+   "excursion_m": 0.0,
+   "speed_m_per_s": 0.02
+  },
+  {
+   "retreat_m": 0.03,
+   "bearing_rad": 0.0,
+   "excursion_m": 0.0,
+   "speed_m_per_s": 0.02
+  },
+  {
+   "retreat_m": 0.06,
+   "bearing_rad": 0.0,
+   "excursion_m": 0.0,
+   "speed_m_per_s": 0.02
+  },
+  {
+   "retreat_m": 0.08,
+   "bearing_rad": 0.0,
+   "excursion_m": 0.0,
+   "speed_m_per_s": 0.02
+  },
+  {
+   "retreat_m": 0.1,
+   "bearing_rad": 0.0,
+   "excursion_m": 0.0,
+   "speed_m_per_s": 0.02
+  },
+  {
+   "retreat_m": 0.06,
+   "bearing_rad": 0.0,
+   "excursion_m": 0.03,
+   "speed_m_per_s": 0.02
+  },
+  {
+   "retreat_m": 0.06,
+   "bearing_rad": 3.141593,
+   "excursion_m": 0.03,
+   "speed_m_per_s": 0.02
+  },
+  {
+   "retreat_m": 0.06,
+   "bearing_rad": 1.570796,
+   "excursion_m": 0.03,
+   "speed_m_per_s": 0.02
+  },
+  {
+   "retreat_m": 0.06,
+   "bearing_rad": 4.712389,
+   "excursion_m": 0.03,
+   "speed_m_per_s": 0.02
+  },
+  {
+   "retreat_m": 0.09,
+   "bearing_rad": 0.0,
+   "excursion_m": 0.03,
+   "speed_m_per_s": 0.02
+  },
+  {
+   "retreat_m": 0.09,
+   "bearing_rad": 3.141593,
+   "excursion_m": 0.03,
+   "speed_m_per_s": 0.02
+  },
+  {
+   "retreat_m": 0.03,
+   "bearing_rad": 3.141593,
+   "excursion_m": 0.05,
+   "speed_m_per_s": 0.02
+  }
+ ],
+ "levels": {
+  "E0": {
+   "case": "RC1_l15_compliant4000_m0_E0_conservative_r0",
+   "run_direction_xy": [
+    1.0,
+    0.0
+   ],
+   "declared_error": {
+    "id": "E0",
+    "socket_bias_m": 0.0,
+    "socket_jitter_m": 0.0,
+    "socket_orientation_deg": 0.0,
+    "socket_correlation_s": 0.25,
+    "centreline_visible_m": 0.0,
+    "centreline_occluded_m": 0.0,
+    "centreline_dropout_p": 0.0,
+    "process_force_n": 0.0,
+    "process_correlation_s": 0.2,
+    "force_noise_fraction": 0.0,
+    "force_noise_floor_n": 0.0
+   },
+   "decision": {
+    "time_s": 2.0,
+    "insertion_axis": [
+     0.0007964298310129352,
+     -0.0007963225033217326,
+     -0.9999993657847964
+    ],
+    "boot_position_m": [
+     -0.6920016077152981,
+     0.066460854212192,
+     1.4651224764763509
+    ],
+    "anchor_site_m": [
+     -0.452902505460627,
+     0.026429177072314188,
+     1.2213704936377252
+    ],
+    "boot_to_anchor_m": 0.3437818276340137,
+    "min_bend_radius_m": 0.04845761394351547,
+    "anchor_reaction_n": 0.045470284025376506,
+    "occluded_node_fraction": 0.0
+   },
+   "recorded_job_outcome": "completed"
+  },
+  "E2": {
+   "case": "RC1_l15_compliant4000_m0_E2_conservative_r0",
+   "run_direction_xy": [
+    1.0,
+    0.0
+   ],
+   "declared_error": {
+    "id": "E2",
+    "socket_bias_m": 0.0005,
+    "socket_jitter_m": 0.0001,
+    "socket_orientation_deg": 0.25,
+    "socket_correlation_s": 0.25,
+    "centreline_visible_m": 0.0002,
+    "centreline_occluded_m": 0.001,
+    "centreline_dropout_p": 0.05,
+    "process_force_n": 0.01,
+    "process_correlation_s": 0.2,
+    "force_noise_fraction": 0.02,
+    "force_noise_floor_n": 0.004
+   },
+   "decision": {
+    "time_s": 2.0,
+    "insertion_axis": [
+     0.0013455177671822386,
+     -0.0005751129432125179,
+     -0.9999989294129474
+    ],
+    "boot_position_m": [
+     -0.6919058233747992,
+     0.06642854755089746,
+     1.4653068851024769
+    ],
+    "anchor_site_m": [
+     -0.452902505460627,
+     0.026429177072314188,
+     1.2213704936377252
+    ],
+    "boot_to_anchor_m": 0.34384225844638466,
+    "min_bend_radius_m": 0.04199468513375875,
+    "anchor_reaction_n": 0.046536089645204386,
+    "occluded_node_fraction": 0.2916666666666667
+   },
+   "recorded_job_outcome": "completed"
+  },
+  "E4": {
+   "case": "RC1_l15_compliant4000_m0_E4_conservative_r0",
+   "run_direction_xy": [
+    1.0,
+    0.0
+   ],
+   "declared_error": {
+    "id": "E4",
+    "socket_bias_m": 0.002,
+    "socket_jitter_m": 0.0004,
+    "socket_orientation_deg": 1.0,
+    "socket_correlation_s": 0.25,
+    "centreline_visible_m": 0.0008,
+    "centreline_occluded_m": 0.004,
+    "centreline_dropout_p": 0.2,
+    "process_force_n": 0.04,
+    "process_correlation_s": 0.2,
+    "force_noise_fraction": 0.08,
+    "force_noise_floor_n": 0.016
+   },
+   "decision": {
+    "time_s": 2.0,
+    "insertion_axis": [
+     0.008017651053369506,
+     -0.010313065126233348,
+     -0.9999146753394955
+    ],
+    "boot_position_m": [
+     -0.6912036991285715,
+     0.06430843115309019,
+     1.466403099842915
+    ],
+    "anchor_site_m": [
+     -0.452902505460627,
+     0.026429177072314188,
+     1.2213704936377252
+    ],
+    "boot_to_anchor_m": 0.3438942786627756,
+    "min_bend_radius_m": 0.02066265385358485,
+    "anchor_reaction_n": 0.03374393601105665,
+    "occluded_node_fraction": 0.2916666666666667
+   },
+   "recorded_job_outcome": "completed"
+  }
+ }
+}

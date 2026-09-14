@@ -35,6 +35,24 @@ applying that study's own pass/fail rule to its own numbers. It exits non-zero
 if a verdict no longer follows from the record beside it, so it is a check and
 not a summary.
 
+```powershell
+.venv/Scripts/python.exe scripts/try_the_safety_check.py
+```
+
+Runs the check itself. It loads the five-clip rig, hands the check the estimate
+the study's own job held at its first retreat decision, and prints what the
+check allows at each of the three eyesight levels, which of the three limits is
+closest to breaking, and how much of each budget the chosen move spends. It
+finishes by comparing its own arithmetic against what that job recorded, and
+exits non-zero if the two disagree.
+
+**To use the check on your own rig** you supply, at each decision, where the
+cable leaves the plug, where it is clamped, the direction the plug is being
+pushed in, the direction the cable runs — and what your estimator says about its
+own error, which is what sizes the margin. The threshold itself is a property of
+this cable on the rig it was fitted on, so yours would have to be fitted the same
+way. Finding 3 below is what happens when it is not.
+
 Everything further down that starts `.deps/cable-venv` needs MuJoCo in a second
 environment; nothing above this line does.
 
@@ -236,7 +254,7 @@ than an observation.
 ## What you can run
 
 ```powershell
-.venv/Scripts/python.exe -m pytest                          # 485 tests, no GPU, no simulator, ~5 s
+.venv/Scripts/python.exe -m pytest                          # 491 tests, no GPU, no simulator, ~5 s
 .venv/Scripts/python.exe scripts/summarize_perception_v4.py # study 1, in a paragraph
 ```
 

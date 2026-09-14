@@ -51,11 +51,21 @@ from assembly_recovery.cable_constraints_v4 import CONSTRAINTS
 from assembly_recovery.cable_study_v4 import action_displacement, b0plus_margin_m
 
 #: What each constraint's headroom is measured in, and which way is safer.
+#:
+#: All three are the SAME quantity: metres of boot-to-anchor distance left before
+#: that constraint's own fitted threshold. This is the whole shape of the cheap
+#: arm - one distance, compared against three thresholds that were fitted against
+#: three different outcomes. It is not three measurements. An earlier version of
+#: this table described C2's headroom as bend radius and C3's as newtons, which
+#: is what those constraints are DEFINED on but not what the rule computes, and
+#: a reader who believed it would have misread every budget the filter reports.
 HEADROOM_UNITS = {
-    "C1_clip": ("metres of budget left before the fitted boot-to-anchor threshold",
-                "larger is safer"),
-    "C2_bend": ("metres of bend radius above the declared spec", "larger is safer"),
-    "C3_anchor": ("newtons below the declared anchor limit", "larger is safer"),
+    "C1_clip": ("metres of boot-to-anchor distance left before the threshold fitted "
+                "against clip loss", "larger is safer"),
+    "C2_bend": ("metres of boot-to-anchor distance left before the threshold fitted "
+                "against the bend-radius spec", "larger is safer"),
+    "C3_anchor": ("metres of boot-to-anchor distance left before the threshold fitted "
+                  "against the anchor load limit", "larger is safer"),
 }
 
 
