@@ -154,6 +154,29 @@ def test_the_shipped_filter_reads_its_thresholds_from_evidence():
     assert "from_evidence" in source
 
 
+def test_the_documents_agree_with_the_record_about_where_the_page_went():
+    """README.md and ROADMAP.md said the generated page "is not published anywhere".
+
+    The record they both link to says it was published as a private page and
+    gives the URL, so a reader who followed the link found the document
+    contradicted one click later. The documents now say what the record says.
+    This keeps them from drifting apart again in either direction.
+    """
+    page = json.loads((ROOT / "artifacts/showcase/page.json").read_text(encoding="utf-8-sig"))
+    published = bool(page.get("published", {}).get("url"))
+    documents = {name: " ".join((ROOT / name).read_text(encoding="utf-8-sig").split())
+                 for name in ("README.md", "ROADMAP.md", "AGENTS.md")}
+    for name, text in documents.items():
+        denies = "not published anywhere" in text or "not published, and not served" in text
+        assert denies is not published, (
+            f"{name} and artifacts/showcase/page.json disagree about whether the generated "
+            f"page was ever published")
+    if published:
+        # ROADMAP.md owns what was built, so it is the one that has to say it.
+        assert "private" in documents["ROADMAP.md"], (
+            "ROADMAP.md does not say the page was published privately, which the record says")
+
+
 def test_every_open_item_says_what_it_would_cost():
     """An open item without a price is a wish, and wishes accumulate.
 

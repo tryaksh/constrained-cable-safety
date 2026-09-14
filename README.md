@@ -294,15 +294,15 @@ than an observation.
 ## Running more of it
 
 ```powershell
-.venv/Scripts/python.exe -m pytest                          # 501 tests, no GPU, no simulator, ~5 s
+.venv/Scripts/python.exe -m pytest                          # 502 tests, no GPU, no simulator, ~5 s
 .venv/Scripts/python.exe scripts/summarize_perception_v4.py # the first study, arm by arm
 ```
 
 [`SafetyFilter`](src/assembly_recovery/cable_safety_filter_v4.py) is the check
-as a class, and is what the command above drives. It reads its thresholds
-straight out of the evidence record, so the published number and the running
-code cannot drift apart, and it will map the whole space of allowed moves in one
-call rather than being probed one move at a time.
+as a class, and is what `scripts/try_the_safety_check.py` above drives. It reads
+its thresholds straight out of the evidence record, so the published number and
+the running code cannot drift apart, and it will map the whole space of allowed
+moves in one call rather than being probed one move at a time.
 
 ### The workbench
 
@@ -323,35 +323,33 @@ job once.
 Change the rig and the tool will not run the job until it has re-run the
 **install check** — a six-second test that settles a cable into the rig and
 confirms it actually stays in every clip. A rig that builds is not a rig a cable
-installs into: the same check rejected 19 of the 28 candidate rigs it was given.
+installs into: the same check rejected 19 of 28 candidate rigs, and every
+rejection is in the record with its reason.
 In practice most changes come back "no", and that is the answer you wanted before
 cutting metal.
 
-`--self-check` proves the tool is showing the rig it names. It checks three
-things: the job it sets up matches the one the study ran in every field; re-doing
-the install check on the unmodified rig gives the same numbers as
-[the record](evidence/cable_cell_screen_v6.json), to the last digit; and
-re-running the job gives the same result the study recorded, including how much
-slack was left at each of the five decisions.
+`--self-check` proves the tool is showing the rig it names: the job it builds
+matches the registered one field for field, re-running the install check
+reproduces [the record](evidence/cable_cell_screen_v6.json) to the last digit,
+and re-running the job reproduces the study's own result, slack series included.
 [Record](artifacts/showcase/tool.json).
 
 The interactive window has never been opened, because there is no display on the
 machine everything here was measured on. Everything behind it is headless and
 unit tested; the window itself is one call to MuJoCo's `launch_passive`.
 
-### The page, the clips and the renders
+### Four things built on top of the measurements
 
-Each of these writes a small record saying what it checked and what it produced,
-and those records are in the repository. **What they produce is not** — the page,
-the frames, the encoded video and the USD stage are generated output, they are
-large, and they are rebuilt by running the script again.
+A page, three replay clips, a USD stage — Universal Scene Description, the scene
+format other renderers read — and an Isaac Sim re-render of it. Each is built by
+a script in `scripts/`, each writes a small record of what it checked, and those
+records are committed. **What they produce is not:** the page, the frames, the
+encoded video and the stage are generated output, they are large, and they are
+rebuilt by running the script again. Each needs `.deps/cable-venv`, and the
+re-render needs Isaac Sim.
 
-| | |
-| --- | --- |
-| **The page** | `scripts/build_showcase.py` generates `artifacts/showcase/index.html` from ten committed records. Nothing on it is typed by hand: change a number in a record, rebuild, and the page changes. It is a local file and is not published anywhere. [Record](artifacts/showcase/page.json) |
-| **Replay clips** | `scripts/render_routing_video_v6.py` re-runs a registered job through the study's own control loop and refuses to render it unless it reproduces the recorded outcome exactly. Checked by decoding the written files, not by trusting the encoder. [Record](artifacts/showcase/video.json) |
-| **USD export** | `scripts/export_usd_v7.py` writes one job out as a USD stage — Universal Scene Description, the scene format other renderers read — so it can be re-rendered elsewhere. [Record](artifacts/showcase/usd.json) |
-| **Isaac Sim render** | `scripts/render_isaac_v7.py` re-renders that stage with ray-traced lighting, because MuJoCo's built-in renderer is for checking a scene is right, not for looking at. Rendering only — the physics and every number are unchanged. [Record](artifacts/showcase/isaac.json) |
+[ROADMAP.md](ROADMAP.md#what-was-built-on-top-of-the-measurements) says what each
+one was checked against and what that check measured.
 
 ---
 
@@ -375,8 +373,8 @@ large, and they are rebuilt by running the script again.
 - **Runs cut short do not count as successes.** A move that aborted never got the
   chance to break what it had not broken yet, so it is excluded rather than
   scored as safe.
-- **Rejections are kept.** The screen that chose this rig rejected 19 of 28
-  candidates, all in the record with reasons.
+- **Losing candidates are kept.** Not just the rig that was chosen, but every
+  rejected arm, every failed run and every prediction that came out wrong.
 
 ---
 

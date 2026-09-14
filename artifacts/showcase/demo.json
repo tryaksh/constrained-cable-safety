@@ -1,7 +1,6 @@
 {
  "schema": 1,
  "id": "showcase_demo_v9",
- "stage": "D",
  "created_on": "2026-09-13",
  "status": "recorded_decision_states",
  "what_this_is": "Three recorded estimates, one per declared error level, taken at the FIRST repair decision of the registered five-clip job RC1_l15_compliant4000_m0_<level>_conservative_r0. They exist so scripts/try_the_safety_check.py can show the shipped safety layer deciding a real move without a simulator installed. Not a study result and not a new measurement.",

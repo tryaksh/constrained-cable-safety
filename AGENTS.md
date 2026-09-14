@@ -31,9 +31,9 @@ block for nicer numbers. The last planned session
 ([docs/handover/v7_final_session.txt](docs/handover/v7_final_session.txt)) ran on
 2026-09-12 and built what it was asked for: three replay clips, a generated page,
 the workbench and a USD export. All four are verified and their records are
-committed under `artifacts/showcase/`. **The page is a local file and is not
-published anywhere** — do not publish it, and do not build a new one. Nothing is
-queued. [ROADMAP.md](ROADMAP.md) is now a record rather than a plan; read it for
+committed under `artifacts/showcase/`. The page was published once as a **private**
+page, and the link is in *Commands* below with the rule for updating it — **do not
+publish a new one and do not make it public.** Nothing is queued. [ROADMAP.md](ROADMAP.md) is now a record rather than a plan; read it for
 what stays open and why none of it was bought.
 
 The 2026-09-13 session ([docs/handover/v8_two_repo_reorganisation.md](docs/handover/v8_two_repo_reorganisation.md))
@@ -126,7 +126,7 @@ the task definition. Do not lengthen it and do not change the predicate.
 ## Commands
 
 ```powershell
-.venv/Scripts/python.exe -m pytest                    # 501 tests, CPU-only, ~5 s
+.venv/Scripts/python.exe -m pytest                    # 502 tests, CPU-only, ~5 s
 .venv/Scripts/python.exe -m ruff check src scripts tests
 .venv/Scripts/python.exe scripts/index_evidence.py    # after adding a record
 ```

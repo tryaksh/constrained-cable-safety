@@ -235,11 +235,11 @@ def test_the_ranking_result_is_quoted_with_both_denominators():
 
 
 def test_the_clip_that_lets_go_is_named_with_its_count():
+    """A finding, so README.md owns it and says it once."""
     clips = record("evidence/cable_routing_v6.json")["clips"]
-    for document, label in ((README, "README.md"), (ROADMAP, "ROADMAP.md")):
-        quoted(f"{clips['losses_by_clip']['c3']:,} of "
-               f"{clips['routes_losing_any_required_clip']:,}", document, label)
-        quoted(str(clips["losses_by_clip"]["c1"]), document, label)
+    quoted(f"{clips['losses_by_clip']['c3']:,} of "
+           f"{clips['routes_losing_any_required_clip']:,}", README, "README.md")
+    quoted(str(clips["losses_by_clip"]["c1"]), README, "README.md")
 
 
 def test_the_gap_the_block_was_launched_on_is_quoted_from_the_stage_record():
