@@ -17,10 +17,26 @@ be chosen after the fact.
 
 ![The five-clip test rig](evidence/cable_cell_v6_clips_cad.png)
 
-If you want to run something rather than read, skip to
-[What you can run](#what-you-can-run). If you want the one-sentence answer:
-**use the check's ranking of moves, not its yes/no threshold** — the ranking
-still works on a rig the check was never tuned for, and the threshold does not.
+The one-sentence answer: **use the check's ranking of moves, not its yes/no
+threshold** — the ranking still works on a rig the check was never tuned for,
+and the threshold does not.
+
+## Five minutes, from a cold checkout
+
+Both of these need a checkout and a Python environment with numpy, and nothing
+else. No simulator, no GPU, no network, a second each.
+
+```powershell
+.venv/Scripts/python.exe scripts/verify_findings.py
+```
+
+Prints the four findings and re-derives each one from the record it came from,
+applying that study's own pass/fail rule to its own numbers. It exits non-zero
+if a verdict no longer follows from the record beside it, so it is a check and
+not a summary.
+
+Everything further down that starts `.deps/cable-venv` needs MuJoCo in a second
+environment; nothing above this line does.
 
 This repository also holds a **retired peg-insertion campaign**, which asked the
 same question on a different robot and closed by deciding its own premise was
@@ -220,7 +236,7 @@ than an observation.
 ## What you can run
 
 ```powershell
-.venv/Scripts/python.exe -m pytest                          # 479 tests, no GPU, no simulator, ~5 s
+.venv/Scripts/python.exe -m pytest                          # 485 tests, no GPU, no simulator, ~5 s
 .venv/Scripts/python.exe scripts/summarize_perception_v4.py # study 1, in a paragraph
 ```
 
