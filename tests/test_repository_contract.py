@@ -154,6 +154,24 @@ def test_the_shipped_filter_reads_its_thresholds_from_evidence():
     assert "from_evidence" in source
 
 
+def test_every_open_item_says_what_it_would_cost():
+    """An open item without a price is a wish, and wishes accumulate.
+
+    ROADMAP.md's open list is the one place where work that was deliberately not
+    bought is written down. Each entry has to say what buying it would take, in
+    units something already measured — routes, contexts, minutes — so a later
+    reader can decide rather than guess.
+    """
+    roadmap = (ROOT / "ROADMAP.md").read_text(encoding="utf-8-sig")
+    section = roadmap.split("## Open, and honestly so", 1)
+    assert len(section) == 2, "ROADMAP.md no longer has an open list"
+    body = section[1].split("\n## ", 1)[0]
+    items = [block for block in re.split(r"\n(?=- )", body) if block.startswith("- ")]
+    assert len(items) >= 5, f"only {len(items)} open items; that list should not shrink quietly"
+    unpriced = [item.split("**")[1] for item in items if "**Price:**" not in item]
+    assert not unpriced, "these open items do not say what they would cost: " + ", ".join(unpriced)
+
+
 def test_every_committed_figure_is_pointed_at_by_something():
     """A figure nobody links to is a figure nobody will ever see.
 

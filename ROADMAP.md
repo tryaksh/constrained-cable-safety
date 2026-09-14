@@ -113,27 +113,51 @@ reasoning. They are worth knowing if any of this gets extended:
 
 ## Open, and honestly so
 
+Nothing here was bought. Each one carries what it would cost, in the units the
+executed blocks actually measured: a v6 route cost 44 summed worker-seconds, and
+the whole three-arm block was 2,340 routes in 87 minutes of wall clock on 20 of
+this machine's 24 cores.
+
 - **Force-only sensing.** It had the lowest false-approval rate on all three
   failure modes at every eyesight level — but never by more than the margin, so
-  nothing could be certified. Settling it needs a margin near 0.01 and therefore
-  at least 200 held-out contexts per rig. This is the most interesting
+  nothing could be certified. **Price:** a margin near 0.01 needs a metric
+  resolution near 0.005, which needs at least **200 held-out contexts per rig**
+  against v4's 60 — so a block more than three times v4's 16,080 runs. No new
+  code: same arms, same error ladder, same scoring. This is the most interesting
   measurement the project did not buy.
 - **A supervisor that caps its appetite.** The obvious fix for the v6 result:
   cap the *fraction* of the reported room a single move may spend. It uses only
   what the shipped layer already reports. It was deliberately not registered in
   v6 because the twelve candidate moves produce spent fractions of 0.061 and
   0.819 with nothing in between, so any cap that separated the arms would have
-  had to be tuned to do so. It needs its own set of candidate moves and its own
-  sizing.
+  had to be tuned to do so. **Price:** a candidate-move set that fills the gap
+  between those two fractions, then one more arm on a v6-shaped block — **about
+  780 routes and half an hour**, since v6 ran three arms in 2,340 routes and 87
+  minutes.
 - **The five-clip result rests on one rig.** One geometry at six slack settings
   crossed with two mounts and five mounting offsets: 60 physical contexts,
   against v5's ten held-out layouts. A v6 finding is a statement about that rig.
-- **v3 stays undecided.** Re-running it under a changed rule would not fix the
-  design flaw; it would hide it.
+  **Price:** a second cell needs its own screen — the first drew 28 candidates
+  and registered 9 — and then **a whole second block**, 2,340 routes and 87
+  minutes, because nothing from the first one transfers.
+- **Neither v5 nor v6 has a figure.** Findings 2 and 3 reach a reader as tables
+  only; every other finding here has a picture drawn from its record. **Price:**
+  two figures from records already committed, in the plotting environment that
+  drew the others. No simulator time, no new measurement.
+- **`evidence/cable_baseline_v2.png` has mis-decoded characters in its titles** —
+  `â€¢` where a bullet belongs and `Ã—` where a multiplication sign does, from
+  UTF-8 text written through a Latin-1 path when it was drawn. Every number on it
+  is right and agrees with its record; only the labels are damaged. **Price:** one
+  re-render of that figure alone, from `evidence/cable_baseline_v2.json`.
+- **v3 stays undecided.** Its own record names the only honest fix: more held-out
+  contexts, or a margin of at least two of them, set before collection.
+  Re-running the same data under a changed rule would hide the design flaw rather
+  than fix it. **Price:** a whole new block with a differently written decision
+  rule — not a re-fit — and v4 already answered the question it was reaching for.
 - **The workbench window has never been opened.** Everything behind it is
-  headless and unit tested; one call to MuJoCo's `launch_passive` is not. Someone
-  with a display should run `scripts/workbench.py --run --view` once before
-  relying on it.
+  headless and unit tested; one call to MuJoCo's `launch_passive` is not.
+  **Price:** one run of `scripts/workbench.py --run --view` on a machine that has
+  a display.
 
 ---
 
