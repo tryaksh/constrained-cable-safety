@@ -83,7 +83,11 @@ cautious the check automatically becomes.
 *"Wrong" means the check approved a move and the cable came out anyway.* Every
 check is held to the same number of approved moves, so none of them can look good
 by simply refusing more of them. The moves were all on rig layouts the check had
-never been tuned on: 960 moves per column, 16,080 runs in total.
+never been tuned on: 960 moves in the perfect-information column and 865 in the
+large-error column, 16,080 runs in total. The two columns have different
+denominators because a run that never got as far as a repair decision has
+nothing to score, and it is dropped rather than counted as safe — 15,476 of the
+16,080 produced a decision to score.
 
 **Nothing beats the simple one by enough to call it a win** — at any level of
 eyesight, on any of the three failure modes. "By enough" is not a judgement call:
@@ -216,7 +220,7 @@ than an observation.
 ## What you can run
 
 ```powershell
-.venv/Scripts/python.exe -m pytest                          # 441 tests, no GPU, no simulator, ~4 s
+.venv/Scripts/python.exe -m pytest                          # 479 tests, no GPU, no simulator, ~5 s
 .venv/Scripts/python.exe scripts/summarize_perception_v4.py # study 1, in a paragraph
 ```
 
