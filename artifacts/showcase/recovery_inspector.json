@@ -1,0 +1,15 @@
+{
+  "schema": 1,
+  "id": "recovery_inspector_application",
+  "status": "implementation_in_progress",
+  "scope": "Application of the existing B0plus filter and registered conservative policy. No new study, refit, or changed historical outcome.",
+  "done_conditions": [
+    "Strict simulator-free request API and CLI explain every candidate and compare the three existing policies.",
+    "Invalid uncertainty, vectors, nonfinite numbers and missing constraint rules cannot silently approve a request.",
+    "A fixed nine-case replay corpus reproduces original outcomes and recorded decisions.",
+    "Unit tests, repository checks and clean-environment entry points pass.",
+    "Five maintained documents explain the completed application and preserve evidence and operating instructions.",
+    "Code and documentation are committed and pushed to the authorized origin.",
+    "One verified portfolio film and concise description are delivered outside the repository; no website is modified."
+  ]
+}

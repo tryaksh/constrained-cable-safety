@@ -1,0 +1,50 @@
+{
+  "schema": 1,
+  "id": "recovery_inspector_demo_v1",
+  "created_on": "2026-09-14",
+  "kind": "software verification and registered-run replay, not a measurement study",
+  "scope": "Export the estimates at every decision in nine existing registered requests. Verify the reusable inspector against those recorded decisions. No fitted threshold, controller, action set, task definition, or historical score changes.",
+  "source_runtime": "artifacts/cable/routing-v6-s1__runtime.json",
+  "source_results": "artifacts/cable/routing-v6-s1",
+  "cases": [
+    "RC1_l15_compliant4000_m0_E0_unfiltered_r0",
+    "RC1_l15_compliant4000_m0_E0_filtered_r0",
+    "RC1_l15_compliant4000_m0_E0_conservative_r0",
+    "RC1_l15_compliant4000_m0_E2_unfiltered_r0",
+    "RC1_l15_compliant4000_m0_E2_filtered_r0",
+    "RC1_l15_compliant4000_m0_E2_conservative_r0",
+    "RC1_l15_compliant4000_m0_E4_unfiltered_r0",
+    "RC1_l15_compliant4000_m0_E4_filtered_r0",
+    "RC1_l15_compliant4000_m0_E4_conservative_r0"
+  ],
+  "selection_rule": "The first mounting offset and repeat of the existing showcase's RC1 1.5 mm service-loop context, crossed with all three registered error levels and all three registered supervisors. The case set is fixed before capture; every selected case, outcome and decision is kept.",
+  "capture": "The existing routing worker's observer copies the same estimated boot position and insertion axis used on each decision tick. It reads the declared fixture anchor and never calls perception again. It cannot change actions or consume the random stream.",
+  "verification": {
+    "decision_tolerance_m": 1e-12,
+    "outcome_time_tolerance_s": 1e-6,
+    "compare": [
+      "original request identity and seeds",
+      "job failure reason, elapsed time, held seating and route completion",
+      "terminal clips and clip-loss attribution",
+      "per-constraint terminal states",
+      "all issued action indices, abstentions, motion completion and request acceptance",
+      "all chosen magnitudes, endpoint distances, headrooms and budget arithmetic",
+      "zero privilege and mutation guard events",
+      "inspector policy action parity on each captured estimate"
+    ]
+  },
+  "done_conditions": [
+    "All nine replays reproduce their original outcomes and decision arithmetic.",
+    "The portable JSON includes every decision from every selected case, with source hashes and scope.",
+    "The inspector reproduces the registered supervisor's choice and arithmetic on every exported estimate.",
+    "Malformed external requests fail clearly without returning an action.",
+    "The complete CPU test suite and lint pass.",
+    "A decoded demonstration video uses verified replay material and reports simulation scope."
+  ],
+  "outputs": {
+    "portable_replay": "artifacts/showcase/recovery_replay.json",
+    "verification": "artifacts/showcase/recovery_inspector.json",
+    "raw_capture": "artifacts/recovery-inspector/capture"
+  },
+  "claims": "Replay and API parity are software checks, not evidence of a better controller or a new success rate. The full routing study remains the source for performance findings."
+}

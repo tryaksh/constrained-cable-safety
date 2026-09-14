@@ -5,12 +5,15 @@ build-backend = "setuptools.build_meta"
 [project]
 name = "assembly-recovery-lab"
 version = "0.1.0"
-description = "Reproducible experiments for learning autonomous industrial assembly recovery."
+description = "Constrained-cable recovery studies and an offline decision inspector."
 readme = "README.md"
 requires-python = ">=3.11,<3.12"
 license = "BSD-3-Clause"
 authors = [{ name = "Tryaksh" }]
-dependencies = []
+dependencies = ["numpy>=1.24,<3"]
+
+[project.scripts]
+cable-inspect = "assembly_recovery.recovery_inspector_cli:main"
 
 [project.optional-dependencies]
 dev = ["pytest>=8,<9", "ruff>=0.11,<1", "torch==2.7.0"]

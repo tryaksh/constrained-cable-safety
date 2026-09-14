@@ -294,7 +294,7 @@ than an observation.
 ## Running more of it
 
 ```powershell
-.venv/Scripts/python.exe -m pytest                          # 502 tests, no GPU, no simulator, ~5 s
+.venv/Scripts/python.exe -m pytest                          # 602 tests, no GPU, no simulator, ~5 s
 .venv/Scripts/python.exe scripts/summarize_perception_v4.py # the first study, arm by arm
 ```
 
