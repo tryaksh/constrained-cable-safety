@@ -71,6 +71,17 @@ trust a simulation. The failure cohort vanished:
 | 480 Hz | 26 | 27 | 25 |
 | 960 Hz | 27 | 27 | 26 |
 
+![The failure cohort disappearing as the physics is refined](../evidence/research_cycle_v1.png)
+
+*The same table drawn, with the campaign's other surviving measurement beside
+it. Panel A: as the physics goes from 120 Hz to 960 Hz, the number of the 28
+development cases that end in a force abort rather than a stuck peg climbs from
+1 to 27, and neither correction pulls it back down. Panel B is unrelated to that
+and is the engineering measurement worth keeping: doubling the number of
+simulated environments from 1,024 to 2,048 buys 29.1% more useful samples a
+second.
+[Record](../evidence/research_cycle_figure_v1.json)*
+
 At fine resolution the peg does not get stuck — it hits the rim hard enough to
 trip the 20 N wrist limit and the run is aborted. There is nothing left to
 recover from. Two standard corrections were tried against this, each registered

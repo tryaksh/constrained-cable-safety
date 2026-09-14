@@ -154,6 +154,40 @@ def test_the_shipped_filter_reads_its_thresholds_from_evidence():
     assert "from_evidence" in source
 
 
+def test_every_committed_figure_is_pointed_at_by_something():
+    """A figure nobody links to is a figure nobody will ever see.
+
+    Twenty figures are committed under `evidence/`. Each one has to be reachable:
+    either a maintained document shows it or links to it, or a record names it as
+    something it produced. A file that is neither is either orphaned or was
+    superseded and should say so.
+    """
+    text = "\n".join(path.read_text(encoding="utf-8-sig") for path in maintained_documents())
+    text += "\n".join(path.read_text(encoding="utf-8-sig")
+                      for path in sorted((ROOT / "evidence").glob("*.json")))
+    figures = sorted(path for path in (ROOT / "evidence").iterdir()
+                     if path.suffix in {".png", ".pdf", ".svg", ".jpg"})
+    assert figures, "no figures are committed, which is not what this repository looks like"
+    orphans = [path.name for path in figures if path.stem not in text]
+    assert not orphans, (
+        "these figures are in the repository and nothing points at them:\n  "
+        + "\n  ".join(orphans))
+
+
+def test_each_finding_the_readme_states_shows_a_figure_or_says_why_not():
+    """The three findings are numbered headings; a reader should see the pictures."""
+    readme = (ROOT / "README.md").read_text(encoding="utf-8-sig")
+    shown = set(re.findall(r"!\[[^\]]*\]\((evidence/[^)]+)\)", readme))
+    assert len(shown) >= 4, f"the README shows only {len(shown)} of the committed figures"
+    for target in shown:
+        assert (ROOT / target).is_file(), target
+    # Every shown figure carries a caption naming the record it came from, on the
+    # line that follows it. A picture without its record is a number without one.
+    for target in shown:
+        after = readme.split(f"]({target})", 1)[1][:600]
+        assert "[Record](" in after, f"{target} is shown without naming the record behind it"
+
+
 def test_the_documents_report_the_campaign_counts_the_index_actually_has():
     """A hand-typed count beside a generated one is a number waiting to go stale.
 

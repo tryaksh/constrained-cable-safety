@@ -17,6 +17,12 @@ be chosen after the fact.
 
 ![The five-clip test rig](evidence/cable_cell_v6_clips_cad.png)
 
+*The rig the third finding below is about: five clips at three heights and four
+angles, a ridge the cable climbs, a corner it turns, and a clamp at the far end.
+Drawn in FreeCAD from the same config file the simulator reads, so the picture
+and the physics cannot disagree.
+[Record](evidence/cable_cell_cad_v6.json)*
+
 The one-sentence answer: **use the check's ranking of moves, not its yes/no
 threshold** — the ranking still works on a rig the check was never tuned for,
 and the threshold does not.
@@ -77,6 +83,17 @@ pulling the plug away drags on it.
 So before each retreat the robot should ask: **would this particular move break
 something?** That question is the whole project.
 
+![One recovery, start to finish](evidence/cable_recovery_v2.png)
+
+*What one job looks like, on the earlier rig that had a single clip. Top row:
+the cable settled into the clip, the plug stalled against the socket, the robot
+backing off, and the plug seated with the clip still holding. The third small
+frame is the negative control — the same code told to retreat further than the
+slack allows, which lifts the cable out of the clip after 84.4 mm of travel. The
+clamp is carrying 0.14 N when that happens, well under its own 0.30 N limit, so
+the cable coming out is a matter of geometry rather than force.
+[Record](evidence/cable_recovery_block_v2.json)*
+
 ### Three things can break
 
 | | Limit | Why that limit |
@@ -105,6 +122,17 @@ cable's shape through a neural network.
 The simple one also carries a **margin** — it backs its threshold off by an
 amount the estimator itself reports, so the worse the robot's eyesight, the more
 cautious the check automatically becomes.
+
+![Clip losses against the one-number budget](evidence/cable_repair_boundary_v3.png)
+
+*Why one number is a candidate at all. Panel A places all 1,440 runs of an
+earlier study by the plug-to-clamp distance the commanded move would end at. The
+runs that lost the clip sit almost entirely to the right of one line, and that
+line is the check. Panel C is why that study decided nothing: its margin was set
+equal to the smallest difference its own ranking metric could express — one
+context in twenty — so neither branch of its decision rule could ever fire. The
+flaw is left visible rather than re-run under a changed rule.
+[Record](evidence/cable_repair_boundary_v3.json)*
 
 | The check | How big | Wrong with perfect information | Wrong with large error |
 | --- | --- | --- | --- |
@@ -156,10 +184,25 @@ rendered and no pose estimator is built or tested here.
 
 ## What was found
 
+Three findings from four studies. The fourth is the one in the picture above: it
+ran first, it could not decide, and it is kept undecided — its own margin was
+written smaller than its own metric could resolve, and re-running it under a
+changed rule would hide the flaw rather than fix it.
+
 ### 1. For a single move, the simplest check wins
 
 The table above. One number carrying a margin sized from what the estimator says
 about its own error is not beaten by anything richer.
+
+![How much a safety check must see](evidence/cable_perception_v4.png)
+
+*The table above, drawn. The top row is how often each check approved a move
+that broke the limit, against how wrong the robot's estimate was told to be —
+one panel per failure mode. The one-number check is the blue line; the two
+network arms are the green ones, and on clip retention, the one that matters,
+they sit above it at every level. Bottom left is the same result against cost:
+four orders of magnitude of parameters buy nothing.
+[Record](evidence/cable_perception_v4.json)*
 
 ### 2. Over several moves, the check earns its keep
 
@@ -254,7 +297,7 @@ than an observation.
 ## What you can run
 
 ```powershell
-.venv/Scripts/python.exe -m pytest                          # 491 tests, no GPU, no simulator, ~5 s
+.venv/Scripts/python.exe -m pytest                          # 493 tests, no GPU, no simulator, ~5 s
 .venv/Scripts/python.exe scripts/summarize_perception_v4.py # study 1, in a paragraph
 ```
 
@@ -350,6 +393,17 @@ One task, one connector, one cable model, two rigs. "One number is enough" is a
 measured statement about a single move on the first rig — and finding 3 is the
 measurement of where that stops being true. A finding on the five-clip rig is a
 statement about *that rig*.
+
+![The connector has no latch](evidence/cable_retention_v1.png)
+
+*Why "no latched connection" is in that list rather than assumed away. The
+connector model was seated and then pulled on directly. Six trials seated; all
+four that were then pulled — at 0.5 N and at 2 N — left the 1 mm seating region
+within milliseconds, with the opposing contact force measuring exactly zero at
+every recorded sample. There is nothing to catch. The plug stays put because the
+robot is holding it, which is why every success in this repository is worded as
+held seating.
+[Record](evidence/cable_retention_v1.json)*
 
 ---
 
