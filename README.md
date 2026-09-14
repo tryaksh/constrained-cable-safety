@@ -72,10 +72,10 @@ separated.
 
 ## The problem
 
-Pushing a connector home is fiddly and often fails on the first try. The standard
-recovery is to pull back a few centimetres and come at it again. That retreat is
-where the damage happens: the cable behind the plug is already clipped down, and
-pulling the plug away drags on it.
+The retreat is the dangerous part. Pushing a connector home fails often enough
+that pulling back a few centimetres and coming at it again is the standard
+recovery — and by then the cable behind the plug is clipped down, so pulling the
+plug away drags on it.
 
 So before each retreat the robot should ask: **would this particular move break
 something?** That question is the whole project.
@@ -84,8 +84,8 @@ something?** That question is the whole project.
 
 *What one job looks like, on the earlier rig that had a single clip. Top row:
 the cable settled into the clip, the plug stalled against the socket, the robot
-backing off, and the plug seated with the clip still holding. The third small
-frame is the negative control — the same code told to retreat further than the
+backing off, and the plug seated with the clip still holding. The last of the
+three close-ups is the negative control — the same code told to retreat further than the
 slack allows, which lifts the cable out of the clip after 84.4 mm of travel. The
 clamp is carrying 0.14 N when that happens, well under its own 0.30 N limit, so
 the cable coming out is a matter of geometry rather than force.
@@ -295,7 +295,7 @@ than an observation.
 
 ```powershell
 .venv/Scripts/python.exe -m pytest                          # 501 tests, no GPU, no simulator, ~5 s
-.venv/Scripts/python.exe scripts/summarize_perception_v4.py # study 1, in a paragraph
+.venv/Scripts/python.exe scripts/summarize_perception_v4.py # the first study, arm by arm
 ```
 
 [`SafetyFilter`](src/assembly_recovery/cable_safety_filter_v4.py) is the check

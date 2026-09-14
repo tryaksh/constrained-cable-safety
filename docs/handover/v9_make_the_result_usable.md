@@ -5,6 +5,19 @@ fitted. This session does not start a fifth, does not refit the safety layer, an
 does not re-run a block for nicer numbers. It takes a repository that is *correct*
 and makes it *usable*, which is a different job and is the one that is left.
 
+**EXECUTED 2026-09-14.** All six stages ran. `scripts/verify_findings.py`
+re-derives the four verdicts from `evidence/` and
+`scripts/try_the_safety_check.py` runs the shipped filter with no simulator, both
+on `.venv` alone and both in the README's first screenful.
+`tests/test_documented_numbers.py` pins every headline number to the record it
+came from. Six committed figures are now shown with captions and record links;
+findings 2 and 3 had none drawn, which is recorded as an open item with a price
+rather than fixed by rendering. The five maintained documents were rewritten for
+a reader: no session, no agent, no writing standard, nothing explained twice. No
+study was run, no block refitted, no figure rendered and nothing for a website
+produced. The suite is 501 tests. **This file is now history. Do not run it
+again.**
+
 Prepared 2026-09-13, after the two-repository reorganisation
 ([v8](v8_two_repo_reorganisation.md)) left this repository with one branch, 441
 tests and both campaigns indexed.
