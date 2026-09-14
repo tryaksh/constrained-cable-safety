@@ -1,19 +1,8 @@
-"""Every headline number in the documents must still match the record behind it.
+"""Keep documented measurements tied to their evidence and declared scope.
 
-The expensive failure here is not a wrong measurement. It is a *right*
-measurement that stopped being true and stayed in the prose. Every number in
-`README.md` and `ROADMAP.md` is a hand-typed copy of a number that lives in a
-JSON file, and nothing stops the two drifting apart.
-
-So this reads the figures out of `evidence/`, `configs/` and the committed stage
-records, and asserts the documents still quote them. Change a number in a record
-and one of these fails and names the document.
-
-It is deliberately narrow. Only the claims a reader takes away and a reviewer
-would check are pinned, because a test that pinned every number in 40 KB of
-prose would fail constantly and end up switched off.
-
-Source-level and CPU-only: no simulator, no GPU.
+Table checks compare complete rows so a correct number in the wrong column does
+not pass. Historical control checks remain even where their captions have been
+removed from the shorter README. No simulator or GPU is required.
 """
 
 from __future__ import annotations
@@ -22,6 +11,8 @@ import json
 from pathlib import Path
 
 import pytest
+
+from assembly_recovery.recovery_inspector import RecoveryInspector, request_from_demo
 
 ROOT = Path(__file__).resolve().parents[1]
 
@@ -53,29 +44,24 @@ def quoted(text: str, document: str, label: str) -> None:
 # Study 1 (v4): how much a check has to see
 # --------------------------------------------------------------------------
 
-#: Each row of the README's "Five ways to build the check" table: the arm as the
-#: record names it, the size the table gives it, and the two false-approval rates
-#: the table quotes, at perfect information and at large error.
 ARMS = [
-    ("B0plus", "1 number", "13%", "22%"),
-    ("B2", "10 numbers", "12%", "20%"),
-    ("B1", "19 numbers", "14%", "19%"),
-    ("M", "28,033 numbers", "21%", "29%"),
-    ("Mh", "34,689 numbers", "23%", "31%"),
+    ("B0plus", "One distance plus uncertainty margin"),
+    ("B2", "Force only"),
+    ("B1", "Hand-designed features"),
+    ("M", "Whole cable shape"),
+    ("Mh", "Cable shape plus history"),
 ]
 
 
-@pytest.mark.parametrize(("arm", "size", "at_e0", "at_e4"), ARMS)
-def test_the_false_approval_rates_are_quoted_as_measured(arm, size, at_e0, at_e4):
-    """A check that approves a move and loses the clip anyway is the headline number."""
-    levels = record("evidence/cable_perception_v4.json")["results"]["C1_clip"]["per_level"]
-    for level, expected in (("E0", at_e0), ("E4", at_e4)):
-        rate = levels[level]["arms"][arm]["false_safe_matched_coverage"]["rate"]
-        assert f"{rate * 100:.0f}%" == expected, (
-            f"{arm} at {level} now measures {rate * 100:.1f}%, and the README says {expected}"
-        )
-        quoted(expected, README, "README.md")
-    quoted(size, README, "README.md")
+@pytest.mark.parametrize(("arm", "label"), ARMS)
+def test_the_false_approval_rates_are_quoted_as_measured(arm, label):
+    evidence = record("evidence/cable_perception_v4.json")
+    levels = evidence["results"]["C1_clip"]["per_level"]
+    rates = [levels[level]["arms"][arm]["false_safe_matched_coverage"]["rate"]
+             for level in ("E0", "E4")]
+    size = evidence["cost_axis"][arm]["parameters"]
+    row = f"| {label} | {size:,} | {rates[0]:.0%} | {rates[1]:.0%} |"
+    quoted(row, README, "README.md")
 
 
 def test_the_parameter_counts_are_the_ones_the_record_declares():
@@ -84,17 +70,17 @@ def test_the_parameter_counts_are_the_ones_the_record_declares():
     assert cost["B0plus"]["parameters"] == 1
     assert cost["B2"]["parameters"] == 10
     assert cost["B1"]["parameters"] == 19
-    quoted(f"{cost['M']['parameters']:,} numbers", README, "README.md")
-    quoted(f"{cost['Mh']['parameters']:,} numbers", README, "README.md")
+    quoted(f"| {cost['M']['parameters']:,} |", README, "README.md")
+    quoted(f"| {cost['Mh']['parameters']:,} |", README, "README.md")
 
 
 def test_the_first_study_reports_the_size_it_actually_had():
     """Two columns of the table are two different denominators, and they differ."""
     v4 = record("evidence/cable_perception_v4.json")
     levels = v4["results"]["C1_clip"]["per_level"]
-    quoted(f"{v4['denominator']['requests']:,} runs", README, "README.md")
-    quoted(f"{levels['E0']['test_requests']:,} moves", README, "README.md")
-    quoted(f"{levels['E4']['test_requests']} in the large-error column", README, "README.md")
+    quoted(f"{v4['denominator']['requests']:,} requests", README, "README.md")
+    quoted(f"{levels['E0']['test_requests']:,} held-out decisions", README, "README.md")
+    quoted(f"E4 uses {levels['E4']['test_requests']}", README, "README.md")
 
 
 def test_no_crossover_was_found_at_any_error_level():
@@ -103,7 +89,7 @@ def test_no_crossover_was_found_at_any_error_level():
     for constraint, block in crossover.items():
         assert block["crossover_found"] is False, constraint
         assert not any(block["force_only_beats_B0plus_by_level"].values()), constraint
-    quoted("Nothing beats the simple one by enough", README, "README.md")
+    quoted("No richer model cleared the registered margin", README, "README.md")
 
 
 def test_the_network_being_worse_is_quoted_with_its_uncertainty():
@@ -114,7 +100,7 @@ def test_the_network_being_worse_is_quoted_with_its_uncertainty():
     assert bootstrap["mean_difference"] < 0, "the network is no longer the worse arm"
     quoted(f"about {abs(bootstrap['mean_difference']) * 100:.0f} percentage points", README,
            "README.md")
-    quoted(f"plausible range {low * 100:.0f} to {high * 100:.0f}", README, "README.md")
+    quoted(f"95% interval: {low * 100:.0f} to {high * 100:.0f}", README, "README.md")
     assert high < 1.0 and low > 0.0, "the interval now includes zero, so the wording is wrong"
 
 
@@ -133,19 +119,20 @@ def test_a_study_that_could_not_resolve_a_comparison_says_so():
 #: Each cell of the README's second table is "violated of observed", so both
 #: halves have to be pinned: a rate alone hides how much was censored.
 SEQUENCE_ROWS = [
-    ("unfiltered", "no check"),
-    ("filtered", "biggest move it allows"),
-    ("conservative", "most room left"),
+    ("unfiltered", "No filter, largest move"),
+    ("filtered", "Filter, largest allowed move"),
+    ("conservative", "Filter, most remaining headroom"),
 ]
 
 
 @pytest.mark.parametrize(("arm", "description"), SEQUENCE_ROWS)
 def test_the_sequence_table_is_quoted_as_measured(arm, description):
     results = record("evidence/cable_sequence_v5.json")["results"]
+    cells = []
     for level in ("E0", "E2", "E4"):
         cumulative = results[f"{arm}:{level}"]["C1_clip"]["cumulative"]
-        cell = f"{cumulative['violated']} of {cumulative['observed']}"
-        assert cell in README, f"README.md does not quote {cell} for the {description} row"
+        cells.append(f"{cumulative['violated']} of {cumulative['observed']}")
+    quoted(f"| {description} | " + " | ".join(cells) + " |", README, "README.md")
 
 
 def test_the_unfiltered_arm_lost_the_cable_every_time():
@@ -177,9 +164,9 @@ def test_the_clip_budget_decay_is_quoted_where_it_is_claimed():
 # --------------------------------------------------------------------------
 
 ROUTING_ROWS = [
-    ("unfiltered", "no check"),
-    ("filtered", "biggest move it allows"),
-    ("conservative", "most room left"),
+    ("unfiltered", "No filter, largest move"),
+    ("filtered", "Filter, largest allowed move"),
+    ("conservative", "Filter, most remaining headroom"),
 ]
 
 
@@ -191,17 +178,11 @@ def test_the_routing_table_is_quoted_as_measured(arm, description):
     for level in ("E0", "E2", "E4"):
         block = results[f"{arm}:{level}"]
         shares.append(f"{block['clips']['routes_losing_any_required_clip'] / block['routes']:.3f}")
-        finished.append(str(block["routes_completed"]))
+        finished.append(f"{block['routes_completed']} of {block['routes']}")
         routes += block["routes"]
-    assert " / ".join(shares) in README, (
-        f"README.md does not quote the clip-loss shares for the {description} row: "
-        f"{' / '.join(shares)}"
-    )
-    assert " / ".join(finished) in README, (
-        f"README.md does not quote the jobs finished for the {description} row: "
-        f"{' / '.join(finished)}"
-    )
-    quoted(f"{routes} jobs per row", README, "README.md")
+    row = f"| {description} | {' / '.join(shares)} | {' / '.join(finished)} |"
+    quoted(row, README, "README.md")
+    quoted(f"Each policy had {routes} jobs", README, "README.md")
 
 
 def test_the_check_made_no_difference_by_the_margin_fixed_in_advance():
@@ -251,7 +232,21 @@ def test_the_gap_the_block_was_launched_on_is_quoted_from_the_stage_record():
     assert "eleven of the twelve" in block["note"], (
         "the block record no longer says how many candidate motions the filter approved"
     )
-    quoted("11 of its 12", README, "README.md")
+    # The pre-block note describes another state. The README's inspector example
+    # is the recorded first repair decision, not the settled configuration.
+    report = RecoveryInspector.from_repository(ROOT).inspect(
+        request_from_demo(record("artifacts/showcase/demo.json")))
+    for policy, label in (("conservative", "Most remaining headroom"),
+                          ("filtered", "Largest allowed move")):
+        index = report["policies"][policy]["action_index"]
+        candidate = report["candidates"][index]
+        row = (f"| {label} (`{policy}`) | {index} | {candidate['magnitude_m'] * 1000:.1f} mm"
+               f" | {candidate['budget']['C1_clip']['spent_fraction']:.1%} |")
+        quoted(row, README, "README.md")
+    allowed = sum(c["rule_status"] == "allowed" for c in report["candidates"])
+    quoted(f"{allowed} of {len(report['candidates'])} candidates", README, "README.md")
+    quoted("mandatory 6 mm retract", README, "README.md")
+    quoted("58 mm is not an allowed retreat distance", README, "README.md")
 
 
 def test_the_third_study_reports_its_size_and_its_cost():
@@ -283,7 +278,7 @@ def test_the_three_limits_are_quoted_from_the_frozen_contract():
     assert "0.49 N" in constraints["C3_anchor"]["rationale"], (
         "the contract no longer states the cable's own weight, which is what 0.30 N is set against"
     )
-    quoted("0.49 N", README, "README.md")
+    quoted("Frozen constraints](configs/cable_perception_v4.json)", README, "README.md")
 
 
 def test_the_cable_model_refines_for_the_quantity_the_threshold_uses():
@@ -354,57 +349,45 @@ def test_the_undecided_study_is_still_reported_as_undecided():
     decision = record("evidence/cable_repair_boundary_v3.json")["decision"]
     text = json.dumps(decision).lower()
     assert "unresolvable" in text or "undecid" in text, decision
-    quoted("Undecidable as asked", ROADMAP, "ROADMAP.md")
+    quoted("Inconclusive", ROADMAP, "ROADMAP.md")
 
 
-#: The three studies that registered predictions, and the ROADMAP row each one
-#: keeps its score in. v3 registered none: it asked where a boundary sat, not
-#: what the answer would be.
-SCORED_STUDIES = ("v4", "v5", "v6")
+def test_the_registered_predictions_and_negative_results_are_preserved():
+    """The shorter docs omit the scorecard; its evidence checks still run."""
+    v4 = record("evidence/cable_perception_v4.json")
+    v5 = record("evidence/cable_sequence_v5.json")
+    v6 = record("evidence/cable_routing_v6.json")
+    for study, evidence in (("v4", v4), ("v5", v5), ("v6", v6)):
+        assert evidence["prediction"]["declared_before_collection"] is True
+        quoted(f"| **{study}** |", ROADMAP, "ROADMAP.md")
+    # v4 predicted C1 sufficiency, a C2 crossover and a force/history advantage.
+    assert v4["crossover"]["C1_clip"]["crossover_found"] is False
+    assert v4["crossover"]["C2_bend"]["crossover_found"] is False
+    assert not any(v4["crossover"]["C3_anchor"]["force_only_beats_B0plus_by_level"].values())
+    # v5 predicted C1 composition, C2/C3 decay and a benefit over unfiltered.
+    assert v5["verdicts"]["C1_clip"]["composes"] is False
+    assert all(v5["verdicts"][constraint]["composes"] for constraint in ("C2_bend", "C3_anchor"))
+    assert all(level["beats_by_more_than_margin"]
+               for level in v5["is_the_filter_worth_it_over_a_sequence"].values())
+    assert (v6["verdicts"]["correct"], v6["verdicts"]["of"]) == (1, 3)
+    quoted("unsuccessful predictions remain in the records", README, "README.md")
 
 
-def test_the_prediction_scoreboard_adds_up():
-    """Nine predictions, three right — three studies at one of three each.
-
-    Only v6 records its own score in a machine-readable field, so that one is
-    checked against the record and the other two against the rows that carry
-    them. What this defends is the arithmetic: change a row to 2 of 3 and the
-    README's "nine predictions, three right" stops being true, and this fails.
-    """
-    routing = record("evidence/cable_routing_v6.json")["verdicts"]
-    assert (routing["correct"], routing["of"]) == (1, 3), routing
-    for study in SCORED_STUDIES:
-        assert f"| **{study}** |" in ROADMAP, f"ROADMAP.md has no row for {study}"
-    scored = ROADMAP.count("1 of 3")
-    assert scored == len(SCORED_STUDIES), (
-        f"{scored} study rows say 1 of 3, so the scoreboard is no longer "
-        f"{len(SCORED_STUDIES)} of {3 * len(SCORED_STUDIES)}")
-    quoted("Nine", README, "README.md")
-    quoted("three were right", README, "README.md")
-    wrong = 3 * len(SCORED_STUDIES) - len(SCORED_STUDIES)
-    assert f"The {wrong} that were wrong" in README or "The six that were wrong" in README, (
-        f"README.md does not say that {wrong} predictions were wrong")
-
-
-def test_the_captions_quote_the_numbers_their_figures_were_drawn_from():
-    """A caption is prose next to a picture, and drifts exactly like any other."""
+def test_historical_control_results_remain_available_behind_the_scope_statement():
+    """Removing detailed captions must not erase the controls or imply latching."""
     v2 = record("evidence/cable_recovery_block_v2.json")["measured_task_constants"]
-    quoted(f"{v2['clip_release_travel_m'] * 1000:.1f} mm of travel", README, "README.md")
-    quoted(f"{v2['anchor_reaction_at_release_n']:.2f} N", README, "README.md")
-
-    v3 = record("evidence/cable_repair_boundary_v3.json")
-    quoted(f"all {v3['denominator']['requests']:,} runs", README, "README.md")
-
+    assert round(v2["clip_release_travel_m"] * 1000, 1) == 84.4
+    assert round(v2["anchor_reaction_at_release_n"], 2) == 0.14
+    assert record("evidence/cable_repair_boundary_v3.json")["denominator"]["requests"] == 1440
     retention = record("evidence/cable_retention_v1.json")["summary"]
     assert retention["positive_load_extraction_contact_exactly_zero_in_all_native_"
                      "and_forward_samples"] is True
-    quoted(f"{retention['seating_passed']} trials seated", README, "README.md")
-    quoted(f"{retention['positive_load_trials']} that were then pulled", README, "README.md")
-    for load in retention["net_extraction_loads_n"]:
-        if load:
-            quoted(f"{load:g} N", README, "README.md")
-    quoted(f"{retention['seating_tolerance_m'] * 1000:.0f} mm seating region",
-           README, "README.md")
+    assert retention["seating_passed"] == 6
+    assert retention["positive_load_trials"] == 4
+    assert {load for load in retention["net_extraction_loads_n"] if load} == {0.5, 2.0}
+    assert retention["seating_tolerance_m"] == 0.001
+    quoted("no demonstrated latch", README, "README.md")
+    quoted("Retention test](evidence/cable_retention_v1.json)", README, "README.md")
 
 
 def test_the_cable_itself_is_described_as_the_contract_describes_it():
@@ -412,13 +395,21 @@ def test_the_cable_itself_is_described_as_the_contract_describes_it():
     contract = record("configs/cable_perception_v4.json")
     assert "4 mm OD" in contract["constraints"]["C2_bend"]["rationale"]
     quoted("4 mm across", README, "README.md")
-    nodes = len(record("artifacts/showcase/demo.json")["levels"]["E0"]["decision"]
-                ["insertion_axis"]) * 8
+    nodes = record("configs/cable_recovery_task_v2.json")["cable"]["segments"] + 1
     assert nodes == 24, "the centreline node count is no longer 24"
     quoted(f"all {nodes} estimated points", README, "README.md")
 
 
 def test_what_was_built_is_reported_as_the_build_records_measured_it():
+    replay = record("artifacts/showcase/recovery_replay.json")["verification"]
+    assert replay["status"] == "verified" and replay["reproduces_original"] is True
+    assert all(check["reproduces_original"] and not check["mismatches"] for check in replay["checks"])
+    quoted(f"all {replay['cases']} original outcomes", README, "README.md")
+    quoted(f"all {replay['decisions']} recorded", README, "README.md")
+    quoted(f"{replay['cases']} original outcomes", ROADMAP, "ROADMAP.md")
+    quoted(f"all {replay['decisions']} decisions", ROADMAP, "ROADMAP.md")
+    quoted("not a new controller-performance result", README, "README.md")
+
     clips = record("artifacts/showcase/video.json")["clips"]
     assert all(clip["measured"]["frames_decoded"] == clip["declared_frames"]
                for clip in clips), "a clip no longer decodes to the frame count it declares"
@@ -431,7 +422,7 @@ def test_what_was_built_is_reported_as_the_build_records_measured_it():
 
     usd = record("artifacts/showcase/usd.json")
     assert usd["export"]["stepped_at_export_time"] is False
-    quoted(f"**{usd['export']['frames_written']} frames**", ROADMAP, "ROADMAP.md")
+    quoted(f"{usd['export']['frames_written']} frames", ROADMAP, "ROADMAP.md")
     quoted(f"{usd['read_back']['prims']} prims", ROADMAP, "ROADMAP.md")
 
     isaac = record("artifacts/showcase/isaac.json")["views"]["wide"]
@@ -444,7 +435,7 @@ def test_the_workbench_test_count_is_the_number_of_tests_it_has(request):
                  if "test_cable_workbench_v7" in str(item.fspath)]
     if not collected:
         pytest.skip("the workbench tests were not collected in this run")
-    quoted(f"**{len(collected)} headless tests**", ROADMAP, "ROADMAP.md")
+    quoted(f"{len(collected)} headless tests", ROADMAP, "ROADMAP.md")
 
 
 def test_the_winning_rig_won_by_the_margin_the_screen_recorded():

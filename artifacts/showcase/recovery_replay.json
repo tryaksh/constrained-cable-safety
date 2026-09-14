@@ -1,0 +1,3741 @@
+{
+  "schema": 1,
+  "id": "recovery_inspector_replay_v1",
+  "created_on": "2026-09-14",
+  "scope": "Export the estimates at every decision in nine existing registered requests. Verify the reusable inspector against those recorded decisions. No fitted threshold, controller, action set, task definition, or historical score changes.",
+  "selection_rule": "The first mounting offset and repeat of the existing showcase's RC1 1.5 mm service-loop context, crossed with all three registered error levels and all three registered supervisors. The case set is fixed before capture; every selected case, outcome and decision is kept.",
+  "capture_method": "The existing routing worker's observer copies the same estimated boot position and insertion axis used on each decision tick. It reads the declared fixture anchor and never calls perception again. It cannot change actions or consume the random stream.",
+  "claims": "Replay and API parity are software checks, not evidence of a better controller or a new success rate. The full routing study remains the source for performance findings.",
+  "budget_units": "All three budgets are metres of boot-to-anchor distance. Historical budget unit labels were incorrect; the numerical values are unchanged.",
+  "safety_filter": {
+    "fit": "evidence/cable_perception_v4.json",
+    "contract": "configs/cable_perception_v4.json",
+    "base": "configs/cable_recovery_task_v2.json",
+    "arm": "B0plus: the analytic budget carrying a margin sized from the declared estimator covariance",
+    "not_refitted": "The thresholds come out of the perception study's record unchanged.",
+    "fitted_on_single_clip_layouts": "The filter was fitted on single-clip layouts and has never seen a five-clip cell. That is not a confound to be removed; it is the deployment situation the study is about, and it is declared here so the result is read as what it is - a shipped check applied to a longer chain in new geometry.",
+    "loaded_at_freeze": {
+      "kind": "analytic budget with a measurement-robust margin",
+      "shape_matched": false,
+      "shape_matched_status": "off; this is the registered baseline",
+      "rules": {
+        "C1_clip": {
+          "threshold_m": 0.41364132161414274,
+          "train_balanced_accuracy": 0.7439452628687202,
+          "coverage_sigma": 2.0,
+          "shape_channel": null,
+          "shape_weight_m": null
+        },
+        "C2_bend": {
+          "threshold_m": 0.414370929950032,
+          "train_balanced_accuracy": 0.5442108859078006,
+          "coverage_sigma": 2.0,
+          "shape_channel": null,
+          "shape_weight_m": null
+        },
+        "C3_anchor": {
+          "threshold_m": 0.40756645091981014,
+          "train_balanced_accuracy": 0.7109765119066107,
+          "coverage_sigma": 2.0,
+          "shape_channel": null,
+          "shape_weight_m": null
+        }
+      },
+      "unscored": [],
+      "retract_distance_m": 0.006,
+      "source": {
+        "fit": "D:/constrained-cable-safety/evidence/cable_perception_v4.json",
+        "contract": "D:/constrained-cable-safety/configs/cable_perception_v4.json",
+        "fit_id": "cable_perception_v4_fit",
+        "created_on": "2026-09-11",
+        "arm": "B0plus",
+        "shape_matched": false
+      },
+      "scope": "Fitted on one task, one connector and one cable model, in simulation. The thresholds are properties of that. No hardware, no force-certified safety claim, and no guarantee outside the registered action space."
+    }
+  },
+  "candidate_actions": [
+    {
+      "retreat_m": 0.0,
+      "bearing_rad": 0.0,
+      "excursion_m": 0.0,
+      "speed_m_per_s": 0.02
+    },
+    {
+      "retreat_m": 0.03,
+      "bearing_rad": 0.0,
+      "excursion_m": 0.0,
+      "speed_m_per_s": 0.02
+    },
+    {
+      "retreat_m": 0.06,
+      "bearing_rad": 0.0,
+      "excursion_m": 0.0,
+      "speed_m_per_s": 0.02
+    },
+    {
+      "retreat_m": 0.08,
+      "bearing_rad": 0.0,
+      "excursion_m": 0.0,
+      "speed_m_per_s": 0.02
+    },
+    {
+      "retreat_m": 0.1,
+      "bearing_rad": 0.0,
+      "excursion_m": 0.0,
+      "speed_m_per_s": 0.02
+    },
+    {
+      "retreat_m": 0.06,
+      "bearing_rad": 0.0,
+      "excursion_m": 0.03,
+      "speed_m_per_s": 0.02
+    },
+    {
+      "retreat_m": 0.06,
+      "bearing_rad": 3.141593,
+      "excursion_m": 0.03,
+      "speed_m_per_s": 0.02
+    },
+    {
+      "retreat_m": 0.06,
+      "bearing_rad": 1.570796,
+      "excursion_m": 0.03,
+      "speed_m_per_s": 0.02
+    },
+    {
+      "retreat_m": 0.06,
+      "bearing_rad": 4.712389,
+      "excursion_m": 0.03,
+      "speed_m_per_s": 0.02
+    },
+    {
+      "retreat_m": 0.09,
+      "bearing_rad": 0.0,
+      "excursion_m": 0.03,
+      "speed_m_per_s": 0.02
+    },
+    {
+      "retreat_m": 0.09,
+      "bearing_rad": 3.141593,
+      "excursion_m": 0.03,
+      "speed_m_per_s": 0.02
+    },
+    {
+      "retreat_m": 0.03,
+      "bearing_rad": 3.141593,
+      "excursion_m": 0.05,
+      "speed_m_per_s": 0.02
+    }
+  ],
+  "cases": [
+    {
+      "request": "RC1_l15_compliant4000_m0_E0_unfiltered_r0",
+      "supervisor": "unfiltered",
+      "error_level": "E0",
+      "seeds": {
+        "calibration_seed": 161197,
+        "perception_seed": 1061197
+      },
+      "context": {
+        "geometry_id": "RC1",
+        "required_clips": 5,
+        "cable_segments": 23,
+        "physics_hz": 4000,
+        "task": "held_clip_preserving_seating"
+      },
+      "run_direction_xy": [
+        1.0,
+        0.0
+      ],
+      "declared_error": {
+        "socket_bias_m": 0.0,
+        "socket_jitter_m": 0.0,
+        "centreline_occluded_m": 0.0
+      },
+      "recorded_outcome": {
+        "supervisor": "unfiltered",
+        "job": {
+          "failure_reason": "lost_required_clip",
+          "elapsed_s": 5.852,
+          "status": "failed"
+        },
+        "route_completed": false,
+        "seated": false,
+        "installed_clips": {
+          "retained": [
+            "c1",
+            "c2",
+            "c3",
+            "c4",
+            "c5"
+          ],
+          "lost": [],
+          "required_retained": 5,
+          "required_count": 5
+        },
+        "terminal_clips": {
+          "retained": [
+            "c1",
+            "c2",
+            "c4",
+            "c5"
+          ],
+          "lost": [
+            "c3"
+          ],
+          "required_retained": 4,
+          "required_count": 5
+        },
+        "clip_loss_attribution": {
+          "c3": {
+            "time_s": 5.8500000000000005,
+            "during_step": 0,
+            "steps_issued_so_far": 1
+          }
+        },
+        "constraints": {
+          "C1_clip": "violated",
+          "C2_bend": "violated",
+          "C3_anchor": "violated"
+        },
+        "steps_offered": 5,
+        "steps_issued": 1,
+        "abstentions": 0,
+        "guards": {
+          "privilege": 0,
+          "mutation": 0
+        }
+      },
+      "decisions": [
+        {
+          "step": 0,
+          "decision": {
+            "time_s": 2.0,
+            "insertion_axis": [
+              0.0007964298310129352,
+              -0.0007963225033217326,
+              -0.9999993657847964
+            ],
+            "boot_position_m": [
+              -0.6920016077152981,
+              0.066460854212192,
+              1.4651224764763509
+            ],
+            "anchor_site_m": [
+              -0.452902505460627,
+              0.026429177072314188,
+              1.2213704936377252
+            ],
+            "boot_to_anchor_m": 0.3437818276340137
+          },
+          "expected": {
+            "abstained": false,
+            "action_index": 4,
+            "action": {
+              "retreat_m": 0.1,
+              "bearing_rad": 0.0,
+              "excursion_m": 0.0,
+              "speed_m_per_s": 0.02
+            },
+            "magnitude_m": 0.10600000000000001,
+            "headroom_m": null,
+            "decision_boot_to_anchor_m": 0.3437818276340137,
+            "endpoint_boot_to_anchor_m": 0.42561069183212585,
+            "motion_completed": false,
+            "requested": true,
+            "step": 0,
+            "time_s": 2.0,
+            "verdict": {
+              "safe": null,
+              "note": "no filter was consulted"
+            },
+            "budget": {
+              "C1_clip": {
+                "headroom_at_decision_m": 0.06985949398012903,
+                "spent_by_this_motion_m": 0.08182886419811214,
+                "spent_fraction": 1.171334911492312,
+                "headroom_left_m": -0.01196937021798311
+              },
+              "C2_bend": {
+                "headroom_at_decision_m": 0.07058910231601828,
+                "spent_by_this_motion_m": 0.08182886419811214,
+                "spent_fraction": 1.1592280042289658,
+                "headroom_left_m": -0.011239761882093857
+              },
+              "C3_anchor": {
+                "headroom_at_decision_m": 0.06378462328579643,
+                "spent_by_this_motion_m": 0.08182886419811214,
+                "spent_fraction": 1.2828932740021968,
+                "headroom_left_m": -0.018044240912315712
+              }
+            },
+            "state_before": {
+              "clips": {
+                "retained": [
+                  "c1",
+                  "c2",
+                  "c3",
+                  "c4",
+                  "c5"
+                ],
+                "lost": [],
+                "required_retained": 5,
+                "required_count": 5
+              },
+              "min_bend_radius_m": 0.04845761394351547,
+              "peak_anchor_n": 0.045470284025376506,
+              "already_violated": []
+            },
+            "state_after": null
+          }
+        }
+      ],
+      "source": {
+        "result": "artifacts/cable/routing-v6-s1/RC1_l15_compliant4000_m0_E0_unfiltered_r0/result.json",
+        "sha256": "5ac5b8656023475f440511ff0de8e94aebf6ea0bcd058e224bb19baf1857a19e"
+      }
+    },
+    {
+      "request": "RC1_l15_compliant4000_m0_E0_filtered_r0",
+      "supervisor": "filtered",
+      "error_level": "E0",
+      "seeds": {
+        "calibration_seed": 161195,
+        "perception_seed": 1061195
+      },
+      "context": {
+        "geometry_id": "RC1",
+        "required_clips": 5,
+        "cable_segments": 23,
+        "physics_hz": 4000,
+        "task": "held_clip_preserving_seating"
+      },
+      "run_direction_xy": [
+        1.0,
+        0.0
+      ],
+      "declared_error": {
+        "socket_bias_m": 0.0,
+        "socket_jitter_m": 0.0,
+        "centreline_occluded_m": 0.0
+      },
+      "recorded_outcome": {
+        "supervisor": "filtered",
+        "job": {
+          "failure_reason": "lost_required_clip",
+          "elapsed_s": 6.1979999999999995,
+          "status": "failed"
+        },
+        "route_completed": false,
+        "seated": false,
+        "installed_clips": {
+          "retained": [
+            "c1",
+            "c2",
+            "c3",
+            "c4",
+            "c5"
+          ],
+          "lost": [],
+          "required_retained": 5,
+          "required_count": 5
+        },
+        "terminal_clips": {
+          "retained": [
+            "c1",
+            "c2",
+            "c4",
+            "c5"
+          ],
+          "lost": [
+            "c3"
+          ],
+          "required_retained": 4,
+          "required_count": 5
+        },
+        "clip_loss_attribution": {
+          "c3": {
+            "time_s": 6.196,
+            "during_step": 0,
+            "steps_issued_so_far": 1
+          }
+        },
+        "constraints": {
+          "C1_clip": "violated",
+          "C2_bend": "violated",
+          "C3_anchor": "violated"
+        },
+        "steps_offered": 5,
+        "steps_issued": 1,
+        "abstentions": 0,
+        "guards": {
+          "privilege": 0,
+          "mutation": 0
+        }
+      },
+      "decisions": [
+        {
+          "step": 0,
+          "decision": {
+            "time_s": 2.0,
+            "insertion_axis": [
+              0.0007964298310129352,
+              -0.0007963225033217326,
+              -0.9999993657847964
+            ],
+            "boot_position_m": [
+              -0.6920016077152981,
+              0.066460854212192,
+              1.4651224764763509
+            ],
+            "anchor_site_m": [
+              -0.452902505460627,
+              0.026429177072314188,
+              1.2213704936377252
+            ],
+            "boot_to_anchor_m": 0.3437818276340137
+          },
+          "expected": {
+            "abstained": false,
+            "action_index": 9,
+            "action": {
+              "retreat_m": 0.09,
+              "bearing_rad": 0.0,
+              "excursion_m": 0.03,
+              "speed_m_per_s": 0.02
+            },
+            "magnitude_m": 0.10057832768544127,
+            "headroom_m": 0.006554373574983896,
+            "decision_boot_to_anchor_m": 0.3437818276340137,
+            "endpoint_boot_to_anchor_m": 0.40101207734482625,
+            "motion_completed": false,
+            "requested": true,
+            "step": 0,
+            "time_s": 2.0,
+            "verdict": {
+              "safe": true,
+              "refused_by": [],
+              "unscored": [],
+              "binding_constraint": "C3_anchor",
+              "constraints": {
+                "C1_clip": {
+                  "state": "safe",
+                  "endpoint_distance_m": 0.40101207734482625,
+                  "shape_term_m": 0.0,
+                  "score_m": 0.40101207734482625,
+                  "effective_threshold_m": 0.41364132161414274,
+                  "fitted_threshold_m": 0.41364132161414274,
+                  "margin_m": 0.0,
+                  "headroom_m": 0.012629244269316497
+                },
+                "C2_bend": {
+                  "state": "safe",
+                  "endpoint_distance_m": 0.40101207734482625,
+                  "shape_term_m": 0.0,
+                  "score_m": 0.40101207734482625,
+                  "effective_threshold_m": 0.414370929950032,
+                  "fitted_threshold_m": 0.414370929950032,
+                  "margin_m": 0.0,
+                  "headroom_m": 0.013358852605205751
+                },
+                "C3_anchor": {
+                  "state": "safe",
+                  "endpoint_distance_m": 0.40101207734482625,
+                  "shape_term_m": 0.0,
+                  "score_m": 0.40101207734482625,
+                  "effective_threshold_m": 0.40756645091981014,
+                  "fitted_threshold_m": 0.40756645091981014,
+                  "margin_m": 0.0,
+                  "headroom_m": 0.006554373574983896
+                }
+              }
+            },
+            "budget": {
+              "C1_clip": {
+                "headroom_at_decision_m": 0.06985949398012903,
+                "spent_by_this_motion_m": 0.05723024971081253,
+                "spent_fraction": 0.8192193566001382,
+                "headroom_left_m": 0.012629244269316497
+              },
+              "C2_bend": {
+                "headroom_at_decision_m": 0.07058910231601828,
+                "spent_by_this_motion_m": 0.05723024971081253,
+                "spent_fraction": 0.810751912591268,
+                "headroom_left_m": 0.013358852605205751
+              },
+              "C3_anchor": {
+                "headroom_at_decision_m": 0.06378462328579643,
+                "spent_by_this_motion_m": 0.05723024971081253,
+                "spent_fraction": 0.8972421057405002,
+                "headroom_left_m": 0.006554373574983896
+              }
+            },
+            "state_before": {
+              "clips": {
+                "retained": [
+                  "c1",
+                  "c2",
+                  "c3",
+                  "c4",
+                  "c5"
+                ],
+                "lost": [],
+                "required_retained": 5,
+                "required_count": 5
+              },
+              "min_bend_radius_m": 0.04845761394351547,
+              "peak_anchor_n": 0.045470284025376506,
+              "already_violated": []
+            },
+            "state_after": null
+          }
+        }
+      ],
+      "source": {
+        "result": "artifacts/cable/routing-v6-s1/RC1_l15_compliant4000_m0_E0_filtered_r0/result.json",
+        "sha256": "1589db073eeff36ea49dd4c821de0458ef6538c9f8a800c0a853cda81c943c92"
+      }
+    },
+    {
+      "request": "RC1_l15_compliant4000_m0_E0_conservative_r0",
+      "supervisor": "conservative",
+      "error_level": "E0",
+      "seeds": {
+        "calibration_seed": 161196,
+        "perception_seed": 1061196
+      },
+      "context": {
+        "geometry_id": "RC1",
+        "required_clips": 5,
+        "cable_segments": 23,
+        "physics_hz": 4000,
+        "task": "held_clip_preserving_seating"
+      },
+      "run_direction_xy": [
+        1.0,
+        0.0
+      ],
+      "declared_error": {
+        "socket_bias_m": 0.0,
+        "socket_jitter_m": 0.0,
+        "centreline_occluded_m": 0.0
+      },
+      "recorded_outcome": {
+        "supervisor": "conservative",
+        "job": {
+          "failure_reason": null,
+          "elapsed_s": 21.714,
+          "status": "completed"
+        },
+        "route_completed": true,
+        "seated": true,
+        "installed_clips": {
+          "retained": [
+            "c1",
+            "c2",
+            "c3",
+            "c4",
+            "c5"
+          ],
+          "lost": [],
+          "required_retained": 5,
+          "required_count": 5
+        },
+        "terminal_clips": {
+          "retained": [
+            "c1",
+            "c2",
+            "c3",
+            "c4",
+            "c5"
+          ],
+          "lost": [],
+          "required_retained": 5,
+          "required_count": 5
+        },
+        "clip_loss_attribution": {},
+        "constraints": {
+          "C1_clip": "respected",
+          "C2_bend": "respected",
+          "C3_anchor": "respected"
+        },
+        "steps_offered": 5,
+        "steps_issued": 5,
+        "abstentions": 0,
+        "guards": {
+          "privilege": 0,
+          "mutation": 0
+        }
+      },
+      "decisions": [
+        {
+          "step": 0,
+          "decision": {
+            "time_s": 2.0,
+            "insertion_axis": [
+              0.0007964298310129352,
+              -0.0007963225033217326,
+              -0.9999993657847964
+            ],
+            "boot_position_m": [
+              -0.6920016077152981,
+              0.066460854212192,
+              1.4651224764763509
+            ],
+            "anchor_site_m": [
+              -0.452902505460627,
+              0.026429177072314188,
+              1.2213704936377252
+            ],
+            "boot_to_anchor_m": 0.3437818276340137
+          },
+          "expected": {
+            "abstained": false,
+            "action_index": 0,
+            "action": {
+              "retreat_m": 0.0,
+              "bearing_rad": 0.0,
+              "excursion_m": 0.0,
+              "speed_m_per_s": 0.02
+            },
+            "magnitude_m": 0.006,
+            "headroom_m": 0.05950089014749366,
+            "decision_boot_to_anchor_m": 0.3437818276340137,
+            "endpoint_boot_to_anchor_m": 0.3480655607723165,
+            "motion_completed": true,
+            "requested": true,
+            "step": 0,
+            "time_s": 2.0,
+            "verdict": {
+              "safe": true,
+              "refused_by": [],
+              "unscored": [],
+              "binding_constraint": "C3_anchor",
+              "constraints": {
+                "C1_clip": {
+                  "state": "safe",
+                  "endpoint_distance_m": 0.3480655607723165,
+                  "shape_term_m": 0.0,
+                  "score_m": 0.3480655607723165,
+                  "effective_threshold_m": 0.41364132161414274,
+                  "fitted_threshold_m": 0.41364132161414274,
+                  "margin_m": 0.0,
+                  "headroom_m": 0.06557576084182626
+                },
+                "C2_bend": {
+                  "state": "safe",
+                  "endpoint_distance_m": 0.3480655607723165,
+                  "shape_term_m": 0.0,
+                  "score_m": 0.3480655607723165,
+                  "effective_threshold_m": 0.414370929950032,
+                  "fitted_threshold_m": 0.414370929950032,
+                  "margin_m": 0.0,
+                  "headroom_m": 0.06630536917771551
+                },
+                "C3_anchor": {
+                  "state": "safe",
+                  "endpoint_distance_m": 0.3480655607723165,
+                  "shape_term_m": 0.0,
+                  "score_m": 0.3480655607723165,
+                  "effective_threshold_m": 0.40756645091981014,
+                  "fitted_threshold_m": 0.40756645091981014,
+                  "margin_m": 0.0,
+                  "headroom_m": 0.05950089014749366
+                }
+              }
+            },
+            "budget": {
+              "C1_clip": {
+                "headroom_at_decision_m": 0.06985949398012903,
+                "spent_by_this_motion_m": 0.00428373313830277,
+                "spent_fraction": 0.06131926949716016,
+                "headroom_left_m": 0.06557576084182626
+              },
+              "C2_bend": {
+                "headroom_at_decision_m": 0.07058910231601828,
+                "spent_by_this_motion_m": 0.00428373313830277,
+                "spent_fraction": 0.06068547407112575,
+                "headroom_left_m": 0.06630536917771551
+              },
+              "C3_anchor": {
+                "headroom_at_decision_m": 0.06378462328579643,
+                "spent_by_this_motion_m": 0.00428373313830277,
+                "spent_fraction": 0.06715933900101394,
+                "headroom_left_m": 0.05950089014749366
+              }
+            },
+            "state_before": {
+              "clips": {
+                "retained": [
+                  "c1",
+                  "c2",
+                  "c3",
+                  "c4",
+                  "c5"
+                ],
+                "lost": [],
+                "required_retained": 5,
+                "required_count": 5
+              },
+              "min_bend_radius_m": 0.04845761394351547,
+              "peak_anchor_n": 0.045470284025376506,
+              "already_violated": []
+            },
+            "state_after": {
+              "clips": {
+                "retained": [
+                  "c1",
+                  "c2",
+                  "c3",
+                  "c4",
+                  "c5"
+                ],
+                "lost": [],
+                "required_retained": 5,
+                "required_count": 5
+              },
+              "min_bend_radius_m": 0.04798926822787782,
+              "peak_anchor_n": 0.0479531819738701,
+              "time_s": 3.6
+            }
+          }
+        },
+        {
+          "step": 1,
+          "decision": {
+            "time_s": 4.0,
+            "insertion_axis": [
+              0.0007964298310129352,
+              -0.0007963225033217326,
+              -0.9999993657847964
+            ],
+            "boot_position_m": [
+              -0.6920349642509077,
+              0.06646126617677102,
+              1.4696812598210351
+            ],
+            "anchor_site_m": [
+              -0.452902505460627,
+              0.026429177072314188,
+              1.2213704936377252
+            ],
+            "boot_to_anchor_m": 0.3470520675744418
+          },
+          "expected": {
+            "abstained": false,
+            "action_index": 0,
+            "action": {
+              "retreat_m": 0.0,
+              "bearing_rad": 0.0,
+              "excursion_m": 0.0,
+              "speed_m_per_s": 0.02
+            },
+            "magnitude_m": 0.006,
+            "headroom_m": 0.05619267147656409,
+            "decision_boot_to_anchor_m": 0.3470520675744418,
+            "endpoint_boot_to_anchor_m": 0.35137377944324605,
+            "motion_completed": true,
+            "requested": true,
+            "step": 1,
+            "time_s": 4.0,
+            "verdict": {
+              "safe": true,
+              "refused_by": [],
+              "unscored": [],
+              "binding_constraint": "C3_anchor",
+              "constraints": {
+                "C1_clip": {
+                  "state": "safe",
+                  "endpoint_distance_m": 0.35137377944324605,
+                  "shape_term_m": 0.0,
+                  "score_m": 0.35137377944324605,
+                  "effective_threshold_m": 0.41364132161414274,
+                  "fitted_threshold_m": 0.41364132161414274,
+                  "margin_m": 0.0,
+                  "headroom_m": 0.062267542170896695
+                },
+                "C2_bend": {
+                  "state": "safe",
+                  "endpoint_distance_m": 0.35137377944324605,
+                  "shape_term_m": 0.0,
+                  "score_m": 0.35137377944324605,
+                  "effective_threshold_m": 0.414370929950032,
+                  "fitted_threshold_m": 0.414370929950032,
+                  "margin_m": 0.0,
+                  "headroom_m": 0.06299715050678595
+                },
+                "C3_anchor": {
+                  "state": "safe",
+                  "endpoint_distance_m": 0.35137377944324605,
+                  "shape_term_m": 0.0,
+                  "score_m": 0.35137377944324605,
+                  "effective_threshold_m": 0.40756645091981014,
+                  "fitted_threshold_m": 0.40756645091981014,
+                  "margin_m": 0.0,
+                  "headroom_m": 0.05619267147656409
+                }
+              }
+            },
+            "budget": {
+              "C1_clip": {
+                "headroom_at_decision_m": 0.06658925403970095,
+                "spent_by_this_motion_m": 0.004321711868804257,
+                "spent_fraction": 0.06490104043255424,
+                "headroom_left_m": 0.062267542170896695
+              },
+              "C2_bend": {
+                "headroom_at_decision_m": 0.0673188623755902,
+                "spent_by_this_motion_m": 0.004321711868804257,
+                "spent_fraction": 0.06419763668453357,
+                "headroom_left_m": 0.06299715050678595
+              },
+              "C3_anchor": {
+                "headroom_at_decision_m": 0.06051438334536835,
+                "spent_by_this_motion_m": 0.004321711868804257,
+                "spent_fraction": 0.071416275435533,
+                "headroom_left_m": 0.05619267147656409
+              }
+            },
+            "state_before": {
+              "clips": {
+                "retained": [
+                  "c1",
+                  "c2",
+                  "c3",
+                  "c4",
+                  "c5"
+                ],
+                "lost": [],
+                "required_retained": 5,
+                "required_count": 5
+              },
+              "min_bend_radius_m": 0.04798926822787782,
+              "peak_anchor_n": 0.0479531819738701,
+              "already_violated": []
+            },
+            "state_after": {
+              "clips": {
+                "retained": [
+                  "c1",
+                  "c2",
+                  "c3",
+                  "c4",
+                  "c5"
+                ],
+                "lost": [],
+                "required_retained": 5,
+                "required_count": 5
+              },
+              "min_bend_radius_m": 0.04798926822787782,
+              "peak_anchor_n": 0.0479531819738701,
+              "time_s": 5.6000000000000005
+            }
+          }
+        },
+        {
+          "step": 2,
+          "decision": {
+            "time_s": 6.0,
+            "insertion_axis": [
+              0.0007964298310129352,
+              -0.0007963225033217326,
+              -0.9999993657847964
+            ],
+            "boot_position_m": [
+              -0.6920500800167441,
+              0.06646190839816138,
+              1.474229382722624
+            ],
+            "anchor_site_m": [
+              -0.452902505460627,
+              0.026429177072314188,
+              1.2213704936377252
+            ],
+            "boot_to_anchor_m": 0.35033098604424107
+          },
+          "expected": {
+            "abstained": false,
+            "action_index": 0,
+            "action": {
+              "retreat_m": 0.0,
+              "bearing_rad": 0.0,
+              "excursion_m": 0.0,
+              "speed_m_per_s": 0.02
+            },
+            "magnitude_m": 0.006,
+            "headroom_m": 0.05287676591886148,
+            "decision_boot_to_anchor_m": 0.35033098604424107,
+            "endpoint_boot_to_anchor_m": 0.35468968500094866,
+            "motion_completed": true,
+            "requested": true,
+            "step": 2,
+            "time_s": 6.0,
+            "verdict": {
+              "safe": true,
+              "refused_by": [],
+              "unscored": [],
+              "binding_constraint": "C3_anchor",
+              "constraints": {
+                "C1_clip": {
+                  "state": "safe",
+                  "endpoint_distance_m": 0.35468968500094866,
+                  "shape_term_m": 0.0,
+                  "score_m": 0.35468968500094866,
+                  "effective_threshold_m": 0.41364132161414274,
+                  "fitted_threshold_m": 0.41364132161414274,
+                  "margin_m": 0.0,
+                  "headroom_m": 0.05895163661319408
+                },
+                "C2_bend": {
+                  "state": "safe",
+                  "endpoint_distance_m": 0.35468968500094866,
+                  "shape_term_m": 0.0,
+                  "score_m": 0.35468968500094866,
+                  "effective_threshold_m": 0.414370929950032,
+                  "fitted_threshold_m": 0.414370929950032,
+                  "margin_m": 0.0,
+                  "headroom_m": 0.059681244949083334
+                },
+                "C3_anchor": {
+                  "state": "safe",
+                  "endpoint_distance_m": 0.35468968500094866,
+                  "shape_term_m": 0.0,
+                  "score_m": 0.35468968500094866,
+                  "effective_threshold_m": 0.40756645091981014,
+                  "fitted_threshold_m": 0.40756645091981014,
+                  "margin_m": 0.0,
+                  "headroom_m": 0.05287676591886148
+                }
+              }
+            },
+            "budget": {
+              "C1_clip": {
+                "headroom_at_decision_m": 0.06331033556990168,
+                "spent_by_this_motion_m": 0.004358698956707596,
+                "spent_fraction": 0.06884656221566077,
+                "headroom_left_m": 0.05895163661319408
+              },
+              "C2_bend": {
+                "headroom_at_decision_m": 0.06403994390579093,
+                "spent_by_this_motion_m": 0.004358698956707596,
+                "spent_fraction": 0.06806219198317337,
+                "headroom_left_m": 0.059681244949083334
+              },
+              "C3_anchor": {
+                "headroom_at_decision_m": 0.057235464875569075,
+                "spent_by_this_motion_m": 0.004358698956707596,
+                "spent_fraction": 0.07615381418118095,
+                "headroom_left_m": 0.05287676591886148
+              }
+            },
+            "state_before": {
+              "clips": {
+                "retained": [
+                  "c1",
+                  "c2",
+                  "c3",
+                  "c4",
+                  "c5"
+                ],
+                "lost": [],
+                "required_retained": 5,
+                "required_count": 5
+              },
+              "min_bend_radius_m": 0.04798926822787782,
+              "peak_anchor_n": 0.0479531819738701,
+              "already_violated": []
+            },
+            "state_after": {
+              "clips": {
+                "retained": [
+                  "c1",
+                  "c2",
+                  "c3",
+                  "c4",
+                  "c5"
+                ],
+                "lost": [],
+                "required_retained": 5,
+                "required_count": 5
+              },
+              "min_bend_radius_m": 0.04798926822787782,
+              "peak_anchor_n": 0.0479531819738701,
+              "time_s": 7.6000000000000005
+            }
+          }
+        },
+        {
+          "step": 3,
+          "decision": {
+            "time_s": 8.0,
+            "insertion_axis": [
+              0.0007964298310129352,
+              -0.0007963225033217326,
+              -0.9999993657847964
+            ],
+            "boot_position_m": [
+              -0.6920587197715597,
+              0.06646298611541303,
+              1.4787731202758239
+            ],
+            "anchor_site_m": [
+              -0.452902505460627,
+              0.026429177072314188,
+              1.2213704936377252
+            ],
+            "boot_to_anchor_m": 0.3536304750869593
+          },
+          "expected": {
+            "abstained": false,
+            "action_index": 0,
+            "action": {
+              "retreat_m": 0.0,
+              "bearing_rad": 0.0,
+              "excursion_m": 0.0,
+              "speed_m_per_s": 0.02
+            },
+            "magnitude_m": 0.006,
+            "headroom_m": 0.04954129721898648,
+            "decision_boot_to_anchor_m": 0.3536304750869593,
+            "endpoint_boot_to_anchor_m": 0.35802515370082366,
+            "motion_completed": true,
+            "requested": true,
+            "step": 3,
+            "time_s": 8.0,
+            "verdict": {
+              "safe": true,
+              "refused_by": [],
+              "unscored": [],
+              "binding_constraint": "C3_anchor",
+              "constraints": {
+                "C1_clip": {
+                  "state": "safe",
+                  "endpoint_distance_m": 0.35802515370082366,
+                  "shape_term_m": 0.0,
+                  "score_m": 0.35802515370082366,
+                  "effective_threshold_m": 0.41364132161414274,
+                  "fitted_threshold_m": 0.41364132161414274,
+                  "margin_m": 0.0,
+                  "headroom_m": 0.05561616791331908
+                },
+                "C2_bend": {
+                  "state": "safe",
+                  "endpoint_distance_m": 0.35802515370082366,
+                  "shape_term_m": 0.0,
+                  "score_m": 0.35802515370082366,
+                  "effective_threshold_m": 0.414370929950032,
+                  "fitted_threshold_m": 0.414370929950032,
+                  "margin_m": 0.0,
+                  "headroom_m": 0.056345776249208335
+                },
+                "C3_anchor": {
+                  "state": "safe",
+                  "endpoint_distance_m": 0.35802515370082366,
+                  "shape_term_m": 0.0,
+                  "score_m": 0.35802515370082366,
+                  "effective_threshold_m": 0.40756645091981014,
+                  "fitted_threshold_m": 0.40756645091981014,
+                  "margin_m": 0.0,
+                  "headroom_m": 0.04954129721898648
+                }
+              }
+            },
+            "budget": {
+              "C1_clip": {
+                "headroom_at_decision_m": 0.06001084652718347,
+                "spent_by_this_motion_m": 0.004394678613864389,
+                "spent_fraction": 0.07323140512396714,
+                "headroom_left_m": 0.05561616791331908
+              },
+              "C2_bend": {
+                "headroom_at_decision_m": 0.060740454863072724,
+                "spent_by_this_motion_m": 0.004394678613864389,
+                "spent_fraction": 0.07235175672904191,
+                "headroom_left_m": 0.056345776249208335
+              },
+              "C3_anchor": {
+                "headroom_at_decision_m": 0.05393597583285087,
+                "spent_by_this_motion_m": 0.004394678613864389,
+                "spent_fraction": 0.08147954210532175,
+                "headroom_left_m": 0.04954129721898648
+              }
+            },
+            "state_before": {
+              "clips": {
+                "retained": [
+                  "c1",
+                  "c2",
+                  "c3",
+                  "c4",
+                  "c5"
+                ],
+                "lost": [],
+                "required_retained": 5,
+                "required_count": 5
+              },
+              "min_bend_radius_m": 0.04798926822787782,
+              "peak_anchor_n": 0.0479531819738701,
+              "already_violated": []
+            },
+            "state_after": {
+              "clips": {
+                "retained": [
+                  "c1",
+                  "c2",
+                  "c3",
+                  "c4",
+                  "c5"
+                ],
+                "lost": [],
+                "required_retained": 5,
+                "required_count": 5
+              },
+              "min_bend_radius_m": 0.04798926822787782,
+              "peak_anchor_n": 0.0479531819738701,
+              "time_s": 9.6
+            }
+          }
+        },
+        {
+          "step": 4,
+          "decision": {
+            "time_s": 10.0,
+            "insertion_axis": [
+              0.0007964298310129352,
+              -0.0007963225033217326,
+              -0.9999993657847964
+            ],
+            "boot_position_m": [
+              -0.6920664746396192,
+              0.06646457612671537,
+              1.4833092154745324
+            ],
+            "anchor_site_m": [
+              -0.452902505460627,
+              0.026429177072314188,
+              1.2213704936377252
+            ],
+            "boot_to_anchor_m": 0.35695116098479823
+          },
+          "expected": {
+            "abstained": false,
+            "action_index": 0,
+            "action": {
+              "retreat_m": 0.0,
+              "bearing_rad": 0.0,
+              "excursion_m": 0.0,
+              "speed_m_per_s": 0.02
+            },
+            "magnitude_m": 0.006,
+            "headroom_m": 0.04618567902147591,
+            "decision_boot_to_anchor_m": 0.35695116098479823,
+            "endpoint_boot_to_anchor_m": 0.36138077189833423,
+            "motion_completed": true,
+            "requested": true,
+            "step": 4,
+            "time_s": 10.0,
+            "verdict": {
+              "safe": true,
+              "refused_by": [],
+              "unscored": [],
+              "binding_constraint": "C3_anchor",
+              "constraints": {
+                "C1_clip": {
+                  "state": "safe",
+                  "endpoint_distance_m": 0.36138077189833423,
+                  "shape_term_m": 0.0,
+                  "score_m": 0.36138077189833423,
+                  "effective_threshold_m": 0.41364132161414274,
+                  "fitted_threshold_m": 0.41364132161414274,
+                  "margin_m": 0.0,
+                  "headroom_m": 0.05226054971580851
+                },
+                "C2_bend": {
+                  "state": "safe",
+                  "endpoint_distance_m": 0.36138077189833423,
+                  "shape_term_m": 0.0,
+                  "score_m": 0.36138077189833423,
+                  "effective_threshold_m": 0.414370929950032,
+                  "fitted_threshold_m": 0.414370929950032,
+                  "margin_m": 0.0,
+                  "headroom_m": 0.05299015805169777
+                },
+                "C3_anchor": {
+                  "state": "safe",
+                  "endpoint_distance_m": 0.36138077189833423,
+                  "shape_term_m": 0.0,
+                  "score_m": 0.36138077189833423,
+                  "effective_threshold_m": 0.40756645091981014,
+                  "fitted_threshold_m": 0.40756645091981014,
+                  "margin_m": 0.0,
+                  "headroom_m": 0.04618567902147591
+                }
+              }
+            },
+            "budget": {
+              "C1_clip": {
+                "headroom_at_decision_m": 0.05669016062934451,
+                "spent_by_this_motion_m": 0.004429610913535997,
+                "spent_fraction": 0.078137208721245,
+                "headroom_left_m": 0.05226054971580851
+              },
+              "C2_bend": {
+                "headroom_at_decision_m": 0.057419768965233764,
+                "spent_by_this_motion_m": 0.004429610913535997,
+                "spent_fraction": 0.0771443527788838,
+                "headroom_left_m": 0.05299015805169777
+              },
+              "C3_anchor": {
+                "headroom_at_decision_m": 0.05061528993501191,
+                "spent_by_this_motion_m": 0.004429610913535997,
+                "spent_fraction": 0.08751527293873942,
+                "headroom_left_m": 0.04618567902147591
+              }
+            },
+            "state_before": {
+              "clips": {
+                "retained": [
+                  "c1",
+                  "c2",
+                  "c3",
+                  "c4",
+                  "c5"
+                ],
+                "lost": [],
+                "required_retained": 5,
+                "required_count": 5
+              },
+              "min_bend_radius_m": 0.04798926822787782,
+              "peak_anchor_n": 0.0479531819738701,
+              "already_violated": []
+            },
+            "state_after": {
+              "clips": {
+                "retained": [
+                  "c1",
+                  "c2",
+                  "c3",
+                  "c4",
+                  "c5"
+                ],
+                "lost": [],
+                "required_retained": 5,
+                "required_count": 5
+              },
+              "min_bend_radius_m": 0.04798926822787782,
+              "peak_anchor_n": 0.0479531819738701,
+              "time_s": 11.6
+            }
+          }
+        }
+      ],
+      "source": {
+        "result": "artifacts/cable/routing-v6-s1/RC1_l15_compliant4000_m0_E0_conservative_r0/result.json",
+        "sha256": "463a2f5fbd8bd9e8ba3951b2115bc59de89c33374b869683655f991e210ac95a"
+      }
+    },
+    {
+      "request": "RC1_l15_compliant4000_m0_E2_unfiltered_r0",
+      "supervisor": "unfiltered",
+      "error_level": "E2",
+      "seeds": {
+        "calibration_seed": 161210,
+        "perception_seed": 1061210
+      },
+      "context": {
+        "geometry_id": "RC1",
+        "required_clips": 5,
+        "cable_segments": 23,
+        "physics_hz": 4000,
+        "task": "held_clip_preserving_seating"
+      },
+      "run_direction_xy": [
+        1.0,
+        0.0
+      ],
+      "declared_error": {
+        "socket_bias_m": 0.0005,
+        "socket_jitter_m": 0.0001,
+        "centreline_occluded_m": 0.001
+      },
+      "recorded_outcome": {
+        "supervisor": "unfiltered",
+        "job": {
+          "failure_reason": "lost_required_clip",
+          "elapsed_s": 5.57,
+          "status": "failed"
+        },
+        "route_completed": false,
+        "seated": false,
+        "installed_clips": {
+          "retained": [
+            "c1",
+            "c2",
+            "c3",
+            "c4",
+            "c5"
+          ],
+          "lost": [],
+          "required_retained": 5,
+          "required_count": 5
+        },
+        "terminal_clips": {
+          "retained": [
+            "c2",
+            "c3",
+            "c4",
+            "c5"
+          ],
+          "lost": [
+            "c1"
+          ],
+          "required_retained": 4,
+          "required_count": 5
+        },
+        "clip_loss_attribution": {
+          "c1": {
+            "time_s": 5.5680000000000005,
+            "during_step": 0,
+            "steps_issued_so_far": 1
+          }
+        },
+        "constraints": {
+          "C1_clip": "violated",
+          "C2_bend": "respected",
+          "C3_anchor": "respected"
+        },
+        "steps_offered": 5,
+        "steps_issued": 1,
+        "abstentions": 0,
+        "guards": {
+          "privilege": 0,
+          "mutation": 0
+        }
+      },
+      "decisions": [
+        {
+          "step": 0,
+          "decision": {
+            "time_s": 2.0,
+            "insertion_axis": [
+              -0.0034143262641651035,
+              -0.0005199881820281557,
+              -0.9999940359764414
+            ],
+            "boot_position_m": [
+              -0.6917427492829521,
+              0.06689206449442042,
+              1.465637050463475
+            ],
+            "anchor_site_m": [
+              -0.452902505460627,
+              0.026429177072314188,
+              1.2213704936377252
+            ],
+            "boot_to_anchor_m": 0.34401752587789625
+          },
+          "expected": {
+            "abstained": false,
+            "action_index": 4,
+            "action": {
+              "retreat_m": 0.1,
+              "bearing_rad": 0.0,
+              "excursion_m": 0.0,
+              "speed_m_per_s": 0.02
+            },
+            "magnitude_m": 0.10600000000000001,
+            "headroom_m": null,
+            "decision_boot_to_anchor_m": 0.34401752587789625,
+            "endpoint_boot_to_anchor_m": 0.4256757432551329,
+            "motion_completed": false,
+            "requested": true,
+            "step": 0,
+            "time_s": 2.0,
+            "verdict": {
+              "safe": null,
+              "note": "no filter was consulted"
+            },
+            "budget": {
+              "C1_clip": {
+                "headroom_at_decision_m": 0.06792379573624652,
+                "spent_by_this_motion_m": 0.08165821737723666,
+                "spent_fraction": 1.202203388254714,
+                "headroom_left_m": -0.013734421640990147
+              },
+              "C2_bend": {
+                "headroom_at_decision_m": 0.06865340407213577,
+                "spent_by_this_motion_m": 0.08165821737723666,
+                "spent_fraction": 1.1894270718380755,
+                "headroom_left_m": -0.013004813305100893
+              },
+              "C3_anchor": {
+                "headroom_at_decision_m": 0.061848925041913916,
+                "spent_by_this_motion_m": 0.08165821737723666,
+                "spent_fraction": 1.3202851516319538,
+                "headroom_left_m": -0.019809292335322748
+              }
+            },
+            "state_before": {
+              "clips": {
+                "retained": [
+                  "c1",
+                  "c2",
+                  "c3",
+                  "c4",
+                  "c5"
+                ],
+                "lost": [],
+                "required_retained": 5,
+                "required_count": 5
+              },
+              "min_bend_radius_m": 0.048500542407553714,
+              "peak_anchor_n": 0.05271299669978552,
+              "already_violated": []
+            },
+            "state_after": null
+          }
+        }
+      ],
+      "source": {
+        "result": "artifacts/cable/routing-v6-s1/RC1_l15_compliant4000_m0_E2_unfiltered_r0/result.json",
+        "sha256": "3fa43bea2dc4bfcf6b43d9ba8ecc2c7366745aea3abb2ca47c339d9ce17cf6a8"
+      }
+    },
+    {
+      "request": "RC1_l15_compliant4000_m0_E2_filtered_r0",
+      "supervisor": "filtered",
+      "error_level": "E2",
+      "seeds": {
+        "calibration_seed": 161198,
+        "perception_seed": 1061198
+      },
+      "context": {
+        "geometry_id": "RC1",
+        "required_clips": 5,
+        "cable_segments": 23,
+        "physics_hz": 4000,
+        "task": "held_clip_preserving_seating"
+      },
+      "run_direction_xy": [
+        1.0,
+        0.0
+      ],
+      "declared_error": {
+        "socket_bias_m": 0.0005,
+        "socket_jitter_m": 0.0001,
+        "centreline_occluded_m": 0.001
+      },
+      "recorded_outcome": {
+        "supervisor": "filtered",
+        "job": {
+          "failure_reason": "lost_required_clip",
+          "elapsed_s": 6.2,
+          "status": "failed"
+        },
+        "route_completed": false,
+        "seated": false,
+        "installed_clips": {
+          "retained": [
+            "c1",
+            "c2",
+            "c3",
+            "c4",
+            "c5"
+          ],
+          "lost": [],
+          "required_retained": 5,
+          "required_count": 5
+        },
+        "terminal_clips": {
+          "retained": [
+            "c1",
+            "c2",
+            "c4",
+            "c5"
+          ],
+          "lost": [
+            "c3"
+          ],
+          "required_retained": 4,
+          "required_count": 5
+        },
+        "clip_loss_attribution": {
+          "c3": {
+            "time_s": 6.198,
+            "during_step": 0,
+            "steps_issued_so_far": 1
+          }
+        },
+        "constraints": {
+          "C1_clip": "violated",
+          "C2_bend": "violated",
+          "C3_anchor": "violated"
+        },
+        "steps_offered": 5,
+        "steps_issued": 1,
+        "abstentions": 0,
+        "guards": {
+          "privilege": 0,
+          "mutation": 0
+        }
+      },
+      "decisions": [
+        {
+          "step": 0,
+          "decision": {
+            "time_s": 2.0,
+            "insertion_axis": [
+              0.004958814035565433,
+              -0.0016431163766747684,
+              -0.9999863550728747
+            ],
+            "boot_position_m": [
+              -0.6918909909617801,
+              0.06644874570010231,
+              1.465258092756277
+            ],
+            "anchor_site_m": [
+              -0.452902505460627,
+              0.026429177072314188,
+              1.2213704936377252
+            ],
+            "boot_to_anchor_m": 0.3437996845244343
+          },
+          "expected": {
+            "abstained": false,
+            "action_index": 9,
+            "action": {
+              "retreat_m": 0.09,
+              "bearing_rad": 0.0,
+              "excursion_m": 0.03,
+              "speed_m_per_s": 0.02
+            },
+            "magnitude_m": 0.10057832768544125,
+            "headroom_m": 0.004476842430635342,
+            "decision_boot_to_anchor_m": 0.3437996845244343,
+            "endpoint_boot_to_anchor_m": 0.4013896084891748,
+            "motion_completed": false,
+            "requested": true,
+            "step": 0,
+            "time_s": 2.0,
+            "verdict": {
+              "safe": true,
+              "refused_by": [],
+              "unscored": [],
+              "binding_constraint": "C3_anchor",
+              "constraints": {
+                "C1_clip": {
+                  "state": "safe",
+                  "endpoint_distance_m": 0.4013896084891748,
+                  "shape_term_m": 0.0,
+                  "score_m": 0.4013896084891748,
+                  "effective_threshold_m": 0.41194132161414276,
+                  "fitted_threshold_m": 0.41364132161414274,
+                  "margin_m": 0.0017000000000000001,
+                  "headroom_m": 0.010551713124967943
+                },
+                "C2_bend": {
+                  "state": "safe",
+                  "endpoint_distance_m": 0.4013896084891748,
+                  "shape_term_m": 0.0,
+                  "score_m": 0.4013896084891748,
+                  "effective_threshold_m": 0.412670929950032,
+                  "fitted_threshold_m": 0.414370929950032,
+                  "margin_m": 0.0017000000000000001,
+                  "headroom_m": 0.011281321460857197
+                },
+                "C3_anchor": {
+                  "state": "safe",
+                  "endpoint_distance_m": 0.4013896084891748,
+                  "shape_term_m": 0.0,
+                  "score_m": 0.4013896084891748,
+                  "effective_threshold_m": 0.40586645091981016,
+                  "fitted_threshold_m": 0.40756645091981014,
+                  "margin_m": 0.0017000000000000001,
+                  "headroom_m": 0.004476842430635342
+                }
+              }
+            },
+            "budget": {
+              "C1_clip": {
+                "headroom_at_decision_m": 0.06814163708970844,
+                "spent_by_this_motion_m": 0.0575899239647405,
+                "spent_fraction": 0.8451502843837371,
+                "headroom_left_m": 0.010551713124967943
+              },
+              "C2_bend": {
+                "headroom_at_decision_m": 0.0688712454255977,
+                "spent_by_this_motion_m": 0.0575899239647405,
+                "spent_fraction": 0.8361969296308933,
+                "headroom_left_m": 0.011281321460857197
+              },
+              "C3_anchor": {
+                "headroom_at_decision_m": 0.06206676639537584,
+                "spent_by_this_motion_m": 0.0575899239647405,
+                "spent_fraction": 0.9278705386048776,
+                "headroom_left_m": 0.004476842430635342
+              }
+            },
+            "state_before": {
+              "clips": {
+                "retained": [
+                  "c1",
+                  "c2",
+                  "c3",
+                  "c4",
+                  "c5"
+                ],
+                "lost": [],
+                "required_retained": 5,
+                "required_count": 5
+              },
+              "min_bend_radius_m": 0.048528905318161925,
+              "peak_anchor_n": 0.05014611558281982,
+              "already_violated": []
+            },
+            "state_after": null
+          }
+        }
+      ],
+      "source": {
+        "result": "artifacts/cable/routing-v6-s1/RC1_l15_compliant4000_m0_E2_filtered_r0/result.json",
+        "sha256": "f256aa9813c08935ad22ba5cc161ab3faeaa48d2f92236eebd908db6a23e0b01"
+      }
+    },
+    {
+      "request": "RC1_l15_compliant4000_m0_E2_conservative_r0",
+      "supervisor": "conservative",
+      "error_level": "E2",
+      "seeds": {
+        "calibration_seed": 161204,
+        "perception_seed": 1061204
+      },
+      "context": {
+        "geometry_id": "RC1",
+        "required_clips": 5,
+        "cable_segments": 23,
+        "physics_hz": 4000,
+        "task": "held_clip_preserving_seating"
+      },
+      "run_direction_xy": [
+        1.0,
+        0.0
+      ],
+      "declared_error": {
+        "socket_bias_m": 0.0005,
+        "socket_jitter_m": 0.0001,
+        "centreline_occluded_m": 0.001
+      },
+      "recorded_outcome": {
+        "supervisor": "conservative",
+        "job": {
+          "failure_reason": null,
+          "elapsed_s": 31.622,
+          "status": "completed"
+        },
+        "route_completed": true,
+        "seated": true,
+        "installed_clips": {
+          "retained": [
+            "c1",
+            "c2",
+            "c3",
+            "c4",
+            "c5"
+          ],
+          "lost": [],
+          "required_retained": 5,
+          "required_count": 5
+        },
+        "terminal_clips": {
+          "retained": [
+            "c1",
+            "c2",
+            "c3",
+            "c4",
+            "c5"
+          ],
+          "lost": [],
+          "required_retained": 5,
+          "required_count": 5
+        },
+        "clip_loss_attribution": {},
+        "constraints": {
+          "C1_clip": "respected",
+          "C2_bend": "respected",
+          "C3_anchor": "respected"
+        },
+        "steps_offered": 5,
+        "steps_issued": 5,
+        "abstentions": 0,
+        "guards": {
+          "privilege": 0,
+          "mutation": 0
+        }
+      },
+      "decisions": [
+        {
+          "step": 0,
+          "decision": {
+            "time_s": 2.0,
+            "insertion_axis": [
+              0.0013455177671822386,
+              -0.0005751129432125179,
+              -0.9999989294129474
+            ],
+            "boot_position_m": [
+              -0.6919058233747992,
+              0.06642854755089746,
+              1.4653068851024769
+            ],
+            "anchor_site_m": [
+              -0.452902505460627,
+              0.026429177072314188,
+              1.2213704936377252
+            ],
+            "boot_to_anchor_m": 0.34384225844638466
+          },
+          "expected": {
+            "abstained": false,
+            "action_index": 0,
+            "action": {
+              "retreat_m": 0.0,
+              "bearing_rad": 0.0,
+              "excursion_m": 0.0,
+              "speed_m_per_s": 0.02
+            },
+            "magnitude_m": 0.006000000000000001,
+            "headroom_m": 0.057735918926964225,
+            "decision_boot_to_anchor_m": 0.34384225844638466,
+            "endpoint_boot_to_anchor_m": 0.34813053199284594,
+            "motion_completed": true,
+            "requested": true,
+            "step": 0,
+            "time_s": 2.0,
+            "verdict": {
+              "safe": true,
+              "refused_by": [],
+              "unscored": [],
+              "binding_constraint": "C3_anchor",
+              "constraints": {
+                "C1_clip": {
+                  "state": "safe",
+                  "endpoint_distance_m": 0.34813053199284594,
+                  "shape_term_m": 0.0,
+                  "score_m": 0.34813053199284594,
+                  "effective_threshold_m": 0.41194132161414276,
+                  "fitted_threshold_m": 0.41364132161414274,
+                  "margin_m": 0.0017000000000000001,
+                  "headroom_m": 0.06381078962129683
+                },
+                "C2_bend": {
+                  "state": "safe",
+                  "endpoint_distance_m": 0.34813053199284594,
+                  "shape_term_m": 0.0,
+                  "score_m": 0.34813053199284594,
+                  "effective_threshold_m": 0.412670929950032,
+                  "fitted_threshold_m": 0.414370929950032,
+                  "margin_m": 0.0017000000000000001,
+                  "headroom_m": 0.06454039795718608
+                },
+                "C3_anchor": {
+                  "state": "safe",
+                  "endpoint_distance_m": 0.34813053199284594,
+                  "shape_term_m": 0.0,
+                  "score_m": 0.34813053199284594,
+                  "effective_threshold_m": 0.40586645091981016,
+                  "fitted_threshold_m": 0.40756645091981014,
+                  "margin_m": 0.0017000000000000001,
+                  "headroom_m": 0.057735918926964225
+                }
+              }
+            },
+            "budget": {
+              "C1_clip": {
+                "headroom_at_decision_m": 0.0680990631677581,
+                "spent_by_this_motion_m": 0.004288273546461274,
+                "spent_fraction": 0.06297110924855692,
+                "headroom_left_m": 0.06381078962129683
+              },
+              "C2_bend": {
+                "headroom_at_decision_m": 0.06882867150364735,
+                "spent_by_this_motion_m": 0.004288273546461274,
+                "spent_fraction": 0.06230359315062518,
+                "headroom_left_m": 0.06454039795718608
+              },
+              "C3_anchor": {
+                "headroom_at_decision_m": 0.0620241924734255,
+                "spent_by_this_motion_m": 0.004288273546461274,
+                "spent_fraction": 0.06913872435015742,
+                "headroom_left_m": 0.057735918926964225
+              }
+            },
+            "state_before": {
+              "clips": {
+                "retained": [
+                  "c1",
+                  "c2",
+                  "c3",
+                  "c4",
+                  "c5"
+                ],
+                "lost": [],
+                "required_retained": 5,
+                "required_count": 5
+              },
+              "min_bend_radius_m": 0.04822618953158998,
+              "peak_anchor_n": 0.04797120280823672,
+              "already_violated": []
+            },
+            "state_after": {
+              "clips": {
+                "retained": [
+                  "c1",
+                  "c2",
+                  "c3",
+                  "c4",
+                  "c5"
+                ],
+                "lost": [],
+                "required_retained": 5,
+                "required_count": 5
+              },
+              "min_bend_radius_m": 0.04780474050931042,
+              "peak_anchor_n": 0.05372737426644511,
+              "time_s": 3.62
+            }
+          }
+        },
+        {
+          "step": 1,
+          "decision": {
+            "time_s": 4.0,
+            "insertion_axis": [
+              0.0013455177671822386,
+              -0.0005751129432125179,
+              -0.9999989294129474
+            ],
+            "boot_position_m": [
+              -0.691955745360011,
+              0.0664422134521089,
+              1.4699489766465794
+            ],
+            "anchor_site_m": [
+              -0.452902505460627,
+              0.026429177072314188,
+              1.2213704936377252
+            ],
+            "boot_to_anchor_m": 0.34718691911088245
+          },
+          "expected": {
+            "abstained": false,
+            "action_index": 0,
+            "action": {
+              "retreat_m": 0.0,
+              "bearing_rad": 0.0,
+              "excursion_m": 0.0,
+              "speed_m_per_s": 0.02
+            },
+            "magnitude_m": 0.006000000000000001,
+            "headroom_m": 0.05435282194779678,
+            "decision_boot_to_anchor_m": 0.34718691911088245,
+            "endpoint_boot_to_anchor_m": 0.3515136289720134,
+            "motion_completed": true,
+            "requested": true,
+            "step": 1,
+            "time_s": 4.0,
+            "verdict": {
+              "safe": true,
+              "refused_by": [],
+              "unscored": [],
+              "binding_constraint": "C3_anchor",
+              "constraints": {
+                "C1_clip": {
+                  "state": "safe",
+                  "endpoint_distance_m": 0.3515136289720134,
+                  "shape_term_m": 0.0,
+                  "score_m": 0.3515136289720134,
+                  "effective_threshold_m": 0.41194132161414276,
+                  "fitted_threshold_m": 0.41364132161414274,
+                  "margin_m": 0.0017000000000000001,
+                  "headroom_m": 0.06042769264212938
+                },
+                "C2_bend": {
+                  "state": "safe",
+                  "endpoint_distance_m": 0.3515136289720134,
+                  "shape_term_m": 0.0,
+                  "score_m": 0.3515136289720134,
+                  "effective_threshold_m": 0.412670929950032,
+                  "fitted_threshold_m": 0.414370929950032,
+                  "margin_m": 0.0017000000000000001,
+                  "headroom_m": 0.061157300978018636
+                },
+                "C3_anchor": {
+                  "state": "safe",
+                  "endpoint_distance_m": 0.3515136289720134,
+                  "shape_term_m": 0.0,
+                  "score_m": 0.3515136289720134,
+                  "effective_threshold_m": 0.40586645091981016,
+                  "fitted_threshold_m": 0.40756645091981014,
+                  "margin_m": 0.0017000000000000001,
+                  "headroom_m": 0.05435282194779678
+                }
+              }
+            },
+            "budget": {
+              "C1_clip": {
+                "headroom_at_decision_m": 0.06475440250326031,
+                "spent_by_this_motion_m": 0.0043267098611309285,
+                "spent_fraction": 0.0668172308579804,
+                "headroom_left_m": 0.06042769264212938
+              },
+              "C2_bend": {
+                "headroom_at_decision_m": 0.06548401083914956,
+                "spent_by_this_motion_m": 0.0043267098611309285,
+                "spent_fraction": 0.06607276808011596,
+                "headroom_left_m": 0.061157300978018636
+              },
+              "C3_anchor": {
+                "headroom_at_decision_m": 0.05867953180892771,
+                "spent_by_this_motion_m": 0.0043267098611309285,
+                "spent_fraction": 0.07373456685407036,
+                "headroom_left_m": 0.05435282194779678
+              }
+            },
+            "state_before": {
+              "clips": {
+                "retained": [
+                  "c1",
+                  "c2",
+                  "c3",
+                  "c4",
+                  "c5"
+                ],
+                "lost": [],
+                "required_retained": 5,
+                "required_count": 5
+              },
+              "min_bend_radius_m": 0.04780474050931042,
+              "peak_anchor_n": 0.053850795167505065,
+              "already_violated": []
+            },
+            "state_after": {
+              "clips": {
+                "retained": [
+                  "c1",
+                  "c2",
+                  "c3",
+                  "c4",
+                  "c5"
+                ],
+                "lost": [],
+                "required_retained": 5,
+                "required_count": 5
+              },
+              "min_bend_radius_m": 0.04780474050931042,
+              "peak_anchor_n": 0.053850795167505065,
+              "time_s": 5.6000000000000005
+            }
+          }
+        },
+        {
+          "step": 2,
+          "decision": {
+            "time_s": 6.0,
+            "insertion_axis": [
+              0.0013455177671822386,
+              -0.0005751129432125179,
+              -0.9999989294129474
+            ],
+            "boot_position_m": [
+              -0.6920032506757954,
+              0.06638770932647627,
+              1.4745166920829305
+            ],
+            "anchor_site_m": [
+              -0.452902505460627,
+              0.026429177072314188,
+              1.2213704936377252
+            ],
+            "boot_to_anchor_m": 0.35049800063568837
+          },
+          "expected": {
+            "abstained": false,
+            "action_index": 0,
+            "action": {
+              "retreat_m": 0.0,
+              "bearing_rad": 0.0,
+              "excursion_m": 0.0,
+              "speed_m_per_s": 0.02
+            },
+            "magnitude_m": 0.006000000000000001,
+            "headroom_m": 0.051004878023538314,
+            "decision_boot_to_anchor_m": 0.35049800063568837,
+            "endpoint_boot_to_anchor_m": 0.35486157289627185,
+            "motion_completed": true,
+            "requested": true,
+            "step": 2,
+            "time_s": 6.0,
+            "verdict": {
+              "safe": true,
+              "refused_by": [],
+              "unscored": [],
+              "binding_constraint": "C3_anchor",
+              "constraints": {
+                "C1_clip": {
+                  "state": "safe",
+                  "endpoint_distance_m": 0.35486157289627185,
+                  "shape_term_m": 0.0,
+                  "score_m": 0.35486157289627185,
+                  "effective_threshold_m": 0.41194132161414276,
+                  "fitted_threshold_m": 0.41364132161414274,
+                  "margin_m": 0.0017000000000000001,
+                  "headroom_m": 0.057079748717870915
+                },
+                "C2_bend": {
+                  "state": "safe",
+                  "endpoint_distance_m": 0.35486157289627185,
+                  "shape_term_m": 0.0,
+                  "score_m": 0.35486157289627185,
+                  "effective_threshold_m": 0.412670929950032,
+                  "fitted_threshold_m": 0.414370929950032,
+                  "margin_m": 0.0017000000000000001,
+                  "headroom_m": 0.05780935705376017
+                },
+                "C3_anchor": {
+                  "state": "safe",
+                  "endpoint_distance_m": 0.35486157289627185,
+                  "shape_term_m": 0.0,
+                  "score_m": 0.35486157289627185,
+                  "effective_threshold_m": 0.40586645091981016,
+                  "fitted_threshold_m": 0.40756645091981014,
+                  "margin_m": 0.0017000000000000001,
+                  "headroom_m": 0.051004878023538314
+                }
+              }
+            },
+            "budget": {
+              "C1_clip": {
+                "headroom_at_decision_m": 0.0614433209784544,
+                "spent_by_this_motion_m": 0.0043635722605834815,
+                "spent_fraction": 0.07101784524494703,
+                "headroom_left_m": 0.057079748717870915
+              },
+              "C2_bend": {
+                "headroom_at_decision_m": 0.06217292931434365,
+                "spent_by_this_motion_m": 0.0043635722605834815,
+                "spent_fraction": 0.07018444053876645,
+                "headroom_left_m": 0.05780935705376017
+              },
+              "C3_anchor": {
+                "headroom_at_decision_m": 0.055368450284121795,
+                "spent_by_this_motion_m": 0.0043635722605834815,
+                "spent_fraction": 0.07880972355541688,
+                "headroom_left_m": 0.051004878023538314
+              }
+            },
+            "state_before": {
+              "clips": {
+                "retained": [
+                  "c1",
+                  "c2",
+                  "c3",
+                  "c4",
+                  "c5"
+                ],
+                "lost": [],
+                "required_retained": 5,
+                "required_count": 5
+              },
+              "min_bend_radius_m": 0.04780474050931042,
+              "peak_anchor_n": 0.053850795167505065,
+              "already_violated": []
+            },
+            "state_after": {
+              "clips": {
+                "retained": [
+                  "c1",
+                  "c2",
+                  "c3",
+                  "c4",
+                  "c5"
+                ],
+                "lost": [],
+                "required_retained": 5,
+                "required_count": 5
+              },
+              "min_bend_radius_m": 0.04780474050931042,
+              "peak_anchor_n": 0.053850795167505065,
+              "time_s": 7.6000000000000005
+            }
+          }
+        },
+        {
+          "step": 3,
+          "decision": {
+            "time_s": 8.0,
+            "insertion_axis": [
+              0.0013455177671822386,
+              -0.0005751129432125179,
+              -0.9999989294129474
+            ],
+            "boot_position_m": [
+              -0.6920323625881255,
+              0.06644750945980453,
+              1.4790858616997462
+            ],
+            "anchor_site_m": [
+              -0.452902505460627,
+              0.026429177072314188,
+              1.2213704936377252
+            ],
+            "boot_to_anchor_m": 0.35383861636660924
+          },
+          "expected": {
+            "abstained": false,
+            "action_index": 0,
+            "action": {
+              "retreat_m": 0.0,
+              "bearing_rad": 0.0,
+              "excursion_m": 0.0,
+              "speed_m_per_s": 0.02
+            },
+            "magnitude_m": 0.006000000000000001,
+            "headroom_m": 0.04762842284282326,
+            "decision_boot_to_anchor_m": 0.35383861636660924,
+            "endpoint_boot_to_anchor_m": 0.3582380280769869,
+            "motion_completed": true,
+            "requested": true,
+            "step": 3,
+            "time_s": 8.0,
+            "verdict": {
+              "safe": true,
+              "refused_by": [],
+              "unscored": [],
+              "binding_constraint": "C3_anchor",
+              "constraints": {
+                "C1_clip": {
+                  "state": "safe",
+                  "endpoint_distance_m": 0.3582380280769869,
+                  "shape_term_m": 0.0,
+                  "score_m": 0.3582380280769869,
+                  "effective_threshold_m": 0.41194132161414276,
+                  "fitted_threshold_m": 0.41364132161414274,
+                  "margin_m": 0.0017000000000000001,
+                  "headroom_m": 0.05370329353715586
+                },
+                "C2_bend": {
+                  "state": "safe",
+                  "endpoint_distance_m": 0.3582380280769869,
+                  "shape_term_m": 0.0,
+                  "score_m": 0.3582380280769869,
+                  "effective_threshold_m": 0.412670929950032,
+                  "fitted_threshold_m": 0.414370929950032,
+                  "margin_m": 0.0017000000000000001,
+                  "headroom_m": 0.054432901873045114
+                },
+                "C3_anchor": {
+                  "state": "safe",
+                  "endpoint_distance_m": 0.3582380280769869,
+                  "shape_term_m": 0.0,
+                  "score_m": 0.3582380280769869,
+                  "effective_threshold_m": 0.40586645091981016,
+                  "fitted_threshold_m": 0.40756645091981014,
+                  "margin_m": 0.0017000000000000001,
+                  "headroom_m": 0.04762842284282326
+                }
+              }
+            },
+            "budget": {
+              "C1_clip": {
+                "headroom_at_decision_m": 0.058102705247533526,
+                "spent_by_this_motion_m": 0.004399411710377665,
+                "spent_fraction": 0.07571784638314102,
+                "headroom_left_m": 0.05370329353715586
+              },
+              "C2_bend": {
+                "headroom_at_decision_m": 0.05883231358342278,
+                "spent_by_this_motion_m": 0.004399411710377665,
+                "spent_fraction": 0.07477883228473427,
+                "headroom_left_m": 0.054432901873045114
+              },
+              "C3_anchor": {
+                "headroom_at_decision_m": 0.052027834553200925,
+                "spent_by_this_motion_m": 0.004399411710377665,
+                "spent_fraction": 0.08455880872533833,
+                "headroom_left_m": 0.04762842284282326
+              }
+            },
+            "state_before": {
+              "clips": {
+                "retained": [
+                  "c1",
+                  "c2",
+                  "c3",
+                  "c4",
+                  "c5"
+                ],
+                "lost": [],
+                "required_retained": 5,
+                "required_count": 5
+              },
+              "min_bend_radius_m": 0.04780474050931042,
+              "peak_anchor_n": 0.053850795167505065,
+              "already_violated": []
+            },
+            "state_after": {
+              "clips": {
+                "retained": [
+                  "c1",
+                  "c2",
+                  "c3",
+                  "c4",
+                  "c5"
+                ],
+                "lost": [],
+                "required_retained": 5,
+                "required_count": 5
+              },
+              "min_bend_radius_m": 0.04780474050931042,
+              "peak_anchor_n": 0.053850795167505065,
+              "time_s": 9.6
+            }
+          }
+        },
+        {
+          "step": 4,
+          "decision": {
+            "time_s": 10.0,
+            "insertion_axis": [
+              0.0013455177671822386,
+              -0.0005751129432125179,
+              -0.9999989294129474
+            ],
+            "boot_position_m": [
+              -0.6920988421611151,
+              0.06645887585238244,
+              1.483629856166151
+            ],
+            "anchor_site_m": [
+              -0.452902505460627,
+              0.026429177072314188,
+              1.2213704936377252
+            ],
+            "boot_to_anchor_m": 0.35720755522409164
+          },
+          "expected": {
+            "abstained": false,
+            "action_index": 0,
+            "action": {
+              "retreat_m": 0.0,
+              "bearing_rad": 0.0,
+              "excursion_m": 0.0,
+              "speed_m_per_s": 0.02
+            },
+            "magnitude_m": 0.006000000000000001,
+            "headroom_m": 0.044225074879290005,
+            "decision_boot_to_anchor_m": 0.35720755522409164,
+            "endpoint_boot_to_anchor_m": 0.36164137604052016,
+            "motion_completed": true,
+            "requested": true,
+            "step": 4,
+            "time_s": 10.0,
+            "verdict": {
+              "safe": true,
+              "refused_by": [],
+              "unscored": [],
+              "binding_constraint": "C3_anchor",
+              "constraints": {
+                "C1_clip": {
+                  "state": "safe",
+                  "endpoint_distance_m": 0.36164137604052016,
+                  "shape_term_m": 0.0,
+                  "score_m": 0.36164137604052016,
+                  "effective_threshold_m": 0.41194132161414276,
+                  "fitted_threshold_m": 0.41364132161414274,
+                  "margin_m": 0.0017000000000000001,
+                  "headroom_m": 0.050299945573622606
+                },
+                "C2_bend": {
+                  "state": "safe",
+                  "endpoint_distance_m": 0.36164137604052016,
+                  "shape_term_m": 0.0,
+                  "score_m": 0.36164137604052016,
+                  "effective_threshold_m": 0.412670929950032,
+                  "fitted_threshold_m": 0.414370929950032,
+                  "margin_m": 0.0017000000000000001,
+                  "headroom_m": 0.05102955390951186
+                },
+                "C3_anchor": {
+                  "state": "safe",
+                  "endpoint_distance_m": 0.36164137604052016,
+                  "shape_term_m": 0.0,
+                  "score_m": 0.36164137604052016,
+                  "effective_threshold_m": 0.40586645091981016,
+                  "fitted_threshold_m": 0.40756645091981014,
+                  "margin_m": 0.0017000000000000001,
+                  "headroom_m": 0.044225074879290005
+                }
+              }
+            },
+            "budget": {
+              "C1_clip": {
+                "headroom_at_decision_m": 0.05473376639005112,
+                "spent_by_this_motion_m": 0.004433820816428513,
+                "spent_fraction": 0.08100704754779021,
+                "headroom_left_m": 0.050299945573622606
+              },
+              "C2_bend": {
+                "headroom_at_decision_m": 0.05546337472594037,
+                "spent_by_this_motion_m": 0.004433820816428513,
+                "spent_fraction": 0.07994141788770028,
+                "headroom_left_m": 0.05102955390951186
+              },
+              "C3_anchor": {
+                "headroom_at_decision_m": 0.04865889569571852,
+                "spent_by_this_motion_m": 0.004433820816428513,
+                "spent_fraction": 0.09112045707232612,
+                "headroom_left_m": 0.044225074879290005
+              }
+            },
+            "state_before": {
+              "clips": {
+                "retained": [
+                  "c1",
+                  "c2",
+                  "c3",
+                  "c4",
+                  "c5"
+                ],
+                "lost": [],
+                "required_retained": 5,
+                "required_count": 5
+              },
+              "min_bend_radius_m": 0.04780474050931042,
+              "peak_anchor_n": 0.053850795167505065,
+              "already_violated": []
+            },
+            "state_after": {
+              "clips": {
+                "retained": [
+                  "c1",
+                  "c2",
+                  "c3",
+                  "c4",
+                  "c5"
+                ],
+                "lost": [],
+                "required_retained": 5,
+                "required_count": 5
+              },
+              "min_bend_radius_m": 0.04780474050931042,
+              "peak_anchor_n": 0.053850795167505065,
+              "time_s": 11.6
+            }
+          }
+        }
+      ],
+      "source": {
+        "result": "artifacts/cable/routing-v6-s1/RC1_l15_compliant4000_m0_E2_conservative_r0/result.json",
+        "sha256": "30f1b1d1aafb2a42efa82a426c68c433d8e13806a20d1aa5911057296f33b9d3"
+      }
+    },
+    {
+      "request": "RC1_l15_compliant4000_m0_E4_unfiltered_r0",
+      "supervisor": "unfiltered",
+      "error_level": "E4",
+      "seeds": {
+        "calibration_seed": 161228,
+        "perception_seed": 1061228
+      },
+      "context": {
+        "geometry_id": "RC1",
+        "required_clips": 5,
+        "cable_segments": 23,
+        "physics_hz": 4000,
+        "task": "held_clip_preserving_seating"
+      },
+      "run_direction_xy": [
+        1.0,
+        0.0
+      ],
+      "declared_error": {
+        "socket_bias_m": 0.002,
+        "socket_jitter_m": 0.0004,
+        "centreline_occluded_m": 0.004
+      },
+      "recorded_outcome": {
+        "supervisor": "unfiltered",
+        "job": {
+          "failure_reason": "lost_required_clip",
+          "elapsed_s": 5.782,
+          "status": "failed"
+        },
+        "route_completed": false,
+        "seated": false,
+        "installed_clips": {
+          "retained": [
+            "c1",
+            "c2",
+            "c3",
+            "c4",
+            "c5"
+          ],
+          "lost": [],
+          "required_retained": 5,
+          "required_count": 5
+        },
+        "terminal_clips": {
+          "retained": [
+            "c2",
+            "c3",
+            "c4",
+            "c5"
+          ],
+          "lost": [
+            "c1"
+          ],
+          "required_retained": 4,
+          "required_count": 5
+        },
+        "clip_loss_attribution": {
+          "c1": {
+            "time_s": 5.78,
+            "during_step": 0,
+            "steps_issued_so_far": 1
+          }
+        },
+        "constraints": {
+          "C1_clip": "violated",
+          "C2_bend": "violated",
+          "C3_anchor": "violated"
+        },
+        "steps_offered": 5,
+        "steps_issued": 1,
+        "abstentions": 0,
+        "guards": {
+          "privilege": 0,
+          "mutation": 0
+        }
+      },
+      "decisions": [
+        {
+          "step": 0,
+          "decision": {
+            "time_s": 2.0,
+            "insertion_axis": [
+              0.009375186125889924,
+              -0.006063183042896412,
+              -0.9999376699057264
+            ],
+            "boot_position_m": [
+              -0.6938525088279348,
+              0.06625878098141508,
+              1.467021405246668
+            ],
+            "anchor_site_m": [
+              -0.452902505460627,
+              0.026429177072314188,
+              1.2213704936377252
+            ],
+            "boot_to_anchor_m": 0.34639236689708697
+          },
+          "expected": {
+            "abstained": false,
+            "action_index": 4,
+            "action": {
+              "retreat_m": 0.1,
+              "bearing_rad": 0.0,
+              "excursion_m": 0.0,
+              "speed_m_per_s": 0.02
+            },
+            "magnitude_m": 0.10600000000000002,
+            "headroom_m": null,
+            "decision_boot_to_anchor_m": 0.34639236689708697,
+            "endpoint_boot_to_anchor_m": 0.42875227519472103,
+            "motion_completed": false,
+            "requested": true,
+            "step": 0,
+            "time_s": 2.0,
+            "verdict": {
+              "safe": null,
+              "note": "no filter was consulted"
+            },
+            "budget": {
+              "C1_clip": {
+                "headroom_at_decision_m": 0.0604489547170558,
+                "spent_by_this_motion_m": 0.08235990829763407,
+                "spent_fraction": 1.3624703468097528,
+                "headroom_left_m": -0.021910953580578263
+              },
+              "C2_bend": {
+                "headroom_at_decision_m": 0.061178563052945,
+                "spent_by_this_motion_m": 0.08235990829763407,
+                "spent_fraction": 1.346221685958174,
+                "headroom_left_m": -0.021181345244689065
+              },
+              "C3_anchor": {
+                "headroom_at_decision_m": 0.054374084022723146,
+                "spent_by_this_motion_m": 0.08235990829763407,
+                "spent_fraction": 1.514690495994664,
+                "headroom_left_m": -0.02798582427491092
+              }
+            },
+            "state_before": {
+              "clips": {
+                "retained": [
+                  "c1",
+                  "c2",
+                  "c3",
+                  "c4",
+                  "c5"
+                ],
+                "lost": [],
+                "required_retained": 5,
+                "required_count": 5
+              },
+              "min_bend_radius_m": 0.04728878225669408,
+              "peak_anchor_n": 0.05476093883953679,
+              "already_violated": []
+            },
+            "state_after": null
+          }
+        }
+      ],
+      "source": {
+        "result": "artifacts/cable/routing-v6-s1/RC1_l15_compliant4000_m0_E4_unfiltered_r0/result.json",
+        "sha256": "3dfe926fa9aa04233456b1a1e46cb34e7b543e144f5894e4fcee07eb4523576c"
+      }
+    },
+    {
+      "request": "RC1_l15_compliant4000_m0_E4_filtered_r0",
+      "supervisor": "filtered",
+      "error_level": "E4",
+      "seeds": {
+        "calibration_seed": 161216,
+        "perception_seed": 1061216
+      },
+      "context": {
+        "geometry_id": "RC1",
+        "required_clips": 5,
+        "cable_segments": 23,
+        "physics_hz": 4000,
+        "task": "held_clip_preserving_seating"
+      },
+      "run_direction_xy": [
+        1.0,
+        0.0
+      ],
+      "declared_error": {
+        "socket_bias_m": 0.002,
+        "socket_jitter_m": 0.0004,
+        "centreline_occluded_m": 0.004
+      },
+      "recorded_outcome": {
+        "supervisor": "filtered",
+        "job": {
+          "failure_reason": "lost_required_clip",
+          "elapsed_s": 5.6659999999999995,
+          "status": "failed"
+        },
+        "route_completed": false,
+        "seated": false,
+        "installed_clips": {
+          "retained": [
+            "c1",
+            "c2",
+            "c3",
+            "c4",
+            "c5"
+          ],
+          "lost": [],
+          "required_retained": 5,
+          "required_count": 5
+        },
+        "terminal_clips": {
+          "retained": [
+            "c2",
+            "c3",
+            "c4",
+            "c5"
+          ],
+          "lost": [
+            "c1"
+          ],
+          "required_retained": 4,
+          "required_count": 5
+        },
+        "clip_loss_attribution": {
+          "c1": {
+            "time_s": 5.664,
+            "during_step": 0,
+            "steps_issued_so_far": 1
+          }
+        },
+        "constraints": {
+          "C1_clip": "violated",
+          "C2_bend": "respected",
+          "C3_anchor": "respected"
+        },
+        "steps_offered": 5,
+        "steps_issued": 1,
+        "abstentions": 0,
+        "guards": {
+          "privilege": 0,
+          "mutation": 0
+        }
+      },
+      "decisions": [
+        {
+          "step": 0,
+          "decision": {
+            "time_s": 2.0,
+            "insertion_axis": [
+              -0.0017598777963332961,
+              -0.0066939204308467315,
+              -0.9999760468428269
+            ],
+            "boot_position_m": [
+              -0.6905448990015934,
+              0.0663377294732958,
+              1.4647800360512886
+            ],
+            "anchor_site_m": [
+              -0.452902505460627,
+              0.026429177072314188,
+              1.2213704936377252
+            ],
+            "boot_to_anchor_m": 0.342512488970259
+          },
+          "expected": {
+            "abstained": false,
+            "action_index": 9,
+            "action": {
+              "retreat_m": 0.09,
+              "bearing_rad": 0.0,
+              "excursion_m": 0.03,
+              "speed_m_per_s": 0.02
+            },
+            "magnitude_m": 0.10057832768544127,
+            "headroom_m": 0.000952669753944424,
+            "decision_boot_to_anchor_m": 0.342512488970259,
+            "endpoint_boot_to_anchor_m": 0.3998137811658657,
+            "motion_completed": false,
+            "requested": true,
+            "step": 0,
+            "time_s": 2.0,
+            "verdict": {
+              "safe": true,
+              "refused_by": [],
+              "unscored": [],
+              "binding_constraint": "C3_anchor",
+              "constraints": {
+                "C1_clip": {
+                  "state": "safe",
+                  "endpoint_distance_m": 0.3998137811658657,
+                  "shape_term_m": 0.0,
+                  "score_m": 0.3998137811658657,
+                  "effective_threshold_m": 0.40684132161414277,
+                  "fitted_threshold_m": 0.41364132161414274,
+                  "margin_m": 0.0068000000000000005,
+                  "headroom_m": 0.007027540448277081
+                },
+                "C2_bend": {
+                  "state": "safe",
+                  "endpoint_distance_m": 0.3998137811658657,
+                  "shape_term_m": 0.0,
+                  "score_m": 0.3998137811658657,
+                  "effective_threshold_m": 0.40757092995003197,
+                  "fitted_threshold_m": 0.414370929950032,
+                  "margin_m": 0.0068000000000000005,
+                  "headroom_m": 0.007757148784166279
+                },
+                "C3_anchor": {
+                  "state": "safe",
+                  "endpoint_distance_m": 0.3998137811658657,
+                  "shape_term_m": 0.0,
+                  "score_m": 0.3998137811658657,
+                  "effective_threshold_m": 0.4007664509198101,
+                  "fitted_threshold_m": 0.40756645091981014,
+                  "margin_m": 0.0068000000000000005,
+                  "headroom_m": 0.000952669753944424
+                }
+              }
+            },
+            "budget": {
+              "C1_clip": {
+                "headroom_at_decision_m": 0.06432883264388378,
+                "spent_by_this_motion_m": 0.0573012921956067,
+                "spent_fraction": 0.8907559773829467,
+                "headroom_left_m": 0.007027540448277081
+              },
+              "C2_bend": {
+                "headroom_at_decision_m": 0.06505844097977298,
+                "spent_by_this_motion_m": 0.0573012921956067,
+                "spent_fraction": 0.8807664514036231,
+                "headroom_left_m": 0.007757148784166279
+              },
+              "C3_anchor": {
+                "headroom_at_decision_m": 0.058253961949551125,
+                "spent_by_this_motion_m": 0.0573012921956067,
+                "spent_fraction": 0.9836462667591699,
+                "headroom_left_m": 0.000952669753944424
+              }
+            },
+            "state_before": {
+              "clips": {
+                "retained": [
+                  "c1",
+                  "c2",
+                  "c3",
+                  "c4",
+                  "c5"
+                ],
+                "lost": [],
+                "required_retained": 5,
+                "required_count": 5
+              },
+              "min_bend_radius_m": 0.04768326017482948,
+              "peak_anchor_n": 0.06465662510594208,
+              "already_violated": []
+            },
+            "state_after": null
+          }
+        }
+      ],
+      "source": {
+        "result": "artifacts/cable/routing-v6-s1/RC1_l15_compliant4000_m0_E4_filtered_r0/result.json",
+        "sha256": "bab5aa3c1b71e7dc5a2f0269c7ee5dcd9378c8ec25dcd64ac0b8559702d056f2"
+      }
+    },
+    {
+      "request": "RC1_l15_compliant4000_m0_E4_conservative_r0",
+      "supervisor": "conservative",
+      "error_level": "E4",
+      "seeds": {
+        "calibration_seed": 161222,
+        "perception_seed": 1061222
+      },
+      "context": {
+        "geometry_id": "RC1",
+        "required_clips": 5,
+        "cable_segments": 23,
+        "physics_hz": 4000,
+        "task": "held_clip_preserving_seating"
+      },
+      "run_direction_xy": [
+        1.0,
+        0.0
+      ],
+      "declared_error": {
+        "socket_bias_m": 0.002,
+        "socket_jitter_m": 0.0004,
+        "centreline_occluded_m": 0.004
+      },
+      "recorded_outcome": {
+        "supervisor": "conservative",
+        "job": {
+          "failure_reason": "controller_retries_exhausted",
+          "elapsed_s": 84.38199999999999,
+          "status": "failed"
+        },
+        "route_completed": false,
+        "seated": false,
+        "installed_clips": {
+          "retained": [
+            "c1",
+            "c2",
+            "c3",
+            "c4",
+            "c5"
+          ],
+          "lost": [],
+          "required_retained": 5,
+          "required_count": 5
+        },
+        "terminal_clips": {
+          "retained": [
+            "c1",
+            "c2",
+            "c3",
+            "c4",
+            "c5"
+          ],
+          "lost": [],
+          "required_retained": 5,
+          "required_count": 5
+        },
+        "clip_loss_attribution": {},
+        "constraints": {
+          "C1_clip": "respected",
+          "C2_bend": "respected",
+          "C3_anchor": "respected"
+        },
+        "steps_offered": 5,
+        "steps_issued": 5,
+        "abstentions": 0,
+        "guards": {
+          "privilege": 0,
+          "mutation": 0
+        }
+      },
+      "decisions": [
+        {
+          "step": 0,
+          "decision": {
+            "time_s": 2.0,
+            "insertion_axis": [
+              0.008017651053369506,
+              -0.010313065126233348,
+              -0.9999146753394955
+            ],
+            "boot_position_m": [
+              -0.6912036991285715,
+              0.06430843115309019,
+              1.466403099842915
+            ],
+            "anchor_site_m": [
+              -0.452902505460627,
+              0.026429177072314188,
+              1.2213704936377252
+            ],
+            "boot_to_anchor_m": 0.3438942786627756
+          },
+          "expected": {
+            "abstained": false,
+            "action_index": 0,
+            "action": {
+              "retreat_m": 0.0,
+              "bearing_rad": 0.0,
+              "excursion_m": 0.0,
+              "speed_m_per_s": 0.02
+            },
+            "magnitude_m": 0.006000000000000001,
+            "headroom_m": 0.05253229049333197,
+            "decision_boot_to_anchor_m": 0.3438942786627756,
+            "endpoint_boot_to_anchor_m": 0.34823416042647815,
+            "motion_completed": true,
+            "requested": true,
+            "step": 0,
+            "time_s": 2.0,
+            "verdict": {
+              "safe": true,
+              "refused_by": [],
+              "unscored": [],
+              "binding_constraint": "C3_anchor",
+              "constraints": {
+                "C1_clip": {
+                  "state": "safe",
+                  "endpoint_distance_m": 0.34823416042647815,
+                  "shape_term_m": 0.0,
+                  "score_m": 0.34823416042647815,
+                  "effective_threshold_m": 0.40684132161414277,
+                  "fitted_threshold_m": 0.41364132161414274,
+                  "margin_m": 0.0068000000000000005,
+                  "headroom_m": 0.058607161187664625
+                },
+                "C2_bend": {
+                  "state": "safe",
+                  "endpoint_distance_m": 0.34823416042647815,
+                  "shape_term_m": 0.0,
+                  "score_m": 0.34823416042647815,
+                  "effective_threshold_m": 0.40757092995003197,
+                  "fitted_threshold_m": 0.414370929950032,
+                  "margin_m": 0.0068000000000000005,
+                  "headroom_m": 0.05933676952355382
+                },
+                "C3_anchor": {
+                  "state": "safe",
+                  "endpoint_distance_m": 0.34823416042647815,
+                  "shape_term_m": 0.0,
+                  "score_m": 0.34823416042647815,
+                  "effective_threshold_m": 0.4007664509198101,
+                  "fitted_threshold_m": 0.40756645091981014,
+                  "margin_m": 0.0068000000000000005,
+                  "headroom_m": 0.05253229049333197
+                }
+              }
+            },
+            "budget": {
+              "C1_clip": {
+                "headroom_at_decision_m": 0.06294704295136716,
+                "spent_by_this_motion_m": 0.0043398817637025355,
+                "spent_fraction": 0.06894496643878133,
+                "headroom_left_m": 0.058607161187664625
+              },
+              "C2_bend": {
+                "headroom_at_decision_m": 0.06367665128725636,
+                "spent_by_this_motion_m": 0.0043398817637025355,
+                "spent_fraction": 0.06815499364318925,
+                "headroom_left_m": 0.05933676952355382
+              },
+              "C3_anchor": {
+                "headroom_at_decision_m": 0.0568721722570345,
+                "spent_by_this_motion_m": 0.0043398817637025355,
+                "spent_fraction": 0.07630940742140788,
+                "headroom_left_m": 0.05253229049333197
+              }
+            },
+            "state_before": {
+              "clips": {
+                "retained": [
+                  "c1",
+                  "c2",
+                  "c3",
+                  "c4",
+                  "c5"
+                ],
+                "lost": [],
+                "required_retained": 5,
+                "required_count": 5
+              },
+              "min_bend_radius_m": 0.04504365240193166,
+              "peak_anchor_n": 0.0963449729685718,
+              "already_violated": []
+            },
+            "state_after": {
+              "clips": {
+                "retained": [
+                  "c1",
+                  "c2",
+                  "c3",
+                  "c4",
+                  "c5"
+                ],
+                "lost": [],
+                "required_retained": 5,
+                "required_count": 5
+              },
+              "min_bend_radius_m": 0.04504365240193166,
+              "peak_anchor_n": 0.10142913548493483,
+              "time_s": 3.62
+            }
+          }
+        },
+        {
+          "step": 1,
+          "decision": {
+            "time_s": 4.0,
+            "insertion_axis": [
+              0.008017651053369506,
+              -0.010313065126233348,
+              -0.9999146753394955
+            ],
+            "boot_position_m": [
+              -0.6914971310582178,
+              0.0651070759065333,
+              1.4718126360354378
+            ],
+            "anchor_site_m": [
+              -0.452902505460627,
+              0.026429177072314188,
+              1.2213704936377252
+            ],
+            "boot_to_anchor_m": 0.3480583886520202
+          },
+          "expected": {
+            "abstained": false,
+            "action_index": 0,
+            "action": {
+              "retreat_m": 0.0,
+              "bearing_rad": 0.0,
+              "excursion_m": 0.0,
+              "speed_m_per_s": 0.02
+            },
+            "magnitude_m": 0.006000000000000001,
+            "headroom_m": 0.048327188823751366,
+            "decision_boot_to_anchor_m": 0.3480583886520202,
+            "endpoint_boot_to_anchor_m": 0.35243926209605875,
+            "motion_completed": true,
+            "requested": true,
+            "step": 1,
+            "time_s": 4.0,
+            "verdict": {
+              "safe": true,
+              "refused_by": [],
+              "unscored": [],
+              "binding_constraint": "C3_anchor",
+              "constraints": {
+                "C1_clip": {
+                  "state": "safe",
+                  "endpoint_distance_m": 0.35243926209605875,
+                  "shape_term_m": 0.0,
+                  "score_m": 0.35243926209605875,
+                  "effective_threshold_m": 0.40684132161414277,
+                  "fitted_threshold_m": 0.41364132161414274,
+                  "margin_m": 0.0068000000000000005,
+                  "headroom_m": 0.05440205951808402
+                },
+                "C2_bend": {
+                  "state": "safe",
+                  "endpoint_distance_m": 0.35243926209605875,
+                  "shape_term_m": 0.0,
+                  "score_m": 0.35243926209605875,
+                  "effective_threshold_m": 0.40757092995003197,
+                  "fitted_threshold_m": 0.414370929950032,
+                  "margin_m": 0.0068000000000000005,
+                  "headroom_m": 0.05513166785397322
+                },
+                "C3_anchor": {
+                  "state": "safe",
+                  "endpoint_distance_m": 0.35243926209605875,
+                  "shape_term_m": 0.0,
+                  "score_m": 0.35243926209605875,
+                  "effective_threshold_m": 0.4007664509198101,
+                  "fitted_threshold_m": 0.40756645091981014,
+                  "margin_m": 0.0068000000000000005,
+                  "headroom_m": 0.048327188823751366
+                }
+              }
+            },
+            "budget": {
+              "C1_clip": {
+                "headroom_at_decision_m": 0.05878293296212256,
+                "spent_by_this_motion_m": 0.0043808734440385355,
+                "spent_fraction": 0.07452628209043942,
+                "headroom_left_m": 0.05440205951808402
+              },
+              "C2_bend": {
+                "headroom_at_decision_m": 0.059512541298011756,
+                "spent_by_this_motion_m": 0.0043808734440385355,
+                "spent_fraction": 0.0736126091826782,
+                "headroom_left_m": 0.05513166785397322
+              },
+              "C3_anchor": {
+                "headroom_at_decision_m": 0.0527080622677899,
+                "spent_by_this_motion_m": 0.0043808734440385355,
+                "spent_fraction": 0.08311581294301734,
+                "headroom_left_m": 0.048327188823751366
+              }
+            },
+            "state_before": {
+              "clips": {
+                "retained": [
+                  "c1",
+                  "c2",
+                  "c3",
+                  "c4",
+                  "c5"
+                ],
+                "lost": [],
+                "required_retained": 5,
+                "required_count": 5
+              },
+              "min_bend_radius_m": 0.04504365240193166,
+              "peak_anchor_n": 0.10142913548493483,
+              "already_violated": []
+            },
+            "state_after": {
+              "clips": {
+                "retained": [
+                  "c1",
+                  "c2",
+                  "c3",
+                  "c4",
+                  "c5"
+                ],
+                "lost": [],
+                "required_retained": 5,
+                "required_count": 5
+              },
+              "min_bend_radius_m": 0.04504365240193166,
+              "peak_anchor_n": 0.10142913548493483,
+              "time_s": 5.62
+            }
+          }
+        },
+        {
+          "step": 2,
+          "decision": {
+            "time_s": 6.0,
+            "insertion_axis": [
+              0.008017651053369506,
+              -0.010313065126233348,
+              -0.9999146753394955
+            ],
+            "boot_position_m": [
+              -0.6909778517199424,
+              0.06568097117994162,
+              1.477172883771887
+            ],
+            "anchor_site_m": [
+              -0.452902505460627,
+              0.026429177072314188,
+              1.2213704936377252
+            ],
+            "boot_to_anchor_m": 0.3516467497866437
+          },
+          "expected": {
+            "abstained": false,
+            "action_index": 0,
+            "action": {
+              "retreat_m": 0.0,
+              "bearing_rad": 0.0,
+              "excursion_m": 0.0,
+              "speed_m_per_s": 0.02
+            },
+            "magnitude_m": 0.006000000000000001,
+            "headroom_m": 0.04469262888509329,
+            "decision_boot_to_anchor_m": 0.3516467497866437,
+            "endpoint_boot_to_anchor_m": 0.3560738220347168,
+            "motion_completed": true,
+            "requested": true,
+            "step": 2,
+            "time_s": 6.0,
+            "verdict": {
+              "safe": true,
+              "refused_by": [],
+              "unscored": [],
+              "binding_constraint": "C3_anchor",
+              "constraints": {
+                "C1_clip": {
+                  "state": "safe",
+                  "endpoint_distance_m": 0.3560738220347168,
+                  "shape_term_m": 0.0,
+                  "score_m": 0.3560738220347168,
+                  "effective_threshold_m": 0.40684132161414277,
+                  "fitted_threshold_m": 0.41364132161414274,
+                  "margin_m": 0.0068000000000000005,
+                  "headroom_m": 0.050767499579425945
+                },
+                "C2_bend": {
+                  "state": "safe",
+                  "endpoint_distance_m": 0.3560738220347168,
+                  "shape_term_m": 0.0,
+                  "score_m": 0.3560738220347168,
+                  "effective_threshold_m": 0.40757092995003197,
+                  "fitted_threshold_m": 0.414370929950032,
+                  "margin_m": 0.0068000000000000005,
+                  "headroom_m": 0.05149710791531514
+                },
+                "C3_anchor": {
+                  "state": "safe",
+                  "endpoint_distance_m": 0.3560738220347168,
+                  "shape_term_m": 0.0,
+                  "score_m": 0.3560738220347168,
+                  "effective_threshold_m": 0.4007664509198101,
+                  "fitted_threshold_m": 0.40756645091981014,
+                  "margin_m": 0.0068000000000000005,
+                  "headroom_m": 0.04469262888509329
+                }
+              }
+            },
+            "budget": {
+              "C1_clip": {
+                "headroom_at_decision_m": 0.055194571827499095,
+                "spent_by_this_motion_m": 0.0044270722480731495,
+                "spent_fraction": 0.0802084716212526,
+                "headroom_left_m": 0.050767499579425945
+              },
+              "C2_bend": {
+                "headroom_at_decision_m": 0.05592418016338829,
+                "spent_by_this_motion_m": 0.0044270722480731495,
+                "spent_fraction": 0.07916204109097351,
+                "headroom_left_m": 0.05149710791531514
+              },
+              "C3_anchor": {
+                "headroom_at_decision_m": 0.04911970113316644,
+                "spent_by_this_motion_m": 0.0044270722480731495,
+                "spent_fraction": 0.0901282407250625,
+                "headroom_left_m": 0.04469262888509329
+              }
+            },
+            "state_before": {
+              "clips": {
+                "retained": [
+                  "c1",
+                  "c2",
+                  "c3",
+                  "c4",
+                  "c5"
+                ],
+                "lost": [],
+                "required_retained": 5,
+                "required_count": 5
+              },
+              "min_bend_radius_m": 0.04504365240193166,
+              "peak_anchor_n": 0.10142913548493483,
+              "already_violated": []
+            },
+            "state_after": {
+              "clips": {
+                "retained": [
+                  "c1",
+                  "c2",
+                  "c3",
+                  "c4",
+                  "c5"
+                ],
+                "lost": [],
+                "required_retained": 5,
+                "required_count": 5
+              },
+              "min_bend_radius_m": 0.04504365240193166,
+              "peak_anchor_n": 0.10142913548493483,
+              "time_s": 7.62
+            }
+          }
+        },
+        {
+          "step": 3,
+          "decision": {
+            "time_s": 8.0,
+            "insertion_axis": [
+              0.008017651053369506,
+              -0.010313065126233348,
+              -0.9999146753394955
+            ],
+            "boot_position_m": [
+              -0.6912088141406085,
+              0.0649239242664382,
+              1.4826019547160545
+            ],
+            "anchor_site_m": [
+              -0.452902505460627,
+              0.026429177072314188,
+              1.2213704936377252
+            ],
+            "boot_to_anchor_m": 0.35568752940655207
+          },
+          "expected": {
+            "abstained": false,
+            "action_index": 0,
+            "action": {
+              "retreat_m": 0.0,
+              "bearing_rad": 0.0,
+              "excursion_m": 0.0,
+              "speed_m_per_s": 0.02
+            },
+            "magnitude_m": 0.006000000000000001,
+            "headroom_m": 0.04061117815209442,
+            "decision_boot_to_anchor_m": 0.35568752940655207,
+            "endpoint_boot_to_anchor_m": 0.3601552727677157,
+            "motion_completed": true,
+            "requested": true,
+            "step": 3,
+            "time_s": 8.0,
+            "verdict": {
+              "safe": true,
+              "refused_by": [],
+              "unscored": [],
+              "binding_constraint": "C3_anchor",
+              "constraints": {
+                "C1_clip": {
+                  "state": "safe",
+                  "endpoint_distance_m": 0.3601552727677157,
+                  "shape_term_m": 0.0,
+                  "score_m": 0.3601552727677157,
+                  "effective_threshold_m": 0.40684132161414277,
+                  "fitted_threshold_m": 0.41364132161414274,
+                  "margin_m": 0.0068000000000000005,
+                  "headroom_m": 0.046686048846427075
+                },
+                "C2_bend": {
+                  "state": "safe",
+                  "endpoint_distance_m": 0.3601552727677157,
+                  "shape_term_m": 0.0,
+                  "score_m": 0.3601552727677157,
+                  "effective_threshold_m": 0.40757092995003197,
+                  "fitted_threshold_m": 0.414370929950032,
+                  "margin_m": 0.0068000000000000005,
+                  "headroom_m": 0.04741565718231627
+                },
+                "C3_anchor": {
+                  "state": "safe",
+                  "endpoint_distance_m": 0.3601552727677157,
+                  "shape_term_m": 0.0,
+                  "score_m": 0.3601552727677157,
+                  "effective_threshold_m": 0.4007664509198101,
+                  "fitted_threshold_m": 0.40756645091981014,
+                  "margin_m": 0.0068000000000000005,
+                  "headroom_m": 0.04061117815209442
+                }
+              }
+            },
+            "budget": {
+              "C1_clip": {
+                "headroom_at_decision_m": 0.0511537922075907,
+                "spent_by_this_motion_m": 0.004467743361163623,
+                "spent_fraction": 0.08733943600960743,
+                "headroom_left_m": 0.046686048846427075
+              },
+              "C2_bend": {
+                "headroom_at_decision_m": 0.051883400543479896,
+                "spent_by_this_motion_m": 0.004467743361163623,
+                "spent_fraction": 0.08611122853097333,
+                "headroom_left_m": 0.04741565718231627
+              },
+              "C3_anchor": {
+                "headroom_at_decision_m": 0.04507892151325804,
+                "spent_by_this_motion_m": 0.004467743361163623,
+                "spent_fraction": 0.0991093666659622,
+                "headroom_left_m": 0.04061117815209442
+              }
+            },
+            "state_before": {
+              "clips": {
+                "retained": [
+                  "c1",
+                  "c2",
+                  "c3",
+                  "c4",
+                  "c5"
+                ],
+                "lost": [],
+                "required_retained": 5,
+                "required_count": 5
+              },
+              "min_bend_radius_m": 0.04504365240193166,
+              "peak_anchor_n": 0.10142913548493483,
+              "already_violated": []
+            },
+            "state_after": {
+              "clips": {
+                "retained": [
+                  "c1",
+                  "c2",
+                  "c3",
+                  "c4",
+                  "c5"
+                ],
+                "lost": [],
+                "required_retained": 5,
+                "required_count": 5
+              },
+              "min_bend_radius_m": 0.04504365240193166,
+              "peak_anchor_n": 0.10142913548493483,
+              "time_s": 9.6
+            }
+          }
+        },
+        {
+          "step": 4,
+          "decision": {
+            "time_s": 10.0,
+            "insertion_axis": [
+              0.008017651053369506,
+              -0.010313065126233348,
+              -0.9999146753394955
+            ],
+            "boot_position_m": [
+              -0.6918279442573511,
+              0.06539063026624099,
+              1.4876639363353643
+            ],
+            "anchor_site_m": [
+              -0.452902505460627,
+              0.026429177072314188,
+              1.2213704936377252
+            ],
+            "boot_to_anchor_m": 0.35988270000508565
+          },
+          "expected": {
+            "abstained": false,
+            "action_index": 0,
+            "action": {
+              "retreat_m": 0.0,
+              "bearing_rad": 0.0,
+              "excursion_m": 0.0,
+              "speed_m_per_s": 0.02
+            },
+            "magnitude_m": 0.006000000000000001,
+            "headroom_m": 0.03638393815039365,
+            "decision_boot_to_anchor_m": 0.35988270000508565,
+            "endpoint_boot_to_anchor_m": 0.36438251276941647,
+            "motion_completed": true,
+            "requested": true,
+            "step": 4,
+            "time_s": 10.0,
+            "verdict": {
+              "safe": true,
+              "refused_by": [],
+              "unscored": [],
+              "binding_constraint": "C3_anchor",
+              "constraints": {
+                "C1_clip": {
+                  "state": "safe",
+                  "endpoint_distance_m": 0.36438251276941647,
+                  "shape_term_m": 0.0,
+                  "score_m": 0.36438251276941647,
+                  "effective_threshold_m": 0.40684132161414277,
+                  "fitted_threshold_m": 0.41364132161414274,
+                  "margin_m": 0.0068000000000000005,
+                  "headroom_m": 0.0424588088447263
+                },
+                "C2_bend": {
+                  "state": "safe",
+                  "endpoint_distance_m": 0.36438251276941647,
+                  "shape_term_m": 0.0,
+                  "score_m": 0.36438251276941647,
+                  "effective_threshold_m": 0.40757092995003197,
+                  "fitted_threshold_m": 0.414370929950032,
+                  "margin_m": 0.0068000000000000005,
+                  "headroom_m": 0.0431884171806155
+                },
+                "C3_anchor": {
+                  "state": "safe",
+                  "endpoint_distance_m": 0.36438251276941647,
+                  "shape_term_m": 0.0,
+                  "score_m": 0.36438251276941647,
+                  "effective_threshold_m": 0.4007664509198101,
+                  "fitted_threshold_m": 0.40756645091981014,
+                  "margin_m": 0.0068000000000000005,
+                  "headroom_m": 0.03638393815039365
+                }
+              }
+            },
+            "budget": {
+              "C1_clip": {
+                "headroom_at_decision_m": 0.046958621609057116,
+                "spent_by_this_motion_m": 0.004499812764330813,
+                "spent_fraction": 0.09582506066283074,
+                "headroom_left_m": 0.0424588088447263
+              },
+              "C2_bend": {
+                "headroom_at_decision_m": 0.047688229944946314,
+                "spent_by_this_motion_m": 0.004499812764330813,
+                "spent_fraction": 0.0943589806022497,
+                "headroom_left_m": 0.0431884171806155
+              },
+              "C3_anchor": {
+                "headroom_at_decision_m": 0.04088375091472446,
+                "spent_by_this_motion_m": 0.004499812764330813,
+                "spent_fraction": 0.1100635989519784,
+                "headroom_left_m": 0.03638393815039365
+              }
+            },
+            "state_before": {
+              "clips": {
+                "retained": [
+                  "c1",
+                  "c2",
+                  "c3",
+                  "c4",
+                  "c5"
+                ],
+                "lost": [],
+                "required_retained": 5,
+                "required_count": 5
+              },
+              "min_bend_radius_m": 0.04504365240193166,
+              "peak_anchor_n": 0.10142913548493483,
+              "already_violated": []
+            },
+            "state_after": {
+              "clips": {
+                "retained": [
+                  "c1",
+                  "c2",
+                  "c3",
+                  "c4",
+                  "c5"
+                ],
+                "lost": [],
+                "required_retained": 5,
+                "required_count": 5
+              },
+              "min_bend_radius_m": 0.04504365240193166,
+              "peak_anchor_n": 0.10142913548493483,
+              "time_s": 11.620000000000001
+            }
+          }
+        }
+      ],
+      "source": {
+        "result": "artifacts/cable/routing-v6-s1/RC1_l15_compliant4000_m0_E4_conservative_r0/result.json",
+        "sha256": "c4e5ee5c39b7097d452431ea1b4072992d6845fea45ff25c18b36f6be9e424f5"
+      }
+    }
+  ],
+  "verification": {
+    "status": "verified",
+    "cases": 9,
+    "decisions": 21,
+    "reproduces_original": true,
+    "comparison_tolerance": {
+      "decision_tolerance_m": 1e-12,
+      "outcome_time_tolerance_s": 1e-06,
+      "compare": [
+        "original request identity and seeds",
+        "job failure reason, elapsed time, held seating and route completion",
+        "terminal clips and clip-loss attribution",
+        "per-constraint terminal states",
+        "all issued action indices, abstentions, motion completion and request acceptance",
+        "all chosen magnitudes, endpoint distances, headrooms and budget arithmetic",
+        "zero privilege and mutation guard events",
+        "inspector policy action parity on each captured estimate"
+      ]
+    },
+    "checks": [
+      {
+        "request": "RC1_l15_compliant4000_m0_E0_unfiltered_r0",
+        "reproduces_original": true,
+        "mismatches": [],
+        "decisions": 1,
+        "wall_seconds": 10.422,
+        "reference": "D:/constrained-cable-safety/artifacts/cable/routing-v6-s1/RC1_l15_compliant4000_m0_E0_unfiltered_r0/result.json",
+        "reference_sha256": "5ac5b8656023475f440511ff0de8e94aebf6ea0bcd058e224bb19baf1857a19e"
+      },
+      {
+        "request": "RC1_l15_compliant4000_m0_E0_filtered_r0",
+        "reproduces_original": true,
+        "mismatches": [],
+        "decisions": 1,
+        "wall_seconds": 11.016,
+        "reference": "D:/constrained-cable-safety/artifacts/cable/routing-v6-s1/RC1_l15_compliant4000_m0_E0_filtered_r0/result.json",
+        "reference_sha256": "1589db073eeff36ea49dd4c821de0458ef6538c9f8a800c0a853cda81c943c92"
+      },
+      {
+        "request": "RC1_l15_compliant4000_m0_E0_conservative_r0",
+        "reproduces_original": true,
+        "mismatches": [],
+        "decisions": 5,
+        "wall_seconds": 28.703,
+        "reference": "D:/constrained-cable-safety/artifacts/cable/routing-v6-s1/RC1_l15_compliant4000_m0_E0_conservative_r0/result.json",
+        "reference_sha256": "463a2f5fbd8bd9e8ba3951b2115bc59de89c33374b869683655f991e210ac95a"
+      },
+      {
+        "request": "RC1_l15_compliant4000_m0_E2_unfiltered_r0",
+        "reproduces_original": true,
+        "mismatches": [],
+        "decisions": 1,
+        "wall_seconds": 11.094,
+        "reference": "D:/constrained-cable-safety/artifacts/cable/routing-v6-s1/RC1_l15_compliant4000_m0_E2_unfiltered_r0/result.json",
+        "reference_sha256": "3fa43bea2dc4bfcf6b43d9ba8ecc2c7366745aea3abb2ca47c339d9ce17cf6a8"
+      },
+      {
+        "request": "RC1_l15_compliant4000_m0_E2_filtered_r0",
+        "reproduces_original": true,
+        "mismatches": [],
+        "decisions": 1,
+        "wall_seconds": 11.688,
+        "reference": "D:/constrained-cable-safety/artifacts/cable/routing-v6-s1/RC1_l15_compliant4000_m0_E2_filtered_r0/result.json",
+        "reference_sha256": "f256aa9813c08935ad22ba5cc161ab3faeaa48d2f92236eebd908db6a23e0b01"
+      },
+      {
+        "request": "RC1_l15_compliant4000_m0_E2_conservative_r0",
+        "reproduces_original": true,
+        "mismatches": [],
+        "decisions": 5,
+        "wall_seconds": 44.391,
+        "reference": "D:/constrained-cable-safety/artifacts/cable/routing-v6-s1/RC1_l15_compliant4000_m0_E2_conservative_r0/result.json",
+        "reference_sha256": "30f1b1d1aafb2a42efa82a426c68c433d8e13806a20d1aa5911057296f33b9d3"
+      },
+      {
+        "request": "RC1_l15_compliant4000_m0_E4_unfiltered_r0",
+        "reproduces_original": true,
+        "mismatches": [],
+        "decisions": 1,
+        "wall_seconds": 11.344,
+        "reference": "D:/constrained-cable-safety/artifacts/cable/routing-v6-s1/RC1_l15_compliant4000_m0_E4_unfiltered_r0/result.json",
+        "reference_sha256": "3dfe926fa9aa04233456b1a1e46cb34e7b543e144f5894e4fcee07eb4523576c"
+      },
+      {
+        "request": "RC1_l15_compliant4000_m0_E4_filtered_r0",
+        "reproduces_original": true,
+        "mismatches": [],
+        "decisions": 1,
+        "wall_seconds": 11.578,
+        "reference": "D:/constrained-cable-safety/artifacts/cable/routing-v6-s1/RC1_l15_compliant4000_m0_E4_filtered_r0/result.json",
+        "reference_sha256": "bab5aa3c1b71e7dc5a2f0269c7ee5dcd9378c8ec25dcd64ac0b8559702d056f2"
+      },
+      {
+        "request": "RC1_l15_compliant4000_m0_E4_conservative_r0",
+        "reproduces_original": true,
+        "mismatches": [],
+        "decisions": 5,
+        "wall_seconds": 120.0,
+        "reference": "D:/constrained-cable-safety/artifacts/cable/routing-v6-s1/RC1_l15_compliant4000_m0_E4_conservative_r0/result.json",
+        "reference_sha256": "c4e5ee5c39b7097d452431ea1b4072992d6845fea45ff25c18b36f6be9e424f5"
+      }
+    ]
+  },
+  "provenance": {
+    "commit": "d7c36ca513b7c507304e22cdc2d16e9b67198b91",
+    "dirty": false,
+    "working_tree_status": [],
+    "source_sha256": {
+      "artifacts/cable/routing-v6-s1__runtime.json": "2d426bc8ce6ec5f9e3b12f485d739b710b7393e0f943c6993b170339b74a766d",
+      "assets/cell_v6/cell_v6_board.stl": "6c1e3c1e771ef7397016d37cc19f8453b8eb4e5a81f3731a4b58e2781f434083",
+      "assets/cell_v6/cell_v6_c1.stl": "6d8626dd59f178bbcec2d06c08da5d7624a3fa45b3920f4718210412c066367e",
+      "assets/cell_v6/cell_v6_c2.stl": "f9afa50155f35ff23fbb568484b26f67ac6be287914ea03d665a04ca69422088",
+      "assets/cell_v6/cell_v6_c3.stl": "9ce92e35644c286059024e37c78549d44ca5bd321f23230531c9ef65713f29bf",
+      "assets/cell_v6/cell_v6_c4.stl": "9fee52459b2c82256278062e7d898d4128c86e14af2d16cee8fb7272c3d14cb0",
+      "assets/cell_v6/cell_v6_c5.stl": "3635f07cbc87fd95335ef94de3ca7d038d503c547081fa5d20e4644bdc8d44a4",
+      "assets/cell_v6/cell_v6_clamp.stl": "d220092fca4a680d7a844d90047241953e4fce373815c13ffb624f4e768197c7",
+      "assets/cell_v6/cell_v6_socket.stl": "38e43b8896617110eed2a3243a4c730a8a5b2fb8169e4f15f4ad7a5d208d9ca5",
+      "configs/approach_slew_registration_v1.json": "bbfd194f6e86f647d71d10df5edff29d74041f178c9fa2058ecf076f31cf613b",
+      "configs/cable_baseline_v1.json": "d4ae359bad82704fbe2627e477abe50ea081a561de7c1d61a98f0b49d60f3a8c",
+      "configs/cable_baseline_v2.json": "cc5ab74783e7ffc3eb642ffc997fc838a2cf3261c7193de2a9635e02bcbf7fb2",
+      "configs/cable_cell_v6_candidates.json": "9b51a7d9f9e2ff737dc5ee5272685a8b06e5eeef7dc116ce17839df2ab31f5c1",
+      "configs/cable_dependencies_v1.json": "0c27567675efa3b29f5ce4fa2e2fac292d931fce3d2a194114577fee5db1adec",
+      "configs/cable_extension_registration_v1.json": "1a7f804029b51e3e8c8ee676ac1610f10ee26e6fdde892f6d836b4df7b8c8a67",
+      "configs/cable_perception_v4.json": "4d508d316ff6ba212667df7dc886437293171c46a2fe49655540dd5c1da2673d",
+      "configs/cable_perception_v4_amendment_01.json": "5784c6e03ca28dbb848d3bd2fa35914cd0f187132e3476d31e42831894f32701",
+      "configs/cable_perception_v4_candidates.json": "0325b6fd958bfcde7ff89823b25eb86173ce9b66df8f5d9b907e8bc332d20d76",
+      "configs/cable_recovery_study_v2.json": "3d00b24560d7ee4e6b0764b578dfe321fd1e8fc665347f7e9be587869e05a369",
+      "configs/cable_recovery_task_v2.json": "34d08b3b6c10dcf603ea78d1bf9050e0edca7cc85b88c927b1f0c90b93ff011f",
+      "configs/cable_repair_boundary_v3.json": "853de0a18f8ffd7eda4f4ed8867853c6663e4151953dfb9117fa1321144b7cf1",
+      "configs/cable_retention_v1.json": "81513d050207eb4d8814d09ce016248d424d6f3107afc50e1564e9646410b522",
+      "configs/cable_retention_v2.json": "820616059046c29a58d931e5832d1bf66ce00eb90fc11fa849509fb08f915c7e",
+      "configs/cable_robot_v1.json": "9746c26654424e6237d11289a382c339f326d2a8384becc7b3fd0a4f92399b1c",
+      "configs/cable_robot_v2.json": "b073e0419820934d273c2ab25d00f011425a45f595293ddf520af9494949f765",
+      "configs/cable_robot_v3.json": "e9f222582014eae214bd951498da2a1a529f1a0d4e5959758798203c546ba3b9",
+      "configs/cable_routing_v6.json": "1d735d5100a3d2b6589df7ca3a4d5a2e3f91aa00a1e9fb56314584abc966ef90",
+      "configs/cable_sequence_v5.json": "36fef181f0d9e7c5f81bbc9bd53450f26e70149ff8bf90d0138d76cd15fe7b9d",
+      "configs/cable_task_v1.json": "4c1f5a18cc462d467f5095696084586d5b018ae823378fecbcba5a39dc56b933",
+      "configs/cable_task_v2.json": "093a41833d267d7c3e5d16190ffae1f061a38b17511a06d5367b41e980811022",
+      "configs/cable_video_v1.json": "fba10329657a01b3beca0709295965ac56e407dd2ebffe9b2e0fbedd3b5536fd",
+      "configs/completion_credit_v3.json": "731c15115a2b46b8b37ab115255d782c6fc8a4936618ab20cf20128a28a46669",
+      "configs/completion_training_registration_v3.json": "229ad71e2d5807d7589e8d9d93fe7b7e387ac42aa709b80b146894bef5ad048b",
+      "configs/completion_training_restart_v1.json": "6efcfc70d098035d7bd5186252a9f9770c7d850593f9e02fcdad393255c3a546",
+      "configs/contact_impact_continuation_v2.json": "a0f2f486d1072d4fd737525ba575f3386b2dc364f6ea6234aa0efc6f8d8c113e",
+      "configs/contact_impact_registration_v1.json": "78c3ac9df1f075a6e38727d5ea7148c3ee3f6379c8bb4ac8757f272e14c69732",
+      "configs/contribution_screen_v1.json": "0d1f5a579067e7a4b4c64e749de5f3ea23c552508d55bb9e02c6df8987ca8651",
+      "configs/extraction_diagnosis_v1.json": "77935c72f32e2c48ed9f8ac22c9ba75c8fcfa707ace7406f21cbfc6182e7e816",
+      "configs/extraction_diagnosis_v2.json": "6171440845a259d41008ca4c7b27ea864207327f8d39f05076c368893f5c4c4c",
+      "configs/failure_prefix_confirmation_v2.json": "98fbbc43821024b97bd831c25fbe3e6e13ede0306e5a32121c855cba2cae9d74",
+      "configs/failure_prefix_recovery_v1.json": "53c06fbf978202c86ef672c8e8110dd04ed8233e2027349c1f2530468bff729b",
+      "configs/learned_physics_continuation_v2.json": "2fead09cdac4c42f84d3ff07b9ca66d0e3442333345cde2cf89157b93695ebd4",
+      "configs/learned_physics_validation_v1.json": "d0e6b2c3f7f06e4eca14b3916bf48aa107398ecb59b1c40ca6177fe31d454baa",
+      "configs/learned_physics_validation_v3.json": "d350a808369602aec90b27624d1895c2fc9f09d17e689bdc2914e3bc474f1aac",
+      "configs/partial_checkpoint_diagnosis_v1.json": "add1d6eb6f34c5ec00f63a07132d1a32705dd906dca460101a932f35a1af20bf",
+      "configs/partial_checkpoint_diagnosis_v2.json": "8fce742e96db972d113a8a51c778de5237b672f45832058ebf616cf19a12192f",
+      "configs/protocol_v1.json": "e9a2eaf1463887b0b8d31a6d70c4e8cff26f0bc95295198f7dfa5fc18ee652af",
+      "configs/protocol_v2.json": "4df213615157b98ef43936c627320086b4ea5caa8ed415f65418f1f687d9aa13",
+      "configs/protocol_v3.json": "dbcd64a494bff47e27f45a2c44a042d865ab1cab1971e608d2db8541077a0aa6",
+      "configs/protocol_v3_restart_v1.json": "7138580f7ee1ab837e8e64dd5febf72fb674b5741fec6af17679306a24bb9475",
+      "configs/protocol_v4.json": "2b42e1961eb463cad2545a1d006ae01400d40e58d222d3861ab009915d35ea2d",
+      "configs/recovery_inspector_demo.json": "90a8604c64e255a1bc5e29188a91c633f82eb7ded202c244cb255a07f317ce59",
+      "configs/recovery_teaching_registration_v1.json": "99cbf12a22d5571324d834f779714f2d189fffaca871f3a8fc4eb22c45f75f15",
+      "configs/retry_unload_realign_v1.json": "14c6949a106650720650eb27f92d8ddcec77ed79b7aa4527f6317ad220d09bd1",
+      "configs/retry_unload_realign_v2.json": "edbfecf369079c61bffe9ba8c994dd534797893f635c008845e31812e0a2f7e8",
+      "configs/servo_impact_registration_v1.json": "2d0317c6ffce9c6d8dbc1ac78bbcede9a7fcc868ca5f4382c7dc7437ddbc07a3",
+      "configs/study.json": "2241d75cb7f99abedd58a8621f960a32a7a91768ce5f16b19e91626dce0c03a1",
+      "configs/study_peg_pilot_v1.json": "505b84f96ff61eead7cf3606ecb58d1cf20102033045339c4a88e16597fd4b26",
+      "configs/training_capacity_v1.json": "607d00d8d90d34103d085a41245120c88b174a8619c554849aad9ea4af8dfa3a",
+      "configs/unclipped_training_registration_v4.json": "12ad0f9d8948a372d8f1d5e5b244232e2c09fecf2b1c7e0465a0bd0ab61a930a",
+      "evidence/cable_cell_cad_v6.json": "5dfae770e81eab5e94189bb214fb9458b4f3e8b5036330c4b704a7926488f953",
+      "evidence/cable_cell_screen_v6.json": "e8b9e92d3cd8950f806d9cd1cb963970dd31fb0b685aa68bb12c643436899051",
+      "evidence/cable_perception_v4.json": "f231b0261ed7ed1b3ff7924d84f9155f4220b70bdbd6ffd7dbfd6dd7bd0fd596",
+      "scripts/build_cell_cad.py": "86c8ecb77946a4dbb6a2975515326092b61d43a472376eb5486ba35c7666712c",
+      "scripts/build_showcase.py": "adfa00da61419f771b4b634935c3d4bd55728978cbb9d8b39ec33097fd250493",
+      "scripts/controls_cable_discretisation_v4.py": "dee5122eff0a3090cff9558e501e4bb9d127730b721660931aa315bccbc32367",
+      "scripts/controls_perception_v4.py": "8c3683836ddbf860384641873437bb64b6f904c697f86b81179c5ea766f05eb3",
+      "scripts/controls_repair_boundary_v3.py": "fb4cba51b7d4d6202df26310f1298c0d73c2c92cf1bb8a1fcea2bf243ec50d71",
+      "scripts/demo_safety_layer_v4.py": "2729accebda16e405bb7288d3a09ff100492e8d29b1226c09c9ea7a2a403086e",
+      "scripts/encode_isaac_v7.py": "6090c5c1b42063240a5e4722a02bc0b4040a20fcfd4ff32a323a68c66a232cdb",
+      "scripts/evaluate_cable_insertion.py": "b0dcb7b942cd4fe9e1607376ac0cc3a16fb98085f63a41531b8e7f1f10190370",
+      "scripts/evaluate_cable_perception_v4.py": "a9859bb9ab5072f7c5d5bb4642f8ec0106cb56e13b53b158644e5fb31ef86190",
+      "scripts/evaluate_cable_recovery_v2.py": "c5636cd22b94837e9fed296788b480e3646f8de0853f24363cba8750f7111abd",
+      "scripts/evaluate_cable_routing_v6.py": "731690d8b74a474288ad7c56bdbd7516d179fc67628ff93c638dac5b367dc8a3",
+      "scripts/evaluate_cable_sequence_v5.py": "576f5dde3264597308b247e1ffba0d9675b42d20b71b6306d030df95de3eaafa",
+      "scripts/export_recovery_replay.py": "5f6e0b58e3caf26e724d64cda2d3f1fff9fcfaf6e4706d07241a3a0a317283cc",
+      "scripts/export_usd_v7.py": "47f9cb3e210b45cf4617d6b4f32e7470e0d26df1331150897e5df8e1b0b4f383",
+      "scripts/fit_perception_v4.py": "4287b5a2ffc8a487448ae99728752074babaf9b59c9800c3588525f1c65658d9",
+      "scripts/fit_repair_boundary_v3.py": "17cd2ea5ec39f71e617eba81626526ae54a09ff64ccb88620aa4cb74e44d1307",
+      "scripts/fit_routing_v6.py": "0db53fa71d8141764859b1292dbd8336de3c9498386a757d0211627077305ace",
+      "scripts/fit_sequence_v5.py": "eac362646df51b496ac8f35e8cea1e562aafa36f094275409355cd495ddd5e89",
+      "scripts/index_evidence.py": "ea6f12fc0362a77d21b4b7e1a20f7a3db614d4969578ffad3bce694b6921e980",
+      "scripts/inspect_recovery.py": "94c43544c4848fff0a10df16021cd932e4d91ecd93bbeb96c684d708c54820ff",
+      "scripts/plot_cable_research_task_v2.py": "7a9da8e2b02463e60457b279f5392cee0c2196748b5c60a80e1488598ffecdf1",
+      "scripts/probe_cable_retention.py": "03484c5f7ab150d703171b42907bb902a60d168a4d9f905d31145dcec8ce3664",
+      "scripts/probe_cable_robot.py": "2841bccbe89b723e71b3b5b38b9357cb0bbd6142368f3e9e0bf324dccbb3bd6c",
+      "scripts/probe_cable_task.py": "e8b8087daf7e6cd0011822e8c082f9bf79b1ef02530e1a5ee077757c0b520030",
+      "scripts/probe_cell_toolchain_v6.py": "c4037ccbb81ce5a874a8ff61df18ea929471cb36c0814c1a16a996c2c5bbb2b8",
+      "scripts/render_cable_recovery_v2.py": "f935a8ec81e84f07d240d8ec3787c504581cc4babcd7901a3107e7f6d61ec2b8",
+      "scripts/render_cable_video.py": "ae75dffcb3094c995f6ae72d3f79ef4aa56f6a5f03039e7474b78ea91d28926c",
+      "scripts/render_cell_v6.py": "cdab5688f300fafdd4e4927523173ea09492993a60689042d67e817a53b269e7",
+      "scripts/render_isaac_v7.py": "eefe45e102713b347b007020778d776bc8297be6afcf60708361c33e7dba6ef7",
+      "scripts/render_perception_v4.py": "b0dd35e6a3af2aaa297a6c7ec64db60cbf0c78a0e40d3d41c4b16dc005e46771",
+      "scripts/render_perception_video_v4.py": "9f049a1c8049e7d2e2c3738f27667a18803af408c513d9218191489ad4fd7e5d",
+      "scripts/render_repair_boundary_v3.py": "108b08fcf41a5af461f516ab6e0609cbc0d19c1e0c91b6bda591e0336394c83a",
+      "scripts/render_routing_video_v6.py": "b8d893aef3407f5931de4cdc82939a0f6a863058c25883ca3da139dfdab50f84",
+      "scripts/replay_perception_v4.py": "03690f77eeeb1f1b707e948414a182eaf36c6dc092b9db9609142958fd095f11",
+      "scripts/review_cable_baseline.py": "46b7ac4cd78b44bde42ef03df26669fcdf84e4c3b23a6922b56ef5825d3b77e2",
+      "scripts/review_cable_contact.py": "ee3102ae9bfb6ed3692fb2609e2a7d19962d2e5e7f9b51211b4b5aa8efcf43b1",
+      "scripts/review_cable_recovery_v2.py": "ae5e91f6577bbb7f27363941369439d34b49a55b8da776e28431c40bb06644be",
+      "scripts/review_cable_retention.py": "9e7fecb404409caa01a13445c0c4413fd0732e00b61807ac7e60c9b76b4a371c",
+      "scripts/review_cable_robot.py": "b2dec005f40f614e1df1ecbda74abcdfd3e9831ea7e9f7bedfb8fd911819b0d9",
+      "scripts/run_cable.py": "5609b12b9131fd7bd8503fec15928351761ac9eb7063b7492a742d03e5b44b20",
+      "scripts/run_perception_v4.py": "3eaef11c96c5fee075eb8d9e6c2ac69bc8eccd22338c967c2e4b6c6bce6eba0e",
+      "scripts/run_repair_boundary_v3.py": "96b23998c19021a06a18c11e0a20c5f584e21fc9adae29a5a0b4a934eb653963",
+      "scripts/run_routing_v6.py": "913441b56fbc639d3f86ee66a565faadb246bcc3f94c84637bb07044dd60cfec",
+      "scripts/run_sequence_v5.py": "4911ea7ac62edbe5d99133c335347b58c1682fc65a189a3d555b81a8429e4f1d",
+      "scripts/screen_cell_v6.py": "95e1040a47593ca96cefb920b78178bcd83619dd3aff7c28a3ba351633f2133e",
+      "scripts/screen_layouts_v4.py": "2f82c81a3368888579f51ec799a86afe391f2409a7cbee25bb692de4113f2004",
+      "scripts/setup_cable.py": "e826cc54331aaa54b4ec80010a307b92fb8e87eebbf771bb451036d58ef739e2",
+      "scripts/summarize_perception_v4.py": "2b512b1a00c84d4a79f3932e685c1d6d1f8798d1918a6ebfb5fcc56652a2d481",
+      "scripts/transfer_protocol_v4.py": "8a69adfe8f691be896009dcd419df0b2d420059cd116db38554cc58b2b0c9f19",
+      "scripts/try_the_safety_check.py": "1d5c2d94a2a536a0bd312485a63cde1d8292b381b49ff197c71741edbe5246c3",
+      "scripts/verify_findings.py": "090acf24cebfbc07fb365bc277f361150193944c1523a73de8042504053bbdae",
+      "scripts/verify_recovery_replay.py": "1d5c26555c0ee375e513b6d4f835faea3614dd9d5883a67e454564e33f6e4a8d",
+      "scripts/verify_showcase_video.py": "00a73175bfea0d97b6f0bd7f8fc5ba7e48a9aaa16e070b77be6dc381a7aab4a8",
+      "scripts/workbench.py": "1846636c1bcced3099c37d2be20007e7e006f141c3d04ff9755e8d240228b1a8",
+      "src/assembly_recovery/__init__.py": "b935c806aae1c99c97f88aede3df59421c0435d3290d9565d496d05d49ceaced",
+      "src/assembly_recovery/cable_assets.py": "b9070dd1e285cdb269cb3a0cebe89724a761ea4d402e6127a830555ce33823d8",
+      "src/assembly_recovery/cable_cell_v6.py": "847b5d6e2958c01b9bfddc37ec0e4de0bb9386a5374a9a0efaee01523d300628",
+      "src/assembly_recovery/cable_constrained_v2.py": "6c32166cb66f39ccf7a14677e64d08a702f8f34677c0020d198a5bf7239b3454",
+      "src/assembly_recovery/cable_constraints_v4.py": "d0d0ad858698fd4b3fcc1bf7cbabc7b9316f37f4de2c79f3b10798d38a5a8a0d",
+      "src/assembly_recovery/cable_control.py": "461ab5a72c578d586f47cd26d2b44486dbfe0db8213e849bad4f4bc2be0f131e",
+      "src/assembly_recovery/cable_jobs.py": "1e00f2de4da8c935fd81e6e07f9e05d0c8d23431db985af0cceda8aa00abf0f3",
+      "src/assembly_recovery/cable_perception_v4.py": "d957b4792b7a641ec8a38d1b90576636fa9c77eff7ec0dfe02b34b3c0eba72bf",
+      "src/assembly_recovery/cable_recovery_control_v2.py": "454873ecbd1cb7b415fc532f00cbd85e99a3853f2380b875e052ad012874b463",
+      "src/assembly_recovery/cable_robot.py": "eff3bdd93d15eb40b22f6064e91178c6dbc2e3f2aba35f8be6ce9f64750b6c82",
+      "src/assembly_recovery/cable_routes.py": "d59d03b7a05637093d07123e78e7da7b422d35d9148bccee167fcd27ddc0346a",
+      "src/assembly_recovery/cable_run.py": "671a1762705ca1e3bae06933f424668155f561274855c219d0b2021695f0ca73",
+      "src/assembly_recovery/cable_safety_filter_v4.py": "f697bab168f001dbcf3996d70e26a951f77d9baafd3716001110fd1e1a73f34d",
+      "src/assembly_recovery/cable_study_v3.py": "73e7268c0120fc7f6f017367aefd28db02c75ea07f422d4d7c25e29851a6ac69",
+      "src/assembly_recovery/cable_study_v4.py": "9a03782fc8abc787c477f5f6328db29cc475831e7a9b85625d547b314689fb7e",
+      "src/assembly_recovery/cable_workbench_v7.py": "f5cda9e6b434e20611524dcd861719c9f5c12445dd8e57c7e9fe1e9a3eed4f7e",
+      "src/assembly_recovery/faults.py": "683b607a90a2fc9baf77e94a3baa2bf60baaf22889b89ca1d4f901994c2786e3",
+      "src/assembly_recovery/protocol.py": "7cbb7b38608fc56c11b342d97462200199d8c7b904b585f368ec9699140ae594",
+      "src/assembly_recovery/recovery_inspector.py": "3b2efbebff97b1799869a11f12375c0e3166ca805d0024a92d1d7b1589f3fb4c",
+      "src/assembly_recovery/recovery_inspector_cli.py": "fee8f83e30b391a077ab32178d7679834a03c42f8aeb3edbc5bdbda07eeaff17"
+    },
+    "hashing": "cable_study_v3.content_sha256 (normalised text line endings)",
+    "environment": {
+      "python": "3.11.15 (main, Mar 10 2026, 18:12:25) [MSC v.1944 64 bit (AMD64)]",
+      "executable": "D:\\constrained-cable-safety\\.deps\\cable-venv\\Scripts\\pythonw.exe",
+      "platform": "Windows-10-10.0.26200-SP0",
+      "packages": {
+        "absl-py": "2.5.0",
+        "assembly-recovery-lab": "0.1.0",
+        "contourpy": "1.3.3",
+        "cycler": "0.12.1",
+        "etils": "1.14.0",
+        "fonttools": "4.65.0",
+        "fsspec": "2026.7.0",
+        "glfw": "2.10.2",
+        "imageio-ffmpeg": "0.6.0",
+        "kiwisolver": "1.5.1",
+        "matplotlib": "3.10.7",
+        "mujoco": "3.3.7",
+        "numpy": "2.4.6",
+        "packaging": "26.3",
+        "pillow": "12.3.0",
+        "psutil": "7.1.3",
+        "PyOpenGL": "3.1.10",
+        "pyparsing": "3.3.2",
+        "python-dateutil": "2.9.0.post0",
+        "scipy": "1.16.3",
+        "six": "1.17.0",
+        "trimesh": "4.8.3",
+        "typing_extensions": "4.16.0",
+        "zipp": "4.1.0"
+      }
+    },
+    "selected_cases": [
+      "RC1_l15_compliant4000_m0_E0_unfiltered_r0",
+      "RC1_l15_compliant4000_m0_E0_filtered_r0",
+      "RC1_l15_compliant4000_m0_E0_conservative_r0",
+      "RC1_l15_compliant4000_m0_E2_unfiltered_r0",
+      "RC1_l15_compliant4000_m0_E2_filtered_r0",
+      "RC1_l15_compliant4000_m0_E2_conservative_r0",
+      "RC1_l15_compliant4000_m0_E4_unfiltered_r0",
+      "RC1_l15_compliant4000_m0_E4_filtered_r0",
+      "RC1_l15_compliant4000_m0_E4_conservative_r0"
+    ]
+  }
+}

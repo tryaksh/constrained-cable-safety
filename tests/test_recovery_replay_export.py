@@ -11,6 +11,7 @@ from types import SimpleNamespace
 import numpy as np
 import pytest
 
+from assembly_recovery.recovery_inspector import RecoveryInspector
 from scripts.export_recovery_replay import (
     capture_case,
     comparable_issued,
@@ -19,7 +20,7 @@ from scripts.export_recovery_replay import (
     request_from_replay,
     stable_outcome,
 )
-from scripts.verify_recovery_replay import compare_decision
+from scripts.verify_recovery_replay import compare_decision, verify_replay
 
 ROOT = Path(__file__).resolve().parents[1]
 
@@ -192,3 +193,52 @@ def test_abstention_parity_requires_no_selected_candidate():
     report["policies"]["conservative"] = {"abstained": False, "action_index": 0}
     assert compare_decision(report, "conservative", expected) == [
         "policy.abstained", "policy.action_index"]
+
+
+def portable_replay() -> dict:
+    return json.loads((ROOT / "artifacts/showcase/recovery_replay.json").read_text(encoding="utf-8"))
+
+
+def test_complete_portable_corpus_matches_every_original_policy_decision():
+    replay = portable_replay()
+    result = verify_replay(replay, RecoveryInspector.from_repository(ROOT))
+    assert result["status"] == "verified"
+    assert result["cases"] == 9 and result["decisions"] == 21
+    assert result["mismatched_decisions"] == 0
+    assert result["coverage_mismatches"] == []
+    assert replay["provenance"]["dirty"] is False
+    config = json.loads((ROOT / "configs/recovery_inspector_demo.json").read_text(encoding="utf-8"))
+    assert replay["provenance"]["selected_cases"] == config["cases"]
+    e4 = next(case for case in replay["cases"]
+              if case["error_level"] == "E4" and case["supervisor"] == "conservative")
+    assert e4["recorded_outcome"]["job"]["failure_reason"] == "controller_retries_exhausted"
+    assert e4["recorded_outcome"]["route_completed"] is False
+
+
+@pytest.mark.parametrize("corruption", ["budget", "missing_case"])
+def test_portable_verification_rejects_arithmetic_drift_and_incomplete_coverage(corruption):
+    replay = portable_replay()
+    if corruption == "budget":
+        replay["cases"][0]["decisions"][0]["expected"]["budget"]["C1_clip"]["spent_fraction"] += 0.01
+    else:
+        replay["cases"].pop()
+    result = verify_replay(replay, RecoveryInspector.from_repository(ROOT))
+    assert result["status"] == "FAILED"
+    if corruption == "budget":
+        assert result["mismatched_decisions"] == 1
+        assert result["checks"][0]["mismatches"] == [
+            "chosen_candidate.budget.C1_clip.spent_fraction"]
+    else:
+        assert "case selection differs from prelaunch" in result["coverage_mismatches"]
+        assert "decision count differs from capture verification" in result["coverage_mismatches"]
+
+
+
+def test_old_demo_outcome_has_an_explicit_correction_bound_to_original_result():
+    demo = json.loads((ROOT / "artifacts/showcase/demo.json").read_text(encoding="utf-8"))
+    correction = demo["superseded"]
+    case = next(row for row in portable_replay()["cases"] if row["request"] == correction["request"])
+    assert demo["levels"]["E4"]["recorded_job_outcome"] == correction["recorded_value_preserved"]
+    assert correction["correct_value"] == case["recorded_outcome"]["job"]["failure_reason"]
+    assert correction["original_result"] == case["source"]
+    assert case["recorded_outcome"]["route_completed"] is False

@@ -178,21 +178,29 @@ def test_the_documents_agree_with_the_record_about_where_the_page_went():
 
 
 def test_every_open_item_says_what_it_would_cost():
-    """An open item without a price is a wish, and wishes accumulate.
-
-    ROADMAP.md's open list is the one place where work that was deliberately not
-    bought is written down. Each entry has to say what buying it would take, in
-    units something already measured — routes, contexts, minutes — so a later
-    reader can decide rather than guess.
-    """
+    """Deferred extensions retain concrete work and costs in the status table."""
     roadmap = (ROOT / "ROADMAP.md").read_text(encoding="utf-8-sig")
-    section = roadmap.split("## Open, and honestly so", 1)
-    assert len(section) == 2, "ROADMAP.md no longer has an open list"
+    section = roadmap.split("## Remaining limitations", 1)
+    assert len(section) == 2, "ROADMAP.md must identify its deferred extensions"
     body = section[1].split("\n## ", 1)[0]
-    items = [block for block in re.split(r"\n(?=- )", body) if block.startswith("- ")]
-    assert len(items) >= 5, f"only {len(items)} open items; that list should not shrink quietly"
-    unpriced = [item.split("**")[1] for item in items if "**Price:**" not in item]
-    assert not unpriced, "these open items do not say what they would cost: " + ", ".join(unpriced)
+    rows = [line.removeprefix("| ").removesuffix(" |").split(" | ") for line in body.splitlines()
+            if line.startswith("| ") and not line.startswith(("| ---", "| Open question"))]
+    assert rows and all(len(row) == 2 and all(row) for row in rows)
+    costs = dict(rows)
+    required = {
+        "Force-only sensing may merit a larger study": ("200 held-out contexts", "16,080-run"),
+        "A supervisor could cap the fraction of headroom spent": ("new candidate set", "780 routes"),
+        "Five-clip findings cover one rig": ("second geometry", "2,340 routes", "87 minutes"),
+        "v3 remains inconclusive": ("new registered block",),
+        "The workbench window is untested": ("--run --view", "display"),
+        "v5/v6 lack standalone study figures": ("two figures", "committed evidence"),
+        "One old figure has damaged text encoding": ("Re-render", "JSON record"),
+    }
+    assert required.keys() <= costs.keys(), "a deferred extension disappeared without an explanation"
+    for label, terms in required.items():
+        for term in terms:
+            assert term in costs[label], f"{label} no longer explains {term}"
+    assert "none are scheduled" in body
 
 
 def test_every_committed_figure_is_pointed_at_by_something():
@@ -215,34 +223,33 @@ def test_every_committed_figure_is_pointed_at_by_something():
         + "\n  ".join(orphans))
 
 
-def test_each_finding_the_readme_states_shows_a_figure_or_says_why_not():
-    """The three findings are numbered headings; a reader should see the pictures."""
+def test_the_readme_scene_and_findings_link_to_their_evidence():
+    """The overview uses one scene image and direct evidence links for the studies."""
     readme = (ROOT / "README.md").read_text(encoding="utf-8-sig")
     shown = set(re.findall(r"!\[[^\]]*\]\((evidence/[^)]+)\)", readme))
-    assert len(shown) >= 4, f"the README shows only {len(shown)} of the committed figures"
+    assert "evidence/cable_cell_v6_clips_cad.png" in shown
     for target in shown:
         assert (ROOT / target).is_file(), target
-    # Every shown figure carries a caption naming the record it came from, on the
-    # line that follows it. A picture without its record is a number without one.
-    for target in shown:
         after = readme.split(f"]({target})", 1)[1][:600]
-        assert "[Record](" in after, f"{target} is shown without naming the record behind it"
+        evidence_links = re.findall(r"\]\((evidence/[^)]+\.json)\)", after)
+        assert evidence_links, f"{target} is shown without its evidence record"
+        assert all((ROOT / link).is_file() for link in evidence_links)
+    for record_name in ("cable_repair_boundary_v3", "cable_perception_v4",
+                        "cable_sequence_v5", "cable_routing_v6"):
+        assert f"](evidence/{record_name}.json)" in readme, record_name
 
 
 def test_the_documents_report_the_campaign_counts_the_index_actually_has():
-    """A hand-typed count beside a generated one is a number waiting to go stale.
-
-    README.md and docs/REPO_MAP.md both state how many records belong to each
-    campaign. `evidence/INDEX.json` derives those counts from the files, so the
-    two can disagree the moment a record is added. This makes them agree by test.
-    """
+    """REPO_MAP owns counts; the README points to the index and distinguishes campaigns."""
     index = json.loads((ROOT / "evidence/INDEX.json").read_text(encoding="utf-8-sig"))
     counts = index["count_by_campaign"]
-    readme = (ROOT / "README.md").read_text(encoding="utf-8-sig")
-    repo_map = (ROOT / "docs/REPO_MAP.md").read_text(encoding="utf-8-sig")
+    readme = " ".join((ROOT / "README.md").read_text(encoding="utf-8-sig").split())
+    repo_map = " ".join((ROOT / "docs/REPO_MAP.md").read_text(encoding="utf-8-sig").split())
+    assert "](evidence/INDEX.json)" in readme
+    assert "cable and peg campaigns" in readme
+    assert "scope before quoting" in readme
     for campaign, number in counts.items():
-        assert f"{number}" in readme, f"README.md does not state the {campaign} count of {number}"
-        assert f"| {number} |" in repo_map, (
-            f"docs/REPO_MAP.md's campaign table does not state the {campaign} count of {number}"
-        )
+        assert f"{number} `{campaign}`" in repo_map, (
+            f"docs/REPO_MAP.md no longer associates {campaign} with {number} records")
     assert index["count"] == sum(counts.values())
+    assert f"{index['count']} records" in repo_map

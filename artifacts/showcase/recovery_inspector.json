@@ -1,7 +1,7 @@
 {
   "schema": 1,
   "id": "recovery_inspector_application",
-  "status": "implementation_in_progress",
+  "status": "verified_application",
   "scope": "Application of the existing B0plus filter and registered conservative policy. No new study, refit, or changed historical outcome.",
   "done_conditions": [
     "Strict simulator-free request API and CLI explain every candidate and compare the three existing policies.",
@@ -11,5 +11,134 @@
     "Five maintained documents explain the completed application and preserve evidence and operating instructions.",
     "Code and documentation are committed and pushed to the authorized origin.",
     "One verified portfolio film and concise description are delivered outside the repository; no website is modified."
-  ]
+  ],
+  "created_on": "2026-09-14",
+  "what_changed": "A strict NumPy-only Python API and CLI explain every candidate move, compare the three historical policies, and select the registered most-headroom policy. Source and runtime provenance, explicit model-scope reporting, malformed-input rejection and missing-rule abstention make the existing filter usable outside the simulator.",
+  "historical_filter_and_workers_changed": false,
+  "replay": {
+    "record": "artifacts/showcase/recovery_replay.json",
+    "content_sha256": "abef492282d177aca6ed834cd09701fcbb58c8224675d27285f7b9e504e0de77",
+    "capture_source_commit": "d7c36ca513b7c507304e22cdc2d16e9b67198b91",
+    "capture_source_dirty": false,
+    "cases": 9,
+    "decisions": 21,
+    "all_original_outcomes_reproduced": true,
+    "mismatched_decisions": 0,
+    "coverage_mismatches": [],
+    "absolute_numerical_tolerance": 1e-12,
+    "wall_seconds": 260.236,
+    "privilege_guard_events": 0,
+    "mutation_guard_events": 0,
+    "source_and_environment": "137 prelaunch source/config/asset hashes and 24 installed package versions are retained in the replay corpus.",
+    "outcomes_preserved": {
+      "RC1_l15_compliant4000_m0_E0_unfiltered_r0": "lost_required_clip",
+      "RC1_l15_compliant4000_m0_E0_filtered_r0": "lost_required_clip",
+      "RC1_l15_compliant4000_m0_E0_conservative_r0": "completed",
+      "RC1_l15_compliant4000_m0_E2_unfiltered_r0": "lost_required_clip",
+      "RC1_l15_compliant4000_m0_E2_filtered_r0": "lost_required_clip",
+      "RC1_l15_compliant4000_m0_E2_conservative_r0": "completed",
+      "RC1_l15_compliant4000_m0_E4_unfiltered_r0": "lost_required_clip",
+      "RC1_l15_compliant4000_m0_E4_filtered_r0": "lost_required_clip",
+      "RC1_l15_compliant4000_m0_E4_conservative_r0": "controller_retries_exhausted"
+    }
+  },
+  "software_validation": {
+    "full_cpu_suite": {
+      "passed": 611,
+      "failed": 0,
+      "command": ".venv/Scripts/python.exe -m pytest -q --basetemp artifacts/test_tmp_final_suite -p no:cacheprovider --tb=short"
+    },
+    "lint": "ruff check src scripts tests --no-cache: passed",
+    "isolated_install": {
+      "status": "verified",
+      "python": "3.11.15 (main, Mar 10 2026, 18:12:25) [MSC v.1944 64 bit (AMD64)]",
+      "numpy": "1.26.4",
+      "packages_absent": {
+        "mujoco": true,
+        "torch": true,
+        "scipy": true
+      },
+      "runtime_matches_repository": true,
+      "runtime_sources": {
+        "src/assembly_recovery/cable_safety_filter_v4.py": "f697bab168f001dbcf3996d70e26a951f77d9baafd3716001110fd1e1a73f34d",
+        "src/assembly_recovery/cable_study_v3.py": "73e7268c0120fc7f6f017367aefd28db02c75ea07f422d4d7c25e29851a6ac69",
+        "src/assembly_recovery/cable_study_v4.py": "9a03782fc8abc787c477f5f6328db29cc475831e7a9b85625d547b314689fb7e",
+        "src/assembly_recovery/cable_constraints_v4.py": "d0d0ad858698fd4b3fcc1bf7cbabc7b9316f37f4de2c79f3b10798d38a5a8a0d",
+        "src/assembly_recovery/recovery_inspector.py": "a510b6a3051f7d045289e8ca5a4a0045ebf6160a594b1684dcd3ff67c82e8e76"
+      },
+      "demo_policy_indices": {
+        "E0": {
+          "conservative": 0,
+          "filtered": 9,
+          "unfiltered": 4
+        },
+        "E2": {
+          "conservative": 0,
+          "filtered": 9,
+          "unfiltered": 4
+        },
+        "E4": {
+          "conservative": 0,
+          "filtered": 5,
+          "unfiltered": 4
+        }
+      }
+    },
+    "isolated_replay": "All 21 decisions pass using the installed package and NumPy 1.26.4 with no MuJoCo, Torch or SciPy installed.",
+    "interface_checks": [
+      "malformed and duplicate JSON fields",
+      "nonfinite and out-of-domain numbers",
+      "missing uncertainty",
+      "inconsistent geometry",
+      "parallel repair directions",
+      "invalid units or action parameters",
+      "missing fitted constraints",
+      "abstention when no candidate passes",
+      "deterministic index tie breaking",
+      "strict JSON at zero headroom",
+      "source/runtime mismatch rejection",
+      "source and report isolation",
+      "CLI stdin, exit codes and example overwrite refusal"
+    ]
+  },
+  "documentation": {
+    "maintained_files": [
+      "README.md",
+      "ROADMAP.md",
+      "AGENTS.md",
+      "docs/REPO_MAP.md",
+      "docs/PEG_INSERTION.md"
+    ],
+    "verified_links_are_tracked": true,
+    "headline_tables_bound_to_evidence": true,
+    "historical_handovers_unchanged": true
+  },
+  "metadata_correction": {
+    "record": "artifacts/showcase/demo.json",
+    "field": "levels.E4.recorded_job_outcome",
+    "correction": "The original completed label is retained with an explicit superseded annotation. The source result and exact replay both record controller_retries_exhausted. Inputs, historical scores and study verdicts are unchanged."
+  },
+  "application_provenance": {
+    "sources": {
+      "evidence/cable_perception_v4.json": "f231b0261ed7ed1b3ff7924d84f9155f4220b70bdbd6ffd7dbfd6dd7bd0fd596",
+      "configs/cable_perception_v4.json": "4d508d316ff6ba212667df7dc886437293171c46a2fe49655540dd5c1da2673d",
+      "configs/cable_recovery_task_v2.json": "34d08b3b6c10dcf603ea78d1bf9050e0edca7cc85b88c927b1f0c90b93ff011f",
+      "configs/cable_routing_v6.json": "1d735d5100a3d2b6589df7ca3a4d5a2e3f91aa00a1e9fb56314584abc966ef90",
+      "src/assembly_recovery/cable_safety_filter_v4.py": "f697bab168f001dbcf3996d70e26a951f77d9baafd3716001110fd1e1a73f34d",
+      "src/assembly_recovery/cable_study_v3.py": "73e7268c0120fc7f6f017367aefd28db02c75ea07f422d4d7c25e29851a6ac69",
+      "src/assembly_recovery/cable_study_v4.py": "9a03782fc8abc787c477f5f6328db29cc475831e7a9b85625d547b314689fb7e",
+      "src/assembly_recovery/cable_constraints_v4.py": "d0d0ad858698fd4b3fcc1bf7cbabc7b9316f37f4de2c79f3b10798d38a5a8a0d",
+      "src/assembly_recovery/recovery_inspector.py": "a510b6a3051f7d045289e8ca5a4a0045ebf6160a594b1684dcd3ff67c82e8e76"
+    },
+    "runtime_sources": {
+      "src/assembly_recovery/cable_safety_filter_v4.py": "f697bab168f001dbcf3996d70e26a951f77d9baafd3716001110fd1e1a73f34d",
+      "src/assembly_recovery/cable_study_v3.py": "73e7268c0120fc7f6f017367aefd28db02c75ea07f422d4d7c25e29851a6ac69",
+      "src/assembly_recovery/cable_study_v4.py": "9a03782fc8abc787c477f5f6328db29cc475831e7a9b85625d547b314689fb7e",
+      "src/assembly_recovery/cable_constraints_v4.py": "d0d0ad858698fd4b3fcc1bf7cbabc7b9316f37f4de2c79f3b10798d38a5a8a0d",
+      "src/assembly_recovery/recovery_inspector.py": "a510b6a3051f7d045289e8ca5a4a0045ebf6160a594b1684dcd3ff67c82e8e76"
+    },
+    "runtime_matches_repository": true,
+    "hash_convention": "BOM-stripped, LF-normalised UTF-8 content"
+  },
+  "delivery_scope": "This record verifies the application and documentation. Git publication and the separately delivered portfolio package are reported at delivery; the media and portfolio description are not repository content."
 }

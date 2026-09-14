@@ -265,6 +265,26 @@ def test_provenance_matches_normalised_source_content_and_request(payload, inspe
     assert inspector.inspect(payload)["provenance"]["request_sha256"] != report["provenance"]["request_sha256"]
 
 
+@pytest.mark.parametrize("stale", [True, False])
+def test_installed_runtime_must_match_checkout_source(tmp_path, monkeypatch, stale):
+    import assembly_recovery.recovery_inspector as module
+
+    installed = tmp_path / "recovery_inspector.py"
+    source = (ROOT / "src/assembly_recovery/recovery_inspector.py").read_text(encoding="utf-8")
+    installed.write_text(source + ("\n# older installed build\n" if stale else ""),
+                         encoding="utf-8", newline="\r\n")
+    monkeypatch.setattr(module, "__file__", str(installed))
+    if stale:
+        with pytest.raises(InvalidRequest, match="Reinstall this checkout"):
+            RecoveryInspector.from_repository(ROOT)
+    else:
+        loaded = RecoveryInspector.from_repository(ROOT)
+        assert loaded.provenance["runtime_matches_repository"] is True
+        runtime = loaded.provenance["runtime_sources"]
+        assert runtime == {key: value for key, value in loaded.provenance["sources"].items()
+                           if key.startswith("src/")}
+
+
 def test_geometry_labels_never_serve_as_proof_of_calibration(payload, inspector):
     payload["context"].update(required_clips=1, geometry_id="looks_registered", cable_segments=46, physics_hz=8000)
     report = inspector.inspect(payload)
@@ -333,6 +353,18 @@ def test_cli_writes_a_reusable_example_and_never_overwrites_it(tmp_path):
 
 def test_cli_example_write_failure_is_an_error(tmp_path):
     finished = run_cli("--write-example", tmp_path / "missing" / "payload.json", "--json")
+    assert finished.returncode == 2
+    assert finished.stdout == ""
+    assert json.loads(finished.stderr)["status"] == "invalid_request"
+
+
+@pytest.mark.parametrize("axis", [[1.0, 0.0, 0.0], [-1.0, 0.0, 0.0], [1.0, 0.0, 1e-9]])
+def test_degenerate_repair_basis_fails_before_filter_arithmetic(payload, inspector, axis):
+    payload["decision"]["insertion_axis"] = axis
+    payload["run_direction_xy"] = [1.0, 0.0]
+    with pytest.raises(InvalidRequest, match="must not be parallel"):
+        inspector.inspect(payload)
+    finished = run_cli("--input", "-", "--json", stdin=json.dumps(payload))
     assert finished.returncode == 2
     assert finished.stdout == ""
     assert json.loads(finished.stderr)["status"] == "invalid_request"

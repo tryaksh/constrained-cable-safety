@@ -227,5 +227,19 @@
    },
    "recorded_job_outcome": "completed"
   }
+ },
+ "superseded": {
+  "created_on": "2026-09-14",
+  "field": "levels.E4.recorded_job_outcome",
+  "recorded_value_preserved": "completed",
+  "correct_value": "controller_retries_exhausted",
+  "reason": "The original routing result and its exact replay both record controller exhaustion. The earlier demonstration copied the wrong terminal-outcome label. Its estimated decision inputs are unchanged and reproduce the recorded filter arithmetic.",
+  "verified_source": "artifacts/showcase/recovery_replay.json",
+  "request": "RC1_l15_compliant4000_m0_E4_conservative_r0",
+  "original_result": {
+   "result": "artifacts/cable/routing-v6-s1/RC1_l15_compliant4000_m0_E4_conservative_r0/result.json",
+   "sha256": "c4e5ee5c39b7097d452431ea1b4072992d6845fea45ff25c18b36f6be9e424f5"
+  },
+  "scope": "Metadata correction only; no outcome is rescored and no study verdict changes."
  }
 }

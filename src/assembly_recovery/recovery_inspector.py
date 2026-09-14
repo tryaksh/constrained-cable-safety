@@ -9,6 +9,7 @@ from __future__ import annotations
 
 import copy
 import hashlib
+import importlib
 import json
 import math
 from pathlib import Path
@@ -102,6 +103,10 @@ def validate_request(request: dict) -> dict:
             raise InvalidRequest("decision.boot_to_anchor_m disagrees with the supplied positions")
     decision["boot_to_anchor_m"] = distance
     result["run_direction_xy"] = _vector(result["run_direction_xy"], 2, "run_direction_xy", unit=True)
+    axis = np.asarray(decision["insertion_axis"])
+    run = np.array([*result["run_direction_xy"], 0.0])
+    if float(np.linalg.norm(np.cross(axis, run))) <= 1e-6:
+        raise InvalidRequest("run_direction_xy must not be parallel to insertion_axis (cross-product norm > 1e-6)")
     _object(result["declared_error"], ERROR_FIELDS, name="declared_error")
     for field in ERROR_FIELDS:
         result["declared_error"][field] = _number(result["declared_error"][field],
@@ -150,7 +155,19 @@ class RecoveryInspector:
         root = Path(root)
         fitted = SafetyFilter.from_evidence(*(root / path for path in SOURCE_PATHS[:3]))
         contract = json.loads((root / "configs/cable_routing_v6.json").read_text(encoding="utf-8-sig"))
-        return cls(fitted, provenance={"sources": {path: content_sha256(root / path) for path in SOURCE_PATHS},
+        sources = {path: content_sha256(root / path) for path in SOURCE_PATHS}
+        runtime_sources = {}
+        for path in SOURCE_PATHS:
+            if not path.startswith("src/"):
+                continue
+            module = importlib.import_module(path[4:-3].replace("/", "."))
+            runtime_sources[path] = content_sha256(Path(module.__file__))
+            if runtime_sources[path] != sources[path]:
+                raise InvalidRequest(
+                    f"Installed module differs from repository source: {path}. "
+                    "Reinstall this checkout into the environment running the inspector.")
+        return cls(fitted, provenance={"sources": sources, "runtime_sources": runtime_sources,
+                                       "runtime_matches_repository": True,
                                        "hash_convention": "BOM-stripped, LF-normalised UTF-8 content"},
                    registered_actions=contract["route"]["candidate_actions"])
 

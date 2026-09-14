@@ -1,127 +1,75 @@
 # Repository map
 
-What this repository holds, what its branches are, and where the work that is
-*not* here went. Read it after [README.md](../README.md).
+This repository contains the constrained-cable studies, their reusable tools,
+and the records of a retired peg-insertion campaign. The related
+[orbital-robotic-servicing-lab](https://github.com/tryaksh/orbital-robotic-servicing-lab)
+repository covers spacecraft rack servicing in zero gravity.
 
-Measured on 2026-09-13 with `git ls-remote`, `git merge-base` and `git rev-list`.
-Nothing below is assumed.
+## Current structure
 
----
+`main` is the maintained branch. It contains the four cable studies (v3–v6),
+the safety filter, Recovery Decision Inspector, simulator workbench, five-clip
+cell and peg evidence. The remote is
+`https://github.com/tryaksh/constrained-cable-safety.git`.
 
-## The two repositories, and which is which
-
-There are two, and they used to be tangled together. They are not any more.
-
-| Repository | Question it answers |
+| Location | Contents |
 | --- | --- |
-| **constrained-cable-safety** (this one) | An assembly attempt has failed and the robot must back off and try again. What does a safety check need to know before it makes that retreat, and does the check survive being used repeatedly and on hardware it was not tuned for? |
-| [**orbital-robotic-servicing-lab**](https://github.com/tryaksh/orbital-robotic-servicing-lab) | Can a robot service a modular spacecraft rack in zero gravity, which constraint stops it, and do skills that pass on their own survive being chained together? |
+| `src/assembly_recovery/` | Simulation, control, scoring and inspector API |
+| `scripts/` | Study runners, verification tools, inspector CLI and renderers |
+| `configs/` | Frozen study contracts and scene definitions |
+| `evidence/` | Scoped results, including failed and inconclusive studies |
+| `artifacts/cell/`, `artifacts/showcase/` | Committed stage records; generated media stay ignored |
+| `tests/` | CPU tests for software, provenance and documented findings |
+| `docs/handover/` | Historical handovers, unchanged after their dates |
 
-Neither repository now contains the other's subject matter. If you find cable or
-peg-insertion work in the orbital repository, or spacecraft racks here, it is a
-mistake and should be reported.
+The portfolio video and description are delivered separately at
+`D:/constrained-cable-portfolio/` and are not repository content. There is no
+portfolio website in this project.
 
----
+## History and archive
 
-## Branches here
+The cable repository was extracted from the orbital repository's
+`research/assembly-recovery-training` branch. Its history was filtered, so commit
+hashes differ; the repositories share only the empty initial commit. Treat them
+as separate projects rather than branches to merge.
 
-| Branch | State | What is on it |
-| --- | --- | --- |
-| `main` | **alive — the only branch** | Everything. Four pre-registered studies (v3–v6), the safety layer, the workbench, the five-clip rig, and the retired peg-insertion campaign's records. |
+The original recovery branch was preserved as
+`archive/assembly-recovery-training` before deletion. Its 623 commits include
+the peg training code and probe scripts:
 
-One branch is deliberate. There is no work in progress, no parallel line, and
-nothing half-merged. If a branch appears here later it should be short-lived and
-its name should say what it is for.
-
-The remote is `https://github.com/tryaksh/constrained-cable-safety.git`.
-
----
-
-## Where this repository came from
-
-This repository was cut out of the orbital repository's
-`research/assembly-recovery-training` branch. The two share exactly one commit —
-the empty initial commit — and nothing else: the history here was rewritten to
-keep only the cable work, so commit hashes do not match between them and no merge
-between the two is possible or wanted.
-
-The branch it came from no longer exists. It was tagged
-`archive/assembly-recovery-training` in the orbital repository before it was
-deleted, so its 623 commits and every file on it stay reachable there:
-
-```
+```text
 git clone https://github.com/tryaksh/orbital-robotic-servicing-lab.git
 git checkout archive/assembly-recovery-training
 ```
 
----
+On 2026-09-13, the cable repository received 65 peg evidence records, 41 missing
+configs, 19 existing figures and two documentation archives. Paths were kept
+because records refer to them and often hash their contents.
 
-## What arrived from that branch on 2026-09-13
+[`evidence/INDEX.json`](../evidence/INDEX.json) lists 99 records: 30 `cable`,
+66 `peg` and 3 `shared`. The 65 imported peg records supplement one already
+present. Campaign labels are assigned by
+[`scripts/index_evidence.py`](../scripts/index_evidence.py). A peg result is
+never a cable result.
 
-The recovery branch carried 116 files under `evidence/` and 49 under `configs/`;
-this repository had 35 and 10. Every file it had and this one did not was looked
-at, and all of it came across.
+The final approach-slew comparison was recovered from a local raw-output
+directory as [approach_slew_comparison_v1.json](../evidence/approach_slew_comparison_v1.json).
+Its bytes match the hash in the executed decision record. This closes the
+question left open in the earlier design record: the comparison ran and failed
+its registered support floor.
 
-| What came over | Count | Why |
-| --- | --- | --- |
-| **The peg-insertion campaign's records** | 65 records | This is recovery work — an insertion attempt fails and the robot has to try again — so it belongs in the recovery repository. The campaign was closed by rejecting its own premise, which is a real result and is kept as one. [docs/PEG_INSERTION.md](PEG_INSERTION.md) explains what it was and why it closed. |
-| **Frozen contracts the records name** | 41 configs | Several records already here named configs that were never carried over, so their evidence links were broken. They are not broken now. |
-| **Figures** | 19 files | `.png`, `.pdf`, `.svg` and `.jpg` renderings that records link to by path. Copied so the links resolve rather than regenerated. |
-| **Two records that describe both campaigns** | 2 records | Archives of retired README and ROADMAP prose. |
+## What remains elsewhere
 
-**The paths were kept exactly as they were.** Records reference each other and
-their configs by path — `evidence/peg_fault_matrix_v1.json`,
-`configs/protocol_v4.json` — and many carry a sha256 hash of the file at that
-path. Filing the peg work under a subdirectory would have broken every one of
-those references, so peg and cable records sit side by side in `evidence/` and
-are told apart by the `campaign` field that
-[`evidence/INDEX.json`](../evidence/INDEX.json) gives every entry. The rule that
-assigns it is mechanical and is written out in
-[`scripts/index_evidence.py`](../scripts/index_evidence.py).
+About 865 MB of peg trajectories, physics samples and checkpoints remain
+untracked at `D:/6axis-space-robotics/artifacts/`. Evidence records retain their
+hashes, but a clone does not include those files. The peg implementation is in
+the archive tag, not this repository.
 
-What `evidence/INDEX.json` reports today, over all 99 records:
+Ten early cable probe/review scripts were restored from that archive. Four older
+scripts named in v2-era records could not be recovered: `add_cable_plugin.py`,
+`load_aic_world.py`, `sim_comparison_test.py` and `view_scene.py`. The records
+remain available; their exact source does not.
 
-| Campaign | Records | What it is |
-| --- | --- | --- |
-| `cable` | 30 | The four constrained-cable studies. What this repository is about. |
-| `peg` | 66 | The retired peg-insertion campaign. |
-| `shared` | 3 | Records describing both campaigns: two documentation archives, and the whole-cycle verification that hashes every file in a tree that held both projects. |
-
-Nothing was deleted from the recovery branch to make this tidy. The branch was
-archived whole, under a tag, before anything moved.
-
-### One result was rescued rather than copied
-
-`evidence/approach_slew_design_v1.json` registered a comparison and was recorded
-*before* its results existed, which left it reading as an open question. The
-results do exist. They were written to
-`artifacts/assembly/research_cycle_20260910_r01/approach_slew_comparison_v1.json`
-in the orbital working tree — untracked, on one workstation, one disk failure
-from gone. That file is now
-[`evidence/approach_slew_comparison_v1.json`](../evidence/approach_slew_comparison_v1.json),
-byte for byte, and its sha256 matches the hash
-[`research_cycle_decision_v1.json`](../evidence/research_cycle_decision_v1.json)
-recorded for it. The question that record left open is closed: the comparison ran,
-and it failed its registered support floor.
-
-### What did not come over
-
-About **865 MB** of raw run artifacts — trajectories, per-tick physics samples,
-checkpoints — that the peg records were derived from. They are too large for a
-git repository and they are not results; the records are. They remain untracked
-in `D:/6axis-space-robotics/artifacts/` on the workstation that produced them,
-and every record carries the sha256 of the artifacts behind it, so they can be
-checked but not replaced.
-
----
-
-## Where to look next
-
-| Need | Read |
-| --- | --- |
-| What this project is and what it found | [README.md](../README.md) |
-| What is closed and what is still open, with prices | [ROADMAP.md](../ROADMAP.md) |
-| How to run things, and the rules the work follows | [AGENTS.md](../AGENTS.md) |
-| Which record answers which question | [evidence/INDEX.json](../evidence/INDEX.json) |
-| The retired peg campaign | [docs/PEG_INSERTION.md](PEG_INSERTION.md) |
-| Working notes, kept as history | [docs/handover/](handover/) |
+Read [README.md](../README.md) for the project,
+[ROADMAP.md](../ROADMAP.md) for verified limits and deferred work, and
+[PEG_INSERTION.md](PEG_INSERTION.md) for the retired campaign.
