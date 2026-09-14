@@ -1,8 +1,7 @@
 # Repository map
 
 What this repository holds, what its branches are, and where the work that is
-*not* here went. If you are an agent or a person picking this up cold, read this
-before anything except [README.md](../README.md).
+*not* here went. Read it after [README.md](../README.md).
 
 Measured on 2026-09-13 with `git ls-remote`, `git merge-base` and `git rev-list`.
 Nothing below is assumed.
@@ -65,7 +64,7 @@ at, and all of it came across.
 
 | What came over | Count | Why |
 | --- | --- | --- |
-| **The peg-insertion campaign's records** | 65 records | This is recovery work — an insertion attempt fails and the robot has to try again — so it belongs in the recovery repository. The campaign was closed by rejecting its own premise, which is a real result and is kept as one. [docs/PEG_INSERTION.md](PEG_INSERTION.md) explains it in plain English. |
+| **The peg-insertion campaign's records** | 65 records | This is recovery work — an insertion attempt fails and the robot has to try again — so it belongs in the recovery repository. The campaign was closed by rejecting its own premise, which is a real result and is kept as one. [docs/PEG_INSERTION.md](PEG_INSERTION.md) explains what it was and why it closed. |
 | **Frozen contracts the records name** | 41 configs | Several records already here named configs that were never carried over, so their evidence links were broken. They are not broken now. |
 | **Figures** | 19 files | `.png`, `.pdf`, `.svg` and `.jpg` renderings that records link to by path. Copied so the links resolve rather than regenerated. |
 | **Two records that describe both campaigns** | 2 records | Archives of retired README and ROADMAP prose. |
@@ -122,7 +121,7 @@ checked but not replaced.
 | --- | --- |
 | What this project is and what it found | [README.md](../README.md) |
 | What is closed and what is still open, with prices | [ROADMAP.md](../ROADMAP.md) |
-| How to run things, and the rules an agent works under | [AGENTS.md](../AGENTS.md) |
+| How to run things, and the rules the work follows | [AGENTS.md](../AGENTS.md) |
 | Which record answers which question | [evidence/INDEX.json](../evidence/INDEX.json) |
 | The retired peg campaign | [docs/PEG_INSERTION.md](PEG_INSERTION.md) |
-| Past session handovers, kept as history | [docs/handover/](handover/) |
+| Working notes, kept as history | [docs/handover/](handover/) |

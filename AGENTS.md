@@ -108,6 +108,9 @@ the task definition. Do not lengthen it and do not change the predicate.
 | v6 routing study | configs/cable_routing_v6.json; evidence/cable_routing_v6.json; scripts/{build_cell_cad,screen_cell,render_cell}_v6.py; scripts/{run,evaluate,fit}_routing_v6.py |
 | v6 stage records and decision log | artifacts/cell/ |
 | **The workbench** | scripts/workbench.py over src/assembly_recovery/cable_workbench_v7.py |
+| **The four findings, re-derived from evidence/** | scripts/verify_findings.py |
+| **The safety layer run with no simulator** | scripts/try_the_safety_check.py over artifacts/showcase/demo.json |
+| **Every headline number, pinned to its record** | tests/test_documented_numbers.py |
 | **The replay clips** | scripts/render_routing_video_v6.py; scripts/verify_showcase_video.py |
 | **The generated page** | scripts/build_showcase.py; artifacts/showcase/page.json |
 | **The USD export** | scripts/export_usd_v7.py |
@@ -123,14 +126,23 @@ the task definition. Do not lengthen it and do not change the predicate.
 ## Commands
 
 ```powershell
-.venv/Scripts/python.exe -m pytest                    # 493 tests, CPU-only, ~5 s
+.venv/Scripts/python.exe -m pytest                    # 500 tests, CPU-only, ~5 s
 .venv/Scripts/python.exe -m ruff check src scripts tests
 .venv/Scripts/python.exe scripts/index_evidence.py    # after adding a record
 ```
 
-The four things the last session built, in the order they depend on each other.
-The clips must exist before the page, because the page embeds them and reads
-their verification record.
+The two the README offers a stranger. Both need `.venv` and nothing else, both
+exit non-zero when what they check stops holding, and both are run by
+`tests/test_entry_points.py`:
+
+```powershell
+.venv/Scripts/python.exe scripts/verify_findings.py     # four verdicts, re-derived
+.venv/Scripts/python.exe scripts/try_the_safety_check.py  # the filter deciding a real move
+```
+
+The four rendered artefacts, in the order they depend on each other. The clips
+must exist before the page, because the page embeds them and reads their
+verification record.
 
 ```powershell
 .deps/cable-venv/Scripts/pythonw.exe scripts/render_routing_video_v6.py --layout triptych --view clips `
@@ -250,15 +262,18 @@ verified results in `evidence/`. `artifacts/cell/` and `artifacts/showcase/` are
 the exceptions and are committed: their JSON stage records and `PROGRESS.md`
 decision logs are small and are what a later session reads. The videos, renders
 and USD stages under them are not.
-Regenerate `evidence/INDEX.json` after adding a record. Exactly three maintained
-Markdown documents — no HANDOFF, NOW or extra agent file.
+Regenerate `evidence/INDEX.json` after adding a record. Exactly five maintained
+Markdown documents, the ones listed at the top of this file — no HANDOFF, NOW or
+extra agent file.
 
 When a block finishes, state what changed, what actually ran and the next action.
 Do not promise a positive result, publication or hiring.
 
-**Push status:** an automatic approval review previously blocked a push to
-`https://github.com/tryaksh/orbital-robotic-servicing-lab.git` because explicit
-destination authorization was missing, and the owner has not answered. Continue
-local work and commits. This pending approval takes precedence over any general
-branch-push authorization; changing assistant or client is not a workaround, and
-neither is creating a new remote.
+**Push status.** Pushing to this repository's own remote,
+`https://github.com/tryaksh/constrained-cable-safety.git`, is fine and is what
+every commit here goes to. A push to the orbital repository,
+`https://github.com/tryaksh/orbital-robotic-servicing-lab.git`, was blocked by an
+automatic approval review for missing destination authorization and the owner has
+not answered. That approval is still pending and takes precedence over any
+general branch-push authorization; changing assistant or client is not a
+workaround, and neither is creating a new remote.

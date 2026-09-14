@@ -1,19 +1,20 @@
 # Constrained-cable safety
 
-A robot pushes a plug into a socket. The plug's cable is clipped to a board on the
-way in, the way wiring is dressed inside a machine. When the plug does not go in
-and the robot pulls back to try again, it can drag the cable out of one of those
-clips — undoing work it had already done.
+A robot pushes a plug into a socket. Its cable is clipped to a board on the way
+in, as wiring is dressed inside a machine. When the plug does not go in and the
+robot backs off to retry, it can drag the cable out of a clip — undoing work it
+had already done.
 
-This repository is about the small piece of software that is supposed to stop
-that: what it has to know, how simple it can be, and the point at which it
-quietly stops being worth anything.
+This repository is about the software meant to stop that: what it has to know,
+how simple it can be, and where it stops being worth anything. Everything here
+is simulation: the MuJoCo physics engine, a UR5e robot arm, and connector models
+from
+[Intrinsic's Assembly Industrial Benchmark](https://github.com/intrinsic-ai/assembly-industrial-benchmark).
+Four studies, each with its question and pass/fail rule committed to git
+*before* it ran, so nothing could be chosen afterwards.
 
-Everything here is simulation — MuJoCo, a UR5e arm, and connector models from the
-[Intrinsic Assembly Industrial Benchmark](https://github.com/intrinsic-ai/assembly-industrial-benchmark).
-Four studies. Each one had its question, its method and its pass/fail criteria
-written down and committed to git *before* any of it ran, so the result could not
-be chosen after the fact.
+The answer: **use the check's ranking of moves, not its yes/no threshold.** The
+ranking survives a rig the check was never tuned for; the threshold does not.
 
 ![The five-clip test rig](evidence/cable_cell_v6_clips_cad.png)
 
@@ -22,10 +23,6 @@ angles, a ridge the cable climbs, a corner it turns, and a clamp at the far end.
 Drawn in FreeCAD from the same config file the simulator reads, so the picture
 and the physics cannot disagree.
 [Record](evidence/cable_cell_cad_v6.json)*
-
-The one-sentence answer: **use the check's ranking of moves, not its yes/no
-threshold** — the ranking still works on a rig the check was never tuned for,
-and the threshold does not.
 
 ## Five minutes, from a cold checkout
 
@@ -228,8 +225,8 @@ This is where the simple check is clearly worth having.
 
 The first two findings came from a rig with *one* clip. Real wiring runs through
 several. So the same check, unchanged and not re-tuned, was put on the five-clip
-rig at the top of this page, where finishing the job now means all five clips
-still held and the plug seated.
+rig shown at the top, where finishing the job now means all five clips still
+held and the plug seated.
 
 It stopped helping. Not "helped less" — stopped. With the check and without it,
 the robot does the same thing: one big move, and the cable comes out on it.
@@ -294,18 +291,18 @@ than an observation.
 
 ---
 
-## What you can run
+## Running more of it
 
 ```powershell
-.venv/Scripts/python.exe -m pytest                          # 493 tests, no GPU, no simulator, ~5 s
+.venv/Scripts/python.exe -m pytest                          # 500 tests, no GPU, no simulator, ~5 s
 .venv/Scripts/python.exe scripts/summarize_perception_v4.py # study 1, in a paragraph
 ```
 
 [`SafetyFilter`](src/assembly_recovery/cable_safety_filter_v4.py) is the check
-itself, packaged. It reads its thresholds straight out of the evidence file, so
-the published number and the running code cannot drift apart. It scores all three
-failure modes, names which one binds, maps the whole space of allowed moves in
-one call, and reports how much of each budget a move spends.
+as a class, and is what the command above drives. It reads its thresholds
+straight out of the evidence record, so the published number and the running
+code cannot drift apart, and it will map the whole space of allowed moves in one
+call rather than being probed one move at a time.
 
 ### The workbench
 
@@ -338,9 +335,9 @@ re-running the job gives the same result the study recorded, including how much
 slack was left at each of the five decisions.
 [Record](artifacts/showcase/tool.json).
 
-The interactive window has never been run — the machine this was written on has
-no display. Everything behind it is headless and unit tested; the window itself
-is one call to MuJoCo's `launch_passive`.
+The interactive window has never been opened, because there is no display on the
+machine everything here was measured on. Everything behind it is headless and
+unit tested; the window itself is one call to MuJoCo's `launch_passive`.
 
 ### The page, the clips and the renders
 
@@ -353,19 +350,21 @@ large, and they are rebuilt by running the script again.
 | --- | --- |
 | **The page** | `scripts/build_showcase.py` generates `artifacts/showcase/index.html` from ten committed records. Nothing on it is typed by hand: change a number in a record, rebuild, and the page changes. It is a local file and is not published anywhere. [Record](artifacts/showcase/page.json) |
 | **Replay clips** | `scripts/render_routing_video_v6.py` re-runs a registered job through the study's own control loop and refuses to render it unless it reproduces the recorded outcome exactly. Checked by decoding the written files, not by trusting the encoder. [Record](artifacts/showcase/video.json) |
-| **USD export** | `scripts/export_usd_v7.py` writes one job out as a USD stage so it can be re-rendered elsewhere. [Record](artifacts/showcase/usd.json) |
-| **Isaac Sim render** | `scripts/render_isaac_v7.py` re-renders that stage with RTX lighting, because MuJoCo's built-in renderer is for checking a scene is right, not for looking at. Rendering only — the physics and every number are unchanged. [Record](artifacts/showcase/isaac.json) |
+| **USD export** | `scripts/export_usd_v7.py` writes one job out as a USD stage — Universal Scene Description, the scene format other renderers read — so it can be re-rendered elsewhere. [Record](artifacts/showcase/usd.json) |
+| **Isaac Sim render** | `scripts/render_isaac_v7.py` re-renders that stage with ray-traced lighting, because MuJoCo's built-in renderer is for checking a scene is right, not for looking at. Rendering only — the physics and every number are unchanged. [Record](artifacts/showcase/isaac.json) |
 
 ---
 
 ## Why the numbers are trustworthy
 
 - **The question was written down and committed before the runs started.** Nine
-  predictions across the four studies; three were right. The six that were wrong
-  are still in the record, with what they taught.
+  predictions, three to a study across the three studies that made any; three
+  were right. The six that were wrong are still in the record, with what they
+  taught.
 - **The code being tested cannot read the answer key.** A guard fails any run
   whose control code touches the truth. A deliberate cheating run confirms the
   guard fires; it never fired on a real run.
+  [Record](evidence/cable_perception_controls_v4.json)
 - **Nothing was graded twice.** All 16,080 runs of the first study were re-scored
   from the raw logs alone by separate code: 26,652 comparisons, zero
   disagreements. [Record](evidence/cable_perception_replay_v4.json)
@@ -397,8 +396,8 @@ statement about *that rig*.
 ![The connector has no latch](evidence/cable_retention_v1.png)
 
 *Why "no latched connection" is in that list rather than assumed away. The
-connector model was seated and then pulled on directly. Six trials seated; all
-four that were then pulled — at 0.5 N and at 2 N — left the 1 mm seating region
+connector model was seated and then pulled on directly. 6 trials seated; all
+4 that were then pulled — at 0.5 N and at 2 N — left the 1 mm seating region
 within milliseconds, with the opposing contact force measuring exactly zero at
 every recorded sample. There is nothing to catch. The plug stays put because the
 robot is holding it, which is why every success in this repository is worded as
@@ -417,13 +416,12 @@ held seating.
 | Which record answers a question | [evidence/INDEX.json](evidence/INDEX.json) |
 | Operating rules and the full command sequence | [AGENTS.md](AGENTS.md) |
 | The rig, in config | [configs/cable_cell_v6_candidates.json](configs/cable_cell_v6_candidates.json) |
-| The decision log for the last session | [artifacts/showcase/PROGRESS.md](artifacts/showcase/PROGRESS.md) |
-| Past session handovers, kept as history | [docs/handover/](docs/handover/) |
+| The check itself, packaged | [src/assembly_recovery/cable_safety_filter_v4.py](src/assembly_recovery/cable_safety_filter_v4.py) |
 
 Every evidence record carries its own declared scope. Read it before quoting a
 number out of it.
 
 **`evidence/` holds two campaigns.** Every entry in
 [`evidence/INDEX.json`](evidence/INDEX.json) carries a `campaign` field: 30
-records from the cable studies this page is about, 66 from the retired peg
+records from the cable studies this repository is about, 66 from the retired peg
 campaign, and 3 describing both. A peg number is not a cable number.

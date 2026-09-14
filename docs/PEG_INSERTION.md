@@ -105,7 +105,7 @@ candidate method was **never trained and never evaluated**.
 
 ### What is *not* being claimed
 
-The records are careful about this and so is this page. The campaign did not show
+The records are careful about this, and so is what follows. The campaign did not show
 that learning from your own failures is a bad idea, that FORGE or Franka tasks do
 not work, or that finer physics is the truth and coarser physics is a lie. Two
 resolutions establish that the outcome is *sensitive* to resolution. They do not
@@ -161,8 +161,7 @@ reported separately.
   `D:/6axis-space-robotics/artifacts/` on the workstation that produced them,
   untracked. Every evidence record carries the sha256 hash of the artifacts it
   was derived from, so they can be checked against the records if the machine
-  survives, and cannot be recovered if it does not. This is stated here because
-  it is true, not because it is acceptable.
+  survives, and cannot be recovered if it does not.
 - **Ten older reports lost their source binding.** They were produced from
   uncommitted code, so the runs happened but the exact code that produced them
   cannot be reconstructed. They are marked in the records, and they are the
@@ -184,9 +183,10 @@ reported separately.
 Because it is the same question. An assembly attempt fails; something has to
 happen next; what should decide what happens next, and does the clever answer
 beat the simple one? The peg study asked it with reinforcement learning on a
-Franka arm in Isaac Lab, and the answer was "no, and here is why the experiment
-could not even be run properly". The cable studies asked it with a safety check
-on a UR5e arm in MuJoCo, and got a sharper answer on a narrower question.
+Franka arm in Isaac Lab and could not get the comparison to a point where it
+meant anything, for a reason that is itself a measurement. The cable studies
+asked it with a safety check on a UR5e arm in MuJoCo and got a sharper answer on
+a narrower question.
 
 Putting them together is the honest arrangement. Leaving the peg work in a
 repository about servicing spacecraft was not.

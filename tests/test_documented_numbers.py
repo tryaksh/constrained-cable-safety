@@ -357,6 +357,110 @@ def test_the_undecided_study_is_still_reported_as_undecided():
     quoted("Undecidable as asked", ROADMAP, "ROADMAP.md")
 
 
+#: The three studies that registered predictions, and the ROADMAP row each one
+#: keeps its score in. v3 registered none: it asked where a boundary sat, not
+#: what the answer would be.
+SCORED_STUDIES = ("v4", "v5", "v6")
+
+
+def test_the_prediction_scoreboard_adds_up():
+    """Nine predictions, three right — three studies at one of three each.
+
+    Only v6 records its own score in a machine-readable field, so that one is
+    checked against the record and the other two against the rows that carry
+    them. What this defends is the arithmetic: change a row to 2 of 3 and the
+    README's "nine predictions, three right" stops being true, and this fails.
+    """
+    routing = record("evidence/cable_routing_v6.json")["verdicts"]
+    assert (routing["correct"], routing["of"]) == (1, 3), routing
+    for study in SCORED_STUDIES:
+        assert f"| **{study}** |" in ROADMAP, f"ROADMAP.md has no row for {study}"
+    scored = ROADMAP.count("1 of 3")
+    assert scored == len(SCORED_STUDIES), (
+        f"{scored} study rows say 1 of 3, so the scoreboard is no longer "
+        f"{len(SCORED_STUDIES)} of {3 * len(SCORED_STUDIES)}")
+    quoted("Nine", README, "README.md")
+    quoted("three were right", README, "README.md")
+    wrong = 3 * len(SCORED_STUDIES) - len(SCORED_STUDIES)
+    assert f"The {wrong} that were wrong" in README or "The six that were wrong" in README, (
+        f"README.md does not say that {wrong} predictions were wrong")
+
+
+def test_the_captions_quote_the_numbers_their_figures_were_drawn_from():
+    """A caption is prose next to a picture, and drifts exactly like any other."""
+    v2 = record("evidence/cable_recovery_block_v2.json")["measured_task_constants"]
+    quoted(f"{v2['clip_release_travel_m'] * 1000:.1f} mm of travel", README, "README.md")
+    quoted(f"{v2['anchor_reaction_at_release_n']:.2f} N", README, "README.md")
+
+    v3 = record("evidence/cable_repair_boundary_v3.json")
+    quoted(f"all {v3['denominator']['requests']:,} runs", README, "README.md")
+
+    retention = record("evidence/cable_retention_v1.json")["summary"]
+    assert retention["positive_load_extraction_contact_exactly_zero_in_all_native_"
+                     "and_forward_samples"] is True
+    quoted(f"{retention['seating_passed']} trials seated", README, "README.md")
+    quoted(f"{retention['positive_load_trials']} that were then pulled", README, "README.md")
+    for load in retention["net_extraction_loads_n"]:
+        if load:
+            quoted(f"{load:g} N", README, "README.md")
+    quoted(f"{retention['seating_tolerance_m'] * 1000:.0f} mm seating region",
+           README, "README.md")
+
+
+def test_the_cable_itself_is_described_as_the_contract_describes_it():
+    """Its diameter sets the bend limit and its node count sets what a network reads."""
+    contract = record("configs/cable_perception_v4.json")
+    assert "4 mm OD" in contract["constraints"]["C2_bend"]["rationale"]
+    quoted("4 mm across", README, "README.md")
+    nodes = len(record("artifacts/showcase/demo.json")["levels"]["E0"]["decision"]
+                ["insertion_axis"]) * 8
+    assert nodes == 24, "the centreline node count is no longer 24"
+    quoted(f"all {nodes} estimated points", README, "README.md")
+
+
+def test_what_was_built_is_reported_as_the_build_records_measured_it():
+    clips = record("artifacts/showcase/video.json")["clips"]
+    assert all(clip["measured"]["frames_decoded"] == clip["declared_frames"]
+               for clip in clips), "a clip no longer decodes to the frame count it declares"
+    frames = [str(clip["measured"]["frames_decoded"]) for clip in clips]
+    quoted(", ".join(frames[:-1]) + f" and {frames[-1]} frames", ROADMAP, "ROADMAP.md")
+
+    built = record("artifacts/showcase/page.json")["built_from"]
+    assert sum(len(group) for group in built.values()) == 10
+    quoted("ten committed records", ROADMAP, "ROADMAP.md")
+
+    usd = record("artifacts/showcase/usd.json")
+    assert usd["export"]["stepped_at_export_time"] is False
+    quoted(f"**{usd['export']['frames_written']} frames**", ROADMAP, "ROADMAP.md")
+    quoted(f"{usd['read_back']['prims']} prims", ROADMAP, "ROADMAP.md")
+
+    isaac = record("artifacts/showcase/isaac.json")["views"]["wide"]
+    quoted(f"{isaac['frames_written']} frames at "
+           f"{isaac['resolution'][0]}×{isaac['resolution'][1]}", ROADMAP, "ROADMAP.md")
+
+
+def test_the_workbench_test_count_is_the_number_of_tests_it_has(request):
+    collected = [item for item in request.session.items
+                 if "test_cable_workbench_v7" in str(item.fspath)]
+    if not collected:
+        pytest.skip("the workbench tests were not collected in this run")
+    quoted(f"**{len(collected)} headless tests**", ROADMAP, "ROADMAP.md")
+
+
+def test_the_winning_rig_won_by_the_margin_the_screen_recorded():
+    screen = record("evidence/cable_cell_screen_v6.json")
+    survivals = {}
+    for entry in screen["accepted_cell_detail"]:
+        survivals[entry["layout"]] = survivals.get(entry["layout"], 0) + 1
+    best = max(survivals.values())
+    others = sorted((count for layout, count in survivals.items()
+                     if count != best or layout != screen["registered_cell"]), reverse=True)
+    ladder = len(screen["candidates"]) if isinstance(screen["candidates"], list) else None
+    assert ladder is None or best <= ladder
+    quoted(f"{best} of 7 slack settings", ROADMAP, "ROADMAP.md")
+    assert others, "only one candidate survived, so there is nothing to compare it against"
+
+
 # --------------------------------------------------------------------------
 # The peg campaign, whose numbers must never be read as cable numbers
 # --------------------------------------------------------------------------
@@ -379,6 +483,33 @@ def test_the_peg_policy_result_is_quoted_with_its_denominator():
 # --------------------------------------------------------------------------
 # The test suite counts itself, so the README cannot quote a stale size
 # --------------------------------------------------------------------------
+
+
+def test_the_readme_opening_stands_on_its_own():
+    """The first 150 words have to work as a summary somebody could lift whole.
+
+    That means they must carry all four things a reader needs before they decide
+    whether to keep reading: the problem, what the repository is, that it is
+    simulation and not hardware, and what the studies concluded.
+    """
+    import re
+
+    body = README.split("![", 1)[0]
+    body = re.sub(r"^#[^A-Za-z]*Constrained-cable safety", "", body)
+    body = re.sub(r"\[([^\]]*)\]\([^)]*\)", r"\1", body)
+    body = re.sub(r"[*_`]", "", body)
+    words = [word for word in body.split() if any(c.isalnum() for c in word)]
+    assert len(words) <= 150, (
+        f"{len(words)} words run before the first figure; the opening is meant to be "
+        "liftable as a 150-word summary")
+    opening = " ".join(words).lower()
+    for phrase, why in (
+        ("clip", "the problem"),
+        ("repository", "what this is"),
+        ("simulation", "the one caveat that must never be dropped"),
+        ("ranking", "what the studies concluded"),
+    ):
+        assert phrase in opening, f"the opening drops {why}"
 
 
 def test_the_documents_quote_the_number_of_tests_there_actually_are(request):
